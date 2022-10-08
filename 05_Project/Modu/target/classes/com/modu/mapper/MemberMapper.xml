@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.modu.mapper.MemberMapper">
+	<insert id="insertMember" parameterType="Member">
+		insert into MEMBER(EMAIL,
+						   PWD,
+						   NICKNAME,
+						   PROFILE_IMG,
+						   NAME,
+						   PHONE,
+						   MARKETING,
+						   API_USING) values(#{email},
+								  	  		 #{pwd},
+								      		 #{nickname},
+								  	  		 #{profileImg},
+								  	  		 #{name},
+								 	  		 #{phone},
+								 	  		 #{marketing},
+								 	  		 #{apiUsing})
+	</insert>
+	<insert id="insertFollow">
+		insert into FOLLOW values(FOLLOW_SEQ.nextval,
+								  #{email},
+								  #{followee},
+								  SYSDATE)
+	</insert>
+	<update id="updateMember" parameterType="member">
+		update MEMBER set PWD=#{pwd},
+						  NICKNAME=#{nickname},
+						  PROFILE_IMG=#{profileImg},
+						  PHONE=#{phone},
+						  MARKETING=#{marketing},
+						  API_USING=#{apiUsing},
+						  UPDATE_DATE=SYSDATE 
+						  where EMAIL=#{email}						
+	</update>	
+	<update id="updatePoint">
+		update MEMBER set POINT=POINT+#{point} where EMAIL=#{email}
+	</update>
+	<delete id="deleteMember" parameterType="String">
+		delete from MEMBER where EMAIL=#{email}
+	</delete>
+	<delete id="deleteFollow" parameterType="long">
+		delete from FOLLOW where ID=#{id}
+	</delete>
+		
+	<select id="selectMember" parameterType="String" resultType="Member">
+		select * from MEMBER where EMAIL=#{email}
+	</select>
+	<select id="selectEmailCheck" parameterType="String" resultType="String">
+		select EMAIL from MEMBER where EMAIL=#{email}
+	</select>
+	<select id="selectNicknameCheck" parameterType="String" resultType="String">
+		select NICKNAME from MEMBER where NICKNAME=#{nickname}
+	</select>
+	<select id="selectNickname" parameterType="String" resultType="String">
+		select NICKNAME from MEMBER where EMAIL=#{email}
+	</select>
+	<select id="selectProfileImg" parameterType="String" resultType="String">
+		select PROFILE_IMG from MEMBER where EMAIL=#{email}
+	</select>
+	<select id="selectPoint" parameterType="String" resultType="int">
+		select POINT from MEMBER where EMAIL=#{email}
+	</select>
+	<select id="selectFollowee" resultType="FollowList">
+		select * from(select ROWNUM list,
+		                     f.ID ID,
+		                     f.FOLLOWEE EMAIL,
+		                     m.NICKNAME NICKNAME,
+		                     m.PROFILE_IMG PROFILE_IMG,
+		                     f.FOLLOW_DATE FOLLOW_DATE
+		              from MEMBER m inner join FOLLOW f on m.EMAIL=f.FOLLOWEE
+		              where M_EMAIL=#{email} order by ID desc)
+		where list BETWEEN #{beginRow} AND #{endRow}
+	</select>
+	<select id="selectFollower" resultType="FollowList">
+		select * from (select ROWNUM list,
+		                      f.ID,
+		                      f.M_EMAIL EMAIL,
+		                      m.NICKNAME,
+		                      m.PROFILE_IMG,
+		                      f.FOLLOW_DATE
+		               from MEMBER m inner join FOLLOW f on m.EMAIL=f.M_EMAIL
+		               where f.FOLLOWEE=#{email} order by f.ID desc)
+		where list BETWEEN #{beginRow} AND #{endRow}
+	</select>
+	
+	<!-- 테스트용 -->
+	<select id="selectEmails" parameterType="int" resultType="String">
+		<![CDATA[select EMAIL from  (select ROWNUM no, EMAIL from MEMBER 
+                		    where AUTHORITY=1 and NICKNAME NOT LIKE '%닉네임%'
+               				order by DBMS_RANDOM.RANDOM) 
+	    where ROWNUM<#{bound}]]>
+	</select>
+</mapper>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.modu.mapper.RecipeMapper">
+	<insert id="insertRecipe" parameterType="Recipe">
+		insert into RECIPE (ID,
+							M_EMAIL,
+							M_NICKNAME,
+							PROFILE_IMG,
+							TITLE,
+							INFO,
+							FOOD,
+							FOOD_PHOTO,
+							SORT,
+							INGREDIENT,
+							SERVING,
+							COOK_TIME,
+							DIFFICULTY_LEVEL) values(RECIPE_SEQ.nextval,
+								  					 #{mEmail},
+								  					 #{mNickname},
+								  					 #{profileImg},
+								  					 #{title},
+								  					 #{info},
+								  					 #{food},
+								  					 #{foodPhoto},
+								  					 #{sort},
+								  					 #{ingredient},
+								  					 #{serving},
+								  					 #{cookTime},
+								  					 #{difficultyLevel})
+	</insert>
+	<insert id="insertIngredient" parameterType="Ingredient">
+		insert into INGREDIENT values(INGR_SEQ.nextval,
+									  #{rId},
+									  #{ingredientType},
+									  #{ingredient},
+									  #{quantity})
+	</insert>
+	<insert id="insertDirection" parameterType="Direction">
+		insert into DIRECTION values(DIR_SEQ.nextval,
+									 #{rId},
+									 #{step},
+									 #{direction},
+									 #{originalFile},
+									 #{saveFile})
+	</insert>
+	<insert id="insertTag" parameterType="RecipeTag">
+		insert into RECIPE_TAG values(TAG_SEQ.nextval,
+									  #{rId},
+									  #{tag})
+	</insert>
+	<update id="updateRecipe" parameterType="Recipe">
+		update RECIPE set TITLE=#{title},
+						  INFO=#{info},
+						  FOOD=#{food},
+						  FOOD_PHOTO=#{foodPhoto},
+						  SORT=#{sort},
+						  INGREDIENT=#{ingredient},
+						  SERVING=#{serving},
+						  COOK_TIME=#{cookTime},
+						  DIFFICULTY_LEVEL=#{difficultyLevel},
+						  UPDATE_DATE=SYSDATE
+		where ID=#{id}
+	</update>
+	<update id="updateIngredient" parameterType="Ingredient">
+		update INGREDIENT set INGREDIENT_TYPE=#{ingredientType},
+							  INGREDIENT=#{ingredient},
+							  QUANTITY=#{quantity}
+		where ID=#{id}							  
+	</update>
+	<update id="updateDirection" parameterType="Direction">
+		update DIRECTION set STEP=#{step},
+							 DIRECTION=#{direction},
+							 ORIGINAL_FILE=#{originalFile},
+							 SAVE_FILE=#{saveFile}
+		where ID=#{id}							 
+	</update>
+	<delete id="deleteRecipe" parameterType="long">
+		delete from RECIPE where ID=#{id}
+	</delete>
+	<delete id="deleteIngredientAll" parameterType="long">
+		delete from INGREDIENT where R_ID=#{rId}
+	</delete>
+	<delete id="deleteIngredient" parameterType="long">
+		delete from INGREDIENT where ID=#{id}
+	</delete>
+	<delete id="deleteDirectionAll" parameterType="long">
+		delete from DIRECTION where R_ID=#{rId}
+	</delete>
+	<delete id="deleteDirection" parameterType="long">
+		delete from DIRECION where ID=#{id}
+	</delete>
+	<delete id="deleteTagAll" parameterType="long">
+		delete from RECIPE_TAG where R_ID=#{rId}
+	</delete>
+	<delete id="deleteTag" parameterType="long">
+		delete from RECIPE_TAG where ID=#{id}
+	</delete>
+	
+	<select id="selectRecipeId" parameterType="String" resultType="long">
+		select NVL(MAX(ID),0) from RECIPE where M_EMAIL=#{email}
+	</select>
+	<select id="selectRecipe" parameterType="long" resultType="Recipe">
+		select * from RECIPE where ID=#{id}
+	</select>
+	<select id="selectIngredient" parameterType="long" resultType="Ingredient">
+		select * from INGREDIENT where R_ID=#{rId}
+	</select>
+	<select id="selectDirection" parameterType="long" resultType="Direction">
+		select * from DIRECTION where R_ID=#{rId}
+	</select>
+	<select id="selectRecipeTag" parameterType="long" resultType="RecipeTag">
+		select * from RECIPE_TAG where R_ID=#{rId}
+	</select>
+	<select id="selectRecipeListBy" resultType="RecipeList">
+		select * from (select ROWNUM list,
+		                      ID,
+		                      FOOD_PHOTO,
+		                      TITLE,
+		                      FOOD,
+		                      INFO,
+		                      HITS,
+		                      STAR,
+		                      M_NICKNAME,
+		                      PROFILE_IMG from RECIPE)
+		where list BETWEEN #{beginRow} AND #{endRow}
+	</select>
+	<!-- <select id="selectRecipeListByType" resultType="RecipeList">
+		select * from (select ROWNUM list,
+		                      ID,
+		                      FOOD_PHOTO,
+		                      TITLE,
+		                      FOOD,
+		                      INFO,
+		                      HITS,
+		                      STAR,
+		                      M_NICKNAME,
+		                      PROFILE_IMG from RECIPE
+		               where SORT LIKE #{sort} AND INGREDIENT LIKE #{ingredient})
+		where list BETWEEN 1 AND 10	
+	</select> -->
+	<select id="selectRecipeCount" resultType="int">
+		select NVL(MAX(ROWNUM), 0) from RECIPE
+	</select>
+	
+</mapper>

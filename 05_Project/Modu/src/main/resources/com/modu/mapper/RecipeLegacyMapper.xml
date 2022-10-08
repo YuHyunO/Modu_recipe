@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.modu.mapper.RecipeLegacyMapper">
+
+	<insert id="insertReply" parameterType="RecipeReply">
+		insert into RECIPE_REPLY (ID,
+								 R_ID,
+								 M_EMAIL,
+								 M_NICKNAME,
+								 PROFILE_IMG,
+								 REPLY) values(RECIPE_REPLY_SEQ.nextval,
+								 			   #{rId},
+								 			   #{mEmail},
+								 			   #{mNickname},
+								 			   #{profileImg},
+								 			   #{reply})
+	</insert>
+	<insert id="insertReplyPhoto" parameterType="RecipeReplyPhoto">
+		insert into RECIPE_REPLY_PICTURE values(R_REPLY_PHOTO_SEQ.nextval,
+											  #{rrId},
+											  #{originalFile},
+											  #{saveFile})
+	</insert>
+	<insert id="insertNestedReply" parameterType="RecipeNestedReply">
+		insert into RECIPE_NESTED_REPLY (ID,
+										 RR_ID,
+										 M_EMAIL,
+										 M_NICKNAME,
+										 PROFILE_IMG,
+										 REPLY) values(RECIPE_REPLY_SEQ.nextval,
+										 			   #{rrId},
+										 			   #{mEmail},
+										 			   #{mNickname},
+										 			   #{profileImg},
+										 			   #{reply})
+	</insert>
+	<insert id="insertRating">
+		insert into RATING (ID,
+							M_EMAIL,
+							R_ID,
+							STAR) values(RATING_SEQ.nextval,
+										 #{email}),
+										 #{rId},
+										 #{star})
+	</insert>
+	<insert id="insertScrap">
+		insert into SCRAP (ID,
+						   M_EMAIL,
+						   R_ID) values(SCRAP_SEQ.nextval,
+						   				#{email},
+						   				#{rId})
+	</insert>
+	<update id="updateRating">
+		update RATING set STAR=#{star} where ID=#{id}
+	</update>
+	<delete id="deleteReply" parameterType="long">
+		delete from RECIPE_REPLY where ID=#{id}
+	</delete>
+	<delete id="deleteNestedReply" parameterType="long">
+		delete from RECIPE_NESTED_REPLY where ID=#{id}
+	</delete>
+	<delete id="deleteRating" parameterType="long">
+		delete from RATING where ID=#{id}
+	</delete>
+	<delete id="deleteScrap" parameterType="long">
+		delete from SCRAP where ID=#{id}
+	</delete>
+	
+	<select id="selectReplyId" parameterType="String" resultType="long">
+		select NVL(MAX(ID), 0) from RECIPE_REPLY where M_EMAIL=#{email}
+	</select>
+	<select id="selectReply" parameterType="long" resultType="RecipeReplyList">
+		select A.ID,
+		         A.R_ID,
+		         A.EMAIL,
+		         A.NICKNAME,
+		         A.PROFILE_IMG,
+		         A.REPLY,
+		         A.PHOTO,
+		         A.REPLY_DATE,
+		         A.PHOTO_PRESENSE,
+		         B.NESTED_REPLY
+		  from(select r.ID,
+			          r.R_ID,
+			          r.M_EMAIL EMAIL,
+			          r.M_NICKNAME NICKNAME,
+			          r.PROFILE_IMG,
+			          r.REPLY,
+			          rp.SAVE_FILE photo,
+			          r.REPLY_DATE,
+			          NVL2(rp.ID, 1, 0) PHOTO_PRESENSE
+		   	  from RECIPE_REPLY r left join RECIPE_REPLY_PHOTO rp on r.ID=rp.RR_ID 
+		      where r.R_ID=#{rId}) A
+		   	  inner join
+		     (select DISTINCT(ID), NESTED_REPLY
+		   	  from(select r.ID,
+		               	  NVL2(nr.ID, 1, 0) NESTED_REPLY     
+		       	   from RECIPE_REPLY r left join RECIPE_NESTED_REPLY nr on r.ID=nr.RR_ID
+		           where r.R_ID=#{rId})) B on A.ID=B.ID order by A.ID desc
+	</select>
+	<select id="selectReplyBy" resultType="RecipeReplyList">
+		select * from (select ROWNUM list,
+		                      A.ID,
+		                      A.R_ID,
+		                      A.EMAIL,
+		                      A.NICKNAME,
+		                      A.PROFILE_IMG,
+		                      A.REPLY,
+		                      A.PHOTO,
+		                      A.REPLY_DATE,
+		                      A.PHOTO_PRESENSE,
+		                      B.NESTED_REPLY from
+		               (select r.ID,
+		                       r.R_ID,
+		                       r.M_EMAIL EMAIL,
+		                       r.M_NICKNAME NICKNAME,
+		                       r.PROFILE_IMG,
+		                       r.REPLY,
+		                       rp.SAVE_FILE photo,
+		                       r.REPLY_DATE,
+		                       NVL2(rp.ID, 1, 0) PHOTO_PRESENSE
+		                from RECIPE_REPLY r left join RECIPE_REPLY_PHOTO rp on r.ID=rp.RR_ID 
+		                where r.R_ID=#{rId}) A
+		                inner join
+		               (select DISTINCT(ID), NESTED_REPLY
+		                from(select r.ID,
+		                            NVL2(nr.ID, 1, 0) NESTED_REPLY     
+		                     from RECIPE_REPLY r left join RECIPE_NESTED_REPLY nr on r.ID=nr.RR_ID
+		                     where r.R_ID=#{rId})) B
+		                     on A.ID=B.ID order by A.ID desc)
+		where list BETWEEN #{beginRow} AND #{endRow}
+	</select>
+	<select id="selectReplyOfMember" parameterType="String" resultType="RecipeReplyList">
+		select DISTINCT(rr.ID),
+		       rr.R_ID,
+		       rr.M_EMAIL email,
+		       rr.M_NICKNAME nickname,
+		       rr.PROFILE_IMG profileImg,
+		       rr.REPLY,
+		       rrp.SAVE_FILE photo,
+		       rr.REPLY_DATE,
+		       rr.PHOTO photoPresense
+		from RECIPE_REPLY rr left join RECIPE_REPLY_PHOTO rrp on rr.ID=rrp.RR_ID
+		where rr.M_EMAIL=#{email} order by rr.ID desc
+	</select>
+	<select id="selectReplyOfMemberBy" resultType="RecipeReplyList">
+		select * from(select ROWNUM list,
+									ID,
+		                            R_ID,
+		                            email,
+		                            nickname,
+		                            profileImg,
+		                            REPLY,
+		                            photo,
+		                            REPLY_DATE,
+		                            photoPresense
+		              from (select DISTINCT(rr.ID),
+		                           rr.R_ID,
+		                           rr.M_EMAIL email,
+		                           rr.M_NICKNAME nickname,
+		                           rr.PROFILE_IMG profileImg,
+		                           rr.REPLY,
+		                           rrp.SAVE_FILE photo,
+		                           rr.REPLY_DATE,
+		                           rr.PHOTO photoPresense
+		           		   from RECIPE_REPLY rr left join RECIPE_REPLY_PHOTO rrp on rr.ID=rrp.RR_ID
+		          		   where rr.M_EMAIL=#{email} order by rr.ID desc))
+		where list BETWEEN #{beginRow} AND #{endRow}
+	</select>	
+	<select id="selectNestedReply" parameterType="long" resultType="RecipeNestedReply">
+		select rnr.ID,
+		       rr.R_ID, 
+		       rr.ID rrId, 
+		       rnr.M_EMAIL,
+		       rnr.M_NICKNAME,
+		       rnr.PROFILE_IMG,
+		       rnr.REPLY,
+		       rnr.REPLY_DATE
+		from RECIPE_REPLY rr right join RECIPE_NESTED_REPLY rnr on rr.ID=rnr.RR_ID
+		where rr.ID=#{rrId} order by rrId desc, rnr.ID desc			
+	</select>
+	<select id="selectNestedReplyBy" resultType="RecipeNestedReply">
+		select * from (select ROWNUM list,
+		                      rnr.ID,
+		                      rr.R_ID, 
+		                      rr.ID rrId, 
+		                      rnr.M_EMAIL,
+		                      rnr.M_NICKNAME,
+		                      rnr.PROFILE_IMG,
+		                      rnr.REPLY,
+		                      rnr.REPLY_DATE
+		               from RECIPE_REPLY rr right join RECIPE_NESTED_REPLY rnr on rr.ID=rnr.RR_ID
+		               where rr.ID=#{rrId} order by rrId desc, rnr.ID desc)
+		where list BETWEEN #{beginRow} AND #{endRow}	
+	</select>
+	<select id="selectNestedReplyOfMember" parameterType="String" resultType="RecipeNestedReply">
+		select rnr.ID,
+		       rr.R_ID, 
+		       rr.ID rrId, 
+		       rnr.M_EMAIL,
+		       rnr.M_NICKNAME,
+		       rnr.PROFILE_IMG,
+		       rnr.REPLY,
+		       rnr.REPLY_DATE
+		from RECIPE_REPLY rr right join RECIPE_NESTED_REPLY rnr on rr.ID=rnr.RR_ID
+		where rnr.M_EMAIL=#{email} order by rrId desc, rnr.ID desc			
+	</select>
+	<select id="selectNestedReplyOfMemberBy" resultType="RecipeNestedReply">
+		select * from (select ROWNUM list,
+		                      rnr.ID,
+		                      rr.R_ID, 
+		                      rr.ID rrId, 
+		                      rnr.M_EMAIL,
+		                      rnr.M_NICKNAME,
+		                      rnr.PROFILE_IMG,
+		                      rnr.REPLY,
+		                      rnr.REPLY_DATE
+		               from RECIPE_REPLY rr right join RECIPE_NESTED_REPLY rnr on rr.ID=rnr.RR_ID
+		               where rnr.M_EMAIL=#{email} order by rrId desc, rnr.ID desc)
+		where list BETWEEN #{beginRow} AND #{endRow}		
+	</select>
+	<select id="selectReplyCount" parameterType="long" resultType="long">
+		select SUM(count) from (select NVL(MAX(ROWNUM), 0) count from RECIPE_REPLY where R_ID=#{rId} union all
+                        		select NVL(MAX(ROWNUM), 0) count from RECIPE_NESTED_REPLY
+                        		where RR_ID in(select DISTINCT(ID) from RECIPE_REPLY
+                        		where R_ID=#{rId}))
+	</select>
+	
+	<select id="selectNestedReplyCount" parameterType="long" resultType="long">
+		select NVL(MAX(ROWNUM), 0) from RECIPE_NESTED_REPLY where RR_ID=#{rrId}
+	</select>
+	<select id="selectReplyCountByMember" parameterType="String" resultType="long">
+		select SUM(count) from (select NVL(MAX(ROWNUM), 0) count from RECIPE_REPLY where M_EMAIL=#{email} union all
+                        		select NVL(MAX(ROWNUM), 0) count from RECIPE_NESTED_REPLY
+                        		where RR_ID in(select DISTINCT(ID) from RECIPE_REPLY
+                        		where M_EMAIL=#{email}))	
+	</select>	
+</mapper>
