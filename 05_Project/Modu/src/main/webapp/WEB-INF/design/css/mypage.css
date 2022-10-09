@@ -1,0 +1,134 @@
+#searchform, #formsearch {
+    background: #937062;
+}
+
+/* 프로필 박스 */
+.profile-details { 
+    background-color: rgba(147, 112, 98, 0.2);
+    color:#666;
+    text-align:center;
+    padding:20px
+}
+
+/* 탭 선택 */
+.nav-link {
+    color: #241c19;
+}
+.nav-link.active {
+    color: #937062;
+}
+
+/* 냉장고 맞춤형 레시피 추천 설명 box */
+.backbox { 
+    background-color: rgba(147, 112, 98, 0.2);
+    padding:5px;
+    text-align:center;        
+}
+
+/* 최종 선택된 재료 출력 */
+#final { 
+    background-color: rgba(147, 112, 98, 0.2);
+    border: 1px solid #edd7c5;
+    padding:10px
+}
+
+/* 레시피 검색 버튼 */
+.gold-btn {
+    border-radius: 5px;
+    border: none;
+    color:white;
+    background-color: rgb(140, 110, 100) !important;
+}
+
+.gold-btn:hover {
+    background-color: rgb(170, 130, 110) !important;
+}
+
+/* 체크박스 */
+.check-div {
+    min-width: 125px;
+    max-width: 125px;
+}
+
+.main-container {
+    max-width: 1400px;
+}
+
+@media(max-width:454px){ 
+    .check-div {
+        min-width: 100px;
+    }
+}
+
+/* 탭 메뉴 */
+.tab-menu {
+    font-size: 1rem !important;    
+}
+
+.tab-menu.active {
+    color: darkcyan !important;
+}
+
+@media(max-width:454px){
+    .tab-menu {
+        font-size: 0.8rem !important;    
+    }
+}
+
+/* 나의 레시피 이미지 */
+.category-pic {
+    border-radius: 10px !important;
+    max-height: 230px;
+}
+
+@media(max-width:454px){ 
+    .category-pic {
+        margin-top: 15px;
+    }
+}
+
+/* 쉐프 랭킹 */
+.chef-pic {
+    border-radius: 50%;
+    width: 70%;
+}
+
+.chef-name {
+    color: black;
+    text-decoration: none;
+}
+
+@media(max-width:454px){
+    .chef-list {
+        font-size: 0.8rem;
+    }
+}
+
+/* 최근 본 게시물 */
+.widget-title {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+}
+
+.post-category {
+    font-size: 0.8rem !important;
+}
+
+.banner {
+    width: 100%;
+}
+
+#secondary .tagcloud a {
+    background-color: rgb(140, 110, 100) !important;
+}
+
+#secondary .tagcloud a:hover {
+    background-color: rgb(170, 130, 110) !important;
+}
+
+/* 기타 */
+@media(max-width:454px){
+    .main * {
+        font-size: 0.8rem;
+    }
+}

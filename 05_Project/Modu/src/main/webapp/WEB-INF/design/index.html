@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Yellowtail" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
+        <link href="css/common.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="js/common.js"></script>
+        <!-- 공통 부분 END -->
+        <link href="css/index.css" rel="stylesheet">
+        
+
+        <title>모두의 식탁</title>
+
+  </head>
+  <body>
+    
+    <div id="page" class="hfeed site"><!-- start page wrapper -->
+
+        <header id="masthead" class="site-header navbar-fixed-top d-flex align-items-center p-0">
+            <div class="header-navigation w-100">
+                <div class="container-fluid">
+    
+                    <div class="row head-row w-100 m-0 p-3">
+    
+                        <div class="brand-col">
+                            <div class="site-branding navbar-brand">
+                                <a href="index.html"><img src="images/logo.png" alt="모두의식탁" title="logo" class="logo"></a>
+                            </div><!-- end logo -->
+                        </div><!-- end col-md-3 -->
+    
+                        <div class="menu-col">
+                            <nav class="site-navigation navbar navbar-expand-lg navbar-light">
+    
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="index.html">홈<span class="sr-only">(current)</span></a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">레시피</a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                                                <a class="dropdown-item" href="recipe-list.html">레시피 목록</a>
+                                                <a class="dropdown-item" href="recipe-single.html">레시피 상세</a>
+                                                <a class="dropdown-item" href="recipe-write.html">레시피 등록</a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">게시판</a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                                <a class="dropdown-item" href="board-list.html">게시판 목록</a>
+                                                <a class="dropdown-item" href="board-single.html">게시판 상세</a>
+                                                <a class="dropdown-item" href="board-write.html">게시판 등록</a>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link" href="mypage.html">마이페이지</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="login.html">로그인</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="signup.html">회원가입</a>
+                                        </li>
+                                    </ul>
+                                </div><!-- end navbar-collapse -->
+                            </nav><!-- end site-navigation -->
+                        </div><!-- end col-md-6 -->
+    
+                        <div class="side-col">
+                            <nav class="social-navigation p-0">
+                                <div class="social-container py-0">
+                                    <ul class="social-menu">
+                                        <!-- <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li> -->
+                                    </ul>
+                                </div><!-- end social-container -->
+                                <div class="search-container py-1">
+                                    <a href="recipe-list.html"><img src="images/search.svg" alt="검색버튼" title="search" class="nav-search"></a>
+                                </div><!-- end search-container -->
+                            </nav>
+                        </div><!-- end col-md-3 -->
+    
+                    </div><!-- end row -->
+                    
+                </div><!-- end container-fluid -->
+            </div><!-- end header-navigation -->
+        </header><!-- end #masthead -->
+        <div class="collapse navbar-collapse px-5 mb-3" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-3">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">홈<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">레시피</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                        <a class="dropdown-item" href="recipe-list.html">레시피 목록</a>
+                        <a class="dropdown-item" href="recipe-single.html">레시피 상세</a>
+                        <a class="dropdown-item" href="recipe-write.html">레시피 등록</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">게시판</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                        <a class="dropdown-item" href="board-list.html">게시판 목록</a>
+                        <a class="dropdown-item" href="board-single.html">게시판 상세</a>
+                        <a class="dropdown-item" href="board-write.html">게시판 등록</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="mypage.html">마이페이지</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html">로그인</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="signup.html">회원가입</a>
+                </li>
+            </ul>
+        </div><!-- end navbar-collapse -->
+
+        <div class="head-title py-4 m-0">
+            <div class="container">
+                <p class="page-title m-0 fs-2">INDEX</p>
+            </div><!-- end container -->
+        </div><!-- end head-title -->    
+        <div class="main">
+            <div class="container main-container">
+                <div class="recipes-section pt-3 pb-3">
+                    <div class="container">
+                        <div class="section-title d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0 py-3 ms-3">베스트 레시피</h3>
+                            <a href="recipe-list.html" class="btn-more h-100">더보기</a>
+                        </div><!-- end section-title -->
+                        <div class="row">
+                            <div class="col-6 col-md-3">
+                                <div class="recipe-thumb">
+                                    <img src="images/content/thumb-1.png" alt="Recipe Image">
+                                </div>
+                                <div class="recipe-desc">
+                                    <div class="recipe-title">
+                                        <a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
+                                    </div>
+                                    <figure class="profile">
+                                        <img class="profile-img" src="images/content/auth-00.png" alt="작성자">
+                                        <span><em>펭귄하늘을날다</em></span>
+                                    </figure>
+                                    <div class="recipe-icons d-flex justify-content-between">
+                                        <span class="d-flex align-items-center">
+                                            <img class="stars" src="images/stars5.png">
+                                            <span class="p-1 mt-1">4.6(500)</span>
+                                        </span>
+                                        <span class="d-flex align-items-center">
+                                            <span class="p-1 mt-1">조회 300,000</span>
+                                        </span>
+                                    </div>
+                                </div><!-- end recipe-desc -->
+                            </div><!-- end col -->
+                            <div class="col-6 col-md-3">
+                                <div class="recipe-thumb">
+                                    <img src="images/content/thumb-2.png" alt="Recipe Image">
+                                </div>
+                                <div class="recipe-desc">
+                                    <div class="recipe-title">
+                                        <a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
+                                    </div>
+                                    <p><em>펭귄하늘을날다</em></p>
+                                    <div class="recipe-icons d-flex justify-content-between">
+                                        <span class="d-flex align-items-center">
+                                            <img class="stars" src="images/stars5.png">
+                                            <span class="p-1 mt-1">4.6(500)</span>
+                                        </span>
+                                        <span class="d-flex align-items-center">
+                                            <span class="p-1 mt-1">조회 300,000</span>
+                                        </span>
+                                    </div>
+                                </div><!-- end recipe-desc -->
+                            </div><!-- end col -->
+                            <div class="col-6 col-md-3">
+                                <div class="recipe-thumb">
+                                    <img src="images/content/thumb-3.png" alt="Recipe Image">
+                                </div>
+                                <div class="recipe-desc">
+                                    <div class="recipe-title">
+                                        <a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
+                                    </div>
+                                    <p><em>펭귄하늘을날다</em></p>
+                                    <div class="recipe-icons d-flex justify-content-between">
+                                        <span class="d-flex align-items-center">
+                                            <img class="stars" src="images/stars5.png">
+                                            <span class="p-1 mt-1">4.6(500)</span>
+                                        </span>
+                                        <span class="d-flex align-items-center">
+                                            <span class="p-1 mt-1">조회 300,000</span>
+                                        </span>
+                                    </div>
+                                </div><!-- end recipe-desc -->
+                            </div><!-- end col -->
+                            <div class="col-6 col-md-3">
+                                <div class="recipe-thumb">
+                                    <img src="images/content/thumb-4.png" alt="Recipe Image">
+                                </div>
+                                <div class="recipe-desc">
+                                    <div class="recipe-title">
+                                        <a href="#">순두부찌개. 바지락, 고기 없이도 기가 막힌 순두부찌개 만드는 법 / 만들기 / 순두부찌개 만드는 법</a>
+                                    </div>
+                                    <p><em>펭귄하늘을날다</em></p>
+                                    <div class="recipe-icons d-flex justify-content-between">
+                                        <span class="d-flex align-items-center">
+                                            <img class="stars" src="images/stars5.png">
+                                            <span class="p-1 mt-1">4.6(500)</span>
+                                        </span>
+                                        <span class="d-flex align-items-center">
+                                            <span class="p-1 mt-1">조회 300,000</span>
+                                        </span>
+                                    </div>
+                                </div><!-- end recipe-desc -->
+                            </div><!-- end col -->
+
+                            <div class="col-6 col-md-3">
+                                <div class="recipe-thumb">
+                                    <img src="images/content/thumb-5.png" alt="Recipe Image">
+                                </div>
+                                <div class="recipe-desc">
+                                    <div class="recipe-title">
+                                        <a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
+                                    </div>
+                                    <p><em>펭귄하늘을날다</em></p>
+                                    <div class="recipe-icons d-flex justify-content-between">
+                                        <span class="d-flex align-items-center">
+                                            <img class="stars" src="images/stars5.png">
+                                            <span class="p-1 mt-1">4.6(500)</span>
+                                        </span>
+                                        <span class="d-flex align-items-center">
+                                            <span class="p-1 mt-1">조회 300,000</span>
+                                        </span>
+                                    </div>
+                                </div><!-- end recipe-desc -->
+                            </div><!-- end col -->
+                            <div class="col-6 col-md-3">
+                                <div class="recipe-thumb">
+                                    <img src="images/content/thumb-6.png" alt="Recipe Image">
+                                </div>
+                                <div class="recipe-desc">
+                                    <div class="recipe-title">
+                                        <a href="#">소고기무국 황금레시피, 재료는 간단! 맛은 최고!</a>
+                                    </div>
+                                    <p><em>쑤이</em></p>
+                                    <div class="recipe-icons d-flex justify-content-between">
+                                        <span class="d-flex align-items-center">
+                                            <img class="stars" src="images/stars5.png">
+                                            <span class="p-1 mt-1">4.6(500)</span>
+                                        </span>
+                                        <span class="d-flex align-items-center">
+                                            <span class="p-1 mt-1">조회 300,000</span>
+                                        </span>
+                                    </div>
+                                </div><!-- end recipe-desc -->
+                            </div><!-- end col -->
+                            <div class="col-6 col-md-3">
+                                <div class="recipe-thumb">
+                                    <img src="images/content/thumb-7.png" alt="Recipe Image">
+                                </div>
+                                <div class="recipe-desc">
+                                    <div class="recipe-title">
+                                        <a href="#">제육볶음 만드는법 # 기사식당st 레시피</a>
+                                    </div>
+                                    <p><em>트래블러버클로이</em></p>
+                                    <div class="recipe-icons d-flex justify-content-between">
+                                        <span class="d-flex align-items-center">
+                                            <img class="stars" src="images/stars5.png">
+                                            <span class="p-1 mt-1">4.6(500)</span>
+                                        </span>
+                                        <span class="d-flex align-items-center">
+                                            <span class="p-1 mt-1">조회 300,000</span>
+                                        </span>
+                                    </div>
+                                </div><!-- end recipe-desc -->
+                            </div><!-- end col -->
+                            <div class="col-6 col-md-3">
+                                <div class="recipe-thumb">
+                                    <img src="images/content/thumb-8.png" alt="Recipe Image">
+                                </div>
+                                <div class="recipe-desc">
+                                    <div class="recipe-title">
+                                        <a href="#">백종원레시피로 만든 콩나물무침으로 밥 한 끼 뚝딱 ~</a>
+                                    </div>
+                                    <p><em>펭귄하늘을날다</em></p>
+                                    <div class="recipe-icons d-flex justify-content-between">
+                                        <span class="d-flex align-items-center">
+                                            <img class="stars" src="images/stars5.png">
+                                            <span class="p-1 mt-1">4.6(500)</span>
+                                        </span>
+                                        <span class="d-flex align-items-center">
+                                            <span class="p-1 mt-1">조회 300,000</span>
+                                        </span>
+                                    </div>
+                                </div><!-- end recipe-desc -->
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                        
+                    </div><!-- end container -->
+                </div><!-- end recipes -->
+            
+                <div class="chef-section py-3 mb-3">
+                    <div class="container">
+                        <div class="section-title d-flex justify-content-between align-items-center ms-3">
+                            <h4 class="mb-0 py-3">쉐프 랭킹</h4>
+                            <!-- <a href="#" class="btn-more h-100">더보기</a> -->
+                        </div><!-- end section-title -->
+                        <div class="row">
+                            <div class="col-4 col-md-2 chef-list text-center">
+                                <figure class="mb-0"><img class="chef-pic" src="images/content/ava-1.png" alt="쉐프 사진"></figure>
+                                <div class="chef-info">
+                                    <p class="mb-0"><small class="chef-rank">LV7 요리의신</small></p>
+                                    <a class="chef-name" href="#">Mirum</a>
+                                </div>
+                            </div><!-- end col -->
+                            <div class="col-4 col-md-2 chef-list text-center">
+                                <figure class="mb-0"><img class="chef-pic" src="images/content/ava-2.png" alt="쉐프 사진"></figure>
+                                <div class="chef-info">
+                                    <p class="mb-0"><small class="chef-rank">LV6 요리마스터</small></p>
+                                    <a class="chef-name" href="#">nickname</a>
+                                </div>
+                            </div><!-- end col -->
+                            <div class="col-4 col-md-2 chef-list text-center">
+                                <figure class="mb-0"><img class="chef-pic" src="images/content/auth-03.png" alt="쉐프 사진"></figure>
+                                <div class="chef-info">
+                                    <p class="mb-0"><small class="chef-rank">LV5 고급요리사</small></p>
+                                    <a class="chef-name" href="#">Mirum</a>
+                                </div>
+                            </div><!-- end col -->
+                            <div class="col-4 col-md-2 chef-list text-center">
+                                <figure class="mb-0"><img class="chef-pic" src="images/content/auth-00.png" alt="쉐프 사진"></figure>
+                                <div class="chef-info">
+                                    <p class="mb-0"><small class="chef-rank">LV4 중급요리사</small></p>
+                                    <a class="chef-name" href="#">Mirum</a>
+                                </div>
+                            </div><!-- end col -->
+                            <div class="col-4 col-md-2 chef-list text-center">
+                                <figure class="mb-0"><img class="chef-pic" src="images/content/auth-01.png" alt="쉐프 사진"></figure>
+                                <div class="chef-info">
+                                    <p class="mb-0"><small class="chef-rank">LV3 초급요리사</small></p>
+                                    <a class="chef-name" href="#">Mirum</a>
+                                </div>
+                            </div><!-- end col -->
+                            <div class="col-4 col-md-2 chef-list text-center">
+                                <figure class="mb-0"><img class="chef-pic" src="images/content/auth-02.png" alt="쉐프 사진"></figure>
+                                <div class="chef-info">
+                                    <p class="mb-0"><small class="chef-rank">LV2 보조요리사</small></p>
+                                    <a class="chef-name" href="#">Mirum</a>
+                                </div>
+                            </div><!-- end col -->
+                            
+                        </div><!-- end row -->
+                    </div><!-- end container -->
+                </div><!-- end blog-section -->
+            </div>
+            <div class="bottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="copy">
+                                <p>&copy;2022 모두의식탁 Made by Kosmo Final Team 1</p>
+                            </div><!-- end copy -->
+                        </div><!-- end col -->
+                    </div><!-- end row -->
+                </div><!-- end container -->
+            </div><!-- end bottom -->
+        </div>
+    </div><!-- end #page hfeed site -->
+    <!-- jQuery(necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+    <script src="js/vendor/jquery-3.4.1.min.js"></script>
+    <!-- Include all compiled plugins(below),or include individual files as needed -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/plugin.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
