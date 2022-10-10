@@ -1,0 +1,225 @@
+body {
+    background: #EEEEEE;
+}
+
+.btn {
+    box-shadow: 2px 2px rgb(187, 187, 187);
+}
+
+.form-bg {
+    background: #FFFFFF;
+}
+
+.main-box {
+    border-radius: 10px;
+    box-shadow: 2px 2px rgb(150, 150, 150);
+}
+
+.top-round {
+    border-radius: 10px 10px 0px 0px;
+}
+
+.main-container {
+    width: 910px
+}
+
+textarea {
+    resize: none;
+}
+
+.form-select {
+    width: 150px !important;
+}
+
+.cooking-step textarea, .cooking-step img {
+    height: 130px !important;
+}
+
+.cooking-step img {
+    width: 130px;
+}
+
+.addon {
+    width: 35px;
+}
+
+.addon button {
+    width: 100%;
+    color: gray;
+}
+
+.up-btn:hover {
+    color:white;
+    background-color: rgb(180, 50, 50);
+}
+
+.down-btn:hover {
+    color:white;
+    background-color: rgb(50, 50, 180);
+}
+
+.delete-btn:hover {
+    color:white;
+    background-color: rgb(60, 90, 60);
+}
+
+.recipe-tag-box {
+    width: 80%;
+}
+
+.recipe-tag-box input {
+    width: 100%;
+}
+
+.input1 {
+    width: 42% !important;
+    height: 40px;
+}
+
+.input2 {
+    width: 38% !important;
+    height: 40px;
+}
+
+.minus {
+    background: none;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    border: none;
+}
+
+.minus:hover {
+    background: url("../imgs/minus.png") center/100% no-repeat;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+}
+
+.plus {
+    background: url("../imgs/plus.png") center no-repeat;
+}
+
+.plus:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+.p-btn {
+    width: 100px !important;
+    height: 35px;
+}
+
+.recipe-tag .form-title {
+    width: 55px !important;
+}
+
+.form-title {
+    font-size: 1.2rem;
+    width: 100% !important;
+}
+
+.step-text {
+    font-size: 1rem;
+}
+
+ul {
+    list-style: none;
+}
+
+.tag-ul li {
+    font-size: 0.8rem;
+    color: white;
+    border-radius: 5px;
+}
+
+.tag-delete-btn {
+    color: white;
+    border: none;
+}
+
+.recipe-tag-title {
+    height: 200% !important;
+}
+
+.accessibility {
+    border-radius: 0px 0px 10px 10px;   
+}
+
+@media(max-width:454px){ 
+    .main-container {
+        width: 350px;
+    }
+
+    #main input::placeholder , #main textarea::placeholder {
+        font-size: 0.6rem !important;
+    }
+    .main-photo, .main-intro {
+        width: 50%;
+    }
+    .form-title {
+        font-size: 0.9rem;
+        width: 100% !important;
+    }
+    .form-select {
+        width: 80px !important;
+    }
+    .recipe-tag-box {
+        width: 100% !important;
+        margin: 0px !important;
+    }
+    .ingredient-cover {
+        flex-direction: column !important;
+    }
+    #seasoning-ingredient {
+        margin-top: 20px;
+    }
+    #main input, #main textarea, #main select, .step-text {
+        font-size: 0.8rem;
+    }
+    .btn {
+        font-size: 0.5rem;
+    }
+    .cooking-step img {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    .step {
+        width: 70%;
+    }
+    .cooking-step textarea {
+        height: 100px !important;
+    }
+    .accessibility {
+        flex-direction: column;   
+    }
+    .accessibility div {
+        text-align: center;
+    }
+    .accessibility .btn {
+        width: 100px;
+        margin: 0px !important;
+        margin-top: 5px !important;
+    }
+    .main-photo {
+        display: flex;
+        align-items: center;
+    }
+    .plus {
+        width: 75px !important;
+        height: 30px !important;
+    }
+    .addon {
+        height: 100px;
+    }
+    .addon button {
+        height: 25px !important;
+        width: 25px !important;
+        font-size: 0.3rem;
+    }
+    .up-btn {
+        margin-bottom: 10px !important;
+    }
+    .tag-ul li, #tag, .form-select {
+        font-size: 0.5rem !important;
+    }
+}

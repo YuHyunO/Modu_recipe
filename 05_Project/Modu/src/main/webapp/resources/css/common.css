@@ -1,0 +1,210 @@
+
+* {
+    font-family: 'Jua', sans-serif !important;
+}
+
+.brand {
+    align-self: center;
+}
+
+.logo {
+    width: 130px !important;
+}
+
+.nav-search {
+    width: 25px;
+    height: 25px;
+}
+
+/* 금색 테두리 */
+.gold-top {
+    border-top: 1px solid rgb(147, 112, 98) !important;
+}
+
+.gold-bottom {
+    border-bottom: 1px solid rgb(147, 112, 98) !important;
+}
+
+.gold-border {
+    border: 1px solid rgb(147, 112, 98) !important;
+}
+
+.search-navigation {
+    display: none;
+}
+
+.navbar-toggler {
+    padding: 5px 10px 5px 10px !important;
+    margin-right: 5px;
+}
+
+.dropdown-menu.show {
+    left:-5px !important;
+    min-width: 100px !important;
+}
+.dropdown-item {
+    width: 100px !important;
+}
+
+#navbarSupportedContent a {
+    color: #937062 !important;
+    width: 70px;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px
+}
+
+@media (min-width: 900px){
+    body {
+        padding:8px;
+        height: 100vh;
+    }
+    .site-header {
+        position: relative;
+    }
+}
+
+@media (min-width: 991px){
+    .head-row {
+        align-items: center;
+    }
+}
+
+#masthead {
+    height: 90px;
+    margin: 0;
+}
+
+.brand-col {
+    width: 20% !important;
+    height: 60px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.menu-col {
+    width: 60% !important;
+    height: 60px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.side-col {
+    width: 20% !important;
+    height: 60px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 991px){
+    .brand-col {
+        width: 40% !important;
+        justify-content: flex-start;
+    }
+    .menu-col {
+        width: 60% !important;
+        justify-content: flex-end;
+    }
+    .side-col {
+        display: none;
+        width: 0px !important;
+    }
+}
+
+
+/* mobile size */
+@media(max-width:454px){ 
+    .logo {
+        z-index: 100;
+    }
+}
+
+/* 레시피 카드 부분 */
+.recipe-title {
+    height: 65px;
+    border: none;
+    white-space: normal !important;
+}
+.recipe-title a {
+    color: black;
+    text-decoration: none;
+}
+
+.recipe-thumb {
+    border: #937062 solid 1px;
+    border-bottom: none;
+    box-shadow: 1px 1px 1px 1px #6d5248;
+}
+
+.recipe-desc {
+    border: #937062 solid 1px;
+    border-top: none;
+    box-shadow: 1px 1px 1px 1px #6d5248;
+    padding: 15px 10px 15px 10px;
+    height: 165px;
+}
+
+.recipe-desc span {
+    color: gray;
+    font-size: 11px;
+}
+
+.profile-img {
+    height: 25px;
+    border-radius: 50%;
+}
+
+.view-count {
+    height: 20px;
+}
+
+.stars {
+    height: 15px;
+    width: 80px;
+}
+@media(max-width:1016px){
+    .recipe-desc {
+        height: 200px;
+    }
+
+    .recipe-icons{
+        flex-direction: column;
+    }
+}
+@media(max-width:454px){ 
+    .recipe-title {
+        font-size: 1rem !important;
+        height: 60px !important;
+        margin-bottom: 5px !important;
+    }
+
+    .profile {
+        margin-bottom: 5px !important;
+    }
+
+    .recipe-desc {
+        height: 165px;
+    }
+    
+}
+
+/* 페이지네이션 */
+.page-link {
+    color:rgb(150, 150, 150) !important;
+    width: 35px;
+    font-size: 0.9rem;
+}
+
+.page-link:hover {
+    color: rgb(0, 0, 0) !important;
+    background-color: rgb(240, 240, 240) !important;
+    font-weight: bolder;
+}
+
+.page-link.active {
+    text-decoration: underline;
+    color:black !important;
+}
