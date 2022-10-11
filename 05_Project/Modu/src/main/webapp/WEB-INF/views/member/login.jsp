@@ -22,7 +22,7 @@
 		<!-- end head-title -->
 
 		<div class="main">
-			<div class="py-3"></div>
+			<div class="py-3 space"></div>
 			<div class="container d-flex justify-content-center">
 				<div class="row">
 					<div class="d-flex justify-content-center">
@@ -63,7 +63,7 @@
 			</div>
 			<!-- end container -->
 		</div>
-		<div class="py-3"></div>
+		<div class="py-3 space"></div>
 		<!-- end main -->
 		<%@ include file="/WEB-INF/views/common/bottom.jsp"%>
 	</div>

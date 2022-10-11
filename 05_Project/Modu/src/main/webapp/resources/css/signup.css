@@ -1,3 +1,7 @@
+.main {
+	background: #EEEEEE;
+}
+
 .form-check-label {
 	font-size: 0.8rem;
 }
@@ -52,8 +56,4 @@
 	.acc-box {
 		padding: 30px;
 	}
-}
-
-body {
-	background: #EEEEEE;
 }
