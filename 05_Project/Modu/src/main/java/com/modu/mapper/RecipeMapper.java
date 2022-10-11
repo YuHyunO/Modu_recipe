@@ -42,4 +42,7 @@ public interface RecipeMapper {
 											@Param("beginRow")long beginRow, @Param("endRow")long endRow);//구현중
 	int selectRecipeCount();
 	int selecrRecipeCountByType(@Param("sort")String sort, @Param("ingredient")String ingredient);//구현중
+	
+	// 베스트 레시피
+	List<RecipeList> selectRecipeListByBestHits(@Param("beginRow") long beginRow, @Param("endRow") long endRow);
 }

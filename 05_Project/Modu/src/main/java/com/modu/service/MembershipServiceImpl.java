@@ -18,6 +18,7 @@ public class MembershipServiceImpl implements MembershipService {
 	@Autowired
 	private MemberMapper memberMapper;
 	
+	@Override
 	public List<Member> selectMemberRankS() {
 		log.info("###########MembershipServiceImpl: " + memberMapper.selectMemberRank());
 		return memberMapper.selectMemberRank();
