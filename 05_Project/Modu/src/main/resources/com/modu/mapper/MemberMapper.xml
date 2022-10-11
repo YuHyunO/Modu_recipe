@@ -95,4 +95,9 @@
                				order by DBMS_RANDOM.RANDOM) 
 	    where ROWNUM<#{bound}]]>
 	</select>
+	
+	<!-- 랭킹으로 회원 뽑기 -->
+	<select id="selectMemberRank" resultType="Member">
+		<![CDATA[select * from (select * from MEMBER order by POINT desc) where ROWNUM <= 6]]>
+	</select>
 </mapper>

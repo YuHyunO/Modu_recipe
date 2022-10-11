@@ -31,4 +31,7 @@ public interface MemberMapper {
 	
 	//테스트용
 	List<String> selectEmails(int bound);
+	
+	// 랭킹으로 회원 뽑기
+	List<Member> selectMemberRank();
 }

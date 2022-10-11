@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -241,83 +242,46 @@
 						</div>
 						<!-- end section-title -->
 						<div class="row">
-							<div class="col-4 col-md-2 chef-list text-center">
-								<figure class="mb-0">
-									<img class="chef-pic" src="imgs/content/ava-1.png" alt="쉐프 사진">
-								</figure>
-								<div class="chef-info">
-									<p class="mb-0">
-										<small class="chef-rank">LV7 요리의신</small>
-									</p>
-									<a class="chef-name" href="#">Mirum</a>
+							<c:forEach var="member" items="${rankList}">
+								<c:choose>
+									<c:when test="${member.point >= 54001}">
+										<c:set var="rank" value="LV7 요리의신"/>
+									</c:when>
+									<c:when test="${member.point >= 18001}">
+										<c:set var="rank" value="LV6 요리마스터"/>
+									</c:when>
+									<c:when test="${member.point >= 9001}">
+										<c:set var="rank" value="LV5 고급요리사"/>
+									</c:when>
+									<c:when test="${member.point >= 3001}">
+										<c:set var="rank" value="LV4 중급요리사"/>
+									</c:when>
+									<c:when test="${member.point >= 1001}">
+										<c:set var="rank" value="LV3 초보요리사"/>
+									</c:when>
+									<c:when test="${member.point >= 301}">
+										<c:set var="rank" value="LV2 보조요리사"/>
+									</c:when>
+									<c:otherwise>
+										<c:set var="rank" value="LV1 수습요리사"/>
+									</c:otherwise>
+								</c:choose>
+								<div class="col-4 col-md-2 chef-list text-center">
+									<figure class="mb-0">
+										<img class="chef-pic" src="imgs/mypage/${member.profileImg}" alt="쉐프 사진">
+									</figure>
+									<div class="chef-info">
+										<p class="mb-0">
+											<small class="chef-rank">
+												<c:out value="${rank}"/>
+												<fmt:formatNumber type="number" maxFractionDigits="3" value="${member.point}" />P
+											</small>
+										</p>
+										<a class="chef-name" href="#">${member.nickname}</a>
+									</div>
 								</div>
-							</div>
-							<!-- end col -->
-							<div class="col-4 col-md-2 chef-list text-center">
-								<figure class="mb-0">
-									<img class="chef-pic" src="imgs/content/ava-2.png" alt="쉐프 사진">
-								</figure>
-								<div class="chef-info">
-									<p class="mb-0">
-										<small class="chef-rank">LV6 요리마스터</small>
-									</p>
-									<a class="chef-name" href="#">nickname</a>
-								</div>
-							</div>
-							<!-- end col -->
-							<div class="col-4 col-md-2 chef-list text-center">
-								<figure class="mb-0">
-									<img class="chef-pic" src="imgs/content/auth-03.png"
-										alt="쉐프 사진">
-								</figure>
-								<div class="chef-info">
-									<p class="mb-0">
-										<small class="chef-rank">LV5 고급요리사</small>
-									</p>
-									<a class="chef-name" href="#">Mirum</a>
-								</div>
-							</div>
-							<!-- end col -->
-							<div class="col-4 col-md-2 chef-list text-center">
-								<figure class="mb-0">
-									<img class="chef-pic" src="imgs/content/auth-00.png"
-										alt="쉐프 사진">
-								</figure>
-								<div class="chef-info">
-									<p class="mb-0">
-										<small class="chef-rank">LV4 중급요리사</small>
-									</p>
-									<a class="chef-name" href="#">Mirum</a>
-								</div>
-							</div>
-							<!-- end col -->
-							<div class="col-4 col-md-2 chef-list text-center">
-								<figure class="mb-0">
-									<img class="chef-pic" src="imgs/content/auth-01.png"
-										alt="쉐프 사진">
-								</figure>
-								<div class="chef-info">
-									<p class="mb-0">
-										<small class="chef-rank">LV3 초급요리사</small>
-									</p>
-									<a class="chef-name" href="#">Mirum</a>
-								</div>
-							</div>
-							<!-- end col -->
-							<div class="col-4 col-md-2 chef-list text-center">
-								<figure class="mb-0">
-									<img class="chef-pic" src="imgs/content/auth-02.png"
-										alt="쉐프 사진">
-								</figure>
-								<div class="chef-info">
-									<p class="mb-0">
-										<small class="chef-rank">LV2 보조요리사</small>
-									</p>
-									<a class="chef-name" href="#">Mirum</a>
-								</div>
-							</div>
-							<!-- end col -->
-
+								<!-- end col -->
+							</c:forEach>
 						</div>
 						<!-- end row -->
 					</div>

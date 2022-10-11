@@ -140,4 +140,10 @@ public class MemberMapperTests {
 			System.out.println(followee);
 		}
 	}*/
+	
+	/*@Test //테스트 완료
+	public void testselectMemberRank() {
+		List<Member> list = memberMapper.selectMemberRank();
+		System.out.println(list);
+	}*/
 }
