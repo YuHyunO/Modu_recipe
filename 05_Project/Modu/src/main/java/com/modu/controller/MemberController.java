@@ -1,5 +1,7 @@
 package com.modu.controller;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -20,7 +22,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping("member")
 public class MemberController {
-	
+
 	@Autowired
 	private MemberRegisterService memberRegisterService;
 	
@@ -95,23 +97,45 @@ public class MemberController {
 	}
 	
 	@GetMapping("/login")
-	public String goLogin() {
-		return "member/login1";
+	public String goLogin(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		String email = (String) session.getAttribute("email");
+		String cp = req.getHeader("referer");
+		Enumeration headers = req.getHeaderNames();
+		 
+		while(headers.hasMoreElements()) {
+		    String headerName = (String)headers.nextElement();
+		    String value = req.getHeader(headerName);
+		    System.out.println("headerName:"+headerName+","+value);
+		}
+		
+		log.info("#MemberController goLogin cp: " + cp);
+		if (email == null) {
+			return "member/login";
+		} else {
+			 
+			return "redirect:/";
+		}
+		
 	}
 
 	//로그인 post
 	@PostMapping("/login")
-	public String login(Member member, HttpServletRequest req){
+	public ModelAndView login(Member member, HttpServletRequest req){
 		log.info("#login 메소드 진입!! 로그인 진입");
+		ModelAndView mv = new ModelAndView();
 		HttpSession session = req.getSession();
 		Member memberInfo = memberRegisterService.login(member); //select EMAIL, NICKNAME from MEMBER where EMAIL=? and PWD=?
-		if(memberInfo == null) { 
-            return "member/login2"; 
+		if(memberInfo == null) {
+			mv.setViewName("member/login");
+			mv.addObject("status", 0);
+            return mv; 
 		}else{  
+			mv.setViewName("redirect:/");
 			session.setMaxInactiveInterval(1800); //1800초=세션 유효기간 30분으로 지정
 			session.setAttribute("email", memberInfo.getEmail());
 			session.setAttribute("nickname", memberInfo.getNickname());
-			return "redirect:/"; 
+			return mv; 
 		}
 	} 
 	
