@@ -15,6 +15,11 @@
 		margin: 0 auto;
 	}
 	 */
+	 
+	 .main, .space {
+    background: #EEEEEE;
+}
+
 	#modifyOkBtn {
 		background: #937062;
 		border-style: none;
@@ -146,7 +151,7 @@
 											type="text" 
 											class="form-control" 
 											id="id_name"
-											placeholder="ex. 홍길동" 
+											placeholder="실명을 입력해주세요." 
 											value="${member.name}" 
 											maxlength=5 />
 									</div>

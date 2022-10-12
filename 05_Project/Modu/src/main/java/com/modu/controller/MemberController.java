@@ -24,20 +24,20 @@ public class MemberController {
 	@Autowired
 	private MemberRegisterService memberRegisterService;
 	
-	//íšŒì›ê°€ì… í˜ì´ì§€ ì´ë™
+	//È¸¿ø°¡ÀÔ ÆäÀÌÁö ÀÌµ¿
 	@GetMapping("/register")
 	public String goRegister() {
-		return "member/register"; //view í´ë”>member í´ë”> register.jsp ë¥¼ ë¦¬í„´í•˜ê¸°
+		return "member/register"; //view Æú´õ>member Æú´õ> register.jsp ¸¦ ¸®ÅÏÇÏ±â
 	}
 
-	//íšŒì›ê°€ì…ì‹œ ì´ë©”ì¼ ì¤‘ë³µê²€ì‚¬ ajax ë¬¸êµ¬ ë„ì›€
+	//È¸¿ø°¡ÀÔ½Ã ÀÌ¸ŞÀÏ Áßº¹°Ë»ç ajax ¹®±¸ ¶ç¿ò
 	@PostMapping("/register/emailvalidcheck")
 	@ResponseBody
 	public String emailValidCheck(String email){
-		log.info("#1_ì´ë©”ì¼ ì¤‘ë³µì²´í¬ ì§„ì… & email:"+ email);
+		log.info("#1_ÀÌ¸ŞÀÏ Áßº¹Ã¼Å© ÁøÀÔ & email:"+ email);
 		int result = memberRegisterService.checkEmail(email);
-		log.info("#2_ì´ë©”ì¼ result: "+ result);
-		log.info("#3_ì´ë©”ì¼ ê¸¸ì´ email.length(): "+ email.length());
+		log.info("#2_ÀÌ¸ŞÀÏ result: "+ result);
+		log.info("#3_ÀÌ¸ŞÀÏ ±æÀÌ email.length(): "+ email.length());
 		if(0<email.length() && email.length()<10) {
 			return "noshow";			
 		} else if(result == 0) { 
@@ -47,14 +47,14 @@ public class MemberController {
 		}
 	}
 	
-	//íšŒì›ê°€ì…ì‹œ ë‹‰ë„¤ì„ ì¤‘ë³µê²€ì‚¬ ajax ë¬¸êµ¬ ë„ì›€
+	//È¸¿ø°¡ÀÔ½Ã ´Ğ³×ÀÓ Áßº¹°Ë»ç ajax ¹®±¸ ¶ç¿ò
 	@PostMapping("/register/nicknamevalidcheck")
 	@ResponseBody
 	public String nicknameValidCheck(String nickname){
-		log.info("#1_ë‹‰ë„¤ì„ ì¤‘ë³µì²´í¬ ì§„ì… & nickname:"+ nickname);
+		log.info("#1_´Ğ³×ÀÓ Áßº¹Ã¼Å© ÁøÀÔ & nickname:"+ nickname);
 		int result = memberRegisterService.checkNickname(nickname);
-		log.info("#2_ë‹‰ë„¤ì„ ì¤‘ë³µì²´í¬ result: "+ result);
-		log.info("#3_ë‹‰ë„¤ì„ ê¸¸ì´ nickname.length(): "+ nickname.length());
+		log.info("#2_´Ğ³×ÀÓ Áßº¹Ã¼Å© result: "+ result);
+		log.info("#3_´Ğ³×ÀÓ ±æÀÌ nickname.length(): "+ nickname.length());
 		if( 0<nickname.length() && nickname.length()<3 ) {
 			return "noshow";			
 		} else if(result == 0) { 
@@ -64,33 +64,33 @@ public class MemberController {
 		}
 	}
 	
-	//íšŒì›ê°€ì… ì•½ê´€ íŒì—…ì°½ 1,2
+	//È¸¿ø°¡ÀÔ ¾à°ü ÆË¾÷Ã¢ 1,2
 	@GetMapping("/agreement1")
 	public String readAgreement1() {
-		log.info("ì•½ê´€1 íŒì—… click");
+		log.info("¾à°ü1 ÆË¾÷ click");
 		return "member/agreement1";
 	}
 	@GetMapping("/agreement2")
 	public String readAgreement2() {
-		log.info("ì•½ê´€2 íŒì—… click");
+		log.info("¾à°ü2 ÆË¾÷ click");
 		return "member/agreement2";
 	}
 	
-	//íšŒì›ê°€ì… post - ë§ˆì¼€íŒ… ë¯¸ë™ì˜ì‹œ
+	//È¸¿ø°¡ÀÔ post - ¸¶ÄÉÆÃ ¹Ìµ¿ÀÇ½Ã
 	@PostMapping("/register")
 	public String register(Member member, String marketingCheckbox){
-		  log.info("#1_ íšŒì›ê°€ì…1 insert ì „: Member member= "+ member);
+		  log.info("#1_ È¸¿ø°¡ÀÔ1 insert Àü: Member member= "+ member);
 		  memberRegisterService.registerMember(member); 
-		  log.info("#2_(íšŒì›ê°€ì…1 ì„±ê³µ) Member member= "+ member); //ì´ë©”ì¼. ë‹‰ë„¤ì„ ë¹¼ê³  ëª¨ë‘ ë¹„ì–´ìˆìŒ..
+		  log.info("#2_(È¸¿ø°¡ÀÔ1 ¼º°ø) Member member= "+ member); //ÀÌ¸ŞÀÏ. ´Ğ³×ÀÓ »©°í ¸ğµÎ ºñ¾îÀÖÀ½..
 		  return "redirect:/";	
 	}
 
-	//íšŒì›ê°€ì… post2 - ë§ˆì¼€íŒ… ë™ì˜ì‹œ
+	//È¸¿ø°¡ÀÔ post2 - ¸¶ÄÉÆÃ µ¿ÀÇ½Ã
 	@PostMapping("/register2")
 	public String register2(Member member, String marketingCheckbox, HttpSession session){
-		log.info("#1_ íšŒì›ê°€ì…2 insert ì „: Member member= "+ member);
+		log.info("#1_ È¸¿ø°¡ÀÔ2 insert Àü: Member member= "+ member);
 		memberRegisterService.registerMember2(member);
-		log.info("#2_(íšŒì›ê°€ì…2 ì„±ê³µ) Member member= "+ member); //ì´ë©”ì¼. ë‹‰ë„¤ì„ ë¹¼ê³  ëª¨ë‘ ë¹„ì–´ìˆìŒ..
+		log.info("#2_(È¸¿ø°¡ÀÔ2 ¼º°ø) Member member= "+ member); //ÀÌ¸ŞÀÏ. ´Ğ³×ÀÓ »©°í ¸ğµÎ ºñ¾îÀÖÀ½..
 		return "redirect:/";
 	}
 	
@@ -99,28 +99,28 @@ public class MemberController {
 		return "member/login1";
 	}
 
-	//ë¡œê·¸ì¸ post
+	//·Î±×ÀÎ post
 	@PostMapping("/login")
 	public String login(Member member, HttpServletRequest req){
-		log.info("#login ë©”ì†Œë“œ ì§„ì…!! ë¡œê·¸ì¸ ì§„ì…");
+		log.info("#login ¸Ş¼Òµå ÁøÀÔ!! ·Î±×ÀÎ ÁøÀÔ");
 		HttpSession session = req.getSession();
 		Member memberInfo = memberRegisterService.login(member); //select EMAIL, NICKNAME from MEMBER where EMAIL=? and PWD=?
 		if(memberInfo == null) { 
             return "member/login2"; 
 		}else{  
-			session.setMaxInactiveInterval(1800); //1800ì´ˆ=ì„¸ì…˜ ìœ íš¨ê¸°ê°„ 30ë¶„ìœ¼ë¡œ ì§€ì •
+			session.setMaxInactiveInterval(1800); //1800ÃÊ=¼¼¼Ç À¯È¿±â°£ 30ºĞÀ¸·Î ÁöÁ¤
 			session.setAttribute("email", memberInfo.getEmail());
 			session.setAttribute("nickname", memberInfo.getNickname());
 			return "redirect:/"; 
 		}
 	} 
 	
-	//ë¡œê·¸ì•„ì›ƒ
+	//·Î±×¾Æ¿ô
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest req){
-		req.getSession().invalidate();  //ì„¸ì…˜ ë¬´íš¨í™”
-		req.getSession(true); //ìƒˆë¡œìš´ ì„¸ì…˜ ë°›ì„ ì¤€ë¹„ true
-		log.info("#1_(ë¡œê·¸ì•„ì›ƒ ì„±ê³µ í›„) HttpServletRequest req: " + req); //org.apache.catalina.connector.RequestFacade@62fcbd5b
+		req.getSession().invalidate();  //¼¼¼Ç ¹«È¿È­
+		req.getSession(true); //»õ·Î¿î ¼¼¼Ç ¹ŞÀ» ÁØºñ true
+		log.info("#1_(·Î±×¾Æ¿ô ¼º°ø ÈÄ) HttpServletRequest req: " + req); //org.apache.catalina.connector.RequestFacade@62fcbd5b
 		return "redirect:/";
 	}
 	
@@ -130,7 +130,7 @@ public class MemberController {
 		return "member/mypage";
 	}
 	
-	//ë‚´ì •ë³´ ìˆ˜ì • ì´ë™
+	//³»Á¤º¸ ¼öÁ¤ ÀÌµ¿
 	@GetMapping("/modifymyinfo")
 	public ModelAndView goModify(HttpSession session) { 
 		
@@ -138,67 +138,67 @@ public class MemberController {
 		String nickname = (String)session.getAttribute("nickname");
 		Member member = memberRegisterService.readMyInfo(email); 
 		ModelAndView mv = new ModelAndView("member/modifymyinfo", "member", member); 
-		log.info("######ë‚´ì •ë³´ìˆ˜ì • ì´ë™get email: "+email);
-		log.info("######ë‚´ì •ë³´ìˆ˜ì • ì´ë™get nickname: "+nickname);
-		log.info("######ë‚´ì •ë³´ìˆ˜ì • ì´ë™get member: "+member);
-		log.info("######ë‚´ì •ë³´ìˆ˜ì • ì´ë™get mv: "+mv);
+		log.info("######³»Á¤º¸¼öÁ¤ ÀÌµ¿get email: "+email);
+		log.info("######³»Á¤º¸¼öÁ¤ ÀÌµ¿get nickname: "+nickname);
+		log.info("######³»Á¤º¸¼öÁ¤ ÀÌµ¿get member: "+member);
+		log.info("######³»Á¤º¸¼öÁ¤ ÀÌµ¿get mv: "+mv);
 		
 		return mv;
 	}
 	
-	//ë‚´ì •ë³´ ìˆ˜ì •ì‹œ ë‹‰ë„¤ì„ ì¤‘ë³µê²€ì‚¬ ajax
+	//³»Á¤º¸ ¼öÁ¤½Ã ´Ğ³×ÀÓ Áßº¹°Ë»ç ajax
 	@PostMapping("/modify-myinfo/nicknamevalidcheck")
 	@ResponseBody
 	public String nicknameValidCheck(String nickname, HttpServletRequest req){
 		HttpSession session = req.getSession();
 		int result = memberRegisterService.checkNickname(nickname);
-		log.info("#3_ë‹‰ë„¤ì„ ì¤‘ë³µì²´í¬ result: "+ result);
-		log.info("#4_ë‹‰ë„¤ì„ ê¸¸ì´ checkNickname.length() : "+ nickname.length());
-		log.info("#5_ì„¸ì…˜ ì •ë³´ session.getAttribute(\"nickname\") : " + session.getAttribute("nickname")); 
+		log.info("#3_´Ğ³×ÀÓ Áßº¹Ã¼Å© result: "+ result);
+		log.info("#4_´Ğ³×ÀÓ ±æÀÌ checkNickname.length() : "+ nickname.length());
+		log.info("#5_¼¼¼Ç Á¤º¸ session.getAttribute(\"nickname\") : " + session.getAttribute("nickname")); 
 		
 		if(nickname.length()<3) {
-			log.info("#ë‹‰ë„¤ì„ ê¸¸ì´ê°€ 3ì ë¯¸ë§Œì¼ ë•Œ: return noshow");
+			log.info("#´Ğ³×ÀÓ ±æÀÌ°¡ 3ÀÚ ¹Ì¸¸ÀÏ ¶§: return noshow");
 			return "noshow";			
 		} else if(result == 0) { 
-			log.info("#ë‹‰ë„¤ì„ ì¤‘ë³µ ì—†ì„ ë•Œ ì„±ê³µ: return success");
+			log.info("#´Ğ³×ÀÓ Áßº¹ ¾øÀ» ¶§ ¼º°ø: return success");
 			return "success";
 		} else { 
-			log.info("#ë‹¤ë¥¸ ë‹‰ë„¤ì„ê³¼ ì´ë¯¸ ì¤‘ë³µì¼ ë•Œ: return fail");
+			log.info("#´Ù¸¥ ´Ğ³×ÀÓ°ú ÀÌ¹Ì Áßº¹ÀÏ ¶§: return fail");
 			return "fail";
 		}
 	}
 		
-	//ë‚´ì •ë³´ ìˆ˜ì • post
+	//³»Á¤º¸ ¼öÁ¤ post
 	@PostMapping("/modifymyinfo")
-	public String modify(Member member, HttpSession session) { //HttpServletRequest req ì•ˆì¨ë„ ë¨
+	public String modify(Member member, HttpSession session) { //HttpServletRequest req ¾È½áµµ µÊ
 		//session.removeAttribute("pw");
 		//session.removeAttribute("nickname");
-		log.info("#1_ë‚´ì •ë³´ ìˆ˜ì • ì§„ì…ì„±ê³µ ì…ë ¥ì •ë³´ member: "+ member);
-		log.info("#1_ë‚´ì •ë³´ ìˆ˜ì •ì‹œ ì…ë ¥ ì •ë³´ member: "+ member);
-		//log.info("#2_ë‚´ì •ë³´ ìˆ˜ì •ì „ ì„¸ì…˜ ì •ë³´ session: "+ session);
-		log.info("#2_í˜„ì¬ ì„¸ì…˜ì— ì €ì¥ëœ (ìˆ˜ì •ì „) ë‹‰ë„¤ì„ ê°€ì ¸ì˜¤ê¸° session.getAttribute(\"nickname\"); "+session.getAttribute("nickname")); //ìŠ¤í¬ë£¨ë°”
-		log.info("#2_í˜„ì¬ ì„¸ì…˜ì— ì €ì¥ëœ (ìˆ˜ì •ì „) ë§ˆì¼€íŒ…ì—¬ë¶€ ê°€ì ¸ì˜¤ê¸° session.getAttribute(\"marketing\"); "+session.getAttribute("marketing")); //0 = ë¯¸ë™ì˜
+		log.info("#1_³»Á¤º¸ ¼öÁ¤ ÁøÀÔ¼º°ø ÀÔ·ÂÁ¤º¸ member: "+ member);
+		log.info("#1_³»Á¤º¸ ¼öÁ¤½Ã ÀÔ·Â Á¤º¸ member: "+ member);
+		//log.info("#2_³»Á¤º¸ ¼öÁ¤Àü ¼¼¼Ç Á¤º¸ session: "+ session);
+		log.info("#2_ÇöÀç ¼¼¼Ç¿¡ ÀúÀåµÈ (¼öÁ¤Àü) ´Ğ³×ÀÓ °¡Á®¿À±â session.getAttribute(\"nickname\"); "+session.getAttribute("nickname")); //½ºÅ©·ç¹Ù
+		log.info("#2_ÇöÀç ¼¼¼Ç¿¡ ÀúÀåµÈ (¼öÁ¤Àü) ¸¶ÄÉÆÃ¿©ºÎ °¡Á®¿À±â session.getAttribute(\"marketing\"); "+session.getAttribute("marketing")); //0 = ¹Ìµ¿ÀÇ
 	
 		Member memberInfo = memberRegisterService.modifyMyInfo(member); 
 		session.setAttribute("nickname", memberInfo.getNickname());
 		session.setAttribute("marketing", memberInfo.getMarketing());
 		//session.setAttribute("updateDate", memberInfo.getUpdateDate());
 		session.setAttribute("member", memberInfo);
-		log.info("#3_ë‚´ì •ë³´ ìˆ˜ì • ì„±ê³µ!í›„ ë‚´ì •ë³´ memberInfo= "+ memberInfo);
-		log.info("#5_í˜„ì¬ ì„¸ì…˜ì— ì €ì¥ëœ (ìˆ˜ì •í›„) ë‹‰ë„¤ì„ ê°€ì ¸ì˜¤ê¸° session.getAttribute(\"nickname\"); "+session.getAttribute("nickname")); //ìŠ¤í¬ë£¨ë°”
-		log.info("#5_í˜„ì¬ ì„¸ì…˜ì— ì €ì¥ëœ (ìˆ˜ì •í›„) ë§ˆì¼€íŒ…ì—¬ë¶€ ê°€ì ¸ì˜¤ê¸° session.getAttribute(\"marketing\"); "+session.getAttribute("marketing")); //0 = ë¯¸ë™ì˜
-		log.info("#5_í˜„ì¬ ì„¸ì…˜ì— ì €ì¥ëœ (ìˆ˜ì •í›„) member ê°€ì ¸ì˜¤ê¸° session.getAttribute(\"member\"); "+session.getAttribute("member"));
-		//Member(email=111@naver.com, pwd=1111, nickname=zeze, profileImg=, name=í•œì„œì¸, phone=01055554, marketing=0, apiUsing=0, signupDate=null, updateDate=null, authority=0, point=0)
+		log.info("#3_³»Á¤º¸ ¼öÁ¤ ¼º°ø!ÈÄ ³»Á¤º¸ memberInfo= "+ memberInfo);
+		log.info("#5_ÇöÀç ¼¼¼Ç¿¡ ÀúÀåµÈ (¼öÁ¤ÈÄ) ´Ğ³×ÀÓ °¡Á®¿À±â session.getAttribute(\"nickname\"); "+session.getAttribute("nickname")); //½ºÅ©·ç¹Ù
+		log.info("#5_ÇöÀç ¼¼¼Ç¿¡ ÀúÀåµÈ (¼öÁ¤ÈÄ) ¸¶ÄÉÆÃ¿©ºÎ °¡Á®¿À±â session.getAttribute(\"marketing\"); "+session.getAttribute("marketing")); //0 = ¹Ìµ¿ÀÇ
+		log.info("#5_ÇöÀç ¼¼¼Ç¿¡ ÀúÀåµÈ (¼öÁ¤ÈÄ) member °¡Á®¿À±â session.getAttribute(\"member\"); "+session.getAttribute("member"));
+		//Member(email=111@naver.com, pwd=1111, nickname=zeze, profileImg=, name=ÇÑ¼­ÀÎ, phone=01055554, marketing=0, apiUsing=0, signupDate=null, updateDate=null, authority=0, point=0)
 		return "redirect:/member/mypage";
 	}                 
 	
-	//íšŒì› íƒˆí‡´         
+	//È¸¿ø Å»Åğ         
 	@GetMapping("/remove-myinfo")
-	public String remove(String email, HttpSession session, HttpServletRequest req) { //req í•„ìš”
+	public String remove(String email, HttpSession session, HttpServletRequest req) { //req ÇÊ¿ä
 		
 		memberRegisterService.removeMyInfo(email);
-		session.invalidate(); //í˜„ì¬ ì ‘ì†í•˜ê³  ìˆëŠ” ì„¸ì…˜ì„ ë¬´íš¨í™”
-		//req.getSession(true); //ìƒˆë¡œìš´ ì„¸ì…˜ì„ ë°›ì„ ì¤€ë¹„ true
+		session.invalidate(); //ÇöÀç Á¢¼ÓÇÏ°í ÀÖ´Â ¼¼¼ÇÀ» ¹«È¿È­
+		//req.getSession(true); //»õ·Î¿î ¼¼¼ÇÀ» ¹ŞÀ» ÁØºñ true
 		return "redirect:/";
 	}
 	
