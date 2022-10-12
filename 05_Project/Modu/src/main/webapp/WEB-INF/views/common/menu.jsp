@@ -1,21 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <header id="masthead"
 	class="site-header navbar-fixed-top d-flex align-items-center p-0">
 	<div class="header-navigation w-100">
 		<div class="container-fluid">
-
 			<div class="row head-row w-100 m-0 p-3">
 
 				<div class="brand-col">
 					<div class="site-branding navbar-brand">
-						<a href="/"><img src="/imgs/logo.png" alt="모두의식탁" title="logo"
+						<a href="/">
+						<img 
+						src="../imgs/logo.png" 
+						alt="모두의식탁logo" 
+						title="logo"
 							class="logo"></a>
-					</div>
-					<!-- end logo -->
-				</div>
-				<!-- end col-md-3 -->
+					</div><!-- end logo -->
+				</div><!-- end col-md-3 -->
 
 				<div class="menu-col">
 					<nav class="site-navigation navbar navbar-expand-lg navbar-light">
@@ -47,12 +48,27 @@
 										<a class="dropdown-item" href="/notice/list">공지사항</a> <a
 											class="dropdown-item" href="/freeboard/list">자유게시판</a>
 									</div></li>
-								<li class="nav-item dropdown"><a class="nav-link"
-									href="/member/mypage">마이페이지</a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="/member/login">로그인</a></li>
-								<li class="nav-item"><a class="nav-link"
-									href="/member/signup">회원가입</a></li>
+								<c:if test = "${ sessionScope.email != null }"><!--세션이 존재할 때-->
+									<li class="nav-item dropdown">
+									<a href='/member/mypage' class="nav-link"					
+										>마이페이지</a>
+									</li>
+									<li class="nav-item"> <!--로그인 세션이 있을때만 표시/  href="/logout" -->
+						           		<a class="nav-link" onclick="location.href='/member/logout'">로그아웃</a>
+						           </li>
+						           <div class="welcomelogin">${sessionScope.nickname}님, 반갑습니다.💕 </div>
+								</c:if>
+								<c:if test = "${ sessionScope.email == null }"> <!--세션이 없을 때 = 미로그인시 -->
+								 	<li class="nav-item dropdown">
+									<a href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';" class="nav-link"					
+										>마이페이지</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="/member/login">로그인</a>
+									</li> <!--  모달창 사용시 id="loginBtn" or href="/member/login" -->
+						<!-- 			<li class="nav-item"><a class="nav-link"
+										href="/member/register">회원가입</a></li> -->
+								</c:if>
 							</ul>
 						</div>
 						<!-- end navbar-collapse -->
@@ -72,23 +88,17 @@
 						</div>
 						<!-- end social-container -->
 						<div class="search-container py-1">
-							<a href="/recipe/list"><img src="/imgs/search.svg" alt="검색버튼"
+							<a href="/recipe/list">
+							<img src="/imgs/search.svg" alt="검색버튼"
 								title="search" class="nav-search"></a>
-						</div>
-						<!-- end search-container -->
+						</div><!-- end search-container -->
 					</nav>
-				</div>
-				<!-- end col-md-3 -->
+				</div><!-- end col-md-3 -->
+			</div><!-- end row -->
+		</div><!-- end container-fluid -->
+	</div><!-- end header-navigation -->
+</header><!-- end #masthead -->
 
-			</div>
-			<!-- end row -->
-
-		</div>
-		<!-- end container-fluid -->
-	</div>
-	<!-- end header-navigation -->
-</header>
-<!-- end #masthead -->
 <div class="collapse navbar-collapse px-5 mb-3"
 	id="navbarSupportedContent">
 	<ul class="navbar-nav ms-3">
@@ -109,10 +119,26 @@
 				<a class="dropdown-item" href="/notice/list">공지사항</a> <a
 					class="dropdown-item" href="/freeboard/list">자유게시판</a>
 			</div></li>
-		<li class="nav-item dropdown"><a class="nav-link"
-			href="/member/mypage">마이페이지</a></li>
-		<li class="nav-item"><a class="nav-link" href="/member/login">로그인</a></li>
-		<li class="nav-item"><a class="nav-link" href="/member/signup">회원가입</a></li>
+			<c:if test = "${ sessionScope.email != null }"><!--세션이 존재할 때-->
+				<li class="nav-item dropdown">
+				<a href='/member/mypage' class="nav-link"					
+					>마이페이지</a>
+				</li>
+				<li class="nav-item"> <!--로그인 세션이 있을때만 표시/  href="/logout" -->
+	           		<a class="nav-link" onclick="location.href='/member/logout'">로그아웃</a>
+	           </li>
+	           <div class="welcomelogin">${sessionScope.nickname}님, 반갑습니다.💕 </div>
+			</c:if>
+			<c:if test = "${ sessionScope.email == null }"> <!--세션이 없을 때 = 미로그인시 -->
+			 	<li class="nav-item dropdown">
+				<a href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';" class="nav-link"					
+					>마이페이지</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/member/login">로그인</a>
+				</li> <!--  모달창 사용시 id="loginBtn" or href="/member/login" -->
+	<!-- 			<li class="nav-item"><a class="nav-link"
+					href="/member/register">회원가입</a></li> -->
+			</c:if>
 	</ul>
-</div>
-<!-- end navbar-collapse -->
+</div><!-- end navbar-collapse -->

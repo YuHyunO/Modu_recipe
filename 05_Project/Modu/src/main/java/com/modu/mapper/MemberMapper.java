@@ -8,18 +8,18 @@ import com.modu.domain.member.FollowList;
 import com.modu.domain.member.Member;
 
 public interface MemberMapper {
-	/*    ¸Ş¼Òµå »ç¿ë ±ÔÄ¢        */
-	void insertMember(Member member);
+
+	//void insertMember(Member member);
 	void insertFollow(@Param("email")String email, @Param("followee")String followee);
-	void updateMember(Member member);
-	/* À§ µÎ ¸Ş¼Òµå´Â ÇÊ¼ö·Î À¯È¿¼º °Ë»ç ÀÌÈÄ È£ÃâÇÒ °Í  */
 	
+	Member selectMember(String email); //ë‚´ì •ë³´ìˆ˜ì • ì¡°íšŒ
+	void updateMember(Member member); //ë‚´ì •ë³´ìˆ˜ì • post
 	void updatePoint(@Param("email") String email, @Param("point") int point);
+
 	void deleteMember(String email);
 	void deleteFollow(long id);
 	
-	Member selectMember(String email);
-	/* À¯È¿¼º °Ë»ç ¸Ş¼Òµå  */
+	//ì•„ì§ ë¯¸ì‚¬ìš©
 	String selectEmailCheck(String email);
 	String selectNicknameCheck(String nickname);
 	/*     ***     */
@@ -29,9 +29,18 @@ public interface MemberMapper {
 	List<FollowList> selectFollowee(@Param("email") String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
 	List<FollowList> selectFollower(@Param("email") String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
 	
-	//Å×½ºÆ®¿ë
+	//ï¿½×½ï¿½Æ®ï¿½ï¿½
 	List<String> selectEmails(int bound);
 	
-	// ·©Å·À¸·Î È¸¿ø »Ì±â
+	// ï¿½ï¿½Å·ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½Ì±ï¿½
 	List<Member> selectMemberRank();
+	
+	//ì„œì¸ì¶”ê°€ ë©”ì†Œë“œ 10.11
+	void insertMember(Member member); //íšŒì›ê°€ì… (ë§ˆì¼€íŒ… ë¯¸ë™ì˜)
+	void insertMember2(Member member); //íšŒì›ê°€ì… (ë§ˆì¼€íŒ… ë™ì˜)
+	
+	public int emailCheck(String email); //íšŒì›ê°€ì… - ì´ë©”ì¼ ì¤‘ë³µê²€ì‚¬ ajax
+	public int nicknameCheck(String email); //íšŒì›ê°€ì… - ë‹‰ë„¤ì„ ì¤‘ë³µê²€ì‚¬ ajax
+	public int loginCheck(String email, String pwd); //ë¡œê·¸ì¸ ìœ íš¨ì„± ê²€ì‚¬
+	public Member login(Member member); //ë¡œê·¸ì¸ post
 }

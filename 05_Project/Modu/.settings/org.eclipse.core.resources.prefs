@@ -1,10 +1,13 @@
 eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/views/common/bottom.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/common/head.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/common/menu.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/freeboard/detail.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/freeboard/list.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/freeboard/write.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/index.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/member/login.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/member/login2.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/member/mypage.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/member/signup.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/member/register.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/recipe/list.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/recipe/write.jsp=UTF-8
