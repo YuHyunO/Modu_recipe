@@ -15,7 +15,9 @@ import com.modu.mapper.RecipeMapper;
 
 import lombok.extern.log4j.Log4j;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,7 +48,10 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
 
 	@Override
 	public void registerRecipe(HttpServletRequest request, HttpSession session) {
+		
+		System.out.println("리퀘스트 "+ request.getParameter("recipe"));
 		//String email =(String)session.getAttribute("email");
+		/*
 		String email = "oyh1431@naver.com"; //
 		String nickname = memberMapper.selectNickname(email);
 		String profileImg = memberMapper.selectProfileImg(email);
@@ -59,12 +64,9 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
 		Direction direction = new Direction();
 		RecipeTag recipeTag = new RecipeTag();
 
-		String accessibilitySecret = request.getParameter("accessibilitySecret");
-		int acS = Integer.parseInt(accessibilitySecret);
-		String accessibilityOpen = request.getParameter("accessibilityOpen");
-		int acO = Integer.parseInt(accessibilityOpen);
-		String accessibilityTemp = request.getParameter("accessibilityTemp");
-		int acT = Integer.parseInt(accessibilityTemp);
+		String accessibilityS = request.getParameter("accessibility");
+		int accessibility = Integer.parseInt(accessibilityS);
+
 		recipe.setMEmail(email);
 		recipe.setMNickname(nickname);
 		recipe.setProfileImg(profileImg);
@@ -78,21 +80,9 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
 		recipe.setServing(request.getParameter("serving"));
 		recipe.setCookTime(request.getParameter("cookTime"));
 		recipe.setDifficultyLevel(request.getParameter("difficultyLevel"));
-		log.info("acS: " + acS);
-		log.info("acO: " + acO);
-		log.info("acT: " + acT);
-		if(acS == 0) { // 비공개 저장 버튼을 눌렀을 때 accessibility의 number가 0으로 저장
-			recipe.setAccessibility(acS);
-			recipeMapper.insertRecipe(recipe);
-		}else if(acO == 1) { // 저장 및 공개 버튼을 눌렀을 때 accessibility의 number가 1로 지정
-			recipe.setAccessibility(acO);
-			recipeMapper.insertRecipe(recipe);
-		}else if(acT == 2) { // 임시 저장 버튼을 눌렀을때  accessibility의 number가 2로 지정
-			recipe.setAccessibility(acT);
-			recipeMapper.insertRecipe(recipe);
-		}else {
-			log.info("error");
-		}
+		recipe.setAccessibility(accessibility);
+		recipeMapper.insertRecipe(recipe);
+
 		log.info("#####9");
 		
 		// ingredient 테이블 insert 로직
@@ -124,7 +114,6 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
 		}
 		//direction 테이블 insert로직
 		direction.setRId(rId);
-		//direction.setStep(Integer.parseInt(request.getParameter("setp")));
 		direction.setDirection(request.getParameter("direction"));
 		direction.setOriginalFile(originalFile);
 		direction.setSaveFile(saveFile);
@@ -137,7 +126,7 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
 		log.info(request.getParameter("tag"));
 		recipeMapper.insertTag(recipeTag);
 		log.info("#####5");
-		
+		*/
 	}
 
 	@Override
