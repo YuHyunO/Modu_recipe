@@ -31,6 +31,8 @@ public class RecipeController {
 
 	@Autowired
 	private RecipeFindingService recipeFindingService;
+	
+	@Autowired
 	private RecipeRegisterService recipeRegisterService;
 	
 	@GetMapping("/list")
@@ -47,14 +49,15 @@ public class RecipeController {
 	public ModelAndView recipeDetail() {
 		long id = 150;
 		RecipeDetail recipeDetail = recipeFindingService.findRecipedetails(id);
+		String starPoint = recipeFindingService.getStarPoint(recipeDetail);
 		List<RecipeReplyList> selectReply = recipeRegisterService.findRecipeReply(id);
-		// System.out.println("####"+recipe);
+
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("recipe/detail");
 		mv.addObject("rec", recipeDetail);
 		mv.addObject("rep", selectReply);
 		mv.addObject("id", id);
-		// System.out.println("########");
+		mv.addObject("starPoint", starPoint);
 		return mv;
 	}
 

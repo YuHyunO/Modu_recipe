@@ -40,4 +40,24 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
 		return recipeDetail;
 	}
 
+	@Override
+	public String getStarPoint(RecipeDetail recipeDetail) {
+		double star = recipeDetail.getRecipe().getStar();
+		String starPoint = Double.toString(star);
+		String starPoint1 = starPoint.substring(0, 1);
+		String starPoint2 = starPoint.substring(2, 3);
+		int starPointResult;
+		
+		//System.out.println("####스타포인트1:" + starPoint1);
+		//System.out.println("####스타포인트2:" + starPoint2);
+		
+		if (Integer.parseInt(starPoint2) >= 5) {
+			starPointResult = Integer.parseInt(starPoint1) + 1;
+			starPoint1 = Integer.toString(starPointResult);
+		}
+		
+		//System.out.println("####스타포인트1:" + starPoint1);
+		return starPoint1;
+	}
+
 }

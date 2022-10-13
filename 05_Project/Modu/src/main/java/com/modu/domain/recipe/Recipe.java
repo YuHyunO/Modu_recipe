@@ -31,7 +31,7 @@ public class Recipe {
 	private Date updateDate;
 	private long hits;
 	private long reply;
-	private int star;
+	private double star;
 	private int accessibility;
 	
 }
