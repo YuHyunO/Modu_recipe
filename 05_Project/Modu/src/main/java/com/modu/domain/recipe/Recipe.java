@@ -22,7 +22,7 @@ public class Recipe {
 	private String foodPhoto;
 	private String sort;
 	private String ingredient;
-	private int serving;
+	private String serving;
 	private String cookTime;
 	private String difficultyLevel;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")

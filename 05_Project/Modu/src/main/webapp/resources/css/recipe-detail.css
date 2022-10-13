@@ -355,4 +355,17 @@ img {
         max-width: 50px !important;
         height: 10px !important;
     }
+    
+  
+/*
+더보기숨기기
+.comment{
+	display:none;
+}
+
+.commentShow{
+	display:inline;
+}
+*/    
+      
 }
