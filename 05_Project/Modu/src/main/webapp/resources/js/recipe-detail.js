@@ -139,7 +139,7 @@ function addReply(e){
 
     if(star_point === 0){
     } else {
-        starHtml = '<img class="star-rate-img" src="images/stars' 
+        starHtml = '<img class="star-rate-img" src="/imgs/stars' 
         + star_point + '.png" alt="stars" style="width:80px; height:15px; margin-bottom:5px;">';
     }
     let htmlMain = 
@@ -148,7 +148,7 @@ function addReply(e){
             <div class="comment-meta d-flex justify-content-between align-items-center">\
                 <span class="d-flex align-items-center">\
                     <figure class="comment-author">\
-                        <img src="images/content/auth-00.png" alt="작성자">\
+                        <img src="/imgs/content/auth-00.png" alt="작성자">\
                     </figure><!-- end comment-author vcard -->\
                     <b class="fn ps-2">Jessica</b>\
                     <span class="px-2">' + dateText + '</span>\
@@ -166,7 +166,7 @@ function addReply(e){
                 <p class="p-2 m-0 col-9">\
                     '+ reviewText + '</p>\
                 <figure class="comment-image">\
-                    <img class="rounded-3" src="images/content/dessert-l.png" alt="comment-image">\
+                    <img class="rounded-3" src="/imgs/content/dessert-l.png" alt="comment-image">\
                 </figure><!-- end comment-author vcard -->\
             </div><!-- end comment-content -->\
         </div><!-- end comment-body -->\
@@ -176,13 +176,13 @@ function addReply(e){
     let htmlSub = 
     '<li class="comment row">\
         <div class="col" style="max-width: 40px;">\
-            <img src="images/reply-arrow.png" alt="화살표">\
+            <img src="/imgs/reply-arrow.png" alt="화살표">\
         </div>\
         <div class="comment-body col">\
             <div class="comment-meta d-flex justify-content-between align-items-center">\
                 <span class="d-flex align-items-center">\
                     <figure class="comment-author">\
-                        <img src="images/content/auth-03.png" alt="작성자">\
+                        <img src="/imgs/content/auth-03.png" alt="작성자">\
                     </figure><!-- end comment-author vcard -->\
                     <b class="fn ps-2">Dina Makulatuwa</b>\
                     <span class="px-2">' + dateText + '</span>\
@@ -202,7 +202,7 @@ function addReply(e){
 
     if(targetCommentID === "#comment-0-0"){
         // console.log("메인댓글");
-        $(targetCommentID).append(htmlMain);
+        $(targetCommentID).prepend(htmlMain);
         console.log(targetCommentID);
         $(e).parents('.reply-write').html('');
     }else {
@@ -214,8 +214,10 @@ function addReply(e){
 }
 
 function addReplyForm(e){    
+	console.log("e:" +e)
+	
     let commentID = $(e).attr("class").split(' ')[0];
-    console.log(commentID);
+    console.log("commentId: "+commentID);
     let targetCommentID = "#comment-" + commentID.split('-')[1] + "-" + commentID.split('-')[2];
     let replyFormIDValue = "reply-form-" + commentID.split('-')[1] + "-" + commentID.split('-')[2];
     let replyFormID = "#reply-form-" + commentID.split('-')[1] + "-" + commentID.split('-')[2];
@@ -228,13 +230,13 @@ function addReplyForm(e){
             <form class="comment-form" type="POST" id="'+ replyFormIDValue +'" onSubmit="addReply(this)"> \
                 <div class="row">\
                     <div class="col px-0 comment-file" style="min-width:100px; max-width:100px;">\
-                        <img class="border" src="images/pic_none.gif" alt="파일첨부" width="100" height="100" style="cursor:pointer;">\
+                        <img class="border" src="/imgs/pic_none.gif" alt="파일첨부" width="100" height="100" style="cursor:pointer;">\
                     </div>\
                     <div class="col px-0">\
-                        <textarea class="w-100 h-100 border comment-text" id="reply" name="reply" maxlength="300" placeholder="리뷰를 남겨주세요" required></textarea>\
+                        <textarea id="contentsRreply" class="w-100 h-100 border comment-text"  name="reply" maxlength="300" placeholder="리뷰를 남겨주세요" required></textarea>\
                     </div>\
                     <div class="col px-0 comment-btn" style="min-width:120px; max-width:120px;">\
-                        <button class="btn w-100 h-100 border comment-submit" type="submit" style>등록</button>\
+                        <button id= "insertNestedReply" class="btn w-100 h-100 border comment-submit" type="submit" style>등록</button>\
                     </div>\
                 </div>\
             </form><!-- end comment-form -->\
@@ -246,6 +248,34 @@ function addReplyForm(e){
     }
 }
 
+$(function(){
+	$("#insertReply").on("click", function(){
+		let reply =  $("#contentsReply").val()
+		let mainForm = $('#reply-form-0-0')
+		let info = mainForm.serializeArray();		
+		alert("reply"+reply);
+		$.ajax({
+			url: "../recipe/insert.do", 
+			type: "POST", 
+			data: info,
+			dataType:"text",
+			success: function(data){
+				if(!data){
+					 alert("존재하지 않는 name");
+					 return false;
+				 }
+				alert("#성공!"+data);
+			},
+			error: function(error){
+				alert("err"+error);
+			}
+		
+		});
+	});
+});
+
+/*
+ -> 파일drag&drop/미완,사진경로변경예정
 $(function(e){
     let fileList = [];
     $('.comment-file').on("dragenter", function(e){
@@ -265,3 +295,55 @@ $(function(e){
         console.log(files);
     })
 });
+
+*/
+/* 
+-> 더보기 (숨기기)/미완,프론트단에서처리X
+function showMore(e){
+	console.log("e: "+ e);
+	let comment = $('.comment');
+	let totalComment = comment.length;
+	console.log(totalComment);
+	
+	//console.log(comment)
+	//console.log($('.comment').attr('class'));	
+	//console.log(comment_array);
+
+		if(comment.attr('class') === 'comment'){	 
+			comment.attr('class', 'commentShow');
+		}			
+}
+/* 
+-> 대댓글/미완 
+$(function(){
+	$("#insertNestedReply").on("click", function(){
+		let reply =  $("#contentsRreply").val()
+		let mainForm = $('#reply-form-0-0')
+		let info = mainForm.serializeArray();		
+		alert("reply"+reply);
+		$.ajax({
+			url: "../recipe/insert.do", 
+			type: "POST", 
+			data: info,
+			dataType:"text",
+			success: function(data){
+				if(!data){
+					 alert("존재하지 않는 name");
+					 return false;
+				 }
+				alert("#성공!"+data);
+			},
+			error: function(error){
+				alert("err"+error);
+			}
+		
+		});
+	});
+});
+
+*/
+
+
+
+
+

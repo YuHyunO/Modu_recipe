@@ -6,6 +6,10 @@
 	min-height: 10vh;
 }
 
+.gold-btn {
+	width: 100%;
+}
+
 /* 회원가입 중 중복이메일 존재하지 않는경우 */
 .email_input_re_1{
     margin-top: 30px;
@@ -29,13 +33,6 @@
     color : red;
 }
 
-#loginbutton{
-    background: #937062;
-    border-style: none;
-    margin:auto;
-    display:block;
-}
-
 #searchbutton {
     background: #937062;
 }
@@ -46,16 +43,6 @@
 
 #formsearch {
     background: #937062;
-}
-
-.form-btn {
-    width: 100%;
-}
-
-.form-btn:hover {
-    background: #6b5146 !important;
-    color:white;
-    box-shadow: 1px 1px solid;
 }
 
 .form-check-label {
@@ -74,7 +61,7 @@
         font-size: 0.8rem;
     }
 
-    .form-btn, .form-btn-cancel {
+    .gold-btn {
         font-size: 0.8rem;
     }
 

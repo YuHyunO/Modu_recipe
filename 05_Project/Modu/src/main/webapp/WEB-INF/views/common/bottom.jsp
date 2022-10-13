@@ -1,16 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <div class="bottom">
 	<div class="container">
 		<div class="row">
 			<div class="col">
 				<div class="copy">
-					<p>&copy;2022 모두의식탁 Made by Kosmo Final Team 1</p>
+					<p>Copyright &copy;2022 모두의식탁 Made by Kosmo Final Team 1st.  All rights reserved.</p>
 				</div>
 				<!-- end copy -->
 			</div>
 			<!-- end col -->
+			
 		</div>
 		<!-- end row -->
 	</div>

@@ -148,4 +148,9 @@
 		select NVL(MAX(ROWNUM), 0) from RECIPE
 	</select>
 	
+	<!-- 베스트 레시피 -->
+	<select id="selectRecipeListByBestHits" parameterType="long" resultType="RecipeList">
+		select * from (select * from RECIPE order by HITS desc)
+		where ROWNUM BETWEEN #{beginRow} AND #{endRow}
+	</select>
 </mapper>

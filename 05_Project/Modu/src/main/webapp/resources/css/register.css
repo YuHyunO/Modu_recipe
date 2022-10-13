@@ -1,0 +1,124 @@
+.main {
+	background: #EEEEEE;
+}
+
+.main-color {
+	color: #937062;
+}
+
+.form-check-label {
+	font-size: 0.8rem;
+}
+
+#signupbutton {
+	background: #937062;
+	border-style: none;
+	margin: auto;
+	display: block;
+}
+
+#searchbutton {
+	background: #937062;
+}
+
+#searchform {
+	background: #937062;
+}
+
+#formsearch {
+	background: #937062;
+}
+
+.main form label {
+	margin-bottom: 5px;
+}
+
+.form-btn {
+	width: 100%;
+}
+
+.form-btn:hover {
+	background: #6b5146 !important;
+	color: white;
+	box-shadow: 1px 1px solid;
+}
+
+.acc-box {
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 2px 2px rgb(150, 150, 150);
+}
+
+@media ( max-width :454px) {
+	.main input::placeholder, .main select, .main label, .main textarea::placeholder,
+		.form-check-label {
+		font-size: 0.8rem;
+	}
+	.form-btn, .form-btn-cancel .acc-box p, .acc-btn {
+		font-size: 0.8rem;
+	}
+	.acc-box {
+		padding: 30px;
+	}
+	.agreements {
+		font-size: 0.7rem !important;
+	}
+}
+
+/*회원가입 이메일 유효성 검사(중복체크) ajax 문구*/
+.email_ajax_1 {
+	display: none;
+	font-size: 12px;
+	color: rgb(147, 112, 98);
+	text-align: right;
+}
+
+.email_ajax_2, .email_ajax_3 {
+	display: none;
+	font-size: 12px;
+	color: green;
+	text-align: right;
+}
+
+/*회원가입 닉네임 유효성 검사(중복체크) ajax 문구*/
+.nickname_ajax_1 {
+	display: none;
+	font-size: 12px;
+	color: rgb(147, 112, 98);
+	text-align: right;
+}
+
+.nickname_ajax_2, .nickname_ajax_3 {
+	display: none;
+	font-size: 12px;
+	color: green;
+	text-align: right;
+}
+
+/* 약관 사이즈 */
+.agreements {
+	font-size: 12px;
+	padding: 10px 10px 10px 10px;
+	border: 0.1px solid rgb(147, 112, 98);
+}
+
+#registerokbutton {
+	color: #fff;
+	background: #937062;
+	border-style: none;
+	margin: auto;
+	display: block;
+	border-radius: 4px;
+	cursor: pointer;
+	border: 0;
+	outline: 0;
+}
+
+/* 이미 회원이신가요? */
+.alreadyregister {
+	font-size: 14px;
+	color: #42332d;
+	text-decoration: none;
+	background-color: transparent;
+	align-items: center;
+}

@@ -240,7 +240,7 @@
 						</div>
 						<div>
 							<button class="btn border mt-2 p-btn plus"
-								onclick="addStep(this)">&nbsp&nbsp추가</button>
+								onclick="addStep(this)">&nbsp;&nbsp; 추가</button>
 						</div>
 					</div>
 					<!-- end cooking-step 요리순서 -->

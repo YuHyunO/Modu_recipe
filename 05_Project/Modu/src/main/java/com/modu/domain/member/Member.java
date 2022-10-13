@@ -19,7 +19,7 @@ public class Member {
 	private String name;
 	private String phone;
 	private int marketing;
-	private int apiUsing;
+	private int apiUsing; 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
 	private Date signupDate;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
