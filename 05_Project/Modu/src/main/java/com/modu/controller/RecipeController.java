@@ -31,20 +31,20 @@ public class RecipeController {
 
 	@Autowired
 	private RecipeFindingService recipeFindingService;
-	
+
 	@Autowired
 	private RecipeRegisterService recipeRegisterService;
-	
+
 	@GetMapping("/list")
 	public String recipeList() {
 		return "recipe/list";
 	}
-	
+
 	@GetMapping("/write")
 	public String recipeWrite() {
 		return "recipe/write";
 	}
-	
+
 	@GetMapping("/detail")
 	public ModelAndView recipeDetail() {
 		long id = 150;
