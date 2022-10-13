@@ -100,20 +100,11 @@ public class MemberController {
 	public String goLogin(HttpServletRequest req) {
 		HttpSession session = req.getSession();
 		String email = (String) session.getAttribute("email");
-		String cp = req.getHeader("referer");
-		Enumeration headers = req.getHeaderNames();
-		 
-		while(headers.hasMoreElements()) {
-		    String headerName = (String)headers.nextElement();
-		    String value = req.getHeader(headerName);
-		    System.out.println("headerName:"+headerName+","+value);
-		}
-		
-		log.info("#MemberController goLogin cp: " + cp);
+	
+		//회원 세션 체크(이미 로그인했을 경우 인덱스로 리다이렉트)
 		if (email == null) {
 			return "member/login";
 		} else {
-			 
 			return "redirect:/";
 		}
 		
@@ -219,7 +210,6 @@ public class MemberController {
 	//회원 탈퇴         
 	@GetMapping("/remove-myinfo")
 	public String remove(String email, HttpSession session, HttpServletRequest req) { //req 필요
-		
 		memberRegisterService.removeMyInfo(email);
 		session.invalidate(); //현재 접속하고 있는 세션을 무효화
 		//req.getSession(true); //새로운 세션을 받을 준비 true

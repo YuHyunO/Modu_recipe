@@ -9,81 +9,18 @@
 <!-- 공통 부분 END -->
 <link href="/css/register.css" rel="stylesheet">
 <script src="/js/register.js"></script>
-<style type="text/css">
-	/*회원가입 이메일 유효성 검사(중복체크) ajax 문구*/
-	.email_ajax_1 {
-		display: none;
-		font-size:12px; 
-		color: rgb(147, 112, 98);
-		text-align: right;
-	}
-	
-	.email_ajax_2, .email_ajax_3 {
-		display: none;
-		font-size:12px;
-		color: green;
-		text-align: right;
-	}
-	
-	/*회원가입 닉네임 유효성 검사(중복체크) ajax 문구*/
-	.nickname_ajax_1 {
-		display: none;
-		font-size:12px; 
-		color: rgb(147, 112, 98);
-		text-align: right;
-	}
-	
-	.nickname_ajax_2, .nickname_ajax_3 {
-		display: none;
-		font-size:12px;
-		color: green;
-		text-align: right;
-	}
-	
-	/* 약관 사이즈 */
-	.agreements {
-	   font-size: 12px;
-       padding: 10px 10px 10px 10px;
-       border: 0.1px solid rgb(147, 112, 98);
-	}
-	
-	 #registerokbutton{
-        color: #fff;
-        background: #937062;
-        border-style: none;
-        margin:auto;
-        display:block;
-        border-radius: 4px;
-        cursor: pointer;
-        border: 0;
-        outline: 0;
-/*      padding: 5px 5px;  
-        width: 150px;
-        text-align:center; */
-      }
-      
-      /* 이미 회원이신가요? */
-      .alreadyregister{
-   		font-size:14px;
-	    color: #42332d;
-	    text-decoration: none;
-	    background-color: transparent;
-	    align-items: center;
-	}
-	
-</style>
-<script src="https://code.jquery.com/jquery-latest.js"></script> <!-- CDN(신뢰할 수 있는 사이트) -->
-<script type="text/javascript" src="../js/map.js"></script> <!-- 내 로컬 서버 -->
-<script type="text/javascript" src="../js/stringBuffer.js"></script>
 </head>
 <body>
-	<div id="page" class="hfeed site"><!-- start page wrapper -->
+	<div id="page" class="hfeed site">
+		<!-- start page wrapper -->
 		<%@ include file="/WEB-INF/views/common/menu.jsp"%>
 		<div class="head-title py-4 m-0">
 			<div class="container">
 				<p class="page-title m-0 fs-2">REGISTER</p>
-			</div><!-- end container -->
-		</div><!-- end head-title -->
+			</div>
+			<!-- end container -->
+		</div>
+		<!-- end head-title -->
 
 		<div class="main">
 			<div class="py-3"></div>
@@ -92,131 +29,100 @@
 					<div class="d-flex justify-content-center">
 						<div class="acc-box equal">
 							<div class="p-4 pt-0 p-title h3 mb-0 text-center">#회원가입</div>
-							<p class="mb-0 text-center acc-btn"><em>Join in our 모두의식탁</em></p>
+							<p class="mb-0 text-center acc-btn">
+								<em>Join in our 모두의식탁</em>
+							</p>
 							<p class="mt-3 acc-btn text-right">*표시는 필수입력 항목입니다.</p>
 
 							<form id="register_form" method="post">
 								<div class="form-group">
-									<label for="id_email">이메일 *</label>
-									<input 
-										name="email" 
-										type="email"
-										class="form-control" 
-										id="id_email" 
-										placeholder="you@email.com"
-										maxlength=40
-										required 
-									/> 
-			                    <span class="email_ajax_1">사용 가능한 이메일입니다.</span>
-			                    <span class="email_ajax_2">이미 사용 중인 이메일입니다.</span>
-			                    <span class="email_ajax_3">올바른 이메일을 입력해주세요.</span>
+									<label for="id_email">이메일 *</label> <input name="email"
+										type="email" class="form-control" id="id_email"
+										placeholder="you@email.com" maxlength=40 required />
+									<span class="email_ajax_1">사용 가능한 이메일입니다.</span> <span
+										class="email_ajax_2">이미 사용 중인 이메일입니다.</span> <span
+										class="email_ajax_3">올바른 이메일을 입력해주세요.</span>
 								</div>
-								
-				                  <div class="form-group">
-				                    <label for="id_pw1">비밀번호 *</label
-				                    ><input
-				                    name="pwd1"
-				                    type="password"
-				                      class="form-control"
-				                      id="id_pw1"
-				                      placeholder="5자 이상 입력해주세요."
-				                      maxlength=30
-				                      required
-				                    />
-				                  </div>
-				                  
-				                  <div class="form-group">
-				                    <label for="id_pw2">비밀번호 확인 *</label
-				                    ><input
-				                    name="pwd"
-				                    type="password"
-				                      class="form-control"
-				                      id="id_pw2"
-				                      placeholder="5자 이상 입력해주세요."
-				                      maxlength=30
-				                      required
-				                    />
-				                  </div> 
-				                  
-								    <div class="form-group">
-				                    <label for="id_nickname">닉네임 *</label
-				                    ><input
-				                    name="nickname"
-				                      type="text"
-				                      class="form-control"
-				                      id="id_nickname"
-				                      placeholder="3자 이상 입력해주세요."
-				                      maxlength=10
-				                      required
-				                    />
-				                    <span class="nickname_ajax_1">사용 가능한 닉네임입니다.</span>
-				                    <span class="nickname_ajax_2">이미 사용 중인 닉네임입니다.</span>
-				                    <span class="nickname_ajax_3">닉네임은 3자 이상 입력해주세요.</span>
-				                  </div>
-				                  
-				               <div class="form-group">
-				                    <label>성명 (선택)</label
-				                    >
-				                    <input
-				                    name="name"
-				                      type="text"
-				                      class="form-control"
-				                      id="id_name"
-				                      placeholder="실명을 입력해주세요."
-				                      maxlength=5
-				                    />
-				                  </div>
-			                  <div class="form-group">
-			                    <label for="id_phone">휴대폰번호 (선택)</label
-			                    ><input
-			                    name="phone"
-			                      type="text"
-			                      class="form-control"
-			                      id="id_phone"
-			                      placeholder="숫자만 입력해주세요."
-			                      maxlength=11
-			                    />
-			                  </div> 
 
-              <label for="agreements">약관 동의</label>
-				<div class="agreements" id="agreements">
-					<div for="apiUsing">
-					  <input type="checkbox" id="apiUsing" name="apiUsing" value="1">
-					  <span><strong>본 사이트의 <a href="javascript:agreement1()" style="text-decoration: none; color:black;"><u>이용약관</u></a> 및
-	                     <a href="javascript:agreement2()" style="text-decoration: none; color:black;"><u>개인정보 처리방침</u></a>에 동의합니다.</strong>
-						(필수)</span>
+								<div class="form-group">
+									<label for="id_pw1">비밀번호 *</label><input name="pwd1"
+										type="password" class="form-control" id="id_pw1"
+										placeholder="5자 이상 입력해주세요." maxlength=30 required />
+								</div>
+
+								<div class="form-group">
+									<label for="id_pw2">비밀번호 확인 *</label><input name="pwd"
+										type="password" class="form-control" id="id_pw2"
+										placeholder="5자 이상 입력해주세요." maxlength=30 required />
+								</div>
+
+								<div class="form-group">
+									<label for="id_nickname">닉네임 *</label><input name="nickname"
+										type="text" class="form-control" id="id_nickname"
+										placeholder="3자 이상 입력해주세요." maxlength=10 required />
+									<span class="nickname_ajax_1">사용 가능한 닉네임입니다.</span> <span
+										class="nickname_ajax_2">이미 사용 중인 닉네임입니다.</span> <span
+										class="nickname_ajax_3">닉네임은 3자 이상 입력해주세요.</span>
+								</div>
+
+								<div class="form-group">
+									<label>성명 (선택)</label> <input name="name" type="text"
+										class="form-control" id="id_name" placeholder="실명을 입력해주세요."
+										maxlength=5 />
+								</div>
+								<div class="form-group">
+									<label for="id_phone">휴대폰번호 (선택)</label><input name="phone"
+										type="text" class="form-control" id="id_phone"
+										placeholder="숫자만 입력해주세요." maxlength=11 />
+								</div>
+
+								<label for="agreements">약관 동의</label>
+								<div class="agreements" id="agreements">
+									<div for="apiUsing">
+										<input type="checkbox" id="apiUsing" name="apiUsing" value="1">
+										<span><strong>본 사이트의 <a
+												href="javascript:agreement1()"
+												style="text-decoration: none; color: black;"><u>이용약관</u></a>
+												및 <a href="javascript:agreement2()"
+												style="text-decoration: none; color: black;"><u>개인정보
+														처리방침</u></a>에 동의합니다.
+										</strong> (필수)</span>
+									</div>
+									<div for="marketing">
+										<input type="checkbox" id="marketing" name="marketing"
+											value="2"> <span><strong>본 사이트에서 진행하는
+												<u>마케팅 및 이벤트 프로모션</u>을 위한 고객님의 회원정보 활용에 동의합니다.
+										</strong> (선택)</span>
+									</div>
+								</div>
+								<!-- end agreement -->
+							</form>
+							<br>
+							<button name="registerokbutton" id="registerokbutton"
+								type="button" class="btn btn-primary" value="가입하기">
+								가입하기</button>
+							<!-- type="button"로 버튼의 기본 submit 기능을 막음 -->
+							<br />
+							<div class="text-center">
+								<a id="loginBtn" href="/member/login" class="alreadyregister">
+								이미 가입하셨나요?</a><br />
+							</div>
+						</div>
+						<!-- end acc-box -->
 					</div>
-					<div for="marketing">
-					  <input type="checkbox" id="marketing" name="marketing" value="2">
-					  <span><strong>본 사이트에서 진행하는 
-					  <u>마케팅 및 이벤트 프로모션</u>을 위한 고객님의 회원정보 활용에 동의합니다.</strong>
-					  (선택)</span>
-					</div>
-				</div><!-- end agreement -->
-		     </form>
-				<br>
-		          <button 
-		          name="registerokbutton" 
-		          id="registerokbutton"
-		          type="button" 
-		          class="btn btn-primary" 
-		          value="가입하기">
-		          	가입하기</button> <!-- type="button"로 버튼의 기본 submit 기능을 막음 -->
-		          	<br/>
-                  <div style="text-align:center;">
-                    <a id="loginBtn" href="/member/login" 
-                    class="alreadyregister">이미 가입하셨나요?</a><br/>
-                  </div>
-              </div><!-- end acc-box -->
-            </div><!-- end col -->
-          </div> <!-- end row -->
-        </div> <!-- end container -->
-      </div><!-- end main -->
-      
-	<%@ include file="/WEB-INF/views/common/bottom.jsp"%>
-	</div> <!-- end #page hfeed site -->
- 
-    <script type="text/javascript">
+					<!-- end col -->
+				</div>
+				<!-- end row -->
+			</div>
+			<!-- end container -->
+		</div>
+		<!-- end main -->
+
+		<%@ include file="/WEB-INF/views/common/bottom.jsp"%>
+	</div>
+	<!-- end #page hfeed site -->
+
+	<script type="text/javascript">
 	    $(function(){ //비밀번호 2개 일치여부 확인, 이메일/닉네임 중복체크 ajax
 	        $('#id_pw2').blur(function(){ //비밀번호 일치 여부 확인 alert
 		        if($('#id_pw1').val().length===0){ 
@@ -290,7 +196,7 @@
 			    var popupY= (window.screen.height / 2) - (300 / 2);
 			    // 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
 
-		    	window.open('<%=request.getContextPath() %>/member/agreement1', '개인정보 처리방침', 'status=no, height=300, width=600, left='+ popupX + ', top='+ popupY);
+		    	window.open('<%=request.getContextPath()%>/member/agreement1', '개인정보 처리방침', 'status=no, height=300, width=600, left='+ popupX + ', top='+ popupY);
 	     	}
 	     	
 	      function agreement2(){
@@ -299,7 +205,7 @@
 	    	var popupY= (window.screen.height / 2) - (300 / 2);
 	    	// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
 
-		    window.open('<%=request.getContextPath() %>/member/agreement2', '개인정보 처리방침', 'status=no, height=300, width=600, left='+ popupX + ', top='+ popupY);
+		    window.open('<%=request.getContextPath()%>/member/agreement2', '개인정보 처리방침', 'status=no, height=300, width=600, left='+ popupX + ', top='+ popupY);
 	      }
 
 	      
