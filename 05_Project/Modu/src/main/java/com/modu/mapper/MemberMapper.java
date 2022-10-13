@@ -29,15 +29,13 @@ public interface MemberMapper {
 	List<FollowList> selectFollowee(@Param("email") String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
 	List<FollowList> selectFollower(@Param("email") String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
 	
-	//�׽�Ʈ��
 	List<String> selectEmails(int bound);
 	
-	// ��ŷ���� ȸ�� �̱�
+	// 회원랭킹 출력
 	List<Member> selectMemberRank();
 	
 	//서인추가 메소드 10.11
-	void insertMember(Member member); //회원가입 (마케팅 미동의)
-	void insertMember2(Member member); //회원가입 (마케팅 동의)
+	void insertMember(Member member); //회원가입
 	
 	public int emailCheck(String email); //회원가입 - 이메일 중복검사 ajax
 	public int nicknameCheck(String email); //회원가입 - 닉네임 중복검사 ajax

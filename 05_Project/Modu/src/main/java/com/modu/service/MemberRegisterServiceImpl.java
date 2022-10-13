@@ -29,8 +29,6 @@ import lombok.extern.log4j.Log4j;
 @Service
 public class MemberRegisterServiceImpl implements MemberRegisterService {
 	
-	// @Autowired
-	@Inject
 	private MemberMapper memberMapper;
 	private MultipartHttpServletRequest multipartRequest;
 	private Map<String, List<Object>> map;
@@ -38,10 +36,6 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 	@Override
 	public void registerMember(Member member) {
 		memberMapper.insertMember(member);
-	}
-	@Override
-	public void registerMember2(Member member) {
-		memberMapper.insertMember2(member);
 	}
 	
 	@Override
@@ -99,9 +93,7 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 
 
 	private void upload() {
-		log.info("#1_memberserviceï¿½ì“½ upload ï§ë¶¿ëƒ¼ï¿½ë±¶ ï§ê¾©ì—¯");
 		map = new Hashtable<String, List<Object>>(); // (key,value)
-		log.info("#2_memberserviceï¿½ì“½ upload ï§ë¶¿ëƒ¼ï¿½ë±¶ï¿½ë¿‰ï¿½ê½Œ ï¿½ê¹®ï¿½ê½¦ï¿½ë§‚ map: " + map);
 		Iterator<String> itr = multipartRequest.getFileNames(); // Iterator
 		List<Object> ofnames = new ArrayList<Object>();
 		List<Object> savefnames = new ArrayList<Object>();
@@ -127,12 +119,12 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 				savefnames.add(savefname);
 				fsizes.add(fsize);
 			} catch (IOException ie) {
-				log.info("#íŒŒì¼ì—…ë¡œë“œ whileë¬¸ ì¤‘ ì˜ˆì™¸ ë°œìƒ: MemberServiceImpl upload() ie: " + ie);
+				log.info("#ÆÄÀÏ¾÷·Îµå while¹® Áß ¿¹¿Ü ¹ß»ı: MemberServiceImpl upload() ie: " + ie);
 			}
 		}
-		map.put("#1_íŒŒì¼upload_ofnames", ofnames);
-		map.put("#2_íŒŒì¼upload_savefnames", savefnames);
-		map.put("#3_íŒŒì¼upload_fsizes", fsizes);
-		log.info("#4_íŒŒì¼upload_map: " + map);
+		map.put("#1_ÆÄÀÏupload_ofnames", ofnames);
+		map.put("#2_ÆÄÀÏupload_savefnames", savefnames);
+		map.put("#3_ÆÄÀÏupload_fsizes", fsizes);
+		log.info("#4_ÆÄÀÏupload_map: " + map);
 	}
 }

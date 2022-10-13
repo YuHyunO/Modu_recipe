@@ -27,10 +27,10 @@
 			<div class="container">
 				<div class="row">
 					<div class="d-flex justify-content-center">
-						<div class="acc-box equal">
+						<div class="acc-box">
 							<div class="p-4 pt-0 p-title h3 mb-0 text-center">#회원가입</div>
 							<p class="mb-0 text-center acc-btn">
-								<em>Join in our 모두의식탁</em>
+								<em>Join in our </em><span class="main-color"><em>모두의식탁</em></span>
 							</p>
 							<p class="mt-3 acc-btn text-right">*표시는 필수입력 항목입니다.</p>
 
@@ -38,8 +38,8 @@
 								<div class="form-group">
 									<label for="id_email">이메일 *</label> <input name="email"
 										type="email" class="form-control" id="id_email"
-										placeholder="you@email.com" maxlength=40 required />
-									<span class="email_ajax_1">사용 가능한 이메일입니다.</span> <span
+										placeholder="you@email.com" maxlength=40 required /> <span
+										class="email_ajax_1">사용 가능한 이메일입니다.</span> <span
 										class="email_ajax_2">이미 사용 중인 이메일입니다.</span> <span
 										class="email_ajax_3">올바른 이메일을 입력해주세요.</span>
 								</div>
@@ -59,8 +59,8 @@
 								<div class="form-group">
 									<label for="id_nickname">닉네임 *</label><input name="nickname"
 										type="text" class="form-control" id="id_nickname"
-										placeholder="3자 이상 입력해주세요." maxlength=10 required />
-									<span class="nickname_ajax_1">사용 가능한 닉네임입니다.</span> <span
+										placeholder="3자 이상 입력해주세요." maxlength=10 required /> <span
+										class="nickname_ajax_1">사용 가능한 닉네임입니다.</span> <span
 										class="nickname_ajax_2">이미 사용 중인 닉네임입니다.</span> <span
 										class="nickname_ajax_3">닉네임은 3자 이상 입력해주세요.</span>
 								</div>
@@ -90,7 +90,7 @@
 									</div>
 									<div for="marketing">
 										<input type="checkbox" id="marketing" name="marketing"
-											value="2"> <span><strong>본 사이트에서 진행하는
+											value="1"> <span><strong>본 사이트에서 진행하는
 												<u>마케팅 및 이벤트 프로모션</u>을 위한 고객님의 회원정보 활용에 동의합니다.
 										</strong> (선택)</span>
 									</div>
@@ -105,7 +105,7 @@
 							<br />
 							<div class="text-center">
 								<a id="loginBtn" href="/member/login" class="alreadyregister">
-								이미 가입하셨나요?</a><br />
+									이미 가입하셨나요?</a><br />
 							</div>
 						</div>
 						<!-- end acc-box -->
@@ -218,8 +218,8 @@
        	  
               var apiUsingCheck = document.querySelector('input[name=apiUsing]').checked; //true, false 반환
         	  var marketingCheck = document.querySelector('input[name=marketing]').checked; //true, false 반환
-        	  console.log(apiUsingCheck); // 필수약관 true or false
-        	  console.log(marketingCheck); // 선택약관 true or false
+        	  //console.log(apiUsingCheck); // 필수약관 true or false
+        	  //console.log(marketingCheck); // 선택약관 true or false
         	  
         	//1. 이메일,닉네임 모두 사용가능일 시(중복 아닐 때)
         	  if (emailCheck === 'inline-block' && nickCheck === 'inline-block'){ 
@@ -236,38 +236,22 @@
                     } else if(apiUsingCheck==false){ //필수 약관 미체크일 때
                 	   alert("(필수약관 동의) 본 사이트의 이용약관 및 개인정보 처리방침에 대한 동의가 필요합니다.");
                    } else { //정상 조건일 때 submit
-                	  console.log('회원가입 조건 통과!')
+                	  console.log('회원가입 조건 통과!');
                 	  
-                	  if(marketingCheck==false){
-                          var data = {marketingCheckbox : marketingCheck} // '컨트롤에 넘길 데이터 이름' : '데이터(#id_email에 입력되는 값)', let marketingCheck
-                          $.ajax({
-                              type : "post",
-                              url : "/member/register",
-                              data : data,
-                              success : function(data){
-                                 console.log("마케팅 미동의에 체크 전달완료")
-                              } // success 종료
-                          }); // ajax 종료  	  
-	    	              $("#register_form").attr("action", "/member/register");
-	    	              $("#register_form").submit();
-	    	              alert("회원가입이 완료되었습니다. \n다음 화면에서 로그인 해주세요.");
-	                  } else {
-                          var data = {marketingCheckbox : marketingCheck} // '컨트롤에 넘길 데이터 이름' : '데이터(#id_email에 입력되는 값)', let marketingCheck
-                          $.ajax({
-                              type : "post",
-                              url : "/member/register2",
-                              data : data,
-                              success : function(data){
-                                 console.log("마케팅 동의에 체크 전달완료")
-                              } // success 종료
-                          }); // ajax 종료  	  
-	    	              $("#register_form").attr("action", "/member/register2");
-	    	              $("#register_form").submit();
-	    	              alert("회원가입 완료되었습니다. \n다음 화면에서 로그인 해주세요.");
-	                      }
-                	  }
-        		//2. 이메일 혹은 닉네임 하나 이상 중복일 때 가입불가(submit 막기 위해 아무동작 하지 않음)		
-        	  } else { 
+                	  let formData = $("#register_form").serializeArray();
+                	  console.log(formData);
+	        		  $.ajax({
+	                      type : "post",
+	                      url : "/member/register",
+	                      data : formData,
+	                      success : function(data){
+	    		              alert("회원가입이 완료되었습니다. \n다음 화면에서 로그인 해주세요.");
+	    		              location.href="/";
+	                      } // success 종료
+	                  }); // ajax 종료
+                   }
+        	  } else {
+        		//2. 이메일 혹은 닉네임 하나 이상 중복일 때 가입불가(submit 막기 위해 아무동작 하지 않음)
         		  console.log('가입불가-아무 동작 없음')
         	  }
           });

@@ -9,16 +9,15 @@ import com.modu.domain.member.Member;
 
 public interface MemberRegisterService {
 
-	public void registerMember(Member member); //íšŒì›ê°€ì…
-	public void registerMember2(Member member); //íšŒì›ê°€ì…
-	public int checkEmail(String email); //String checkEmail -> ë°”ê¾¸ê¸°
+	public void registerMember(Member member); //È¸¿ø°¡ÀÔ
+	public int checkEmail(String email); //String checkEmail -> ¹Ù²Ù±â
 	public int checkNickname(String nickname);
 	
-	public int checkLogin(String email, String pwd);//ë¡œê·¸ì¸ ìœ íš¨ì„± ê²€ì‚¬
-	public Member login(Member member); //ë¡œê·¸ì¸
-	public Member readMyInfo(String email); //ë‚´ì •ë³´ì¡°íšŒ
-	public Member modifyMyInfo(Member member);//ë‚´ì •ë³´ìˆ˜ì •
-	public void removeMyInfo(String email); //íšŒì›íƒˆí‡´
+	public int checkLogin(String email, String pwd);//·Î±×ÀÎ À¯È¿¼º °Ë»ç
+	public Member login(Member member); //·Î±×ÀÎ
+	public Member readMyInfo(String email); //³»Á¤º¸Á¶È¸
+	public Member modifyMyInfo(Member member);//³»Á¤º¸¼öÁ¤
+	public void removeMyInfo(String email); //È¸¿øÅ»Åğ
 	
 	Map<String, List<Object>> getUpdateFileName();
 	MultipartHttpServletRequest getMultipartRequest();

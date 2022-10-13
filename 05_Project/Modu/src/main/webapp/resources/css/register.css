@@ -2,6 +2,10 @@
 	background: #EEEEEE;
 }
 
+.main-color {
+	color: #937062;
+}
+
 .form-check-label {
 	font-size: 0.8rem;
 }
@@ -55,6 +59,9 @@
 	}
 	.acc-box {
 		padding: 30px;
+	}
+	.agreements {
+		font-size: 0.7rem !important;
 	}
 }
 

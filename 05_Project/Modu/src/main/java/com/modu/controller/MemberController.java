@@ -1,6 +1,7 @@
 package com.modu.controller;
 
 import java.util.Enumeration;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,6 +27,9 @@ public class MemberController {
 
 	@Autowired
 	private MemberRegisterService memberRegisterService;
+	
+	@Autowired
+	HashMap<String, String> map;
 	
 	//회원가입 페이지 이동
 	@GetMapping("/register")
@@ -80,20 +85,10 @@ public class MemberController {
 	
 	//회원가입 post - 마케팅 미동의시
 	@PostMapping("/register")
-	public String register(Member member, String marketingCheckbox){
-		  log.info("#1_ 회원가입1 insert 전: Member member= "+ member);
-		  memberRegisterService.registerMember(member); 
-		  log.info("#2_(회원가입1 성공) Member member= "+ member); //이메일. 닉네임 빼고 모두 비어있음..
-		  return "redirect:/";	
-	}
-
-	//회원가입 post2 - 마케팅 동의시
-	@PostMapping("/register2")
-	public String register2(Member member, String marketingCheckbox, HttpSession session){
-		log.info("#1_ 회원가입2 insert 전: Member member= "+ member);
-		memberRegisterService.registerMember2(member);
-		log.info("#2_(회원가입2 성공) Member member= "+ member); //이메일. 닉네임 빼고 모두 비어있음..
-		return "redirect:/";
+	public void register(Member member){
+	  log.info("#회원가입 insert 전: Member member= "+ member);
+	  memberRegisterService.registerMember(member); 
+	  log.info("#회원가입 성공) Member member= "+ member); //이메일. 닉네임 빼고 모두 비어있음..
 	}
 	
 	@GetMapping("/login")

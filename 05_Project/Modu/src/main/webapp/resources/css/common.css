@@ -8,7 +8,6 @@
 
 .logo {
 	height: 50px;
-	width: 200px;
 }
 
 .welcomelogin {
@@ -139,8 +138,6 @@
 /* mobile size */
 @media ( max-width :454px) {
 	.logo {
-		height: 50px;
-		width: 150px !important;
 		z-index: 100;
 	}
 }
