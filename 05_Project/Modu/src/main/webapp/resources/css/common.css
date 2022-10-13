@@ -139,6 +139,8 @@
 /* mobile size */
 @media ( max-width :454px) {
 	.logo {
+		height: 50px;
+		width: 150px !important;
 		z-index: 100;
 	}
 }
@@ -197,18 +199,25 @@
 	}
 }
 
-@media ( max-width :454px) {
-	.recipe-title {
-		font-size: 1rem !important;
-		height: 60px !important;
-		margin-bottom: 5px !important;
-	}
-	.profile {
-		margin-bottom: 5px !important;
-	}
-	.recipe-desc {
-		height: 165px;
-	}
+@media
+(
+max-width
+:454px)
+{
+.recipe-title {
+	font-size: 1rem !important;
+	height: 60px !important;
+	margin-bottom: 5px !important;
+}
+
+.profile {
+	margin-bottom: 5px !important;
+}
+
+.recipe-desc {
+	height: 165px;
+}
+
 }
 
 /* 페이지네이션 */
