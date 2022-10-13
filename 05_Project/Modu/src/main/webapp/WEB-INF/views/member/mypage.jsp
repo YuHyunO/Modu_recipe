@@ -9,6 +9,19 @@
 <link href="/css/mypage.css" rel="stylesheet">
 <script src="/js/mypage.js"></script>
 <title>모두의식탁 - 마이페이지</title>
+
+<style  type="text/css">
+/* .profile-details {
+    background-color: rgba(147, 112, 98, 0.2);
+    color: #666;
+       text-align:center;  
+       justify-content: center;
+       align-items: center;  
+    padding: 0px;
+    border-radius: 5rem!important;
+    width: 600px;
+} */
+</style>
 </head>
 <body>
 	<div id="page" class="hfeed site">
@@ -17,10 +30,8 @@
 		<div class="head-title py-4 m-0">
 			<div class="container">
 				<p class="page-title m-0 fs-2">mypage</p>
-			</div>
-			<!-- end container -->
-		</div>
-		<!-- end head-title -->
+			</div><!-- end container -->
+		</div><!-- end head-title -->
 
 		<div class="main d-flex justify-content-center">
 			<div
@@ -30,29 +41,34 @@
 					<div id="primary" class="content-area col-md-9">
 						<div id="content" class="site-content">
 							<!--프로필 영역 시작 -->
-							<div class="profile-details rounded-3">
+							<div class="profile-details rounded-3 text-center">
 								<figure class="profile-ava">
-									<img src="/imgs/mypage/basic-profile.png" alt="Author" />
+									<img src="/imgs/mypage/default_profile_img.png" alt="profileimg" />
 								</figure>
 
 								<div class="profile-context">
 									<div class="profile-name">
-										<h4>홍길동 님, 환영합니다!</h4>
-										<br />
+										<h6>${sessionScope.email}</h6>
+										<h4 class="archive-title text-center">
+										${sessionScope.nickname}님의 마이페이지
+										<%-- <h6 class="archive-title text-center">${sessionScope.email}</h6> --%>
+										</h4>
 									</div>
 									<div class="profile-content py-3">
-										마이페이지에서 추천 레시피를 소개받고, <br /> 나만의 레시피를 작성하여, 다양한 친구를 맺어보세요!
+										마이페이지에서 추천 레시피를 소개받고,<br/> 나만의 레시피를 작성해보거나,<br/>다양한 쉐프들과 친구를 맺어보세요!
 									</div>
 
 									<!-- 회원정보 수정 버튼-->
 									<div class="py-3">
 										<button
 											class="btn btn-outline-secondary btn-md me-3 member-btn"
-											type="button" onclick="location.href='/mypageupdate.do'">
-											내정보 수정</button>
+											type="button" onclick="location.href='/member/modifymyinfo'">
+                      						<i class="bi-person-fill me-1"></i>
+											내 정보 수정</button>
 										<!--로그인 버튼-->
 										<button class="btn btn-outline-secondary btn-md member-btn"
-											type="button" onclick="location.href='/point.do'">
+											type="button" onclick="location.href='/member/point'">
+											<i class="bi-key-fill me-1"></i>
 											포인트 조회</button>
 									</div>
 								</div>

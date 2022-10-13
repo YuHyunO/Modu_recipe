@@ -4,23 +4,8 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
    
 <mapper namespace="com.modu.mapper.MemberMapper">
-	<insert id="insertMember" parameterType="Member">
-		insert into MEMBER(EMAIL,
-						   PWD,
-						   NICKNAME,
-						   PROFILE_IMG,
-						   NAME,
-						   PHONE,
-						   MARKETING,
-						   API_USING) values(#{email},
-								  	  		 #{pwd},
-								      		 #{nickname},
-								  	  		 #{profileImg},
-								  	  		 #{name},
-								 	  		 #{phone},
-								 	  		 #{marketing},
-								 	  		 #{apiUsing})
-	</insert>
+ <!-- 기존 insertMember 메소드를 2가지 경우로 나눔/서인추가 10.11 -->
+ 
 	<insert id="insertFollow">
 		insert into FOLLOW values(FOLLOW_SEQ.nextval,
 								  #{email},
@@ -30,13 +15,13 @@
 	<update id="updateMember" parameterType="member">
 		update MEMBER set PWD=#{pwd},
 						  NICKNAME=#{nickname},
-						  PROFILE_IMG=#{profileImg},
-						  PHONE=#{phone},
+						  PROFILE_IMG=#{profileImg, jdbcType=VARCHAR},
+						  NAME = #{name, jdbcType=VARCHAR},
+						  PHONE= #{phone, jdbcType=VARCHAR},
 						  MARKETING=#{marketing},
-						  API_USING=#{apiUsing},
 						  UPDATE_DATE=SYSDATE 
 						  where EMAIL=#{email}						
-	</update>	
+	</update>		
 	<update id="updatePoint">
 		update MEMBER set POINT=POINT+#{point} where EMAIL=#{email}
 	</update>
@@ -46,10 +31,12 @@
 	<delete id="deleteFollow" parameterType="long">
 		delete from FOLLOW where ID=#{id}
 	</delete>
-		
+	<!-- 내정보수정 페이지 진입시 readmyinfo() -->
 	<select id="selectMember" parameterType="String" resultType="Member">
 		select * from MEMBER where EMAIL=#{email}
 	</select>
+	
+	
 	<select id="selectEmailCheck" parameterType="String" resultType="String">
 		select EMAIL from MEMBER where EMAIL=#{email}
 	</select>
@@ -94,5 +81,72 @@
                 		    where AUTHORITY=1 and NICKNAME NOT LIKE '%닉네임%'
                				order by DBMS_RANDOM.RANDOM) 
 	    where ROWNUM<#{bound}]]>
+	</select>
+	
+	<!-- 랭킹으로 회원 뽑기 -->
+	<select id="selectMemberRank" resultType="Member">
+		<![CDATA[select * from (select * from MEMBER order by POINT desc) where ROWNUM <= 6]]>
+	</select>
+	
+		<!--  22.10.11. 서인 추가  -->
+		<insert id="insertMember" parameterType="Member">
+		insert into MEMBER(EMAIL,
+						   PWD,
+						   NICKNAME,
+						   PROFILE_IMG,
+						   NAME,
+						   PHONE,
+						   MARKETING,
+						   API_USING,
+						   SIGNUP_DATE,
+						   UPDATE_DATE) values(#{email},
+								  	  		 #{pwd},
+								      		 #{nickname},
+								  	  		 'default_profile_img.png',
+								  	  		 #{name, jdbcType=VARCHAR},
+								  	  		 #{phone, jdbcType=VARCHAR},
+								 	  		 0,
+								 	  		 1,
+								 	  		 SYSDATE, 
+											 SYSDATE)
+	</insert>
+	<insert id="insertMember2" parameterType="Member">
+		insert into MEMBER(EMAIL,
+						   PWD,
+						   NICKNAME,
+						   PROFILE_IMG,
+						   NAME,
+						   PHONE,
+						   MARKETING,
+						   API_USING,
+						   SIGNUP_DATE,
+						   UPDATE_DATE) values(#{email},
+									  	  		 #{pwd},
+									      		 #{nickname},
+									  	  		 'default_profile_img.png',
+									  	  		 #{name, jdbcType=VARCHAR},
+									  	  		 #{phone, jdbcType=VARCHAR},
+									 	  		 1,
+									 	  		 1,	 
+												 SYSDATE,
+												 SYSDATE)
+	</insert>
+	
+		<!-- 회원가입시 이메일 중복검사 -->
+  	<select id="emailCheck" resultType="int">
+  		select count(*) from MEMBER where email = #{email}
+  	</select>
+  	<!-- 회원가입시 닉네임 중복검사 -->
+  	<select id="nicknameCheck" resultType="int">
+  		select count(*) from MEMBER where nickname = #{nickname}
+  	</select>
+  	
+  	<!-- 로그인 유효성 검사 / ajax 사용시 필요하나, 아직 사용 못하는 중-->
+<!--   	<select id="loginCheck"  resultType="int">
+    	select count(*) from MEMBER where EMAIL=#{email} and PWD=#{pwd}
+	</select> -->
+	<!-- 로그인 post -->
+  	<select id="login"  resultType="Member">
+    	select EMAIL, NICKNAME from MEMBER where EMAIL=#{email} and pwd=#{pwd}
 	</select>
 </mapper>
