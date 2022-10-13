@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +14,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import com.modu.domain.recipe.Direction;
+import com.modu.domain.recipe.Ingredient;
+import com.modu.domain.recipe.Recipe;
+import com.modu.domain.recipe.RecipeTag;
 import org.springframework.web.servlet.ModelAndView;
-
 import com.modu.domain.recipe.RecipeDetail;
 import com.modu.domain.recipe.RecipeNestedReply;
 import com.modu.domain.recipe.RecipeReply;
 import com.modu.domain.recipe.RecipeReplyList;
 import com.modu.service.RecipeFindingService;
 import com.modu.service.RecipeRegisterService;
-
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -44,6 +47,14 @@ public class RecipeController {
 	public String recipeWrite() {
 		return "recipe/write";
 	}
+
+	@ResponseBody
+	@PostMapping("/write")
+	public String submit(HttpServletRequest request, HttpSession session) {
+		recipeRegisterService.registerRecipe(request, session);		
+		return "redirect:/";
+	}
+
 
 	@GetMapping("/detail")
 	public ModelAndView recipeDetail() {
@@ -86,5 +97,4 @@ public class RecipeController {
 	 * recipeRegisterService.registerNestedReply(recipeNestedReply);
 	 * log.info("#recipeNestedReply" +recipeNestedReply); return result; }
 	 */
-
 }

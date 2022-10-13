@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -29,9 +30,12 @@ import lombok.extern.log4j.Log4j;
 @Service
 public class MemberRegisterServiceImpl implements MemberRegisterService {
 	
-	@Inject
+	@Autowired
 	private MemberMapper memberMapper;
+
+	@Autowired
 	private MultipartHttpServletRequest multipartRequest;
+
 	private Map<String, List<Object>> map;
 	
 	@Override
@@ -43,6 +47,7 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 	public int checkEmail(String email) {
 		return memberMapper.emailCheck(email);
 	}
+	
 	@Override
 	public int checkNickname(String nickname) {
 		return memberMapper.nicknameCheck(nickname);
@@ -91,7 +96,6 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 	public void setMultipartRequest(MultipartHttpServletRequest multipartRequest) {
 		this.multipartRequest = multipartRequest;
 	}
-
 
 	private void upload() {
 		map = new Hashtable<String, List<Object>>(); // (key,value)

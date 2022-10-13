@@ -2,8 +2,8 @@ $(function(){
     let tag = $('#tag');
     $('#tag').keyup(function(e){
         if (e.keyCode == '13' || e.keyCode == '188') {//엔터 또는 쉼표 입력시
-            console.log('enter');
-            console.log(tag.val());
+            //console.log('enter');
+            //console.log(tag.val());
             let colors = ['#3c1cbf', '#208b3c', '#0d6efd', '#212529', '#5bc0de', '#d65bde']
             let randint = Math.floor(Math.random() * colors.length);
             let newNum = $('.tag-ul').children('li').length + 1;
@@ -221,3 +221,96 @@ function stepDelete(e){
         targetChildren.eq(i).attr('id', 'step-' + i);
     }
 }
+
+function doSubmit(e){
+	var food = $("input[name=food]").val()
+	//console.log(food.val());
+	var title = $("input[name=title").val()
+	//console.log(title.val());
+	var info = $("textarea[name=info]").val()
+	//console.log(info.val());
+	var sort = $("#sort").val()
+	//console.log(sort.val());
+	var ingredientInfo = $("#ingredient").val()
+	//console.log(ingr.val());
+	var serving = $("#serving").val()
+	//console.log(serving.val());
+	var cooktime = $("#cooktime").val()
+	//console.log(cooktime.val());
+	var difficultyLevel = $("#difficultyLevel").val()
+	//console.log(difficultyLevel.val());
+	// ingredientType을 조건문으로 지정해서 for문을 돌려서 반복문을 작성하면 될것 같다.
+	let ingredientTypeSub;
+	let ingredientTypeMain;
+	let mingredient = $('.main-items').find('.ingredient-1').val();
+	let mquantity = $('.main-items').find('.quantity-1').val();
+	
+	if(mingredient!=null&&mquantity!=null){
+		ingredientTypeMain = 0;
+	}
+	
+	let singredient = $('.sub-items').find('.ingredient-1').val();
+	let squantity =  $('.sub-items').find('.quantity-1').val();
+	
+	if(singredient != null && squantity != null){
+		ingredientTypeSub = 1;
+	}
+//	console.log("재료타입"+ingredientTypeS+ingredientTypeM);
+//	console.log("메인재료1: " + mingredient);
+//	console.log("메인양념1: " + mquantity);
+//	console.log("양념재료1: " + singredient);
+//	console.log("서브양념1: " + squantity);
+	
+	var direction = $("textarea[name=direction").val();
+	//console.log(direction.val());
+	var tags = $("#tag-1").val();
+	//console.log(tags.val());
+	// 하나씩 찍어 봣으니 ajax를 통해 넘겨야된다. ajax 공부해야댐.
+	var secret = $(".accessibility").find(".secret-save").val();
+	console.log($(e).attr(secret));
+	var open = $(".accessibility").find(".open-save").val();
+	//console.log(open.val());
+	var temp = $(".accessibility").find(".temp-save").val();
+	//console.log(temp.val());
+	
+	let accessibilitySecret; // 비공개 저장 버튼 accessibility type
+	let accessibilityOpen; 
+	let accessibilityTemp;
+	
+	if(secret != null){
+		accessibilitySecret = 0;
+	};
+	
+	if(open != null){
+		accessibilityOpen = 1;
+	};
+	
+	if(temp != null){
+		accessibilityTemp = 2;
+	};
+	
+	$.ajax({
+		url:"../recipe/write.do",
+		type:"POST",
+		data:{"food":food,"title":title,"info":info,"sort":sort,"ingredientInfo":ingredientInfo,"serving":serving,
+			"cookTime":cooktime,"difficultyLevel":difficultyLevel,"ingredientM":mingredient,"quantityM":mquantity,
+			"ingredientS":singredient,"quantityS":squantity,"direction":direction,"tag":tags,"secret":secret, 
+			"ingredientTypeSub":ingredientTypeSub, "ingredientTypeMain":ingredientTypeMain,"open":open,"temp":temp,
+			"accessibilitySecret":accessibilitySecret,"accessibilityOpen":accessibilityOpen,"accessibilityTemp":accessibilityTemp},
+		dataType:"json",
+		success:function(data){
+			if(!data){
+				alert("존재하지 않는 data");
+				return false;
+			}
+		},
+		error:function(error){
+			alert("err"+error);
+			}
+		})
+}
+
+
+
+
+
