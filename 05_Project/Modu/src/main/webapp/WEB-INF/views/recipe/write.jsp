@@ -40,7 +40,7 @@
 							<div type="button" class="main-photo col-4">
 								<input type="file" name="food_photo" id="food_photo"/>
 								<div class="text-center" onclick="fileUpload()">
-									<img class="w-100 rounded-3" src="/imgs/no-image.jpg" >
+									<img class="w-100 rounded-3 food_photo" src="/recipe/imgs/next_1665712640686.png" >
 								</div>
 							</div>
 							<div class="main-intro col-8">

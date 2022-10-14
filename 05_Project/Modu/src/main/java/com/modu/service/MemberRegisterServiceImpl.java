@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.modu.domain.member.Member;
-import com.modu.fileset.Path;
+import com.modu.fileset.RecipePath;
 import com.modu.mapper.MemberMapper;
 
 import lombok.AllArgsConstructor;
@@ -116,7 +116,7 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 			sb.append(ofheader).append(ctm).append(ofname.substring(ofname.lastIndexOf("."))); 
 			String savefname = sb.toString();
 			long fsize = mpf.getSize();
-			String fileFullPath = Path.FILE_STORE + savefname;
+			String fileFullPath = RecipePath.FILE_STORE + savefname;
 
 			try {
 				mpf.transferTo(new File(fileFullPath)); 

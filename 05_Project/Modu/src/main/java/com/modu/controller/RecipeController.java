@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.modu.domain.recipe.Direction;
 import com.modu.domain.recipe.Ingredient;
 import com.modu.domain.recipe.Recipe;
@@ -24,6 +27,7 @@ import com.modu.domain.recipe.RecipeDetail;
 import com.modu.domain.recipe.RecipeNestedReply;
 import com.modu.domain.recipe.RecipeReply;
 import com.modu.domain.recipe.RecipeReplyList;
+import com.modu.service.FileUploadService;
 import com.modu.service.RecipeFindingService;
 import com.modu.service.RecipeRegisterService;
 import lombok.extern.log4j.Log4j;
@@ -38,6 +42,9 @@ public class RecipeController {
 
 	@Autowired
 	private RecipeRegisterService recipeRegisterService;
+	
+	@Autowired
+	private FileUploadService fileUploadService;
 
 	@GetMapping("/list")
 	public String recipeList() {
@@ -55,7 +62,19 @@ public class RecipeController {
 		recipeRegisterService.registerRecipe(request, session);		
 		return "redirect:/";
 	}
-
+	
+	@PostMapping("/upload")
+	public String upload(@RequestParam (value="file") MultipartFile file) {
+		log.info("#RecipeController upload");
+		log.info("#RecipeController upload file: " + file);
+		String ofname = file.getOriginalFilename();
+		if (ofname != null) ofname = ofname.trim();
+		if (ofname.length() != 0) {
+			String url = fileUploadService.saveStore(file);
+			log.info("#url: " + url);
+		}
+		return "redirect:write";
+	}
 	
 	@GetMapping("/detail")
 	public ModelAndView recipeDetail() {

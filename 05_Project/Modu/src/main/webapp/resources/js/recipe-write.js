@@ -1,6 +1,7 @@
 $(function() {
 	let tag = $('#tag');
-	$('#tag').keyup(
+	$('#tag')
+			.keyup(
 					function(e) {
 						if (e.keyCode == '13' || e.keyCode == '188') {// 엔터 또는
 							// 쉼표
@@ -376,13 +377,27 @@ function doSubmit(e) {
 	}
 
 	console.log("공개범위: " + accessibility);
-	
-	let data = {"food":food,"title":title,"info":info,"sort":sort,"ingredientInfo":ingredientInfo,"serving":serving,
-			  "cookTime":cooktime,"difficultyLevel":difficultyLevel,"ingredientM":mingredient,"quantityM":mquantity,
-			  "ingredientS":singredient,"quantityS":squantity,"direction":direction,"tag":tags,
-			  "ingredientTypeSub":ingredientTypeSub,
-			  "ingredientTypeMain":ingredientTypeMain, "accessibility":accessibility};
-	 
+
+	let data = {
+		"food" : food,
+		"title" : title,
+		"info" : info,
+		"sort" : sort,
+		"ingredientInfo" : ingredientInfo,
+		"serving" : serving,
+		"cookTime" : cooktime,
+		"difficultyLevel" : difficultyLevel,
+		"ingredientM" : mingredient,
+		"quantityM" : mquantity,
+		"ingredientS" : singredient,
+		"quantityS" : squantity,
+		"direction" : direction,
+		"tag" : tags,
+		"ingredientTypeSub" : ingredientTypeSub,
+		"ingredientTypeMain" : ingredientTypeMain,
+		"accessibility" : accessibility
+	};
+
 	$.ajax({
 		url : "../recipe/write.do",
 		type : "POST",
@@ -400,23 +415,47 @@ function doSubmit(e) {
 	})
 }
 
-$(function(){
-	$("#food_photo").on("change", function(){
+$(function() {
+	$("#food_photo").on("change", function() {
 		let files = $('#food_photo')[0].files;
-		console.log(files);
-		let formData = new FormData();
-		formData.append("image", files[0]);
-		for (var key of formData.keys()) {
-			console.log(key);
-		}
-		for (var value of formData.values()) {
-		    console.log(value);
-		}
+		let filesArr = Array.prototype.slice.call(files);
+		let regex = /(.*?)\/(jpg|jpeg|png|gif)$/;
+
+		filesArr.forEach(function(f) {
+			if (!f.type.match(regex)) {
+				alert("이미지 파일만 선택 가능합니다.");
+				return;
+			}
+
+			sel_file = f;
+
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$(".food_photo").attr("src", e.target.result);
+			}
+			reader.readAsDataURL(f);
+		});
 	});
 });
 
-function fileUpload(){
-	console.log($('#food_photo').length);
-	console.log($('#food_photo').attr('name'));
+function fileUpload() {
 	$('#food_photo').click();
+	let files = $('#food_photo')[0].files;
+	let formData = new FormData();
+	formData.append("file", files[0]);
+
+	$.ajax({
+		url : "/recipe/upload",
+		type : "POST",
+		processData : false,
+		contentType : false,
+		data : formData,
+		success : function(response) {
+			console.log("성공하였습니다.");
+			console.log(response);
+		},
+		error : function(response) {
+			//console.log(response.responseText);
+		}
+	});
 }
