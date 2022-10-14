@@ -15,14 +15,14 @@
 		display: none;
 		font-size:12px; 
 		color: rgb(147, 112, 98);
-		text-align: right;
+		text-align: center;
 	}
 	
 	.email_ajax_2, .email_ajax_3 {
 		display: none;
 		font-size:12px;
 		color: green;
-		text-align: right;
+		text-align: center;
 	}
 	
 	/*회원가입 닉네임 유효성 검사(중복체크) ajax 문구*/
@@ -30,14 +30,14 @@
 		display: none;
 		font-size:12px; 
 		color: rgb(147, 112, 98);
-		text-align: right;
+		text-align: center;
 	}
 	
 	.nickname_ajax_2, .nickname_ajax_3 {
 		display: none;
 		font-size:12px;
 		color: green;
-		text-align: right;
+		text-align: center;
 	}
 	
 	/* 약관 사이즈 */
@@ -57,11 +57,13 @@
         cursor: pointer;
         border: 0;
         outline: 0;
+        width: 70%;
+      }
+      
 /*      padding: 5px 5px;  
         width: 150px;
         text-align:center; */
-      }
-      
+        
       /* 이미 회원이신가요? */
       .alreadyregister{
    		font-size:14px;
@@ -285,21 +287,21 @@
 	    
 	     			//회원가입 약관동의 팝업창 1,2 function 
 	      function agreement1(){
-		       var popupX = (document.body.offsetWidth / 2) - (600 / 2);
+		       var popupX = (document.body.offsetWidth / 2) - 200;
 			    // 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
-			    var popupY= (window.screen.height / 2) - (300 / 2);
+			    var popupY= (window.screen.height / 2) - 300;
 			    // 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
 
-		    	window.open('<%=request.getContextPath() %>/member/agreement1', '개인정보 처리방침', 'status=no, height=300, width=600, left='+ popupX + ', top='+ popupY);
+		    	window.open('<%=request.getContextPath() %>/member/agreement1', '개인정보 처리방침', 'status=no, height=500, width=800, left='+ popupX + ', top='+ popupY);
 	     	}
 	     	
 	      function agreement2(){
-	    	  var popupX = (document.body.offsetWidth / 2) - (600 / 2);
-	    	// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
-	    	var popupY= (window.screen.height / 2) - (300 / 2);
+		       var popupX = (document.body.offsetWidth / 2) - 200;
+			    // 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+			    var popupY= (window.screen.height / 2) - 300;
 	    	// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
 
-		    window.open('<%=request.getContextPath() %>/member/agreement2', '개인정보 처리방침', 'status=no, height=300, width=600, left='+ popupX + ', top='+ popupY);
+		    window.open('<%=request.getContextPath() %>/member/agreement2', '개인정보 처리방침', 'status=no, height=500, width=800, left='+ popupX + ', top='+ popupY);
 	      }
 
 	      

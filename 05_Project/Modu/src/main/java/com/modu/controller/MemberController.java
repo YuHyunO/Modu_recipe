@@ -1,5 +1,7 @@
 package com.modu.controller;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,9 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.modu.domain.member.Member;
+import com.modu.service.FileUploadService;
 import com.modu.service.MemberRegisterService;
 
 import lombok.extern.log4j.Log4j;
@@ -23,11 +27,16 @@ public class MemberController {
 	
 	@Autowired
 	private MemberRegisterService memberRegisterService;
+	@Autowired
+	private FileUploadService filuploadservice; //by @AllArgsConstructor
+	
+	//@Autowired
+	//private FileUtil fileUtil;
 	
 	//회원가입 페이지 이동
 	@GetMapping("/register")
 	public String goRegister() {
-		return "member/register"; //view 폴더>member 폴더> register.jsp 를 리턴하기
+		return "member/register"; //view의 member 폴더속 register.jsp
 	}
 
 	//회원가입시 이메일 중복검사 ajax 문구 띄움
@@ -124,25 +133,24 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	
+	//마이페이지 페이지 이동
 	@GetMapping("mypage")
 	public String myPage() {
 		return "member/mypage";
 	}
 	
-	//내정보 수정 이동
+	//내정보수정 페이지 이동
 	@GetMapping("/modifymyinfo")
 	public ModelAndView goModify(HttpSession session) { 
 		
 		String email = (String)session.getAttribute("email");
 		String nickname = (String)session.getAttribute("nickname");
-		Member member = memberRegisterService.readMyInfo(email); 
-		ModelAndView mv = new ModelAndView("member/modifymyinfo", "member", member); 
+		Member member1 = memberRegisterService.readMyInfo(email); 
+		ModelAndView mv = new ModelAndView("member/modifymyinfo", "member", member1); 
 		log.info("######내정보수정 이동get email: "+email);
 		log.info("######내정보수정 이동get nickname: "+nickname);
-		log.info("######내정보수정 이동get member: "+member);
+		log.info("######내정보수정 이동get member1: "+member1);
 		log.info("######내정보수정 이동get mv: "+mv);
-		
 		return mv;
 	}
 	
@@ -167,31 +175,90 @@ public class MemberController {
 			return "fail";
 		}
 	}
-		
+
 	//내정보 수정 post
 	@PostMapping("/modifymyinfo")
-	public String modify(Member member, HttpSession session) { //HttpServletRequest req 안써도 됨
-		//session.removeAttribute("pw");
-		//session.removeAttribute("nickname");
-		log.info("#1_내정보 수정 진입성공 입력정보 member: "+ member);
-		log.info("#1_내정보 수정시 입력 정보 member: "+ member);
-		//log.info("#2_내정보 수정전 세션 정보 session: "+ session);
-		log.info("#2_현재 세션에 저장된 (수정전) 닉네임 가져오기 session.getAttribute(\"nickname\"); "+session.getAttribute("nickname")); //스크루바
-		log.info("#2_현재 세션에 저장된 (수정전) 마케팅여부 가져오기 session.getAttribute(\"marketing\"); "+session.getAttribute("marketing")); //0 = 미동의
-	
-		Member memberInfo = memberRegisterService.modifyMyInfo(member); 
-		session.setAttribute("nickname", memberInfo.getNickname());
-		session.setAttribute("marketing", memberInfo.getMarketing());
-		//session.setAttribute("updateDate", memberInfo.getUpdateDate());
-		session.setAttribute("member", memberInfo);
-		log.info("#3_내정보 수정 성공!후 내정보 memberInfo= "+ memberInfo);
-		log.info("#5_현재 세션에 저장된 (수정후) 닉네임 가져오기 session.getAttribute(\"nickname\"); "+session.getAttribute("nickname")); //스크루바
-		log.info("#5_현재 세션에 저장된 (수정후) 마케팅여부 가져오기 session.getAttribute(\"marketing\"); "+session.getAttribute("marketing")); //0 = 미동의
-		log.info("#5_현재 세션에 저장된 (수정후) member 가져오기 session.getAttribute(\"member\"); "+session.getAttribute("member"));
-		//Member(email=111@naver.com, pwd=1111, nickname=zeze, profileImg=, name=한서인, phone=01055554, marketing=0, apiUsing=0, signupDate=null, updateDate=null, authority=0, point=0)
+	public String modifymyinfo(Member member, MultipartFile file, HttpSession session) { //HttpServletRequest req 안써도 됨
+		
+		log.info("#1_내정보수정 진입  member: "+ member);
+		log.info("#1_내정보수정시 입력 정보 member: "+ member);
+		log.info("#1_현재 세션에 저장된 (수정전) 닉네임 get "+session.getAttribute("nickname")); //스크루바
+		log.info("#1_현재 세션에 저장된 (수정전) 마케팅여부 get "+session.getAttribute("marketing")); //0 = 미동의
+		
+		String ofname = file.getOriginalFilename();
+		log.info("#2_내정보수정 newfile: "+ofname);
+		
+		if(ofname != null)  ofname = ofname.trim();
+		if(ofname.length() == 0) { //파일이 존재하지 않을 때 파일없이 update
+			//memberRegisterService.modifyMyInfo(member);
+			Member memberInfo = memberRegisterService.modifyMyInfo(member);
+			log.info("#3_내정보수정 성공후 내정보 memberInfo= "+ memberInfo);
+			session.setAttribute("nickname", memberInfo.getNickname());
+			session.setAttribute("marketing", memberInfo.getMarketing());
+			session.setAttribute("profileImg", memberInfo.getProfileImg());
+			session.setAttribute("member", memberInfo);
+			log.info("#4_현재 세션에 저장된 (수정후) 닉네임 get "+session.getAttribute("nickname")); //스크루바
+			log.info("#4_현재 세션에 저장된 (수정후) 마케팅여부 get "+session.getAttribute("marketing")); //0 = 미동의
+			log.info("#4_현재 세션에 저장된 (수정후) 프로필사진 get "+session.getAttribute("profileImg"));
+			log.info("#4_현재 세션에 저장된 (수정후) member get "+session.getAttribute("member"));
+			//Member(email=111@naver.com, pwd=1111, nickname=zeze, profileImg=, name=한서인, phone=01055554, marketing=0, apiUsing=0, signupDate=null, updateDate=null, authority=0, point=0)
+			return "redirect:/member/modifymyinfo";
+			
+		} else {
+			int idx = ofname.lastIndexOf(".");
+			String ofheader = ofname.substring(0,idx); //파일 제목만 뽑기
+			String ext = ofname.substring(idx); //확장자만 뽑기
+			long ms = System.currentTimeMillis();
+			
+			StringBuilder sb = new StringBuilder();
+			sb.append(ofheader); //파일제목 추가 
+			sb.append("_");
+			sb.append(ms);
+			sb.append(ext);
+			String saveFileName = sb.toString();
+			int fsize = (int) file.getSize();	
+			log.info("파일 위");
+			
+			member.setProfileImgOrg(ofname);
+			member.setProfileImg(saveFileName);
+			member.setProfileImgSize(fsize);
+			log.info("파일업로드 위 member:"+ member);
+			filuploadservice.saveProfileimg(file); //파일업로드서비스단에서 실제 로컬에 물리적 파일 생성
+			
+			//memberRegisterService.modifyMyInfo2(member);
+			log.info("멤버인포 위");
+			Member memberInfo = memberRegisterService.modifyMyInfo2(member);
+			log.info("#5_내정보수정 성공후 내정보 memberInfo= "+ memberInfo);
+			session.setAttribute("nickname", memberInfo.getNickname());
+			session.setAttribute("marketing", memberInfo.getMarketing());
+			session.setAttribute("profileImg", memberInfo.getProfileImg());
+			session.setAttribute("member", memberInfo);
+			log.info("#6_현재 세션에 저장된 (수정후) 닉네임 get "+session.getAttribute("nickname")); //스크루바
+			log.info("#6_현재 세션에 저장된 (수정후) 마케팅여부 get "+session.getAttribute("marketing")); //0 = 미동의
+			log.info("#6_현재 세션에 저장된 (수정후) 프로필사진 get "+session.getAttribute("profileImg"));
+			log.info("#6_현재 세션에 저장된 (수정후) member get "+session.getAttribute("member"));
+			//Member(email=111@naver.com, pwd=1111, nickname=zeze, profileImg=, name=한서인, phone=01055554, marketing=0, apiUsing=0, signupDate=null, updateDate=null, authority=0, point=0)
+			return "redirect:/member/modifymyinfo";
+		}
+		
+	}  
+		
+	//내정보수정 - 프로필사진 post
+	/*
+	@PostMapping("/modifymyinfo/img")
+	public String updateImg(String email, MultipartHttpServletRequest mpRequest, 
+			HttpSession session) throws Exception  { //HttpServletRequest req 안써도 됨
+		
+		String myImg = fileUtil.updateImg(mpRequest); 
+		Member member1 = (Member) session.getAttribute("login");
+		memberRegisterService.modifyProfileImg(email, myImg);
+		member1.setProfileImg(myImg);
+		session.setAttribute("login", member1);
+				
 		return "redirect:/member/mypage";
+				
 	}                 
-	
+*/
 	//회원 탈퇴         
 	@GetMapping("/remove-myinfo")
 	public String remove(String email, HttpSession session, HttpServletRequest req) { //req 필요

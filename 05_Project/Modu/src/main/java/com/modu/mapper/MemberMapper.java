@@ -9,17 +9,16 @@ import com.modu.domain.member.Member;
 
 public interface MemberMapper {
 
-	//void insertMember(Member member);
-	void insertFollow(@Param("email")String email, @Param("followee")String followee);
+	//void insertMember(Member member);	
+	Member selectMember(String email); //�궡�젙蹂댁닔�젙 議고쉶
 	
-	Member selectMember(String email); //내정보수정 조회
-	void updateMember(Member member); //내정보수정 post
 	void updatePoint(@Param("email") String email, @Param("point") int point);
-
 	void deleteMember(String email);
+	
+	void insertFollow(@Param("email")String email, @Param("followee")String followee);
 	void deleteFollow(long id);
 	
-	//아직 미사용
+	//�븘吏� 誘몄궗�슜
 	String selectEmailCheck(String email);
 	String selectNicknameCheck(String nickname);
 	/*     ***     */
@@ -29,18 +28,22 @@ public interface MemberMapper {
 	List<FollowList> selectFollowee(@Param("email") String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
 	List<FollowList> selectFollower(@Param("email") String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
 	
-	//�׽�Ʈ��
+	//占쌓쏙옙트占쏙옙
 	List<String> selectEmails(int bound);
 	
-	// ��ŷ���� ȸ�� �̱�
+	// 占쏙옙킹占쏙옙占쏙옙 회占쏙옙 占싱깍옙
 	List<Member> selectMemberRank();
 	
-	//서인추가 메소드 10.11
-	void insertMember(Member member); //회원가입 (마케팅 미동의)
-	void insertMember2(Member member); //회원가입 (마케팅 동의)
+	//�꽌�씤異붽� 硫붿냼�뱶 10.11
+	void insertMember(Member member); //
+	void insertMember2(Member member); //
 	
-	public int emailCheck(String email); //회원가입 - 이메일 중복검사 ajax
-	public int nicknameCheck(String email); //회원가입 - 닉네임 중복검사 ajax
-	public int loginCheck(String email, String pwd); //로그인 유효성 검사
+	public int emailCheck(String email); //회원가입 이메일 중복검사 ajax
+	public int nicknameCheck(String email); //회원가입 닉네임 중복검사 ajax
+	public int loginCheck(String email, String pwd); //아직 미사용 
 	public Member login(Member member); //로그인 post
+
+	void updateMember(Member member); //내정보수정 post(프로필사진 없음)
+	void updateMember2(Member member); //프로필사진 포함 내정보수정
+	void updateImg(String email, String profileImg); //프로필사진만 변경(아직 미사용)
 }

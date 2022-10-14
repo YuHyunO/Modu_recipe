@@ -55,7 +55,9 @@
 										</h4>
 									</div>
 									<div class="profile-content py-3">
-										마이페이지에서 추천 레시피를 소개받고,<br/> 나만의 레시피를 작성해보거나,<br/>다양한 쉐프들과 친구를 맺어보세요!
+										마이페이지에서 추천 레시피를 소개받고,<br/>
+										나만의 레시피를 작성해보거나,<br/>
+										다양한 쉐프들과 친구를 맺어보세요!
 									</div>
 
 									<!-- 회원정보 수정 버튼-->
@@ -70,7 +72,7 @@
 											type="button" onclick="location.href='/member/point'">
 											<i class="bi-key-fill me-1"></i>
 											포인트 조회</button>
-									</div>
+							 		</div>
 								</div>
 								<!-- end profile-context -->
 							</div>

@@ -19,9 +19,9 @@
 	<script src="/js/common.js"></script>
 	<!-- 공통 부분 END -->
 	
-	<!-- 서인추가 -->	
-
-    
+	<!-- 서인추가 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+	
       <style type="text/css">
       .logo {
         height: 50px;

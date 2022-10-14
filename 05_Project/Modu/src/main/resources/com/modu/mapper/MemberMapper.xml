@@ -12,16 +12,7 @@
 								  #{followee},
 								  SYSDATE)
 	</insert>
-	<update id="updateMember" parameterType="member">
-		update MEMBER set PWD=#{pwd},
-						  NICKNAME=#{nickname},
-						  PROFILE_IMG=#{profileImg, jdbcType=VARCHAR},
-						  NAME = #{name, jdbcType=VARCHAR},
-						  PHONE= #{phone, jdbcType=VARCHAR},
-						  MARKETING=#{marketing},
-						  UPDATE_DATE=SYSDATE 
-						  where EMAIL=#{email}						
-	</update>		
+	
 	<update id="updatePoint">
 		update MEMBER set POINT=POINT+#{point} where EMAIL=#{email}
 	</update>
@@ -145,8 +136,38 @@
 <!--   	<select id="loginCheck"  resultType="int">
     	select count(*) from MEMBER where EMAIL=#{email} and PWD=#{pwd}
 	</select> -->
+	
 	<!-- 로그인 post -->
   	<select id="login"  resultType="Member">
     	select EMAIL, NICKNAME from MEMBER where EMAIL=#{email} and pwd=#{pwd}
 	</select>
+	
+	<update id="updateMember" parameterType="member">
+		update MEMBER set PWD = #{pwd},
+						  NICKNAME = #{nickname},
+						  NAME = #{name, jdbcType=VARCHAR},
+						  PHONE = #{phone, jdbcType=VARCHAR},
+						  MARKETING = #{marketing},
+						  UPDATE_DATE = SYSDATE 
+						  where EMAIL = #{email}						
+	</update>
+	<!-- 프로필사진까지 수정 -->
+	<update id="updateMember2" parameterType="member">
+		update MEMBER set PWD=#{pwd},
+						  NICKNAME=#{nickname},
+						  NAME = #{name, jdbcType=VARCHAR},
+						  PHONE= #{phone, jdbcType=VARCHAR},
+						  PROFILE_IMG = #{profileImg},
+						  PROFILE_IMG_ORG = #{profileImgOrg},
+						  PROFILE_IMG_SIZE = #{profileImgSize},
+						  MARKETING = #{marketing},
+						  UPDATE_DATE = SYSDATE 
+						  where EMAIL = #{email}						
+	</update>	
+ 
+	<!-- 내정보수정 프로필 사진만 수정 -->
+	<update id="updateImg">
+		update MEMBER set PROFILE_IMG = #{profileImg} where EMAIL = #{email}
+	</update>
+	
 </mapper>
