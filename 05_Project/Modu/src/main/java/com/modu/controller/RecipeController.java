@@ -74,7 +74,7 @@ public class RecipeController {
 		String ofname = file.getOriginalFilename();
 		if (ofname != null) ofname = ofname.trim();
 		if (ofname.length() != 0) {
-			String url = fileUploadService.saveImgFile(file, Path.RECIPE_PATH);
+			String url = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\temp\\");
 			log.info("#url: " + url);
 		}
 		return "redirect:write";

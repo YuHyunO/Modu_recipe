@@ -224,6 +224,6 @@ ul {
     }
 }
 
-#food_photo {
+.hidden-input {
 	display: none;
 }

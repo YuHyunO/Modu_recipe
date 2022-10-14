@@ -157,11 +157,14 @@ function addStep(e) {
 				+ items[newNum - 1]
 				+ '" rows="5"></textarea>\
                     </div>\
+				<div class="step-photo-cover">\
+				<input type="file" class="hidden-input" onchange="imgUpload(this)"/>\
                     <div id="step-'
 				+ newNum
-				+ '-photo col-3">\
+				+ '-photo" onclick="fileUpButton(this)">\
                         <img class="border step-photo" src="/imgs/pic_none.gif">\
                     </div>\
+				</div>\
                     <div class="d-flex flex-column border justify-content-between addon ms-2">\
                         <div>\
                             <button class="step-'
@@ -415,32 +418,36 @@ function doSubmit(e) {
 	})
 }
 
-$(function() {
-	$("#food_photo").on("change", function() {
-		let files = $('#food_photo')[0].files;
-		let filesArr = Array.prototype.slice.call(files);
-		let regex = /(.*?)\/(jpg|jpeg|png|gif)$/;
+function fileUpButton(e) {
+	let hiddenInput = $(e).parent().find('input');
+	console.log("hiddenInput: ", hiddenInput);
+	hiddenInput.click();
+	let files = $(hiddenInput)[0].files;
+	console.log("files: ", files);
+	
+};
 
-		filesArr.forEach(function(f) {
-			if (!f.type.match(regex)) {
-				alert("이미지 파일만 선택 가능합니다.");
-				return;
-			}
+function imgUpload(e) {
+	let files = $(e)[0].files;
+	let filesArr = Array.prototype.slice.call(files);
+	let regex = /(.*?)\/(jpg|jpeg|png|gif)$/;
 
-			sel_file = f;
+	filesArr.forEach(function(f) {
+		if (!f.type.match(regex)) {
+			alert("이미지 파일만 선택 가능합니다.");
+			return;
+		}
 
-			var reader = new FileReader();
-			reader.onload = function(e) {
-				$(".food_photo").attr("src", e.target.result);
-			}
-			reader.readAsDataURL(f);
-		});
+		sel_file = f;
+
+		var reader = new FileReader();
+		reader.onload = function(k) {
+			console.log("e.find img class: ", $(e).parent().find('img').attr("class"));
+			$(e).parent().find('img').attr("src", k.target.result);
+		}
+		reader.readAsDataURL(f);
 	});
-});
-
-function fileUpload() {
-	$('#food_photo').click();
-	let files = $('#food_photo')[0].files;
+	
 	let formData = new FormData();
 	formData.append("file", files[0]);
 
@@ -452,10 +459,13 @@ function fileUpload() {
 		data : formData,
 		success : function(response) {
 			console.log("성공하였습니다.");
-			console.log(response);
+			//console.log(response);
 		},
 		error : function(response) {
-			//console.log(response.responseText);
+			console.log("파일 업로드 실패");
+			// console.log(response.responseText);
 		}
 	});
-}
+};
+
+

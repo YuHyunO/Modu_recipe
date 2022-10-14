@@ -47,7 +47,7 @@
 										</div>
 										<figure class="profile">
 											<img class="profile-img"
-												src="imgs/mypage/${recipe.profileImg}" alt="작성자">
+												src="pics/profile/${recipe.profileImg}" alt="작성자">
 											<span><em>${recipe.MNickname}</em></span>
 										</figure>
 										<div class="recipe-icons d-flex justify-content-between">
@@ -110,7 +110,7 @@
 								</c:choose>
 								<div class="col-4 col-md-2 chef-list text-center">
 									<figure class="mb-0">
-										<img class="chef-pic" src="imgs/mypage/${member.profileImg}"
+										<img class="chef-pic" src="pics/profile/${member.profileImg}"
 											alt="쉐프 사진">
 									</figure>
 									<div class="chef-info">

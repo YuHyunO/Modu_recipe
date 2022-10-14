@@ -38,9 +38,9 @@
 					<div class="cooking-information form-bg p-4">
 						<div class="row">
 							<div type="button" class="main-photo col-4">
-								<input type="file" name="food_photo" id="food_photo"/>
-								<div class="text-center" onclick="fileUpload()">
-									<img class="w-100 rounded-3 food_photo" src="/recipe/imgs/next_1665712640686.png" >
+							<input type="file" class="hidden-input" onchange="imgUpload(this)"/>
+								<div class="text-center" onclick="fileUpButton(this)">
+									<img class="w-100 rounded-3 food_photo" src="/imgs/no-image.jpg" >
 								</div>
 							</div>
 							<div class="main-intro col-8">
@@ -222,9 +222,12 @@
 											class="form-control step-textarea"
 											placeholder="예) 닭이 잠길정도로 물을 넣고 손질한 닭을 끓여주세요" rows="5"></textarea>
 									</div>
-									<div id="step-1-photo col-3">
-										<img class="border step-photo" name="saveFile"
-											src="/imgs/pic_none.gif">
+									<div class="step-photo-cover">
+										<input type="file" class="hidden-input" onchange="imgUpload(this)"/>
+										<div id="step-1-photo" onclick="fileUpButton(this)">
+											<img class="border step-photo" name="saveFile"
+												src="/imgs/pic_none.gif">
+										</div>
 									</div>
 									<div
 										class="d-flex flex-column border justify-content-between addon ms-2">
