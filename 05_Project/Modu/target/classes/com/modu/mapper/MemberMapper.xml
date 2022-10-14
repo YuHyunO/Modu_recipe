@@ -2,144 +2,136 @@
 <!DOCTYPE mapper
    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-   
+
 <mapper namespace="com.modu.mapper.MemberMapper">
- <!-- 기존 insertMember 메소드를 2가지 경우로 나눔/서인추가 10.11 -->
- 
+	<!-- 기존 insertMember 메소드를 2가지 경우로 나눔/서인추가 10.11 -->
+
 	<insert id="insertFollow">
 		insert into FOLLOW values(FOLLOW_SEQ.nextval,
-								  #{email},
-								  #{followee},
-								  SYSDATE)
+		#{email},
+		#{followee},
+		SYSDATE)
 	</insert>
-	
+
 	<update id="updatePoint">
-		update MEMBER set POINT=POINT+#{point} where EMAIL=#{email}
+		update MEMBER set POINT=POINT+#{point} where
+		EMAIL=#{email}
 	</update>
 	<delete id="deleteMember" parameterType="String">
-		delete from MEMBER where EMAIL=#{email}
+		delete from MEMBER where
+		EMAIL=#{email}
 	</delete>
 	<delete id="deleteFollow" parameterType="long">
-		delete from FOLLOW where ID=#{id}
+		delete from FOLLOW where
+		ID=#{id}
 	</delete>
 	<!-- 내정보수정 페이지 진입시 readmyinfo() -->
-	<select id="selectMember" parameterType="String" resultType="Member">
+	<select id="selectMember" parameterType="String"
+		resultType="Member">
 		select * from MEMBER where EMAIL=#{email}
 	</select>
-	
-	
-	<select id="selectEmailCheck" parameterType="String" resultType="String">
+
+
+	<select id="selectEmailCheck" parameterType="String"
+		resultType="String">
 		select EMAIL from MEMBER where EMAIL=#{email}
 	</select>
-	<select id="selectNicknameCheck" parameterType="String" resultType="String">
+	<select id="selectNicknameCheck" parameterType="String"
+		resultType="String">
 		select NICKNAME from MEMBER where NICKNAME=#{nickname}
 	</select>
-	<select id="selectNickname" parameterType="String" resultType="String">
+	<select id="selectNickname" parameterType="String"
+		resultType="String">
 		select NICKNAME from MEMBER where EMAIL=#{email}
 	</select>
-	<select id="selectProfileImg" parameterType="String" resultType="String">
+	<select id="selectProfileImg" parameterType="String"
+		resultType="String">
 		select PROFILE_IMG from MEMBER where EMAIL=#{email}
 	</select>
 	<select id="selectPoint" parameterType="String" resultType="int">
 		select POINT from MEMBER where EMAIL=#{email}
 	</select>
 	<select id="selectFollowee" resultType="FollowList">
-		select * from(select ROWNUM list,
-		                     f.ID ID,
-		                     f.FOLLOWEE EMAIL,
-		                     m.NICKNAME NICKNAME,
-		                     m.PROFILE_IMG PROFILE_IMG,
-		                     f.FOLLOW_DATE FOLLOW_DATE
-		              from MEMBER m inner join FOLLOW f on m.EMAIL=f.FOLLOWEE
-		              where M_EMAIL=#{email} order by ID desc)
-		where list BETWEEN #{beginRow} AND #{endRow}
+		select * from(select
+		ROWNUM list,
+		f.ID ID,
+		f.FOLLOWEE EMAIL,
+		m.NICKNAME NICKNAME,
+		m.PROFILE_IMG PROFILE_IMG,
+		f.FOLLOW_DATE FOLLOW_DATE
+		from MEMBER m inner join FOLLOW f on m.EMAIL=f.FOLLOWEE
+		where M_EMAIL=#{email} order by ID desc)
+		where list BETWEEN #{beginRow} AND
+		#{endRow}
 	</select>
 	<select id="selectFollower" resultType="FollowList">
-		select * from (select ROWNUM list,
-		                      f.ID,
-		                      f.M_EMAIL EMAIL,
-		                      m.NICKNAME,
-		                      m.PROFILE_IMG,
-		                      f.FOLLOW_DATE
-		               from MEMBER m inner join FOLLOW f on m.EMAIL=f.M_EMAIL
-		               where f.FOLLOWEE=#{email} order by f.ID desc)
-		where list BETWEEN #{beginRow} AND #{endRow}
+		select * from (select
+		ROWNUM list,
+		f.ID,
+		f.M_EMAIL EMAIL,
+		m.NICKNAME,
+		m.PROFILE_IMG,
+		f.FOLLOW_DATE
+		from MEMBER m inner join FOLLOW f on m.EMAIL=f.M_EMAIL
+		where f.FOLLOWEE=#{email} order by f.ID desc)
+		where list BETWEEN #{beginRow}
+		AND #{endRow}
 	</select>
-	
+
 	<!-- 테스트용 -->
-	<select id="selectEmails" parameterType="int" resultType="String">
+	<select id="selectEmails" parameterType="int"
+		resultType="String">
 		<![CDATA[select EMAIL from  (select ROWNUM no, EMAIL from MEMBER 
                 		    where AUTHORITY=1 and NICKNAME NOT LIKE '%닉네임%'
                				order by DBMS_RANDOM.RANDOM) 
 	    where ROWNUM<#{bound}]]>
 	</select>
-	
+
 	<!-- 랭킹으로 회원 뽑기 -->
 	<select id="selectMemberRank" resultType="Member">
 		<![CDATA[select * from (select * from MEMBER order by POINT desc) where ROWNUM <= 6]]>
 	</select>
-	
-		<!--  22.10.11. 서인 추가  -->
-		<insert id="insertMember" parameterType="Member">
-		insert into MEMBER(EMAIL,
-						   PWD,
-						   NICKNAME,
-						   PROFILE_IMG,
-						   NAME,
-						   PHONE,
-						   MARKETING,
-						   API_USING,
-						   SIGNUP_DATE,
-						   UPDATE_DATE) values(#{email},
-								  	  		 #{pwd},
-								      		 #{nickname},
-								  	  		 'default_profile_img.png',
-								  	  		 #{name, jdbcType=VARCHAR},
-								  	  		 #{phone, jdbcType=VARCHAR},
-								 	  		 0,
-								 	  		 1,
-								 	  		 SYSDATE, 
-											 SYSDATE)
-	</insert>
-	<insert id="insertMember2" parameterType="Member">
-		insert into MEMBER(EMAIL,
-						   PWD,
-						   NICKNAME,
-						   PROFILE_IMG,
-						   NAME,
-						   PHONE,
-						   MARKETING,
-						   API_USING,
-						   SIGNUP_DATE,
-						   UPDATE_DATE) values(#{email},
-									  	  		 #{pwd},
-									      		 #{nickname},
-									  	  		 'default_profile_img.png',
-									  	  		 #{name, jdbcType=VARCHAR},
-									  	  		 #{phone, jdbcType=VARCHAR},
-									 	  		 1,
-									 	  		 1,	 
-												 SYSDATE,
-												 SYSDATE)
+
+	<insert id="insertMember" parameterType="Member">
+		insert into
+		MEMBER(EMAIL,
+		PWD,
+		NICKNAME,
+		PROFILE_IMG,
+		NAME,
+		PHONE,
+		MARKETING,
+		API_USING,
+		SIGNUP_DATE,
+		UPDATE_DATE) values(#{email},
+							#{pwd},
+							#{nickname},
+							'default_profile_img.png',
+							#{name, jdbcType=VARCHAR},
+							#{phone, jdbcType=VARCHAR},
+							#{marketing},
+							1,
+							SYSDATE,
+							SYSDATE)
 	</insert>
 	
-		<!-- 회원가입시 이메일 중복검사 -->
-  	<select id="emailCheck" resultType="int">
-  		select count(*) from MEMBER where email = #{email}
-  	</select>
-  	<!-- 회원가입시 닉네임 중복검사 -->
-  	<select id="nicknameCheck" resultType="int">
-  		select count(*) from MEMBER where nickname = #{nickname}
-  	</select>
-  	
-  	<!-- 로그인 유효성 검사 / ajax 사용시 필요하나, 아직 사용 못하는 중-->
-<!--   	<select id="loginCheck"  resultType="int">
-    	select count(*) from MEMBER where EMAIL=#{email} and PWD=#{pwd}
-	</select> -->
-	
+
+	<!-- 회원가입시 이메일 중복검사 -->
+	<select id="emailCheck" resultType="int">
+		select count(*) from MEMBER where email = #{email}
+	</select>
+	<!-- 회원가입시 닉네임 중복검사 -->
+	<select id="nicknameCheck" resultType="int">
+		select count(*) from MEMBER where nickname = #{nickname}
+	</select>
+
+	<!-- 로그인 유효성 검사 / ajax 사용시 필요하나, 아직 사용 못하는 중 -->
+	<!-- <select id="loginCheck" resultType="int"> select count(*) from MEMBER 
+		where EMAIL=#{email} and PWD=#{pwd} </select> -->
+
 	<!-- 로그인 post -->
-  	<select id="login"  resultType="Member">
-    	select EMAIL, NICKNAME from MEMBER where EMAIL=#{email} and pwd=#{pwd}
+	<select id="login" resultType="Member">
+		select EMAIL, NICKNAME from MEMBER where EMAIL=#{email} and pwd=#{pwd}
 	</select>
 	
 	<update id="updateMember" parameterType="member">

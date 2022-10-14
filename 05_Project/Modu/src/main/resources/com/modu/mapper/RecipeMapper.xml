@@ -17,7 +17,9 @@
 							INGREDIENT,
 							SERVING,
 							COOK_TIME,
-							DIFFICULTY_LEVEL) values(RECIPE_SEQ.nextval,
+							DIFFICULTY_LEVEL,
+							<!-- 공개, 비공개, 임시저장을 위해 xml파일에 추가 domain과 sql에는 있음. -->
+							ACCESSIBILITY) values(RECIPE_SEQ.nextval,
 								  					 #{mEmail},
 								  					 #{mNickname},
 								  					 #{profileImg},
@@ -29,7 +31,8 @@
 								  					 #{ingredient},
 								  					 #{serving},
 								  					 #{cookTime},
-								  					 #{difficultyLevel})
+								  					 #{difficultyLevel},
+								  					 #{accessibility})
 	</insert>
 	<insert id="insertIngredient" parameterType="Ingredient">
 		insert into INGREDIENT values(INGR_SEQ.nextval,

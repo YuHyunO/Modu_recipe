@@ -10,7 +10,7 @@ import com.modu.domain.member.Member;
 public interface MemberMapper {
 
 	//void insertMember(Member member);	
-	Member selectMember(String email); //�궡�젙蹂댁닔�젙 議고쉶
+	Member selectMember(String email); 
 	
 	void updatePoint(@Param("email") String email, @Param("point") int point);
 	void deleteMember(String email);
@@ -18,26 +18,24 @@ public interface MemberMapper {
 	void insertFollow(@Param("email")String email, @Param("followee")String followee);
 	void deleteFollow(long id);
 	
-	//�븘吏� 誘몄궗�슜
 	String selectEmailCheck(String email);
 	String selectNicknameCheck(String nickname);
-	/*     ***     */
 	String selectNickname(String email);
 	String selectProfileImg(String email);
 	int selectPoint(String email);
+	
 	List<FollowList> selectFollowee(@Param("email") String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
 	List<FollowList> selectFollower(@Param("email") String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
 	
-	//占쌓쏙옙트占쏙옙
+
 	List<String> selectEmails(int bound);
 	
-	// 占쏙옙킹占쏙옙占쏙옙 회占쏙옙 占싱깍옙
+	// 회원랭킹 출력
 	List<Member> selectMemberRank();
 	
-	//�꽌�씤異붽� 硫붿냼�뱶 10.11
-	void insertMember(Member member); //
-	void insertMember2(Member member); //
-	
+	//서인추가 메소드 10.11
+	void insertMember(Member member); //회원가입
+
 	public int emailCheck(String email); //회원가입 이메일 중복검사 ajax
 	public int nicknameCheck(String email); //회원가입 닉네임 중복검사 ajax
 	public int loginCheck(String email, String pwd); //아직 미사용 

@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -29,23 +30,19 @@ import lombok.extern.log4j.Log4j;
 @Service
 public class MemberRegisterServiceImpl implements MemberRegisterService {
 	
-	// @Autowired
-	@Inject
+	@Autowired
 	private MemberMapper memberMapper;
 	
 	@Override
 	public void registerMember(Member member) {
 		memberMapper.insertMember(member);
 	}
-	@Override
-	public void registerMember2(Member member) {
-		memberMapper.insertMember2(member);
-	}
 	
 	@Override
 	public int checkEmail(String email) {
 		return memberMapper.emailCheck(email);
 	}
+	
 	@Override
 	public int checkNickname(String nickname) {
 		return memberMapper.nicknameCheck(nickname);
@@ -88,5 +85,6 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 	public void removeMyInfo(String email) {
 		memberMapper.deleteMember(email);
 	}
+
 
 }

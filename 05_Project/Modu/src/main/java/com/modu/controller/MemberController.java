@@ -1,6 +1,8 @@
 package com.modu.controller;
 
 import java.io.File;
+import java.util.Enumeration;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +27,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping("member")
 public class MemberController {
-	
+
 	@Autowired
 	private MemberRegisterService memberRegisterService;
 	@Autowired
@@ -32,6 +35,9 @@ public class MemberController {
 	
 	//@Autowired
 	//private FileUtil fileUtil;
+	
+	@Autowired
+	HashMap<String, String> map;
 	
 	//회원가입 페이지 이동
 	@GetMapping("/register")
@@ -87,40 +93,43 @@ public class MemberController {
 	
 	//회원가입 post - 마케팅 미동의시
 	@PostMapping("/register")
-	public String register(Member member, String marketingCheckbox){
-		  log.info("#1_ 회원가입1 insert 전: Member member= "+ member);
-		  memberRegisterService.registerMember(member); 
-		  log.info("#2_(회원가입1 성공) Member member= "+ member); //이메일. 닉네임 빼고 모두 비어있음..
-		  return "redirect:/";	
-	}
-
-	//회원가입 post2 - 마케팅 동의시
-	@PostMapping("/register2")
-	public String register2(Member member, String marketingCheckbox, HttpSession session){
-		log.info("#1_ 회원가입2 insert 전: Member member= "+ member);
-		memberRegisterService.registerMember2(member);
-		log.info("#2_(회원가입2 성공) Member member= "+ member); //이메일. 닉네임 빼고 모두 비어있음..
-		return "redirect:/";
+	public void register(Member member){
+	  log.info("#회원가입 insert 전: Member member= "+ member);
+	  memberRegisterService.registerMember(member); 
+	  log.info("#회원가입 성공) Member member= "+ member); //이메일. 닉네임 빼고 모두 비어있음..
 	}
 	
 	@GetMapping("/login")
-	public String goLogin() {
-		return "member/login1";
+	public String goLogin(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		String email = (String) session.getAttribute("email");
+	
+		//회원 세션 체크(이미 로그인했을 경우 인덱스로 리다이렉트)
+		if (email == null) {
+			return "member/login";
+		} else {
+			return "redirect:/";
+		}
+		
 	}
 
 	//로그인 post
 	@PostMapping("/login")
-	public String login(Member member, HttpServletRequest req){
+	public ModelAndView login(Member member, HttpServletRequest req){
 		log.info("#login 메소드 진입!! 로그인 진입");
+		ModelAndView mv = new ModelAndView();
 		HttpSession session = req.getSession();
 		Member memberInfo = memberRegisterService.login(member); //select EMAIL, NICKNAME from MEMBER where EMAIL=? and PWD=?
-		if(memberInfo == null) { 
-            return "member/login2"; 
+		if(memberInfo == null) {
+			mv.setViewName("member/login");
+			mv.addObject("status", 0);
+            return mv; 
 		}else{  
+			mv.setViewName("redirect:/");
 			session.setMaxInactiveInterval(1800); //1800초=세션 유효기간 30분으로 지정
 			session.setAttribute("email", memberInfo.getEmail());
 			session.setAttribute("nickname", memberInfo.getNickname());
-			return "redirect:/"; 
+			return mv; 
 		}
 	} 
 	
@@ -262,7 +271,6 @@ public class MemberController {
 	//회원 탈퇴         
 	@GetMapping("/remove-myinfo")
 	public String remove(String email, HttpSession session, HttpServletRequest req) { //req 필요
-		
 		memberRegisterService.removeMyInfo(email);
 		session.invalidate(); //현재 접속하고 있는 세션을 무효화
 		//req.getSession(true); //새로운 세션을 받을 준비 true
