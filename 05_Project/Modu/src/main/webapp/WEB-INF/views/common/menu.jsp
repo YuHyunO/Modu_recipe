@@ -48,26 +48,28 @@
 										<a class="dropdown-item" href="/notice/list">공지사항</a> <a
 											class="dropdown-item" href="/freeboard/list">자유게시판</a>
 									</div></li>
-								<c:if test = "${ sessionScope.email != null }"><!--세션이 존재할 때-->
-									<li class="nav-item dropdown">
-									<a href='/member/mypage' class="nav-link"					
-										>마이페이지</a>
+									<!--세션이 존재할 때-->
+								<c:if test = "${ sessionScope.email != null }">
+									<li class="nav-item">
+										<a href='/member/mypage' class="nav-link">마이페이지</a>
 									</li>
-									<li class="nav-item"> <!--로그인 세션이 있을때만 표시/  href="/logout" -->
-						           		<a class="nav-link" onclick="location.href='/member/logout'">로그아웃</a>
+									<li class="nav-item">
+						           		<a href='/member/logout' class="nav-link">로그아웃</a>
 						           </li>
 						           <div class="welcomelogin">${sessionScope.nickname}님, 반갑습니다.💕 </div>
 								</c:if>
-								<c:if test = "${ sessionScope.email == null }"> <!--세션이 없을 때 = 미로그인시 -->
-								 	<li class="nav-item dropdown">
-									<a href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';" class="nav-link"					
-										>마이페이지</a>
+								<!--세션이 없을 때 = 미로그인시 -->
+								<c:if test = "${ sessionScope.email == null }"> 
+								 	<li class="nav-item">
+										<a href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';" class="nav-link"					
+											>마이페이지</a>
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="/member/login">로그인</a>
 									</li> <!--  모달창 사용시 id="loginBtn" or href="/member/login" -->
-						<!-- 			<li class="nav-item"><a class="nav-link"
-										href="/member/register">회원가입</a></li> -->
+									<li class="nav-item">
+										<a class="nav-link" href="/member/register">회원가입</a>
+									</li>
 								</c:if>
 							</ul>
 						</div>
@@ -119,26 +121,28 @@
 				<a class="dropdown-item" href="/notice/list">공지사항</a> <a
 					class="dropdown-item" href="/freeboard/list">자유게시판</a>
 			</div></li>
-			<c:if test = "${ sessionScope.email != null }"><!--세션이 존재할 때-->
-				<li class="nav-item dropdown">
-				<a href='/member/mypage' class="nav-link"					
-					>마이페이지</a>
-				</li>
-				<li class="nav-item"> <!--로그인 세션이 있을때만 표시/  href="/logout" -->
-	           		<a class="nav-link" onclick="location.href='/member/logout'">로그아웃</a>
-	           </li>
-	           <div class="welcomelogin">${sessionScope.nickname}님, 반갑습니다.💕 </div>
-			</c:if>
-			<c:if test = "${ sessionScope.email == null }"> <!--세션이 없을 때 = 미로그인시 -->
-			 	<li class="nav-item dropdown">
+			<!--세션이 존재할 때-->
+		<c:if test = "${ sessionScope.email != null }">
+			<li class="nav-item">
+				<a href='/member/mypage' class="nav-link">마이페이지</a>
+			</li>
+			<li class="nav-item">
+           		<a href='/member/logout' class="nav-link">로그아웃</a>
+           </li>
+           <div class="welcomelogin">${sessionScope.nickname}님, 반갑습니다.💕 </div>
+		</c:if>
+		<!--세션이 없을 때 = 미로그인시 -->
+		<c:if test = "${ sessionScope.email == null }"> 
+		 	<li class="nav-item">
 				<a href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';" class="nav-link"					
 					>마이페이지</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/member/login">로그인</a>
-				</li> <!--  모달창 사용시 id="loginBtn" or href="/member/login" -->
-	<!-- 			<li class="nav-item"><a class="nav-link"
-					href="/member/register">회원가입</a></li> -->
-			</c:if>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="/member/login">로그인</a>
+			</li> <!--  모달창 사용시 id="loginBtn" or href="/member/login" -->
+			<li class="nav-item">
+				<a class="nav-link" href="/member/register">회원가입</a>
+			</li>
+		</c:if>
 	</ul>
 </div><!-- end navbar-collapse -->

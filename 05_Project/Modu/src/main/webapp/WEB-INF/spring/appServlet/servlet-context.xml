@@ -17,10 +17,7 @@
 	<resources mapping="/js/**" location="/resources/js/" />
 	<resources mapping="/css/**" location="/resources/css/" />
 	<resources mapping="/imgs/**" location="/resources/imgs/" />
-	
-	<!-- IMAGE VIEW -->
-	<resources mapping="/recipe/imgs/**" location="file:///C:/modu_upload/recipe/img/" />
-	<resources mapping="호출할 이미지의 경로" location="실제 저장된 로컬의 경로" />
+	<resources mapping="/pics/**" location="file:///C:/modu_upload/"/>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -44,9 +41,6 @@
 		<beans:property name="order" value="0" />
 	</beans:bean>
 	 -->
-	
 	<context:component-scan base-package="com.modu.controller" />
-	
-	
-	
+
 </beans:beans>

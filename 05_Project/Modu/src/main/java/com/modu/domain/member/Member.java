@@ -15,9 +15,11 @@ public class Member {
 	private String email;
 	private String pwd;
 	private String nickname;
-	private String profileImg;
 	private String name;
-	private String phone;
+	private String phone; 
+	private String profileImg;
+	private String profileImgOrg;
+	private int profileImgSize;
 	private int marketing;
 	private int apiUsing; 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")

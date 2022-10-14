@@ -22,6 +22,7 @@ import com.modu.domain.recipe.Direction;
 import com.modu.domain.recipe.Ingredient;
 import com.modu.domain.recipe.Recipe;
 import com.modu.domain.recipe.RecipeTag;
+
 import org.springframework.web.servlet.ModelAndView;
 import com.modu.domain.recipe.RecipeDetail;
 import com.modu.domain.recipe.RecipeNestedReply;
@@ -30,7 +31,10 @@ import com.modu.domain.recipe.RecipeReplyList;
 import com.modu.service.FileUploadService;
 import com.modu.service.RecipeFindingService;
 import com.modu.service.RecipeRegisterService;
+
 import lombok.extern.log4j.Log4j;
+
+import com.modu.fileset.Path;
 
 @Log4j
 @Controller
@@ -42,7 +46,7 @@ public class RecipeController {
 
 	@Autowired
 	private RecipeRegisterService recipeRegisterService;
-	
+
 	@Autowired
 	private FileUploadService fileUploadService;
 
@@ -59,10 +63,10 @@ public class RecipeController {
 	@ResponseBody
 	@PostMapping("/write")
 	public String submit(HttpServletRequest request, HttpSession session) {
-		recipeRegisterService.registerRecipe(request, session);		
+		recipeRegisterService.registerRecipe(request, session);
 		return "redirect:/";
 	}
-	
+
 	@PostMapping("/upload")
 	public String upload(@RequestParam (value="file") MultipartFile file) {
 		log.info("#RecipeController upload");
@@ -70,12 +74,12 @@ public class RecipeController {
 		String ofname = file.getOriginalFilename();
 		if (ofname != null) ofname = ofname.trim();
 		if (ofname.length() != 0) {
-			String url = fileUploadService.saveStore(file);
+			String url = fileUploadService.saveImgFile(file, Path.RECIPE_PATH);
 			log.info("#url: " + url);
 		}
 		return "redirect:write";
 	}
-	
+
 	@GetMapping("/detail")
 	public ModelAndView recipeDetail() {
 		long id = 150;
