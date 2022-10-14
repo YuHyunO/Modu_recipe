@@ -1,7 +1,6 @@
 $(function() {
 	let tag = $('#tag');
-	$('#tag')
-			.keyup(
+	$('#tag').keyup(
 					function(e) {
 						if (e.keyCode == '13' || e.keyCode == '188') {// 엔터 또는
 							// 쉼표
@@ -399,4 +398,25 @@ function doSubmit(e) {
 			alert("err" + error);
 		}
 	})
+}
+
+$(function(){
+	$("#food_photo").on("change", function(){
+		let files = $('#food_photo')[0].files;
+		console.log(files);
+		let formData = new FormData();
+		formData.append("image", files[0]);
+		for (var key of formData.keys()) {
+			console.log(key);
+		}
+		for (var value of formData.values()) {
+		    console.log(value);
+		}
+	});
+});
+
+function fileUpload(){
+	console.log($('#food_photo').length);
+	console.log($('#food_photo').attr('name'));
+	$('#food_photo').click();
 }

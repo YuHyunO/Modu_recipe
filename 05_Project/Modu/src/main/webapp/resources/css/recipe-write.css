@@ -223,3 +223,7 @@ ul {
         font-size: 0.5rem !important;
     }
 }
+
+#food_photo {
+	/*display: none;*/
+}
