@@ -1,5 +1,6 @@
 package com.modu.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -49,6 +50,8 @@ public class RecipeController {
 
 	@Autowired
 	private FileUploadService fileUploadService;
+	
+	private ArrayList<String> fileInfoList = new ArrayList<String>();
 
 	@GetMapping("/list")
 	public String recipeList() {
@@ -68,14 +71,27 @@ public class RecipeController {
 	}
 
 	@PostMapping("/upload")
-	public String upload(@RequestParam (value="file") MultipartFile file) {
-		log.info("#RecipeController upload");
-		log.info("#RecipeController upload file: " + file);
-		String ofname = file.getOriginalFilename();
-		if (ofname != null) ofname = ofname.trim();
-		if (ofname.length() != 0) {
-			String url = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\temp\\");
-			log.info("#url: " + url);
+	public String upload(@RequestParam ArrayList<MultipartFile> files, 
+			HttpServletRequest request, HttpSession session) {
+		// 여러개의 파일을 업로딩
+		String text = "STEP-";
+		int num = 0;
+		String numS;
+		if(files != null) {
+			for (MultipartFile file : files) {
+				if(file != null) {	
+					numS = Integer.toString(num);
+					String ofname = file.getOriginalFilename();
+					fileInfoList.clear();
+					fileInfoList.add(text + numS);
+					if (ofname != null) ofname = ofname.trim();
+					if (ofname.length() != 0) {
+						String url = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\temp\\", fileInfoList);
+						log.info("#url: " + url);
+					}	
+				}
+				num += 1;
+			}
 		}
 		return "redirect:write";
 	}

@@ -32,15 +32,18 @@
 		<div id="main" class="d-flex justify-content-center my-3">
 			<div
 				class="main-container row d-flex justify-content-center m-0 py-4">
+
 				<div class="col-md-10 main-box px-0">
 					<div class="pt-4 form-bg top-round"></div>
 					<div class="p-4 p-title form-bg h3 mb-0 text-center">#레시피 등록</div>
 					<div class="cooking-information form-bg p-4">
 						<div class="row">
 							<div type="button" class="main-photo col-4">
-							<input type="file" class="hidden-input" onchange="imgUpload(this)"/>
+								<input type="file" class="hidden-input main"
+									onchange="imgUpload(this)" />
 								<div class="text-center" onclick="fileUpButton(this)">
-									<img class="w-100 rounded-3 food_photo" src="/imgs/no-image.jpg" >
+									<img class="w-100 rounded-3 food_photo"
+										src="/imgs/no-image.jpg">
 								</div>
 							</div>
 							<div class="main-intro col-8">
@@ -223,7 +226,8 @@
 											placeholder="예) 닭이 잠길정도로 물을 넣고 손질한 닭을 끓여주세요" rows="5"></textarea>
 									</div>
 									<div class="step-photo-cover">
-										<input type="file" class="hidden-input" onchange="imgUpload(this)"/>
+										<input type="file" class="hidden-input step-1"
+											onchange="imgUpload(this)" />
 										<div id="step-1-photo" onclick="fileUpButton(this)">
 											<img class="border step-photo" name="saveFile"
 												src="/imgs/pic_none.gif">
@@ -270,7 +274,7 @@
 								class="open-save btn btn-warning mx-3">저장 및 공개</button>
 						</div>
 						<div class="mx-1">
-							<button type="button" onclick="doSubmit(this)"
+							<button type="button" onclick="multiImgUpload(this)"
 								class="temp-save btn btn-secondary me-3">임시저장</button>
 							<button type="reset" class="cancel btn btn-danger">취소</button>
 						</div>

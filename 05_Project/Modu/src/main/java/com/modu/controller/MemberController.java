@@ -1,13 +1,17 @@
 package com.modu.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,11 +38,12 @@ public class MemberController {
 	@Autowired
 	private FileUploadService filuploadservice; //by @AllArgsConstructor
 	
+	private ArrayList<String> fileInfoList = new ArrayList<String>();
 	//@Autowired
 	//private FileUtil fileUtil;
 	
 	@Autowired
-	HashMap<String, String> map;
+	private HashMap<String, String> map;
 	
 	//회원가입 페이지 이동
 	@GetMapping("/register")
@@ -233,7 +238,7 @@ public class MemberController {
 			member.setProfileImg(saveFileName);
 			member.setProfileImgSize(fsize);
 			log.info("파일업로드 위 member:"+ member);
-			filuploadservice.saveImgFile(file, Path.PROFILE_PATH); //파일업로드서비스단에서 실제 로컬에 물리적 파일 생성
+			filuploadservice.saveImgFile(file, Path.PROFILE_PATH, fileInfoList); //파일업로드서비스단에서 실제 로컬에 물리적 파일 생성
 			
 			//memberRegisterService.modifyMyInfo2(member);
 			log.info("멤버인포 위");

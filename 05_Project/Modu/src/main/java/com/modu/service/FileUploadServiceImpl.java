@@ -1,6 +1,7 @@
 package com.modu.service;
 
 import java.io.*;
+import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,18 +13,28 @@ import lombok.extern.log4j.Log4j;
 public class FileUploadServiceImpl implements FileUploadService {
 
 	@Override
-	public String saveImgFile(MultipartFile file, String path) {	
+	public String saveImgFile(MultipartFile file, String path, ArrayList<String> fileInfoList) {	
 		String ofname = file.getOriginalFilename();
 		int idx = ofname.lastIndexOf(".");
 		String ofheader = ofname.substring(0, idx); //a(파일이름 부분)가 출력됨(인덱스 0부터 idx 미만까지)
 		String ext = ofname.substring(idx); //확장자 출력(인덱스 idx부터 끝까지 출력)
 		long ms = System.currentTimeMillis(); //현재 시간의 밀리세컨드를 뽑아냄
-	
+		
 		StringBuilder sb = new StringBuilder();
-		sb.append(ofheader);
-		sb.append("_");
-		sb.append(ms);
-		sb.append(ext);
+		log.info("#파일정보: " + fileInfoList);
+		if (fileInfoList == null) {
+			sb.append(ofheader);
+			sb.append("_");
+			sb.append(ms);
+			sb.append(ext);
+		} else {
+			sb.append(fileInfoList.get(0));
+			sb.append("-");
+			sb.append(ofheader);
+			sb.append("_");
+			sb.append(ms);
+			sb.append(ext);
+		}
 		String saveFileName = sb.toString(); //실제 물리적으로 저장되는 파일 이름이 됨
 		
 		long fsize = file.getSize(); //파일 사이즈 구하기

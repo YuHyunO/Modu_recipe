@@ -420,52 +420,76 @@ function doSubmit(e) {
 
 function fileUpButton(e) {
 	let hiddenInput = $(e).parent().find('input');
-	console.log("hiddenInput: ", hiddenInput);
 	hiddenInput.click();
-	let files = $(hiddenInput)[0].files;
-	console.log("files: ", files);
-	
 };
 
 function imgUpload(e) {
 	let files = $(e)[0].files;
 	let filesArr = Array.prototype.slice.call(files);
 	let regex = /(.*?)\/(jpg|jpeg|png|gif)$/;
-
+	
+	let formData = new FormData();
+	formData.append("file", files[0]);
+	for (var pair of formData.entries()) {
+	  console.log(pair[0]+ ', ' + pair[1]);
+	}
+	
 	filesArr.forEach(function(f) {
 		if (!f.type.match(regex)) {
 			alert("이미지 파일만 선택 가능합니다.");
 			return;
 		}
-
 		sel_file = f;
-
+		
 		var reader = new FileReader();
 		reader.onload = function(k) {
-			console.log("e.find img class: ", $(e).parent().find('img').attr("class"));
 			$(e).parent().find('img').attr("src", k.target.result);
 		}
 		reader.readAsDataURL(f);
 	});
-	
-	let formData = new FormData();
-	formData.append("file", files[0]);
-
-	$.ajax({
-		url : "/recipe/upload",
-		type : "POST",
-		processData : false,
-		contentType : false,
-		data : formData,
-		success : function(response) {
-			console.log("성공하였습니다.");
-			//console.log(response);
-		},
-		error : function(response) {
-			console.log("파일 업로드 실패");
-			// console.log(response.responseText);
-		}
-	});
 };
 
-
+function multiImgUpload(e){
+	pass = false;
+	let formData = new FormData();
+	let hiddenInput = $('.hidden-input');
+	for(i=0;i<hiddenInput.length;i++){
+		if(hiddenInput[i].files[0] === undefined){
+			alert("사진이 빠진 곳이 없는지 확인해주세요!");
+			pass = false;
+			break;
+		} else {
+			pass = true;
+		}
+	}
+	if (pass === true){
+		console.log(hiddenInput.length);
+		console.log(hiddenInput);
+		
+		for(i=0;i<hiddenInput.length;i++){
+			formData.append("files", hiddenInput[i].files[0]);
+		}
+		
+		for (let key of formData.keys()) {
+			console.log(key, ":", formData.get(key));
+		}
+		
+		$.ajax({
+			url : "/recipe/upload",
+			type : "POST",
+			enctype: "multipart/form-data",
+			processData : false,
+			contentType : false,
+			data : formData,
+			success : function(response) {
+				console.log("성공하였습니다.");
+				//console.log(response);
+			},
+			error : function(response) {
+				console.log("파일 업로드 실패");
+				// console.log(response.responseText);
+			}
+			
+		});
+	}
+}
