@@ -270,7 +270,7 @@
 						name="accessibility">
 						<div class="mx-1">
 							<button type="submit" onclick="" class="secret-save btn btn-info">비공개저장</button>
-							<button type="button" onclick=""
+							<button type="button" onclick="doSubmit(this);"
 								class="open-save btn btn-warning mx-3">저장 및 공개</button>
 						</div>
 						<div class="mx-1">

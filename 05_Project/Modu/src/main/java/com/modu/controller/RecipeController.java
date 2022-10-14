@@ -66,6 +66,7 @@ public class RecipeController {
 	@ResponseBody
 	@PostMapping("/write")
 	public String submit(HttpServletRequest request, HttpSession session) {
+		log.info("########write: " + request.getParameter("food"));
 		recipeRegisterService.registerRecipe(request, session);
 		return "redirect:/";
 	}
