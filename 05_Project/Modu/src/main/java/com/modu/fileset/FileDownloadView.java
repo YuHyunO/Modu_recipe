@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.AbstractView;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-public class FileDownloadView extends AbstractView { //AbstractView�� ����ִ°�..?
+public class FileDownloadView extends AbstractView {
 	public FileDownloadView() {
 		setContentType("application/download;charset=utf-8");
 	}
@@ -19,7 +19,7 @@ public class FileDownloadView extends AbstractView { //AbstractView�� ��
 	protected void renderMergedOutputModel(Map<String, Object> model,
 			HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		//downloadFile�� �޾Ƽ�  client ���� fis �� ���� �� 
+		 
 		File file = (File)model.get("downloadFile");
 		
 		response.setContentType(getContentType());
@@ -28,8 +28,8 @@ public class FileDownloadView extends AbstractView { //AbstractView�� ��
 		response.setHeader("Content-Disposition", value);
 		response.setHeader("Content-Transfer-Encoding", "binary");
 		
-		FileInputStream fis = null; //�ٿ���: ������ ���� ��Ʈ��(�о)
-		OutputStream os = response.getOutputStream(); //������:Ŭ���̾�Ʈ�� ���� ��Ʈ��(������ ����)
+		FileInputStream fis = null;
+		OutputStream os = response.getOutputStream();
 		try {
 			fis = new FileInputStream(file);
 			FileCopyUtils.copy(fis, os);

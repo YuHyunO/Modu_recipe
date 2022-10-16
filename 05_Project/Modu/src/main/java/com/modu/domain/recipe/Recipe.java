@@ -1,6 +1,7 @@
 package com.modu.domain.recipe;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -32,6 +33,5 @@ public class Recipe {
 	private long hits;
 	private long reply;
 	private double star;
-	private int accessibility;
-	
+	private int accessibility;	
 }

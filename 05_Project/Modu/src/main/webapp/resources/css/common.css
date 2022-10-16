@@ -234,3 +234,8 @@ max-width
 	text-decoration: underline;
 	color: black !important;
 }
+
+/* 포인트 커서 */
+.pointer {
+	cursor: pointer !important;	
+}

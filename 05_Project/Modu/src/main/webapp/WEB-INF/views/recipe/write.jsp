@@ -38,7 +38,7 @@
 					<div class="p-4 p-title form-bg h3 mb-0 text-center">#레시피 등록</div>
 					<div class="cooking-information form-bg p-4">
 						<div class="row">
-							<div type="button" class="main-photo col-4">
+							<div class="main-photo col-4 pointer">
 								<input type="file" class="hidden-input main"
 									onchange="imgUpload(this)" />
 								<div class="text-center" onclick="fileUpButton(this)">
@@ -149,7 +149,7 @@
 											<input type="text" name="quantity-main"
 												class="quantity-1 form-control input2 mx-2"
 												placeholder="예) 1마리">
-											<button class="minus main-1" onclick="deleteItem(this)"></button>
+											<button class="minus main-1" onclick="deleteItem(this)" tabindex="-1"></button>
 										</div>
 										<div class="row d-flex align-items-center mb-2 item"
 											id="main-2">
@@ -157,7 +157,7 @@
 												placeholder="예) 감자"> <input type="text"
 												class="quantity-2 form-control input2 mx-2"
 												placeholder="예) 1개">
-											<button class="minus main-2" onclick="deleteItem(this)"></button>
+											<button class="minus main-2" onclick="deleteItem(this)" tabindex="-1"></button>
 										</div>
 										<div class="row d-flex align-items-center mb-2 item"
 											id="main-3">
@@ -165,7 +165,7 @@
 												placeholder="예) 당근"> <input type="text"
 												class="quantity-3 form-control input2 mx-2"
 												placeholder="예) 1개">
-											<button class="minus main-3" onclick="deleteItem(this)"></button>
+											<button class="minus main-3" onclick="deleteItem(this)" tabindex="-1"></button>
 										</div>
 									</div>
 									<div>
@@ -185,7 +185,7 @@
 											<input type="text" name="quantity-sub"
 												class="quantity-1 form-control input2 mx-2"
 												placeholder="예) 3T">
-											<button class="minus sub-1" onclick="deleteItem(this)"></button>
+											<button class="minus sub-1" onclick="deleteItem(this)" tabindex="-1"></button>
 										</div>
 										<div class="row d-flex align-items-center mb-2 item"
 											id="sub-2">
@@ -193,7 +193,7 @@
 												placeholder="예) 마늘"> <input type="text"
 												class="quantity-2 form-control input2 mx-2"
 												placeholder="예) 1T">
-											<button class="minus sub-2" onclick="deleteItem(this)"></button>
+											<button class="minus sub-2" onclick="deleteItem(this)" tabindex="-1"></button>
 										</div>
 										<div class="row d-flex align-items-center mb-2 item"
 											id="sub-3">
@@ -201,7 +201,7 @@
 												placeholder="예) 간장"> <input type="text"
 												class="quantity-3 form-control input2 mx-2"
 												placeholder="예) 3/4컵">
-											<button class="minus sub-3" onclick="deleteItem(this)"></button>
+											<button class="minus sub-3" onclick="deleteItem(this)" tabindex="-1"></button>
 										</div>
 									</div>
 									<div>
@@ -225,7 +225,7 @@
 											class="form-control step-textarea"
 											placeholder="예) 닭이 잠길정도로 물을 넣고 손질한 닭을 끓여주세요" rows="5"></textarea>
 									</div>
-									<div class="step-photo-cover">
+									<div class="step-photo-cover pointer">
 										<input type="file" class="hidden-input step-1"
 											onchange="imgUpload(this)" />
 										<div id="step-1-photo" onclick="fileUpButton(this)">

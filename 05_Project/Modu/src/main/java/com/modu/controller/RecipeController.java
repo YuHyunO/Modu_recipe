@@ -1,6 +1,8 @@
 package com.modu.controller;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -73,22 +75,39 @@ public class RecipeController {
 
 	@PostMapping("/upload")
 	public String upload(@RequestParam ArrayList<MultipartFile> files, 
-			HttpServletRequest request, HttpSession session) {
+			@RequestParam ArrayList<String> direction,
+			@RequestParam ArrayList<String> mainItems,
+			@RequestParam ArrayList<String> subItems,
+			HttpServletRequest request,
+			HttpSession session) {
 		// 여러개의 파일을 업로딩
 		String text = "STEP-";
 		int num = 0;
 		String numS;
+		log.info("#title: " + request.getParameter("title"));
+		log.info("#direction: " + direction);
+		log.info("#mainItems: " + mainItems);
+		log.info("#subItems: " + subItems);
+		/*
+		log.info("#data: " + data.values());
+		log.info("#data get data: " + data.get("data"));
+		data.forEach((key, val) ->{
+			log.info("#data key, val: " + key + ":" + val);
+		});
+		*/
+
 		if(files != null) {
 			for (MultipartFile file : files) {
 				if(file != null) {	
 					numS = Integer.toString(num);
 					String ofname = file.getOriginalFilename();
+					log.info("#파일 이름: " + ofname);
 					fileInfoList.clear();
 					fileInfoList.add(text + numS);
 					if (ofname != null) ofname = ofname.trim();
 					if (ofname.length() != 0) {
-						String url = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\temp\\", fileInfoList);
-						log.info("#url: " + url);
+						//String url = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\temp\\", fileInfoList);
+						//log.info("#url: " + url);
 					}	
 				}
 				num += 1;
