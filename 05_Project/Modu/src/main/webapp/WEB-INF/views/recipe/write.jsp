@@ -274,7 +274,7 @@
 								class="open-save btn btn-warning mx-3">저장 및 공개</button>
 						</div>
 						<div class="mx-1">
-							<button type="button" onclick="multiImgUpload(this)"
+							<button type="button" onclick="register(this)"
 								class="temp-save btn btn-secondary me-3">임시저장</button>
 							<button type="reset" class="cancel btn btn-danger">취소</button>
 						</div>

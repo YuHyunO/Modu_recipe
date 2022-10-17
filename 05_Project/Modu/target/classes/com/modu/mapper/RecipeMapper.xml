@@ -25,14 +25,17 @@
 								  					 #{profileImg},
 								  					 #{title},
 								  					 #{info},
-								  					 #{food},
-								  					 #{foodPhoto},
+								  					 #{food, jdbcType=VARCHAR},
+								  					 #{foodPhoto, jdbcType=VARCHAR},
 								  					 #{sort},
 								  					 #{ingredient},
 								  					 #{serving},
 								  					 #{cookTime},
 								  					 #{difficultyLevel},
 								  					 #{accessibility})
+		<selectKey keyProperty="id" resultType="LONG" order="AFTER">
+	    	select NVL(MAX(ID),0) from RECIPE where M_EMAIL=#{mEmail}
+	  	</selectKey>
 	</insert>
 	<insert id="insertIngredient" parameterType="Ingredient">
 		insert into INGREDIENT values(INGR_SEQ.nextval,
@@ -46,8 +49,8 @@
 									 #{rId},
 									 #{step},
 									 #{direction},
-									 #{originalFile},
-									 #{saveFile})
+									 #{originalFile, jdbcType=VARCHAR},
+									 #{saveFile, jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertTag" parameterType="RecipeTag">
 		insert into RECIPE_TAG values(TAG_SEQ.nextval,

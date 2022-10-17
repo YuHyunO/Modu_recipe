@@ -5,16 +5,20 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.modu.domain.recipe.Direction;
 import com.modu.domain.recipe.Ingredient;
 import com.modu.domain.recipe.Recipe;
 import com.modu.domain.recipe.RecipeTag;
+import com.modu.fileset.Path;
 import com.modu.mapper.MemberMapper;
 import com.modu.mapper.RecipeMapper;
 
 import lombok.extern.log4j.Log4j;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +39,12 @@ import com.modu.mapper.RecipeLegacyMapper;
 @Controller
 @Service
 public class RecipeRegisterServiceImpl implements RecipeRegisterService {
+    
+    private Recipe recipe = new Recipe();
+    private Ingredient ingredient = new Ingredient();
+    private Direction direction = new Direction();
+    
+    private ArrayList<String> fileInfoList = new ArrayList<String>();
 	
 	@Autowired
 	private RecipeLegacyMapper recipeLegacyMapper;
@@ -44,95 +54,112 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
 	
 	@Autowired
 	private MemberMapper memberMapper;
-
+	
+	@Autowired FileUploadService fileUploadService;
 
 	@Override
-	public void registerRecipe(HttpServletRequest request, HttpSession session) {
+	public void registerRecipe(
+	        HttpServletRequest request,
+            HttpSession session,
+            ArrayList<MultipartFile> files, 
+            ArrayList<String> mainItems,
+            ArrayList<String> subItems,
+            ArrayList<String> directions,
+            ArrayList<String> tags) {
 		
-		System.out.println("리퀘스트 "+ request.getParameter("recipe"));
-		//String email =(String)session.getAttribute("email");
-		/*
-		String email = "oyh1431@naver.com"; //
-		String nickname = memberMapper.selectNickname(email);
-		String profileImg = memberMapper.selectProfileImg(email);
-		String foodPhoto = "awef.jpg";
-		String originalFile = "Asdf.jpg";
-		String saveFile = "save.jpg";
-		
-		Recipe recipe = new Recipe();
-		Ingredient ingredient = new Ingredient();
-		Direction direction = new Direction();
-		RecipeTag recipeTag = new RecipeTag();
-
-		String accessibilityS = request.getParameter("accessibility");
-		int accessibility = Integer.parseInt(accessibilityS);
-
-		recipe.setMEmail(email);
-		recipe.setMNickname(nickname);
-		recipe.setProfileImg(profileImg);
-		recipe.setFoodPhoto(foodPhoto);
-		recipe.setTitle(request.getParameter("title"));
-		recipe.setInfo(request.getParameter("info"));
-		recipe.setFood(request.getParameter("food"));
-		recipe.setFoodPhoto(foodPhoto);
-		recipe.setSort(request.getParameter("sort"));
-		recipe.setIngredient(request.getParameter("ingredientInfo"));
-		recipe.setServing(request.getParameter("serving"));
-		recipe.setCookTime(request.getParameter("cookTime"));
-		recipe.setDifficultyLevel(request.getParameter("difficultyLevel"));
-		recipe.setAccessibility(accessibility);
-		recipeMapper.insertRecipe(recipe);
-
-		log.info("#####9");
-		
-		// ingredient 테이블 insert 로직
-		long rId = recipeMapper.selectRecipeId(email);
-		ingredient.setRId(rId);
-		//메인재료에 데이터를 넣기 위해 type을 지정하는 로직
-		String ingredientTypeMain = request.getParameter("ingredientTypeMain");
-		int inTM = Integer.parseInt(ingredientTypeMain);
-		//log.info("inTM"+inTM);
-		if(inTM == 0) {
-			ingredient.setIngredientType(inTM);
-			ingredient.setIngredient(request.getParameter("ingredientM"));
-			//log.info("#####s"+request.getParameter("ingredientM"));
-			ingredient.setQuantity(request.getParameter("quantityM"));
-			//log.info("#####e"+request.getParameter("quantityM"));
-			recipeMapper.insertIngredient(ingredient);
-		}
-		//양념재료에 데이터를 넣기 위한 type을 지정해주는 로직
-		String ingredientTypeSub = request.getParameter("ingredientTypeSub");
-		int inTS = Integer.parseInt(ingredientTypeSub);
-		//log.info("inTS"+inTS);
-		if(inTS == 1) {
-			ingredient.setIngredientType(inTS);
-			ingredient.setIngredient(request.getParameter("ingredientS"));
-			//log.info("#####q"+request.getParameter("ingredientS"));
-			ingredient.setQuantity(request.getParameter("quantityS"));
-			//log.info("#####s"+request.getParameter("quantityS"));
-			recipeMapper.insertIngredient(ingredient);
-		}
-		//direction 테이블 insert로직
-		direction.setRId(rId);
-		direction.setDirection(request.getParameter("direction"));
-		direction.setOriginalFile(originalFile);
-		direction.setSaveFile(saveFile);
-		recipeMapper.insertDirection(direction);
-		log.info("#####4");
-		
-		//tag 테이블 insert로직
-		recipeTag.setRId(rId);
-		recipeTag.setTag(request.getParameter("tag"));
-		log.info(request.getParameter("tag"));
-		recipeMapper.insertTag(recipeTag);
-		log.info("#####5");
-		*/
+	    // 데이터 확인
+	    log.info("#registerRecipe email: " + (String)session.getAttribute("email"));
+        log.info("#registerRecipe nickname: " + (String)session.getAttribute("nickname"));
+        log.info("#registerRecipe profileImg: " + (String)session.getAttribute("profileImg"));
+        log.info("#registerRecipe title: " + request.getParameter("title"));
+        log.info("#registerRecipe info: " + request.getParameter("info"));
+        log.info("#registerRecipe food: " + request.getParameter("food"));
+        log.info("#registerRecipe sort: " + request.getParameter("sort"));
+        log.info("#registerRecipe ingredient: " + request.getParameter("ingredient"));
+        log.info("#registerRecipe serving: " + request.getParameter("serving"));
+        log.info("#registerRecipe cooktime: " + request.getParameter("cooktime"));
+        log.info("#registerRecipe difficultyLevel: " + request.getParameter("difficultyLevel"));
+        log.info("#registerRecipe accessibility: " + Integer.parseInt(request.getParameter("accessibility")));
+        
+        // 레시피 등록(*레시피 아이디 리턴)
+        recipe.setMEmail((String)session.getAttribute("email"));
+        recipe.setMNickname((String)session.getAttribute("nickname"));
+        recipe.setProfileImg((String)session.getAttribute("profileImg"));
+        recipe.setTitle(request.getParameter("title"));
+        recipe.setInfo(request.getParameter("info"));
+        recipe.setFood(request.getParameter("food"));
+        recipe.setSort(request.getParameter("sort"));
+        recipe.setIngredient(request.getParameter("ingredient"));
+        recipe.setServing(request.getParameter("serving"));
+        recipe.setCookTime(request.getParameter("cooktime"));
+        recipe.setDifficultyLevel(request.getParameter("difficultyLevel"));
+        recipe.setAccessibility(Integer.parseInt(request.getParameter("accessibility")));
+        
+        int result = recipeMapper.insertRecipe(recipe);
+        Long id = recipe.getId();
+        log.info("#registerRecipe insert result: " + result);
+        log.info("#registerRecipe ID: " + id);
+        
+        // 메인재료 등록
+        String mainItem;
+        for (int i=0; i<mainItems.size(); i++) {
+            mainItem = mainItems.get(i);
+            ingredient.setRId(id);
+            ingredient.setIngredientType(0);
+            ingredient.setIngredient(mainItem.split("-")[0]);
+            ingredient.setQuantity(mainItem.split("-")[1]);
+            recipeMapper.insertIngredient(ingredient);
+        }
+        
+        // 양념재료 등록
+        String subItem;
+        for (int i=0; i<subItems.size(); i++) {
+            subItem = subItems.get(i);
+            ingredient.setRId(id);
+            ingredient.setIngredientType(0);
+            ingredient.setIngredient(subItem.split("-")[0]);
+            ingredient.setQuantity(subItem.split("-")[1]);
+            recipeMapper.insertIngredient(ingredient);
+        }
+        
+        // 요리순서 등록 및 파일 업로드
+        String text = "STEP-";
+        String content;
+        int num = 0;
+        int step = 1;
+        for (MultipartFile file : files) {
+            String ofname = file.getOriginalFilename();
+            log.info("#파일 이름: " + ofname);
+            fileInfoList.clear();
+            fileInfoList.add(text + Integer.toString(num));
+            if (ofname != null) ofname = ofname.trim();
+            if (ofname.length() != 0) {
+                if (num == 0) {
+                    String url = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + id + "\\", fileInfoList)[0];
+                    log.info("#url: " + url);
+                } else if(num >= directions.size()) { // 조리순서 사이즈 -1까지만 GET 해야 인덱스 에러가 발생하지 않음 
+                } else {
+                    String[] urlAndName = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + id + "\\", fileInfoList);                
+                    log.info("#url: " + urlAndName[0]);
+                    content = directions.get(num);
+                    direction.setRId(id);
+                    direction.setDirection(content);
+                    direction.setStep(step + num);
+                    direction.setOriginalFile(ofname);
+                    direction.setSaveFile(urlAndName[1]);
+                    recipeMapper.insertDirection(direction);
+                    log.info("#registerRecipe direction: " + direction);
+                }
+            }
+            num += 1;
+        }
 	}
 
 	@Override
 	public List<RecipeReplyList> findRecipeReply(long id) {
 		return recipeLegacyMapper.selectReply(id);		
 	}
+	
 	@Override
 	public void delete(long id) {
 		recipeLegacyMapper.deleteReply(id);
@@ -167,5 +194,13 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
 		System.out.println("#registerNestedReply: " + result);
 		return result;
 	}
+
+    @Override
+    public void registerRecipe(HttpServletRequest request, HttpSession session, ArrayList<MultipartFile> files,
+            ArrayList<String> mainItems, ArrayList<String> subItems, ArrayList<String> directions) {
+        // TODO Auto-generated method stub
+        
+    }
+
 	
 }
