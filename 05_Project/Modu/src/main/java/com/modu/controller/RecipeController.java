@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
+ 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +18,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.modu.domain.recipe.RecipeDetail;
+import com.modu.domain.recipe.RecipeListVo;
 import com.modu.domain.recipe.RecipeReply;
 import com.modu.domain.recipe.RecipeReplyList;
 import com.modu.service.RecipeFindingService;
 import com.modu.service.RecipeRegisterService;
+import com.modu.service.SearchService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -30,17 +32,25 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping("recipe")
 public class RecipeController {
-
 	@Autowired
 	private RecipeFindingService recipeFindingService;
-
 	@Autowired
 	private RecipeRegisterService recipeRegisterService;
+	@Autowired
+	private SearchService searchService;
 
-	@GetMapping("/list")
-	public String recipeList() {
-		return "recipe/list";
-	}
+    @GetMapping("/list")
+    public ModelAndView recipeList(HttpServletRequest request, HttpSession session) {
+        RecipeListVo data = searchService.searchRecipe(request, session);
+        ModelAndView mv = new ModelAndView("recipe/list", "data", data);
+        return mv;
+    }
+    
+    @GetMapping("/list.do")
+    public @ResponseBody RecipeListVo updateRecipeList(HttpServletRequest request, HttpSession session){
+        RecipeListVo data = searchService.searchRecipe(request, session);
+        return data;
+    }
 
 	@GetMapping("/write")
 	public String recipeWrite() {
