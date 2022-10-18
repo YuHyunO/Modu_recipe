@@ -197,9 +197,7 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
 
     @Override
     public void registerRecipe(HttpServletRequest request, HttpSession session, ArrayList<MultipartFile> files,
-            ArrayList<String> mainItems, ArrayList<String> subItems, ArrayList<String> directions) {
-        // TODO Auto-generated method stub
-        
+            ArrayList<String> mainItems, ArrayList<String> subItems, ArrayList<String> directions) { 
     }
 
 	

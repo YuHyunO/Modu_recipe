@@ -77,11 +77,11 @@ function addItem(e) {
             <input type="text" class="ingredient-'
 			+ newNum + ' form-control input1" placeholder="예) '
 			+ items[newNum - 1]
-			+ '">\
+			+ '" >\
             <input type="text" class="quantity-'
 			+ newNum + ' form-control input2 mx-2" placeholder="예) '
 			+ quantities[newNum - 1]
-			+ '">\
+			+ '" >\
             <button class="minus ' + text + '-'
 			+ newNum
 			+ '" onclick="deleteItem(this)" tabindex="-1"></button>\
@@ -312,7 +312,7 @@ function stepDelete(e) {
 		targetChildren.eq(i).attr('id', 'step-' + i);
 	}
 }
-
+/*
 function doSubmit(e) {
 	var food = $("input[name=food]").val()
 	// console.log(food.val());
@@ -411,7 +411,7 @@ function doSubmit(e) {
 		}
 	})
 }
-
+*/
 function fileUpButton(e) {
 	let hiddenInput = $(e).parent().find('input');
 	hiddenInput.click();
@@ -529,12 +529,6 @@ function register(e) {
 			console.log(key, formData.get(key));
 		}
 		
-		// 태그
-		let tags = $('.tag-ul').find('input');
-		for (let i=0; i<tags.length; i++){
-			formData.append("tags", $(tags).eq(i).val());
-		}
-		
 		// 이미지 파일
 		for (i = 0; i < hiddenInput.length; i++) {
 			formData.append("files", hiddenInput[i].files[0]);
@@ -563,7 +557,7 @@ function RecipeCrawling(e) {
 	//음식 이름 정규식 표현 로직
 	var foodRegex = /[`()<>{}~!@#$%^&*|\\\'\";:\/?-_+=]/gi;
 	if (!foodRegex.test($("input[name=food]").val())) {
-		alert("특수문자 없음");
+		//alert("특수문자 없음");
 	}else {
 		alert("음식 이름에는 특수문자를 사용하실 수 없습니다.");
 		return false;
@@ -572,7 +566,7 @@ function RecipeCrawling(e) {
 	//레시피 제목 정규식 표현 로직
 	var titleRegex = /[`()<>{}~!@#$%^&*|\\\'\";:\/?-_+=]/gi;
 	if (!titleRegex.test($("input[name=title]").val())) {
-		alert("특수문자 없음");
+		//alert("특수문자 없음");
 	}else {
 		alert("레시피제목에는 특수문자를 사용하실 수 없습니다.");
 		return false;
@@ -581,7 +575,7 @@ function RecipeCrawling(e) {
 	//레시피 소개 정규식 표현 로직
 	var infoRegex = /[()<>{}@#$%&*|\\\\;:\/-_+=]/gi;
 	if (!infoRegex.test($("textarea[name=info]").val())) {
-		alert("특수문자 없음");
+		//alert("특수문자 없음");
 	}else {
 		alert("레시피소개에는 ?,!,~,^ 를 제외한 특수문자는 사용하실 수 없습니다.");
 		return false;
@@ -597,50 +591,50 @@ function RecipeCrawling(e) {
 	if (sort === "종류별") {
 		if(true){
 		alert("종류카테고리 선택이 안되어있습니다.");
-		console.log("#####1" + sort);
+		//console.log("#####1" + sort);
 			return false;
 		}else{
-			alert("pass");
-		console.log("#####2"+ sort);
+			//alert("pass");
+		//console.log("#####2"+ sort);
 		}
 	}else if(ingredientInfo === "재료별") {
 		if(true){
 			alert("재료카테고리 선택이 안되어있습니다.");
-			console.log("#####3");
+			//console.log("#####3");
 			return false;
 		}else{
-			alert("pass");
-			console.log("#####4");
+			//alert("pass");
+			//console.log("#####4");
 		}
 	}else if(serving === "인원"){
 		if(true){
 			alert("인원카테고리 선택이 안되어있습니다.");
-			console.log("#####5");
+			//console.log("#####5");
 			return false;
 		}else{
-			alert("pass");
-			console.log("#####6");
+			//alert("pass");
+			//console.log("#####6");
 		}
 	}else if(cooktime === "요리시간"){
 		if(true){
 			alert("요리시간카테고리 선택이 안되어있습니다.");
-			console.log("#####7");
+			//console.log("#####7");
 			return false;
 		}else{
-			alert("pass");
-			console.log("#####8");
+			//alert("pass");
+			//console.log("#####8");
 		}
 	}else if(difficultyLevel === "난이도"){
 		if(true){
 			alert("난이도카테고리 선택이 안되어있습니다.");
-			console.log("#####9");
+			//console.log("#####9");
 			return false;
 		}else{
-			alert("pass");
-			console.log("#####10");
+			//alert("pass");
+			//console.log("#####10");
 		}
 	}else {
-		alert("선택완료");
+		//alert("선택완료");
 	}
 	
 	//메인재료 정규식 표현 로직
@@ -649,7 +643,7 @@ function RecipeCrawling(e) {
 	let mainItemsQuantity = $('.main-items').find('.input2');
 	for (let i=0; i<mainItemsIngredient.length; i++){
 		if (!ingredientgRegex.test($(mainItemsIngredient).eq(i).val() + '-' + $(mainItemsQuantity).eq(i).val())) {
-			alert("특수문자 없음");
+			//alert("특수문자 없음");
 		}else {
 			alert("요리재료에는 / 를 제외한 특수문자는 사용하실 수 없습니다.");
 			return false;
@@ -662,7 +656,7 @@ function RecipeCrawling(e) {
 	let subItemsQuantity = $('.sub-items').find('.input2');
 	for (let i=0; i<subItemsIngredient.length; i++){
 		if (!ingredientgRegex.test($(subItemsIngredient).eq(i).val() + '-' + $(subItemsQuantity).eq(i).val())) {
-			alert("특수문자 없음");
+			//alert("특수문자 없음");
 		}else {
 			alert("양념재료에는 / 를 제외한 특수문자는 사용하실 수 없습니다.");
 			return false;
@@ -674,7 +668,7 @@ function RecipeCrawling(e) {
 	let steps = $('#steps').find('textarea');
 	for (let i=0; i<steps.length; i++){
 		if (!DriectionRegex.test($(steps).eq(i).val())) {
-			alert("특수문자 없음");
+			//alert("특수문자 없음");
 		}else {
 			alert("요리순서에는 ?,!,~,^ 를 제외한 특수문자는 사용하실 수 없습니다.");
 			return false;
@@ -686,11 +680,11 @@ function RecipeCrawling(e) {
 	let tags = $('.tag-ul').find('input');
 	for (let i=0; i<tags.length; i++){
 		if(!tagsRegex.test($(tags).eq(i).val())){
-			alert("특수문자 없음");
-			console.log("######2");
+			//alert("특수문자 없음");
+			//console.log("######2");
 		}else {
 			alert("태그에는 특수문자를 사용하실 수 없습니다.");
-			console.log("######3");
+			//console.log("######3");
 			return false;
 		}
 	}

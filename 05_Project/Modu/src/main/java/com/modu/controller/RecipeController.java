@@ -75,6 +75,16 @@ public class RecipeController {
 	    } 
 	    return map;
 	}
+	
+	@GetMapping("/read")
+	public ModelAndView RecipeRead(long id) {
+	    RecipeDetail recipeDetail = recipeFindingService.RecipeRead(id);
+	    ModelAndView mv = new ModelAndView();
+	    mv.setViewName("recipe/read");
+	    mv.addObject("rs", recipeDetail);
+	    mv.addObject("id", id);
+	    return mv;
+	}
 
 	@GetMapping("/detail")
 	public ModelAndView recipeDetail() {
