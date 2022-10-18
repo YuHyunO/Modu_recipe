@@ -13,7 +13,7 @@ import com.modu.domain.recipe.RecipeTag;
 
 public interface RecipeMapper {
 	/* *Required : The four methods below are an unit. And the calling order must be kept. */
-	void insertRecipe(Recipe recipe);
+	int insertRecipe(Recipe recipe);
 	void insertIngredient(Ingredient ingredient);
 	void insertDirection(Direction direction);
 	void insertTag(RecipeTag recipeTag);
@@ -45,4 +45,5 @@ public interface RecipeMapper {
 	
 	// 베스트 레시피
 	List<RecipeList> selectRecipeListByBestHits(@Param("beginRow") long beginRow, @Param("endRow") long endRow);
+    
 }

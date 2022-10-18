@@ -2,6 +2,8 @@ package com.modu.service;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,8 +14,10 @@ import lombok.extern.log4j.Log4j;
 @Service
 public class FileUploadServiceImpl implements FileUploadService {
 
-	@Override
-	public String saveImgFile(MultipartFile file, String path, ArrayList<String> fileInfoList) {	
+    private String[] result;
+
+    @Override
+	public String[] saveImgFile(MultipartFile file, String path, ArrayList<String> fileInfoList) {	
 		String ofname = file.getOriginalFilename();
 		int idx = ofname.lastIndexOf(".");
 		String ofheader = ofname.substring(0, idx); //a(파일이름 부분)가 출력됨(인덱스 0부터 idx 미만까지)
@@ -48,8 +52,11 @@ public class FileUploadServiceImpl implements FileUploadService {
 			log.info("#업로드 실패");
 		}
 		
-		//IO로 파일을 써주면 됨
-		return path + saveFileName;		
+		result = new String[2];
+
+		result[0] = path + saveFileName;
+		result[1] = saveFileName;
+		return result;		
 	}
 
 	//내 로컬폴더에 물리적으로 파일생성하는 메소드 

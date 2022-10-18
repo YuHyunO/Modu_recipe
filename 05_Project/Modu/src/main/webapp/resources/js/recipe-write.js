@@ -443,38 +443,40 @@ function imgUpload(e) {
 	});
 };
 
-function multiImgUpload(e) {
-	pass = true;
+function register(e) {
+	// 빈값있는지, 특수문자 있는지 데이터 무결성 확인
+	pass = false;
 	let formData = new FormData();
 	let hiddenInput = $('.hidden-input');
 	for (i = 0; i < hiddenInput.length; i++) {
 		if (hiddenInput[i].files[0] === undefined) {
-			// alert("사진이 빠진 곳이 없는지 확인해주세요!");
+			alert("사진이 빠진 곳이 없는지 확인해주세요!");
 			pass = false;
 			break;
 		} else {
 			pass = true;
 		}
 	}
-	if (pass === false) {
+	
+	if (pass === true) {
 		// 음식 이름, 레시피 제목, 레시피 소개
-		var food = $("input[name=food]").val()
-		var title = $("input[name=title]").val()
-		var info = $("textarea[name=info]").val()
+		let food = $("input[name=food]").val();
+		let title = $("input[name=title").val();
+		let info = $("textarea[name=info]").val();
 		formData.append("food", food);
 		formData.append("title", title);
 		formData.append("info", info);		
 		
 		// 카테고리(종류별, 재료별)
-		var sort = $("#sort").val()
-		var ingredientInfo = $("#ingredient").val()
+		let sort = $("#sort").val()
+		let ingredientInfo = $("#ingredient").val()
 		formData.append("sort", sort);
-		formData.append("ingredient", ingredient);
+		formData.append("ingredient", ingredientInfo);
 		
 		// 요리정보(인원, 요리시간, 난이도)
-		var serving = $("#serving").val()
-		var cooktime = $("#cooktime").val()
-		var difficultyLevel = $("#difficultyLevel").val()
+		let serving = $("#serving").val()
+		let cooktime = $("#cooktime").val()
+		let difficultyLevel = $("#difficultyLevel").val()
 		formData.append("serving", serving);
 		formData.append("cooktime", cooktime);
 		formData.append("difficultyLevel", difficultyLevel);
@@ -496,7 +498,35 @@ function multiImgUpload(e) {
 		// 조리내용(요리순서)
 		let steps = $('#steps').find('textarea');
 		for (let i=0; i<steps.length; i++){
-			formData.append("direction", $(steps).eq(i).val());
+			formData.append("directions", $(steps).eq(i).val());
+		}
+		
+		// 태그(값 없을 경우 데이터전송 안됨)
+		let tags = $('.tag-ul').find('input');
+		for (let i=0; i<tags.length; i++){
+			formData.append("tags", $(tags).eq(i).val());
+		}
+		
+		// 공개범위
+		let btnClass = $(e).attr("class").split("-")[0];
+		let accessibility;
+
+		switch (btnClass) {
+			case 'secret':
+				accessibility = 0;
+				break;
+			case 'open':
+				accessibility = 1;
+				break;
+			case 'temp':
+				accessibility = 2;
+				break;
+		}
+		
+		formData.append("accessibility", accessibility);
+		
+		for (let key of formData.keys()){
+			console.log(key, formData.get(key));
 		}
 		
 		// 태그
@@ -509,9 +539,9 @@ function multiImgUpload(e) {
 		for (i = 0; i < hiddenInput.length; i++) {
 			formData.append("files", hiddenInput[i].files[0]);
 		}
-
+		
 		$.ajax({
-			url: "/recipe/upload",
+			url: "/recipe/register.json",
 			type: "POST",
 			enctype: "multipart/form-data",
 			processData: false,
@@ -519,11 +549,10 @@ function multiImgUpload(e) {
 			data: formData,
 			success: function (response) {
 				console.log("성공하였습니다.");
-				// console.log(response);
+				console.log(response.msg);
 			},
 			error: function (response) {
 				console.log("파일 업로드 실패");
-				// console.log(response.responseText);
 			}
 
 		});

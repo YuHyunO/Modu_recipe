@@ -135,6 +135,8 @@ public class MemberController {
 			session.setMaxInactiveInterval(1800); //1800초=세션 유효기간 30분으로 지정
 			session.setAttribute("email", memberInfo.getEmail());
 			session.setAttribute("nickname", memberInfo.getNickname());
+			session.setAttribute("profileImg", memberInfo.getProfileImg());
+			System.out.println("이미지 " + memberInfo.getProfileImg());
 			return mv; 
 		}
 	} 
