@@ -140,17 +140,6 @@ function addItem(e) {
 
 function deleteItem(e) {
 	let targetID = $(e).attr('class').split(' ')[1];
-	
-	if ($('.main-items').find('input').length === 2){
-		alert("재료는 1개 이상 등록해주세요");
-		return false;
-	}
-	
-	if ($('.sub-items').find('input').length === 2){
-		alert("재료는 1개 이상 등록해주세요");
-		return false;
-	}
-	
 	let targetItems = targetID.split('-')[0] + '-items';
 	let targetItemsChildren = $('.' + targetItems).children('.item');
 	let startNum = targetID.split('-')[1] - 1;
@@ -158,8 +147,16 @@ function deleteItem(e) {
 	let text;
 	if (targetID.split('-')[0] === 'main') {
 		text = 'main';
+		if ($('.main-items').find('input').length === 2){
+			alert("재료는 1개 이상 등록해주세요");
+			return false;
+		}
 	} else if (targetID.split('-')[0] === 'sub') {
 		text = 'sub';
+		if ($('.sub-items').find('input').length === 2){
+			alert("재료는 1개 이상 등록해주세요");
+			return false;
+		}
 	}
 	
 	$('#' + targetID).remove() // 해당 요소 삭제
@@ -408,6 +405,8 @@ function imgUpload(e) {
 function checkValue(e, text, limit){
 	if (e.val().trim().length < limit){
 		alert(text + "은(는) " + limit + "글자 이상 작성해주세요");
+		e.focus();
+		window.scrollTo({ left: e.scrollLeft(), top: e.scrollTop(), behavior: "smooth" });
 		return false;
 	} else {
 		return true;
@@ -425,6 +424,7 @@ function register(e) {
 	if (checkValue(title, "레시피 제목", 10) === false){
 		return false;	
 	};
+	
 	
 	if (checkValue(info, "레시피 소개", 20) === false){
 		return false;	
@@ -459,10 +459,8 @@ function register(e) {
 
 	for (let i=0; i<mainItemsIngredient.length; i++){
 		if (checkValue(($(mainItemsIngredient).eq(i)), "메인재료", 1) === false){
-			$(mainItemsIngredient).eq(i).focus();
 			return false;
 		} else if (checkValue(($(mainItemsQuantity).eq(i)), "메인재료 수량", 1) === false){
-			$(mainItemsQuantity).eq(i).focus();
 			return false;
 		}
 		formData.append("mainItems", $(mainItemsIngredient).eq(i).val() + '-' + $(mainItemsQuantity).eq(i).val());
@@ -473,10 +471,8 @@ function register(e) {
 	let subItemsQuantity = $('.sub-items').find('.input2');
 	for (let i=0; i<subItemsIngredient.length; i++){
 		if (checkValue(($(subItemsIngredient).eq(i)), "양념재료", 1) === false){
-			$(subItemsIngredient).eq(i).focus();
 			return false;
 		} else if (checkValue(($(subItemsQuantity).eq(i)), "양념재료 수량", 1) === false){
-			$(subItemsQuantity).eq(i).focus();
 			return false;
 		}
 		
@@ -487,7 +483,6 @@ function register(e) {
 	let steps = $('#steps').find('textarea');
 	for (let i=0; i<steps.length; i++){
 		if (checkValue(($(steps).eq(i)), "요리방법", 10) === false){
-			$(steps).eq(i).focus();
 			return false;
 		}
 		formData.append("directions", $(steps).eq(i).val());

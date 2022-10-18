@@ -116,7 +116,7 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
         for (int i=0; i<subItems.size(); i++) {
             subItem = subItems.get(i);
             ingredient.setRId(id);
-            ingredient.setIngredientType(0);
+            ingredient.setIngredientType(1);
             ingredient.setIngredient(subItem.split("-")[0]);
             ingredient.setQuantity(subItem.split("-")[1]);
             recipeMapper.insertIngredient(ingredient);
