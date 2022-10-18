@@ -236,13 +236,13 @@
 									<div
 										class="d-flex flex-column border justify-content-between addon ms-2">
 										<div>
-											<button class="step-1 border up-btn mb-1"
+											<button class="step-1 border up-btn mb-1" tabindex="-1"
 												onclick="stepUp(this)">▲</button>
-											<button class="step-1 border down-btn"
+											<button class="step-1 border down-btn" tabindex="-1"
 												onclick="stepDown(this)">▼</button>
 										</div>
 										<div>
-											<button class="step-1 border delete-btn"
+											<button class="step-1 border delete-btn" tabindex="-1"
 												onclick="stepDelete(this)">X</button>
 										</div>
 									</div>
@@ -258,7 +258,7 @@
 					<div class="recipe-tag form-bg p-4 d-flex">
 						<div class="form-label mb-1 form-title recipe-tag-title">태그</div>
 						<div class="recipe-tag-box">
-							<input name="tag" id="tag" placeholder="예) 소고기, 미역국 (최대 5개)">
+							<input name="tag" id="tag" placeholder="예) 소고기, 미역국 (최대 5개, 5글자 이내)">
 							<ul class="tag-ul d-flex p-1">
 							</ul>
 						</div>
@@ -270,7 +270,7 @@
 						name="accessibility">
 						<div class="mx-1">
 							<button type="submit" onclick="" class="secret-save btn btn-info">비공개저장</button>
-							<button type="button" onclick="RecipeCrawling(this);"
+							<button type="button" onclick="checkRegex(this);"
 								class="open-save btn btn-warning mx-3">저장 및 공개</button>
 						</div>
 						<div class="mx-1">

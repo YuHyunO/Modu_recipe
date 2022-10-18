@@ -156,4 +156,8 @@
 		select * from (select * from RECIPE order by HITS desc)
 		where ROWNUM BETWEEN #{beginRow} AND #{endRow}
 	</select>
+	<!-- 레시피 사진 업데이트 -->
+	<update id="updateRecipePhoto" parameterType="Recipe">
+		update RECIPE set FOOD_PHOTO=#{foodPhoto} where ID=#{id}
+	</update>
 </mapper>

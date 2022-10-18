@@ -36,8 +36,4 @@ public interface RecipeRegisterService {
 	List<RecipeReplyList> findRecipeReply(long id);
 	void delete(long id);
 	String registerNestedReply(RecipeNestedReply recipeNestedReply);
-
-    void registerRecipe(HttpServletRequest request, HttpSession session, ArrayList<MultipartFile> files,
-            ArrayList<String> mainItems, ArrayList<String> subItems, ArrayList<String> directions);
-
 }
