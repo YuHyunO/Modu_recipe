@@ -222,7 +222,7 @@
 								<div class="d-flex px-0">
 									<div class="col-9 px-0">
 										<textarea name="direction" id="step-1-text"
-											class="form-control step-textarea"
+											class="form-control step-textarea" onkeyup="checkByte(this, '100')"
 											placeholder="예) 닭이 잠길정도로 물을 넣고 손질한 닭을 끓여주세요" rows="5"></textarea>
 									</div>
 									<div class="step-photo-cover pointer">
@@ -270,7 +270,7 @@
 						name="accessibility">
 						<div class="mx-1">
 							<button type="submit" onclick="" class="secret-save btn btn-info">비공개저장</button>
-							<button type="button" onclick="doSubmit(this);"
+							<button type="button" onclick="RecipeCrawling(this);"
 								class="open-save btn btn-warning mx-3">저장 및 공개</button>
 						</div>
 						<div class="mx-1">
