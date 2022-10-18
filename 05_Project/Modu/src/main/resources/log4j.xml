@@ -12,7 +12,7 @@
 	
 	<!-- Application Loggers -->
 	<logger name="com.modu.controller">
-		<level value="ERROR" />
+		<level value="info" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
