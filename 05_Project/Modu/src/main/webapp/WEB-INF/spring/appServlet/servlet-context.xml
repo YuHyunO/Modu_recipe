@@ -35,12 +35,10 @@
 	</beans:bean>
 	
 	<!-- 파일 다운로드 -->
-	<!-- 
 	<beans:bean id="fileDownloadView" class="com.modu.fileset.FileDownloadView" />
 	<beans:bean id="fileViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<beans:property name="order" value="0" />
 	</beans:bean>
-	 -->
 	<context:component-scan base-package="com.modu.controller" />
 
 </beans:beans>

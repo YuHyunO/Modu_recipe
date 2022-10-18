@@ -7,4 +7,5 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface FileUploadService {
 	String[] saveImgFile(MultipartFile file, String path, ArrayList<String> fileInfoList);
+	String saveStore(MultipartFile file);
 }
