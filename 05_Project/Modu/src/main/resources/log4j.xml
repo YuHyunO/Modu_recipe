@@ -10,6 +10,7 @@
 		</layout>
 	</appender>
 	
+	<!-- 2022.10.18 로깅 레벨 ERROR로 변경함. 콘솔창이 복잡해서. by 오유현 -->
 	<!-- Application Loggers -->
 	<logger name="com.modu.controller">
 		<level value="ERROR" />
