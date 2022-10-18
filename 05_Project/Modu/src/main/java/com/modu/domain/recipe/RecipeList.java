@@ -8,13 +8,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class RecipeList {
-	private long id;
-	private String foodPhoto;
-	private String title;
-	private String food;
-	private String info;
-	private long hits;
-	private int star;
-	private String mNickname;
-	private String profileImg;
+    private long id;
+    private String foodPhoto;
+    private String title;
+    private String food;
+    private String profileImg;
+    private String mNickname;
+    private String mEmail;
+    private double star;
+    private int stars;
+    private long hits;
 }

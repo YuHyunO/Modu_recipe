@@ -1,7 +1,6 @@
 package com.modu.domain.recipe;
 
 import java.sql.Date;
-import java.util.ArrayList;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
