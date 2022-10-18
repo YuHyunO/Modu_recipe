@@ -5,7 +5,7 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/views/common/head.jsp"%>
-<!-- 공통 부분 END -->
+<!-- 공통 부분 END. -->
 <link href="/css/recipe-list.css" rel="stylesheet">
 <script src="/js/recipe-list.js"></script>
 

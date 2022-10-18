@@ -12,7 +12,7 @@ $(document).ready(function() {
 	});
 
 $(function(e){
-    // 랜덤추천 컬러 변경
+    //  랜덤추천 컬러 변경
     function randomColor(){
         let r_color = Math.floor(Math.random() * 255);
         let g_color = Math.floor(Math.random() * 255);

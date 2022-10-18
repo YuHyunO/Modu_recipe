@@ -10,7 +10,7 @@ import com.modu.domain.recipe.Ingredient;
 import com.modu.domain.recipe.Recipe;
 import com.modu.domain.recipe.RecipeList;
 import com.modu.domain.recipe.RecipeTag;
-
+ 
 public interface RecipeMapper {
 	/* *Required : The four methods below are an unit. And the calling order must be kept. */
     int insertRecipe(Recipe recipe);

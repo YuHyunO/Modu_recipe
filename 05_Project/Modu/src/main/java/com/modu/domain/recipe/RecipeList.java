@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Data 
 public class RecipeList {
     private long id;
     private String foodPhoto;

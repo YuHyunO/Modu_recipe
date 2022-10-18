@@ -18,7 +18,7 @@
 							SERVING,
 							COOK_TIME,
 							DIFFICULTY_LEVEL,
-							<!-- 공개, 비공개, 임시저장을 위해 xml파일에 추가 domain과 sql에는 있음. -->
+							<!-- 공개, 비공개, 임시저장을 위해 xml파일에 추가 domain과 sql에는 있음.  -->
 							ACCESSIBILITY) values(RECIPE_SEQ.nextval,
 								  					 #{mEmail},
 								  					 #{mNickname},

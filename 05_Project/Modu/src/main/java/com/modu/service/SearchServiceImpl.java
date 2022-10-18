@@ -19,7 +19,7 @@ import com.modu.mapper.RecipeMapper;
 public class SearchServiceImpl implements SearchService {
 	@Autowired
 	private RecipeMapper recipeMapper;
-	
+
 	@Override
 	public RecipeListVo searchRecipe(HttpServletRequest request, HttpSession session) {
 		int currentPage = 1;
