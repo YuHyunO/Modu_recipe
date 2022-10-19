@@ -206,13 +206,13 @@
 												class="post-date px-2">${board.board.postDate}</span>
 										</div>
 										<c:if test="${sessionScope.email == board.board.MEmail}">
-											<div class="">
+											<div class="d-flex">
 												<a href="update.do?id=${board.board.id}"><button class="btn-fix">수정</button></a>
 												<button class="btn-del" onclick="deleteCheck()">삭제</button>
 											</div>
 										</c:if>
 										<c:if test="${sessionScope.email != board.board.MEmail}">
-											<div class="" style="display: none;">
+											<div class="d-flex" style="display: none;">
 												<a href="update.do?id=${board.board.id}"><button class="btn-fix">수정</button></a>
 												<button class="btn-del" onclick="deleteCheck()">삭제</button>
 											</div>

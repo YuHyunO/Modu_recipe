@@ -138,12 +138,12 @@
 /* mobile size */
 @media ( max-width :454px) {
 	.logo {
+		height: 45px;
 		z-index: 100;
 	}
-	
 	.p-title {
-    	padding: 0.25rem !important;
-    }
+		padding: 0.25rem !important;
+	}
 }
 
 /* 레시피 카드 부분 */
@@ -200,25 +200,18 @@
 	}
 }
 
-@media
-(
-max-width
-:454px)
-{
-.recipe-title {
-	font-size: 1rem !important;
-	height: 60px !important;
-	margin-bottom: 5px !important;
-}
-
-.profile {
-	margin-bottom: 5px !important;
-}
-
-.recipe-desc {
-	height: 165px;
-}
-
+@media ( max-width :454px) {
+	.recipe-title {
+		font-size: 1rem !important;
+		height: 60px !important;
+		margin-bottom: 5px !important;
+	}
+	.profile {
+		margin-bottom: 5px !important;
+	}
+	.recipe-desc {
+		height: 165px;
+	}
 }
 
 /* 페이지네이션 */
@@ -241,10 +234,10 @@ max-width
 
 /* 포인트 커서 */
 .pointer {
-	cursor: pointer !important;	
+	cursor: pointer !important;
 }
 
 /* 이미지 100% */
-.ratio-100 {
-	--bs-aspect-ratio: 100% !important;
+.ratio-100 { -
+	-bs-aspect-ratio: 100% !important;
 }

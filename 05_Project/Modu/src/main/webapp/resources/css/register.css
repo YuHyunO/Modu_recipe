@@ -69,14 +69,14 @@
 .email_ajax_1 {
 	display: none;
 	font-size: 12px;
-	color: rgb(147, 112, 98);
+	color: green;
 	text-align: right;
 }
 
 .email_ajax_2, .email_ajax_3 {
 	display: none;
 	font-size: 12px;
-	color: green;
+	color: #ad0404;
 	text-align: right;
 }
 
@@ -84,14 +84,14 @@
 .nickname_ajax_1 {
 	display: none;
 	font-size: 12px;
-	color: rgb(147, 112, 98);
+	color: green;
 	text-align: right;
 }
 
 .nickname_ajax_2, .nickname_ajax_3 {
 	display: none;
 	font-size: 12px;
-	color: green;
+	color: #ad0404;
 	text-align: right;
 }
 
