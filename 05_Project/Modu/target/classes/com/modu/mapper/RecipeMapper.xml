@@ -18,7 +18,7 @@
 							SERVING,
 							COOK_TIME,
 							DIFFICULTY_LEVEL,
-							<!-- 공개, 비공개, 임시저장을 위해 xml파일에 추가 domain과 sql에는 있음. -->
+							<!-- 공개, 비공개, 임시저장을 위해 xml파일에 추가 domain과 sql에는 있음.  -->
 							ACCESSIBILITY) values(RECIPE_SEQ.nextval,
 								  					 #{mEmail},
 								  					 #{mNickname},
@@ -49,8 +49,8 @@
 									 #{rId},
 									 #{step},
 									 #{direction},
-									 #{originalFile, jdbcType=VARCHAR},
-									 #{saveFile, jdbcType=VARCHAR})
+									 #{originalFile},
+									 #{saveFile})
 	</insert>
 	<insert id="insertTag" parameterType="RecipeTag">
 		insert into RECIPE_TAG values(TAG_SEQ.nextval,
@@ -125,35 +125,289 @@
 		                      ID,
 		                      FOOD_PHOTO,
 		                      TITLE,
-		                      FOOD,
-		                      INFO,
-		                      HITS,
-		                      STAR,
+		                      FOOD,                
+		                      PROFILE_IMG,
 		                      M_NICKNAME,
-		                      PROFILE_IMG from RECIPE)
+		                      M_EMAIL,
+		                      STAR,
+		                      STARS,
+		                      HITS from RECIPE order by ID desc)
 		where list BETWEEN #{beginRow} AND #{endRow}
 	</select>
-	<!-- <select id="selectRecipeListByType" resultType="RecipeList">
+	<select id="selectRecipeListByPeriod" resultType="RecipeList">
 		select * from (select ROWNUM list,
 		                      ID,
 		                      FOOD_PHOTO,
 		                      TITLE,
-		                      FOOD,
-		                      INFO,
-		                      HITS,
-		                      STAR,
+		                      FOOD,                
+		                      PROFILE_IMG,
 		                      M_NICKNAME,
-		                      PROFILE_IMG from RECIPE
-		               where SORT LIKE #{sort} AND INGREDIENT LIKE #{ingredient})
-		where list BETWEEN 1 AND 10	
-	</select> -->
-	<select id="selectRecipeCount" resultType="int">
-		select NVL(MAX(ROWNUM), 0) from RECIPE
+		                      M_EMAIL,
+		                      STAR,
+		                      STARS,
+		                      HITS from RECIPE
+		                where POST_DATE BETWEEN <![CDATA[CURRENT_DATE-#{period}]]> AND CURRENT_DATE order by ID desc)
+		where list BETWEEN #{beginRow} AND #{endRow}	
+	</select>
+	<select id="selectRecipeListByCategory" resultType="RecipeList">
+		<choose>
+			<when test="period != 0">
+				<![CDATA[
+				select * from (select ROWNUM list,
+				                      ID,
+				                      FOOD_PHOTO,
+				                      title, 
+				                      FOOD, 
+				                      PROFILE_IMG,
+				                      M_NICKNAME,
+				                      M_EMAIL,
+				                      STAR,
+				                      STARS,
+				                      HITS from (select * from RECIPE where POST_DATE BETWEEN CURRENT_DATE-#{period} AND CURRENT_DATE
+				                                 intersect
+				                                 select * from RECIPE where SORT like '%'||#{category}||'%' OR INGREDIENT like '%'||#{category}||'%')
+				                      order by ID desc)
+				where list BETWEEN #{beginRow} AND #{endRow}
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				select * from (select ROWNUM list,
+				                      ID,
+				                      FOOD_PHOTO,
+				                      title, 
+				                      FOOD, 
+				                      PROFILE_IMG,
+				                      M_NICKNAME,
+				                      M_EMAIL,
+				                      STAR,
+				                      STARS,
+				                      HITS from (select * from RECIPE where SORT like '%'||#{category}||'%' OR INGREDIENT like '%'||#{category}||'%')
+				                      order by ID desc)
+				where list BETWEEN #{beginRow} AND #{endRow}
+				]]>			
+			</otherwise>
+		</choose>
+	</select>
+	<select id="selectRecipeListByKeyword" resultType="RecipeList">
+		<choose>
+			<when test="period != 0">
+				<![CDATA[
+				select * from (select ROWNUM list,
+				                      ID,
+				                      FOOD_PHOTO,
+				                      title, 
+				                      FOOD, 
+				                      PROFILE_IMG,
+				                      M_NICKNAME,
+				                      M_EMAIL,
+				                      STAR,
+				                      STARS,
+				                      HITS from (select * from RECIPE where POST_DATE BETWEEN CURRENT_DATE-#{period} AND CURRENT_DATE
+				                                 intersect
+				                                 select * from RECIPE where ${nameOption} like '%'||#{keyword}||'%')
+				                      order by ID desc)
+				where list BETWEEN #{beginRow} AND #{endRow}
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				select * from (select ROWNUM list,
+				                      ID,
+				                      FOOD_PHOTO,
+				                      title, 
+				                      FOOD, 
+				                      PROFILE_IMG,
+				                      M_NICKNAME,
+				                      M_EMAIL,
+				                      STAR,
+				                      STARS,
+				                      HITS from (select * from RECIPE where ${nameOption} like '%'||#{keyword}||'%')
+				                order by ID desc)
+				where list BETWEEN #{beginRow} AND #{endRow}
+				]]>				
+			</otherwise>
+		</choose>
+	</select>
+	<select id="selectRecipeListByIngredient" resultType="RecipeList">
+		<choose>
+			<when test="period != 0">
+				<![CDATA[
+				select * from (select ROWNUM list,
+				                      ID,
+				                      FOOD_PHOTO,
+				                      TITLE, 
+				                      FOOD, 
+				                      PROFILE_IMG,
+				                      M_NICKNAME,
+				                      M_EMAIL,
+				                      STAR,
+				                      STARS,
+				                      HITS from (select ID,
+									                    FOOD_PHOTO,
+									                    TITLE, 
+									                    FOOD, 
+									                    PROFILE_IMG,
+									                    M_NICKNAME,
+									                    M_EMAIL,
+									                    STAR,
+									                    STARS,
+									                    HITS from RECIPE where POST_DATE BETWEEN CURRENT_DATE-#{period} AND CURRENT_DATE
+				                                 intersect
+												 select DISTINCT(r.ID) ID,
+												        r.FOOD_PHOTO, 
+												        r.TITLE,
+												        r.FOOD,
+												        r.PROFILE_IMG,
+												        r.M_NICKNAME,
+												        r.M_EMAIL,
+												        r.STAR,
+												        r.STARS,
+												        r.HITS from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID where ingr.INGREDIENT like '%'||#{keyword}||'%')
+								      order by ID desc)
+				where list BETWEEN #{beginRow} AND #{endRow}
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				select * from (select ROWNUM list,
+				                      ID,
+				                      FOOD_PHOTO,
+				                      TITLE, 
+				                      FOOD, 
+				                      PROFILE_IMG,
+				                      M_NICKNAME,
+				                      M_EMAIL,
+				                      STAR,
+				                      STARS,
+				                      HITS from (select DISTINCT(r.ID) ID,
+												        r.FOOD_PHOTO, 
+												        r.TITLE,
+												        r.FOOD,
+												        r.PROFILE_IMG,
+												        r.M_NICKNAME,
+												        r.M_EMAIL,
+												        r.STAR,
+												        r.STARS,
+												        r.HITS from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID where ingr.INGREDIENT like '%'||#{keyword}||'%')
+								      order by ID desc)
+				where list BETWEEN #{beginRow} AND #{endRow}
+				]]>				
+			</otherwise>
+		</choose>						
+	</select>
+	<select id="selectRecipeListByRandom" resultType="RecipeList">
+		select * from (select ID,
+		                      FOOD_PHOTO,
+		                      TITLE, 
+		                      FOOD, 
+		                      PROFILE_IMG,
+		                      M_NICKNAME,
+		                      M_EMAIL,
+		                      STAR,
+		                      STARS,
+		                      HITS from RECIPE
+		               order by DBMS_RANDOM.RANDOM)
+		where ROWNUM BETWEEN #{beginRow} AND #{endRow}	
+	</select>
+	<select id="selectRecipeListByIngredients" resultType="RecipeList">
+		select * from (select ROWNUM list,
+				              ID,
+				              FOOD_PHOTO,
+				              TITLE, 
+				              FOOD, 
+				              PROFILE_IMG,
+				              M_NICKNAME,
+				              M_EMAIL,
+				              STAR,
+				              STARS,
+				              HITS from (select DISTINCT(r.ID) ID,
+										        r.FOOD_PHOTO, 
+										        r.TITLE,
+										        r.FOOD,
+										        r.PROFILE_IMG,
+										        r.M_NICKNAME,
+										        r.M_EMAIL,
+										        r.STAR,
+										        r.STARS,
+										        r.HITS from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID where ingr.INGREDIENT like '%재료1%'
+				                         intersect
+				                         select DISTINCT(r.ID) ID,
+										        r.FOOD_PHOTO, 
+										        r.TITLE,
+										        r.FOOD,
+										        r.PROFILE_IMG,
+										        r.M_NICKNAME,
+										        r.M_EMAIL,
+										        r.STAR,
+										        r.STARS,
+										        r.HITS from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID where ingr.INGREDIENT like '%재료2%')
+		where list BETWEEN #{beginRow} AND #{endRow}         		              		            
 	</select>
 	
+	
+	
+	<select id="selectRecipeCount" resultType="int">
+		select NVL(MAX(ROWNUM), 0) from RECIPE
+	</select>	
+	<select id="selectRecipeCountByPeriod" parameterType="int" resultType="int">
+		select NVL(MAX(ROWNUM), 0) from RECIPE where POST_DATE BETWEEN <![CDATA[CURRENT_DATE-#{period}]]> AND CURRENT_DATE	
+	</select>
+	<select id="selectRecipeCountByCategory" resultType="int">
+		<choose>
+			<when test="period != 0">
+				<![CDATA[
+				select NVL(MAX(ROWNUM), 0) from (select * from RECIPE where POST_DATE BETWEEN CURRENT_DATE-#{period} AND CURRENT_DATE
+								                 intersect
+				                                 select * from RECIPE where SORT like '%'||#{category}||'%' OR INGREDIENT like '%'||#{category}||'%')
+				]]>
+			</when>
+			<otherwise>
+				select NVL(MAX(ROWNUM), 0) from (select * from RECIPE where SORT like '%'||#{category}||'%' OR INGREDIENT like '%'||#{category}||'%')
+			</otherwise>		
+		</choose>	
+	</select>
+	<select id="selectRecipeCountByKeyword" resultType="int">
+		<choose>
+			<when test="period != 0">
+				<![CDATA[
+				select NVL(MAX(ROWNUM), 0) from (select * from RECIPE where POST_DATE BETWEEN CURRENT_DATE-#{period} AND CURRENT_DATE
+				                                 intersect
+				                                 select * from RECIPE where ${nameOption} like '%'||#{keyword}||'%')
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				select NVL(MAX(ROWNUM), 0) from (select * from RECIPE where ${nameOption} like '%'||#{keyword}||'%')
+				]]>				
+			</otherwise>
+		</choose>		
+	</select>
+	<select id="selectRecipeCountByIngredient" resultType="int">
+		<choose>
+			<when test="period != 0">
+				<![CDATA[
+				select NVL(MAX(ROWNUM), 0) from (select ID from RECIPE where POST_DATE BETWEEN CURRENT_DATE-#{period} AND CURRENT_DATE
+				                                 intersect
+												 select DISTINCT(r.ID) ID from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID
+												 where ingr.INGREDIENT like '%'||#{keyword}||'%')
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				select NVL(MAX(ROWNUM), 0) from (select DISTINCT(r.ID) from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID
+											     where ingr.INGREDIENT like '%'||#{keyword}||'%')
+				]]>				
+			</otherwise>
+		</choose>		
+	</select>
 	<!-- 베스트 레시피 -->
 	<select id="selectRecipeListByBestHits" parameterType="long" resultType="RecipeList">
 		select * from (select * from RECIPE order by HITS desc)
 		where ROWNUM BETWEEN #{beginRow} AND #{endRow}
 	</select>
+	<!-- 레시피 사진 업데이트 -->
+	<update id="updateRecipePhoto" parameterType="Recipe">
+		update RECIPE set FOOD_PHOTO=#{foodPhoto} where ID=#{id}
+	</update>
 </mapper>

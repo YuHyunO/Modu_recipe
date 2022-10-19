@@ -116,7 +116,7 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
         for (int i=0; i<subItems.size(); i++) {
             subItem = subItems.get(i);
             ingredient.setRId(id);
-            ingredient.setIngredientType(0);
+            ingredient.setIngredientType(1);
             ingredient.setIngredient(subItem.split("-")[0]);
             ingredient.setQuantity(subItem.split("-")[1]);
             recipeMapper.insertIngredient(ingredient);
@@ -135,8 +135,10 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
             if (ofname != null) ofname = ofname.trim();
             if (ofname.length() != 0) {
                 if (num == 0) {
-                    String url = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + id + "\\", fileInfoList)[0];
-                    log.info("#url: " + url);
+                    String[] urlAndName = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + id + "\\", fileInfoList);
+                    log.info("#url: " + urlAndName[0]);
+                    recipe.setFoodPhoto(urlAndName[1]);
+                    recipeMapper.updateRecipePhoto(recipe);
                 } else if(num >= directions.size()) { // 조리순서 사이즈 -1까지만 GET 해야 인덱스 에러가 발생하지 않음 
                 } else {
                     String[] urlAndName = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + id + "\\", fileInfoList);                
@@ -194,13 +196,4 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
 		System.out.println("#registerNestedReply: " + result);
 		return result;
 	}
-
-    @Override
-    public void registerRecipe(HttpServletRequest request, HttpSession session, ArrayList<MultipartFile> files,
-            ArrayList<String> mainItems, ArrayList<String> subItems, ArrayList<String> directions) {
-        // TODO Auto-generated method stub
-        
-    }
-
-	
 }

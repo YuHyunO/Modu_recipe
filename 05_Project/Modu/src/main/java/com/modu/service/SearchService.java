@@ -1,5 +1,13 @@
 package com.modu.service;
 
-public interface SearchService {
+import java.util.List;
+ 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import com.modu.domain.recipe.RecipeListVo;
+
+public interface SearchService {
+	RecipeListVo searchRecipe(HttpServletRequest request, HttpSession session);
+	RecipeListVo searchRecipeByIngredient(HttpServletRequest request, HttpSession session);
 }
