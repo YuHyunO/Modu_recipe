@@ -252,7 +252,7 @@ function addStep(e) {
 			+ newNum
 			+ '</div>\
                 <div class="d-flex px-0">\
-                    <div class="col-10 px-0">\
+                    <div class="col-9 px-0">\
                         <textarea name="direction" id="step-'
 			+ newNum
 			+ '-text" class="form-control step-textarea" onkeyup="checkByte(this, 50)" placeholder="예) '
