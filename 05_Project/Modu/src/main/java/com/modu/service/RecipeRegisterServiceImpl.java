@@ -66,7 +66,7 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
             ArrayList<String> subItems,
             ArrayList<String> directions,
             ArrayList<String> tags) {
-		
+	    
 	    // 데이터 확인
 	    log.info("#registerRecipe email: " + (String)session.getAttribute("email"));
         log.info("#registerRecipe nickname: " + (String)session.getAttribute("nickname"));
@@ -138,19 +138,21 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
                     String[] urlAndName = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + id + "\\", fileInfoList);
                     log.info("#url: " + urlAndName[0]);
                     recipe.setFoodPhoto(urlAndName[1]);
-                    recipeMapper.updateRecipePhoto(recipe);
-                } else if(num >= directions.size()) { // 조리순서 사이즈 -1까지만 GET 해야 인덱스 에러가 발생하지 않음 
+                    recipeMapper.updateRecipePhoto(recipe); 
                 } else {
-                    String[] urlAndName = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + id + "\\", fileInfoList);                
-                    log.info("#url: " + urlAndName[0]);
-                    content = directions.get(num);
-                    direction.setRId(id);
-                    direction.setDirection(content);
-                    direction.setStep(step + num);
-                    direction.setOriginalFile(ofname);
-                    direction.setSaveFile(urlAndName[1]);
-                    recipeMapper.insertDirection(direction);
-                    log.info("#registerRecipe direction: " + direction);
+                    if(num > directions.size()) {
+                    } else {
+                        String[] urlAndName = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + id + "\\", fileInfoList);                
+                        log.info("#url: " + urlAndName[0]);
+                        content = directions.get(step - 1);
+                        direction.setRId(id);
+                        direction.setDirection(content);
+                        direction.setStep(step-1 + num);
+                        direction.setOriginalFile(ofname);
+                        direction.setSaveFile(urlAndName[1]);
+                        recipeMapper.insertDirection(direction);
+                        log.info("#registerRecipe direction: " + direction);
+                    }
                 }
             }
             num += 1;

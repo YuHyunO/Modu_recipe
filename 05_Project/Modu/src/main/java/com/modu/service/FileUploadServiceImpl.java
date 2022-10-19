@@ -34,8 +34,11 @@ public class FileUploadServiceImpl implements FileUploadService {
 			sb.append(ms);
 			sb.append(ext);
 		} else {
-			sb.append(fileInfoList.get(0));
-			sb.append("-");
+		    if (fileInfoList.get(0).equals("STEP-0")) {
+		    } else {
+		        sb.append(fileInfoList.get(0));
+		        sb.append("-");
+		    }
 			sb.append(ofheader);
 			sb.append("_");
 			sb.append(ms);
