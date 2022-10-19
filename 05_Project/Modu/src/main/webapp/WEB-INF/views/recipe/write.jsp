@@ -218,7 +218,7 @@
 							<div id="step-1" class="pb-3 step">
 								<div class="form-label fw-bold step-text mb-0 px-1" name="step">STEP 1</div>
 								<div class="d-flex px-0">
-									<div class="col-9 px-0">
+									<div class="col-10 px-0">
 										<textarea name="direction" id="step-1-text" class="form-control step-textarea" onkeyup="checkByte(this, '100')"
 											placeholder="예) 닭이 잠길정도로 물을 넣고 손질한 닭을 끓여주세요" rows="5"></textarea>
 									</div>

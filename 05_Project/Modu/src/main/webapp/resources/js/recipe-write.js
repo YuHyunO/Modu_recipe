@@ -24,7 +24,7 @@ $(function () {
 	$('#tag').keyup(
 		function (e) {
 			// 태그 정규식표현 로직
-			let tagsRegex = /[^a-z|A-Z|ㄱ-ㅎ|가-힣|\,]/g;
+			let tagsRegex = /[^a-z|A-Z|ㄱ-ㅎ|가-힣|\,/\s]/g;
 			
 			if(!tagsRegex.test(tag.val())){
 				// 엔터, 쉼표, 스페이스 바 입력 시
@@ -70,7 +70,6 @@ $(function () {
 			}
 			
 			// 태그 갯수 체크
-			console.log($('.tag-ul').find('li').length);
 			if($('.tag-ul').find('li').length === 0){
 				tag.parent().find('.warning-text').text("*태그를 1개 이상 등록해주세요");
 			} else {
@@ -93,7 +92,7 @@ $(function () {
 		}
 		
 		if (!regex.test($(this).val()) && !regex.test($(this).val())) {
-			console.log("정규식 통과");
+			//console.log("정규식 통과");
 		}else {
 			alert(text);
 		}
@@ -253,7 +252,7 @@ function addStep(e) {
 			+ newNum
 			+ '</div>\
                 <div class="d-flex px-0">\
-                    <div class="col-9 px-0">\
+                    <div class="col-10 px-0">\
                         <textarea name="direction" id="step-'
 			+ newNum
 			+ '-text" class="form-control step-textarea" onkeyup="checkByte(this, 50)" placeholder="예) '
@@ -414,7 +413,7 @@ function stepDelete(e) {
 	let startNum = currentID.split('-')[1] - 1;
 	let endNum = $('#steps').children('.step').length;
 	let targetChildren = $('#steps').children('.step');
-	console.log("시작번호: ", startNum, "끝번호: ", endNum, "자식들: ", targetChildren)
+	//console.log("시작번호: ", startNum, "끝번호: ", endNum, "자식들: ", targetChildren)
 	$(currentID).remove();
 	for (let i = endNum; i > startNum; i--) {
 		targetChildren.eq(i).children('.step-text').text('STEP ' + i);
@@ -432,12 +431,10 @@ function stepDelete(e) {
 	}
 }
 
-
 function fileUpButton(e) {
 	let hiddenInput = $(e).parent().find('input');
 	hiddenInput.click();
 }
-
 
 function imgUpload(e) {
 	let files = $(e)[0].files;
@@ -446,9 +443,6 @@ function imgUpload(e) {
 
 	let formData = new FormData();
 	formData.append("file", files[0]);
-	for (let pair of formData.entries()) {
-		console.log(pair[0] + ', ' + pair[1]);
-	}
 
 	filesArr.forEach(function (f) {
 		if (!f.type.match(regex)) {
@@ -597,8 +591,7 @@ function register(e) {
 	formData.append("accessibility", accessibility);
 	
 	for (let key of formData.keys()){
-		console.log(key, formData.get(key));
-
+		//console.log(key, formData.get(key));
 	}
 	
 	// 이미지 파일
@@ -629,7 +622,7 @@ function register(e) {
 			}
 		},
 		error: function (response) {
-			console.log("파일 업로드 실패");
+			alert("레시피 등록을 실패 했습니다.");
 		}
 	});
 }
