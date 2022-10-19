@@ -171,7 +171,7 @@ ul {
     }
 
     #main input::placeholder , #main textarea::placeholder {
-        font-size: 0.6rem !important;
+        font-size: 0.8rem !important;
     }
     
     .main-photo, .main-intro {
@@ -193,7 +193,7 @@ ul {
     }
     
     .recipe-tag-box input {
-	    width: 200px;
+	    width: 230px;
 	}
     
     .ingredient-cover {
@@ -209,7 +209,7 @@ ul {
     }
     
     .btn {
-        font-size: 0.5rem;
+        font-size: 0.8rem;
     }
     
     .cooking-step img {
@@ -255,7 +255,7 @@ ul {
     .addon button {
         height: 25px !important;
         width: 25px !important;
-        font-size: 0.3rem;
+        font-size: 0.8rem;
     }
     
     .up-btn {
@@ -267,11 +267,11 @@ ul {
     }
     
     .tag-ul li, #tag, .form-select {
-        font-size: 0.5rem !important;
+        font-size: 0.8rem !important;
     }
     
     .warning-text {
-    	font-size: 0.6rem !important;
+    	font-size: 0.8rem !important;
     	color: #ad0404;
     	min-height: 15px;
     }
@@ -296,7 +296,7 @@ ul {
 	}
 	
 	.open-range-box select {
-		width: 100px !important;
+		width: 110px !important;
 	}
 }
 
