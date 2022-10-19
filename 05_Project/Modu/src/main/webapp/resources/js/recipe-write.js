@@ -156,11 +156,11 @@ function addItem(e) {
             <input type="text" class="ingredient-'
 			+ newNum + ' form-control input1" placeholder="예) '
 			+ items[newNum - 1]
-			+ '">\
+			+ '" >\
             <input type="text" class="quantity-'
 			+ newNum + ' form-control input2 mx-2" placeholder="예) '
 			+ quantities[newNum - 1]
-			+ '">\
+			+ '" >\
             <button class="minus ' + text + '-'
 			+ newNum
 			+ '" onclick="deleteItem(this)" tabindex="-1"></button>\
@@ -411,10 +411,12 @@ function stepDelete(e) {
 	}
 }
 
+
 function fileUpButton(e) {
 	let hiddenInput = $(e).parent().find('input');
 	hiddenInput.click();
 }
+
 
 function imgUpload(e) {
 	let files = $(e)[0].files;
@@ -575,6 +577,7 @@ function register(e) {
 	
 	for (let key of formData.keys()){
 		console.log(key, formData.get(key));
+
 	}
 	
 	// 이미지 파일
@@ -610,6 +613,7 @@ function register(e) {
 	});
 }
 
+
 // 초기값 체크
 function checkData(e) {
 	let sort = $("#sort");
@@ -631,6 +635,7 @@ function checkData(e) {
 		if(textList.includes(object.val())){
 			alert(object.val() + " 선택이 안되어있습니다.");
 			object.focus();
+
 			return false;
 		}
 	}
