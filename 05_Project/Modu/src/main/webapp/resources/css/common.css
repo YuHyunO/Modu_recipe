@@ -140,6 +140,10 @@
 	.logo {
 		z-index: 100;
 	}
+	
+	.p-title {
+    	padding: 0.25rem !important;
+    }
 }
 
 /* 레시피 카드 부분 */
@@ -238,4 +242,9 @@ max-width
 /* 포인트 커서 */
 .pointer {
 	cursor: pointer !important;	
+}
+
+/* 이미지 100% */
+.ratio-100 {
+	--bs-aspect-ratio: 100% !important;
 }

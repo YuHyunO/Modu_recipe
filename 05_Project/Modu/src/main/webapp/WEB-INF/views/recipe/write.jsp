@@ -9,7 +9,6 @@
 <link href="/css/recipe-write.css" rel="stylesheet">
 <script src="/js/recipe-write.js"></script>
 
-
 <title>모두의 식탁 - 레시피 등록</title>
 
 </head>
@@ -41,21 +40,21 @@
 							<div class="main-photo col-4 pointer">
 								<input type="file" class="hidden-input main"
 									onchange="imgUpload(this)" />
-								<div class="text-center" onclick="fileUpButton(this)">
+								<div class="text-center ratio ratio-100" onclick="fileUpButton(this)">
 									<img class="w-100 rounded-3 food_photo"
 										src="/imgs/no-image.jpg">
 								</div>
 							</div>
 							<div class="main-intro col-8">
 								<div class="cooking-title pb-3">
-									<label for="food" class="form-label mb-1 form-title">음식
-										이름</label> <input class="form-control" type="text" name="food"
-										placeholder="예) 닭볶음탕">
+									<label for="food" class="form-label mb-1 form-title">음식이름</label> 
+									<input class="form-control" type="text" name="food" placeholder="예) 닭볶음탕">
+									
 								</div>
 								<div class="cooking-title pb-3">
-									<label for="title" class="form-label mb-1 form-title">레시피
-										제목</label> <input class="form-control" type="text" name="title"
-										placeholder="예) 닭볶음탕 황금 레시피">
+									<label for="title" class="form-label mb-1 form-title">레시피제목</label> 
+									<input class="form-control" type="text" name="title" placeholder="예) 닭볶음탕 황금 레시피">
+									<p class="warning-text m-1">*10글자 이상 작성해주세요</p>
 								</div>
 							</div>
 						</div>
@@ -64,8 +63,8 @@
 					<div class="cooking-introduce form-bg px-4">
 						<label for="info" class="form-label mb-1 form-title">레시피
 							소개</label>
-						<textarea class="form-control" id="info" name="info" rows=5
-							placeholder="레시피에 대한 소개글을 써주세요"></textarea>
+						<textarea class="form-control" id="info" name="info" rows=5 placeholder="레시피에 대한 소개글을 써주세요"></textarea>
+						<p class="warning-text m-1">*20글자 이상 작성해주세요</p>
 					</div>
 					<!-- end cooking-introduce 레시피소개 -->
 					<div class="category p-4 form-bg">
@@ -217,66 +216,65 @@
 						<label class="form-label mb-1 form-title">요리순서</label>
 						<div class="row" id="steps">
 							<div id="step-1" class="pb-3 step">
-								<div class="form-label fw-bold step-text mb-0 px-1" name="setp">STEP
-									1</div>
+								<div class="form-label fw-bold step-text mb-0 px-1" name="step">STEP 1</div>
 								<div class="d-flex px-0">
 									<div class="col-9 px-0">
-										<textarea name="direction" id="step-1-text"
-											class="form-control step-textarea" onkeyup="checkByte(this, '100')"
+										<textarea name="direction" id="step-1-text" class="form-control step-textarea" onkeyup="checkByte(this, '100')"
 											placeholder="예) 닭이 잠길정도로 물을 넣고 손질한 닭을 끓여주세요" rows="5"></textarea>
 									</div>
 									<div class="step-photo-cover pointer">
-										<input type="file" class="hidden-input step-1"
-											onchange="imgUpload(this)" />
+										<input type="file" class="hidden-input step-1" onchange="imgUpload(this)" />
 										<div id="step-1-photo" onclick="fileUpButton(this)">
-											<img class="border step-photo" name="saveFile"
-												src="/imgs/pic_none.gif">
+											<img class="border step-photo" name="saveFile" src="/imgs/pic_none.gif">
 										</div>
 									</div>
 									<div
 										class="d-flex flex-column border justify-content-between addon ms-2">
-										<div>
-											<button class="step-1 border up-btn mb-1" tabindex="-1"
-												onclick="stepUp(this)">▲</button>
-											<button class="step-1 border down-btn" tabindex="-1"
-												onclick="stepDown(this)">▼</button>
+										<div class="d-flex flex-column">
+											<button class="step-1 border up-btn mb-1" tabindex="-1" onclick="stepUp(this)">▲</button>
+											<button class="step-1 border down-btn" tabindex="-1" onclick="stepDown(this)">▼</button>
 										</div>
 										<div>
-											<button class="step-1 border delete-btn" tabindex="-1"
-												onclick="stepDelete(this)">X</button>
+											<button class="step-1 border delete-btn" tabindex="-1" onclick="stepDelete(this)">X</button>
 										</div>
 									</div>
 								</div>
+								<p class="warning-text m-1">*10글자 이상 작성해주세요</p>
 							</div>
 						</div>
 						<div>
-							<button class="btn border mt-2 p-btn plus"
-								onclick="addStep(this)">&nbsp;&nbsp; 추가</button>
+							<button class="btn border mt-2 p-btn plus" onclick="addStep(this)">&nbsp;&nbsp; 추가</button>
 						</div>
 					</div>
 					<!-- end cooking-step 요리순서 -->
-					<div class="recipe-tag form-bg p-4 d-flex">
+					<div class="recipe-tag form-bg p-4">
 						<div class="form-label mb-1 form-title recipe-tag-title">태그</div>
-						<div class="recipe-tag-box">
+						<div class="recipe-tag-box d-flex flex-column justify-content-end">
 							<input name="tag" id="tag" placeholder="예) 소고기, 미역국 (최대 5개, 5글자 이내)">
+							<p class="warning-text noheight m-1">*태그를 1개 이상 등록해주세요</p>
 							<ul class="tag-ul d-flex p-1">
 							</ul>
 						</div>
 					</div>
 					<!-- end recipe-tag 태그 -->
+					
+					<div class="open-range form-bg p-4 pt-0">
+						<div class="form-label mb-1 form-title open-range-title">공개범위</div>
+						<div class="open-range-box d-flex">
+							<select class="form-select py-1">
+								<option value="저장 및 공개" selected>저장 및 공개</option>
+								<option value="비공개저장">비공개저장</option>
+								<option value="임시저장">임시저장</option>
+							</select>
+						</div>
+					</div>
+					<!-- end open-range -->
 
 					<div
-						class="accessibility form-bg p-4 border-top d-flex justify-content-center"
-						name="accessibility">
+						class="accessibility form-bg p-4 border-top d-flex justify-content-center" name="accessibility">
 						<div class="mx-1">
-							<button type="submit" onclick="" class="secret-save btn btn-info">비공개저장</button>
-							<button type="button" onclick="checkRegex(this);"
-								class="open-save btn btn-warning mx-3">저장 및 공개</button>
-						</div>
-						<div class="mx-1">
-							<button type="button" onclick="register(this)"
-								class="temp-save btn btn-secondary me-3">임시저장</button>
-							<button type="reset" class="cancel btn btn-danger">취소</button>
+							<button type="button" onclick="register(this)" class="btn gold-btn me-3">등록</button>
+							<button type="reset" class="cancel btn btn-secondary">취소</button>
 						</div>
 					</div>
 					<!-- end accessbility -->

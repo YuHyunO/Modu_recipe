@@ -9,77 +9,6 @@
 <!-- 공통 부분 END -->
 <link href="/css/register.css" rel="stylesheet">
 <script src="/js/register.js"></script>
-<<<<<<< HEAD
-<style type="text/css">
-	/*회원가입 이메일 유효성 검사(중복체크) ajax 문구*/
-	.email_ajax_1 {
-		display: none;
-		font-size:12px; 
-		color: rgb(147, 112, 98);
-		text-align: center;
-	}
-	
-	.email_ajax_2, .email_ajax_3 {
-		display: none;
-		font-size:12px;
-		color: green;
-		text-align: center;
-	}
-	
-	/*회원가입 닉네임 유효성 검사(중복체크) ajax 문구*/
-	.nickname_ajax_1 {
-		display: none;
-		font-size:12px; 
-		color: rgb(147, 112, 98);
-		text-align: center;
-	}
-	
-	.nickname_ajax_2, .nickname_ajax_3 {
-		display: none;
-		font-size:12px;
-		color: green;
-		text-align: center;
-	}
-	
-	/* 약관 사이즈 */
-	.agreements {
-	   font-size: 12px;
-       padding: 10px 10px 10px 10px;
-       border: 0.1px solid rgb(147, 112, 98);
-	}
-	
-	 #registerokbutton{
-        color: #fff;
-        background: #937062;
-        border-style: none;
-        margin:auto;
-        display:block;
-        border-radius: 4px;
-        cursor: pointer;
-        border: 0;
-        outline: 0;
-        width: 70%;
-      }
-      
-/*      padding: 5px 5px;  
-        width: 150px;
-        text-align:center; */
-        
-      /* 이미 회원이신가요? */
-      .alreadyregister{
-   		font-size:14px;
-	    color: #42332d;
-	    text-decoration: none;
-	    background-color: transparent;
-	    align-items: center;
-	}
-	
-</style>
-<script src="https://code.jquery.com/jquery-latest.js"></script> <!-- CDN(신뢰할 수 있는 사이트) -->
-<script type="text/javascript" src="../js/map.js"></script> <!-- 내 로컬 서버 -->
-<script type="text/javascript" src="../js/stringBuffer.js"></script>
-=======
->>>>>>> 0ecada3ee5f427c7b7d8a7c4b145b3e419253c38
 </head>
 <body>
 	<div id="page" class="hfeed site">
@@ -266,29 +195,19 @@
 			    // 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
 			    var popupY= (window.screen.height / 2) - 300;
 			    // 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
-
-<<<<<<< HEAD
-		    	window.open('<%=request.getContextPath() %>/member/agreement1', '개인정보 처리방침', 'status=no, height=500, width=800, left='+ popupX + ', top='+ popupY);
-=======
 		    	window.open('<%=request.getContextPath()%>/member/agreement1', '개인정보 처리방침', 'status=no, height=300, width=600, left='+ popupX + ', top='+ popupY);
->>>>>>> 0ecada3ee5f427c7b7d8a7c4b145b3e419253c38
 	     	}
 	     	
-	      function agreement2(){
-		       var popupX = (document.body.offsetWidth / 2) - 200;
-			    // 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
-			    var popupY= (window.screen.height / 2) - 300;
-	    	// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
-
-<<<<<<< HEAD
-		    window.open('<%=request.getContextPath() %>/member/agreement2', '개인정보 처리방침', 'status=no, height=500, width=800, left='+ popupX + ', top='+ popupY);
-=======
-		    window.open('<%=request.getContextPath()%>/member/agreement2', '개인정보 처리방침', 'status=no, height=300, width=600, left='+ popupX + ', top='+ popupY);
->>>>>>> 0ecada3ee5f427c7b7d8a7c4b145b3e419253c38
-	      }
+			function agreement2(){
+				var popupX = (document.body.offsetWidth / 2) - 200;
+				// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
+				var popupY= (window.screen.height / 2) - 300;
+				// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
+				window.open('<%=request.getContextPath()%>/member/agreement2', '개인정보 처리방침', 'status=no, height=300, width=600, left='+ popupX + ', top='+ popupY);
+			}
 
 	      
-	  	$(document).ready(function(){ //회원가입 페이지 들어오면 작동되는 fuction
+		$(document).ready(function(){ //회원가입 페이지 들어오면 작동되는 fuction
           $("#registerokbutton").on("click", function(){ //가입하기 버튼 클릭시
         	  var emailCheck = $('.email_ajax_1').css('display'); //inline-block(사용가능), none(사용불가)
         	  var nickCheck = $('.nickname_ajax_1').css('display'); //inline-block(사용가능), none(사용불가)

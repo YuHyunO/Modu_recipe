@@ -6,10 +6,8 @@ $(function () {
 			let tagsRegex = /[^a-z|A-Z|ㄱ-ㅎ|가-힣|\,]/g;
 			
 			if(!tagsRegex.test(tag.val())){
-				if (e.keyCode == '13' || e.keyCode == '188' || e.keyCode == '32') { // 엔터
-																					// 또는
-																					// 쉼표
-																					// 입력시
+				// 엔터, 쉼표, 스페이스 바 입력 시
+				if (e.keyCode == '13' || e.keyCode == '188' || e.keyCode == '32') { 
 					let colors = ['#3c1cbf', '#208b3c', '#0d6efd',
 						'#212529', '#5bc0de', '#d65bde']
 					let randint = Math.floor(Math.random()
@@ -49,6 +47,14 @@ $(function () {
 			}else {
 				alert("태그에는 숫자 및 특수문자를 사용할 수 없습니다.");
 			}
+			
+			// 태그 갯수 체크
+			console.log($('.tag-ul').find('li').length);
+			if($('.tag-ul').find('li').length === 0){
+				tag.parent().find('.warning-text').text("*태그를 1개 이상 등록해주세요");
+			} else {
+				tag.parent().find('.warning-text').text(" ");
+			}	
 		}
 	); // 태그 추가 END
 	
@@ -83,6 +89,24 @@ $(function () {
 			return false;
 		}
 	});
+	
+	let title = $("input[name=title"); // 레시피 제목
+	let info = $("textarea[name=info]"); // 레시피 소개
+	$(title).keyup(() => {
+		checkValue(title, "레시피 제목", 10);
+	})
+	
+	$(info).keyup(() => {
+		checkValue(info, "레시피 소개", 20);
+	})
+	
+	let steps = $('#steps').find('textarea');
+	for (let i=0; i<steps.length; i++){
+		$(steps).eq(i).keyup(() => {
+			checkValue($(steps).eq(i), "요리방법", 10);
+		})
+	}
+	
 });
 
 function deleteTag(e) {
@@ -95,6 +119,13 @@ function deleteTag(e) {
 		targetChildren.eq(i).find('input').attr('id', 'tag-' + i) // input id
 																	// 변경
 	}
+	// 태그 갯수 체크
+	let tag = $('#tag');
+	if($('.tag-ul').find('li').length === 0){
+		tag.parent().find('.warning-text').text("*태그를 1개 이상 등록해주세요");
+	} else {
+		tag.parent().find('.warning-text').text(" ");
+	}	
 }
 
 function addItem(e) {
@@ -217,7 +248,7 @@ function addStep(e) {
                     </div>\
 				</div>\
                     <div class="d-flex flex-column border justify-content-between addon ms-2">\
-                        <div>\
+                        <div class="d-flex flex-column">\
                             <button class="step-'
 			+ newNum
 			+ ' border up-btn mb-1" tabindex="-1" onclick="stepUp(this)">▲</button>\
@@ -232,10 +263,19 @@ function addStep(e) {
                         </div>\
                     </div>\
                 </div>\
+				<p class="warning-text m-1">*10글자 이상 작성해주세요</p>\
             </div>\
         </div>'
 
 		target.append(html);
+		
+		let steps = $('#steps').find('textarea');
+		for (let i=0; i<steps.length; i++){
+			$(steps).eq(i).keyup(() => {
+				checkValue($(steps).eq(i), "요리방법", 10);
+			})
+		}
+		
 		$("#step-" + newNum + "-text").focus(); // 새로 추가된 STEP에 포커스
 	}
 }
@@ -402,14 +442,29 @@ function imgUpload(e) {
 	});
 }
 
-function checkValue(e, text, limit){
-	if (e.val().trim().length < limit){
-		alert(text + "은(는) " + limit + "글자 이상 작성해주세요");
-		e.focus();
-		window.scrollTo({ left: e.scrollLeft(), top: e.scrollTop(), behavior: "smooth" });
-		return false;
+function checkValue(e, text, limit, mode){
+	if (mode === 1){
+		if (e.val().trim().length < limit){
+			alert(text + "은(는) " + limit + "글자 이상 작성해주세요");
+			e.focus();
+			window.scrollTo({ top: e.offset().top - 50, behavior: "smooth" });
+			return false;
+		} else {
+			return true;
+		}
 	} else {
-		return true;
+		let target;
+		if (e.parent().find('.warning-text').length === 0){
+			target = e.parents().find("#" + e.attr("id").replace("-text", ""));
+		} else {
+			target = e.parent(); 
+		}
+		if (e.val().trim().length > limit){
+			target.find('.warning-text').text(" ");
+			
+		} else {
+			target.find('.warning-text').text("*" + limit + "글자 이상 작성해주세요");
+		}
 	}
 }
 
@@ -421,12 +476,12 @@ function register(e) {
 	let title = $("input[name=title");
 	let info = $("textarea[name=info]");
 	
-	if (checkValue(title, "레시피 제목", 10) === false){
+	if (checkValue(title, "레시피 제목", 10, 1) === false){
 		return false;	
 	};
 	
 	
-	if (checkValue(info, "레시피 소개", 20) === false){
+	if (checkValue(info, "레시피 소개", 20, 1) === false){
 		return false;	
 	};
 	
@@ -458,9 +513,9 @@ function register(e) {
 	let mainItemsQuantity = $('.main-items').find('.input2');
 
 	for (let i=0; i<mainItemsIngredient.length; i++){
-		if (checkValue(($(mainItemsIngredient).eq(i)), "메인재료", 1) === false){
+		if (checkValue(($(mainItemsIngredient).eq(i)), "메인재료", 1, 1) === false){
 			return false;
-		} else if (checkValue(($(mainItemsQuantity).eq(i)), "메인재료 수량", 1) === false){
+		} else if (checkValue(($(mainItemsQuantity).eq(i)), "메인재료 수량", 1, 1) === false){
 			return false;
 		}
 		formData.append("mainItems", $(mainItemsIngredient).eq(i).val() + '-' + $(mainItemsQuantity).eq(i).val());
@@ -470,9 +525,9 @@ function register(e) {
 	let subItemsIngredient = $('.sub-items').find('.input1');
 	let subItemsQuantity = $('.sub-items').find('.input2');
 	for (let i=0; i<subItemsIngredient.length; i++){
-		if (checkValue(($(subItemsIngredient).eq(i)), "양념재료", 1) === false){
+		if (checkValue(($(subItemsIngredient).eq(i)), "양념재료", 1, 1) === false){
 			return false;
-		} else if (checkValue(($(subItemsQuantity).eq(i)), "양념재료 수량", 1) === false){
+		} else if (checkValue(($(subItemsQuantity).eq(i)), "양념재료 수량", 1, 1) === false){
 			return false;
 		}
 		
@@ -482,7 +537,7 @@ function register(e) {
 	// 조리내용(요리순서)
 	let steps = $('#steps').find('textarea');
 	for (let i=0; i<steps.length; i++){
-		if (checkValue(($(steps).eq(i)), "요리방법", 10) === false){
+		if (checkValue(($(steps).eq(i)), "요리방법", 10, 1) === false){
 			return false;
 		}
 		formData.append("directions", $(steps).eq(i).val());
@@ -501,17 +556,17 @@ function register(e) {
 	}
 	
 	// 공개범위
-	let btnClass = $(e).attr("class").split("-")[0];
+	let openRange = $(".open-range-box").find("select");
 	let accessibility;
 
-	switch (btnClass) {
-		case 'secret':
+	switch (openRange.val()) {
+		case "비공개저장":
 			accessibility = 0;
 			break;
-		case 'open':
+		case "저장 및 공개":
 			accessibility = 1;
 			break;
-		case 'temp':
+		case "임시저장":
 			accessibility = 2;
 			break;
 	}
