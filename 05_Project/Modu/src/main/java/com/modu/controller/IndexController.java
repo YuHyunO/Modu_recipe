@@ -45,7 +45,7 @@ public class IndexController {
 		
 		// ·©Å· TOP 6 ¸â¹ö È®ÀÎ
 		for (Member member: rankList) {
-			log.info("#IndexController: " + member);
+			//log.info("#IndexController: " + member);
 		}
 		
 		ModelAndView mv = new ModelAndView("index", "rankList", rankList);

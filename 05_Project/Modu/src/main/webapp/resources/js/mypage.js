@@ -5,14 +5,67 @@ function getCheckboxValue()  {
       document.querySelectorAll(query);
   
   // 선택된 체크박스에서 value 찾기
+  let data = new Array();
   let result = '';
   selectedEls.forEach((el) => {
     result += el.value + ' ';
+    data.push(el.value);
   });
-  
+  console.log(data);
   // 찾은 value값(재료명들) 출력(검색창 직전)
   document.getElementById('result').innerText
     = result;
+  
+  dataAgent(data);
+}
+
+function dataAgent(data){
+	$.ajax({
+		url: "./mypage-recommend",
+		type: "GET",
+		data: {data: data},
+		dataType: "JSON",
+		traditional: true,
+		success: function(response){
+			let recipeList = response.recipeList;
+			let pageSize = response.pageSize;
+			//updateData(recipeList, pageSize);
+		},
+		error: function(error){
+			console.log("error"+error);
+			//alert("접속이 원활하지 않습니다.\n브라우저 재접속 후 시도해주세요.");
+		}
+	});
+}
+function updateData(recipeList, pageSize){
+	let html = "";
+	for(let item of recipeList){
+		html += '<div id="recipe-item" class="col-6 col-md-3">';
+		html += '<div class="recipe-thumb">';
+		html += '<img src="/imgs/content/thumb-1.png" alt="/imgs/content/thumb-1.png">';
+		html += '</div>';
+		html += '<div class="recipe-desc">';
+		html += '<h2 class="recipe-title">';
+		html += '<a href="'+item.id+'">'+item.title+'</a>';
+		html += '</h2>';
+		html += '<figure class="profile">';
+		html += '<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">';
+		html += '<span><em>&nbsp;'+item.nickname+'</em></span>';
+		html += '</figure>';
+		html += '<div class="recipe-icons d-flex justify-content-between">';
+		html += '<span class="d-flex align-items-center">';
+		html += '<img class="stars" src="/imgs/stars5.png">';
+		html += '<span class="p-1 mt-1">'+item.star+'('+item.stars+')</span>';
+		html += '</span>';
+		html += '<span class="d-flex align-items-center">';
+		html += '<span class="p-1 mt-1">조회 '+item.hits+'</span>';
+		html += '</span>';
+		html += '</div>';
+		html += '</div>';
+		html += '</div>';
+		
+		$("#recipe-list").html(html);
+	}
 }
 
 // 권장하는 방법 - 마이페이지 접속시 항상 실행되는 제이쿼리 function
