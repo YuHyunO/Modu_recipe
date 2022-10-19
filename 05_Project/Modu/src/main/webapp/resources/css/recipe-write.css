@@ -161,6 +161,10 @@ ul {
     width: 100px;
 }
 
+.warning-text {
+ 	color: #ad0404;
+ }
+
 @media(max-width:454px){ 
     .main-container {
         width: 350px;

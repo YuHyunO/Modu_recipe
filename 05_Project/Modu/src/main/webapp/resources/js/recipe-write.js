@@ -1,4 +1,25 @@
 $(function () {
+	//페이지 뒤로가기 방지
+	function prevent(){
+		history.pushState(null, null, location.href);
+		window.onpopstate = function(event) {
+		    history.go(1);
+		}
+	}
+	
+	$(window).on("mousemove", () => {
+		prevent();
+	});
+	
+	$(window).on("keydown", () => {
+		prevent();
+	});
+	
+	$(window).on("click", () => {
+		prevent();
+	});
+	
+	// 태그 로직
 	let tag = $('#tag');
 	$('#tag').keyup(
 		function (e) {
