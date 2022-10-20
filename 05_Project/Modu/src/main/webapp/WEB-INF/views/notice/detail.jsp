@@ -80,7 +80,7 @@
 											<span class="m-nickname ps-2">Jessica</b> <span
 												class="post-date px-2">09-20 18:30</span>
 										</div>
-										<div class="">
+										<div class="d-flex">
 											<button class="btn-fix">수정</button>
 											<button class="btn-del">삭제</button>
 										</div>

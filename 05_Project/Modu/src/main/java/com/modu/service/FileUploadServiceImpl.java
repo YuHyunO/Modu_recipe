@@ -1,9 +1,14 @@
 package com.modu.service;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.modu.fileset.Path;
 
 import lombok.extern.log4j.Log4j;
 
@@ -11,19 +16,34 @@ import lombok.extern.log4j.Log4j;
 @Service
 public class FileUploadServiceImpl implements FileUploadService {
 
-	@Override
-	public String saveImgFile(MultipartFile file, String path) {	
+    private String[] result;
+
+    @Override
+	public String[] saveImgFile(MultipartFile file, String path, ArrayList<String> fileInfoList) {	
 		String ofname = file.getOriginalFilename();
 		int idx = ofname.lastIndexOf(".");
 		String ofheader = ofname.substring(0, idx); //a(파일이름 부분)가 출력됨(인덱스 0부터 idx 미만까지)
 		String ext = ofname.substring(idx); //확장자 출력(인덱스 idx부터 끝까지 출력)
 		long ms = System.currentTimeMillis(); //현재 시간의 밀리세컨드를 뽑아냄
-	
+		
 		StringBuilder sb = new StringBuilder();
-		sb.append(ofheader);
-		sb.append("_");
-		sb.append(ms);
-		sb.append(ext);
+		log.info("#파일정보: " + fileInfoList);
+		if (fileInfoList == null) {
+			sb.append(ofheader);
+			sb.append("_");
+			sb.append(ms);
+			sb.append(ext);
+		} else {
+		    if (fileInfoList.get(0).equals("STEP-0")) {
+		    } else {
+		        sb.append(fileInfoList.get(0));
+		        sb.append("-");
+		    }
+			sb.append(ofheader);
+			sb.append("_");
+			sb.append(ms);
+			sb.append(ext);
+		}
 		String saveFileName = sb.toString(); //실제 물리적으로 저장되는 파일 이름이 됨
 		
 		long fsize = file.getSize(); //파일 사이즈 구하기
@@ -37,10 +57,13 @@ public class FileUploadServiceImpl implements FileUploadService {
 			log.info("#업로드 실패");
 		}
 		
-		//IO로 파일을 써주면 됨
-		return path + saveFileName;		
-	}
+		result = new String[2];
 
+		result[0] = path + saveFileName;
+		result[1] = saveFileName;
+		return result;		
+	}
+    
 	//내 로컬폴더에 물리적으로 파일생성하는 메소드 
 	private boolean writeFile(MultipartFile file, String saveFileName, String path) {
 		
@@ -66,5 +89,54 @@ public class FileUploadServiceImpl implements FileUploadService {
 			}
 		}
 	}
+	@Override
+    public String saveStore(MultipartFile file) {
+        String ofname = file.getOriginalFilename();
+        int idx = ofname.lastIndexOf(".");
+        String ofheader = ofname.substring(0, idx); //a(파일이름 부분)가 출력됨(인덱스 0부터 idx 미만까지)
+        String ext = ofname.substring(idx); //확장자 출력(인덱스 idx부터 끝까지 출력)
+        long ms = System.currentTimeMillis(); //현재 시간의 밀리세컨드를 뽑아냄
+        
+        StringBuilder sb = new StringBuilder();
+        sb.append(ofheader);
+        sb.append("_");
+        sb.append(ms);
+        sb.append(ext);
+        String saveFileName = sb.toString(); //실제 물리적으로 저장되는 파일 이름이 됨
+        
+        long fsize = file.getSize(); //파일 사이즈 구하기
+        //log.info("#ofname: " + ofname + ", saveFileName: " + saveFileName + ", fsize: " + fsize); 
+        //원래 파일이름, 저장한 파일 이름, 파일사이즈     
+        
+        boolean flag = writeFile(file, saveFileName);
+        if(flag) {
+            log.info("#업로드 성공");
+        }else {
+            log.info("#업로드 실패");
+        }
+        //IO로 파일을 써주면 됨
+        return Path.FILE_STORE + saveFileName;      
+    }
+	private boolean writeFile(MultipartFile file, String saveFileName) {
+        File dir = new File(Path.FILE_STORE);
+        if(!dir.exists()) dir.mkdirs();
+        
+        FileOutputStream fos = null;
+        
+        try {
+            byte data[] = file.getBytes();
+            fos = new FileOutputStream(Path.FILE_STORE + saveFileName);
+            fos.write(data);
+            fos.flush();
+            
+            return true;
+        }catch(IOException ie) {
+            return false;
+        }finally {
+            try {
+                if(fos != null) fos.close();
+            }catch(IOException is) {}
+        }
+    }
 }
 	

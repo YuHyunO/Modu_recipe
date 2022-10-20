@@ -72,139 +72,78 @@
 									</tr>
 								</thead>
 								<tbody class="tbody">
-									<tr class="border">
-										<td class="id">10</td>
-										<td class="title-td text-start"><a href="detail/"> <span
-												class="title">상세페이지</span> <span class="reply">[1]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
-									<tr class="border">
-										<td class="id">9</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">[美친특가] 10/31 유통기한 임박 LeTAO 르타오 프로마쥬 치즈
-													케이크...</span> <span class="reply">[1]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
-									<tr class="border">
-										<td class="id">8</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">[美친특가] 10/31 유통기한 임박 LeTAO 르타오 프로마쥬 치즈
-													케이크...</span> <span class="reply">[1]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
-									<tr class="border">
-										<td class="id">7</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">[美친특가] 10/31 유통기한 임박 LeTAO 르타오 프로마쥬 치즈
-													케이크...</span> <span class="reply">[1]</span>
-										</a></td>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
-									<tr class="border">
-										<td class="id">6</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">[美친특가] 10/31 유통기한 임박 LeTAO 르타오 프로마쥬 치즈
-													케이크...</span> <span class="reply">[1]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
-									<tr class="border">
-										<td class="id">5</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">[美친특가] 10/31 유통기한 임박 LeTAO 르타오 프로마쥬 치즈
-													케이크...</span> <span class="reply">[1]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
-									<tr class="border">
-										<td class="id">4</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">[美친특가] 10/31 유통기한 임박 LeTAO 르...</span> <span
-												class="reply">[1]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
-									<tr class="border">
-										<td class="id">3</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">주방미학 티타늄 반상기 2인세트(10pcs)</span> <span
-												class="reply">[5]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
-									<tr class="border">
-										<td class="id">2</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">9/27일이후출고 [만개특가] 케어팟 가습기...</span> <span
-												class="reply">[3]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.28</td>
-										<td class="hits">8400</td>
-									</tr>
-									<tr class="border">
-										<td class="id">1</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">[美친특가] 10/31 유통기한 임박 LeTAO 르타오...</span> <span
-												class="reply">[1]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
+									<c:if test="${empty list}">
+											<tr align='center' noshade colspan="5">데이터가 없습니다.</tr>
+									</c:if>
+									<c:forEach items="${list.list}" var="li">
+										<tr class="border">
+											<td class="id">${li.id}</td>
+											<td class="title-td text-start"><a href="detail?id=${li.id}"> <span
+													class="title">${li.title}</span> <span class="reply">[${li.reply}]</span>
+											</a>
+											</th>
+											<td class="nickname">${li.MNickname}</td>
+											<td class="post-date">${li.postDate}</td>
+											<td class="hits">${li.hits}</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 							<div class="write text-end my-3">
-								<button type="button" id="write-btn"
-									class="gold-border gold-btn"
-									onclick="location.href='/freeboard/write'">글쓰기</button>
+								<c:if test="${sessionScope.email == null}">
+									<a href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';" class="nav-link"					
+											><button type="button" id="write-btn"
+										class="gold-border gold-btn">글쓰기</button></a>
+								</c:if>
+								<c:if test="${sessionScope.email != null}">
+									<button type="button" id="write-btn"
+										class="gold-border gold-btn"
+										onclick="location.href='/freeboard/write'">글쓰기</button>
+								</c:if>
 							</div>
 							<div class="page">
 								<nav aria-label="Page navigation">
 									<ul class="pagination justify-content-center">
-										<li class="page-item"><a class="page-link page-previous"
-											href="#">＜</a></li>
-										<li class="page-item"><a
-											class="page-link active page-number"
-											href="javascript:void(0);" onclick="activePage(this)">1</a></li>
-										<li class="page-item"><a class="page-link page-number"
-											href="javascript:void(0);" onclick="activePage(this)">2</a></li>
-										<li class="page-item"><a class="page-link page-number"
-											href="javascript:void(0);" onclick="activePage(this)">3</a></li>
-										<li class="page-item"><a class="page-link page-number"
-											href="javascript:void(0);" onclick="activePage(this)">4</a></li>
-										<li class="page-item"><a class="page-link page-number"
-											href="javascript:void(0);" onclick="activePage(this)">5</a></li>
-										<li class="page-item"><a class="page-link page-next"
-											href="#">＞</a></li>
+										<c:if test="${list.prev}">
+											<li class="page-item"><a class="page-link page-previous"
+												href="list?curPage=${list.startPage-1}">＜</a></li>
+										</c:if>
+										<c:if test="${list.endPage lt 6}">
+												<c:forEach begin="${list.startPage}" end="${list.endPage}" var="i">
+														<li class="page-item"><a
+															class="page-link page-number"
+															href="list?curPage=${i}">
+																<c:choose>
+													   			    <c:when test="${i==list.curPage}">
+													                	<strong>${i}</strong>
+													                </c:when>
+													                <c:otherwise>
+													                   	 ${i}
+													                </c:otherwise>
+																</c:choose></a>
+														</li>
+												</c:forEach>
+										</c:if>
+										<c:if test="${list.endPage gt 6}">
+												<c:forEach begin="${list.startPage}" end="${list.endPage+1}" var="i">
+														<li class="page-item"><a
+															class="page-link page-number"
+															href="list?curPage=${i}">
+																<c:choose>
+													   			    <c:when test="${i==list.curPage}">
+													                	<strong>${i}</strong>
+													                </c:when>
+													                <c:otherwise>
+													                   	 ${i}
+													                </c:otherwise>
+																</c:choose></a>
+														</li>
+												</c:forEach>
+										</c:if>
+										<c:if test="${list.next}">
+		                           				<li class="page-item"><a class="page-link page-next"
+												href="list?curPage=${list.endPage+1}">></a></li>
+		                      			</c:if> 
 									</ul>
 								</nav>
 							</div>

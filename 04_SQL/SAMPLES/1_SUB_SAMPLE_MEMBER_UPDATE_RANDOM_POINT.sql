@@ -96,3 +96,4 @@ update MEMBER set POINT=(select trunc(dbms_random.value(0, 50000)) as num from d
 where EMAIL='vdscx32@hanmail.net';
 update MEMBER set POINT=(select trunc(dbms_random.value(0, 50000)) as num from dual)
 where EMAIL='qlwe54@hanmail.net';
+commit;

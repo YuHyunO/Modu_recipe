@@ -11,11 +11,7 @@
 				<div class="brand-col">
 					<div class="site-branding navbar-brand">
 						<a href="/">
-						<img 
-						src="../imgs/logo.png" 
-						alt="모두의식탁logo" 
-						title="logo"
-							class="logo"></a>
+						<img src="/imgs/logo.png" alt="모두의식탁 logo" title="logo" class="logo"></a>
 					</div><!-- end logo -->
 				</div><!-- end col-md-3 -->
 				<div class="menu-col">

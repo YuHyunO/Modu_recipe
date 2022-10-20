@@ -128,7 +128,7 @@
 
 	<!-- 로그인 post -->
 	<select id="login" resultType="Member">
-		select * from MEMBER where EMAIL=#{email} and pwd=#{pwd}
+		select EMAIL, NICKNAME, PROFILE_IMG from MEMBER where EMAIL=#{email} and pwd=#{pwd}
 	</select>
 	<!-- 내정보수정 post1 (프로필사진 제외) -->
 	<update id="updateMember" parameterType="Member">

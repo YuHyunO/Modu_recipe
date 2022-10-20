@@ -9,13 +9,6 @@
 <!-- 공통 부분 END -->
 <link href="/css/register.css" rel="stylesheet">
 <script src="/js/register.js"></script>
-<style type="text/css">
-
-</style>
-<script src="https://code.jquery.com/jquery-latest.js"></script> <!-- CDN(신뢰할 수 있는 사이트) -->
-<script type="text/javascript" src="../js/map.js"></script> <!-- 내 로컬 서버 -->
-<script type="text/javascript" src="../js/stringBuffer.js"></script>
-
 </head>
 <body>
 	<div id="page" class="hfeed site">
@@ -123,24 +116,5 @@
 		</div><!-- end main -->
 		<%@ include file="/WEB-INF/views/common/bottom.jsp"%>
 	</div><!-- end id="page" -->
-
-	<script type="text/javascript">
-	 //회원가입 약관동의 팝업창 1,2 function 
-	  function agreement1(){
-	       var popupX = (document.body.offsetWidth / 2) - 50;
-		    // 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
-		    var popupY= (window.screen.height / 2) - 200;
-		    // 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
-	    	window.open('<%=request.getContextPath()%>/member/agreement1', '모두의식탁 이용약관', 'status=no, height=300, width=600, left='+ popupX + ', top='+ popupY);	
-	 	}
-	 	
-	  function agreement2(){
-	       var popupX = (document.body.offsetWidth / 2) - 50;
-		    // 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
-		    var popupY= (window.screen.height / 2) - 300;
-		// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
-	    window.open('<%=request.getContextPath()%>/member/agreement2', '모두의식탁 개인정보 처리방침', 'status=no, height=300, width=600, left='+ popupX + ', top='+ popupY);
-	  }
-    </script>
 </body>
 </html>

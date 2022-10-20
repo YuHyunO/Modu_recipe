@@ -4,11 +4,15 @@ package com.modu.service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.modu.domain.recipe.Direction;
 import com.modu.domain.recipe.Ingredient;
 import com.modu.domain.recipe.Recipe;
 import com.modu.domain.recipe.RecipeTag;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.modu.domain.recipe.RecipeNestedReply;
@@ -20,11 +24,16 @@ public interface RecipeRegisterService {
 	/*
 	 * void addRecipe(); void modifyRecipe(); void deleteRecipe();
 	 */
-	void registerRecipe(HttpServletRequest request, HttpSession session);
+	void registerRecipe(HttpServletRequest request,
+            HttpSession session,
+            ArrayList<MultipartFile> files, 
+            ArrayList<String> mainItems,
+            ArrayList<String> subItems,
+            ArrayList<String> directions,
+            ArrayList<String> tags);
 	
 	String registerReply(RecipeReply recipeReply);
 	List<RecipeReplyList> findRecipeReply(long id);
 	void delete(long id);
 	String registerNestedReply(RecipeNestedReply recipeNestedReply);
-
 }

@@ -149,7 +149,11 @@
 /* mobile size */
 @media ( max-width :454px) {
 	.logo {
+		height: 45px;
 		z-index: 100;
+	}
+	.p-title {
+		padding: 0.25rem !important;
 	}
 }
 
@@ -207,25 +211,18 @@
 	}
 }
 
-@media
-(
-max-width
-:454px)
-{
-.recipe-title {
-	font-size: 1rem !important;
-	height: 60px !important;
-	margin-bottom: 5px !important;
-}
-
-.profile {
-	margin-bottom: 5px !important;
-}
-
-.recipe-desc {
-	height: 165px;
-}
-
+@media ( max-width :454px) {
+	.recipe-title {
+		font-size: 1rem !important;
+		height: 60px !important;
+		margin-bottom: 5px !important;
+	}
+	.profile {
+		margin-bottom: 5px !important;
+	}
+	.recipe-desc {
+		height: 165px;
+	}
 }
 
 /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ */
@@ -244,4 +241,21 @@ max-width
 .page-link.active {
 	text-decoration: underline;
 	color: black !important;
+}
+
+/* Æ÷ÀÎÆ® Ä¿¼­ */
+.pointer {
+	cursor: pointer !important;
+}
+
+/* ÀÌ¹ÌÁö 100% */
+.ratio-100 {
+	position: relative;
+    width: 100%;
+	-bs-aspect-ratio: 100% !important;
+}
+
+.ratio-100>* {
+    top: 0;
+    left: 0;
 }

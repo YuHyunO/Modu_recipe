@@ -63,14 +63,6 @@ textarea {
     background-color: rgb(60, 90, 60);
 }
 
-.recipe-tag-box {
-    width: 80%;
-}
-
-.recipe-tag-box input {
-    width: 100%;
-}
-
 .input1 {
     width: 42% !important;
     height: 40px;
@@ -113,6 +105,10 @@ textarea {
     width: 55px !important;
 }
 
+.open-range .form-title {
+    width: 100px !important
+}
+
 .form-title {
     font-size: 1.2rem;
     width: 100% !important;
@@ -124,6 +120,14 @@ textarea {
 
 ul {
     list-style: none;
+}
+
+.recipe-tag-box input {
+    width: 450px;
+}
+
+.tag-ul {
+	width: 500px;
 }
 
 .tag-ul li {
@@ -141,8 +145,24 @@ ul {
     height: 200% !important;
 }
 
+.open-range-title {
+	margin: 0px !important;
+}
+
+.open-range-box select {
+	width: 130px !important;
+}
+
 .accessibility {
     border-radius: 0px 0px 10px 10px;   
+}
+
+.accessibility .btn {
+    width: 100px;
+}
+
+.warning-text {
+ 	color: #ad0404;
 }
 
 @media(max-width:454px){ 
@@ -151,79 +171,145 @@ ul {
     }
 
     #main input::placeholder , #main textarea::placeholder {
-        font-size: 0.6rem !important;
+        font-size: 0.8rem !important;
     }
-    .main-photo, .main-intro {
+    
+    .main-photo {
         width: 50%;
+        padding-bottom: 10px;
     }
+    
+    .main-intro {
+    	width: 100%;
+    }
+    
     .form-title {
         font-size: 0.9rem;
         width: 100% !important;
     }
+    
     .form-select {
         width: 80px !important;
     }
+    
     .recipe-tag-box {
         width: 100% !important;
         margin: 0px !important;
     }
+    
+    .recipe-tag-box input {
+	    width: 230px;
+	}
+    
     .ingredient-cover {
         flex-direction: column !important;
     }
+    
     #seasoning-ingredient {
         margin-top: 20px;
     }
+    
     #main input, #main textarea, #main select, .step-text {
         font-size: 0.8rem;
     }
+    
     .btn {
-        font-size: 0.5rem;
+        font-size: 0.8rem;
     }
+    
     .cooking-step img {
         width: 100px !important;
         height: 100px !important;
     }
+    
     .step {
         width: 70%;
     }
+    
     .cooking-step textarea {
         height: 100px !important;
     }
+    
     .accessibility {
         flex-direction: column;   
     }
+    
     .accessibility div {
         text-align: center;
     }
+    
     .accessibility .btn {
-        width: 100px;
-        margin: 0px !important;
-        margin-top: 5px !important;
+        width: 90px;
+        margin: 5px !important;
     }
+    
     .main-photo {
         display: flex;
         align-items: center;
     }
+    
     .plus {
         width: 75px !important;
         height: 30px !important;
     }
+    
     .addon {
         height: 100px;
     }
+    
     .addon button {
         height: 25px !important;
         width: 25px !important;
-        font-size: 0.3rem;
+        font-size: 0.8rem;
     }
+    
     .up-btn {
-        margin-bottom: 10px !important;
+        margin-bottom: 5px !important;
     }
+    
+    .tag-ul {
+    	width: 100% !important;
+    }
+    
     .tag-ul li, #tag, .form-select {
-        font-size: 0.5rem !important;
+        font-size: 0.8rem !important;
     }
+    
+    .warning-text {
+    	font-size: 0.8rem !important;
+    	color: #ad0404;
+    	min-height: 15px;
+    }
+    
+    .noheight {
+    	min-height: 0px !important;
+    }
+    
+    .cooking-introduce {
+    	padding-bottom: 10px !important;
+    }
+    
+    .category {
+    	padding-top: 10px !important;
+    }
+    
+    .minus {
+	    background: url("../imgs/minus.png") center/100% no-repeat;
+	    width: 20px;
+	    height: 20px;
+	    padding: 5px;
+	}
+	
+	.open-range-box select {
+		width: 110px !important;
+	}
 }
 
-#food_photo {
+.hidden-input {
 	display: none;
+}
+
+/* 서브 타이틀 감추기 */
+.p-title {
+	display: none !important;
 }
