@@ -4,34 +4,40 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.modu.mapper.MemberMapper">
-	<!-- 기존 insertMember 메소드를 2가지 경우로 나눔/서인추가 10.11 -->
-
-	<insert id="insertFollow">
-		insert into FOLLOW values(FOLLOW_SEQ.nextval,
-		#{email},
-		#{followee},
-		SYSDATE)
+	
+		<insert id="insertMember" parameterType="Member">
+		insert into MEMBER(EMAIL,
+							PWD,
+							NICKNAME,
+							PROFILE_IMG,
+							NAME,
+							PHONE,
+							MARKETING,
+							API_USING,
+							SIGNUP_DATE,
+							UPDATE_DATE) values(#{email},
+												#{pwd},
+												#{nickname},
+												'default_profile_img.png',
+												#{name, jdbcType=VARCHAR},
+												#{phone, jdbcType=VARCHAR},
+												#{marketing},
+												1,
+												SYSDATE,
+												SYSDATE)
 	</insert>
-
-	<update id="updatePoint">
-		update MEMBER set POINT=POINT+#{point} where
-		EMAIL=#{email}
-	</update>
-	<delete id="deleteMember" parameterType="String">
-		delete from MEMBER where
-		EMAIL=#{email}
-	</delete>
-	<delete id="deleteFollow" parameterType="long">
-		delete from FOLLOW where
-		ID=#{id}
-	</delete>
-	<!-- 내정보수정 페이지 진입시 readmyinfo() -->
+	
+	<!-- 내정보수정 진입시 내정보 불러오기 -->
 	<select id="selectMember" parameterType="String"
 		resultType="Member">
 		select * from MEMBER where EMAIL=#{email}
 	</select>
+	<!-- 회원탈퇴 -->
+	<delete id="deleteMember" parameterType="String">
+		delete from MEMBER where EMAIL=#{email}
+	</delete>
 
-
+	<!-- 아직 미사용 중 -->
 	<select id="selectEmailCheck" parameterType="String"
 		resultType="String">
 		select EMAIL from MEMBER where EMAIL=#{email}
@@ -48,34 +54,53 @@
 		resultType="String">
 		select PROFILE_IMG from MEMBER where EMAIL=#{email}
 	</select>
+	
+	<update id="updatePoint">
+		update MEMBER set POINT=POINT+#{point} where
+		EMAIL=#{email}
+	</update>
 	<select id="selectPoint" parameterType="String" resultType="int">
 		select POINT from MEMBER where EMAIL=#{email}
 	</select>
-	<select id="selectFollowee" resultType="FollowList">
-		select * from(select
-		ROWNUM list,
-		f.ID ID,
-		f.FOLLOWEE EMAIL,
-		m.NICKNAME NICKNAME,
-		m.PROFILE_IMG PROFILE_IMG,
-		f.FOLLOW_DATE FOLLOW_DATE
-		from MEMBER m inner join FOLLOW f on m.EMAIL=f.FOLLOWEE
-		where M_EMAIL=#{email} order by ID desc)
-		where list BETWEEN #{beginRow} AND
-		#{endRow}
+	
+	<!-- 마이페이지 탭5 - 친구관리 -->
+	<insert id="insertFollowing">
+		insert into FOLLOW values(FOLLOW_SEQ.nextval,
+									#{email},
+									#{followee},
+									SYSDATE)
+	</insert>
+	<delete id="deleteFollowing" parameterType="long">
+		delete from FOLLOW where ID=#{id}
+	</delete>
+	<delete id="deleteFollower" parameterType="long">
+		delete from FOLLOW where ID=#{id}
+	</delete>
+	
+	<select id="selectFollowing" resultType="FollowList">
+		select * from(select ROWNUM list,
+								f.ID ID,
+								f.FOLLOWEE EMAIL,
+								m.NICKNAME NICKNAME,
+								m.PROFILE_IMG PROFILE_IMG,
+								f.FOLLOW_DATE FOLLOW_DATE
+								from MEMBER m inner join FOLLOW f on m.EMAIL=f.FOLLOWEE
+								where M_EMAIL=#{email} order by ID desc)
+								where list BETWEEN #{beginRow} AND
+								#{endRow}
 	</select>
 	<select id="selectFollower" resultType="FollowList">
 		select * from (select
-		ROWNUM list,
-		f.ID,
-		f.M_EMAIL EMAIL,
-		m.NICKNAME,
-		m.PROFILE_IMG,
-		f.FOLLOW_DATE
-		from MEMBER m inner join FOLLOW f on m.EMAIL=f.M_EMAIL
-		where f.FOLLOWEE=#{email} order by f.ID desc)
-		where list BETWEEN #{beginRow}
-		AND #{endRow}
+							ROWNUM list,
+							f.ID,
+							f.M_EMAIL EMAIL,
+							m.NICKNAME,
+							m.PROFILE_IMG,
+							f.FOLLOW_DATE
+							from MEMBER m inner join FOLLOW f on m.EMAIL=f.M_EMAIL
+							where f.FOLLOWEE=#{email} order by f.ID desc)
+										where list BETWEEN #{beginRow}
+										AND #{endRow}
 	</select>
 
 	<!-- 테스트용 -->
@@ -92,30 +117,6 @@
 		<![CDATA[select * from (select * from MEMBER order by POINT desc) where ROWNUM <= 6]]>
 	</select>
 
-	<insert id="insertMember" parameterType="Member">
-		insert into
-		MEMBER(EMAIL,
-		PWD,
-		NICKNAME,
-		PROFILE_IMG,
-		NAME,
-		PHONE,
-		MARKETING,
-		API_USING,
-		SIGNUP_DATE,
-		UPDATE_DATE) values(#{email},
-							#{pwd},
-							#{nickname},
-							'default_profile_img.png',
-							#{name, jdbcType=VARCHAR},
-							#{phone, jdbcType=VARCHAR},
-							#{marketing},
-							1,
-							SYSDATE,
-							SYSDATE)
-	</insert>
-	
-
 	<!-- 회원가입시 이메일 중복검사 -->
 	<select id="emailCheck" resultType="int">
 		select count(*) from MEMBER where email = #{email}
@@ -125,16 +126,12 @@
 		select count(*) from MEMBER where nickname = #{nickname}
 	</select>
 
-	<!-- 로그인 유효성 검사 / ajax 사용시 필요하나, 아직 사용 못하는 중 -->
-	<!-- <select id="loginCheck" resultType="int"> select count(*) from MEMBER 
-		where EMAIL=#{email} and PWD=#{pwd} </select> -->
-
 	<!-- 로그인 post -->
 	<select id="login" resultType="Member">
-		select EMAIL, NICKNAME from MEMBER where EMAIL=#{email} and pwd=#{pwd}
+		select * from MEMBER where EMAIL=#{email} and pwd=#{pwd}
 	</select>
-	
-	<update id="updateMember" parameterType="member">
+	<!-- 내정보수정 post1 (프로필사진 제외) -->
+	<update id="updateMember" parameterType="Member">
 		update MEMBER set PWD = #{pwd},
 						  NICKNAME = #{nickname},
 						  NAME = #{name, jdbcType=VARCHAR},
@@ -143,8 +140,8 @@
 						  UPDATE_DATE = SYSDATE 
 						  where EMAIL = #{email}						
 	</update>
-	<!-- 프로필사진까지 수정 -->
-	<update id="updateMember2" parameterType="member">
+	<!-- 내정보수정 post2 (프로필사진 포함) -->
+	<update id="updateMember2" parameterType="Member">
 		update MEMBER set PWD=#{pwd},
 						  NICKNAME=#{nickname},
 						  NAME = #{name, jdbcType=VARCHAR},
@@ -156,10 +153,11 @@
 						  UPDATE_DATE = SYSDATE 
 						  where EMAIL = #{email}						
 	</update>	
- 
-	<!-- 내정보수정 프로필 사진만 수정 -->
-	<update id="updateImg">
-		update MEMBER set PROFILE_IMG = #{profileImg} where EMAIL = #{email}
+	<!-- 내정보수정 - 프로필사진만 삭제시 기본 default 사진으로 update -->
+	<update id="deleteProfileImg" parameterType="String">
+		update MEMBER set PROFILE_IMG = 'default_profile_img.png', 
+						  PROFILE_IMG_ORG = 'default_profile_img.png'
+						  where EMAIL = #{email}
 	</update>
-	
+
 </mapper>

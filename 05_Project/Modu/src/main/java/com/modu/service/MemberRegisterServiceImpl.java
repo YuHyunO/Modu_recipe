@@ -49,11 +49,6 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 	}
 
 	@Override
-	public int checkLogin(String email, String pwd) {
-		return memberMapper.loginCheck(email, pwd);
-	}
-
-	@Override
 	public Member login(Member member) {
 		return memberMapper.login(member);
 	}
@@ -76,10 +71,11 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 		return member;
 	}
 	
-	/*
-	 * @Override public void modifyProfileImg(String email, String profileImg) {
-	 * memberMapper.updateImg(email, profileImg); }
-	 */
+	
+	  @Override public void removeProfileImg(String email) {
+		  memberMapper.deleteProfileImg(email); 
+	  }
+	 
 	
 	@Override
 	public void removeMyInfo(String email) {

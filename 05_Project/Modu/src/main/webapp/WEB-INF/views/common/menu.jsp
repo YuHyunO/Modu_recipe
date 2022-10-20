@@ -1,6 +1,7 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<script type="text/javascript" charset="utf-8" src="/js/timerchk.js"></script>
 <header id="masthead"
 	class="site-header navbar-fixed-top d-flex align-items-center p-0">
 	<div class="header-navigation w-100">
@@ -17,7 +18,6 @@
 							class="logo"></a>
 					</div><!-- end logo -->
 				</div><!-- end col-md-3 -->
-
 				<div class="menu-col">
 					<nav class="site-navigation navbar navbar-expand-lg navbar-light">
 
@@ -51,12 +51,16 @@
 									<!--세션이 존재할 때-->
 								<c:if test = "${ sessionScope.email != null }">
 									<li class="nav-item">
-										<a href='/member/mypage' class="nav-link">마이페이지</a>
+										<a href='/mypage/main' class="nav-link">마이페이지</a>
 									</li>
 									<li class="nav-item">
 						           		<a href='/member/logout' class="nav-link">로그아웃</a>
 						           </li>
-						           <div class="welcomelogin">${sessionScope.nickname}님, 반갑습니다.💕 </div>
+						           <li class="welcomelogin">${sessionScope.nickname}님, 반갑습니다.💕 </li>
+						        	<li class="welcomelogin">
+						        	  <span id="timer"></span><br/>
+						        	  <a href="javascript:refreshTimer();">연장하기</a>
+						        	</li>
 								</c:if>
 								<!--세션이 없을 때 = 미로그인시 -->
 								<c:if test = "${ sessionScope.email == null }"> 
@@ -72,20 +76,14 @@
 									</li>
 								</c:if>
 							</ul>
-						</div>
-						<!-- end navbar-collapse -->
-					</nav>
-					<!-- end site-navigation -->
-				</div>
-				<!-- end col-md-6 -->
+						</div><!-- end navbar-collapse -->
+					</nav><!-- end site-navigation -->
+				</div><!-- end col-md-6 -->
 
 				<div class="side-col">
 					<nav class="social-navigation p-0">
 						<div class="social-container py-0">
 							<ul class="social-menu">
-								<!-- <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-instagram"></i></a></li> -->
 							</ul>
 						</div>
 						<!-- end social-container -->
@@ -104,8 +102,9 @@
 <div class="collapse navbar-collapse px-5 mb-3"
 	id="navbarSupportedContent">
 	<ul class="navbar-nav ms-3">
-		<li class="nav-item active"><a class="nav-link" href="/">홈<span
-				class="sr-only">(current)</span></a></li>
+		<li class="nav-item active"><a class="nav-link" href="/">홈
+			<span class="sr-only">(current)</span></a>
+		</li>
 		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
 			href="#" id="navbarDropdown1" role="button" data-toggle="dropdown"
 			aria-haspopup="true" aria-expanded="false">레시피</a>
@@ -129,9 +128,9 @@
 			<li class="nav-item">
            		<a href='/member/logout' class="nav-link">로그아웃</a>
            </li>
-           <div class="welcomelogin">${sessionScope.nickname}님, 반갑습니다.💕 </div>
+           <li class="welcomelogin_dropdown">${sessionScope.nickname}님, 반갑습니다.💕 </li>
 		</c:if>
-		<!--세션이 없을 때 = 미로그인시 -->
+		<!--세션이 없을 때(미로그인) -->
 		<c:if test = "${ sessionScope.email == null }"> 
 		 	<li class="nav-item">
 				<a href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';" class="nav-link"					

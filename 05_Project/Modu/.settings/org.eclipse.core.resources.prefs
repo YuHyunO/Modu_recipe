@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//src/main/java/com/modu/controller/FreeBoardController.java=MS949
 encoding//src/main/java/com/modu/controller/IndexController.java=MS949
 encoding//src/main/java/com/modu/controller/MemberController.java=MS949
+encoding//src/main/java/com/modu/controller/MembershipController.java=MS949
 encoding//src/main/java/com/modu/controller/NoticeController.java=MS949
 encoding//src/main/java/com/modu/controller/RecipeController.java=MS949
 encoding//src/main/java/com/modu/mapper/MemberMapper.java=UTF-8

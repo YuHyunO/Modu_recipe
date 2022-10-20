@@ -10,48 +10,45 @@
 	width: 100%;
 }
 
-/* È¸¿ø°¡ÀÔ Áß Áßº¹ÀÌ¸ŞÀÏ Á¸ÀçÇÏÁö ¾Ê´Â°æ¿ì */
-.email_input_re_1{
-    margin-top: 30px;
-    text-align: left;
-    color : green;
-    display : none;
+.main-color {
+    color: #937062;
 }
 
-/* È¸¿ø°¡ÀÔ Áß Á¸ÀçÇÏ´Â °æ¿ì */
-.email_input_re_2{
-    margin-top: 30px;
-    text-align: left;
-    color : red;
-    display : none;
+/* ë¡œê·¸ì¸ ì‹¤íŒ¨ì‹œ ê²½ê³ ê¸€ */
+.login_warn2 {
+	text-align: center;
+	display: inline-block;
+	font-size: 13px;
+	color: green;
+	margin-top: 15px;
+	margin-bottom: 15px;
 }
 
-/* ·Î±×ÀÎ ½ÇÆĞ½Ã °æ°í±Û */
-.login_warn{
-    margin-top: 30px;
-    text-align: center;
-    color : red;
+#login-button {
+	color: #ffffff;
+	background: #937062;
+	border-style: none;
+	margin: auto;
+	display: block;
+	width: 100%;
 }
 
-#searchbutton {
-    background: #937062;
+/* ë¹„ë°€ë²ˆí˜¸ë¥¼ ìŠìœ¼ì…¨ë‚˜ìš”, ì´ë¯¸ íšŒì›ì´ì‹ ê°€ìš”? ë¬¸êµ¬ */
+.forgotpwd, .goregister {
+	font-size: 13px;
+	color: #42332d;
+	text-decoration: none;
+	background-color: transparent;
+	align-items: center;
 }
-
-#searchform {
-    background: #937062;
-}
-
-#formsearch {
-    background: #937062;
-}
-
+	
 .form-check-label {
     font-size: 0.8rem;
 }
 
 .acc-box {
     box-shadow: 2px 2px rgb(150, 150, 150);
-    width: 450px;
+    width: 500px;
     background-color: white;
     border-radius: 10px;
 }

@@ -1,8 +1,4 @@
-#searchform, #formsearch {
-    background: #937062;
-}
-
-/* ÇÁ·ÎÇÊ ¹Ú½º */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú½ï¿½ */
 .profile-details { 
     background-color: rgba(147, 112, 98, 0.2);
     color:#666;
@@ -10,7 +6,33 @@
     padding:20px
 }
 
-/* ÅÇ ¼±ÅÃ */
+/* 
+	.profile-details {
+	    background-color: rgba(147, 112, 98, 0.2);
+	    color: #666;
+	    text-align:center;  
+	    justify-content: center;
+	    align-items: center;  
+	    padding: 0px;
+	    border-radius: 5rem!important;
+	    width: 600px;
+} 
+*/
+
+	/* í˜„ì¬ í”„ì‚¬ ì´ë¯¸ì§€ */
+	#mypage_profileimg,
+	#mypage_defaultimg {
+    max-width: 200px;
+    max-height: 200px;
+    margin: auto 0; /*  ì—¬ë°± ì—†ì•° */
+    border-radius:100px; /* ìˆ«ì í´ìˆ˜ë¡ ì›ì— ê°€ê¹Œì›Œì§ */
+    padding: 0.3em 0.3em 0.3em 0.3em; /* í…Œë‘ë¦¬ íšŒìƒ‰ ì¥ì‹ */
+    text-align:center;
+    cursor:pointer;
+    /* background:gray; */
+}
+    
+/* ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
 .nav-link {
     color: #241c19;
 }
@@ -18,21 +40,21 @@
     color: #937062;
 }
 
-/* ³ÃÀå°í ¸ÂÃãÇü ·¹½ÃÇÇ ÃßÃµ ¼³¸í box */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ãµ ï¿½ï¿½ï¿½ï¿½ box */
 .backbox { 
     background-color: rgba(147, 112, 98, 0.2);
     padding:5px;
     text-align:center;        
 }
 
-/* ÃÖÁ¾ ¼±ÅÃµÈ Àç·á Ãâ·Â */
-#final { 
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ */
+#finalIngredient { 
     background-color: rgba(147, 112, 98, 0.2);
     border: 1px solid #edd7c5;
     padding:10px
 }
 
-/* ·¹½ÃÇÇ °Ë»ö ¹öÆ° */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ ï¿½ï¿½Æ° */
 .gold-btn {
     border-radius: 5px;
     border: none;
@@ -44,7 +66,7 @@
     background-color: rgb(170, 130, 110) !important;
 }
 
-/* Ã¼Å©¹Ú½º */
+/* Ã¼Å©ï¿½Ú½ï¿½ */
 .check-div {
     min-width: 125px;
     max-width: 125px;
@@ -60,7 +82,7 @@
     }
 }
 
-/* ÅÇ ¸Ş´º */
+/* ï¿½ï¿½ ï¿½Ş´ï¿½ */
 .tab-menu {
     font-size: 1rem !important;    
 }
@@ -75,7 +97,7 @@
     }
 }
 
-/* ³ªÀÇ ·¹½ÃÇÇ ÀÌ¹ÌÁö */
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ */
 .category-pic {
     border-radius: 10px !important;
     max-height: 230px;
@@ -87,7 +109,7 @@
     }
 }
 
-/* ½¦ÇÁ ·©Å· */
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å· */
 .chef-pic {
     border-radius: 50%;
     width: 70%;
@@ -104,7 +126,7 @@
     }
 }
 
-/* ÃÖ±Ù º» °Ô½Ã¹° */
+/* ï¿½Ö±ï¿½ ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ */
 .widget-title {
     font-size: 1rem !important;
     font-weight: 600 !important;
@@ -126,9 +148,121 @@
     background-color: rgb(170, 130, 110) !important;
 }
 
-/* ±âÅ¸ */
+/* ï¿½ï¿½Å¸ */
 @media(max-width:454px){
     .main * {
         font-size: 0.8rem;
     }
+}
+     .tab2-button, .tab5-button {
+        border:0;
+        outline:0;
+        appearance: auto;
+        writing-mode: horizontal-tb !important;
+        text-rendering: auto;
+        color: buttontext;
+        letter-spacing: normal;
+        word-spacing: normal;
+        line-height: normal;
+        text-transform: none;
+        text-indent: 0px;
+        text-shadow: none;
+        display: inline-block;
+        text-align: center;
+        align-items: flex-start;
+        cursor: default;
+        box-sizing: border-box;
+        background-color: buttonface;
+        margin: 0em;
+        padding: 8px 16px;
+        border-width: 0px;
+        border-style: outset;
+        border-color: buttonborder;
+        border-image: initial;
+    }
+    .tab2-button, .tab2-button.disabled, .tab2-button:disabled,
+    .tab5-button, .tab5-button.disabled, .tab5-button:disabled {
+      color: rgb(6, 6, 6);
+      background:rgb(214, 200, 194);
+    }
+    .tab2-button:hover, .tab2-button:focus,.tab2-button.focused,
+    .tab5-button:hover, .tab5-button:focus,.tab5-button.focused {
+      color: #fff;
+      background: #937062;
+      box-shadow:0 0 0 .2rem rgba(147, 112, 98, 0.25);
+    }
+
+    /*íƒ­5 - ì¹œêµ¬ê´€ë¦¬ ë²„íŠ¼*/
+    .handlemyfriendBtn {
+    font-size: 13px;
+      margin:auto 0; /* ê°€ìš´ë° ì •ë ¬ */
+      display:block;
+      width: auto;
+      padding: 5px 5px;
+      border-radius: 2px;
+      cursor: pointer;
+      border: 0;
+      outline: 0;
+      text-align:center;
+      justify-content:center;
+    }
+
+	.handlemyfriendBtn:hover {
+	  margin:auto 0; /* ê°€ìš´ë° ì •ë ¬ */
+      display:block;
+      width: auto;
+      padding: 5px 5px;
+      border-radius: 2px;
+      cursor: pointer;
+      border: 0;
+      outline: 0;
+    background:rgba(147, 112, 98, 0.6);
+    border-color:#e33d26;
+      text-align:center;
+      justify-content:center;
+	}
+
+    .handlemyfriend {
+   	 text-align:center;
+     margin:auto 0; /* ê°€ìš´ë° ì •ë ¬ */
+  	justify-content: center;
+  	align-items: center;
+   	display: flex;
+    }
+    
+    /* íƒ­5 ì¹œêµ¬ê´€ë¦¬- ì¹œêµ¬ë°•ìŠ¤ ë°°ê²½ ë„£ê¸°, ì‚¬ì´ì¦ˆ ì¡°ì ˆ*/    
+    .team-col {
+    text-align:center;
+    justify-content:center;
+    border:1px solid #ddd;
+    margin:15px 0;
+    padding:10px;
+    }
+    
+    .team-col:hover {
+    background:rgba(147, 112, 98, 0.2);
+    border-color:#e33d26;
+    box-shadow:5px 5px 0 0 rgba(0,0,0,0.1)
+    }
+    
+    .team-col figure{
+    margin:10px 10px;
+    }
+    
+    .team-col figure img{
+    border-radius:10%
+    }
+    
+.team-name {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+ .team-tag {
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 5px;
+    display: block;
 }

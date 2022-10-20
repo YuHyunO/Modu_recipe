@@ -15,6 +15,85 @@ function getCheckboxValue()  {
     = result;
 }
 
+function setUrl(e){
+	let url = "";
+	let tab = $(e).text();
+	
+	switch(tab){
+	case "냉장고 비우기": url = "/mypage/mypage-recommend";
+		  
+		  break;
+	case "나의 레시피": url = "/mypage/mypage-recipe";
+	
+		  break;
+	case "북마크한 레시피": url = "/mypage/mypage-bookmark";
+	
+		  break;
+	case "내 게시글": url = "/mypage/mypage-post";
+	
+		  break;
+	case "친구 관리": url = "/mypage/mypage-follow";
+		  
+	}
+	setData(url);
+}
+
+function setData(url){
+	let data = "";
+	
+	contentAgent(url, data);
+}
+
+function contentAgent(url, data){
+	console.log("URL: "+url);
+	$.ajax({
+		url: url,
+		type: "GET",
+		data: data,
+		dataType: "JSON",
+		traditional: true,
+		success: function(response){
+			console.log("success");
+			
+		},
+		error: function(error){
+			console.log("X");
+		}
+	});
+}
+
+function showRecommned(){
+	
+}
+
+function showMyRecipe(){
+	
+}
+
+function showBookmark(){
+	
+}
+
+function showMyPost(){
+	
+}
+
+function showFollow(){	
+	
+	let html = "";
+	
+	let followList = response.followList;
+	
+	for(let item of followList.following){
+		//내가 팔로우 한 사람
+	}
+	for(let itme of followList.follower){
+		//나를 팔로우 한 사람
+	}
+	
+}
+
+
 // 권장하는 방법 - 마이페이지 접속시 항상 실행되는 제이쿼리 function
 $(function(){
   // script
@@ -77,3 +156,4 @@ function activePage(e){
   $('.page-number').removeClass('active');
   $(e).addClass('active')
 }
+
