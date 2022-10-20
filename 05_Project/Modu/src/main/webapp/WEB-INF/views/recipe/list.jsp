@@ -34,26 +34,26 @@
 							<div class="tag-search d-flex justify-content-center">
 								<ul
 									class="tag-ul d-flex flex-wrap justify-content-center px-0 mb-5 mt-3">
-									<li class="tag-li" onclick="searchTag(this)">메인반찬</li>
-									<li class="tag-li" onclick="searchTag(this)">밑반찬</li>
-									<li class="tag-li" onclick="searchTag(this)">국/찌개</li>
-									<li class="tag-li" onclick="searchTag(this)">디저트</li>
-									<li class="tag-li" onclick="searchTag(this)">면/만두</li>
-									<li class="tag-li" onclick="searchTag(this)">밥/죽/떡</li>
-									<li class="tag-li" onclick="searchTag(this)">빵</li>
-									<li class="tag-li" onclick="searchTag(this)">스프</li>
-									<li class="tag-li" onclick="searchTag(this)">야식/안주</li>
-									<li class="tag-li" onclick="searchTag(this)">샐러드</li>
-									<li class="tag-li" onclick="searchTag(this)">소고기</li>
-									<li class="tag-li" onclick="searchTag(this)">닭고기</li>
-									<li class="tag-li" onclick="searchTag(this)">양고기</li>
-									<li class="tag-li" onclick="searchTag(this)">돼지고기</li>
-									<li class="tag-li" onclick="searchTag(this)">오리고기</li>
-									<li class="tag-li" onclick="searchTag(this)">채소류</li>
-									<li class="tag-li" onclick="searchTag(this)">해물류</li>
-									<li class="tag-li" onclick="searchTag(this)">유제품</li>
-									<li class="tag-li" onclick="searchTag(this)">기타</li>
-									<li class="tag-li random" onclick="searchTag(this)">랜덤추천★</li>
+									<li class="tag-li" onclick="searchTag(this)" value="1">메인반찬</li>
+									<li class="tag-li" onclick="searchTag(this)" value="2">밑반찬</li>
+									<li class="tag-li" onclick="searchTag(this)" value="3">국/찌개</li>
+									<li class="tag-li" onclick="searchTag(this)" value="4">디저트</li>
+									<li class="tag-li" onclick="searchTag(this)" value="5">면/만두</li>
+									<li class="tag-li" onclick="searchTag(this)" value="6">밥/죽/떡</li>
+									<li class="tag-li" onclick="searchTag(this)" value="7">빵</li>
+									<li class="tag-li" onclick="searchTag(this)" value="8">스프</li>
+									<li class="tag-li" onclick="searchTag(this)" value="9">야식/안주</li>
+									<li class="tag-li" onclick="searchTag(this)" value="10">샐러드</li>
+									<li class="tag-li" onclick="searchTag(this)" value="11">소고기</li>
+									<li class="tag-li" onclick="searchTag(this)" value="12">닭고기</li>
+									<li class="tag-li" onclick="searchTag(this)" value="13">양고기</li>
+									<li class="tag-li" onclick="searchTag(this)" value="14">돼지고기</li>
+									<li class="tag-li" onclick="searchTag(this)" value="15">오리고기</li>
+									<li class="tag-li" onclick="searchTag(this)" value="16">채소류</li>
+									<li class="tag-li" onclick="searchTag(this)" value="17">해물류</li>
+									<li class="tag-li" onclick="searchTag(this)" value="18">유제품</li>
+									<li class="tag-li" onclick="searchTag(this)" value="19">기타</li>
+									<li class="tag-li random" onclick="searchTag(this)" value="20">랜덤추천★</li>
 								</ul>
 							</div>
 							<!-- end tag-search -->
@@ -154,7 +154,7 @@
 							<c:choose>
 								<c:when test="${data.currentPage != 1}">
 									<li class="page-item"><a class="page-link page-previous"
-										href="javascript:void(0);" onclick="setPage(this)">＜</a></li>
+										href="javascript:void(0);" onclick="setPage(this)" id="pre">＜</a></li>
 								</c:when>
 								<c:when test="${data.currentPage == 1}">
 									<li class="page-item"><a class="page-link page-previous"
@@ -246,7 +246,7 @@
 							<c:choose>
 								<c:when test="${data.currentPage != data.totalPage}">
 									<li class="page-item"><a class="page-link page-next"
-										href="javascript:void(0);" onclick="setPage(this)">＞</a></li>
+										href="javascript:void(0);" onclick="setPage(this)" id="next">＞</a></li>
 								</c:when>
 								<c:when test="${data.currentPage == data.totalPage}">
 									<li class="page-item"><a class="page-link page-next"

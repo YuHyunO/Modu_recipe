@@ -35,7 +35,7 @@ public class SearchServiceImpl implements SearchService {
 						  totalPost = recipeMapper.selectRecipeCountByPeriod(period);
 						  break;						  
 					  }
-			case "1": if (request.getParameter("category").equals("������õ��")) {
+			case "1": if (request.getParameter("category").equals("20")) {
 						  totalPost = Integer.parseInt(request.getParameter("pageSize"));  
 					  }else {
 						  String category = request.getParameter("category");
@@ -69,8 +69,8 @@ public class SearchServiceImpl implements SearchService {
 				currentPage = Integer.parseInt(request.getParameter("currentPage"));
 			}catch(NumberFormatException nfe) {
 				switch(param) {
-				case "＜": currentPage = currentPage - 1; break;
-				//case "＞": currentPage = currentPage + 1;						 
+				case "pre": currentPage = currentPage - 1; break; //previous page
+				case "next": currentPage = currentPage + 1;		//next page				 
 				}
 			}
 		}else if(session.getAttribute("currentPage") != null) {
@@ -128,7 +128,7 @@ public class SearchServiceImpl implements SearchService {
 					  break;
 				  }				  
 		case "1": category = request.getParameter("category");
-				  if (category.equals("������õ��")) {
+				  if (category.equals("20")) {
 					  recipeList = recipeMapper.selectRecipeListByRandom(beginRow, endRow);
 					  break;
 				  }		
@@ -166,7 +166,7 @@ public class SearchServiceImpl implements SearchService {
 		int currentPage = 1;
 		int pageSize = 8;
 		int totalPage;
-		int totalPost = recipeMapper.selectRecipeCount(); //������ ��
+		int totalPost = recipeMapper.selectRecipeCount(); 
 		
 		totalPage = totalPost/pageSize;
 		if(totalPost % pageSize > 0) {
