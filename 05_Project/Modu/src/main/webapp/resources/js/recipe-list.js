@@ -31,7 +31,6 @@ function searchTag(e){
     if($(e).val() == 20){//20은 랜덤추천
     	text = $(e).val();
     }
-    console.log("text: "+text);
     // 클래스명 변경
     $('.tag-li').removeClass('active');
     $(e).addClass('active');
