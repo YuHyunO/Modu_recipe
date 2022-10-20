@@ -28,7 +28,10 @@ $(function(e){
 // 태그검색
 function searchTag(e){
     let text = $(e).text(); //현재 클릭한 태그의 텍스트
-
+    if($(e).val() == 20){//20은 랜덤추천
+    	text = $(e).val();
+    }
+    console.log("text: "+text);
     // 클래스명 변경
     $('.tag-li').removeClass('active');
     $(e).addClass('active');
@@ -61,8 +64,11 @@ function setPageSize(){
 // 현재 페이지
 function setPage(e){
 	currentPage = $(e).text();
-	//console.log("currentPage: "+currentPage);
-	
+	let value = $(e).attr("id");
+	if(value =="pre" || value == "next"){
+		currentPage = value;
+	}
+
 	if(sessionStorage.getItem("category")!=null){
 		//console.log("2: towards setCategoryData()");
 		setCategoryData(sessionStorage.getItem("category"));
@@ -72,7 +78,7 @@ function setPage(e){
 	}else{
 		//console.log("2: towards setData()");
 		setData();
-	}	
+	}
 }
 //기본검색 value:0 
 function setData(){
@@ -227,7 +233,7 @@ function paginate(curPage, totalPage){
 	//pagination-previous
 	if(cp != 1){
 		divPrevious += '<li class="page-item"><a class="page-link page-previous"';
-		divPrevious += 'href="javascript:void(0);" onclick="setPage(this)">＜</a></li>';
+		divPrevious += 'href="javascript:void(0);" onclick="setPage(this)" id="pre">＜</a></li>';
 	}else if(cp == 1){
 		divPrevious += '<li class="page-item"><a class="page-link page-previous"';
 		divPrevious += 'href="javascript:void(0);">＜</a></li>';
@@ -281,7 +287,7 @@ function paginate(curPage, totalPage){
 	//pagination-next
 	if(cp != total){
 		divNext += '<li class="page-item"><a class="page-link page-next"';
-		divNext += 'href="javascript:void(0);" onclick="setPage(this)">＞</a></li>';
+		divNext += 'href="javascript:void(0);" onclick="setPage(this)" id="next">＞</a></li>';
 	}else if(cp == total){
 		divNext += '<li class="page-item"><a class="page-link page-next"';
 		divNext += 'href="javascript:void(0);">＞</a></li>';
