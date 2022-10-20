@@ -35,11 +35,11 @@
 		</div><!-- end head-title -->
 
 		<div class="main d-flex justify-content-center">
-			<div
-				class="main-container row d-flex justify-content-center m-0 py-4">
+			<div class="main-container row d-flex justify-content-center m-0 py-4">
+				
 				<div class="row">
-
 					<div id="primary" class="content-area col-md-9">
+					
 						<div id="content" class="site-content">
 							<!--프로필 영역 시작 -->
 							<div class="profile-details rounded-3 text-center">
@@ -1291,21 +1291,12 @@
 									</h2></li>
 						</div><!-- end widget -->
 
-						<!--새로운 태그들-->
-						<div class="widget">
-							<div class="widget-title-outer">
-								<h3 class="widget-title">News Tags</h3>
-							</div>
-							<div class="tagcloud">
-								<a href="#">#돼지갈비</a> <a href="#">#잔치국수</a> <a href="#">#돈까스</a>
-								<a href="#">#마카롱</a>
-							</div>
-						</div><!-- end widget -->
-
 						<!--광고 배너 이미지-->
 						<div class="widget">
-							<a href="#"> <img class="rounded-3 banner"
-								src="/imgs/mypage/ad_bespoke.PNG" alt="Banner" />
+							<a href="#">
+							<img class="rounded-3 banner"
+								src="/imgs/mypage/ad_bespoke.PNG"
+								alt="Banner" />
 							</a>
 						</div>
 					</div><!-- end #secondary, 사이드영역 끝 -->
@@ -1314,8 +1305,6 @@
 			</div><!-- end container -->
 		</div><!-- end main -->
 		<%@ include file="/WEB-INF/views/common/bottom.jsp"%>
-	</div>
-	<!-- end page wrapper -->
-	<!-- end #page hfeed site -->
+	</div> <!-- end #page hfeed site -->
 </body>
 </html>
