@@ -140,6 +140,7 @@ $(function() { // 회원가입 페이지 들어오면 작동되는 fuction
 		} else { // 2. 이메일 혹은 닉네임 하나 이상 중복일 때
 			// 가입불가(submit 막기 위해 아무동작 하지 않음)
 			alert("이메일 또는 닉네임을 다시 확인해주세요.");
+			$('#id_email').focus();
 		}
 	});
 }); // $(document).ready(function(){ 종료

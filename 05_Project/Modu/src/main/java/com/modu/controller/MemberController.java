@@ -237,9 +237,11 @@ public class MemberController {
 			member.setProfileImgOrg(ofname);
 			member.setProfileImg(saveFileName);
 			member.setProfileImgSize(fsize);
-			log.info("파일업로드 위 member:"+ member);
+			log.info("#############파일업로드 fileInfoList: "+fileInfoList);
+			log.info("#############fileInfoList==null:"+fileInfoList==null);
+			log.info("#############fileInfoList.size():"+fileInfoList.size());
 			filuploadservice.saveImgFile(file, Path.PROFILE_PATH, fileInfoList); //파일업로드서비스단에서 실제 로컬에 물리적 파일 생성
-
+			
 			
 			Member memberInfo = memberRegisterService.modifyMyInfo2(member);
 			log.info("#5_내정보수정 성공후 내정보 memberInfo= "+ memberInfo);

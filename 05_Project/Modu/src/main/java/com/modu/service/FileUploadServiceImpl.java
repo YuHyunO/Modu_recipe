@@ -22,13 +22,13 @@ public class FileUploadServiceImpl implements FileUploadService {
 	public String[] saveImgFile(MultipartFile file, String path, ArrayList<String> fileInfoList) {	
 		String ofname = file.getOriginalFilename();
 		int idx = ofname.lastIndexOf(".");
-		String ofheader = ofname.substring(0, idx); //a(ÆÄÀÏÀÌ¸§ ºÎºÐ)°¡ Ãâ·ÂµÊ(ÀÎµ¦½º 0ºÎÅÍ idx ¹Ì¸¸±îÁö)
-		String ext = ofname.substring(idx); //È®ÀåÀÚ Ãâ·Â(ÀÎµ¦½º idxºÎÅÍ ³¡±îÁö Ãâ·Â)
-		long ms = System.currentTimeMillis(); //ÇöÀç ½Ã°£ÀÇ ¹Ð¸®¼¼ÄÁµå¸¦ »Ì¾Æ³¿
+		String ofheader = ofname.substring(0, idx); //a(ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Îºï¿½)ï¿½ï¿½ ï¿½ï¿½Âµï¿½(ï¿½Îµï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ idx ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½)
+		String ext = ofname.substring(idx); //È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½(ï¿½Îµï¿½ï¿½ï¿½ idxï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½)
+		long ms = System.currentTimeMillis(); //ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å¸¦ ï¿½Ì¾Æ³ï¿½
 		
 		StringBuilder sb = new StringBuilder();
-		log.info("#ÆÄÀÏÁ¤º¸: " + fileInfoList);
-		if (fileInfoList == null) {
+		log.info("#ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½: " + fileInfoList);
+		if (fileInfoList.size() == 0) {
 			sb.append(ofheader);
 			sb.append("_");
 			sb.append(ms);
@@ -44,17 +44,17 @@ public class FileUploadServiceImpl implements FileUploadService {
 			sb.append(ms);
 			sb.append(ext);
 		}
-		String saveFileName = sb.toString(); //½ÇÁ¦ ¹°¸®ÀûÀ¸·Î ÀúÀåµÇ´Â ÆÄÀÏ ÀÌ¸§ÀÌ µÊ
+		String saveFileName = sb.toString(); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½
 		
-		long fsize = file.getSize(); //ÆÄÀÏ »çÀÌÁî ±¸ÇÏ±â
+		long fsize = file.getSize(); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
 		log.info("#ofname: " + ofname + ", saveFileName: " + saveFileName + ", fsize: " + fsize); 
-		//¿ø·¡ ÆÄÀÏÀÌ¸§, ÀúÀåÇÑ ÆÄÀÏ ÀÌ¸§, ÆÄÀÏ»çÀÌÁî 	
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½, ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½ï¿½ï¿½ 	
 		
 		boolean flag = writeFile(file, saveFileName, path);
 		if(flag) {
-			log.info("#¾÷·Îµå ¼º°ø");
+			log.info("#ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}else {
-			log.info("#¾÷·Îµå ½ÇÆÐ");
+			log.info("#ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
 		
 		result = new String[2];
@@ -64,11 +64,11 @@ public class FileUploadServiceImpl implements FileUploadService {
 		return result;		
 	}
     
-	//³» ·ÎÄÃÆú´õ¿¡ ¹°¸®ÀûÀ¸·Î ÆÄÀÏ»ý¼ºÇÏ´Â ¸Þ¼Òµå 
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Þ¼Òµï¿½ 
 	private boolean writeFile(MultipartFile file, String saveFileName, String path) {
 		
 		File dir = new File(path);
-		if(!dir.exists()) dir.mkdirs(); //ÇØ´ç °æ·Î°¡ ¾ø´Ù¸é µð·ºÅä¸®¸¦ »ý¼ºÇÔ
+		if(!dir.exists()) dir.mkdirs(); //ï¿½Ø´ï¿½ ï¿½ï¿½Î°ï¿½ ï¿½ï¿½ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		
 		FileOutputStream fos = null;
 		try {
@@ -79,13 +79,13 @@ public class FileUploadServiceImpl implements FileUploadService {
 			
 			return true;
 		}catch(IOException ie) {
-			log.info("#ÆÄÀÏ¾÷·Îµå¼­ºñ½ºimpl boolean writeFile¸Þ¼Òµå¿¡¼­ ¿¹¿Ü ie ¹ß»ý: "+ ie);
+			log.info("#ï¿½ï¿½ï¿½Ï¾ï¿½ï¿½Îµå¼­ï¿½ï¿½impl boolean writeFileï¿½Þ¼Òµå¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ie ï¿½ß»ï¿½: "+ ie);
 			return false;
 		}finally {
 			try {
 				if(fos != null) fos.close();
 			}catch(IOException is) {
-				log.info("#ÆÄÀÏ¾÷·Îµå¼­ºñ½ºimpl boolean writeFile¸Þ¼Òµå¿¡¼­ ¿¹¿Ü is ¹ß»ý: "+ is);
+				log.info("#ï¿½ï¿½ï¿½Ï¾ï¿½ï¿½Îµå¼­ï¿½ï¿½impl boolean writeFileï¿½Þ¼Òµå¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ is ï¿½ß»ï¿½: "+ is);
 			}
 		}
 	}
@@ -93,28 +93,28 @@ public class FileUploadServiceImpl implements FileUploadService {
     public String saveStore(MultipartFile file) {
         String ofname = file.getOriginalFilename();
         int idx = ofname.lastIndexOf(".");
-        String ofheader = ofname.substring(0, idx); //a(ÆÄÀÏÀÌ¸§ ºÎºÐ)°¡ Ãâ·ÂµÊ(ÀÎµ¦½º 0ºÎÅÍ idx ¹Ì¸¸±îÁö)
-        String ext = ofname.substring(idx); //È®ÀåÀÚ Ãâ·Â(ÀÎµ¦½º idxºÎÅÍ ³¡±îÁö Ãâ·Â)
-        long ms = System.currentTimeMillis(); //ÇöÀç ½Ã°£ÀÇ ¹Ð¸®¼¼ÄÁµå¸¦ »Ì¾Æ³¿
+        String ofheader = ofname.substring(0, idx); //a(ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½Îºï¿½)ï¿½ï¿½ ï¿½ï¿½Âµï¿½(ï¿½Îµï¿½ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ idx ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½)
+        String ext = ofname.substring(idx); //È®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½(ï¿½Îµï¿½ï¿½ï¿½ idxï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½)
+        long ms = System.currentTimeMillis(); //ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½Ð¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å¸¦ ï¿½Ì¾Æ³ï¿½
         
         StringBuilder sb = new StringBuilder();
         sb.append(ofheader);
         sb.append("_");
         sb.append(ms);
         sb.append(ext);
-        String saveFileName = sb.toString(); //½ÇÁ¦ ¹°¸®ÀûÀ¸·Î ÀúÀåµÇ´Â ÆÄÀÏ ÀÌ¸§ÀÌ µÊ
+        String saveFileName = sb.toString(); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½
         
-        long fsize = file.getSize(); //ÆÄÀÏ »çÀÌÁî ±¸ÇÏ±â
+        long fsize = file.getSize(); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
         //log.info("#ofname: " + ofname + ", saveFileName: " + saveFileName + ", fsize: " + fsize); 
-        //¿ø·¡ ÆÄÀÏÀÌ¸§, ÀúÀåÇÑ ÆÄÀÏ ÀÌ¸§, ÆÄÀÏ»çÀÌÁî     
+        //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½, ï¿½ï¿½ï¿½Ï»ï¿½ï¿½ï¿½ï¿½ï¿½     
         
         boolean flag = writeFile(file, saveFileName);
         if(flag) {
-            log.info("#¾÷·Îµå ¼º°ø");
+            log.info("#ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
         }else {
-            log.info("#¾÷·Îµå ½ÇÆÐ");
+            log.info("#ï¿½ï¿½ï¿½Îµï¿½ ï¿½ï¿½ï¿½ï¿½");
         }
-        //IO·Î ÆÄÀÏÀ» ½áÁÖ¸é µÊ
+        //IOï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¸ï¿½ ï¿½ï¿½
         return Path.FILE_STORE + saveFileName;      
     }
 	private boolean writeFile(MultipartFile file, String saveFileName) {

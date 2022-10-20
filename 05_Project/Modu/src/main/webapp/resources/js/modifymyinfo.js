@@ -27,38 +27,6 @@ $(document).ready(function () {
 	
 	}) //$("#removemyprofileimg").click(function () 종료
 }); // $(document).ready(function () 종료 
-
-//프로필 사진 변경사진 업로드시 미리보기 및 삭제 이벤트 처리
-function handleFileSelect(event) {
-	var input = this;
-	console.log(input.files);
-	
-	if (input.files && input.files.length) {
-		var reader = new FileReader();
-		this.enabled = false
-		reader.onload = (function(e) {
-			console.log(e)
-			$("#preview").html(['<img class="thumb" src="',
-									e.target.result,
-									'" title="',
-									escape(e.name),
-									'"/>' ]
-									.join(''))
-		});
-		reader.readAsDataURL(input.files[0]);
-	}
-}
-
-$('#file').change(handleFileSelect);
-$('.file-edit-icon').on('click',
-		'.preview-delete', function() {
-			$("#preview").empty()
-			$("#file").val("");
-		});
-/* 			$('.preview-edit').click( function() {
-					 $("#file").click();
-			 });	
-*/
  
 	$(function() { //내정보수정 페이지 들어오면 항상 작동되는 js
 					
@@ -150,6 +118,36 @@ $('.file-edit-icon').on('click',
 					
 }); //$(function() 종료
 
+		//프로필 사진 변경사진 업로드시 미리보기 및 삭제 이벤트 처리
+	 	function handleFileSelect(event) {
+			console.log("handleFileSelect 진입시작");
+			var input = this;
+			console.log(input.files);
+			
+			if (input.files && input.files.length) {
+				var reader = new FileReader();
+				this.enabled = false
+				reader.onload = (function(e) {
+					console.log(e)
+					$("#preview").html(['<img class="thumb" src="',
+											e.target.result,
+											'" title="',
+											escape(e.name),
+											'"/>' ]
+											.join(''))
+				});
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+
+		$('#file').change(handleFileSelect);
+		$('.file-edit-icon').on('click',
+				'.preview-delete', function() {
+					$("#preview").empty()
+					$("#file").val("");
+				}); 
+
+	
 $(document).ready(function() { //현재 페이지 들어오면 항상 수행
 		$("#modifyOkBtn").on("click",
 						function() { //수정하기 버튼 클릭시 

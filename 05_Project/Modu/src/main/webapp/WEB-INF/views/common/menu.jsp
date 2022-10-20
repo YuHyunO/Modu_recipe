@@ -32,9 +32,18 @@
 									role="button" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false">레시피</a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-										<a class="dropdown-item" href="/recipe/list">레시피 목록</a> <a
-											class="dropdown-item" href="/recipe/detail">레시피 상세</a> <a
-											class="dropdown-item" href="/recipe/write">레시피 등록</a>
+										<a class="dropdown-item" href="/recipe/list">레시피 목록</a>
+										<a class="dropdown-item" href="/recipe/detail">레시피 상세</a>
+									<!-- 세션이 존재할 때 -->
+									<c:if test = "${ sessionScope.email != null }">									
+										<a class="dropdown-item" href="/recipe/write">레시피 등록</a>
+									</c:if>
+									<!-- 세션이 존재하지 않을 때 -->
+									<c:if test = "${ sessionScope.email == null }">		
+										<a class="dropdown-item" 
+										href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';">							
+											레시피 등록</a>
+									</c:if>
 									</div></li>
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
@@ -106,8 +115,17 @@
 			aria-haspopup="true" aria-expanded="false">레시피</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown1">
 				<a class="dropdown-item" href="/recipe/list">레시피 목록</a> <a
-					class="dropdown-item" href="/recipe/detail">레시피 상세</a> <a
-					class="dropdown-item" href="/recipe/write">레시피 등록</a>
+					class="dropdown-item" href="/recipe/detail">레시피 상세</a> 
+				<!-- 세션이 존재할 때 -->
+				<c:if test = "${ sessionScope.email != null }">									
+					<a class="dropdown-item" href="/recipe/write">레시피 등록</a>
+				</c:if>
+				<!-- 세션이 존재하지 않을 때 -->
+				<c:if test = "${ sessionScope.email == null }">		
+					<a class="dropdown-item" 
+					href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';">							
+						레시피 등록</a>
+				</c:if>
 			</div></li>
 		<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
 			href="#" id="navbarDropdown3" role="button" data-toggle="dropdown"
