@@ -1,3 +1,15 @@
+.site-navigation .navbar-nav .nav-item .nav-link {
+    color: #937062 !important;
+    font-size: 15px !important;
+}
+
+/* ë©”ë‰´ dropdown ì˜ì—­ */
+.site-navigation.navbar .dropdown-menu, .dropdown-item {
+    background-color: #fff !important;
+    color: #937062 !important;
+    font-size: 15px !important;
+}
+
 * {
 	font-family: 'Jua', sans-serif !important;
 }
@@ -243,12 +255,12 @@
 	color: black !important;
 }
 
-/* Æ÷ÀÎÆ® Ä¿¼­ */
+/* ï¿½ï¿½ï¿½ï¿½Æ® Ä¿ï¿½ï¿½ */
 .pointer {
 	cursor: pointer !important;
 }
 
-/* ÀÌ¹ÌÁö 100% */
+/* ï¿½Ì¹ï¿½ï¿½ï¿½ 100% */
 .ratio-100 {
 	position: relative;
     width: 100%;

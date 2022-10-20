@@ -27,33 +27,34 @@
 							<ul class="navbar-nav">
 								<li class="nav-item active"><a class="nav-link" href="/">홈<span
 										class="sr-only">(current)</span></a></li>
-								<li class="nav-item dropdown"><a
-									class="nav-link dropdown-toggle" href="#" id="navbarDropdown1"
-									role="button" data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false">레시피</a>
+								<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+									href="#" id="navbarDropdown1" role="button" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false">레시피</a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown1">
 										<a class="dropdown-item" href="/recipe/list">레시피 목록</a>
-										<a class="dropdown-item" href="/recipe/detail">레시피 상세</a>
-									<!-- 세션이 존재할 때 -->
-									<c:if test = "${ sessionScope.email != null }">									
-										<a class="dropdown-item" href="/recipe/write">레시피 등록</a>
-									</c:if>
-									<!-- 세션이 존재하지 않을 때 -->
-									<c:if test = "${ sessionScope.email == null }">		
-										<a class="dropdown-item" 
-										href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';">							
-											레시피 등록</a>
-									</c:if>
-									</div></li>
+										<a class="dropdown-item" href="/recipe/detail">레시피 상세</a> 
+										<!-- 세션이 존재할 때 -->
+										<c:if test = "${ sessionScope.email != null }">									
+											<a class="dropdown-item" href="/recipe/write">레시피 등록</a>
+										</c:if>
+										<!-- 세션이 존재하지 않을 때 -->
+										<c:if test = "${ sessionScope.email == null }">		
+											<a class="dropdown-item" 
+											href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';">							
+												레시피 등록</a>
+										</c:if>
+									</div>
+								</li>
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle" href="#" id="navbarDropdown3"
 									role="button" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false">게시판</a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-										<a class="dropdown-item" href="/notice/list">공지사항</a> <a
-											class="dropdown-item" href="/freeboard/list">자유게시판</a>
-									</div></li>
-									<!--세션이 존재할 때-->
+										<a class="dropdown-item" href="/notice/list">공지사항</a>
+										<a class="dropdown-item" href="/freeboard/list">자유게시판</a>
+									</div>
+								</li>
+								<!--세션이 존재할 때-->
 								<c:if test = "${ sessionScope.email != null }">
 									<li class="nav-item">
 										<a href='/mypage/main' class="nav-link">마이페이지</a>
@@ -87,7 +88,7 @@
 
 				<div class="side-col">
 					<nav class="social-navigation p-0">
-						<div class="social-container py-0">
+						<div class="social-containㅂ22er py-0">
 							<ul class="social-menu">
 							</ul>
 						</div>
@@ -114,8 +115,8 @@
 			href="#" id="navbarDropdown1" role="button" data-toggle="dropdown"
 			aria-haspopup="true" aria-expanded="false">레시피</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown1">
-				<a class="dropdown-item" href="/recipe/list">레시피 목록</a> <a
-					class="dropdown-item" href="/recipe/detail">레시피 상세</a> 
+				<a class="dropdown-item" href="/recipe/list">레시피 목록</a>
+				<a class="dropdown-item" href="/recipe/detail">레시피 상세</a> 
 				<!-- 세션이 존재할 때 -->
 				<c:if test = "${ sessionScope.email != null }">									
 					<a class="dropdown-item" href="/recipe/write">레시피 등록</a>
@@ -131,8 +132,8 @@
 			href="#" id="navbarDropdown3" role="button" data-toggle="dropdown"
 			aria-haspopup="true" aria-expanded="false">게시판</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown3">
-				<a class="dropdown-item" href="/notice/list">공지사항</a> <a
-					class="dropdown-item" href="/freeboard/list">자유게시판</a>
+				<a class="dropdown-item" href="/notice/list">공지사항</a>
+				<a class="dropdown-item" href="/freeboard/list">자유게시판</a>
 			</div></li>
 			<!--세션이 존재할 때-->
 		<c:if test = "${ sessionScope.email != null }">
