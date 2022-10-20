@@ -126,7 +126,7 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
         String text = "STEP-";
         String content;
         int num = 0;
-        int step = 1;
+        int step = 0;
         for (MultipartFile file : files) {
             String ofname = file.getOriginalFilename();
             log.info("#파일 이름: " + ofname);
@@ -144,10 +144,10 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
                     } else {
                         String[] urlAndName = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + id + "\\", fileInfoList);                
                         log.info("#url: " + urlAndName[0]);
-                        content = directions.get(step - 1);
+                        content = directions.get(step-1 + num);
                         direction.setRId(id);
                         direction.setDirection(content);
-                        direction.setStep(step-1 + num);
+                        direction.setStep(step + num);
                         direction.setOriginalFile(ofname);
                         direction.setSaveFile(urlAndName[1]);
                         recipeMapper.insertDirection(direction);
