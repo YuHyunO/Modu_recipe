@@ -308,3 +308,8 @@ ul {
 .hidden-input {
 	display: none;
 }
+
+/* 서브 타이틀 감추기 */
+.p-title {
+	display: none !important;
+}

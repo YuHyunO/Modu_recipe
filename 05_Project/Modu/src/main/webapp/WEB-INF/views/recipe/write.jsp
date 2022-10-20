@@ -40,7 +40,7 @@
 							<div class="main-photo col-4 pointer">
 								<input type="file" class="hidden-input main"
 									onchange="imgUpload(this)" />
-								<div class="text-center ratio ratio-100" onclick="fileUpButton(this)">
+								<div class="text-center ratio-100" onclick="fileUpButton(this)">
 									<img class="w-100 rounded-3 food_photo"
 										src="/imgs/no-image.jpg">
 								</div>
