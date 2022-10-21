@@ -97,8 +97,6 @@ public class RecipeController {
 	    return mv;
 	}
 	
-	@PostMapping("/read")
-	
 	@GetMapping("/detail")
 	public ModelAndView recipeDetail() {
 		long id = 150;
