@@ -47,7 +47,7 @@
 			<div id="primary" class="content-area col-md-10">
 			
 				<div class="recipes-section pt-3 pb-3">
-					<div class="container">
+					<div class="container p-0">
 						<div
 							class="section-title d-flex justify-content-between align-items-center">
 							<h4 class="mb-0 py-3 ms-3">

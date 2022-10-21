@@ -19,21 +19,26 @@
 				var reply =  $("#replyArea").val();
 				var bId0 = para[1];
 				var bId = parseInt(bId0);
-				$.ajax({
-					url: "../freeboard/addReply", 
-					type: "POST", 
-					data: {"reply": reply, "bId": bId
-					},
-					//dataType:"json",
-					success: function(data){
-						addReply(this);
-						$("#replyArea").val("");
-					} 
-					,
-					error: function(eror){
-					}
-					
-				});
+				var text = $('#replyArea').val();
+				 if (text.length <= 10) {
+					 alert("false1");
+						false;
+				 }else{
+					 $.ajax({
+							url: "/freeboard/addReply", 
+							type: "POST", 
+							data: {"reply": reply, "bId": bId
+							},
+							success: function(data){
+								addReply(this);
+								$("#replyArea").val("");
+							} 
+							,
+							error: function(eror){
+							}
+							
+						});
+				 }
 			});			
 		});
 		
@@ -75,7 +80,6 @@
 							html +=	"				class='post-date px-2'>"+item.replyDate+"</span>";
 							html +=	"		</div>";
 							html +=	"		<div class='author-items px-3'>";
-							html +=	"			<button class='reply-1 reply-btn' onclick=''>수정</button>";
 							html +=	"			<button class='reply-1 reply-btn' onclick=''>삭제</button>";
 							html +=	"			<button class='reply-1 reply-btn'";
 							html +=	"				onclick='addReplyForm(this)'>댓글</button>";
@@ -116,12 +120,25 @@
 				    </div>'
 		}
 		function removeReply(){
+			let para = document.location.href.split("=");
+			let bId = para[1];
 			const removeReply = document.getElementById('removeReply');
 			let number = removeReply.innerText;
-			alert("number : "  +number );
-			console.log("number : " + number);
 			if (confirm("정말 삭제하시겠습니까??") == true){
-				location.href='removeReply?id='+number+'';
+				$.ajax({
+					url: "../freeboard/removeReply", 
+					type: "POST", 
+					data: {"id":number
+					},
+					success: function(data){
+						location.href='detail?id='+bId+'';
+					}
+					,
+					error: function(eror){
+						alert("fail");
+					}
+				});
+				
 			 }else{
 			     return false;
 			 }
@@ -206,13 +223,13 @@
 												class="post-date px-2">${board.board.postDate}</span>
 										</div>
 										<c:if test="${sessionScope.email == board.board.MEmail}">
-											<div class="d-flex">
+											<div class="">
 												<a href="update.do?id=${board.board.id}"><button class="btn-fix">수정</button></a>
 												<button class="btn-del" onclick="deleteCheck()">삭제</button>
 											</div>
 										</c:if>
 										<c:if test="${sessionScope.email != board.board.MEmail}">
-											<div class="d-flex" style="display: none;">
+											<div class="" style="display: none;">
 												<a href="update.do?id=${board.board.id}"><button class="btn-fix">수정</button></a>
 												<button class="btn-del" onclick="deleteCheck()">삭제</button>
 											</div>
@@ -286,7 +303,7 @@
 													<!-- 임시로 더보기 -->
 														<input type='button' id="theBoGi" style="text-align: center; background-color: orange;" onclick='count()' value='더보기'>
 															<br></br>
-														<textarea id='plusResult' style='display:none;'>0</textarea>
+														<textarea id='plusResult' style='display:none;'>6</textarea>
 													<!-- 임시로 더보기 끝 -->
 											<div class="col px-0">
 												<textarea class="w-100 h-100 border comment-text p-2"

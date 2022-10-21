@@ -34,9 +34,6 @@ form label {
     color: rgb(230, 230, 230);
 }
 
-#title {
-    color: white;
-}
 
 form input, form select {
     border-radius: 0px !important;
@@ -74,17 +71,29 @@ form {
     .main-container * {
         font-size: 0.8rem;
     }
+    
     form .btn {
         width: 80px;
         height: 30px;
     }
+    
     .file label, .file input {
         height: 30px !important;
     }
+    
     .space {
         display: none;
     }
+    
     .main {
         margin-top: 30px;
+    }
+    
+    .p-title {
+    	font-size: calc(1.3rem + .6vw);
+    }
+    
+    form label {
+    	font-size: 1rem !important;
     }
 }
