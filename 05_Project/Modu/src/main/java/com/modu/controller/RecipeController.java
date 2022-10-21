@@ -81,6 +81,7 @@ public class RecipeController {
 	        map.put("msg", "로그인 후 이용 해주세요");
 	    } else {
             recipeRegisterService.registerRecipe(request, session, files, mainItems, subItems, directions, tags);
+            log.info("#####1" + tags);
 	        map.put("msg", "서비스로 데이터 전송 성공");
 	    } 
 	    return map;
@@ -95,7 +96,9 @@ public class RecipeController {
 	    mv.addObject("id", id);
 	    return mv;
 	}
-
+	
+	@PostMapping("/read")
+	
 	@GetMapping("/detail")
 	public ModelAndView recipeDetail() {
 		long id = 150;
