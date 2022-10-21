@@ -237,5 +237,8 @@
                         		select NVL(MAX(ROWNUM), 0) count from RECIPE_NESTED_REPLY
                         		where RR_ID in(select DISTINCT(ID) from RECIPE_REPLY
                         		where M_EMAIL=#{email}))	
-	</select>	
+	</select>
+	<select id="selectScrapByRecipeId" parameterType="Scrap" resultType="Scrap">
+		select * from SCRAP where R_ID=#{rId} and M_EMAIL=#{mEmail}
+	</select>
 </mapper>

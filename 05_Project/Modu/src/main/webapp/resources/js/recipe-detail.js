@@ -13,7 +13,7 @@ function clickSubscribe(e){
     }
 }
 
-function clickScrap(e){
+/*function clickScrap(e){
     //let request = new XMLHttpRequest();
     if ($(e).hasClass('recipe-scrap')){
         $(e).removeClass('recipe-scrap');
@@ -26,7 +26,7 @@ function clickScrap(e){
         //request.open("GET", "?res_name={{name}}-rm");
         //request.send();
     }
-}
+}*/
 
 let star_point = 0;
 
@@ -139,7 +139,7 @@ function addReply(e){
 
     if(star_point === 0){
     } else {
-        starHtml = '<img class="star-rate-img" src="/imgs/stars' 
+        starHtml = '<img class="star-rate-img2" src="/imgs/stars' 
         + star_point + '.png" alt="stars" style="width:80px; height:15px; margin-bottom:5px;">';
     }
     let htmlMain = 
