@@ -228,7 +228,7 @@ public class RecipeSearchServiceImpl implements RecipeSearchService {
         int endRow = currentPage*pageSize;
         int beginRow = endRow-pageSize+1;
         
-        session.setAttribute("myCurrentPage", currentPage);             
+        //session.setAttribute("myCurrentPage", currentPage);             
         
         RecipeListVo data = new RecipeListVo();
         if(query != null) {

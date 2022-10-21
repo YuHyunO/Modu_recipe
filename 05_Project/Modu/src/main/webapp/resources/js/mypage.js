@@ -1,5 +1,16 @@
+let mode;
+let currentPage = 1;
+
+function setPage(e){
+	currentPage = $(e).text();
+	let id = $(e).attr("id");
+	if(id =="pre" || id == "next"){
+		currentPage = id;
+	}
+	setUrl(mode);
+}
+
 function setUrl(e){
-   let mode;
    let url = "";
    let tab = $(e).attr("id");
 
@@ -8,28 +19,41 @@ function setUrl(e){
    }
 
    switch(tab){
-   case "ingredient-tab": url = "/mypage/recommend";
+   case 1:
+   case "ingredient-tab":
+	    url = "/mypage/recommend";
         mode = 1;
         break;
-   case "article-tab": url = "/mypage/recipe";
+   case 2:        
+   case "article-tab": 
+	    url = "/mypage/recipe";
         mode = 2;
         break;
-   case "bookmark-tab": url = "/mypage/bookmark";
+   case 3:        
+   case "bookmark-tab":   
+	    url = "/mypage/bookmark";
         mode = 3;
         break;
+   case 4:
    case "mypost-tab": url = "/mypage/post";
         mode = 4;
         break;
+   case 5:
    case "myfriend-tab": url = "/mypage/follow";
         mode = 5;
    }
+   console.log("###url: "+url);
+   console.log("###currentPage: "+currentPage);
    setData(url, mode);
 }
 
 function setData(url, mode){
    let data;
    switch(mode){
-   case 1: data = {list: getCheckboxValue()}
+   case 1: data = {
+		   		list: getCheckboxValue(),
+		   		currentPage: currentPage
+		   }
    }
    dataAgent(url, data, mode);
 }
@@ -61,26 +85,12 @@ function dataAgent(url, data, mode){
    });
 }
 
-function setPage(e){
-	currentPage = $(e).text();
-	let id = $(e).attr("id");
-	if(id =="pre" || id == "next"){
-		currentPage = id;
-	}
-	data = {
-			currentPage: curPage,
-			list: list
-			}
-	dataAgent(data)
-}
-
 function displayRecommened(response){
-	console.log("1");
 	let recipeList = response.recipeList;
-	let pageSize = response.pageSize;
-	console.log("##"+recipeList);
-	
+	let currentPage = response.currentPage;
+	let totalPage = response.totalPage; 	
 	let html = "";
+	
 	for(let item of recipeList){
 		html += '<div id="recipe-item" class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
@@ -107,6 +117,7 @@ function displayRecommened(response){
 		html += '</div>';
 		
 		$("#recipe-list").html(html);
+		paginate(currentPage, totalPage);
 	}
 }
 
@@ -126,8 +137,8 @@ function displayFollow(response){
 	console.log("5");
 }
 
-function paginate(curPage, totalPage){
-	let cp = curPage;
+function paginate(currentPage, totalPage){
+	let cp = currentPage;
 	let total = totalPage;
 	let divPrevious = "";
 	let divArea = "";
@@ -231,8 +242,8 @@ $(function(){
 	                + fishes[i]+"</span></label></<div>";
 	    $('#fishSection').append(html);
 	  }
-
-	  processeds = new Array("베이컨","미트볼", "소시지",
+	  //베이컨, 미트볼
+	  processeds = new Array("재료9","재료5", "소시지",
 	  "스팸", "햄", "순대","만두", "물만두", "당면","라면","파스타면","소면",
 	  "우동면","칼국수면","가래떡", "떡국떡","떡볶이떡","바게트","식빵","두부","순두부");
 	  for(i=0;i<processeds.length;i++){
@@ -240,8 +251,8 @@ $(function(){
 	                + processeds[i]+"</span></label></<div>";
 	    $('#processedSection').append(html);
 	  }
-
-	  seasonings = new Array("소금","설탕","식용유","참기름","꿀","청국장","된장",
+	  //소금 설탕
+	  seasonings = new Array("재료1","재료2","식용유","참기름","꿀","청국장","된장",
 	  "초고추장","물엿","올리고당","식초","고추장","후추","매실액","미림",
 	  "굴소스","액젓","다진마늘","데리야끼소스","명란젓","마요네즈",
 	  "짜장가루","카레가루","춘장","올리브유","케첩","핫소스");

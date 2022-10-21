@@ -1,8 +1,10 @@
 package com.modu.controller;
 
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Vector;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -56,7 +58,8 @@ public class MembershipController {
     }
     
     @GetMapping("/recommend")
-    public @ResponseBody RecipeListVo recommend(HttpServletRequest request, HttpSession session) {
+    public @ResponseBody RecipeListVo recommend(HttpServletRequest request, HttpSession session) {        
+        
         RecipeListVo data = recipeSearchService.searchRecipeByIngredient(request, session);
     	return data;
     }
