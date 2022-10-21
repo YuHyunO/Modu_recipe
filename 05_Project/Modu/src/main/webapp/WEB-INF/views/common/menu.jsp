@@ -63,10 +63,10 @@
 						           		<a href='/member/logout' class="nav-link">로그아웃</a>
 						           </li>
 						           <li class="welcomelogin">${sessionScope.nickname}님, 반갑습니다.💕 </li>
-						        	<li class="welcomelogin">
+<!-- 						        	<li class="welcomelogin">
 						        	  <span id="timer"></span><br/>
 						        	  <a href="javascript:refreshTimer();">연장하기</a>
-						        	</li>
+						        	</li> -->
 								</c:if>
 								<!--세션이 없을 때 = 미로그인시 -->
 								<c:if test = "${ sessionScope.email == null }"> 

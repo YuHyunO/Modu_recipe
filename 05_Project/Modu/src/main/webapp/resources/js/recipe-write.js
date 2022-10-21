@@ -577,7 +577,7 @@ function register(e) {
 	let accessibility;
 
 	switch (openRange.val()) {
-		case "비공개저장":
+		case "비공개 저장":
 			accessibility = 0;
 			break;
 		case "저장 및 공개":
@@ -647,7 +647,7 @@ function checkData(e) {
 	
 	for (object of checkList){
 		if(textList.includes(object.val())){
-			alert(object.val() + " 선택이 안되어있습니다.");
+			alert(object.val() + " 선택되지 않았습니다.");
 			object.focus();
 
 			return false;
@@ -662,7 +662,7 @@ function checkByte(e, maxByte) {
 	let str_len = str.length; // 입력된 textarea의 길이
 	
 	if(str_len>maxByte){
-		alert(maxByte+"자 이상 입력하실수 없습니다."); // 최대 byte 이상 입력시 경고창
+		alert(maxByte+"자 이상 입력하실 수 없습니다."); // 최대 byte 이상 입력시 경고창
 		str = str.substr(0,maxByte); // 입력한 문자열 값중 0부터 마지막 바이트까지의 값을 가져옴
 		str.value = str;
 	}

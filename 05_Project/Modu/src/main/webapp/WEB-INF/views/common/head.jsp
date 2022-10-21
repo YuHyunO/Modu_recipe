@@ -24,4 +24,5 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 	<!-- 공통 부분 END -->   
 
+<link rel="icon" type="image/ico" href="/resources/static/favicon.ico">
 </head>
