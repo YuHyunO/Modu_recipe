@@ -1,9 +1,9 @@
-/* ¸ÞÀÎ ÄÁÅ×ÀÌ³Ê */
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ */
 .main-container {
-    max-width: 1050px;
+    max-width: 1200px;
 }
 
-/* ½¦ÇÁ ·©Å· */
+/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å· */
 .chef-pic {
     border-radius: 50%;
     width: 70%;
@@ -21,8 +21,39 @@
     }
 }
 
-/* ±âÅ¸ */
+@media (min-width: 768px)
+.col-md-3 {
+    flex: 0 0 auto;
+    width: 20%;
+}
+
+/* ï¿½ï¿½Å¸ */
 .btn-more {
      color: black;
      text-decoration: none;
+}
+
+.widget-title {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+}
+
+.post-category {
+    font-size: 0.8rem !important;
+}
+
+.banner {
+    width: 100%;
+}
+
+#secondary .tagcloud a {
+    background-color: rgb(140, 110, 100) !important;
+}
+
+#secondary .tagcloud a:hover {
+    background-color: rgb(170, 130, 110) !important;
+}
+
+#lock_ad {
+	width:100%;
 }

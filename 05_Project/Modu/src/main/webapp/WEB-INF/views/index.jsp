@@ -7,26 +7,47 @@
 <head>
 <%@ include file="/WEB-INF/views/common/head.jsp"%>
 <link href="css/index.css" rel="stylesheet">
-
 <title>모두의 식탁</title>
-
 </head>
-<body>
+<style type="text/css">
+.main-container {
+    max-width: 1200px;
+}
 
+#lock_ad{
+	width:100%;
+}
+.banner {
+    width: 100%;
+}
+
+#navbarSupportedContent a {
+    color: #937062 !important;
+    width: 70px;
+    font-weight: 700;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+</style>
+<body>
 	<div id="page" class="hfeed site">
 		<!-- start page wrapper -->
 		<%@ include file="/WEB-INF/views/common/menu.jsp"%>
 		<div class="head-title py-4 m-0">
 			<div class="container">
 				<p class="page-title m-0 fs-2">INDEX</p>
-			</div>
-			<!-- end container -->
-		</div>
-		<!-- end head-title -->
-		<div class="main">
-			<div class="container main-container">
+			</div><!-- end container -->
+		</div><!-- end head-title -->
+		
+		<div class="main d-flex justify-content-center">
+			<div class="main-container row d-flex justify-content-center m-0 py-4">
+			
+			<div class="row">
+			<div id="primary" class="content-area col-md-10">
+			
 				<div class="recipes-section pt-3 pb-3">
-					<div class="container">
+					<div class="container p-0">
 						<div
 							class="section-title d-flex justify-content-between align-items-center">
 							<h4 class="mb-0 py-3 ms-3">
@@ -121,22 +142,107 @@
 										</p>
 										<a class="chef-name" href="#">${member.nickname}</a>
 									</div>
-								</div>
-								<!-- end col -->
+								</div><!-- end col -->
 							</c:forEach>
-						</div>
-						<!-- end row -->
-					</div>
-					<!-- end container -->
-				</div>
-				<!-- end blog-section -->
-			</div>
-			<!-- end container -->
-		</div>
-		<!-- end main -->
+						</div><!-- end row -->
+					</div><!-- end 쉐프 container -->
+				</div><!-- end chef-section -->
+				
+					</div><!-- end primary(주요 메인영역) 종료-->
+					
+					<!--사이드 영역(secondary) 시작-->
+					<div id="secondary" class="col-md-2">
+						<!--새로운 태그들-->
+						<div class="widget">
+							<div class="widget-title-outer">
+								<h3 class="widget-title">News Recipe Tags</h3>
+							</div>
+							<div class="tagcloud">
+								<a href="#">#나시고랭</a>
+								<a href="#">#칵테일새우</a>
+								<a href="#">#스테이크</a>
+								<a href="#">#돈까스</a>
+								<a href="#">#새우볶음밥</a>
+							</div>
+						</div><!-- end widget -->
+
+						<!--광고 배너 이미지-->
+						<div class="widget">
+							<a href="#">
+							<img id="lock_ad" 
+								class="rounded-3 banner"
+								src="/imgs/index/lock_ad.gif" 
+								alt="lockandlock_ad.gif" />
+							</a>
+						</div><!-- end 광고 배너 -->
+						
+						<div class="widget post-type-widget pt-3 pb-3">
+							<div class="widget-title-outer">
+								<h3 class="widget-title">최근 본 게시물</h3>
+							</div>
+							<ul>
+								<li>
+									<span class="post-category"> 
+									<a href="#">카테고리1-레시피</a>
+									</span>
+									<figure class="post-thumbnail">
+										<a href="#"> <img class="rounded-3"
+											src="/imgs/content/thumb-post-01.png" alt="" />
+										</a>
+									</figure>
+									<h2 class="post-title">
+										<a href="#">손쉬운 수제버거 레시피</a>
+									</h2>
+								</li>
+								<li>
+									<span class="post-category">
+										<a href="#">쉐프 랭킹</a>
+									</span>
+									<figure class="post-thumbnail">
+										<a href="#"> <img class="rounded-3"
+											src="/imgs/content/thumb-post-02.png" alt="" />
+										</a>
+									</figure>
+									<h2 class="post-title">
+										<a href="#">미슐랭 쉐프의 요리 꿀팁</a>
+									</h2>
+								</li>
+								<li>
+									<span class="post-category">
+									<a href="#">자유게시판</a>
+									</span>
+									<figure class="post-thumbnail">
+										<a href="#"> <img class="rounded-3"
+											src="/imgs/content/thumb-post-03.png" alt="" />
+										</a>
+									</figure>
+									<h2 class="post-title">
+										<a href="#">가산역에 새로 생긴 돼지갈비집 맛있나요?</a>
+									</h2>
+								</li>
+								<li>
+									<span class="post-category">
+									<a href="#">Vegetable</a>
+									</span>
+									<figure class="post-thumbnail">
+										<a href="#"> <img class="rounded-3"
+											src="/imgs/content/thumb-post-04.png" alt="" />
+										</a>
+									</figure>
+									<h2 class="post-title">
+										<a href="#">토마토바나나쉐이크 만들기</a>
+									</h2>
+								</li>
+						</div><!-- end widget 최근 본 게시물 -->
+					</div><!-- end #secondary, 사이드영역 끝 -->
+				
+				</div><!-- end row -->
+			</div><!-- end main=container -->
+		</div><!-- end main -->
+		
+		
 		<%@ include file="/WEB-INF/views/common/bottom.jsp"%>
-	</div>
-	<!-- end #page hfeed site -->
+	</div><!-- end #page hfeed site -->
 </body>
 
 </html>

@@ -2,6 +2,7 @@ package com.modu.service;
 
 import java.util.List;
 
+import com.modu.domain.board.Board;
 import com.modu.domain.board.BoardReply;
 import com.modu.domain.board.BoardReplyList;
 

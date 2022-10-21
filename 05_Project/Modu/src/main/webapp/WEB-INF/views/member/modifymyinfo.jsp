@@ -29,15 +29,11 @@
 				<div class="row">
 					<div class="d-flex justify-content-center">
 						<div class="acc-box"><!-- equal 지워야 사이즈 가변적 -->
-							<h2 style="text-align:center;">#내 정보 수정</h2>
-<!-- 							<div class="p-4 pt-0 p-title h3 mb-0 text-center">#내 정보 수정</div> -->
+							<h2 style="text-align:center;">#내 정보 수정</h2><!-- <div class="p-4 pt-0 p-title h3 mb-0 text-center">#내 정보 수정</div> -->
 							<p class="mb-0 text-center acc-btn">
 								<em>You can modify your information.</em>
 							</p>
 							<p class="mt-3 acc-btn text-right">* 표시는 수정 불가합니다.<br/>
-<!-- 				          <script type="text/javascript" charset="utf-8" src="/js/timeoutchk.js"></script>
-				          	 <span id="timer"></span>
-				          	 <a href="javascript:refreshTimer();">시간연장</a> -->
 					        </p>
 
 							<!-- 파일 업로드시 form태그 안에 enctype="multipart/form-data" 입력 필수.
@@ -202,6 +198,35 @@
 	</div><!-- end id="page" -->
 						
 	<script type="text/javascript">
+	//프로필 사진 변경사진 업로드시 미리보기 및 삭제 이벤트 처리
+ 	function handleFileSelect(event) {
+		console.log("handleFileSelect 진입시작");
+		var input = this;
+		console.log(input.files);
+		
+		if (input.files && input.files.length) {
+			var reader = new FileReader();
+			this.enabled = false
+			reader.onload = (function(e) {
+				console.log(e)
+				$("#preview").html(['<img class="thumb" src="',
+										e.target.result,
+										'" title="',
+										escape(e.name),
+										'"/>' ]
+										.join(''))
+			});
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	$('#file').change(handleFileSelect);
+	$('.file-edit-icon').on('click',
+			'.preview-delete', function() {
+				$("#preview").empty()
+				$("#file").val("");
+			}); 
+
 	</script>
 </body>
 </html>
