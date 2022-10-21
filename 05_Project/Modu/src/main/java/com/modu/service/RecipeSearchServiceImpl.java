@@ -16,7 +16,7 @@ import com.modu.domain.recipe.RecipeListVo;
 import com.modu.mapper.RecipeMapper;
 
 @Service
-public class SearchServiceImpl implements SearchService {
+public class RecipeSearchServiceImpl implements RecipeSearchService {
 	@Autowired
 	private RecipeMapper recipeMapper;
 
@@ -152,40 +152,96 @@ public class SearchServiceImpl implements SearchService {
 	}
 	
 	@Override
-	public RecipeListVo searchRecipeByIngredient(HttpServletRequest request, HttpSession session) {
-		String[] ingredients = request.getParameterValues("data");
-		if(ingredients == null) {
-			System.out.println("Data is null\n");
-		}else {
-			for(int i=0; i<ingredients.length; i++) {
-				String item = ingredients[i];
-				System.out.println("item : "+item);
-			}
-		}
-		System.out.println();
-		int currentPage = 1;
-		int pageSize = 8;
-		int totalPage;
-		int totalPost = recipeMapper.selectRecipeCount(); 
-		
-		totalPage = totalPost/pageSize;
-		if(totalPost % pageSize > 0) {
-			totalPage = totalPage + 1;
-		}		
-		
-		if(currentPage<1) { 
-			currentPage = 1;
-		}else if(currentPage>totalPage) { 
-			currentPage = totalPage;
-		}
-		
-		int endRow = currentPage*pageSize;
-		int beginRow = endRow-pageSize+1;
-		
-		session.setAttribute("myCurrentPage", currentPage);				
-		
-		RecipeListVo data = new RecipeListVo();
-		
-		return data;
-	}
+    public RecipeListVo searchRecipeByIngredient(HttpServletRequest request, HttpSession session) {
+        String[] ingredients = request.getParameterValues("list");
+        String query = "";
+
+        if(ingredients == null) {
+            query = null;
+        }else {
+            for(int i=0; i<ingredients.length; i++) {
+                
+                String item = ingredients[i];
+                System.out.println("##"+item);
+                if(ingredients.length == 1) {
+                    query += "select DISTINCT(r.ID) ID," + 
+                            "r.FOOD_PHOTO," + 
+                            "r.TITLE," + 
+                            "r.FOOD," + 
+                            "r.PROFILE_IMG," + 
+                            "r.M_NICKNAME," + 
+                            "r.M_EMAIL," + 
+                            "r.STAR," + 
+                            "r.STARS," + 
+                            "r.HITS from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID where ingr.INGREDIENT like '%"+ingredients[i]+"%'";
+                }else {                 
+                    query += "select DISTINCT(r.ID) ID," + 
+                            "r.FOOD_PHOTO," + 
+                            "r.TITLE," + 
+                            "r.FOOD," + 
+                            "r.PROFILE_IMG," + 
+                            "r.M_NICKNAME," + 
+                            "r.M_EMAIL," + 
+                            "r.STAR," + 
+                            "r.STARS," + 
+                            "r.HITS from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID where ingr.INGREDIENT like '%"+ingredients[i]+"%'";
+                    if(i < ingredients.length-1) {
+                        query += " intersect ";
+                    }
+                }
+            }
+        }
+        
+        int currentPage = 1;
+        int pageSize = 4;
+        int totalPage;
+        int totalPost = recipeMapper.selectRecipeCount(); //수정할 것
+        
+        if(request.getParameter("currentPage") != null) {
+            if(session.getAttribute("myCurrentPage") != null) {
+                currentPage = (int)session.getAttribute("myCurrentPage");
+            }
+            String param = request.getParameter("currentPage");
+            try {
+                currentPage = Integer.parseInt(request.getParameter("currentPage"));
+            }catch(NumberFormatException nfe) {
+                switch(param) {
+                    case "pre": currentPage = currentPage - 1; break;
+                    case "next": currentPage = currentPage + 1;                         
+                }
+            }
+        }else if(session.getAttribute("myCurrentPage") != null) {
+            currentPage = (int)session.getAttribute("myCurrentPage");
+        }       
+        
+        totalPage = totalPost/pageSize;
+        if(totalPost % pageSize > 0) {
+            totalPage = totalPage + 1;
+        }       
+        
+        if(currentPage<1) { 
+            currentPage = 1;
+        }else if(currentPage>totalPage) { 
+            currentPage = totalPage;
+        }
+        
+        int endRow = currentPage*pageSize;
+        int beginRow = endRow-pageSize+1;
+        
+        //session.setAttribute("myCurrentPage", currentPage);             
+        
+        RecipeListVo data = new RecipeListVo();
+        if(query != null) {
+            List<RecipeList> recipeList = recipeMapper.selectRecipeListByIngredients(query, beginRow, endRow);
+            data.setRecipeList(recipeList);
+            data.setPageSize(pageSize);
+            data.setCurrentPage(currentPage);
+            data.setTotalPage(totalPage);
+            System.out.println(data);
+        }else {
+            data = null;
+        }
+        
+        return data;
+    }
 }

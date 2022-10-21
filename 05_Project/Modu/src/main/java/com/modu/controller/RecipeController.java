@@ -27,7 +27,7 @@ import com.modu.domain.recipe.RecipeReplyList;
 import com.modu.mapper.RecipeLegacyMapper;
 import com.modu.service.RecipeFindingService;
 import com.modu.service.RecipeRegisterService;
-import com.modu.service.SearchService;
+import com.modu.service.RecipeSearchService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -41,10 +41,10 @@ public class RecipeController {
 	@Autowired
 	private RecipeRegisterService recipeRegisterService;
 	@Autowired
-	private SearchService searchService;
-	
+	private RecipeSearchService searchService;
 	@Autowired
 	private RecipeLegacyMapper recipeLegacyMapper;
+
 
     @GetMapping("/list")
     public ModelAndView recipeList(HttpServletRequest request, HttpSession session) {

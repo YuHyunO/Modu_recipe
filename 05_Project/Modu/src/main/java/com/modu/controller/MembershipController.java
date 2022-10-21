@@ -1,8 +1,10 @@
 package com.modu.controller;
 
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Vector;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,9 +17,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.modu.domain.member.FollowList;
 import com.modu.domain.member.Member;
+import com.modu.domain.recipe.RecipeListVo;
 import com.modu.service.FileUploadService;
 import com.modu.service.MemberRegisterService;
 import com.modu.service.MembershipService;
+import com.modu.service.RecipeSearchService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -31,6 +35,7 @@ public class MembershipController {
 	private MemberRegisterService memberRegisterService;
 	private FileUploadService filuploadservice; //by @AllArgsConstructor
 	private MembershipService membershipService;
+	private RecipeSearchService recipeSearchService;
 	
 	/*
 	//마이페이지 페이지 이동(MemberController.java 에 있는 메소드 가져옴)
@@ -52,31 +57,32 @@ public class MembershipController {
         return mv;
     }
     
-    @GetMapping("/mypage-recommend")
-    public @ResponseBody String recommend(HttpServletRequest request, HttpSession session) {
-
-    	return "1";
+    @GetMapping("/recommend")
+    public @ResponseBody RecipeListVo recommend(HttpServletRequest request, HttpSession session) {        
+        
+        RecipeListVo data = recipeSearchService.searchRecipeByIngredient(request, session);
+    	return data;
     }
     
-    @GetMapping("/mypage-recipe")
+    @GetMapping("/recipe")
     public @ResponseBody String recipe(HttpServletRequest request, HttpSession session) {
 
     	return "2";
     }
     
-    @GetMapping("/mypage-bookmark")
+    @GetMapping("/bookmark")
     public @ResponseBody String bookmark(HttpServletRequest request, HttpSession session) {
 
     	return "3";
     }
 	
-    @GetMapping("/mypage-post")
+    @GetMapping("/post")
     public @ResponseBody String post(HttpServletRequest request, HttpSession session) {
     	
     	return "4";
     }
 	
-    @GetMapping("/mypage-follow")
+    @GetMapping("/follow")
     public @ResponseBody List<FollowList> follow(HttpServletRequest request, HttpSession session) {
     	
     	List<FollowList> testList = membershipService.getFollowList(request, session);
