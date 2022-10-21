@@ -321,27 +321,7 @@
 				              M_EMAIL,
 				              STAR,
 				              STARS,
-				              HITS from (select DISTINCT(r.ID) ID,
-										        r.FOOD_PHOTO, 
-										        r.TITLE,
-										        r.FOOD,
-										        r.PROFILE_IMG,
-										        r.M_NICKNAME,
-										        r.M_EMAIL,
-										        r.STAR,
-										        r.STARS,
-										        r.HITS from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID where ingr.INGREDIENT like '%재료1%'
-				                         intersect
-				                         select DISTINCT(r.ID) ID,
-										        r.FOOD_PHOTO, 
-										        r.TITLE,
-										        r.FOOD,
-										        r.PROFILE_IMG,
-										        r.M_NICKNAME,
-										        r.M_EMAIL,
-										        r.STAR,
-										        r.STARS,
-										        r.HITS from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID where ingr.INGREDIENT like '%재료2%')
+				              HITS from (${query}))
 		where list BETWEEN #{beginRow} AND #{endRow}         		              		            
 	</select>
 	
