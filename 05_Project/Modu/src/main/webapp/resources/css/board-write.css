@@ -34,9 +34,6 @@ form label {
     color: rgb(230, 230, 230);
 }
 
-#title {
-    color: white;
-}
 
 form input, form select {
     border-radius: 0px !important;
