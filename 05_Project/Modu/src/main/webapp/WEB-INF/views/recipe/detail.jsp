@@ -8,6 +8,7 @@
 <!-- 공통 부분 END -->
 <link href="/css/recipe-detail.css" rel="stylesheet">
 <script src="/js/recipe-detail.js"></script>
+<script src="/js/recipe-detailSub.js"></script>
 
 <title>모두의 식탁 - 레시피</title>
 </head>
@@ -18,7 +19,7 @@
 
 		<div class="head-title py-4 m-0">
 			<div class="container">
-				<p class="page-title m-0 fs-2">RECIPE ${starPoint}</p>
+				<p class="page-title m-0 fs-2">RECIPE</p>
 			</div>
 			<!-- end container -->
 		</div>
@@ -42,7 +43,7 @@
 			<!-- end 사진 팝업 -->
 			<div class="row py-3 px-5">
 				<div class="container col-md-2">
-					<input hidden="true">
+					<input class="recipe-id" hidden="true" value="${id}">
 				</div>
 				<div class="container col-sm-10 col-md-8 col-lg-6 col-xl-5">
 					<div class="recipe-content m-0" id="primary">
@@ -186,7 +187,7 @@
 														<img src="/imgs/content/auth-00.png" alt="작성자">
 													</figure> <!-- end comment-author vcard --> <b class="fn px-2">${rep.nickname}</b>
 													<span class="star-rate-block"> <span class="px-2">${rep.replyDate}</span>
-														<img class="star-rate-img" src="/imgs/stars4.png"
+														<img class="star-rate-img2" src="/imgs/stars4.png"
 														alt="stars"
 														style="width: 80px; height: 15px; margin-bottom: 5px;">
 												</span>
