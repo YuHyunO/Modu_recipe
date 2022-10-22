@@ -55,6 +55,9 @@ public interface RecipeMapper {
 	int selectRecipeCountByCategory(@Param("category")String category, @Param("period")int period);
 	int selectRecipeCountByKeyword(@Param("nameOption")String nameOption, @Param("keyword")String keyword, @Param("period")int period);
 	int selectRecipeCountByIngredient(@Param("keyword")String keyword, @Param("period")int period);
+	int selectRecipeCountByIngredients(String query);
+	int selectRecipeCountOfMember(String email);
+	int selectRecipeCountOfBookmark(String email);
 	
 	// 베스트 레시피
 	List<RecipeList> selectRecipeListByBestHits(@Param("beginRow") long beginRow, @Param("endRow") long endRow);
