@@ -324,7 +324,10 @@
 				              HITS from (${query}))
 		where list BETWEEN #{beginRow} AND #{endRow}         		              		            
 	</select>
-	
+	<select id="selectRecipeListOfMember" resultType="RecipeList">
+	</select>
+	<select id="selectRecipeListOfMember" resultType="RecipeList">
+	</select>
 	
 	
 	<select id="selectRecipeCount" resultType="int">
