@@ -65,15 +65,17 @@ public class MembershipController {
     }
     
     @GetMapping("/recipe")
-    public @ResponseBody String recipe(HttpServletRequest request, HttpSession session) {
-
-    	return "2";
+    public @ResponseBody RecipeListVo myRecipe(HttpServletRequest request, HttpSession session) {
+        
+        RecipeListVo data = recipeSearchService.searchRecipeByIngredient(request, session);
+    	return data;
     }
     
     @GetMapping("/bookmark")
-    public @ResponseBody String bookmark(HttpServletRequest request, HttpSession session) {
-
-    	return "3";
+    public @ResponseBody RecipeListVo bookmark(HttpServletRequest request, HttpSession session) {
+        
+        RecipeListVo data = recipeSearchService.searchRecipeByIngredient(request, session);
+    	return data;    
     }
 	
     @GetMapping("/post")

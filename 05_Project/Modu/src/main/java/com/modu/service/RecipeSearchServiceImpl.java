@@ -244,4 +244,57 @@ public class RecipeSearchServiceImpl implements RecipeSearchService {
         
         return data;
     }
+	
+	@Override
+	public RecipeListVo searchRecipeOfMember(HttpServletRequest request, HttpSession session) {
+	    String email = (String)session.getAttribute("emial");
+	    
+        int currentPage = 1;
+        int pageSize = 8;
+        int totalPage;
+        int totalPost = recipeMapper.selectRecipeCount(); //수정할 것
+        
+        if(request.getParameter("currentPage") != null) {
+            if(session.getAttribute("myCurrentPage") != null) {
+                currentPage = (int)session.getAttribute("myCurrentPage");
+            }
+            String param = request.getParameter("currentPage");
+            try {
+                currentPage = Integer.parseInt(request.getParameter("currentPage"));
+            }catch(NumberFormatException nfe) {
+                switch(param) {
+                    case "pre": currentPage = currentPage - 1; break;
+                    case "next": currentPage = currentPage + 1;                         
+                }
+            }
+        }else if(session.getAttribute("myCurrentPage") != null) {
+            currentPage = (int)session.getAttribute("myCurrentPage");
+        }       
+        
+        totalPage = totalPost/pageSize;
+        if(totalPost % pageSize > 0) {
+            totalPage = totalPage + 1;
+        }       
+        
+        if(currentPage<1) { 
+            currentPage = 1;
+        }else if(currentPage>totalPage) { 
+            currentPage = totalPage;
+        }
+        
+        int endRow = currentPage*pageSize;
+        int beginRow = endRow-pageSize+1;
+        
+        //session.setAttribute("myCurrentPage", currentPage);             
+        
+       // List<RecipeList> recipeList = recipeMapper.se
+        RecipeListVo data = new RecipeListVo();	    
+	    
+	    return null;
+	}
+	
+	@Override
+	public RecipeListVo searchRecipeOfBookmark(HttpServletRequest request, HttpSession session) {
+	    return null;
+	}
 }
