@@ -18,10 +18,6 @@ function clickScrap(e){
 	
 	// 스크랩 추가
     if ($(e).hasClass('recipe-scrap')){
-        $(e).removeClass('recipe-scrap');
-        $(e).addClass('recipe-scrap-clicked');
-        console.log("스크랩이 추가 되었습니다.");
-        
         $.ajax({
     		url: "/recipe/scrap.json",
     		type: "POST",
@@ -30,22 +26,20 @@ function clickScrap(e){
     		contentType: false,
     		data: formData,
     		success: function (response) {
-    			loginUser = response.user; // 이메일 변수 저장
-    			console.log("login User: " + loginUser);
+    			if (loginUser === undefined){
+    	        	alert(response.error);
+    			} else {
+	    			loginUser = response.user; // 이메일 변수 저장
+	    			console.log("login User: " + loginUser);
+	    			$(e).removeClass('recipe-scrap');
+    		        $(e).addClass('recipe-scrap-clicked');
+    		        console.log("스크랩이 추가 되었습니다.");
+    			}
     		},
     		error: function (response) {
-    			// 2. 로그인 세션이 없는 경우 -> 로그인 후 이용
-    			if (loginUser === undefined){
-    	        	console.log("스크랩 기능은 로그인 후 이용하실 수 있습니다.");
-    			} else {
-    				console.log("서버와 통신에 실패하였습니다.")
-    			}
+    			console.log("서버와 통신에 실패하였습니다.")
     		}
     	});
-        
-        
-        
-        
     } else { // 스크랩 해제
         $(e).removeClass('recipe-scrap-clicked');
         $(e).addClass('recipe-scrap');

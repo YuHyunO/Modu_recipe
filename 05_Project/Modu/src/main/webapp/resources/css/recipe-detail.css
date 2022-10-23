@@ -53,6 +53,10 @@
     font-size: 0.8rem;
 }
 
+.recipe-auth {
+	min-width: 260px;
+}
+
 .recipe-scrap {
     background: url("/imgs/scrap1.png") center/60% no-repeat;
     border: none;
@@ -305,11 +309,6 @@ img {
         border-color: black;
     }
 
-    .recipe-info {
-        width: 300px;
-        padding-right: 30px;
-    }
-
     .recipe-option button {
         width: 50px;
         height: 40px;
@@ -317,7 +316,7 @@ img {
 
     .recipe-auth {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         padding: 10px 0px 10px 0px;
     }
 

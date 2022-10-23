@@ -1,4 +1,4 @@
-/* í”„ë¡œí•„ ë°•ìŠ¤ */
+/* ÇÁ·ÎÇÊ ¹Ú½º */
 .profile-details {
 	background-color: rgba(147, 112, 98, 0.2);
 	color: #666;
@@ -19,19 +19,19 @@
 } 
 */
 
-/* ï¿½ì½ï¿½ì˜± ï¿½ë´½ï¿½ê¶— ï¿½ì” èª˜ëª„ï¿½ */
+/* ÇöÀç ÇÁ»ç ÀÌ¹ÌÁö */
 #mypage_profileimg, #mypage_defaultimg {
 	max-width: 200px;
 	max-height: 200px;
-	margin: auto 0; /*  ï¿½ë¿¬è«›ï¿½ ï¿½ë¾¾ï¿½ë¹Š */
-	border-radius: 100px; /* ï¿½ë‹½ï¿½ì˜„ ï¿½ê²¢ï¿½ë‹”æ¿¡ï¿½ ï¿½ìï¿½ë¿‰ åª›ï¿½æºëš¯ì™ï§ï¿½ */
-	padding: 0.3em 0.3em 0.3em 0.3em; /* ï¿½ë€’ï¿½ëª¢ç”±ï¿½ ï¿½ì‰¶ï¿½ê¹‹ ï¿½ì˜£ï¿½ë–‡ */
+	margin: auto 0; 
+	border-radius: 100px; 
+	padding: 0.3em 0.3em 0.3em 0.3em;
 	text-align: center;
 	cursor: pointer;
 	/* background:gray; */
 }
 
-/* íƒ­ ì„ íƒ */
+/* ÅÇ ¼±ÅÃ */
 .nav-link {
 	color: #241c19;
 }
@@ -40,21 +40,21 @@
 	color: #937062;
 }
 
-/* ëƒ‰ì¥ê³  ë§ì¶¤í˜• ë ˆì‹œí”¼ ì¶”ì²œ ì„¤ëª… box */
+/* ³ÃÀå°í ¸ÂÃãÇü ·¹½ÃÇÇ ÃßÃµ ¼³¸í box */
 .backbox {
 	background-color: rgba(147, 112, 98, 0.2);
 	padding: 5px;
 	text-align: center;
 }
 
-/* å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì‹œë“¸ì˜™ å ì™ì˜™å ï¿½ å ì™ì˜™å ï¿½ */
+
 #finalIngredient {
 	background-color: rgba(147, 112, 98, 0.2);
 	border: 1px solid #edd7c5;
 	padding: 10px
 }
 
-/* ë ˆì‹œí”¼ ê²€ìƒ‰ ë²„íŠ¼ */
+/* ·¹½ÃÇÇ °Ë»ö ¹öÆ° */
 .gold-btn {
 	border-radius: 5px;
 	border: none;
@@ -66,7 +66,7 @@
 	background-color: rgb(170, 130, 110) !important;
 }
 
-/* ì²´í¬ë°•ìŠ¤ */
+/* Ã¼Å©¹Ú½º */
 .check-div {
 	min-width: 125px;
 	max-width: 125px;
@@ -82,7 +82,7 @@
 	}
 }
 
-/* íƒ­ ë©”ë‰´ */
+/* ÅÇ ¸Ş´º */
 .tab-menu {
 	font-size: 1rem !important;
 }
@@ -97,7 +97,7 @@
 	}
 }
 
-/* ë‚˜ì˜ ë ˆì‹œí”¼ ì´ë¯¸ì§€ */
+/* ³ªÀÇ ·¹½ÃÇÇ ÀÌ¹ÌÁö */
 .category-pic {
 	border-radius: 10px !important;
 	max-height: 230px;
@@ -109,7 +109,7 @@
 	}
 }
 
-/* ì‰í”„ ë­í‚¹ */
+/* ½¦ÇÁ ·©Å· */
 .chef-pic {
 	border-radius: 50%;
 	width: 70%;
@@ -126,7 +126,7 @@
 	}
 }
 
-/* ìµœê·¼ ë³¸ ê²Œì‹œë¬¼ */
+/* ÃÖ±Ù º» °Ô½Ã¹° */
 .widget-title {
 	font-size: 1rem !important;
 	font-weight: 600 !important;
@@ -148,7 +148,7 @@
 	background-color: rgb(170, 130, 110) !important;
 }
 
-/* ê¸°íƒ€ */
+/* ±âÅ¸ */
 @media ( max-width :454px) {
 	.main * {
 		font-size: 0.8rem;
@@ -195,10 +195,10 @@
 	box-shadow: 0 0 0 .2rem rgba(147, 112, 98, 0.25);
 }
 
-/*ï¿½êº†5 - ç§»ì’“ë„æ„¿ï¿½ç”±ï¿½ è¸°ê¾ªë“‰*/
+ /*ÅÇ5 - Ä£±¸°ü¸® ¹öÆ°*/
 .handlemyfriendBtn {
 	font-size: 13px;
-	margin: auto 0; /* åª›ï¿½ï¿½ìŠ«ï¿½ëœ² ï¿½ì ™ï¿½ì ¹ */
+	margin: auto 0;
 	display: block;
 	width: auto;
 	padding: 5px 5px;
@@ -211,7 +211,7 @@
 }
 
 .handlemyfriendBtn:hover {
-	margin: auto 0; /* åª›ï¿½ï¿½ìŠ«ï¿½ëœ² ï¿½ì ™ï¿½ì ¹ */
+	margin: auto 0;
 	display: block;
 	width: auto;
 	padding: 5px 5px;
@@ -227,13 +227,13 @@
 
 .handlemyfriend {
 	text-align: center;
-	margin: auto 0; /* åª›ï¿½ï¿½ìŠ«ï¿½ëœ² ï¿½ì ™ï¿½ì ¹ */
+	margin: auto 0;
 	justify-content: center;
 	align-items: center;
 	display: flex;
 }
 
-/* ï¿½êº†5 ç§»ì’“ë„æ„¿ï¿½ç”±ï¿½- ç§»ì’“ë„è«›ëº¤ë’ª è«›ê³Œê¼ ï¿½ê½”æ¹²ï¿½, ï¿½ê¶—ï¿½ì” ï§ï¿½ è­°ê³—ì …*/
+/* ÅÇ5 Ä£±¸°ü¸®- Ä£±¸¹Ú½º ¹è°æ ³Ö±â, »çÀÌÁî Á¶Àı*/
 .team-col {
 	text-align: center;
 	justify-content: center;
