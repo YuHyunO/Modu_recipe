@@ -3,7 +3,6 @@
     font-size: 15px !important;
 }
 
-/* ë©”ë‰´ dropdown ì˜ì—­ */
 .site-navigation.navbar .dropdown-menu, .dropdown-item {
     background-color: #fff !important;
     color: #937062 !important;
@@ -48,7 +47,7 @@
 	height: 25px;
 }
 
-/* ï¿½İ»ï¿½ ï¿½×µÎ¸ï¿½ */
+/* ±İ»ö Å×µÎ¸® */
 .gold-top {
 	border-top: 1px solid rgb(147, 112, 98) !important;
 }
@@ -169,7 +168,7 @@
 	}
 }
 
-/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ ï¿½Îºï¿½ */
+/* ·¹½ÃÇÇ Ä«µå ºÎºĞ */
 .recipe-title {
 	height: 65px;
 	border: none;
@@ -237,7 +236,7 @@
 	}
 }
 
-/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ */
+/* ÆäÀÌÁö³×ÀÌ¼Ç */
 .page-link {
 	color: rgb(150, 150, 150) !important;
 	width: 35px;
@@ -255,12 +254,12 @@
 	color: black !important;
 }
 
-/* ï¿½ï¿½ï¿½ï¿½Æ® Ä¿ï¿½ï¿½ */
+/* Æ÷ÀÎÆ® Ä¿¼­ */
 .pointer {
 	cursor: pointer !important;
 }
 
-/* ï¿½Ì¹ï¿½ï¿½ï¿½ 100% */
+/* ÀÌ¹ÌÁö 100% */
 .ratio-100 {
 	position: relative;
     width: 100%;

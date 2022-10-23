@@ -153,27 +153,32 @@ public class RecipeController {
 	    HashMap<String, Object> map = new HashMap<String, Object>();
 	    String id = (String)request.getParameter("id");
 	    String email = (String)session.getAttribute("email");
-	    long rId = Long.parseLong(id);
-	    Scrap scrap = new Scrap();
-	    scrap.setRId(rId);
-	    scrap.setMEmail(email);
-	    
-	    Scrap scrap1 = recipeFindingService.getScrap(rId, email);
-	    String emailInScrap; 
-	    try {
-	        // 스크랩중
-	        emailInScrap = scrap1.getMEmail();
-	    } catch (NullPointerException npe) {
-	        emailInScrap = "스크랩아님";
-	        log.info("#scrap recipe id: " + rId);
-	        log.info("#scrap email: " + email);
-	        recipeLegacyMapper.insertScrap(email, rId);
+	    if (email == null) {
+	        map.put("error", "스크랩 기능은 로그인 후 이용할 수 있습니다.");
+	        return map;
+	    } else {
+    	    long rId = Long.parseLong(id);
+    	    Scrap scrap = new Scrap();
+    	    scrap.setRId(rId);
+    	    scrap.setMEmail(email);
+    	    
+    	    Scrap scrap1 = recipeFindingService.getScrap(rId, email);
+    	    String emailInScrap; 
+    	    try {
+    	        // 스크랩중
+    	        emailInScrap = scrap1.getMEmail();
+    	    } catch (NullPointerException npe) {
+    	        emailInScrap = "스크랩아님";
+    	        log.info("#scrap recipe id: " + rId);
+    	        log.info("#scrap email: " + email);
+    	        recipeLegacyMapper.insertScrap(email, rId);
+    	    }
+    	    log.info("#scrap recipe id: " + id);
+    	    log.info("#scrap email: " + email);
+    	    log.info("#scrap scrap: " + scrap1);
+    	    log.info("#scrap emailInScrap: " + emailInScrap);
+    	    map.put("user", email);
+    	    return map;
 	    }
-	    log.info("#scrap recipe id: " + id);
-	    log.info("#scrap email: " + email);
-	    log.info("#scrap scrap: " + scrap1);
-	    log.info("#scrap emailInScrap: " + emailInScrap);
-	    map.put("user", email);
-	    return map;
 	}
 }
