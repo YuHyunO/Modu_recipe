@@ -126,16 +126,6 @@
 	}
 }
 
-/* 최근 본 게시물 */
-.widget-title {
-	font-size: 1rem !important;
-	font-weight: 600 !important;
-}
-
-.post-category {
-	font-size: 0.8rem !important;
-}
-
 .banner {
 	width: 100%;
 }
