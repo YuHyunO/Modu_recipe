@@ -269,8 +269,6 @@ public class RecipeSearchServiceImpl implements RecipeSearchService {
         }       
         
         totalPage = totalPost/pageSize;
-        System.out.println("###totalPost: "+totalPost);
-        System.out.println("###totalPage1: "+totalPage);
         if(totalPost % pageSize > 0) {
             totalPage = totalPage + 1;
         }       
@@ -280,16 +278,14 @@ public class RecipeSearchServiceImpl implements RecipeSearchService {
         }else if(currentPage>totalPage) { 
             currentPage = totalPage;
         }        
-        System.out.println("###totalPage2: "+totalPage);
-        System.out.println("###curPage5: "+currentPage);
+
         int endRow = currentPage*pageSize;
         int beginRow = endRow-pageSize+1;
-        System.out.println("###begin: "+beginRow);
-        System.out.println("###end: "+endRow);
+
         session.setAttribute("myCurpage", currentPage);             
         
         List<RecipeList> recipeList = recipeMapper.selectRecipeListOfMemberByType(email, type, beginRow, endRow);
-        System.out.println("#####"+recipeList);
+       
         RecipeListVo data = new RecipeListVo();	    
         data.setRecipeList(recipeList);            
         data.setCurrentPage(currentPage);

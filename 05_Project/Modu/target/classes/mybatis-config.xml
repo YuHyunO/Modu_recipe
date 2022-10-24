@@ -9,8 +9,7 @@
   </settings>
   
   <typeAliases>
-	<typeAlias alias="Member" type="com.modu.domain.member.Member"/>
-	
+	<typeAlias alias="Member" type="com.modu.domain.member.Member"/>	
 	<typeAlias alias="FollowList" type="com.modu.domain.member.FollowList"/>
   	<typeAlias alias="Board" type="com.modu.domain.board.Board"/>
   	<typeAlias alias="BoardFile" type="com.modu.domain.board.BoardFile"/>
