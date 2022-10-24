@@ -197,4 +197,24 @@ public class RecipeController {
             return map;
         }
     }
+    
+    @ResponseBody
+    @PostMapping("/follow/insert")
+    public HashMap<String, Object> insertFollow(HttpServletRequest request, HttpSession session){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        String targetEmail = request.getParameter("targetEmail");
+        String email = (String)session.getAttribute("email");
+        String msg;
+        String result;
+        
+        if (email == null) {
+            map.put("error", "팔로우 기능은 로그인 후 이용할 수 있습니다.");
+            return map;
+        } else {
+            membershipService.followService(targetEmail, email, 1);
+            map.put("user", email);
+            map.put("msg", "test 성공");
+            return map;
+        }
+    }
 }

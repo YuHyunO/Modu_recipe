@@ -74,4 +74,14 @@ public class MembershipServiceImpl implements MembershipService {
         }
         return msg;
     }
+
+    @Override
+    public String followService(String targetEmail, String email, int mode) {
+        String msg;
+        if (mode == 1) {
+            FollowList result = recipeFindingService.getFollower(targetEmail, email);
+            log.info("#followServiceImpl: " + result);
+        }
+        return null;
+    }
 }

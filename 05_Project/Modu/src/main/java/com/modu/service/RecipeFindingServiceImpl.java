@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.modu.domain.member.FollowList;
 import com.modu.domain.member.Scrap;
 import com.modu.domain.recipe.Direction;
 import com.modu.domain.recipe.Ingredient;
@@ -14,6 +15,7 @@ import com.modu.domain.recipe.RecipeDetail;
 import com.modu.domain.recipe.RecipeTag;
 import com.modu.fileset.Path;
 import com.modu.domain.recipe.RecipeList;
+import com.modu.mapper.MemberMapper;
 import com.modu.mapper.RecipeLegacyMapper;
 import com.modu.mapper.RecipeMapper;
 import lombok.extern.log4j.Log4j;
@@ -25,7 +27,7 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
     private Recipe recipe = new Recipe();
     private Ingredient ingredient = new Ingredient();
     private Direction direction = new Direction();
-    
+    private FollowList followList = new FollowList();
     private ArrayList<String> fileInfoList = new ArrayList<String>();
     
 	@Autowired
@@ -34,8 +36,8 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
 	@Autowired
     private RecipeLegacyMapper recipeLegacyMapper;
 	
-	@Autowired FileUploadService fileUploadService;
-	
+	@Autowired private FileUploadService fileUploadService;
+	@Autowired private MemberMapper memberMapper;
 	@Override
 	public List<RecipeList> selectRecipeListByBestHits(long beginRow, long endRow) {
 		return recipeMapper.selectRecipeListByBestHits(beginRow, endRow);
@@ -102,6 +104,12 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
     public Scrap getScrap(long rId, String email) {
         Scrap scrap1 = recipeLegacyMapper.selectScrapByRecipeId(rId, email);
         return scrap1;
+    }
+
+    @Override
+    public FollowList getFollower(String targetEmail, String email) {
+        followList = memberMapper.selectFollowerOnebyEmails(targetEmail, email);
+        return followList;
     }
 
 }

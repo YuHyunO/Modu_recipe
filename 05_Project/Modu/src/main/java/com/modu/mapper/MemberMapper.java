@@ -43,4 +43,7 @@ public interface MemberMapper {
 	void updateMember2(Member member); //프로필사진 포함 내정보수정
 	
 	void deleteProfileImg(String email); //프로필사진만 삭제
+	
+	// 팔로워 확인
+	FollowList selectFollowerOnebyEmails(@Param("targetEmail")String targetEmail, @Param("email")String email);
 }

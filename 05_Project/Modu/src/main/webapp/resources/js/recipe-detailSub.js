@@ -70,3 +70,66 @@ function moveScroll(e){
 	}
 	window.scrollTo({ top: target.offset().top - 50, behavior: "smooth" });
 }
+
+function clickSubscribe(e){
+	//구독할 대상 email,
+	//내 이메일 email
+	let targetEmail = $(e).attr("data-email");
+	console.log(targetEmail);
+	let loginUser; // 이메일 정보
+	let formData = new FormData();
+	formData.append("targetEmail", targetEmail);
+	
+	 if ($(e).hasClass('subscribe-btn')){ // 구독하기(팔로우)
+       
+    	
+        $.ajax({
+    		url: "/recipe/follow/insert.json",
+    		type: "POST",
+    		enctype: "multipart/form-data",
+    		processData: false,
+    		contentType: false,
+    		data: formData,
+    		success: function (response) {
+    			loginUser = response.user;
+    			if (loginUser === undefined){
+    				console.log("로그인 정보가 없습니다.");
+    	        	alert(response.error);
+    			} else {
+    				$(e).removeClass('subscribe-btn');
+			        $(e).addClass('subscribe-btn-clicked');
+    		        alert(response.msg);
+    			}
+    		},
+    		error: function (response) {
+    			console.log("서버와 통신에 실패하였습니다.")
+    		}
+    	});
+    } else { // 구독취소(팔로우 취소)
+    	$(e).removeClass('subscribe-btn-clicked');
+        $(e).addClass('subscribe-btn');
+    	/*
+    	$.ajax({
+    		url: "/recipe/scrap/delete.json",
+    		type: "POST",
+    		enctype: "multipart/form-data",
+    		processData: false,
+    		contentType: false,
+    		data: formData,
+    		success: function (response) {
+    			loginUser = response.user;
+    			if (loginUser === undefined){
+    	        	alert(response.error);
+    			} else {
+	    			$(e).removeClass('recipe-scrap-clicked');
+	    	        $(e).addClass('recipe-scrap');
+	    	        alert(response.msg);
+    			}
+    		},
+    		error: function (response) {
+    			console.log("서버와 통신에 실패하였습니다.")
+    		}
+    	});
+    	*/
+    }
+}

@@ -159,5 +159,7 @@
 						  PROFILE_IMG_ORG = 'default_profile_img.png'
 						  where EMAIL = #{email}
 	</update>
-
+	<select id="selectFollowerOnebyEmails" parameterType="String" resultType="FollowList">
+		select * from FOLLOW where M_EMAIL=#{targetEmail} and FOLLOWEE=#{email}
+	</select>
 </mapper>
