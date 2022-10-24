@@ -137,6 +137,7 @@ function displayMyRecipe(response){
 	let totalPage = response.totalPage; 	
 	let html = "";
 	console.log("##mode: "+mode);
+	console.log(response.recipeList);
 	for(let item of recipeList){
 		html += '<div id="recipe-item" class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
@@ -173,6 +174,7 @@ function displayBookmark(response){
 	let totalPage = response.totalPage; 	
 	let html = "";
 	console.log("##mode: "+mode);
+	console.log(response.recipeList);
 	for(let item of recipeList){
 		html += '<div id="recipe-item" class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
@@ -196,8 +198,7 @@ function displayBookmark(response){
 		html += '</span>';
 		html += '</div>';
 		html += '</div>';
-		html += '</div>';
-				
+		html += '</div>';				
 	}
 	$("#recipe-list-3").html(html);
 	setPagingArea();
@@ -208,8 +209,36 @@ function displayMyPost(response){
 	console.log("4");
 }
 
-function displayFollow(response){	
-	console.log("5");
+function displayFollowing(response){ 
+	console.log("탭5-팔로잉탭 display 진입");
+	console.log(response);
+	
+	let followList = response;
+	let currentPage = response.currentPage;
+	let totalPage = response.totalPage; 
+	let html = "";
+
+	for(let item of followList){
+		//console.log("##item:"+item); //##item:[object Object]
+		html += '<div class="col-md-3">';
+		html += '<div class="team-col">';
+		html += '<input type="hidden" value="'+item.id+'">';
+		html += '<figure>';
+		html += '<img class="friendProfileimg" src="/pics/profile/'+item.profileImg+'" alt="파일없음"> ';
+		html += '</figure>';
+		html += '<p class="team-name">'+item.nickname+'</p>';
+		html += '<large class="team-tag">'+item.email+'</large>';
+		html += '<small class="team-tag">'+item.followDate+'부터 팔로잉</small>';
+		html += '<div class="handlemyfriend">';
+		html += '<button class="handlemyfriendBtn" onclick="../gofriendrecipe?id='+item.id+'">레시피 보기</button>&nbsp;';
+		html += '<button class="handlemyfriendBtn" onclick="../deletefriend?id='+item.id+'">구독 끊기</button>';
+		html += '</div>';
+		html += '</div>';
+		html += '</div>';
+
+		$("#following-list").html(html);
+		paginate(currentPage, totalPage);
+	}
 }
 
 function setPagingArea(){
@@ -389,5 +418,4 @@ function activePage(e){
 	$('.page-number').removeClass('active');
 	$(e).addClass('active')
 }
-
 

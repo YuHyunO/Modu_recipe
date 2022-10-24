@@ -1,7 +1,6 @@
 package com.modu.service;
 
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.modu.domain.recipe.Recipe;
 import com.modu.domain.recipe.RecipeList;
 import com.modu.domain.recipe.RecipeListVo;
 import com.modu.mapper.RecipeMapper;
@@ -236,8 +234,6 @@ public class RecipeSearchServiceImpl implements RecipeSearchService {
             data.setRecipeList(recipeList);            
             data.setCurrentPage(currentPage);
             data.setTotalPage(totalPage);          
-        }else {
-            data = null;
         }
         
         return data;
@@ -245,21 +241,19 @@ public class RecipeSearchServiceImpl implements RecipeSearchService {
 	
 	@Override
 	public RecipeListVo searchRecipeOfMember(HttpServletRequest request, HttpSession session) {
-	    String email = (String)session.getAttribute("email");	    	    
+	    String email = (String)session.getAttribute("email");
         int currentPage = 1;
         int pageSize = 8;
         int totalPage;
         int type = 0;
         try {
-            type = Integer.parseInt(request.getParameter("option"));
+            type = Integer.parseInt(request.getParameter("type"));
         }catch(NumberFormatException nfe) {}
         int totalPost = recipeMapper.selectRecipeCountOfMemberByType(email, type);
-        
+
         if(request.getParameter("currentPage") != null) {
-            if(session.getAttribute("myCurpage") != null) {
-                currentPage = (int)session.getAttribute("myCurpage");
-            }
             String param = request.getParameter("currentPage");
+            System.out.println("###curpage1: "+currentPage);
             try {
                 currentPage = Integer.parseInt(request.getParameter("currentPage"));
             }catch(NumberFormatException nfe) {
@@ -268,11 +262,15 @@ public class RecipeSearchServiceImpl implements RecipeSearchService {
                     case "next": currentPage = currentPage + 1;                         
                 }
             }
-        }else if(session.getAttribute("myCurpage") != null) {
-            currentPage = (int)session.getAttribute("myCurpage");
+        }else {
+            if(session.getAttribute("myCurpage") != null) {        
+                currentPage = (int)session.getAttribute("myCurpage");
+            }
         }       
         
         totalPage = totalPost/pageSize;
+        System.out.println("###totalPost: "+totalPost);
+        System.out.println("###totalPage1: "+totalPage);
         if(totalPost % pageSize > 0) {
             totalPage = totalPage + 1;
         }       
@@ -281,14 +279,17 @@ public class RecipeSearchServiceImpl implements RecipeSearchService {
             currentPage = 1;
         }else if(currentPage>totalPage) { 
             currentPage = totalPage;
-        }
-        
+        }        
+        System.out.println("###totalPage2: "+totalPage);
+        System.out.println("###curPage5: "+currentPage);
         int endRow = currentPage*pageSize;
         int beginRow = endRow-pageSize+1;
-        
+        System.out.println("###begin: "+beginRow);
+        System.out.println("###end: "+endRow);
         session.setAttribute("myCurpage", currentPage);             
         
         List<RecipeList> recipeList = recipeMapper.selectRecipeListOfMemberByType(email, type, beginRow, endRow);
+        System.out.println("#####"+recipeList);
         RecipeListVo data = new RecipeListVo();	    
         data.setRecipeList(recipeList);            
         data.setCurrentPage(currentPage);
