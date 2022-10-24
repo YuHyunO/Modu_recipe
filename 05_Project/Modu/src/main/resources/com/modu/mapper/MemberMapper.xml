@@ -79,28 +79,33 @@
 	
 	<select id="selectFollowing" resultType="FollowList">
 		select * from(select ROWNUM list,
-								f.ID ID,
-								f.FOLLOWEE EMAIL,
-								m.NICKNAME NICKNAME,
-								m.PROFILE_IMG PROFILE_IMG,
-								f.FOLLOW_DATE FOLLOW_DATE
-								from MEMBER m inner join FOLLOW f on m.EMAIL=f.FOLLOWEE
-								where M_EMAIL=#{email} order by ID desc)
-								where list BETWEEN #{beginRow} AND
-								#{endRow}
+							 f.ID ID,
+							 f.FOLLOWEE EMAIL,
+							 m.NICKNAME NICKNAME,
+							 m.PROFILE_IMG PROFILE_IMG,
+							 f.FOLLOW_DATE FOLLOW_DATE
+					   from MEMBER m inner join FOLLOW f on m.EMAIL=f.FOLLOWEE
+					   where M_EMAIL=#{email})
+		where list BETWEEN #{beginRow} AND #{endRow}
+		order by ID desc
 	</select>
 	<select id="selectFollower" resultType="FollowList">
-		select * from (select
-							ROWNUM list,
-							f.ID,
-							f.M_EMAIL EMAIL,
-							m.NICKNAME,
-							m.PROFILE_IMG,
-							f.FOLLOW_DATE
-							from MEMBER m inner join FOLLOW f on m.EMAIL=f.M_EMAIL
-							where f.FOLLOWEE=#{email} order by f.ID desc)
-										where list BETWEEN #{beginRow}
-										AND #{endRow}
+		select * from (select ROWNUM list,
+							  f.ID,
+							  f.M_EMAIL EMAIL,
+							  m.NICKNAME,
+							  m.PROFILE_IMG,
+							  f.FOLLOW_DATE
+					   from MEMBER m inner join FOLLOW f on m.EMAIL=f.M_EMAIL
+					   where f.FOLLOWEE=#{email})
+		where list BETWEEN #{beginRow} AND #{endRow}
+		order by ID desc
+	</select>
+	<select id="selectFollowingCount" parameterType="String" resultType="int">
+		select NVL(MAX(ROWNUM), 0) from FOLLOW where M_EMAIL=#{email}
+	</select>
+	<select id="selectFollowerCount" parameterType="String" resultType="int">
+		select NVL(MAX(ROWNUM), 0) from FOLLOW where FOLLOWEE=#{email}
 	</select>
 
 	<!-- 테스트용 -->
@@ -138,7 +143,7 @@
 						  PHONE = #{phone, jdbcType=VARCHAR},
 						  MARKETING = #{marketing},
 						  UPDATE_DATE = SYSDATE 
-						  where EMAIL = #{email}						
+		where EMAIL = #{email}						
 	</update>
 	<!-- 내정보수정 post2 (프로필사진 포함) -->
 	<update id="updateMember2" parameterType="Member">
@@ -151,13 +156,13 @@
 						  PROFILE_IMG_SIZE = #{profileImgSize},
 						  MARKETING = #{marketing},
 						  UPDATE_DATE = SYSDATE 
-						  where EMAIL = #{email}						
+		where EMAIL = #{email}						
 	</update>	
 	<!-- 내정보수정 - 프로필사진만 삭제시 기본 default 사진으로 update -->
 	<update id="deleteProfileImg" parameterType="String">
 		update MEMBER set PROFILE_IMG = 'default_profile_img.png', 
 						  PROFILE_IMG_ORG = 'default_profile_img.png'
-						  where EMAIL = #{email}
+		where EMAIL = #{email}
 	</update>
 	<select id="selectFollowerOnebyEmails" parameterType="String" resultType="FollowList">
 		select * from FOLLOW where M_EMAIL=#{targetEmail} and FOLLOWEE=#{email}

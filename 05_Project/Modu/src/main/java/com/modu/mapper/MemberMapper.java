@@ -25,8 +25,11 @@ public interface MemberMapper {
 	String selectProfileImg(String email);
 	int selectPoint(String email);
 	
-	List<FollowList> selectFollowee(@Param("email") String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
+	List<FollowList> selectFollowing(@Param("email") String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
 	List<FollowList> selectFollower(@Param("email") String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
+	int selectFollowingCount(@Param("email") String email);
+	int selectFollowerCount(@Param("email") String email);
+	
 	
 	List<String> selectEmails(int bound);
 	
