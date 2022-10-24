@@ -22,9 +22,9 @@ public class Member {
 	private int profileImgSize;
 	private int marketing;
 	private int apiUsing; 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd aa hh:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
 	private Date signupDate;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd aa hh:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
 	private Date updateDate;
 	private int authority;
 	private int point;

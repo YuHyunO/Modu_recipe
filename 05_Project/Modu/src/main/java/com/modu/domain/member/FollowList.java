@@ -16,7 +16,6 @@ public class FollowList {
 	private String email;
 	private String nickname;
 	private String profileImg;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd aa hh:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
 	private Date followDate;
-	private int rownum; //페이지네이션 적용된 순번
 }

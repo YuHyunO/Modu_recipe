@@ -57,7 +57,7 @@
 								<!--세션이 존재할 때-->
 								<c:if test = "${ sessionScope.email != null }">
 									<li class="nav-item">
-										<a href='/member/mypage' class="nav-link">마이페이지</a>
+										<a href='/mypage/main' class="nav-link">마이페이지</a>
 									</li>
 									<li class="nav-item">
 						           		<a href='/member/logout' class="nav-link">로그아웃</a>

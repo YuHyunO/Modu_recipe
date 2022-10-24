@@ -1,24 +1,24 @@
 $(function () {
 	//페이지 뒤로가기 방지
-	function prevent(){
-		history.pushState(null, null, location.href);
-		window.onpopstate = function(event) {
-		    history.go(1);
-		}
-	}
-	
-	$(window).on("mousemove", () => {0
-		prevent();
-	});
-	
-	$(window).on("keydown", () => {
-		prevent();
-	});
-	
-	$(window).on("click", () => {
-		prevent();
-	});
-	
+//	function prevent(){
+//		history.pushState(null, null, location.href);
+//		window.onpopstate = function(event) {
+//		    history.go(1);
+//		}
+//	}
+//	
+//	$(window).on("mousemove", () => {0
+//		prevent();
+//	});
+//	
+//	$(window).on("keydown", () => {
+//		prevent();
+//	});
+//	
+//	$(window).on("click", () => {
+//		prevent();
+//	});
+//	
 	// 태그 로직
 	let tag = $('#tag');
 	$('#tag').keyup(
@@ -485,7 +485,7 @@ function checkValue(e, text, limit, mode){
 	}
 }
 
-function register(e) {
+function update(e) {
 	let formData = new FormData();
 
 	// 음식 이름, 레시피 제목, 레시피 소개
@@ -575,19 +575,19 @@ function register(e) {
 	// 공개범위
 	let openRange = $(".open-range-box").find("select");
 	let accessibility;
-	
+
 	switch (openRange.val()) {
-		case "저장 및 공개":
+		case "비공개 저장":
 			accessibility = 0;
 			break;
-		case "비공개 저장":
+		case "저장 및 공개":
 			accessibility = 1;
 			break;
 		case "임시저장":
 			accessibility = 2;
 			break;
 	}
-	console.log("accessibility: "+accessibility);
+	
 	formData.append("accessibility", accessibility);
 	
 	for (let key of formData.keys()){
@@ -608,21 +608,17 @@ function register(e) {
 	}
 	
 	$.ajax({
-		url: "/recipe/register.json",
+		url: "/recipe/update.json",
 		type: "POST",
 		enctype: "multipart/form-data",
 		processData: false,
 		contentType: false,
 		data: formData,
 		success: function (response) {
-			if (response.msg === "로그인 후 이용 해주세요"){
-				alert(response.msg);
-			} else {
-				alert("레시피가 등록 되었습니다.");
-			}
+		alert("레시피가 업데이트 되었습니다.");
 		},
 		error: function (response) {
-			alert("레시피 등록을 실패 했습니다.");
+			alert("레시피 업데이트를 실패 했습니다.");
 		}
 	});
 }

@@ -198,8 +198,7 @@ function displayBookmark(response){
 		html += '</span>';
 		html += '</div>';
 		html += '</div>';
-		html += '</div>';
-				
+		html += '</div>';				
 	}
 	$("#recipe-list-3").html(html);
 	setPagingArea();
@@ -419,3 +418,4 @@ function activePage(e){
 	$('.page-number').removeClass('active');
 	$(e).addClass('active')
 }
+

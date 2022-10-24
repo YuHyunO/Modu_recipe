@@ -37,14 +37,15 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping("recipe")
 public class RecipeController {
-	@Autowired
-	private RecipeFindingService recipeFindingService;
-	@Autowired
-	private RecipeRegisterService recipeRegisterService;
-	@Autowired
-	private RecipeSearchService searchService;
-	@Autowired
-	private MembershipService membershipService;
+    @Autowired
+    private RecipeFindingService recipeFindingService;
+    @Autowired
+    private RecipeRegisterService recipeRegisterService;
+    @Autowired
+    private RecipeSearchService searchService;
+
+    @Autowired
+    private MembershipService membershipService;
 
 
     @GetMapping("/list")
@@ -60,124 +61,124 @@ public class RecipeController {
         return data;
     }
 
-	@GetMapping("/write")
-	public String recipeWrite() {
-		return "recipe/write";
-	}
+    @GetMapping("/write")
+    public String recipeWrite() {
+        return "recipe/write";
+    }
 
-	@ResponseBody
-	@PostMapping("/write")
-	public String submit(HttpServletRequest request, HttpSession session) {
-		log.info("########write: " + request.getParameter("food"));
-		//recipeRegisterService.registerRecipe(request, session);
-		return "redirect:/";
-	}
-	
-	@ResponseBody
-	@PostMapping("/register")
-	public HashMap<String, Object> register(
-	        HttpServletRequest request,
+    @ResponseBody
+    @PostMapping("/write")
+    public String submit(HttpServletRequest request, HttpSession session) {
+        log.info("########write: " + request.getParameter("food"));
+        //recipeRegisterService.registerRecipe(request, session);
+        return "redirect:/";
+    }
+    
+    @ResponseBody
+    @PostMapping("/register")
+    public HashMap<String, Object> register(
+            HttpServletRequest request,
             HttpSession session,
-	        @RequestParam ArrayList<MultipartFile> files, 
-			@RequestParam ArrayList<String> mainItems,
-			@RequestParam ArrayList<String> subItems,
-			@RequestParam ArrayList<String> directions,
-			@RequestParam ArrayList<String> tags) {
-	    HashMap<String, Object> map = new HashMap<String, Object>();
-	    log.info("#RecipeController Upload");
-	    if((String)session.getAttribute("email") == null) {
-	        map.put("msg", "로그인 후 이용 해주세요");
-	    } else {
+            @RequestParam ArrayList<MultipartFile> files, 
+            @RequestParam ArrayList<String> mainItems,
+            @RequestParam ArrayList<String> subItems,
+            @RequestParam ArrayList<String> directions,
+            @RequestParam ArrayList<String> tags) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        log.info("#RecipeController Upload");
+        if((String)session.getAttribute("email") == null) {
+            map.put("msg", "로그인 후 이용 해주세요");
+        } else {
             recipeRegisterService.registerRecipe(request, session, files, mainItems, subItems, directions, tags);
             log.info("#####1" + tags);
-	        map.put("msg", "서비스로 데이터 전송 성공");
-	    } 
-	    return map;
-	}
-	
-	@GetMapping("/read")
-	public ModelAndView RecipeRead(long id) {
-	    RecipeDetail recipeDetail = recipeFindingService.RecipeRead(id);
-	    ModelAndView mv = new ModelAndView();
-	    mv.setViewName("recipe/read");
-	    mv.addObject("rs", recipeDetail);
-	    mv.addObject("id", id);
-	    return mv;
-	}
-	
-	@GetMapping("/detail")
-	public ModelAndView recipeDetail(HttpSession session) {
-		long id = 150;
-		String email = (String)session.getAttribute("email");
-		RecipeDetail recipeDetail = recipeFindingService.findRecipedetails(id);
-		String starPoint = recipeFindingService.getStarPoint(recipeDetail);
-		List<RecipeReplyList> selectReply = recipeRegisterService.findRecipeReply(id);
-		boolean scrapState = false;
-		if(email != null) {
-		    if (recipeFindingService.getScrap(id, email) == null) {
-	            //스크랩 중 아님
-	        } else {
-	            scrapState = true;
-	        }
-		}
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("recipe/detail");
-		mv.addObject("rec", recipeDetail);
-		mv.addObject("rep", selectReply);
-		mv.addObject("id", id);
-		mv.addObject("starPoint", starPoint);
-		mv.addObject("scrapState", scrapState);
-		return mv;
-	}
+            map.put("msg", "서비스로 데이터 전송 성공");
+        } 
+        return map;
+    }
+    
+    @GetMapping("/read")
+    public ModelAndView RecipeRead(long id) {
+        RecipeDetail recipeDetail = recipeFindingService.RecipeRead(id);
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("recipe/read");
+        mv.addObject("rs", recipeDetail);
+        mv.addObject("id", id);
+        return mv;
+    }
+    
+    @GetMapping("/detail")
+    public ModelAndView recipeDetail(HttpSession session) {
+        long id = 150;
+        String email = (String)session.getAttribute("email");
+        RecipeDetail recipeDetail = recipeFindingService.findRecipedetails(id);
+        String starPoint = recipeFindingService.getStarPoint(recipeDetail);
+        List<RecipeReplyList> selectReply = recipeRegisterService.findRecipeReply(id);
+        boolean scrapState = false;
+        if(email != null) {
+            if (recipeFindingService.getScrap(id, email) == null) {
+                //스크랩 중 아님
+            } else {
+                scrapState = true;
+            }
+        }
+        
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("recipe/detail");
+        mv.addObject("rec", recipeDetail);
+        mv.addObject("rep", selectReply);
+        mv.addObject("id", id);
+        mv.addObject("starPoint", starPoint);
+        mv.addObject("scrapState", scrapState);
+        return mv;
+    }
 
-	@PostMapping("/insert.do")
-	public @ResponseBody String insertReply(RecipeReply recipeReply) {
-		String result = recipeRegisterService.registerReply(recipeReply);
-		log.info("#recipeReply" + recipeReply);
-		return result;
-	}
+    @PostMapping("/insert.do")
+    public @ResponseBody String insertReply(RecipeReply recipeReply) {
+        String result = recipeRegisterService.registerReply(recipeReply);
+        log.info("#recipeReply" + recipeReply);
+        return result;
+    }
 
-	@GetMapping("/del.do")
-	public String deleteReply(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		// System.out.println("session"+session);
-		String paramId = request.getParameter("id");
-		long id = Long.parseLong(paramId);
-		// System.out.println("id"+id);
-		recipeRegisterService.delete(id);
-		return "redirect:detail";
-	}
-	/*
-	 * ->대댓글/미완
-	 * 
-	 * @PostMapping("/insertRreply.do") public @ResponseBody String
-	 * insertNestedReply (RecipeNestedReply recipeNestedReply){ String result =
-	 * recipeRegisterService.registerNestedReply(recipeNestedReply);
-	 * log.info("#recipeNestedReply" +recipeNestedReply); return result; }
-	 */
-	
-	@ResponseBody
-	@PostMapping("/scrap/insert")
-	public HashMap<String, Object> insertScrap(HttpServletRequest request, HttpSession session){
-	    HashMap<String, Object> map = new HashMap<String, Object>();
-	    String id = (String)request.getParameter("id");
-	    String email = (String)session.getAttribute("email");
-	    String msg;
-	    long rId = Long.parseLong(id);
-	    
-	    if (email == null) {
-	        map.put("error", "스크랩 기능은 로그인 후 이용할 수 있습니다.");
-	        return map;
-	    } else {
-	        msg = membershipService.scrapService(rId, email, 1);
-	        map.put("user", email);
-    	    map.put("msg", msg);
-    	    return map;
-	    }
-	}
-	
-	@ResponseBody
+    @GetMapping("/del.do")
+    public String deleteReply(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        // System.out.println("session"+session);
+        String paramId = request.getParameter("id");
+        long id = Long.parseLong(paramId);
+        // System.out.println("id"+id);
+        recipeRegisterService.delete(id);
+        return "redirect:detail";
+    }
+    /*
+     * ->대댓글/미완
+     * 
+     * @PostMapping("/insertRreply.do") public @ResponseBody String
+     * insertNestedReply (RecipeNestedReply recipeNestedReply){ String result =
+     * recipeRegisterService.registerNestedReply(recipeNestedReply);
+     * log.info("#recipeNestedReply" +recipeNestedReply); return result; }
+     */
+    
+    @ResponseBody
+    @PostMapping("/scrap/insert")
+    public HashMap<String, Object> insertScrap(HttpServletRequest request, HttpSession session){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        String id = (String)request.getParameter("id");
+        String email = (String)session.getAttribute("email");
+        String msg;
+        long rId = Long.parseLong(id);
+        
+        if (email == null) {
+            map.put("error", "스크랩 기능은 로그인 후 이용할 수 있습니다.");
+            return map;
+        } else {
+            msg = membershipService.scrapService(rId, email, 1);
+            map.put("user", email);
+            map.put("msg", msg);
+            return map;
+        }
+    }
+    
+    @ResponseBody
     @PostMapping("/scrap/delete")
     public HashMap<String, Object> deleteScrap(HttpServletRequest request, HttpSession session){
         HashMap<String, Object> map = new HashMap<String, Object>();

@@ -339,7 +339,8 @@
 									</div>
 									<!--탭3 종료, id="bookmark" 종료 -->
 									<!-- 탭4 레시피 탭(내게시글) 시작-->
-									<div class="tab-pane fade" id="mypost" role="tabpane4" aria-labelledby="mypost-tab">
+									<div class="tab-pane fade" id="mypost" role="tabpane4"
+										aria-labelledby="mypost-tab">
 
 										<div id="tab4-content" class="site-content">
 											<h3 class="archive-title text-center">나의 게시글</h3>
@@ -350,7 +351,8 @@
 													<div class="row">
 														<div class="col-md-1">
 															<div class="entry-date">
-																<time class="published" datetime="2019-12-22" title="postdate">
+																<time class="published" datetime="2019-12-22"
+																	title="postdate">
 																	Dec<span class="date">22</span>2019
 																</time>
 															</div>
@@ -364,7 +366,9 @@
 															<h4>
 																<a href="#" target="_blank">훈제연어야채샐러드</a>
 															</h4>
-															<span>훈제연어의 훈연한 그 맛은 감칠맛이 나서 잘 맞는 드레싱만 얹어주면 인기만점의 샐러드예요. 야채를 듬뿍 곁들여 건강하게 준비한 훈제연어 샐러드 소개합니다.</span> <a href="#" class="readmore" target="_blank"><em>더보기</em></a>
+															<span>훈제연어의 훈연한 그 맛은 감칠맛이 나서 잘 맞는 드레싱만 얹어주면 인기만점의
+																샐러드예요. 야채를 듬뿍 곁들여 건강하게 준비한 훈제연어 샐러드 소개합니다.</span> <a href="#"
+																class="readmore" target="_blank"><em>더보기</em></a>
 														</div>
 													</div>
 													<!--end row-->
@@ -376,7 +380,8 @@
 													<div class="row">
 														<div class="col-md-1">
 															<div class="entry-date">
-																<time class="published" datetime="2019-12-22" title="postdate">
+																<time class="published" datetime="2019-12-22"
+																	title="postdate">
 																	Dec<span class="date">22</span>2019
 																</time>
 															</div>
@@ -390,7 +395,9 @@
 															<h4>
 																<a href="#" target="_blank">훈제연어야채샐러드</a>
 															</h4>
-															<span>훈제연어의 훈연한 그 맛은 감칠맛이 나서 잘 맞는 드레싱만 얹어주면 인기만점의 샐러드예요. 야채를 듬뿍 곁들여 건강하게 준비한 훈제연어 샐러드 소개합니다.</span> <a href="#" class="readmore" target="_blank"><em>더보기</em></a>
+															<span>훈제연어의 훈연한 그 맛은 감칠맛이 나서 잘 맞는 드레싱만 얹어주면 인기만점의
+																샐러드예요. 야채를 듬뿍 곁들여 건강하게 준비한 훈제연어 샐러드 소개합니다.</span> <a href="#"
+																class="readmore" target="_blank"><em>더보기</em></a>
 														</div>
 													</div>
 													<!--end row-->
@@ -402,7 +409,8 @@
 													<div class="row">
 														<div class="col-md-1">
 															<div class="entry-date">
-																<time class="published" datetime="2019-12-22" title="December 22, 2019 - 21:12 pm">
+																<time class="published" datetime="2019-12-22"
+																	title="December 22, 2019 - 21:12 pm">
 																	July<span class="date">22</span>2019
 																</time>
 															</div>
@@ -417,7 +425,9 @@
 															<h4>
 																<a href="#">삼겹살간장조림</a>
 															</h4>
-															<span> 삼겹살을 아이들과는 구우면서 먹을수가 없.어.요.......​ 그래서 아이들과 먹을땐 간장양념에 조림으로 해서 먹는답니다^^​ 네이버메인에도 올랐던 레시피 보여드릴게요. </span> <a href="#" class="readmore"><em>더보기</em></a>
+															<span> 삼겹살을 아이들과는 구우면서 먹을수가 없.어.요.......​ 그래서 아이들과
+																먹을땐 간장양념에 조림으로 해서 먹는답니다^^​ 네이버메인에도 올랐던 레시피 보여드릴게요. </span> <a
+																href="#" class="readmore"><em>더보기</em></a>
 														</div>
 													</div>
 													<!--end row-->
@@ -428,7 +438,8 @@
 													<div class="row">
 														<div class="col-md-1">
 															<div class="entry-date">
-																<time class="published" datetime="2019-12-22" title="December 22, 2019 - 21:12 pm">
+																<time class="published" datetime="2019-12-22"
+																	title="December 22, 2019 - 21:12 pm">
 																	Dec<span class="date">23</span>2019
 																</time>
 															</div>
@@ -443,7 +454,10 @@
 															<h4>
 																<a href="#">나시고랭</a>
 															</h4>
-															<span>나시고랭은 인도네이사식 볶음밥으로 우리나라 볶음밥과 거의 비슷합니다 저는 아이들 볶음밥에 피시소스나 굴 소스를 가끔 넣는데 나시고랭도 마찬가지예요~ 숙주가 들어가서 아삭한 식감과 계란을 스크램블 한 맛이 아주 좋답니다 볶음밥 보다 약간은 특별한 나시고랭 어렵지 않아요^^</span> <a href="#" class="readmore"><em>더보기</em></a>
+															<span>나시고랭은 인도네이사식 볶음밥으로 우리나라 볶음밥과 거의 비슷합니다 저는 아이들
+																볶음밥에 피시소스나 굴 소스를 가끔 넣는데 나시고랭도 마찬가지예요~ 숙주가 들어가서 아삭한 식감과
+																계란을 스크램블 한 맛이 아주 좋답니다 볶음밥 보다 약간은 특별한 나시고랭 어렵지 않아요^^</span> <a
+																href="#" class="readmore"><em>더보기</em></a>
 														</div>
 													</div>
 													<!--end row-->
@@ -455,90 +469,413 @@
 											<div class="page mt-5">
 												<nav aria-label="Page navigation">
 													<ul class="pagination justify-content-center">
-														<li class="page-item"><a class="page-link page-previous" href="#">＜</a></li>
-														<li class="page-item"><a class="page-link active page-number" href="javascript:void(0);" onclick="activePage(this)">1</a></li>
-														<li class="page-item"><a class="page-link page-number" href="javascript:void(0);" onclick="activePage(this)">2</a></li>
-														<li class="page-item"><a class="page-link page-number" href="javascript:void(0);" onclick="activePage(this)">3</a></li>
-														<li class="page-item"><a class="page-link page-number" href="javascript:void(0);" onclick="activePage(this)">4</a></li>
-														<li class="page-item"><a class="page-link page-number" href="javascript:void(0);" onclick="activePage(this)">5</a></li>
-														<li class="page-item"><a class="page-link page-next" href="#">＞</a></li>
+														<li class="page-item"><a
+															class="page-link page-previous" href="#">＜</a></li>
+														<li class="page-item"><a
+															class="page-link active page-number"
+															href="javascript:void(0);" onclick="activePage(this)">1</a></li>
+														<li class="page-item"><a
+															class="page-link page-number" href="javascript:void(0);"
+															onclick="activePage(this)">2</a></li>
+														<li class="page-item"><a
+															class="page-link page-number" href="javascript:void(0);"
+															onclick="activePage(this)">3</a></li>
+														<li class="page-item"><a
+															class="page-link page-number" href="javascript:void(0);"
+															onclick="activePage(this)">4</a></li>
+														<li class="page-item"><a
+															class="page-link page-number" href="javascript:void(0);"
+															onclick="activePage(this)">5</a></li>
+														<li class="page-item"><a class="page-link page-next"
+															href="#">＞</a></li>
 													</ul>
 												</nav>
-											</div><!-- end Page -->
-											
-										</div><!-- id="tab4-content" 종료-->
-									</div><!-- id="mypost" 종료, 탭4 전체 종료 -->
+											</div>
+											<!-- end Page -->
+
+										</div>
+										<!-- id="tab4-content" 종료-->
+									</div>
+									<!-- id="mypost" 종료, 탭4 전체 종료 -->
 
 									<!-- 탭5 (친구관리) 시작-->
-									<div class="tab-pane fade" id="myfriend" role="tabpane5" aria-labelledby="myfriend-tab">
+									<div class="tab-pane fade" 
+										id="myfriend" 
+										role="tabpane5"
+										aria-labelledby="myfriend-tab">
 
 										<div id="tab5-content" class="site-content">
 											<h3 class="archive-title text-center">친구 관리</h3>
-											<br/>
-<!-- 											<div class="text-end pb-3">
+											<br />
+											<div class="text-end pb-3">
 												<select class="gold-border p-1 filter-open">
 													<option selected="selected">나를 구독하는 친구</option>
 													<option>내가 구독하는 친구</option>
 												</select>
-											</div> -->
-											
-												<!--팔로잉/팔로워 변경 버튼-->
-												<nav id="tab5-button-nav" style="text-align: center;">
-													<button class="tab5-button" data-tab-section="tab5-section-1" onclick="setUrl(5)">팔로잉 목록</button>
-													<button class="tab5-button" data-tab-section="tab5-section-2" onclick="setUrl(5)">팔로워 목록</button>
+											</div>
+
+											<div class="row py-3">
+												<div class="col-4 col-md-2 chef-list text-center">
+													<figure class="mb-0">
+														<img class="chef-pic" src="/imgs/content/ava-1.png"
+															alt="쉐프 사진">
+													</figure>
+													<div class="chef-info">
+														<p class="mb-0">
+															<small class="chef-rank">LV7 요리의신</small>
+														</p>
+														<a class="chef-name" href="#">Mirum</a>
+													</div>
+												</div>
+												<!-- end col -->
+												<div class="col-4 col-md-2 chef-list text-center">
+													<figure class="mb-0">
+														<img class="chef-pic" src="/imgs/content/ava-2.png"
+															alt="쉐프 사진">
+													</figure>
+													<div class="chef-info">
+														<p class="mb-0">
+															<small class="chef-rank">LV6 요리마스터</small>
+														</p>
+														<a class="chef-name" href="#">nickname</a>
+													</div>
+												</div>
+												<!-- end col -->
+												<div class="col-4 col-md-2 chef-list text-center">
+													<figure class="mb-0">
+														<img class="chef-pic" src="/imgs/content/auth-03.png"
+															alt="쉐프 사진">
+													</figure>
+													<div class="chef-info">
+														<p class="mb-0">
+															<small class="chef-rank">LV5 고급요리사</small>
+														</p>
+														<a class="chef-name" href="#">Mirum</a>
+													</div>
+												</div>
+												<!-- end col -->
+												<div class="col-4 col-md-2 chef-list text-center">
+													<figure class="mb-0">
+														<img class="chef-pic" src="/imgs/content/auth-00.png"
+															alt="쉐프 사진">
+													</figure>
+													<div class="chef-info">
+														<p class="mb-0">
+															<small class="chef-rank">LV4 중급요리사</small>
+														</p>
+														<a class="chef-name" href="#">Mirum</a>
+													</div>
+												</div>
+												<!-- end col -->
+												<div class="col-4 col-md-2 chef-list text-center">
+													<figure class="mb-0">
+														<img class="chef-pic" src="/imgs/content/auth-01.png"
+															alt="쉐프 사진">
+													</figure>
+													<div class="chef-info">
+														<p class="mb-0">
+															<small class="chef-rank">LV3 초급요리사</small>
+														</p>
+														<a class="chef-name" href="#">Mirum</a>
+													</div>
+												</div>
+												<!-- end col -->
+												<div class="col-4 col-md-2 chef-list text-center">
+													<figure class="mb-0">
+														<img class="chef-pic" src="/imgs/content/auth-02.png"
+															alt="쉐프 사진">
+													</figure>
+													<div class="chef-info">
+														<p class="mb-0">
+															<small class="chef-rank">LV2 보조요리사</small>
+														</p>
+														<a class="chef-name" href="#">Mirum</a>
+													</div>
+												</div>
+												<!-- end col -->
+											</div>
+											<!-- end row -->
+											<div class="page mt-5">
+												<nav aria-label="Page navigation">
+													<ul class="pagination justify-content-center">
+														<li class="page-item"><a
+															class="page-link page-previous" href="#">＜</a></li>
+														<li class="page-item"><a
+															class="page-link active page-number"
+															href="javascript:void(0);" onclick="activePage(this)">1</a></li>
+														<li class="page-item"><a
+															class="page-link page-number" href="javascript:void(0);"
+															onclick="activePage(this)">2</a></li>
+														<li class="page-item"><a
+															class="page-link page-number" href="javascript:void(0);"
+															onclick="activePage(this)">3</a></li>
+														<li class="page-item"><a
+															class="page-link page-number" href="javascript:void(0);"
+															onclick="activePage(this)">4</a></li>
+														<li class="page-item"><a
+															class="page-link page-number" href="javascript:void(0);"
+															onclick="activePage(this)">5</a></li>
+														<li class="page-item"><a class="page-link page-next"
+															href="#">＞</a></li>
+													</ul>
 												</nav>
-												<p class="text-right">팔로잉: 내가 추가한 친구<br>팔로워: 나를 추가한 친구</p>
 												
-												<section id="tab5-section-1" class="tab5-section">
-													<div id="following-list" class="row">
-													</div>
-		
-													<div id="follow-page-area-1" class="page">
-													</div>	
-												</section>
-												
-												<section id="tab5-section-2" class="tab5-section" hidden="true">
-													<div id="follower-list" class="row">
-													</div>
+					<!-- 10. 18. 서인 추가 시작 - 공개/비공개버튼-->
+                      <nav id="tab5-button-nav" style="text-align:center;">
+                        <button class="tab5-button" data-tab-section="tab5-section-1">팔로잉 목록</button>
+                        <button class="tab5-button" data-tab-section="tab5-section-2">팔로워 목록</button>
+                      </nav><br/>
+                      
+                      <section id="tab5-section-1" class="tab5-section">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <div class="team-col">
+<!-- 								<figure class="mb-0">
+									<img class="chef-pic" src="/imgs/content/ava-1.png"
+										alt="쉐프 사진">
+								</figure>
+								<div class="chef-info">
+									<p class="mb-0">
+										<large class="chef-rank">LV7 요리의신</large>
+									</p>
+									<a class="chef-name" href="#">Mirum</a>
+								</div> -->			
+                                <figure>
+                                    <img src="../imgs/content/team-03.png" alt="파일없음">
+                                </figure>
+                                <p class="team-name">아이유짱</p>
+                                <large class="team-tag">LV7 요리의신</large>
+                                <div class="handlemyfriend">
+                                <input >
+                                    <button class="handlemyfriendBtn" onclick="/mypage/gofriendrecipe?id=${following.id}">레시피 보기</button>&nbsp;
+                                    <button class="handlemyfriendBtn">구독 끊기</button>
+                                </div><!-- end handlemyfriend -->
+                            </div><!-- end team col -->
+                          </div><!-- end col -->
+                          <div class="col-md-3">
+                            <div class="team-col">
+                                <figure>
+                                    <img src="../imgs/content/team-01.png" alt="">
+                                </figure>
+                                <p class="team-name">유애나★</p>
+                                <span class="team-tag">LV7 요리의신</span>
+                                <!-- <p class="team-desc">하이하이하이소개글</p> -->
+                                <div class="handlemyfriend">
+                                    <button class="handlemyfriendBtn">레시피 보기</button>&nbsp;
+                                    <button class="handlemyfriendBtn">구독 끊기</button>
+                                </div><!-- end handlemyfriend -->
+                            </div><!-- end team col -->
+                          </div><!-- end col -->
+                          <div class="col-md-3">
+                              <div class="team-col">
+                                  <figure>
+                                      <img src="../imgs/content/team-06.png" alt="">
+                                  </figure>
+                                  <p class="team-name">맥도날드</p>
+                                  <span class="team-tag">LV7 요리의신</span>
+                                  <div class="handlemyfriend">
+                                    <button class="handlemyfriendBtn">레시피 보기</button>&nbsp;
+                                    <button class="handlemyfriendBtn">구독 끊기</button>
+                                  </div><!-- end handlemyfriend -->
+                              </div><!-- end team col -->
+                          </div><!-- end col -->
 
-													<div id="follow-page-area-2" class="page">
-													</div>
-											 	</section>
-										
-												<!--아래 <script> 부분은 이 위치에서만 작동, 위치를 header로 올리거나 내리면 오류-->
-												<script>
-							                        const $nav5 = document.querySelector('#tab5-button-nav')
-							                        const $sections5 = document.querySelectorAll('.tab5-section');
-							
-							                        $nav5.addEventListener('click', (e) => {
-							                          if (!e.target.classList.contains('tab5-button')) {
-							                            return;
-							                          }
-							                          const focusedTabId = e.target.dataset.tabSection;
-							                          $sections5.forEach(($section) => {
-							                            if ($section.id === focusedTabId) {
-							                              $section.removeAttribute('hidden');
-							                            } else {
-							                              $section.setAttribute('hidden', true);
-							                            }
-							                          });
-							                        });
-						                      </script>
+                          <div class="col-md-3">
+                              <div class="team-col">
+                                  <figure>
+                                      <img src="/pics/profile/default_profile_img.png" 
+                                      alt="" 
+                                      style="width:120px;height:120px;">
+                                  </figure>
+                                  <p class="team-name">코코넛파우더</p>
+                                  <span class="team-tag">LV7 요리의신</span>
+                                  <div class="handlemyfriend">
+                                    <button class="handlemyfriendBtn">레시피 보기</button>&nbsp;
+                                    <button class="handlemyfriendBtn">구독 끊기</button>
+                                  </div><!-- end handlemyfriend -->
+                              </div><!-- end team col -->
+                          </div><!-- end col -->
+                          
+                      </div><!-- end row -->
+                    
+                        <nav class="pagination-container" aria-label="Page navigation">
+                          <ul class="pagination justify-content-center">
+                            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                          </ul>
+                        </nav>
 
+                      </section>
+                      <section id="tab5-section-2" class="tab5-section" hidden="true">
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="team-col">
+                                    <figure>
+                                        <img src="../imgs/content/team-04.png" alt="">
+                                    </figure>
+                                    <p class="team-name">앗살라마이쿤</p>
+                                    <span class="team-tag">Web Developer</span>
+                                    <div class="handlemyfriend">
+                                    <button class="handlemyfriendBtn">레시피 보기</button>&nbsp;
+                                    <button class="handlemyfriendBtn">구독 끊기</button>
+                                    </div><!-- end handlemyfriend -->
+                                </div><!-- end team col -->
+                            </div><!-- end col -->
+                            <div class="col-md-3">
+                                <div class="team-col">
+                                    <figure>
+                                        <img src="../imgs/content/team-05.png" alt="">
+                                    </figure>
+                                    <p class="team-name">요리조리레시피</p>
+                                    <span class="team-tag">Graphic Designer</span>
+                                    <div class="handlemyfriend">
+                                    <button class="handlemyfriendBtn">레시피 보기</button>&nbsp;
+                                    <button class="handlemyfriendBtn">구독 끊기</button>
+                                    </div><!-- end handlemyfriend -->
+                                </div><!-- end team col -->
+                            </div><!-- end col -->
+                            <div class="col-md-3">
+                                <div class="team-col">
+                                    <figure>
+                                        <img src="../imgs/content/team-06.png" alt="">
+                                    </figure>
+                                    <p class="team-name">Joni Iskandar</p>
+                                    <span class="team-tag">Support</span>
+                                    <div class="handlemyfriend">
+                                    <button class="handlemyfriendBtn">레시피 보기</button>&nbsp;
+                                    <button class="handlemyfriendBtn">구독 끊기</button>
+                                    </div><!-- end handlemyfriend -->
+                                </div><!-- end team col -->
+                            </div><!-- end col -->
+                                                        <div class="col-md-3">
+                                <div class="team-col">
+                                    <figure>
+                                        <img src="../imgs/content/team-06.png" alt="">
+                                    </figure>
+                                    <p class="team-name">해쉬브라운</p>
+                                    <span class="team-tag">Support</span>
+                                    <div class="handlemyfriend">
+						            <button class="handlemyfriendBtn">레시피 보기</button>&nbsp;
+                                    <button class="handlemyfriendBtn">구독 끊기</button>
+                                    </div><!-- end handlemyfriend -->
+                                </div><!-- end team col -->
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+
+                        <nav class="pagination-container" aria-label="Page navigation">
+                          <ul class="pagination justify-content-center">
+                            <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                          </ul>
+                        </nav>
+                      </section>
+                      <!--아래 <script> 부분은 이 위치에서만 작동, 위치를 header로 올리거나 내리면 오류-->
+                      <script>
+                        const $nav5 = document.querySelector('#tab5-button-nav')
+                        const $sections5 = document.querySelectorAll('.tab5-section');
+
+                        $nav5.addEventListener('click', (e) => {
+                          if (!e.target.classList.contains('tab5-button')) {
+                            return;
+                          }
+                          const focusedTabId = e.target.dataset.tabSection;
+                          $sections5.forEach(($section) => {
+                            if ($section.id === focusedTabId) {
+                              $section.removeAttribute('hidden');
+                            } else {
+                              $section.setAttribute('hidden', true);
+                            }
+                          });
+                        });
+                      </script>
+                      
+											</div>
+											<!-- end Page -->
 										</div>
 										<!-- id="tab5-content" 종료-->
 									</div>
 									<!-- id="myfriend" 탭5 종료 -->
 								</div>
 								<!-- end class="tab-content", 탭5개 전체 종료-->
-							</div><!-- end my-content= 탭갈피+탭5개 종료-->
-						</div><!-- end id="content", 프로필+ 탭전체영역 종료-->
-					</div><!-- end primary(주요 메인영역) 종료-->
-				<%@ include file="/WEB-INF/views/member/mypage-secondary.jsp"%><!-- 사이드 영역(광고, 최근 본 게시물 등) -->
+							</div>
+							<!-- end my-content= 탭갈피+탭5개 종료-->
+						</div>
+						<!-- end id="content", 프로필+ 탭전체영역 종료-->
+					</div>
+					<!-- end primary(주요 메인영역) 종료-->
+
+
+					<!--사이드 영역(secondary) 시작-->
+					<div id="secondary" class="col-md-3">
+						<div class="widget post-type-widget">
+							<div class="widget-title-outer">
+								<h3 class="widget-title">최근 본 게시물</h3>
+							</div>
+							<ul>
+								<li><span class="post-category"> <a href="#">카테고리1-레시피</a>
+								</span>
+									<figure class="post-thumbnail">
+										<a href="#"> <img class="rounded-3"
+											src="/imgs/content/thumb-post-01.png" alt="" />
+										</a>
+									</figure>
+									<h2 class="post-title">
+										<a href="#">손쉬운 수제버거 레시피</a>
+									</h2></li>
+								<li><span class="post-category"> <a href="#">쉐프
+											랭킹</a>
+								</span>
+									<figure class="post-thumbnail">
+										<a href="#"> <img class="rounded-3"
+											src="/imgs/content/thumb-post-02.png" alt="" />
+										</a>
+									</figure>
+									<h2 class="post-title">
+										<a href="#">미슐랭 쉐프의 요리 꿀팁</a>
+									</h2></li>
+								<li><span class="post-category"> <a href="#">자유게시판</a>
+								</span>
+									<figure class="post-thumbnail">
+										<a href="#"> <img class="rounded-3"
+											src="/imgs/content/thumb-post-03.png" alt="" />
+										</a>
+									</figure>
+									<h2 class="post-title">
+										<a href="#">가산역에 새로 생긴 돼지갈비집 맛있나요?</a>
+									</h2></li>
+								<li><span class="post-category"> <a href="#">Vegetable</a>
+								</span>
+									<figure class="post-thumbnail">
+										<a href="#"> <img class="rounded-3"
+											src="/imgs/content/thumb-post-04.png" alt="" />
+										</a>
+									</figure>
+									<h2 class="post-title">
+										<a href="#">토마토바나나쉐이크 만들기</a>
+									</h2></li>
+						</div><!-- end widget -->
+
+						<!--광고 배너 이미지-->
+						<div class="widget">
+							<a href="#">
+							<img class="rounded-3 banner"
+								src="/imgs/mypage/ad_bespoke.PNG"
+								alt="Banner" />
+							</a>
+						</div>
+					</div><!-- end #secondary, 사이드영역 끝 -->
+
 				</div><!-- end row -->
 			</div><!-- end container -->
 		</div><!-- end main -->
 		<%@ include file="/WEB-INF/views/common/bottom.jsp"%>
-	</div><!-- end #page hfeed site -->
+	</div> <!-- end #page hfeed site -->
 </body>
 </html>

@@ -77,22 +77,23 @@ $(function() { // 비밀번호 2개 일치여부 확인, 이메일/닉네임 중
 
 // 회원가입 약관동의 팝업창 1,2 function
 function agreement1() {
-	var popupX = (document.body.width / 2) - 30;
+	var popupX = (document.body.offsetWidth / 2) - 100;
 	// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
-	var popupY = (window.screen.height / 2) - 100;
+	var popupY = (window.screen.height / 2) - 150;
 	// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
 	window.open('/member/agreement1', '개인정보 처리방침',
-			'status=no, height=500, width=700, left=' + popupX + ', top='+ popupY);
+			'status=no, height=300, width=600, left=' + popupX + ', top='
+					+ popupY);
 }
 /*<%=request.getContextPath()%>*/
 
 function agreement2() {
-	var popupX = (document.body.offsetWidth / 2) - 30;
+	var popupX = (document.body.offsetWidth / 2) - 100;
 	// 만들 팝업창 좌우 크기의 1/2 만큼 보정값으로 빼주었음
-	var popupY = (window.screen.height / 2) - 100;
+	var popupY = (window.screen.height / 2) - 150;
 	// 만들 팝업창 상하 크기의 1/2 만큼 보정값으로 빼주었음
 	window.open('/member/agreement2', '개인정보 처리방침',
-			'status=no, height=500, width=700, left=' + popupX + ', top='+ popupY);
+			'status=no, height=300, width=600, left=' + popupX + ', top='+ popupY);
 }
 
 $(function() { // 회원가입 페이지 들어오면 작동되는 fuction
