@@ -90,51 +90,26 @@
 								<!-- 탭갈피 myTab 시작/ 아티클,아티클,북마크,레시피,북마크 순서 --->
 								<!-- href="javascript:void(0)" onclick="setUrl(this)" --> 
 								<ul class="nav nav-tabs" id="myTab" role="tablist">
-									<li class="nav-item">
-									<a class="nav-link tab-menu active" 
-									id="ingredient-tab" 
-									data-toggle="tab" 
-									href="#ingredient" 
-									role="tab" 
-									aria-controls="ingredient" 
-									aria-selected="false">냉장고 비우기</a></li>
-									
-									<li class="nav-item">
-									<a class="nav-link tab-menu" 
-									id="article-tab" 
-									data-toggle="tab" 
-									href="#myrecipe" 
-									role="tab" 
-									aria-controls="article" 
-									aria-selected="false">나의 레시피</a></li>
 
-									<li class="nav-item">
-									<a class="nav-link tab-menu" 
-									id="bookmark-tab" 
-									data-toggle="tab" 
-									href="#bookmark" 
-									role="tab" 
-									aria-controls="bookmark" 
-									aria-selected="false">북마크 한 레시피</a></li>
+									<li class="nav-item"><a class="nav-link tab-menu active"
+										id="ingredient-tab" data-toggle="tab" href="#ingredient" onclick="setUrl(this)"
+										role="tab" aria-controls="ingredient" aria-selected="false">냉장고 비우기</a></li>
+									<li class="nav-item"><a class="nav-link tab-menu"
+										id="article-tab" data-toggle="tab" href="#article" onclick="setUrl(this)"
+										role="tab" aria-controls="article" aria-selected="false">나의 레시피</a></li>
+										
+									<li class="nav-item"><a class="nav-link tab-menu"
+										id="bookmark-tab" data-toggle="tab" href="#bookmark" onclick="setUrl(this)"
+										role="tab" aria-controls="bookmark" aria-selected="false">북마크한 레시피</a></li>
+											
+									<li class="nav-item"><a class="nav-link tab-menu"
+										id="mypost-tab" data-toggle="tab" href="#mypost" onclick="setUrl(this)" 
+										role="tab" aria-controls="mypost" aria-selected="false">내 게시글</a></li>
+										
+									<li class="nav-item"><a class="nav-link tab-menu"
+										id="myfriend-tab" data-toggle="tab" href="#myfriend" onclick="setUrl(this)"
+										role="tab" aria-controls="myfriend" aria-selected="false">친구 관리</a></li>
 
-									<li class="nav-item">
-									<a class="nav-link tab-menu" 
-									id="mypost-tab" 
-									data-toggle="tab" 
-									href="#mypost"
-									role="tab" 
-									aria-controls="mypost" 
-									aria-selected="false">내 게시글</a></li>
-
-									<li class="nav-item">
-									<a class="nav-link tab-menu" 
-									id="myfriend-tab" 
-									data-toggle="tab" 
-									href="#myfriend"
-									onclick="setUrl(this)"
-									role="tab" 
-									aria-controls="myfriend" 
-									aria-selected="false">친구 관리</a></li>
 								</ul>
 
 								<!--탭 컨텐츠 시작-->
@@ -294,36 +269,23 @@
 											
 											<!--재료선택 리셋 버튼-->
 											<div class="text-center">
-												<button class="btn-search gold-btn"
-														id="search-reset"
-														onclick="location.reload()">다시 선택</button>
-														<!-- 추후 reload 없이 초기화 기능 구현할 것 -->											
+
+												<button class="btn-search gold-btn" id="search-reset"
+													onclick="location.reload()">다시 선택</button>
+													<!-- 추후 reload 없이 초기화 기능 구현할 것 -->											
 											</div>
 											<br/><br/>
 											
-											<!-- 레시피 검색 결과 보이는 부분 -->
-											<div id="recipe-list" class="row">
+											<div id="recipe-list-1" class="row">
 											</div>					
-																	
-											<div class="page">
-												<nav aria-label="Page navigation">
-													<ul id="pagination-ul" 
-														class="pagination justify-content-center">
-														<div id="pagination-previous"
-															class="pagination justify-content-center">
-														</div>
-														<div id="pagination-area"
-															class="pagination justify-content-center">
-														</div>
-														<div id="pagination-next"
-															class="pagination justify-content-center">
-														</div>
-													</ul>
-												</nav>
-											</div>	
-											
-										</div><!-- id="tab1-content" 종료 -->
-									</div><!-- id="ingredient" 종료 -->
+																												
+											<div id="paging-area-1" class="page common-area">
+											</div>																													
+											<!-- end row -->											
+										</div>
+										<!-- id="tab1-content" 종료 -->
+									</div>
+									<!-- id="ingredient" 종료 -->
 
 									<!-- 탭2 시작(나의 레시피)-->
 									<div class="tab-pane fade" 
@@ -336,202 +298,25 @@
 
 											<!--공개/비공개버튼 2개-->
 											<div class="text-end pb-3">
-<!-- 												  <button class="btn gold-btn me-3 p-2" 
-												  id="openBtn" 
-												  type="button">
-												  공개 레시피</button>
-										          <button class="btn gold-btn p-2" 
-										          id="closedBtn" 
-										          type="button"> 
-										          	비공개 레시피</button> -->
-												<select class="gold-border p-1 filter-open">
-													<option selected="selected">공개 레시피</option>
-													<option>비공개 레시피</option>
+
+											  <!--<button class="btn gold-btn me-3 p-2" id="openBtn" type="button">
+										                            공개 레시피</button>
+										          <button class="btn gold-btn p-2" id="closedBtn" type="button">
+										                            비공개 레시피</button> -->
+												<select id="recipe-access-option" class="gold-border p-1 filter-open" onchange="setUrl(this)">
+													<option selected="selected" value="0">공개 레시피</option>
+													<option value="1">비공개 레시피</option>
+													<option value="2">임시저장 레시피</option>
 												</select>
 											</div>
-											<div class="row">
-												<div class="col-6 col-md-3">
-													<div class="recipe-thumb">
-														<img src="/imgs/content/thumb-7.png" alt="Recipe Image">
-													</div>
-													<div class="recipe-desc">
-														<h2 class="recipe-title">
-															<a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
-														</h2>
-														<figure class="profile">
-															<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">
-															<span><em>펭귄하늘을날다</em></span>
-														</figure>
-														<div class="recipe-icons d-flex justify-content-between">
-															<span class="d-flex align-items-center"> <img class="stars" src="/imgs/stars3.png"> <span class="p-1 mt-1">4.6(500)</span>
-															</span> <span class="d-flex align-items-center"> <span class="p-1 mt-1">조회 1</span>
-															</span>
-														</div>
-													</div>
-													<!-- end recipe-desc -->
-												</div>
+											<br/><br/>
+											
+											<div id="recipe-list-2" class="row">
+											</div>																	
+											
+											<div id="paging-area-2" class="page common-area">
+											</div>												
 												<!-- end col -->
-												<div class="col-6 col-md-3">
-													<div class="recipe-thumb">
-														<img src="/imgs/content/thumb-7.png" alt="Recipe Image">
-													</div>
-													<div class="recipe-desc">
-														<h2 class="recipe-title">
-															<a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
-														</h2>
-														<figure class="profile">
-															<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">
-															<span><em>펭귄하늘을날다</em></span>
-														</figure>
-														<div class="recipe-icons d-flex justify-content-between">
-															<span class="d-flex align-items-center"> <img class="stars" src="/imgs/stars3.png"> <span class="p-1 mt-1">4.6(500)</span>
-															</span> <span class="d-flex align-items-center"> <span class="p-1 mt-1">조회 1</span>
-															</span>
-														</div>
-													</div>
-													<!-- end recipe-desc -->
-												</div>
-												<!-- end col -->
-												<div class="col-6 col-md-3">
-													<div class="recipe-thumb">
-														<img src="/imgs/content/thumb-7.png" alt="Recipe Image">
-													</div>
-													<div class="recipe-desc">
-														<h2 class="recipe-title">
-															<a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
-														</h2>
-														<figure class="profile">
-															<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">
-															<span><em>펭귄하늘을날다</em></span>
-														</figure>
-														<div class="recipe-icons d-flex justify-content-between">
-															<span class="d-flex align-items-center"> <img class="stars" src="/imgs/stars3.png"> <span class="p-1 mt-1">4.6(500)</span>
-															</span> <span class="d-flex align-items-center"> <span class="p-1 mt-1">조회 1</span>
-															</span>
-														</div>
-													</div>
-													<!-- end recipe-desc -->
-												</div>
-												<!-- end col -->
-												<div class="col-6 col-md-3">
-													<div class="recipe-thumb">
-														<img src="/imgs/content/thumb-7.png" alt="Recipe Image">
-													</div>
-													<div class="recipe-desc">
-														<h2 class="recipe-title">
-															<a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
-														</h2>
-														<figure class="profile">
-															<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">
-															<span><em>펭귄하늘을날다</em></span>
-														</figure>
-														<div class="recipe-icons d-flex justify-content-between">
-															<span class="d-flex align-items-center"> <img class="stars" src="/imgs/stars3.png"> <span class="p-1 mt-1">4.6(500)</span>
-															</span> <span class="d-flex align-items-center"> <span class="p-1 mt-1">조회 1</span>
-															</span>
-														</div>
-													</div>
-													<!-- end recipe-desc -->
-												</div>
-												<!-- end col -->
-												<div class="col-6 col-md-3">
-													<div class="recipe-thumb">
-														<img src="/imgs/content/thumb-7.png" alt="Recipe Image">
-													</div>
-													<div class="recipe-desc">
-														<h2 class="recipe-title">
-															<a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
-														</h2>
-														<figure class="profile">
-															<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">
-															<span><em>펭귄하늘을날다</em></span>
-														</figure>
-														<div class="recipe-icons d-flex justify-content-between">
-															<span class="d-flex align-items-center"> <img class="stars" src="/imgs/stars3.png"> <span class="p-1 mt-1">4.6(500)</span>
-															</span> <span class="d-flex align-items-center"> <span class="p-1 mt-1">조회 1</span>
-															</span>
-														</div>
-													</div>
-													<!-- end recipe-desc -->
-												</div>
-												<!-- end col -->
-												<div class="col-6 col-md-3">
-													<div class="recipe-thumb">
-														<img src="/imgs/content/thumb-7.png" alt="Recipe Image">
-													</div>
-													<div class="recipe-desc">
-														<h2 class="recipe-title">
-															<a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
-														</h2>
-														<figure class="profile">
-															<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">
-															<span><em>펭귄하늘을날다</em></span>
-														</figure>
-														<div class="recipe-icons d-flex justify-content-between">
-															<span class="d-flex align-items-center"> <img class="stars" src="/imgs/stars3.png"> <span class="p-1 mt-1">4.6(500)</span>
-															</span> <span class="d-flex align-items-center"> <span class="p-1 mt-1">조회 1</span>
-															</span>
-														</div>
-													</div>
-													<!-- end recipe-desc -->
-												</div>
-												<!-- end col -->
-												<div class="col-6 col-md-3">
-													<div class="recipe-thumb">
-														<img src="/imgs/content/thumb-7.png" alt="Recipe Image">
-													</div>
-													<div class="recipe-desc">
-														<h2 class="recipe-title">
-															<a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
-														</h2>
-														<figure class="profile">
-															<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">
-															<span><em>펭귄하늘을날다</em></span>
-														</figure>
-														<div class="recipe-icons d-flex justify-content-between">
-															<span class="d-flex align-items-center"> <img class="stars" src="/imgs/stars3.png"> <span class="p-1 mt-1">4.6(500)</span>
-															</span> <span class="d-flex align-items-center"> <span class="p-1 mt-1">조회 1</span>
-															</span>
-														</div>
-													</div>
-													<!-- end recipe-desc -->
-												</div>
-												<!-- end col -->
-												<div class="col-6 col-md-3">
-													<div class="recipe-thumb">
-														<img src="/imgs/content/thumb-7.png" alt="Recipe Image">
-													</div>
-													<div class="recipe-desc">
-														<h2 class="recipe-title">
-															<a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
-														</h2>
-														<figure class="profile">
-															<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">
-															<span><em>펭귄하늘을날다</em></span>
-														</figure>
-														<div class="recipe-icons d-flex justify-content-between">
-															<span class="d-flex align-items-center"> <img class="stars" src="/imgs/stars3.png"> <span class="p-1 mt-1">4.6(500)</span>
-															</span> <span class="d-flex align-items-center"> <span class="p-1 mt-1">조회 1</span>
-															</span>
-														</div>
-													</div>
-													<!-- end recipe-desc -->
-												</div>
-												<!-- end col -->
-											</div>
-											<div class="page mt-5">
-												<nav aria-label="Page navigation">
-													<ul class="pagination justify-content-center">
-														<li class="page-item"><a class="page-link page-previous" href="#">＜</a></li>
-														<li class="page-item"><a class="page-link active page-number" href="javascript:void(0);" onclick="activePage(this)">1</a></li>
-														<li class="page-item"><a class="page-link page-number" href="javascript:void(0);" onclick="activePage(this)">2</a></li>
-														<li class="page-item"><a class="page-link page-number" href="javascript:void(0);" onclick="activePage(this)">3</a></li>
-														<li class="page-item"><a class="page-link page-number" href="javascript:void(0);" onclick="activePage(this)">4</a></li>
-														<li class="page-item"><a class="page-link page-number" href="javascript:void(0);" onclick="activePage(this)">5</a></li>
-														<li class="page-item"><a class="page-link page-next" href="#">＞</a></li>
-													</ul>
-												</nav>
-											</div>
 											<!-- end Page -->
 										</div>
 										<!-- id="tab2-content" 종료-->
@@ -544,189 +329,12 @@
 											<h3 class="archive-title text-center">북마크 한 레시피</h3>
 											<br />
 
-											<div class="row">
-												<div class="col-6 col-md-3">
-													<div class="recipe-thumb">
-														<img src="/imgs/content/thumb-7.png" alt="Recipe Image">
-													</div>
-													<div class="recipe-desc">
-														<h2 class="recipe-title">
-															<a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
-														</h2>
-														<figure class="profile">
-															<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">
-															<span><em>펭귄하늘을날다</em></span>
-														</figure>
-														<div class="recipe-icons d-flex justify-content-between">
-															<span class="d-flex align-items-center"> <img class="stars" src="/imgs/stars3.png"> <span class="p-1 mt-1">4.6(500)</span>
-															</span> <span class="d-flex align-items-center"> <span class="p-1 mt-1">조회 1</span>
-															</span>
-														</div>
-													</div>
-													<!-- end recipe-desc -->
-												</div>
-												<!-- end col -->
-												<div class="col-6 col-md-3">
-													<div class="recipe-thumb">
-														<img src="/imgs/content/thumb-7.png" alt="Recipe Image">
-													</div>
-													<div class="recipe-desc">
-														<h2 class="recipe-title">
-															<a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
-														</h2>
-														<figure class="profile">
-															<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">
-															<span><em>펭귄하늘을날다</em></span>
-														</figure>
-														<div class="recipe-icons d-flex justify-content-between">
-															<span class="d-flex align-items-center"> <img class="stars" src="/imgs/stars3.png"> <span class="p-1 mt-1">4.6(500)</span>
-															</span> <span class="d-flex align-items-center"> <span class="p-1 mt-1">조회 1</span>
-															</span>
-														</div>
-													</div>
-													<!-- end recipe-desc -->
-												</div>
-												<!-- end col -->
-												<div class="col-6 col-md-3">
-													<div class="recipe-thumb">
-														<img src="/imgs/content/thumb-7.png" alt="Recipe Image">
-													</div>
-													<div class="recipe-desc">
-														<h2 class="recipe-title">
-															<a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
-														</h2>
-														<figure class="profile">
-															<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">
-															<span><em>펭귄하늘을날다</em></span>
-														</figure>
-														<div class="recipe-icons d-flex justify-content-between">
-															<span class="d-flex align-items-center"> <img class="stars" src="/imgs/stars3.png"> <span class="p-1 mt-1">4.6(500)</span>
-															</span> <span class="d-flex align-items-center"> <span class="p-1 mt-1">조회 1</span>
-															</span>
-														</div>
-													</div>
-													<!-- end recipe-desc -->
-												</div>
-												<!-- end col -->
-												<div class="col-6 col-md-3">
-													<div class="recipe-thumb">
-														<img src="/imgs/content/thumb-7.png" alt="Recipe Image">
-													</div>
-													<div class="recipe-desc">
-														<h2 class="recipe-title">
-															<a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
-														</h2>
-														<figure class="profile">
-															<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">
-															<span><em>펭귄하늘을날다</em></span>
-														</figure>
-														<div class="recipe-icons d-flex justify-content-between">
-															<span class="d-flex align-items-center"> <img class="stars" src="/imgs/stars3.png"> <span class="p-1 mt-1">4.6(500)</span>
-															</span> <span class="d-flex align-items-center"> <span class="p-1 mt-1">조회 1</span>
-															</span>
-														</div>
-													</div>
-													<!-- end recipe-desc -->
-												</div>
-												<!-- end col -->
-												<div class="col-6 col-md-3">
-													<div class="recipe-thumb">
-														<img src="/imgs/content/thumb-7.png" alt="Recipe Image">
-													</div>
-													<div class="recipe-desc">
-														<h2 class="recipe-title">
-															<a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
-														</h2>
-														<figure class="profile">
-															<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">
-															<span><em>펭귄하늘을날다</em></span>
-														</figure>
-														<div class="recipe-icons d-flex justify-content-between">
-															<span class="d-flex align-items-center"> <img class="stars" src="/imgs/stars3.png"> <span class="p-1 mt-1">4.6(500)</span>
-															</span> <span class="d-flex align-items-center"> <span class="p-1 mt-1">조회 1</span>
-															</span>
-														</div>
-													</div>
-													<!-- end recipe-desc -->
-												</div>
-												<!-- end col -->
-												<div class="col-6 col-md-3">
-													<div class="recipe-thumb">
-														<img src="/imgs/content/thumb-7.png" alt="Recipe Image">
-													</div>
-													<div class="recipe-desc">
-														<h2 class="recipe-title">
-															<a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
-														</h2>
-														<figure class="profile">
-															<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">
-															<span><em>펭귄하늘을날다</em></span>
-														</figure>
-														<div class="recipe-icons d-flex justify-content-between">
-															<span class="d-flex align-items-center"> <img class="stars" src="/imgs/stars3.png"> <span class="p-1 mt-1">4.6(500)</span>
-															</span> <span class="d-flex align-items-center"> <span class="p-1 mt-1">조회 1</span>
-															</span>
-														</div>
-													</div>
-													<!-- end recipe-desc -->
-												</div>
-												<!-- end col -->
-												<div class="col-6 col-md-3">
-													<div class="recipe-thumb">
-														<img src="/imgs/content/thumb-7.png" alt="Recipe Image">
-													</div>
-													<div class="recipe-desc">
-														<h2 class="recipe-title">
-															<a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
-														</h2>
-														<figure class="profile">
-															<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">
-															<span><em>펭귄하늘을날다</em></span>
-														</figure>
-														<div class="recipe-icons d-flex justify-content-between">
-															<span class="d-flex align-items-center"> <img class="stars" src="/imgs/stars3.png"> <span class="p-1 mt-1">4.6(500)</span>
-															</span> <span class="d-flex align-items-center"> <span class="p-1 mt-1">조회 1</span>
-															</span>
-														</div>
-													</div>
-													<!-- end recipe-desc -->
-												</div>
-												<!-- end col -->
-												<div class="col-6 col-md-3">
-													<div class="recipe-thumb">
-														<img src="/imgs/content/thumb-7.png" alt="Recipe Image">
-													</div>
-													<div class="recipe-desc">
-														<h2 class="recipe-title">
-															<a href="#">전참시 유병재가 만든 찜닭! 꽈리고추닭볶음</a>
-														</h2>
-														<figure class="profile">
-															<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">
-															<span><em>펭귄하늘을날다</em></span>
-														</figure>
-														<div class="recipe-icons d-flex justify-content-between">
-															<span class="d-flex align-items-center"> <img class="stars" src="/imgs/stars3.png"> <span class="p-1 mt-1">4.6(500)</span>
-															</span> <span class="d-flex align-items-center"> <span class="p-1 mt-1">조회 1</span>
-															</span>
-														</div>
-													</div>
-													<!-- end recipe-desc -->
-												</div>
-												<!-- end col -->
-											</div>
-											<div class="page mt-5">
-												<nav aria-label="Page navigation">
-													<ul class="pagination justify-content-center">
-														<li class="page-item"><a class="page-link page-previous" href="#">＜</a></li>
-														<li class="page-item"><a class="page-link active page-number" href="javascript:void(0);" onclick="activePage(this)">1</a></li>
-														<li class="page-item"><a class="page-link page-number" href="javascript:void(0);" onclick="activePage(this)">2</a></li>
-														<li class="page-item"><a class="page-link page-number" href="javascript:void(0);" onclick="activePage(this)">3</a></li>
-														<li class="page-item"><a class="page-link page-number" href="javascript:void(0);" onclick="activePage(this)">4</a></li>
-														<li class="page-item"><a class="page-link page-number" href="javascript:void(0);" onclick="activePage(this)">5</a></li>
-														<li class="page-item"><a class="page-link page-next" href="#">＞</a></li>
-													</ul>
-												</nav>
-											</div>
+											<div id="recipe-list-3" class="row">
+											</div>					
+											
+											<div id="paging-area-3" class="page common-area">
+											</div>	
+
 											<!-- end Page -->
 										</div>
 										<!-- id=tab3-content 종료-->

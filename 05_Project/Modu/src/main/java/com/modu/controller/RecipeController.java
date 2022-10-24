@@ -1,6 +1,7 @@
 package com.modu.controller;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
  
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,10 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.modu.domain.member.Scrap;
 import com.modu.domain.recipe.RecipeDetail;
 import com.modu.domain.recipe.RecipeListVo;
 import com.modu.domain.recipe.RecipeReply;
 import com.modu.domain.recipe.RecipeReplyList;
+import com.modu.mapper.RecipeLegacyMapper;
+import com.modu.service.MembershipService;
 import com.modu.service.RecipeFindingService;
 import com.modu.service.RecipeRegisterService;
 import com.modu.service.RecipeSearchService;
@@ -38,6 +43,9 @@ public class RecipeController {
 	private RecipeRegisterService recipeRegisterService;
 	@Autowired
 	private RecipeSearchService searchService;
+	@Autowired
+	private MembershipService membershipService;
+
 
     @GetMapping("/list")
     public ModelAndView recipeList(HttpServletRequest request, HttpSession session) {
@@ -98,18 +106,28 @@ public class RecipeController {
 	}
 	
 	@GetMapping("/detail")
-	public ModelAndView recipeDetail() {
+	public ModelAndView recipeDetail(HttpSession session) {
 		long id = 150;
+		String email = (String)session.getAttribute("email");
 		RecipeDetail recipeDetail = recipeFindingService.findRecipedetails(id);
 		String starPoint = recipeFindingService.getStarPoint(recipeDetail);
 		List<RecipeReplyList> selectReply = recipeRegisterService.findRecipeReply(id);
-
+		boolean scrapState = false;
+		if(email != null) {
+		    if (recipeFindingService.getScrap(id, email) == null) {
+	            //스크랩 중 아님
+	        } else {
+	            scrapState = true;
+	        }
+		}
+		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("recipe/detail");
 		mv.addObject("rec", recipeDetail);
 		mv.addObject("rep", selectReply);
 		mv.addObject("id", id);
 		mv.addObject("starPoint", starPoint);
+		mv.addObject("scrapState", scrapState);
 		return mv;
 	}
 
@@ -138,4 +156,44 @@ public class RecipeController {
 	 * recipeRegisterService.registerNestedReply(recipeNestedReply);
 	 * log.info("#recipeNestedReply" +recipeNestedReply); return result; }
 	 */
+	
+	@ResponseBody
+	@PostMapping("/scrap/insert")
+	public HashMap<String, Object> insertScrap(HttpServletRequest request, HttpSession session){
+	    HashMap<String, Object> map = new HashMap<String, Object>();
+	    String id = (String)request.getParameter("id");
+	    String email = (String)session.getAttribute("email");
+	    String msg;
+	    long rId = Long.parseLong(id);
+	    
+	    if (email == null) {
+	        map.put("error", "스크랩 기능은 로그인 후 이용할 수 있습니다.");
+	        return map;
+	    } else {
+	        msg = membershipService.scrapService(rId, email, 1);
+	        map.put("user", email);
+    	    map.put("msg", msg);
+    	    return map;
+	    }
+	}
+	
+	@ResponseBody
+    @PostMapping("/scrap/delete")
+    public HashMap<String, Object> deleteScrap(HttpServletRequest request, HttpSession session){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        String id = (String)request.getParameter("id");
+        String email = (String)session.getAttribute("email");
+        String msg;
+        long rId = Long.parseLong(id);
+        
+        if (email == null) {
+            map.put("error", "스크랩 기능은 로그인 후 이용할 수 있습니다.");
+            return map;
+        } else {
+            msg = membershipService.scrapService(rId, email, -1);
+            map.put("user", email);
+            map.put("msg", msg);
+            return map;
+        }
+    }
 }

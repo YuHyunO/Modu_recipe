@@ -7,7 +7,7 @@ $(function () {
 		}
 	}
 	
-	$(window).on("mousemove", () => {
+	$(window).on("mousemove", () => {0
 		prevent();
 	});
 	

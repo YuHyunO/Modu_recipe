@@ -1,7 +1,9 @@
 package com.modu.controller;
 
+import java.util.Enumeration;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -52,28 +54,27 @@ public class MembershipController {
         return mv;
     }
     
-    //탭1- 냉장고 비우기 레시피 추천
     @GetMapping("/recommend")
-    public @ResponseBody RecipeListVo recommend(HttpServletRequest request, HttpSession session) {
+    public @ResponseBody RecipeListVo recommend(HttpServletRequest request, HttpSession session) {        
+        
         RecipeListVo data = recipeSearchService.searchRecipeByIngredient(request, session);
-        return data;
+    	return data;
     }
     
-    //탭2- 나의 레시피
     @GetMapping("/recipe")
-    public @ResponseBody String recipe(HttpServletRequest request, HttpSession session) {
-
-    	return "2";
+    public @ResponseBody RecipeListVo myRecipe(HttpServletRequest request, HttpSession session) {
+        
+        RecipeListVo data = recipeSearchService.searchRecipeOfMember(request, session);
+    	return data;
     }
     
-    //탭2- 북마크 한 레시피
     @GetMapping("/bookmark")
-    public @ResponseBody String bookmark(HttpServletRequest request, HttpSession session) {
-
-    	return "3";
+    public @ResponseBody RecipeListVo bookmark(HttpServletRequest request, HttpSession session) {
+        
+        RecipeListVo data = recipeSearchService.searchRecipeOfBookmark(request, session);
+    	return data;    
     }
 	
-    //탭4- 나의 게시글
     @GetMapping("/post")
     public @ResponseBody String post(HttpServletRequest request, HttpSession session) {
     	

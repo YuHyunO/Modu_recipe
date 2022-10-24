@@ -3,7 +3,6 @@
     font-size: 15px !important;
 }
 
-/* Î©îÎâ¥ dropdown ÏòÅÏó≠ */
 .site-navigation.navbar .dropdown-menu, .dropdown-item {
     background-color: #fff !important;
     color: #937062 !important;
@@ -48,7 +47,7 @@
 	height: 25px;
 }
 
-/* ÔøΩ›ªÔøΩ ÔøΩ◊µŒ∏ÔøΩ */
+/* ±›ªˆ ≈◊µŒ∏Æ */
 .gold-top {
 	border-top: 1px solid rgb(147, 112, 98) !important;
 }
@@ -169,7 +168,7 @@
 	}
 }
 
-/* ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩ ƒ´ÔøΩÔøΩ ÔøΩŒ∫ÔøΩ */
+/* ∑πΩ√«« ƒ´µÂ ∫Œ∫– */
 .recipe-title {
 	height: 65px;
 	border: none;
@@ -237,7 +236,7 @@
 	}
 }
 
-/* ÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÔøΩÃºÔøΩ */
+/* ∆‰¿Ã¡ˆ≥◊¿Ãº« */
 .page-link {
 	color: rgb(150, 150, 150) !important;
 	width: 35px;
@@ -255,19 +254,32 @@
 	color: black !important;
 }
 
-/* ÔøΩÔøΩÔøΩÔøΩ∆Æ ƒøÔøΩÔøΩ */
+/* ∆˜¿Œ∆Æ ƒøº≠ */
 .pointer {
 	cursor: pointer !important;
 }
 
-/* ÔøΩÃπÔøΩÔøΩÔøΩ 100% */
+/* ¿ÃπÃ¡ˆ 100% */
 .ratio-100 {
-	position: relative;
-    width: 100%;
+	position: relative !important;
+    width: 100% !important;
 	-bs-aspect-ratio: 100% !important;
 }
 
 .ratio-100>* {
     top: 0;
     left: 0;
+}
+
+/* √÷±Ÿ ∫ª ∞‘Ω√π∞ */
+.widget-title {
+	font-size: 1rem !important;
+	font-weight: 600 !important;
+}
+
+.post-category {
+	font-size: 0.8rem !important;
+}
+
+#secondary .post-title {
 }

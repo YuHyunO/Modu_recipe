@@ -11,8 +11,14 @@ import com.modu.domain.member.Member;
 
 public interface MembershipService {
 	
-	List<Member> selectMemberRankS();	
-	FollowListVo getFollowList(HttpServletRequest request, HttpSession session);	
+
+		
 	void unfollowFriend(Long id); //HttpServletRequest request
+
+	List<Member> selectMemberRankS();
 	
+	FollowListVo getFollowList(HttpServletRequest request, HttpSession session);
+	
+	String scrapService(long rId, String email, int mode);
+
 }

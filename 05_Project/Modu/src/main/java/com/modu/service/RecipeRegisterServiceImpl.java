@@ -43,6 +43,7 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
     private Recipe recipe = new Recipe();
     private Ingredient ingredient = new Ingredient();
     private Direction direction = new Direction();
+    private RecipeTag Tag = new RecipeTag();
     
     private ArrayList<String> fileInfoList = new ArrayList<String>();
 	
@@ -144,7 +145,7 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
                     } else {
                         String[] urlAndName = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + id + "\\", fileInfoList);                
                         log.info("#url: " + urlAndName[0]);
-                        content = directions.get(step-1 + num);
+                        content = directions.get(step - 1 + num);
                         direction.setRId(id);
                         direction.setDirection(content);
                         direction.setStep(step + num);
@@ -156,6 +157,14 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
                 }
             }
             num += 1;
+        }
+        String tag;
+        for(int i=0; i<tags.size(); i++) {
+            tag = tags.get(i);
+            Tag.setRId(id);
+            Tag.setTag(tag);
+            recipeMapper.insertTag(Tag);
+            
         }
 	}
 

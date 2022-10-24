@@ -92,7 +92,7 @@
     }
 
     .selects select {
-        width: 65px;
+        width: 65px !important;
     }
 
     .filter-period {

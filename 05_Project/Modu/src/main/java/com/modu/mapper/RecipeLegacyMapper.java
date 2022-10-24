@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.modu.domain.member.Scrap;
 import com.modu.domain.recipe.Rating;
 import com.modu.domain.recipe.RecipeNestedReply;
 import com.modu.domain.recipe.RecipeReply;
@@ -21,7 +22,7 @@ public interface RecipeLegacyMapper {
 	void deleteReply(long id);
 	void deleteNestedReply(long id);
 	void deleteRating(long id);
-	void deleteScrap(long id);
+	void deleteScrap(@Param("rId")long rid, @Param("email")String email);
 	
 	
 	long selectReplyId(String email);
@@ -35,5 +36,7 @@ public interface RecipeLegacyMapper {
 	List<RecipeNestedReply> selectNestedReplyOfMemberBy(@Param("email")String email, @Param("beginRow")long beginRow, @Param("endRow")long endRow);
 	long selectReplyCount(long rId);
 	long selectNestedReplyCount(long rrId);
-	long selectReplyCountByMember(String email);	
+	long selectReplyCountByMember(String email);
+	
+	Scrap selectScrapByRecipeId(@Param("rId")long rId, @Param("mEmail")String mEmail);
 }

@@ -10,6 +10,7 @@ import com.modu.domain.board.BoardList;
 import com.modu.domain.board.BoardReply;
 import com.modu.domain.board.BoardReplyList;
 import com.modu.mapper.BoardLegacyMapper;
+import com.modu.mapper.BoardMapper;
 
 import lombok.extern.log4j.Log4j;
 
@@ -18,6 +19,8 @@ import lombok.extern.log4j.Log4j;
 public class BoardReplyServiceImpl implements BoardReplyService {
 	@Autowired
 	BoardLegacyMapper boardLegacyMapper;
+	@Autowired
+	BoardMapper boardMapper;
 	@Override
 	public long countReplys(long bId) {
 		return boardLegacyMapper.selectReplyCount(bId);
@@ -31,7 +34,7 @@ public class BoardReplyServiceImpl implements BoardReplyService {
 	}
 	@Override
 	public void addReply(BoardReply boardReply) {
-		boardLegacyMapper.insertReply(boardReply);
+		boardLegacyMapper.insertReply(boardReply);	
 	}
     @Override
     public void removeReply(long id) {
