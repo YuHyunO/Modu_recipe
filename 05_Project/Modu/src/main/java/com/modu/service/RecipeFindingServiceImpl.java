@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.modu.domain.member.Scrap;
 import com.modu.domain.recipe.Direction;
 import com.modu.domain.recipe.Ingredient;
 import com.modu.domain.recipe.Recipe;
@@ -16,6 +17,7 @@ import com.modu.domain.recipe.RecipeDetail;
 import com.modu.domain.recipe.RecipeTag;
 import com.modu.fileset.Path;
 import com.modu.domain.recipe.RecipeList;
+import com.modu.mapper.RecipeLegacyMapper;
 import com.modu.mapper.RecipeMapper;
 import lombok.extern.log4j.Log4j;
 
@@ -31,6 +33,9 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
     
 	@Autowired
 	private RecipeMapper recipeMapper;
+	
+	@Autowired
+    private RecipeLegacyMapper recipeLegacyMapper;
 	
 	@Autowired FileUploadService fileUploadService;
 	
@@ -94,6 +99,12 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
         recipeDetail.setTag(tag);
         log.info("####3: " + tag);
         return recipeDetail;
+    }
+
+    @Override
+    public Scrap getScrap(long rId, String email) {
+        Scrap scrap1 = recipeLegacyMapper.selectScrapByRecipeId(rId, email);
+        return scrap1;
     }
 
 }

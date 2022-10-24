@@ -11,14 +11,6 @@
     height: 20px;
 }
 
-.star1 {                
-    background: url("/imgs/star1.png") center/100% no-repeat;
-}
-
-.star2 {
-    background: url("/imgs/star2.png") center/100% no-repeat;
-}
-
 .recipe-rating {
     font-size: 1.0rem !important;
 }
@@ -59,6 +51,10 @@
 
 .recipe-option span {
     font-size: 0.8rem;
+}
+
+.recipe-auth {
+	min-width: 260px;
 }
 
 .recipe-scrap {
@@ -264,7 +260,7 @@ img {
     }
 
     .star-point {
-        background: url("/imgs/star1.png") center/80% no-repeat;
+        background: url("/imgs/recipe/star1.png") center/80% no-repeat;
         margin: 0px;
         margin-left:-10px;
         padding: 0px;
@@ -273,7 +269,7 @@ img {
     }
 
     .star-clicked {
-        background: url("/imgs/star2.png") center/80% no-repeat;
+        background: url("/imgs/recipe/star2.png") center/80% no-repeat;
         margin: 0px;
         margin-left:-10px;
         padding: 0px;
@@ -294,12 +290,15 @@ img {
         border-color: black;
     }
 
+<<<<<<< HEAD
     .recipe-info {
         width: 300px;
         font-size: 0.5rem;
         padding-right: 30px;
     }
 
+=======
+>>>>>>> 844e045a256e24b6289486ec9ae5bfca9298244e
     .recipe-option button {
         width: 50px;
         height: 40px;
@@ -307,7 +306,7 @@ img {
 
     .recipe-auth {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         padding: 10px 0px 10px 0px;
     }
 
@@ -352,6 +351,11 @@ img {
     }
 
     .star-rate-img {
+        max-width: 50px !important;
+        height: 10px !important;
+    }
+    
+    .star-rate-img2 {
         max-width: 50px !important;
         height: 10px !important;
     }

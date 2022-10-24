@@ -1,9 +1,9 @@
-/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ */
-.main-container {
+/* ¸ÞÀÎ¿µ¿ª »çÀÌÁî Á¦ÇÑ */
+#primary {
     max-width: 1200px;
 }
 
-/* ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å· */
+/* ½¦ÇÁ ·©Å· */
 .chef-pic {
     border-radius: 50%;
     width: 70%;
@@ -27,7 +27,7 @@
     width: 20%;
 }
 
-/* ï¿½ï¿½Å¸ */
+/* ±âÅ¸ */
 .btn-more {
      color: black;
      text-decoration: none;
@@ -57,3 +57,9 @@
 #lock_ad {
 	width:100%;
 }
+
+/* »çÀÌµå ÅÂ±× */
+.tagcloud a {
+	width: auto;
+	text-decoration: none;
+} 

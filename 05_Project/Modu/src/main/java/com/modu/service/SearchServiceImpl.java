@@ -152,6 +152,7 @@ public class SearchServiceImpl implements SearchService {
 	}
 	
 	@Override
+<<<<<<< HEAD:05_Project/Modu/src/main/java/com/modu/service/SearchServiceImpl.java
 	public RecipeListVo searchRecipeByIngredient(HttpServletRequest request, HttpSession session) {
 		String[] ingredients = request.getParameterValues("data");
 		if(ingredients == null) {
@@ -187,5 +188,201 @@ public class SearchServiceImpl implements SearchService {
 		RecipeListVo data = new RecipeListVo();
 		
 		return data;
+=======
+    public RecipeListVo searchRecipeByIngredient(HttpServletRequest request, HttpSession session) {
+        String[] ingredients = request.getParameterValues("list");
+        String query = "";
+
+        if(ingredients == null) {
+            return null;
+        }else {
+            for(int i=0; i<ingredients.length; i++) {
+                
+                String item = ingredients[i];
+                System.out.println("##"+item);
+                if(ingredients.length == 1) {
+                    query += "select DISTINCT(r.ID) ID," + 
+                            "r.FOOD_PHOTO," + 
+                            "r.TITLE," + 
+                            "r.FOOD," + 
+                            "r.PROFILE_IMG," + 
+                            "r.M_NICKNAME," + 
+                            "r.M_EMAIL," + 
+                            "r.STAR," + 
+                            "r.STARS," + 
+                            "r.HITS from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID where ingr.INGREDIENT like '%"+ingredients[i]+"%'";
+                }else {                 
+                    query += "select DISTINCT(r.ID) ID," + 
+                            "r.FOOD_PHOTO," + 
+                            "r.TITLE," + 
+                            "r.FOOD," + 
+                            "r.PROFILE_IMG," + 
+                            "r.M_NICKNAME," + 
+                            "r.M_EMAIL," + 
+                            "r.STAR," + 
+                            "r.STARS," + 
+                            "r.HITS from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID where ingr.INGREDIENT like '%"+ingredients[i]+"%'";
+                    if(i < ingredients.length-1) {
+                        query += " intersect ";
+                    }
+                }
+            }
+        }
+        
+        int currentPage = 1;
+        int pageSize = 4;
+        int totalPage;
+        int totalPost = recipeMapper.selectRecipeCountByIngredients(query); 
+        
+        if(request.getParameter("currentPage") != null) {
+            if(session.getAttribute("IngrCurpage") != null) {
+                currentPage = (int)session.getAttribute("IngrCurpage");
+            }
+            String param = request.getParameter("currentPage");
+            try {
+                currentPage = Integer.parseInt(request.getParameter("currentPage"));
+            }catch(NumberFormatException nfe) {
+                switch(param) {
+                    case "pre": currentPage = currentPage - 1; break;
+                    case "next": currentPage = currentPage + 1;                         
+                }
+            }
+        }else if(session.getAttribute("IngrCurpage") != null) {
+            currentPage = (int)session.getAttribute("IngrCurpage");
+        }       
+        
+        totalPage = totalPost/pageSize;
+        if(totalPost % pageSize > 0) {
+            totalPage = totalPage + 1;
+        }       
+        
+        if(currentPage<1) { 
+            currentPage = 1;
+        }else if(currentPage>totalPage) { 
+            currentPage = totalPage;
+        }
+        
+        int endRow = currentPage*pageSize;
+        int beginRow = endRow-pageSize+1;
+        
+        session.setAttribute("IngrCurpage", currentPage);             
+        
+        RecipeListVo data = new RecipeListVo();
+        if(query != null) {
+            List<RecipeList> recipeList = recipeMapper.selectRecipeListByIngredients(query, beginRow, endRow);
+            data.setRecipeList(recipeList);            
+            data.setCurrentPage(currentPage);
+            data.setTotalPage(totalPage);          
+        }else {
+            data = null;
+        }
+        
+        return data;
+    }
+	
+	@Override
+	public RecipeListVo searchRecipeOfMember(HttpServletRequest request, HttpSession session) {
+	    String email = (String)session.getAttribute("email");	    	    
+        int currentPage = 1;
+        int pageSize = 8;
+        int totalPage;
+        int type = 0;
+        try {
+            type = Integer.parseInt(request.getParameter("option"));
+        }catch(NumberFormatException nfe) {}
+        int totalPost = recipeMapper.selectRecipeCountOfMemberByType(email, type);
+        
+        if(request.getParameter("currentPage") != null) {
+            if(session.getAttribute("myCurpage") != null) {
+                currentPage = (int)session.getAttribute("myCurpage");
+            }
+            String param = request.getParameter("currentPage");
+            try {
+                currentPage = Integer.parseInt(request.getParameter("currentPage"));
+            }catch(NumberFormatException nfe) {
+                switch(param) {
+                    case "pre": currentPage = currentPage - 1; break;
+                    case "next": currentPage = currentPage + 1;                         
+                }
+            }
+        }else if(session.getAttribute("myCurpage") != null) {
+            currentPage = (int)session.getAttribute("myCurpage");
+        }       
+        
+        totalPage = totalPost/pageSize;
+        if(totalPost % pageSize > 0) {
+            totalPage = totalPage + 1;
+        }       
+        
+        if(currentPage<1) { 
+            currentPage = 1;
+        }else if(currentPage>totalPage) { 
+            currentPage = totalPage;
+        }
+        
+        int endRow = currentPage*pageSize;
+        int beginRow = endRow-pageSize+1;
+        
+        session.setAttribute("myCurpage", currentPage);             
+        
+        List<RecipeList> recipeList = recipeMapper.selectRecipeListOfMemberByType(email, type, beginRow, endRow);
+        RecipeListVo data = new RecipeListVo();	    
+        data.setRecipeList(recipeList);            
+        data.setCurrentPage(currentPage);
+        data.setTotalPage(totalPage);  
+        
+	    return data;
+	}
+	
+	@Override
+	public RecipeListVo searchRecipeOfBookmark(HttpServletRequest request, HttpSession session) {
+        String email = (String)session.getAttribute("email");
+        System.out.println(email);
+        int currentPage = 1;
+        int pageSize = 8;
+        int totalPage;
+        int totalPost = recipeMapper.selectRecipeCountOfBookmark(email);
+        
+        if(request.getParameter("currentPage") != null) {
+            if(session.getAttribute("bookCurpage") != null) {
+                currentPage = (int)session.getAttribute("bookCurpage");
+            }
+            String param = request.getParameter("currentPage");
+            try {
+                currentPage = Integer.parseInt(request.getParameter("currentPage"));
+            }catch(NumberFormatException nfe) {
+                switch(param) {
+                    case "pre": currentPage = currentPage - 1; break;
+                    case "next": currentPage = currentPage + 1;                         
+                }
+            }
+        }else if(session.getAttribute("bookCurpage") != null) {
+            currentPage = (int)session.getAttribute("bookCurpage");
+        }       
+        
+        totalPage = totalPost/pageSize;
+        if(totalPost % pageSize > 0) {
+            totalPage = totalPage + 1;
+        }       
+        
+        if(currentPage<1) { 
+            currentPage = 1;
+        }else if(currentPage>totalPage) { 
+            currentPage = totalPage;
+        }
+        
+        int endRow = currentPage*pageSize;
+        int beginRow = endRow-pageSize+1;
+        
+        session.setAttribute("bookCurpage", currentPage);             
+        
+        List<RecipeList> recipeList = recipeMapper.selectRecipeListOfBookmark(email, beginRow, endRow);
+        RecipeListVo data = new RecipeListVo();     
+        data.setRecipeList(recipeList);            
+        data.setCurrentPage(currentPage);
+        data.setTotalPage(totalPage);  
+        
+        return data;
+>>>>>>> 844e045a256e24b6289486ec9ae5bfca9298244e:05_Project/Modu/src/main/java/com/modu/service/RecipeSearchServiceImpl.java
 	}
 }

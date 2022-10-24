@@ -8,6 +8,7 @@
 <!-- 공통 부분 END -->
 <link href="/css/recipe-detail.css" rel="stylesheet">
 <script src="/js/recipe-detail.js"></script>
+<script src="/js/recipe-detailSub.js"></script>
 
 <title>모두의 식탁 - 레시피</title>
 </head>
@@ -18,7 +19,7 @@
 
 		<div class="head-title py-4 m-0">
 			<div class="container">
-				<p class="page-title m-0 fs-2">RECIPE ${starPoint}</p>
+				<p class="page-title m-0 fs-2">RECIPE</p>
 			</div>
 			<!-- end container -->
 		</div>
@@ -42,7 +43,7 @@
 			<!-- end 사진 팝업 -->
 			<div class="row py-3 px-5">
 				<div class="container col-md-2">
-					<input hidden="true">
+					<input class="recipe-id" hidden="true" value="${id}">
 				</div>
 				<div class="container col-md-8">
 					<div class="recipe-content m-0" id="primary">
@@ -76,14 +77,19 @@
 						<!-- end 요리 소개 -->
 						<div
 							class="row option-section border-top border-bottom py-3 d-flex justify-content-between">
-							<div class="recipe-auth align-self-center w-50">
-								<img src="/imgs/content/auth-03.png" alt="recipe author">
-								<span>Posted by <a href="#">${rec.recipe.MNickname}</a></span> <span><button
-										class="btn btn-outline-success subscribe-btn"
-										onclick="clickSubscribe(this)">소식받기</button></span>
+							<div class="recipe-auth align-self-center col px-2">
+								<span>
+									<img src="/imgs/content/auth-03.png" alt="recipe author">
+									<span>Posted by 
+										<a href="#">${rec.recipe.MNickname}</a>
+									</span>
+								</span>
+								<span>
+									<button class="btn btn-outline-success subscribe-btn me-2" onclick="clickSubscribe(this)">소식받기</button>
+								</span>
 							</div>
 							<!-- end recipe author -->
-							<div class="recipe-option d-flex justify-content-end w-50">
+							<div class="recipe-option d-flex justify-content-end col">
 								<div class="d-flex flex-column text-center">
 									<button class="recipe-scrap" onclick="clickScrap(this)">
 									</button>
@@ -186,7 +192,7 @@
 														<img src="/imgs/content/auth-00.png" alt="작성자">
 													</figure> <!-- end comment-author vcard --> <b class="fn ps-2">${rep.nickname}</b>
 													<span class="star-rate-block"> <span class="px-2">${rep.replyDate}</span>
-														<img class="star-rate-img" src="/imgs/stars4.png"
+														<img class="star-rate-img2" src="/imgs/stars4.png"
 														alt="stars"
 														style="width: 80px; height: 15px; margin-bottom: 5px;">
 												</span>
@@ -348,22 +354,32 @@
 							</h3>
 							<div class="col-6 col-md-3">
 								<div class="recipe-thumb">
+<<<<<<< HEAD
 									<img src="/imgs/content/thumb-1.png" alt="Recipe Image">
 									<a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
 									<a href="#" class="view-recipe">VIEW RECIPE</a>
+=======
+									<img src="/imgs/content/thumb-2.png" alt="Recipe Image">
+>>>>>>> 844e045a256e24b6289486ec9ae5bfca9298244e
 								</div>
 								<div class="recipe-desc">
-									<h2 class="recipe-title">
-										<a href="#">Salad Nicoise</a>
+									<h2 class="recipe-title p-0">
+										<a href="${li.id}">${li.title}제목</a>
 									</h2>
-									<p>
-										<em>By Lina Sukowati</em>
-									</p>
-									<span><i class="fas fa-clock"></i>&nbsp;9 Minutes</span>
+									<figure class="profile mb-1">
+										<img class="profile-img" src="/imgs/content/auth-00.png"
+											alt="작성자">
+										<span><em> ${li.MNickname}닉네임</em></span>
+									</figure>
+									<div class="recipe-icons d-flex justify-content-between">
+										<span class="d-flex align-items-center"> 
+											<img class="stars" src="/imgs/stars5.png"> 
+											<span class="p-1 mt-1">${li.star}</span>
+										</span>
+									</div>
 								</div>
 								<!-- end recipe-desc -->
-							</div>
-							<!-- end col -->
+							</div><!-- end col -->
 							<div class="col-6 col-md-3">
 								<div class="recipe-thumb">
 									<img src="/imgs/content/thumb-2.png" alt="Recipe Image">
@@ -374,50 +390,83 @@
 									<h2 class="recipe-title">
 										<a href="#">Grilled Beef Steak</a>
 									</h2>
+<<<<<<< HEAD
 									<p>
 										<em>By Eka Nurwasilah</em>
 									</p>
 									<span><i class="fas fa-clock"></i>&nbsp;26 Minutes</span>
+=======
+									<figure class="profile mb-1">
+										<img class="profile-img" src="/imgs/content/auth-00.png"
+											alt="작성자">
+										<span><em> ${li.MNickname}닉네임</em></span>
+									</figure>
+									<div class="recipe-icons d-flex justify-content-between">
+										<span class="d-flex align-items-center"> 
+											<img class="stars" src="/imgs/stars5.png"> 
+											<span class="p-1 mt-1">${li.star}</span>
+										</span>
+									</div>
+>>>>>>> 844e045a256e24b6289486ec9ae5bfca9298244e
 								</div>
 								<!-- end recipe-desc -->
-							</div>
-							<!-- end col -->
+							</div><!-- end col -->
 							<div class="col-6 col-md-3">
 								<div class="recipe-thumb">
+<<<<<<< HEAD
 									<img src="/imgs/content/thumb-3.png" alt="Recipe Image">
 									<a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
 									<a href="#" class="view-recipe">VIEW RECIPE</a>
+=======
+									<img src="/imgs/content/thumb-2.png" alt="Recipe Image">
+>>>>>>> 844e045a256e24b6289486ec9ae5bfca9298244e
 								</div>
 								<div class="recipe-desc">
-									<h2 class="recipe-title">
-										<a href="#">Tiger Prawns Roasted</a>
+									<h2 class="recipe-title p-0">
+										<a href="${li.id}">${li.title}제목</a>
 									</h2>
-									<p>
-										<em>By Nurjanah</em>
-									</p>
-									<span><i class="fas fa-clock"></i>&nbsp;27 Minutes</span>
+									<figure class="profile mb-1">
+										<img class="profile-img" src="/imgs/content/auth-00.png"
+											alt="작성자">
+										<span><em> ${li.MNickname}닉네임</em></span>
+									</figure>
+									<div class="recipe-icons d-flex justify-content-between">
+										<span class="d-flex align-items-center"> 
+											<img class="stars" src="/imgs/stars5.png"> 
+											<span class="p-1 mt-1">${li.star}</span>
+										</span>
+									</div>
 								</div>
 								<!-- end recipe-desc -->
-							</div>
-							<!-- end col -->
+							</div><!-- end col -->
 							<div class="col-6 col-md-3">
 								<div class="recipe-thumb">
+<<<<<<< HEAD
 									<img src="/imgs/content/thumb-4.png" alt="Recipe Image">
 									<a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
 									<a href="#" class="view-recipe">VIEW RECIPE</a>
+=======
+									<img src="/imgs/content/thumb-2.png" alt="Recipe Image">
+>>>>>>> 844e045a256e24b6289486ec9ae5bfca9298244e
 								</div>
 								<div class="recipe-desc">
-									<h2 class="recipe-title">
-										<a href="#">Korean Soup</a>
+									<h2 class="recipe-title p-0">
+										<a href="${li.id}">${li.title}제목</a>
 									</h2>
-									<p>
-										<em>By Lina Sukowati</em>
-									</p>
-									<span><i class="fas fa-clock"></i>&nbsp;45 Minutes</span>
+									<figure class="profile mb-1">
+										<img class="profile-img" src="/imgs/content/auth-00.png"
+											alt="작성자">
+										<span><em> ${li.MNickname}닉네임</em></span>
+									</figure>
+									<div class="recipe-icons d-flex justify-content-between">
+										<span class="d-flex align-items-center"> 
+											<img class="stars" src="/imgs/stars5.png"> 
+											<span class="p-1 mt-1">${li.star}</span>
+										</span>
+									</div>
 								</div>
 								<!-- end recipe-desc -->
-							</div>
-							<!-- end col -->
+							</div><!-- end col -->
 						</div>
 						<!-- end list -->
 						<button class="col next-icon px-0"></button>

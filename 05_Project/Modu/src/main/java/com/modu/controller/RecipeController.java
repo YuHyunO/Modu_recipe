@@ -1,6 +1,7 @@
 package com.modu.controller;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
  
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,14 +21,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+<<<<<<< HEAD
 import com.modu.domain.recipe.Direction;
 import com.modu.domain.recipe.Ingredient;
 import com.modu.domain.recipe.Recipe;
+=======
+import com.modu.domain.member.Scrap;
+>>>>>>> 844e045a256e24b6289486ec9ae5bfca9298244e
 import com.modu.domain.recipe.RecipeDetail;
 import com.modu.domain.recipe.RecipeListVo;
 import com.modu.domain.recipe.RecipeReply;
 import com.modu.domain.recipe.RecipeReplyList;
+<<<<<<< HEAD
 import com.modu.domain.recipe.RecipeTag;
+=======
+import com.modu.mapper.RecipeLegacyMapper;
+>>>>>>> 844e045a256e24b6289486ec9ae5bfca9298244e
 import com.modu.service.RecipeFindingService;
 import com.modu.service.RecipeRegisterService;
 import com.modu.service.SearchService;
@@ -44,7 +54,14 @@ public class RecipeController {
 	@Autowired
 	private RecipeRegisterService recipeRegisterService;
 	@Autowired
+<<<<<<< HEAD
 	private SearchService searchService;
+=======
+	private RecipeSearchService searchService;
+	@Autowired
+	private RecipeLegacyMapper recipeLegacyMapper;
+
+>>>>>>> 844e045a256e24b6289486ec9ae5bfca9298244e
 
     @GetMapping("/list")
     public ModelAndView recipeList(HttpServletRequest request, HttpSession session) {
@@ -197,4 +214,40 @@ public class RecipeController {
 	 * recipeRegisterService.registerNestedReply(recipeNestedReply);
 	 * log.info("#recipeNestedReply" +recipeNestedReply); return result; }
 	 */
+	
+	@ResponseBody
+	@PostMapping("/scrap")
+	public HashMap<String, Object> scrap(HttpServletRequest request, HttpSession session){
+	    
+	    HashMap<String, Object> map = new HashMap<String, Object>();
+	    String id = (String)request.getParameter("id");
+	    String email = (String)session.getAttribute("email");
+	    if (email == null) {
+	        map.put("error", "스크랩 기능은 로그인 후 이용할 수 있습니다.");
+	        return map;
+	    } else {
+    	    long rId = Long.parseLong(id);
+    	    Scrap scrap = new Scrap();
+    	    scrap.setRId(rId);
+    	    scrap.setMEmail(email);
+    	    
+    	    Scrap scrap1 = recipeFindingService.getScrap(rId, email);
+    	    String emailInScrap; 
+    	    try {
+    	        // 스크랩중
+    	        emailInScrap = scrap1.getMEmail();
+    	    } catch (NullPointerException npe) {
+    	        emailInScrap = "스크랩아님";
+    	        log.info("#scrap recipe id: " + rId);
+    	        log.info("#scrap email: " + email);
+    	        recipeLegacyMapper.insertScrap(email, rId);
+    	    }
+    	    log.info("#scrap recipe id: " + id);
+    	    log.info("#scrap email: " + email);
+    	    log.info("#scrap scrap: " + scrap1);
+    	    log.info("#scrap emailInScrap: " + emailInScrap);
+    	    map.put("user", email);
+    	    return map;
+	    }
+	}
 }
