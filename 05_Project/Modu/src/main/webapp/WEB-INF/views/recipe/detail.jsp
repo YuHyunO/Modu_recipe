@@ -104,11 +104,12 @@
 									<span>스크랩</span>
 								</div>
 								<div class="d-flex flex-column text-center">
-									<button class="recipe-share"></button>
+									<input type="hidden" value="http://modu-table/recipe/detail/${id}" id="recipe-link"/>
+									<button class="recipe-share" onclick="shareLink(this)"></button>
 									<span>공유</span>
 								</div>
 								<div class="d-flex flex-column text-center">
-									<button class="recipe-reply-top"></button>
+									<button class="recipe-reply-top" onclick="moveScroll(this)"></button>
 									<span>댓글</span>
 								</div>
 							</div>

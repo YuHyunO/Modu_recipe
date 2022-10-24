@@ -51,3 +51,22 @@ function clickScrap(e){
     	}); 
     }
 }
+
+function shareLink(e){
+	let link = $("#recipe-link");
+	link.attr("type", "text");
+	link.select();
+	let copy = document.execCommand('copy');
+	link.attr("type", "hidden");
+	alert(link.val() + "\n링크 주소가 복사되었습니다.");
+}
+
+function moveScroll(e){
+	let target;
+	if ($(e).attr("class", "recipe-reply-top")){
+		target = $(".tag-section");
+	} else {
+		target = $(e);
+	}
+	window.scrollTo({ top: target.offset().top - 50, behavior: "smooth" });
+}
