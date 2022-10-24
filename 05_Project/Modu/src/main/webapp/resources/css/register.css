@@ -17,18 +17,6 @@
 	display: block;
 }
 
-#searchbutton {
-	background: #937062;
-}
-
-#searchform {
-	background: #937062;
-}
-
-#formsearch {
-	background: #937062;
-}
-
 .main form label {
 	margin-bottom: 5px;
 }
@@ -44,6 +32,7 @@
 }
 
 .acc-box {
+	min-width: 650px;
 	background-color: white;
 	border-radius: 10px;
 	box-shadow: 2px 2px rgb(150, 150, 150);
@@ -58,6 +47,8 @@
 		font-size: 0.8rem;
 	}
 	.acc-box {
+		min-width: 330px;
+		max-width: 330px;
 		padding: 30px;
 	}
 	.agreements {
@@ -65,37 +56,37 @@
 	}
 }
 
-/*È¸¿ø°¡ÀÔ ÀÌ¸ŞÀÏ À¯È¿¼º °Ë»ç(Áßº¹Ã¼Å©) ajax ¹®±¸*/
+/*íšŒì›ê°€ì… ì´ë©”ì¼ ìœ íš¨ì„± ê²€ì‚¬(ì¤‘ë³µì²´í¬) ajax ë¬¸êµ¬*/
 .email_ajax_1 {
 	display: none;
 	font-size: 12px;
-	color: rgb(147, 112, 98);
+	color: green;
 	text-align: right;
 }
 
 .email_ajax_2, .email_ajax_3 {
 	display: none;
 	font-size: 12px;
-	color: green;
+	color: #ad0404;
 	text-align: right;
 }
 
-/*È¸¿ø°¡ÀÔ ´Ğ³×ÀÓ À¯È¿¼º °Ë»ç(Áßº¹Ã¼Å©) ajax ¹®±¸*/
+/*íšŒì›ê°€ì… ë‹‰ë„¤ì„ ìœ íš¨ì„± ê²€ì‚¬(ì¤‘ë³µì²´í¬) ajax ë¬¸êµ¬*/
 .nickname_ajax_1 {
 	display: none;
 	font-size: 12px;
-	color: rgb(147, 112, 98);
+	color: green;
 	text-align: right;
 }
 
 .nickname_ajax_2, .nickname_ajax_3 {
 	display: none;
 	font-size: 12px;
-	color: green;
+	color: #ad0404;
 	text-align: right;
 }
 
-/* ¾à°ü »çÀÌÁî */
+/* ì•½ê´€ ì‚¬ì´ì¦ˆ */
 .agreements {
 	font-size: 12px;
 	padding: 10px 10px 10px 10px;
@@ -114,7 +105,7 @@
 	outline: 0;
 }
 
-/* ÀÌ¹Ì È¸¿øÀÌ½Å°¡¿ä? */
+/* ì´ë¯¸ íšŒì›ì´ì‹ ê°€ìš”? */
 .alreadyregister {
 	font-size: 14px;
 	color: #42332d;

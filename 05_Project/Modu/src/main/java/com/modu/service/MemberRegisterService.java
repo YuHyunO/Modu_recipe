@@ -1,27 +1,21 @@
 package com.modu.service;
 
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
 import com.modu.domain.member.Member;
 
 public interface MemberRegisterService {
 
-	public void registerMember(Member member); //È¸¿ø°¡ÀÔ
-	public int checkEmail(String email); //String checkEmail -> ¹Ù²Ù±â
+	public void registerMember(Member member); 
+	public Member login(Member member); 
+	
+	public int checkEmail(String email); 
 	public int checkNickname(String nickname);
 	
-	public int checkLogin(String email, String pwd);//·Î±×ÀÎ À¯È¿¼º °Ë»ç
-	public Member login(Member member); //·Î±×ÀÎ
-	public Member readMyInfo(String email); //³»Á¤º¸Á¶È¸
-	public Member modifyMyInfo(Member member);//³»Á¤º¸¼öÁ¤
-	public void removeMyInfo(String email); //È¸¿øÅ»Åğ
+	public Member readMyInfo(String email); //ë‚´ì •ë³´ìˆ˜ì • ì§„ì…
+	public Member modifyMyInfo(Member member); //ë‚´ì •ë³´ìˆ˜ì • - post1
+	public Member modifyMyInfo2(Member member); //ë‚´ì •ë³´ìˆ˜ì • - post2
 	
-	Map<String, List<Object>> getUpdateFileName();
-	MultipartHttpServletRequest getMultipartRequest();
-	void setMultipartRequest(MultipartHttpServletRequest multipartRequest);
-
+	public void removeProfileImg(String email); //ë‚´ì •ë³´ìˆ˜ì • - í”„ë¡œí•„ì‚¬ì§„ë§Œ ì‚­ì œ
+	
+	public void removeMyInfo(String email); //ë‚´ì •ë³´ìˆ˜ì • - íšŒì›íƒˆí‡´
 
 }

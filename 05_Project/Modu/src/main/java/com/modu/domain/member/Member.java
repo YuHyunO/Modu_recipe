@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+ 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -15,14 +15,16 @@ public class Member {
 	private String email;
 	private String pwd;
 	private String nickname;
-	private String profileImg;
 	private String name;
-	private String phone;
+	private String phone; 
+	private String profileImg;
+	private String profileImgOrg;
+	private int profileImgSize;
 	private int marketing;
 	private int apiUsing; 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd aa hh:mm:ss", timezone="Asia/Seoul")
 	private Date signupDate;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd aa hh:mm:ss", timezone="Asia/Seoul")
 	private Date updateDate;
 	private int authority;
 	private int point;

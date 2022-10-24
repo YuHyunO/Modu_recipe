@@ -1,1 +1,3 @@
 *.properties
+*.MF
+*/root-context.xml

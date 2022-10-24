@@ -1,16 +1,29 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=cf32888c5b4dc99f2ecd65234b8d8b66add6a79c
 eclipse.preferences.version=1
 encoding//src/main/java/com/modu/controller/FreeBoardController.java=MS949
 encoding//src/main/java/com/modu/controller/IndexController.java=MS949
 encoding//src/main/java/com/modu/controller/MemberController.java=MS949
+encoding//src/main/java/com/modu/controller/MembershipController.java=MS949
 encoding//src/main/java/com/modu/controller/NoticeController.java=MS949
 encoding//src/main/java/com/modu/controller/RecipeController.java=MS949
+encoding//src/main/java/com/modu/mapper/MemberMapper.java=UTF-8
+encoding//src/main/java/com/modu/service/FileUploadService.java=UTF-8
+encoding//src/main/java/com/modu/service/MemberRegisterService.java=UTF-8
+encoding//src/main/java/com/modu/service/MemberRegisterServiceImpl.java=UTF-8
+encoding//src/main/java/com/modu/service/RecipeSearchServiceImpl.java=MS949
 encoding//src/main/webapp/WEB-INF/views/common/head.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/common/menu.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/freeboard/detail.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/freeboard/list.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/freeboard/write.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/index.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/member/mypage.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/member/mypage-secondary.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/member/register.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/recipe/list.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/recipe/write.jsp=UTF-8
+<<<<<<< HEAD
+=======
+encoding//src/main/webapp/resources/css=MS949
+encoding/<project>=MS949
+>>>>>>> 3c8875a3f492917c09edf4b8d090e08de9ab322b

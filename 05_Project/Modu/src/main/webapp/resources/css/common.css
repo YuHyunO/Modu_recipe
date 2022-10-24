@@ -1,3 +1,14 @@
+.site-navigation .navbar-nav .nav-item .nav-link {
+    color: #937062 !important;
+    font-size: 15px !important;
+}
+
+.site-navigation.navbar .dropdown-menu, .dropdown-item {
+    background-color: #fff !important;
+    color: #937062 !important;
+    font-size: 15px !important;
+}
+
 * {
 	font-family: 'Jua', sans-serif !important;
 }
@@ -20,6 +31,17 @@
 	letter-spacing: 0px;
 }
 
+.welcomelogin_dropdown {
+	display: block;
+	padding: 0.5rem 0rem;
+	font-size: 14px;
+	color: black;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0px;
+}
+
+      
 .nav-search {
 	width: 25px;
 	height: 25px;
@@ -70,7 +92,7 @@
 	color: #937062 !important;
 	width: 70px;
 	font-weight: 700;
-	font-size: 14px;
+	font-size: 15px !important;
 	text-transform: uppercase;
 	letter-spacing: 1px
 }
@@ -138,7 +160,11 @@
 /* mobile size */
 @media ( max-width :454px) {
 	.logo {
+		height: 45px;
 		z-index: 100;
+	}
+	.p-title {
+		padding: 0.25rem !important;
 	}
 }
 
@@ -196,25 +222,18 @@
 	}
 }
 
-@media
-(
-max-width
-:454px)
-{
-.recipe-title {
-	font-size: 1rem !important;
-	height: 60px !important;
-	margin-bottom: 5px !important;
-}
-
-.profile {
-	margin-bottom: 5px !important;
-}
-
-.recipe-desc {
-	height: 165px;
-}
-
+@media ( max-width :454px) {
+	.recipe-title {
+		font-size: 1rem !important;
+		height: 60px !important;
+		margin-bottom: 5px !important;
+	}
+	.profile {
+		margin-bottom: 5px !important;
+	}
+	.recipe-desc {
+		height: 165px;
+	}
 }
 
 /* 페이지네이션 */
@@ -233,4 +252,34 @@ max-width
 .page-link.active {
 	text-decoration: underline;
 	color: black !important;
+}
+
+/* 포인트 커서 */
+.pointer {
+	cursor: pointer !important;
+}
+
+/* 이미지 100% */
+.ratio-100 {
+	position: relative !important;
+    width: 100% !important;
+	-bs-aspect-ratio: 100% !important;
+}
+
+.ratio-100>* {
+    top: 0;
+    left: 0;
+}
+
+/* 최근 본 게시물 */
+.widget-title {
+	font-size: 1rem !important;
+	font-weight: 600 !important;
+}
+
+.post-category {
+	font-size: 0.8rem !important;
+}
+
+#secondary .post-title {
 }

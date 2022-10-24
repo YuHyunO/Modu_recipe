@@ -2,9 +2,23 @@ package com.modu.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import com.modu.domain.member.FollowList;
+import com.modu.domain.member.FollowListVo;
 import com.modu.domain.member.Member;
 
 public interface MembershipService {
-	/* 회원 조회,마이페이지 관련 기능 중심으로 인터페이스 작성 */
+	
+
+		
+	void unfollowFriend(Long id); //HttpServletRequest request
+
 	List<Member> selectMemberRankS();
+	
+	FollowListVo getFollowList(HttpServletRequest request, HttpSession session);
+	
+	String scrapService(long rId, String email, int mode);
+
 }

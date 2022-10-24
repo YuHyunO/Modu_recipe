@@ -9,36 +9,40 @@ import com.modu.domain.member.Member;
 
 public interface MemberMapper {
 
-	//void insertMember(Member member);
+	void insertMember(Member member); //회원가입
+	Member selectMember(String email); //미사용	
+	void deleteMember(String email); //회원탈퇴
+	
 	void insertFollow(@Param("email")String email, @Param("followee")String followee);
-	
-	Member selectMember(String email); //내정보수정 조회
-	void updateMember(Member member); //내정보수정 post
-	void updatePoint(@Param("email") String email, @Param("point") int point);
-
-	void deleteMember(String email);
-	void deleteFollow(long id);
-	
-	//아직 미사용
+	void deleteFollow(Long id);
+	    
 	String selectEmailCheck(String email);
 	String selectNicknameCheck(String nickname);
-	/*     ***     */
 	String selectNickname(String email);
 	String selectProfileImg(String email);
-	int selectPoint(String email);
-	List<FollowList> selectFollowee(@Param("email") String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
-	List<FollowList> selectFollower(@Param("email") String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
 	
 	List<String> selectEmails(int bound);
-	
-	// 회원랭킹 출력
-	List<Member> selectMemberRank();
-	
-	//서인추가 메소드 10.11
-	void insertMember(Member member); //회원가입
-	
-	public int emailCheck(String email); //회원가입 - 이메일 중복검사 ajax
-	public int nicknameCheck(String email); //회원가입 - 닉네임 중복검사 ajax
-	public int loginCheck(String email, String pwd); //로그인 유효성 검사
+
+    void updatePoint(@Param("email") String email, @Param("point") int point);
+    int selectPoint(String email);
+    
+    List<FollowList> selectFollowing(@Param("email") String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
+    List<FollowList> selectFollower(@Param("email") String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
+    
+    // 회원랭킹 출력
+    List<Member> selectMemberRank();
+	    
+	//서인추가 메소드 10.11~14.
+	public int emailCheck(String email); //회원가입 이메일 중복검사 ajax
+	public int nicknameCheck(String email); //회원가입 닉네임 중복검사 ajax
+
 	public Member login(Member member); //로그인 post
+
+	void updateMember(Member member); //내정보수정 post(프로필사진 없음)
+	void updateMember2(Member member); //프로필사진 포함 내정보수정
+	void deleteProfileImg(String email); //프로필사진만 삭제
+	
+	//오유현 추가
+	int selectFollowingCount(String email);
+	int selectFollowerCount(String email);	
 }

@@ -1,5 +1,17 @@
 package com.modu.service;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import com.modu.domain.board.Board;
+import com.modu.domain.board.BoardDetail;
+import com.modu.domain.board.BoardList;
+
 public interface BoardFindingService {
-	/* 게시판 조회,검색 관련 기능 중심으로 인터페이스 작성 */
+	BoardList listingPosts(HttpServletRequest request, HttpSession session);
+	BoardDetail getPost(long id);
+	
+	
 }
