@@ -171,8 +171,7 @@
 									type="button" 
 									id="modifyOkBtn"
 									class="btn btn-primary form-btn mt-2" 
-									value="저장하기"><!--  onclick="modifypost(this)"-->
-								<!-- button태그는 type="button"로 버튼의 기본 submit 기능을 막을 수 있음 -->
+									value="저장하기"><!-- button태그는 type="button"로 버튼의 기본 submit 기능을 막을 수 있음 -->
 								<br />
 								<div style="text-align: center;">
 									<p class="cat-list" style="font-size: 15px">

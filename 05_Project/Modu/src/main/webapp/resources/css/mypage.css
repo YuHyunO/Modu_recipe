@@ -73,7 +73,7 @@
 }
 
 .main-container {
-    max-width: 1400px;
+    max-width: 1200px;
 }
 
 @media(max-width:454px){ 
@@ -109,7 +109,6 @@
     }
 }
 
-/* ���� ��ŷ */
 .chef-pic {
     border-radius: 50%;
     width: 70%;
@@ -137,7 +136,9 @@
 }
 
 .banner {
-    width: 100%;
+    width: 90%;
+    display:flex;
+    justify-content:center;
 }
 
 #secondary .tagcloud a {
@@ -154,105 +155,108 @@
         font-size: 0.8rem;
     }
 }
-     .tab2-button, .tab5-button {
-        border:0;
-        outline:0;
-        appearance: auto;
-        writing-mode: horizontal-tb !important;
-        text-rendering: auto;
-        color: buttontext;
-        letter-spacing: normal;
-        word-spacing: normal;
-        line-height: normal;
-        text-transform: none;
-        text-indent: 0px;
-        text-shadow: none;
-        display: inline-block;
-        text-align: center;
-        align-items: flex-start;
-        cursor: default;
-        box-sizing: border-box;
-        background-color: buttonface;
-        margin: 0em;
-        padding: 8px 16px;
-        border-width: 0px;
-        border-style: outset;
-        border-color: buttonborder;
-        border-image: initial;
-    }
-    .tab2-button, .tab2-button.disabled, .tab2-button:disabled,
-    .tab5-button, .tab5-button.disabled, .tab5-button:disabled {
-      color: rgb(6, 6, 6);
-      background:rgb(214, 200, 194);
-    }
-    .tab2-button:hover, .tab2-button:focus,.tab2-button.focused,
-    .tab5-button:hover, .tab5-button:focus,.tab5-button.focused {
-      color: #fff;
-      background: #937062;
-      box-shadow:0 0 0 .2rem rgba(147, 112, 98, 0.25);
-    }
 
-    /*탭5 - 친구관리 버튼*/
-    .handlemyfriendBtn {
-    font-size: 13px;
-      margin:auto 0; /* 가운데 정렬 */
-      display:block;
-      width: auto;
-      padding: 5px 5px;
-      border-radius: 2px;
-      cursor: pointer;
-      border: 0;
-      outline: 0;
-      text-align:center;
-      justify-content:center;
-    }
+ .tab2-button, .tab5-button {
+    border:0;
+    outline:0;
+    appearance: auto;
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: buttontext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+    background-color: buttonface;
+    margin: 0em;
+    padding: 8px 16px;
+    border-width: 0px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial;
+}
+.tab2-button, .tab2-button.disabled, .tab2-button:disabled,
+.tab5-button, .tab5-button.disabled, .tab5-button:disabled {
+  color: rgb(6, 6, 6);
+  background:rgb(214, 200, 194);
+}
+.tab2-button:hover, .tab2-button:focus,.tab2-button.focused,
+.tab5-button:hover, .tab5-button:focus,.tab5-button.focused {
+  color: #fff;
+  background: #937062;
+  box-shadow:0 0 0 .2rem rgba(147, 112, 98, 0.25);
+}
 
-	.handlemyfriendBtn:hover {
-	  margin:auto 0; /* 가운데 정렬 */
-      display:block;
-      width: auto;
-      padding: 5px 5px;
-      border-radius: 2px;
-      cursor: pointer;
-      border: 0;
-      outline: 0;
-    background:rgba(147, 112, 98, 0.6);
-    border-color:#e33d26;
-      text-align:center;
-      justify-content:center;
-	}
+/*탭5 - 친구관리 버튼*/
+.handlemyfriendBtn {
+font-size: 13px;
+  margin:auto 0; /* 가운데 정렬 */
+     display:block;
+     width: auto;
+     padding: 5px 5px;
+     border-radius: 2px;
+     cursor: pointer;
+     border: 0;
+     outline: 0;
+     text-align:center;
+     justify-content:center;
+   }
 
-    .handlemyfriend {
-   	 text-align:center;
-     margin:auto 0; /* 가운데 정렬 */
-  	justify-content: center;
-  	align-items: center;
-   	display: flex;
-    }
-    
-    /* 탭5 친구관리- 친구박스 배경 넣기, 사이즈 조절*/    
-    .team-col {
-    text-align:center;
-    justify-content:center;
-    border:1px solid #ddd;
-    margin:15px 0;
-    padding:10px;
-    }
-    
-    .team-col:hover {
-    background:rgba(147, 112, 98, 0.2);
-    border-color:#e33d26;
-    box-shadow:5px 5px 0 0 rgba(0,0,0,0.1)
-    }
-    
-    .team-col figure{
-    margin:10px 10px;
-    }
-    
-    .team-col figure img{
-    border-radius:10%
-    }
-    
+.handlemyfriendBtn:hover {
+  margin:auto 0; /* 가운데 정렬 */
+     display:block;
+     width: auto;
+     padding: 5px 5px;
+     border-radius: 2px;
+     cursor: pointer;
+     border: 0;
+     outline: 0;
+   background:rgba(147, 112, 98, 0.6);
+   border-color:#e33d26;
+     text-align:center;
+     justify-content:center;
+}
+
+   .handlemyfriend {
+  	 text-align:center;
+    margin:auto 0; /* 가운데 정렬 */
+	justify-content: center;
+	align-items: center;
+	display: flex;
+ }
+ 
+ /* 탭5 친구관리- 친구박스 배경 넣기, 사이즈 조절*/    
+   .team-col {
+   text-align:center;
+   justify-content:center;
+   border:1px solid #ddd;
+   margin:15px 0;
+   padding:10px;
+   }
+   
+   .team-col:hover {
+   background:rgba(147, 112, 98, 0.2);
+   border-color:#e33d26;
+   box-shadow:5px 5px 0 0 rgba(0,0,0,0.1)
+   }
+   
+   .team-col figure{
+   margin:10px 10px;
+   }
+   
+   .team-col figure img{
+   border-radius:10%;
+   width:120px;
+   height:120px;
+   }
+   
 .team-name {
     font-weight: 700;
     font-size: 16px;
@@ -260,8 +264,8 @@
 }
 
  .team-tag {
-    font-size: 15px;
-    text-transform: uppercase;
+    font-size: 14px;
+    text-transform: lowercase;
     color: #999;
     margin-bottom: 5px;
     display: block;

@@ -591,7 +591,7 @@ function register(e) {
 	formData.append("accessibility", accessibility);
 	
 	for (let key of formData.keys()){
-		//console.log(key, formData.get(key));
+		// console.log(key, formData.get(key));
 	}
 	
 	// 이미지 파일

@@ -152,6 +152,7 @@
 					
 					<!--사이드 영역(secondary) 시작-->
 					<div id="secondary" class="col-md-2">
+					
 						<!--새로운 태그들-->
 						<div class="widget">
 							<div class="widget-title-outer">
@@ -165,16 +166,6 @@
 								<a href="#">#새우볶음밥</a>
 							</div>
 						</div><!-- end widget -->
-
-						<!--광고 배너 이미지-->
-						<div class="widget">
-							<a href="#">
-							<img id="lock_ad" 
-								class="rounded-3 banner"
-								src="/imgs/index/lock_ad.gif" 
-								alt="lockandlock_ad.gif" />
-							</a>
-						</div><!-- end 광고 배너 -->
 						
 						<div class="widget post-type-widget pt-3 pb-3">
 							<div class="widget-title-outer">

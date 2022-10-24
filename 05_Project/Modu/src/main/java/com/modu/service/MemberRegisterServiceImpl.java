@@ -58,7 +58,7 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 		Member member = memberMapper.selectMember(email);
 		return member;
 	}
-	//내정보수정(사진X)
+	//내정보수정(사진수정X)
 	@Override
 	public Member modifyMyInfo(Member member) {
 		memberMapper.updateMember(member);
@@ -71,12 +71,10 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 		return member;
 	}
 	
-	
-	  @Override public void removeProfileImg(String email) {
-		  memberMapper.deleteProfileImg(email); 
-	  }
-	 
-	
+      @Override public void removeProfileImg(String email) {
+    	  memberMapper.deleteProfileImg(email); 
+      }
+	 	
 	@Override
 	public void removeMyInfo(String email) {
 		memberMapper.deleteMember(email);

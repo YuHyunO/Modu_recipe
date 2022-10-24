@@ -41,7 +41,6 @@ public class MemberController {
 
 	private ArrayList<String> fileInfoList = new ArrayList<String>();
 
-	
 	//회원가입 페이지 이동
 	@GetMapping("/register")
 	public String goRegister() {
@@ -113,7 +112,6 @@ public class MemberController {
 		} else {
 			return "redirect:/";
 		}
-		
 	}
 
 	//로그인 post
@@ -145,18 +143,7 @@ public class MemberController {
 		log.info("#1_(로그아웃 성공!!) HttpServletRequest req: " + req); //org.apache.catalina.connector.RequestFacade@62fcbd5b
 		return "redirect:/";
 	}
-	
-	//마이페이지 페이지 이동
-	@GetMapping("mypage")
-	public ModelAndView goMypage(HttpSession session) {
-		String email = (String)session.getAttribute("email");
-		Member member1 = memberRegisterService.readMyInfo(email); 
-		ModelAndView mv = new ModelAndView("member/mypage", "member", member1); 
-		log.info("######마이페이지 이동get member1: "+member1);
-		log.info("######마이페이지 이동get mv: "+mv);
-		return mv;
-	}
-	
+		
 	//내정보수정 페이지 이동
 	@GetMapping("/modifymyinfo")
 	public ModelAndView goModify(HttpSession session) { 
@@ -288,5 +275,17 @@ public class MemberController {
 			return "redirect:/";
 		}
 	}
-	
+
+    //마이페이지 페이지 이동
+    @GetMapping("/mypage")
+    public ModelAndView gomyPage(HttpServletRequest request, HttpSession session) {    
+        String email = (String)session.getAttribute("email");
+        Member member1 = memberRegisterService.readMyInfo(email); 
+        ModelAndView mv = new ModelAndView("member/mypage", "member", member1); 
+        //List<FollowList> followlist = membershipService.getFollowList(session);
+       // mv.addObject("followlist", followlist);
+        log.info("######마이페이지 이동get member1: "+member1);
+        log.info("######마이페이지 이동get mv: "+mv);
+        return mv;
+    }
 }

@@ -66,29 +66,31 @@
 	<!-- 마이페이지 탭5 - 친구관리 -->
 	<insert id="insertFollowing">
 		insert into FOLLOW values(FOLLOW_SEQ.nextval,
-									#{email},
-									#{followee},
+									#{my_email},
+									#{following_email},
 									SYSDATE)
 	</insert>
-	<delete id="deleteFollowing" parameterType="long">
+	<delete id="deleteFollow" parameterType="long">
 		delete from FOLLOW where ID=#{id}
 	</delete>
 	<delete id="deleteFollower" parameterType="long">
 		delete from FOLLOW where ID=#{id}
 	</delete>
 	
+	<!-- 내 이메일이 구독하는 친구의 정보-->
 	<select id="selectFollowing" resultType="FollowList">
-		select * from(select ROWNUM list,
-								f.ID ID,
-								f.FOLLOWEE EMAIL,
-								m.NICKNAME NICKNAME,
-								m.PROFILE_IMG PROFILE_IMG,
-								f.FOLLOW_DATE FOLLOW_DATE
-								from MEMBER m inner join FOLLOW f on m.EMAIL=f.FOLLOWEE
-								where M_EMAIL=#{email} order by ID desc)
-								where list BETWEEN #{beginRow} AND
-								#{endRow}
+		select * from (select ROWNUM list,
+							  f.ID ID,
+							  f.FOLLOWEE EMAIL,
+							  m.NICKNAME NICKNAME,
+							  m.PROFILE_IMG PROFILE_IMG,
+							  f.FOLLOW_DATE FOLLOW_DATE
+					   from MEMBER m inner join FOLLOW f on m.EMAIL=f.FOLLOWEE
+					   where M_EMAIL=#{email})
+		where list BETWEEN #{beginRow} AND #{endRow}
+		order by ID desc
 	</select>
+	<!-- 내 이메일을 구독하는 친구의 정보 -->
 	<select id="selectFollower" resultType="FollowList">
 		select * from (select
 							ROWNUM list,
@@ -97,10 +99,10 @@
 							m.NICKNAME,
 							m.PROFILE_IMG,
 							f.FOLLOW_DATE
-							from MEMBER m inner join FOLLOW f on m.EMAIL=f.M_EMAIL
-							where f.FOLLOWEE=#{email} order by f.ID desc)
-										where list BETWEEN #{beginRow}
-										AND #{endRow}
+					   from MEMBER m inner join FOLLOW f on m.EMAIL=f.M_EMAIL
+					   where f.FOLLOWEE=#{email} order by f.ID desc)
+	  	where list BETWEEN #{beginRow} AND #{endRow}
+		order by ID desc
 	</select>
 
 	<!-- 테스트용 -->
@@ -160,4 +162,13 @@
 						  where EMAIL = #{email}
 	</update>
 
+
+	<!-- 오유현 추가 -->
+	<select id="selectFollowingCount" parameterType="String" resultType="int">
+		select NVL(MAX(ROWNUM),0) from FOLLOW where M_EMAIL=#{email}
+	
+	</select>
+	<select id="selectFollowerCount" parameterType="String" resultType="int">
+		select NVL(MAX(ROWNUM),0) from FOLLOW where FOLLOWEE==#{email}	
+	</select>
 </mapper>

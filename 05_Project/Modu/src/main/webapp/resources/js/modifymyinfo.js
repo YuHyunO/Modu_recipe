@@ -28,94 +28,93 @@ $(document).ready(function () {
 	}) //$("#removemyprofileimg").click(function () 종료
 }); // $(document).ready(function () 종료 
  
-	$(function() { //내정보수정 페이지 들어오면 항상 작동되는 js
-					
-	$('#id_pwd2').blur(function() { //비밀번호 일치 여부 확인 alert
-		if ($('#id_pwd1').val().length === 0) {
-		} else if ($('#id_pwd1').val() != $('#id_pwd2').val()) {
-			if ($('#id_pwd2').val() != '') {
-				alert("비밀번호가 일치하지 않습니다.");
-				$('#id_pwd1').val('');
-				$('#id_pwd2').val('');
-				$('#id_pwd1').focus();
+$(function() { //내정보수정 페이지 들어오면 항상 작동되는 js
+	
+		$('#id_pwd2').blur(function() { //비밀번호 일치 여부 확인 alert
+			if ($('#id_pwd1').val().length === 0) {
+			} else if ($('#id_pwd1').val() != $('#id_pwd2').val()) {
+				if ($('#id_pwd2').val() != '') {
+					alert("비밀번호가 일치하지 않습니다.");
+					$('#id_pwd1').val('');
+					$('#id_pwd2').val('');
+					$('#id_pwd1').focus();
+				}
 			}
-		}
-	});
-
-	//내정보수정시 닉네임  중복체크 ajax
-	$('#id_nickname')
-			.on("propertychange change tab keyup paste input",
-					function() {
-						var inputNickname = $('#id_nickname').val(); // #id_nickname에 입력되는 값
-						var data = {
-							nickname : inputNickname
-						} // '컨트롤에 넘길 데이터 이름' : '데이터(#id_email에 입력되는 값)'
-						
-						$.ajax({	type : "post",
-									url : "/member/modify-myinfo/nicknamevalidcheck",
-									data : data,
-									success : function(result) {
-										if (result == 'noshow') { // 닉네임 3자 미만시 
-											console.log(result);
-											$('.nickname_ajax_1')
-													.css("display",
-															"none");
-											$('.nickname_ajax_2')
-													.css("display",
-															"none");
-											$('.nickname_ajax_3')
-													.css("display",
-															"inline-block");
-											$('.nickname_ajax_4')
-													.css("display",
-															"none");
-										} else if (result == 'success') { //닉네임 사용 가능, 중복X
-											console.log(result);
-											$('.nickname_ajax_1')
-													.css("display",
-															"inline-block");
-											$('.nickname_ajax_2')
-													.css("display",
-															"none");
-											$('.nickname_ajax_3')
-													.css("display",
-															"none");
-											$('.nickname_ajax_4')
-													.css("display",
-															"none");
-										} else if (inputNickname === "${member.nickname}") { //아래 else if (result == 'fail')와 순서 바뀌면 안됨, 기존 내 닉네임과 동일할 때
-											console.log("원래 나의 닉네임(변경사항 없음)");
-											$('.nickname_ajax_1')
-													.css("display",
-															"none");
-											$('.nickname_ajax_2')
-													.css("display",
-															"none");
-											$('.nickname_ajax_3')
-													.css("display",
-															"none");
-											$('.nickname_ajax_4')
-													.css("display",
-															"inline-block");
-										} else if (result == 'fail') { //닉네임 사용 불가, 중복 닉네임
-											console.log(result);
-											$('.nickname_ajax_1')
-													.css("display",
-															"none");
-											$('.nickname_ajax_2')
-													.css("display",
-															"inline-block");
-											$('.nickname_ajax_3')
-													.css("display",
-															"none");
-											$('.nickname_ajax_4')
-													.css("display",
-															"none");
-										}
-									} // success 종료
-								}); // ajax 종료
-					});// $('id_nickname').on function 종료
-					
+		});
+	
+		//내정보수정시 닉네임  중복체크 ajax
+		$('#id_nickname').on("propertychange change tab keyup paste input", function() {
+				var inputNickname = $('#id_nickname').val(); // #id_nickname에 입력되는 값
+				var data = {
+					nickname : inputNickname
+				} // '컨트롤에 넘길 데이터 이름' : '데이터(#id_email에 입력되는 값)'
+				
+				$.ajax({
+						type : "post",
+						url : "/member/modify-myinfo/nicknamevalidcheck",
+						data : data,
+						success : function(result) {
+							if (result == 'noshow') { // 닉네임 3자 미만시 
+								console.log(result);
+								$('.nickname_ajax_1')
+										.css("display",
+												"none");
+								$('.nickname_ajax_2')
+										.css("display",
+												"none");
+								$('.nickname_ajax_3')
+										.css("display",
+												"inline-block");
+								$('.nickname_ajax_4')
+										.css("display",
+												"none");
+							} else if (result == 'success') { //닉네임 사용 가능, 중복X
+								console.log(result);
+								$('.nickname_ajax_1')
+										.css("display",
+												"inline-block");
+								$('.nickname_ajax_2')
+										.css("display",
+												"none");
+								$('.nickname_ajax_3')
+										.css("display",
+												"none");
+								$('.nickname_ajax_4')
+										.css("display",
+												"none");
+							} else if (inputNickname === "${member.nickname}") { //아래 else if (result == 'fail')와 순서 바뀌면 안됨, 기존 내 닉네임과 동일할 때
+								console.log("원래 나의 닉네임(변경사항 없음)");
+								$('.nickname_ajax_1')
+										.css("display",
+												"none");
+								$('.nickname_ajax_2')
+										.css("display",
+												"none");
+								$('.nickname_ajax_3')
+										.css("display",
+												"none");
+								$('.nickname_ajax_4')
+										.css("display",
+												"inline-block");
+							} else if (result == 'fail') { //닉네임 사용 불가, 중복 닉네임
+								console.log(result);
+								$('.nickname_ajax_1')
+										.css("display",
+												"none");
+								$('.nickname_ajax_2')
+										.css("display",
+												"inline-block");
+								$('.nickname_ajax_3')
+										.css("display",
+												"none");
+								$('.nickname_ajax_4')
+										.css("display",
+												"none");
+							}
+						} // success 종료
+				}); // ajax 종료
+		});// $('id_nickname').on function 종료
+		
 }); //$(function() 종료
 
 		//프로필 사진 변경사진 업로드시 미리보기 및 삭제 이벤트 처리

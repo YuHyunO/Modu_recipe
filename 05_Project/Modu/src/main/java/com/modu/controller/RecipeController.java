@@ -23,7 +23,7 @@ import com.modu.domain.recipe.RecipeReply;
 import com.modu.domain.recipe.RecipeReplyList;
 import com.modu.service.RecipeFindingService;
 import com.modu.service.RecipeRegisterService;
-import com.modu.service.SearchService;
+import com.modu.service.RecipeSearchService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -37,7 +37,7 @@ public class RecipeController {
 	@Autowired
 	private RecipeRegisterService recipeRegisterService;
 	@Autowired
-	private SearchService searchService;
+	private RecipeSearchService searchService;
 
     @GetMapping("/list")
     public ModelAndView recipeList(HttpServletRequest request, HttpSession session) {
@@ -81,6 +81,7 @@ public class RecipeController {
 	        map.put("msg", "로그인 후 이용 해주세요");
 	    } else {
             recipeRegisterService.registerRecipe(request, session, files, mainItems, subItems, directions, tags);
+            log.info("#####1" + tags);
 	        map.put("msg", "서비스로 데이터 전송 성공");
 	    } 
 	    return map;
@@ -95,7 +96,7 @@ public class RecipeController {
 	    mv.addObject("id", id);
 	    return mv;
 	}
-
+	
 	@GetMapping("/detail")
 	public ModelAndView recipeDetail() {
 		long id = 150;
