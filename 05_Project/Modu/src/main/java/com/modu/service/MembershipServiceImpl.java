@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.modu.domain.member.FollowList;
 import com.modu.domain.member.Member;
 import com.modu.mapper.MemberMapper;
-import com.modu.mapper.RecipeLegacyMapper;
 
 import lombok.extern.log4j.Log4j;
 
@@ -24,10 +23,6 @@ public class MembershipServiceImpl implements MembershipService {
 	/* 마이페이지 탭1~5 관련 기능 중심으로 인터페이스 작성 */
 	@Autowired
 	private MemberMapper memberMapper;
-	@Autowired
-    private RecipeLegacyMapper recipeLegacyMapper;
-	@Autowired
-    private RecipeFindingService recipeFindingService;
 	
 	@Override
 	public List<Member> selectMemberRankS() {
@@ -53,25 +48,4 @@ public class MembershipServiceImpl implements MembershipService {
 		}
 		return followList;
 	}
-
-    @Override
-    public String scrapService(long rId, String email, int mode) {
-        String msg;
-        if (mode == 1) { // 스크랩 추가
-            if (recipeFindingService.getScrap(rId, email) == null) {
-                recipeLegacyMapper.insertScrap(email, rId);
-                msg = "스크랩 되었습니다.";
-            } else {
-                msg = "이미 스크랩 중 입니다.";
-            }
-        } else { // 스크랩 해제
-            if (recipeFindingService.getScrap(rId, email) == null) {
-                msg = "스크랩 중이 아닙니다.";
-            } else {
-                recipeLegacyMapper.deleteScrap(rId, email);
-                msg = "스크랩이 해제 되었습니다.";
-            }
-        }
-        return msg;
-    }
 }

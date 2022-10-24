@@ -15,5 +15,5 @@ public interface MembershipService {
 	
 	List<FollowList> getFollowList(HttpServletRequest request, HttpSession session);
 	
-	String scrapService(long rId, String email, int mode);
+	
 }

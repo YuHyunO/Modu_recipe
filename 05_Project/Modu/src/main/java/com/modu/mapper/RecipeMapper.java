@@ -21,6 +21,7 @@ public interface RecipeMapper {
 	void updateRecipe(Recipe recipe);
 	void updateIngredient(Ingredient ingredient);
 	void updateDirection(Direction direction);
+	void updateRecipeTag(RecipeTag tag);
 	void updateRecipeHits(long id);
 	void updateReplyCount(long id);
 	

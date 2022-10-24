@@ -22,7 +22,7 @@ public interface RecipeLegacyMapper {
 	void deleteReply(long id);
 	void deleteNestedReply(long id);
 	void deleteRating(long id);
-	void deleteScrap(@Param("rId")long rid, @Param("email")String email);
+	void deleteScrap(long id);
 	
 	
 	long selectReplyId(String email);
