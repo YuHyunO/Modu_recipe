@@ -65,8 +65,8 @@
 	<delete id="deleteRating" parameterType="long">
 		delete from RATING where ID=#{id}
 	</delete>
-	<delete id="deleteScrap" parameterType="long">
-		delete from SCRAP where ID=#{id}
+	<delete id="deleteScrap" parameterType="Scrap">
+		delete from SCRAP where R_ID=#{rId} and M_EMAIL=#{email}
 	</delete>
 	
 	<select id="selectReplyId" parameterType="String" resultType="long">
