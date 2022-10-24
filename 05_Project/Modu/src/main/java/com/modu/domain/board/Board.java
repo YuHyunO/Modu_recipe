@@ -19,9 +19,9 @@ public class Board {
 	private int postType;
 	private String title;
 	private String content;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yy/ MM/dd hh:mm", timezone="Asia/Seoul")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
 	private Date postDate;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yy/ MM/dd hh:mm", timezone="Asia/Seoul")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
 	private Date updateDate;
 	private long hits;
 	private long reply;

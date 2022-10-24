@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.imageio.spi.RegisterableService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
  
@@ -12,20 +13,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.modu.domain.recipe.Direction;
+import com.modu.domain.recipe.Ingredient;
+import com.modu.domain.recipe.Recipe;
 import com.modu.domain.recipe.RecipeDetail;
 import com.modu.domain.recipe.RecipeListVo;
 import com.modu.domain.recipe.RecipeReply;
 import com.modu.domain.recipe.RecipeReplyList;
+import com.modu.domain.recipe.RecipeTag;
 import com.modu.service.RecipeFindingService;
 import com.modu.service.RecipeRegisterService;
-import com.modu.service.RecipeSearchService;
+import com.modu.service.SearchService;
 
 import lombok.extern.log4j.Log4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 
 @Log4j
@@ -37,7 +44,7 @@ public class RecipeController {
 	@Autowired
 	private RecipeRegisterService recipeRegisterService;
 	@Autowired
-	private RecipeSearchService searchService;
+	private SearchService searchService;
 
     @GetMapping("/list")
     public ModelAndView recipeList(HttpServletRequest request, HttpSession session) {
@@ -57,13 +64,13 @@ public class RecipeController {
 		return "recipe/write";
 	}
 
-	@ResponseBody
-	@PostMapping("/write")
-	public String submit(HttpServletRequest request, HttpSession session) {
-		log.info("########write: " + request.getParameter("food"));
-		//recipeRegisterService.registerRecipe(request, session);
-		return "redirect:/";
-	}
+//	@ResponseBody
+//	@PostMapping("/write")
+//	public String submit(HttpServletRequest request, HttpSession session) {
+//		//log.info("########write: " + request.getParameter("food"));
+//		//recipeRegisterService.registerRecipe(request, session);
+//		return "redirect:/";
+//	}
 	
 	@ResponseBody
 	@PostMapping("/register")
@@ -78,23 +85,74 @@ public class RecipeController {
 	    HashMap<String, Object> map = new HashMap<String, Object>();
 	    log.info("#RecipeController Upload");
 	    if((String)session.getAttribute("email") == null) {
-	        map.put("msg", "∑Œ±◊¿Œ »ƒ ¿ÃøÎ «ÿ¡÷ººø‰");
+	        map.put("msg", "Î°úÍ∑∏Ïù∏ ÌõÑ Ïù¥Ïö© Ìï¥Ï£ºÏÑ∏Ïöî");
 	    } else {
             recipeRegisterService.registerRecipe(request, session, files, mainItems, subItems, directions, tags);
             log.info("#####1" + tags);
-	        map.put("msg", "º≠∫ÒΩ∫∑Œ µ•¿Ã≈Õ ¿¸º€ º∫∞¯");
+	        map.put("msg", "ÏÑúÎπÑÏä§Î°ú Îç∞Ïù¥ÌÑ∞ Ï†ÑÏÜ° ÏÑ±Í≥µ");
 	    } 
 	    return map;
 	}
 	
-	@GetMapping("/read")
-	public ModelAndView RecipeRead(long id) {
+	@GetMapping("/update")
+	public ModelAndView RecipeRead(long id) {//HttpSession session
 	    RecipeDetail recipeDetail = recipeFindingService.RecipeRead(id);
 	    ModelAndView mv = new ModelAndView();
-	    mv.setViewName("recipe/read");
+	    mv.setViewName("recipe/update");
 	    mv.addObject("rs", recipeDetail);
 	    mv.addObject("id", id);
 	    return mv;
+	}
+	@PostMapping("/update")
+	public String updateRecipe(long id) {
+	    recipeRegisterService.updateRecipe(id);
+	    return "redirect:detail";
+	}
+	/* ÌéòÏù¥ÏßÄ Ïó∞Îèô ÌõÑ idÍ∞íÏùÑ Ï∞æÏùÑÎñÑ ÏÇ¨Ïö©Îê† Î°úÏßÅ
+	@GetMapping("/update")
+    public ModelAndView RecipeRead(HttpSession session) {//
+        String ids = (String)session.getAttribute("id");
+        long id = Integer.parseInt(ids);
+        long rId = id;
+        RecipeDetail recipeDetail = recipeFindingService.RecipeRead(id);
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("recipe/update");
+        mv.addObject("rs", recipeDetail);
+        mv.addObject("id", id);
+        return mv;
+    }
+	*/
+	
+//	@PostMapping("/update")
+//	public String  updateRecipe(RecipeDetail recipeDetail,
+//	        HttpServletRequest request,
+//            HttpSession session,
+//            ArrayList<MultipartFile> files,
+//            ArrayList<String> mainItems,
+//            ArrayList<String> subItems,
+//            ArrayList<String> directions,
+//            ArrayList<String> tags) {
+//	    recipeRegisterService.updateRecipe(recipeDetail, request, 
+//	            session, files, mainItems,subItems,directions, tags);
+//	    return "redirect:detail";
+//	}
+	
+	@ResponseBody
+	@PostMapping("/update")
+	public String updateRecipe(@RequestParam long id,
+	        @RequestParam HttpServletRequest request,
+	        @RequestParam HttpSession session,
+	        @RequestParam ArrayList<MultipartFile> files, 
+	        @RequestParam ArrayList<String> mainItems,
+	        @RequestParam ArrayList<String> subItems,
+	        @RequestParam ArrayList<String> directions,
+	        @RequestParam ArrayList<String> tags) {
+	    Recipe recipe = new Recipe();
+	    Ingredient ingredient = new Ingredient();
+	    Direction direction = new Direction();
+	    RecipeTag recipeTag = new RecipeTag();
+	    recipeRegisterService.updateRecipe(id,request,session,files,mainItems,subItems,directions,tags);
+	   return "redirect:detail";
 	}
 	
 	@GetMapping("/detail")
@@ -112,6 +170,7 @@ public class RecipeController {
 		mv.addObject("starPoint", starPoint);
 		return mv;
 	}
+	
 
 	@PostMapping("/insert.do")
 	public @ResponseBody String insertReply(RecipeReply recipeReply) {
@@ -131,7 +190,7 @@ public class RecipeController {
 		return "redirect:detail";
 	}
 	/*
-	 * ->¥Î¥Ò±€/πÃøœ
+	 * ->ÎåÄÎåìÍ∏Ä/ÎØ∏ÏôÑ
 	 * 
 	 * @PostMapping("/insertRreply.do") public @ResponseBody String
 	 * insertNestedReply (RecipeNestedReply recipeNestedReply){ String result =

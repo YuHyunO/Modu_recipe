@@ -3,6 +3,8 @@ package com.modu.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.modu.domain.recipe.RecipeDetail;
@@ -14,5 +16,5 @@ public interface RecipeFindingService {
 	List<RecipeList> selectRecipeListByBestHits(long beginRow, long endRow);
 	RecipeDetail findRecipedetails(long id);
 	String getStarPoint(RecipeDetail recipeDetail);
-	RecipeDetail RecipeRead(long id);
+	RecipeDetail RecipeRead(long id);//
 }

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import com.modu.domain.recipe.RecipeListVo;
 
-public interface RecipeSearchService {
+public interface SearchService {
 	RecipeListVo searchRecipe(HttpServletRequest request, HttpSession session);
 	RecipeListVo searchRecipeByIngredient(HttpServletRequest request, HttpSession session);
 }

@@ -45,8 +45,53 @@ public class FreeBoardController {
     private FileUploadService service;
 
     @GetMapping("/list")
-    public ModelAndView boardList(HttpServletRequest request, HttpSession session){
-        BoardList list = boardService.listingPosts(request,session);
+    public ModelAndView boardList(HttpServletRequest request, HttpSession session) {
+        String cpStr = request.getParameter("curPage");
+        String psStr = request.getParameter("pgSize");
+        int type = 1;
+        long curPage = 1;
+        long pgSize = 10;
+        // (1) cp
+        
+        if (cpStr == null) {
+            Object cpObj = session.getAttribute("curPage");
+            if (cpObj != null) {
+                curPage = (Long) cpObj;
+            }
+        } else {
+            cpStr = cpStr.trim();
+            curPage = Long.parseLong(cpStr);
+        }
+        session.setAttribute("curPage", curPage);
+
+        // (2) ps
+
+        if (psStr == null) {
+            Object psObj = session.getAttribute("pgSize");
+            if (psObj != null) {
+                pgSize = (Long) psObj;
+            }
+        } else {
+            psStr = psStr.trim();
+            long psParam = Long.parseLong(psStr);
+
+            Object psObj = session.getAttribute("pgSize");
+            if (psObj != null) {
+                long psSession = (Long) psObj;
+                if (psSession != psParam) {
+                    curPage = 1;
+                    session.setAttribute("curPage", curPage);
+                }
+            } else {
+                if (pgSize != psParam) {
+                    curPage = 1;
+                    session.setAttribute("curPage", curPage);
+                }
+            }
+            pgSize = psParam;
+        }
+        session.setAttribute("pgSize", pgSize);
+        BoardList list = boardService.listingPosts(pgSize, curPage, type);
         ModelAndView mv = new ModelAndView("freeboard/list", "list", list);
         return mv;
     }
@@ -59,6 +104,7 @@ public class FreeBoardController {
         long endRow = 6;
         log.info("#3211 " + board.getBoard().getPostDate());
         Date gPD = board.getBoard().getPostDate();
+    
         log.info("#3212 " + gPD);
         //SimpleDateFormat board.getBoard().getPostDate() = new SimpleDateFormat("MM-dd hh:mm"); 
         //gPD.format(new Date());
@@ -87,9 +133,10 @@ public class FreeBoardController {
         BoardReplyList list = boardReplyService.getReply(id,beginRow, endRow);
         return list;
     }
-    @PostMapping("removeReply")
-    public @ResponseBody void removeReply(long id) {
+    @GetMapping("removeReply")
+    public @ResponseBody String removeReply(long id) {
         boardReplyService.removeReply(id);
+        return "redirect:list";
     }
     @GetMapping("/write")
     public String boardWrite() {
@@ -178,7 +225,9 @@ public class FreeBoardController {
      
      @GetMapping("delete.do")
      public String delete(long id,BoardFile boardFile) {
+         log.info("#del con 1   " + id );
         boardRegisterService.removePost(id,boardFile);
+        log.info("#del con 2");
         return "redirect:list";
     }
     @GetMapping("download.do")
@@ -194,6 +243,7 @@ public class FreeBoardController {
     public @ResponseBody void del(String saveFile, long id) {
         File file = new File(Path.FILE_STORE, saveFile);
         if(file.exists()) file.delete();
+        log.info("#101 :" + file + "  " + id + "  " + saveFile );
         boardRegisterService.removeFile(id);
     }
     

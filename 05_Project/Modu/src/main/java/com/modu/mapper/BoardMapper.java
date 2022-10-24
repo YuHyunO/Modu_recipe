@@ -32,9 +32,9 @@ public interface BoardMapper {
 	long selectPostCount();
 	long selectPostCountByType(int type);
 	long selectPostCountByMember(String email);
+
 	
-	//자유게시판 페이징을 위한 select 추가
-	List<Board> selectFreePostsByType(@Param("type") int type, @Param("beginRow")long beginRow, @Param("endRow")long endRow);
+	
 	
 
 

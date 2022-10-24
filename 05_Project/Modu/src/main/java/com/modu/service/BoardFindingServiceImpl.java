@@ -3,9 +3,6 @@ package com.modu.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,56 +21,8 @@ public class BoardFindingServiceImpl implements BoardFindingService {
 	private BoardMapper boardMapper;
 
 	@Override
-	public BoardList listingPosts(HttpServletRequest request, HttpSession session) {
-        String cpStr = request.getParameter("curPage");
-        String psStr = request.getParameter("pgSize");
-        int type = 1;
-        long curPage = 1;
-        long pgSize = 10;
-        // (1) cp
-        
-        if (cpStr == null) {
-            Object cpObj = session.getAttribute("curPage");
-            if (cpObj != null) {
-                curPage = (Long) cpObj;
-            }
-        } else {
-            cpStr = cpStr.trim();
-            curPage = Long.parseLong(cpStr);
-        }
-        session.setAttribute("curPage", curPage);
-
-        // (2) ps
-
-        if (psStr == null) {
-            Object psObj = session.getAttribute("pgSize");
-            if (psObj != null) {
-                pgSize = (Long) psObj;
-            }
-        } else {
-            psStr = psStr.trim();
-            long psParam = Long.parseLong(psStr);
-
-            Object psObj = session.getAttribute("pgSize");
-            if (psObj != null) {
-                long psSession = (Long) psObj;
-                if (psSession != psParam) {
-                    curPage = 1;
-                    session.setAttribute("curPage", curPage);
-                }
-            } else {
-                if (pgSize != psParam) {
-                    curPage = 1;
-                    session.setAttribute("curPage", curPage);
-                }
-            }
-            pgSize = psParam;
-        }
-        session.setAttribute("pgSize", pgSize);		
-	    
-	    
-	    
-	    
+	public BoardList listingPosts(long pgSize, long curPage, int type) {
+		
 		long endRow = pgSize*curPage; 
 		long beginRow = endRow-pgSize+1;
 		
@@ -86,7 +35,7 @@ public class BoardFindingServiceImpl implements BoardFindingService {
 		long realEnd = (long)(Math.ceil(totalPosts * 1.0) / pgSize);
 		endPage = realEnd <= endPage? realEnd : endPage;
 		next = endPage < realEnd;
-		List<Board> listPosts = boardMapper.selectFreePostsByType(type, beginRow, endRow);
+		List<Board> listPosts = boardMapper.selectPostsByType(type, beginRow, endRow);
 		 
 		long listSize = totalPosts/pgSize; 
 		if (totalPosts%pgSize != 0) listSize++;

@@ -150,7 +150,7 @@ function addReply(e){
                     <figure class="comment-author">\
                         <img src="/imgs/content/auth-00.png" alt="작성자">\
                     </figure><!-- end comment-author vcard -->\
-                    <b class="fn px-2">Jessica</b>\
+                    <b class="fn ps-2">Jessica</b>\
                     <span class="px-2">' + dateText + '</span>\
                     <span>' + starHtml + '</span>\
                 </span>\
@@ -184,7 +184,7 @@ function addReply(e){
                     <figure class="comment-author">\
                         <img src="/imgs/content/auth-03.png" alt="작성자">\
                     </figure><!-- end comment-author vcard -->\
-                    <b class="fn px-2">Dina Makulatuwa</b>\
+                    <b class="fn ps-2">Dina Makulatuwa</b>\
                     <span class="px-2">' + dateText + '</span>\
                 </span>\
                 <span class="reply-btn px-2">\

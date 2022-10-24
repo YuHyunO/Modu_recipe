@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/views/common/head.jsp"%>
 <!-- 공통 부분 END -->
 <link href="/css/recipe-write.css" rel="stylesheet">
-<script src="/js/recipe-write.js"></script>
+<script src="/js/recipe-update.js"></script>
 
 <title>모두의 식탁 - 레시피 등록</title>
 
@@ -41,8 +42,9 @@
 								<input type="file" class="hidden-input main"
 									onchange="imgUpload(this)" />
 								<div class="text-center ratio-100" onclick="fileUpButton(this)">
+								
 									<img class="w-100 rounded-3 food_photo"
-										src="/imgs/no-image.jpg">
+										src="/pics/recipe/${rs.recipe.id}/${rs.recipe.foodPhoto}">
 								</div>
 							</div>
 							<div class="main-intro col-8">
@@ -67,7 +69,7 @@
 							소개</label>
 						<textarea class="form-control" id="info" name="info" rows=5 placeholder="레시피에 대한 소개글을 써주세요">
 						${rs.recipe.info}</textarea>
-						<p class="warning-text m-1">*20글자 이상 작성해주세요</p>
+						<p class="warning-text m-1">20글자 이상 작성해주세요</p>
 					</div>
 					<!-- end cooking-introduce 레시피소개 -->
 					<div class="category p-4 form-bg">
@@ -200,40 +202,40 @@
 					<!-- end ingredient 재료 -->
 					<div class="cooking-step p-4 form-bg" id="cooking-step">
 						<label class="form-label mb-1 form-title">요리순서</label>
-						<c:forEach var="direction" items="${rs.direction}" varStatus="status">
 						<div class="row" id="steps">
-							<div id="step-1" class="pb-3 step">
+						<c:forEach var="direction" items="${rs.direction}" varStatus="status">
+							<div id="step-${status.count}" class="pb-3 step">
 								<div class="form-label fw-bold step-text mb-0 px-1" name="step">STEP ${status.count}</div>
 								<div class="d-flex px-0">
 								
 									<div class="col-9 px-0">
-										<textarea name="direction" id="step-${status.count}-text" class="form-control step-textarea" onkeyup="checkByte(this, '100')"
+										<textarea name="direction" id="step-${status.count}-text" class="form-control step-textarea" onkeyup="checkByte(this, '50')"
 											placeholder="예) 닭이 잠길정도로 물을 넣고 손질한 닭을 끓여주세요" rows="5">${direction.direction}</textarea>
 									</div>
 									
 									<div class="step-photo-cover pointer">
 										<input type="file" class="hidden-input step-${status.count}" onchange="imgUpload(this)" />
 										<div id="step-${status.count}-photo" onclick="fileUpButton(this)">
-											<img class="border step-photo" name="saveFile" src="/imgs/pic_none.gif">
+											<img class="border step-photo" name="saveFile" src="/pics/recipe/${rs.recipe.id}/${direction.saveFile}">
 										</div>
 									</div>
 									
 									<div
 										class="d-flex flex-column border justify-content-between addon ms-2">
 										<div class="d-flex flex-column">
-											<button class="step-1 border up-btn mb-1" tabindex="-1" onclick="stepUp(this)">▲</button>
-											<button class="step-1 border down-btn" tabindex="-1" onclick="stepDown(this)">▼</button>
+											<button class="step-${status.count} border up-btn mb-1" tabindex="-1" onclick="stepUp(this)">▲</button>
+											<button class="step-${status.count} border down-btn" tabindex="-1" onclick="stepDown(this)">▼</button>
 										</div>
 										<div>
-											<button class="step-1 border delete-btn" tabindex="-1" onclick="stepDelete(this)">X</button>
+											<button class="step-${status.count} border delete-btn" tabindex="-1" onclick="stepDelete(this)">X</button>
 										</div>
 									</div>
 									
 								</div>
-								<p class="warning-text m-1">*10글자 이상 작성해주세요</p>
+								<p class="warning-text m-1" hidden>*10글자 이상 작성해주세요</p>
 							</div>
+							</c:forEach>
 						</div>
-						</c:forEach>
 						<div>
 							<button class="btn border mt-2 p-btn plus" onclick="addStep(this)">&nbsp;&nbsp; 추가</button>
 						</div>
@@ -241,17 +243,31 @@
 					<!-- end cooking-step 요리순서 -->
 					<div class="recipe-tag form-bg p-4">
 						<div class="form-label mb-1 form-title recipe-tag-title">태그</div>
-						<div class="recipe-tag-box d-flex flex-column justify-content-end">
+						<div class="recipe-tag-box d-flex flex-column justify-content-end">		
 							<input name="tag" id="tag" placeholder="예) 소고기, 미역국 (최대 5개, 5글자 이내)">
-							<p class="warning-text noheight m-1">*태그를 1개 이상 등록해주세요</p>	
-							<ul class="tag-ul d-flex p-${status.count}" >
+							<!-- <p class="warning-text noheight m-1">*태그를 1개 이상 등록해주세요</p>-->
+							<ul class="tag-ul d-flex p-1" >
+							<c:forEach var="recipetag" items="${rs.tag}" varStatus="status">
+								<script type="text/javascript">
+									var colors = ['#3c1cbf', '#208b3c', '#0d6efd',
+										'#212529', '#5bc0de', '#d65bde'];
+									var randint = Math.floor(Math.random() * colors.length);
+									var ret = "${recipetag.tag}";
+									var newNum = $('.tag-ul').children('li').length + 1;
+									var html = "";
+									html += '<li class="d-flex align-items-center px-2 me-1" id="tag-li-'+newNum+'" style="background: '+colors[randint]+'">';
+									html += '<input value='+ret+' type="hidden" id="tag-'+newNum+'"/>';
+									html += '<span>'+ret+'</span>';
+									html += '<button class="tag-delete-btn p-1" onclick="deleteTag(this)" style="background: '+ colors[randint]+ '">X</button>';
+									html += '</li>';
+									$('.tag-ul').append(html);
+								</script>
+							</c:forEach>
 							</ul>
 						</div>
 					</div>
 					<!-- end recipe-tag 태그 -->
-						<c:forEach var="recipetag" items="${rs.tag}" varStatus="status">
-							"${tag.tag}"
-							</c:forEach>
+
 					<div class="open-range form-bg p-4 pt-0">
 						<div class="form-label mb-1 form-title open-range-title">공개범위</div>
 						<div class="open-range-box d-flex">
@@ -267,7 +283,8 @@
 					<div
 						class="accessibility form-bg p-4 border-top d-flex justify-content-center" name="accessibility">
 						<div class="mx-1">
-							<button type="button" onclick="register(this)" class="btn gold-btn me-3">등록</button>
+							<input name"id" type="hidden" value="${rs.recipe.ig}"/>
+							<button type="button" onclick="update(this)" class="btn gold-btn me-3">등록</button>
 							<button type="reset" class="cancel btn btn-secondary">취소</button>
 						</div>
 					</div>

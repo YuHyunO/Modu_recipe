@@ -21,23 +21,22 @@ Lpad = function(str, len) {
  
 initTimer = function() {
     var timer = document.getElementById("timer");
-	    if (timer !== null){
-	    rHour = parseInt(iSecond / 3600);
-	    rHour = rHour % 60;
-	 
-	    rMinute = parseInt(iSecond / 60);
-	    rMinute = rMinute % 60;
-	    rSecond = iSecond % 60;
-	 
-	    if (iSecond > 0) {
-	        timer.innerHTML = "세션 " + Lpad(rHour, 2) + "시간 " + Lpad(rMinute, 2)
-	                + "분 " + Lpad(rSecond, 2) + "초 남음";
-	        iSecond--;
-	        timerchecker = setTimeout("initTimer()", 1000); // 1초 간격으로 체크
-	    } else {
-	        logoutUser();
-	    }
+    rHour = parseInt(iSecond / 3600);
+    rHour = rHour % 60;
+ 
+    rMinute = parseInt(iSecond / 60);
+    rMinute = rMinute % 60;
+    rSecond = iSecond % 60;
+ 
+    if (iSecond > 0) {
+        timer.innerHTML = "세션 " + Lpad(rHour, 2) + "시간 " + Lpad(rMinute, 2)
+                + "분 " + Lpad(rSecond, 2) + "초 남음";
+        iSecond--;
+        timerchecker = setTimeout("initTimer()", 1000); // 1초 간격으로 체크
+    } else {
+        logoutUser();
     }
+    
 }
  
 function refreshTimer() { //시간연장 버튼 클릭시 

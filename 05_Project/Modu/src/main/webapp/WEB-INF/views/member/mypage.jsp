@@ -97,23 +97,23 @@
 								<!-- 탭갈피 시작/ 아티클,아티클,북마크,레시피,북마크 순서 -->
 								<ul class="nav nav-tabs" id="myTab" role="tablist">
 									<li class="nav-item"><a class="nav-link tab-menu active"
-										id="ingredient-tab" data-toggle="tab" href="#ingredient" onclick="setUrl(this)"
-										role="tab" aria-controls="ingredient" aria-selected="false">냉장고 비우기</a></li>
+										id="ingredient-tab" data-toggle="tab" href="javascript:void(0)" onclick="setUrl(this)"
+										role="tab" aria-controls="ingredient" aria-selected="false" value="1">냉장고 비우기</a></li>
 									<li class="nav-item"><a class="nav-link tab-menu"
-										id="article-tab" data-toggle="tab" href="#article" onclick="setUrl(this)"
-										role="tab" aria-controls="article" aria-selected="false">나의 레시피</a></li>
+										id="article-tab" data-toggle="tab" href="javascript:void(0)" onclick="setUrl(this)"
+										role="tab" aria-controls="article" aria-selected="false" value="2">나의 레시피</a></li>
 										
 									<li class="nav-item"><a class="nav-link tab-menu"
-										id="bookmark-tab" data-toggle="tab" href="#bookmark" onclick="setUrl(this)"
-										role="tab" aria-controls="bookmark" aria-selected="false">북마크한 레시피</a></li>
+										id="bookmark-tab" data-toggle="tab" href="javascript:void(0)" onclick="setUrl(this)"
+										role="tab" aria-controls="bookmark" aria-selected="false" value="3">북마크한 레시피</a></li>
 											
 									<li class="nav-item"><a class="nav-link tab-menu"
-										id="mypost-tab" data-toggle="tab" href="#mypost" onclick="setUrl(this)" 
-										role="tab" aria-controls="mypost" aria-selected="false">내 게시글</a></li>
+										id="mypost-tab" data-toggle="tab" href="javascript:void(0)" onclick="setUrl(this)" 
+										role="tab" aria-controls="mypost" aria-selected="false" value="4">내 게시글</a></li>
 										
 									<li class="nav-item"><a class="nav-link tab-menu"
-										id="myfriend-tab" data-toggle="tab" href="#myfriend" onclick="setUrl(this)"
-										role="tab" aria-controls="myfriend" aria-selected="false">친구 관리</a></li>
+										id="myfriend-tab" data-toggle="tab" href="javascript:void(0)" onclick="setUrl(this)"
+										role="tab" aria-controls="myfriend" aria-selected="false" value="5">친구 관리</a></li>
 								</ul>
 
 								<!--탭 컨텐츠 시작-->
@@ -271,32 +271,11 @@
 
 											<!--레시피 검색 버튼-->
 											<div class="text-center">
-												<button class="btn-search gold-btn" id="search-reset"
-													onclick="location.reload()">다시 선택</button>
-													<!-- 추후 reload 없이 초기화 기능 구현할 것 -->											
+												<button class="btn-search gold-btn" id="searchsubmit"
+													type="submit">레시피 검색</button>
 											</div>
-											<br/><br/>
-											
-											<div id="recipe-list" class="row">
-											</div>					
-																	
-											<div class="page">
-												<nav aria-label="Page navigation">
-													<ul id="pagination-ul" class="pagination justify-content-center">
-														<div id="pagination-previous" class="pagination justify-content-center">
-														</div>
-														<div id="pagination-area" class="pagination justify-content-center">
-														</div>
-														<div id="pagination-next" class="pagination justify-content-center">
-														</div>
-													</ul>
-												</nav>
-											</div>																					
-											<!-- end row -->											
-										</div>
-										<!-- id="tab1-content" 종료 -->
-									</div>
-									<!-- id="ingredient" 종료 -->
+										</div><!-- id="tab1-content" 종료 -->
+									</div><!-- id="ingredient" 종료 -->
 
 									<!-- 탭2 시작(나의 레시피)-->
 									<div class="tab-pane fade" id="article" role="tabpane2"

@@ -44,7 +44,7 @@
 				<div class="container col-md-2">
 					<input hidden="true">
 				</div>
-				<div class="container col-sm-10 col-md-8 col-lg-6 col-xl-5">
+				<div class="container col-md-8">
 					<div class="recipe-content m-0" id="primary">
 						<div class="row py-3">
 							<div class="col-md-6">
@@ -56,8 +56,8 @@
 							<!-- end col -->
 							<div class="col-md-6 d-flex flex-column justify-content-between">
 								<div class="detail-desc d-flex flex-column">
-									<div class="recipe-rating m-0 p-1 d-flex align-items-center">
-										<img class="star-rate-img me-2" src="/imgs/stars3.png" alt="stars">
+									<div class="recipe-rating m-0">
+										<img class="star-rate-img" src="/imgs/stars3.png" alt="stars">
 										<span>${rec.recipe.star}</span> <span class="ps-1">(4)</span>
 									</div>
 									<div class="fs-4 py-3 m-0">${rec.recipe.title}</div>
@@ -184,7 +184,7 @@
 												<span class="d-flex align-items-center">
 													<figure class="comment-author">
 														<img src="/imgs/content/auth-00.png" alt="작성자">
-													</figure> <!-- end comment-author vcard --> <b class="fn px-2">${rep.nickname}</b>
+													</figure> <!-- end comment-author vcard --> <b class="fn ps-2">${rep.nickname}</b>
 													<span class="star-rate-block"> <span class="px-2">${rep.replyDate}</span>
 														<img class="star-rate-img" src="/imgs/stars4.png"
 														alt="stars"
@@ -225,12 +225,12 @@
 							<!-- end comment-list -->
 						</div>
 						<!-- end 리뷰 -->
-						<div class="row view-more p-2">
+						<div class="row view-more py-2" style="max-width: 630px;">
 							<button class="btn w-100 h-100 border more-view-btn"
 								onclick="showMore(this)">더보기</button>
 						</div>
-						<div class="comment-write p-2">
-							<div class="row w-100 m-0">
+						<div class="row comment-write p-2">
+							<div class="row">
 								<div class="col py-1">
 									<span class="star-title me-2 align-middle">별점</span> <span
 										class="btn star-point" id="star1" onclick="clickStar(this)"></span>
@@ -243,7 +243,7 @@
 								</div>
 							</div>
 							<!-- end star row -->
-							<div class="row w-100 m-0 pb-2">
+							<div class="row pb-2">
 								<form class="comment-form" type="POST" id="reply-form-0-0"
 									onSubmit="addReply(this)">
 									<div class="row">
@@ -282,8 +282,8 @@
 					<!-- end 리뷰 -->
 				</div>
 				<!-- end 메인 컨테이너 -->
-				<div class="container col-md-2 d-flex justify-content-center" id="secondary">
-					<div class="widget post-type-widget px-3 m-0">
+				<div class="container col-md-2" id="secondary">
+					<div class="widget post-type-widget px-3">
 						<div class="widget-title-outer">
 							<h3 class="widget-title pb-2 mb-0">최근 본 레시피</h3>
 						</div>
@@ -292,7 +292,7 @@
 								class="post-category pb-1 m-0"> <a href="#">Uncategorized</a>
 							</span>
 								<figure class="post-thumbnail w-100 h-100">
-									<a href="#"><img class="rounded-3" src="/imgs/content/thumb-post-01.png"
+									<a href="#"><img src="/imgs/content/thumb-post-01.png"
 										alt=""></a>
 								</figure>
 								<h2 class="post-title m-0">
@@ -304,7 +304,7 @@
 										Tips</a>
 							</span>
 								<figure class="post-thumbnail w-100 h-100">
-									<a href="#"><img class="rounded-3" src="/imgs/content/thumb-post-02.png"
+									<a href="#"><img src="/imgs/content/thumb-post-02.png"
 										alt=""></a>
 								</figure>
 								<h2 class="post-title m-0">
@@ -315,7 +315,7 @@
 								class="post-category pb-1 m-0"> <a href="#">Kitchen</a>
 							</span>
 								<figure class="post-thumbnail w-100 h-100">
-									<a href="#"><img class="rounded-3" src="/imgs/content/thumb-post-03.png"
+									<a href="#"><img src="/imgs/content/thumb-post-03.png"
 										alt=""></a>
 								</figure>
 								<h2 class="post-title m-0">
@@ -326,7 +326,7 @@
 								class="post-category pb-1 m-0"> <a href="#">Vegetable</a>
 							</span>
 								<figure class="post-thumbnail w-100 h-100">
-									<a href="#"><img class="rounded-3" src="/imgs/content/thumb-post-04.png"
+									<a href="#"><img src="/imgs/content/thumb-post-04.png"
 										alt=""></a>
 								</figure>
 								<h2 class="post-title m-0">
@@ -342,14 +342,14 @@
 				<div class="container">
 					<div class="row justify-content-center">
 						<button class="col previous-icon px-0"></button>
-						<div class="row col-sm-10 col-md-8 col-lg-6 col-xl-5 px-0">
+						<div class="row col-md-11 col-lg-8 px-0">
 							<h3 class="py-4 mb-0 text-start">
 								<span class="text-danger">베이컨</span> 추천 레시피
 							</h3>
 							<div class="col-6 col-md-3">
 								<div class="recipe-thumb">
 									<img src="/imgs/content/thumb-1.png" alt="Recipe Image">
-									<!-- <a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a> -->
+									<a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
 									<a href="#" class="view-recipe">VIEW RECIPE</a>
 								</div>
 								<div class="recipe-desc">
@@ -367,22 +367,17 @@
 							<div class="col-6 col-md-3">
 								<div class="recipe-thumb">
 									<img src="/imgs/content/thumb-2.png" alt="Recipe Image">
+									<a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
+									<a href="#" class="view-recipe">VIEW RECIPE</a>
 								</div>
 								<div class="recipe-desc">
-									<h2 class="recipe-title p-0">
-										<a href="${li.id}">${li.title}제목</a>
+									<h2 class="recipe-title">
+										<a href="#">Grilled Beef Steak</a>
 									</h2>
-									<figure class="profile mb-1">
-										<img class="profile-img" src="/imgs/content/auth-00.png"
-											alt="작성자">
-										<span><em> ${li.MNickname}닉네임</em></span>
-									</figure>
-									<div class="recipe-icons d-flex justify-content-between">
-										<span class="d-flex align-items-center"> 
-											<img class="stars" src="/imgs/stars5.png"> 
-											<span class="p-1 mt-1">${li.star}(${li.stars})</span>
-										</span>
-									</div>
+									<p>
+										<em>By Eka Nurwasilah</em>
+									</p>
+									<span><i class="fas fa-clock"></i>&nbsp;26 Minutes</span>
 								</div>
 								<!-- end recipe-desc -->
 							</div>
@@ -390,6 +385,8 @@
 							<div class="col-6 col-md-3">
 								<div class="recipe-thumb">
 									<img src="/imgs/content/thumb-3.png" alt="Recipe Image">
+									<a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
+									<a href="#" class="view-recipe">VIEW RECIPE</a>
 								</div>
 								<div class="recipe-desc">
 									<h2 class="recipe-title">
@@ -406,6 +403,8 @@
 							<div class="col-6 col-md-3">
 								<div class="recipe-thumb">
 									<img src="/imgs/content/thumb-4.png" alt="Recipe Image">
+									<a href="#" class="bookmarker"><i class="fas fa-bookmark"></i></a>
+									<a href="#" class="view-recipe">VIEW RECIPE</a>
 								</div>
 								<div class="recipe-desc">
 									<h2 class="recipe-title">
