@@ -4,6 +4,7 @@ let currentPage = 1;
 function setPage(e){
 	currentPage = $(e).text();
 	let id = $(e).attr("id");
+	console.log("###"+id);
 	if(id =="pre" || id == "next"){
 		currentPage = id;
 	}
@@ -13,7 +14,10 @@ function setPage(e){
 function setUrl(e){
    let url = "";
    let tab = $(e).attr("id");
-
+   
+   if(tab == "recipe-access-option"){
+	   tab = 2;
+   }
    if(tab == null){
 	   tab = e;
    }
@@ -35,11 +39,13 @@ function setUrl(e){
         mode = 3;
         break;
    case 4:
-   case "mypost-tab": url = "/mypage/post";
+   case "mypost-tab":
+	    url = "/mypage/post";
         mode = 4;
         break;
    case 5:
-   case "myfriend-tab": url = "/mypage/follow";
+   case "myfriend-tab":
+	    url = "/mypage/follow";
         mode = 5;
    }
    console.log("###url: "+url);
@@ -50,10 +56,14 @@ function setUrl(e){
 function setData(url, mode){
    let data;
    switch(mode){
-   case 1: data = {
-		   		list: getCheckboxValue(),
-		   		currentPage: currentPage
-		   }
+   case 1: data = { list: getCheckboxValue(),
+			   		currentPage: currentPage }
+   		   break;
+   case 2: data = { currentPage: currentPage,
+		   			type: getTypeOption()} 
+   		   break;
+   case 3: data = { currentPage: currentPage }
+   		   break;
    }
    dataAgent(url, data, mode);
 }
@@ -90,7 +100,79 @@ function displayRecommened(response){
 	let currentPage = response.currentPage;
 	let totalPage = response.totalPage; 	
 	let html = "";
-	
+	console.log("##mode: "+mode);
+	for(let item of recipeList){
+		html += '<div id="recipe-item" class="col-6 col-md-3">';
+		html += '<div class="recipe-thumb">';
+		html += '<img src="/imgs/content/thumb-1.png" alt="/imgs/content/thumb-1.png">';
+		html += '</div>';
+		html += '<div class="recipe-desc">';
+		html += '<h2 class="recipe-title">';
+		html += '<a href="'+item.id+'">'+item.title+'</a>';
+		html += '</h2>';
+		html += '<figure class="profile">';
+		html += '<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">';
+		html += '<span><em>&nbsp;'+item.nickname+'</em></span>';
+		html += '</figure>';
+		html += '<div class="recipe-icons d-flex justify-content-between">';
+		html += '<span class="d-flex align-items-center">';
+		html += '<img class="stars" src="/imgs/stars5.png">';
+		html += '<span class="p-1 mt-1">'+item.star+'('+item.stars+')</span>';
+		html += '</span>';
+		html += '<span class="d-flex align-items-center">';
+		html += '<span class="p-1 mt-1">조회 '+item.hits+'</span>';
+		html += '</span>';
+		html += '</div>';
+		html += '</div>';
+		html += '</div>';				
+	}
+	$("#recipe-list-1").html(html);
+	setPagingArea();
+	paginate(currentPage, totalPage);
+}
+
+function displayMyRecipe(response){
+	let recipeList = response.recipeList;
+	let currentPage = response.currentPage;
+	let totalPage = response.totalPage; 	
+	let html = "";
+	console.log("##mode: "+mode);
+	for(let item of recipeList){
+		html += '<div id="recipe-item" class="col-6 col-md-3">';
+		html += '<div class="recipe-thumb">';
+		html += '<img src="/imgs/content/thumb-1.png" alt="/imgs/content/thumb-1.png">';
+		html += '</div>';
+		html += '<div class="recipe-desc">';
+		html += '<h2 class="recipe-title">';
+		html += '<a href="'+item.id+'">'+item.title+'</a>';
+		html += '</h2>';
+		html += '<figure class="profile">';
+		html += '<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">';
+		html += '<span><em>&nbsp;'+item.nickname+'</em></span>';
+		html += '</figure>';
+		html += '<div class="recipe-icons d-flex justify-content-between">';
+		html += '<span class="d-flex align-items-center">';
+		html += '<img class="stars" src="/imgs/stars5.png">';
+		html += '<span class="p-1 mt-1">'+item.star+'('+item.stars+')</span>';
+		html += '</span>';
+		html += '<span class="d-flex align-items-center">';
+		html += '<span class="p-1 mt-1">조회 '+item.hits+'</span>';
+		html += '</span>';
+		html += '</div>';
+		html += '</div>';
+		html += '</div>';		
+	}
+	$("#recipe-list-2").html(html);
+	setPagingArea();
+	paginate(currentPage, totalPage);
+}
+
+function displayBookmark(response){
+	let recipeList = response.recipeList;
+	let currentPage = response.currentPage;
+	let totalPage = response.totalPage; 	
+	let html = "";
+	console.log("##mode: "+mode);
 	for(let item of recipeList){
 		html += '<div id="recipe-item" class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
@@ -115,18 +197,11 @@ function displayRecommened(response){
 		html += '</div>';
 		html += '</div>';
 		html += '</div>';
-		
-		$("#recipe-list").html(html);
-		paginate(currentPage, totalPage);
+				
 	}
-}
-
-function displayMyRecipe(response){
-	console.log("2");
-}
-
-function displayBookmark(response){
-	console.log("3");
+	$("#recipe-list-3").html(html);
+	setPagingArea();
+	paginate(currentPage, totalPage);
 }
 
 function displayMyPost(response){
@@ -135,6 +210,20 @@ function displayMyPost(response){
 
 function displayFollow(response){	
 	console.log("5");
+}
+
+function setPagingArea(){
+	let commonPagingArea = "";
+	commonPagingArea += '<nav aria-label="Page navigation">';
+	commonPagingArea += '<ul id="pagination-ul" class="pagination justify-content-center">';
+	commonPagingArea += '<div id="pagination-pre-'+mode+'" class="pagination justify-content-center"></div>';
+	commonPagingArea += '<div id="pagination-area-'+mode+'" class="pagination justify-content-center"></div>';
+	commonPagingArea += '<div id="pagination-next-'+mode+'" class="pagination justify-content-center"></div>';
+	commonPagingArea += '</ul>';
+	commonPagingArea += '</nav>';
+
+	$(".common-area").empty();
+	$("#paging-area-"+mode).html(commonPagingArea);
 }
 
 function paginate(currentPage, totalPage){
@@ -206,10 +295,9 @@ function paginate(currentPage, totalPage){
 		divNext += '<li class="page-item"><a class="page-link page-next"';
 		divNext += 'href="javascript:void(0);">＞</a></li>';
 	}
-	
-	$("#pagination-previous").html(divPrevious);	
-	$("#pagination-area").html(divArea);
-	$("#pagination-next").html(divNext);
+	$("#pagination-pre-"+mode).html(divPrevious);	
+	$("#pagination-area-"+mode).html(divArea);
+	$("#pagination-next-"+mode).html(divNext);
 }
 
 
@@ -288,6 +376,13 @@ function getCheckboxValue()  {
 	document.getElementById('result').innerText = result;
   
 	return data;
+}
+
+function getTypeOption(){
+	let selector = document.getElementById("recipe-access-option");
+	let type = selector.options[selector.selectedIndex].value;
+	currentPage = 1;
+	return type;
 }
 
 function activePage(e){

@@ -67,14 +67,14 @@ public class MembershipController {
     @GetMapping("/recipe")
     public @ResponseBody RecipeListVo myRecipe(HttpServletRequest request, HttpSession session) {
         
-        RecipeListVo data = recipeSearchService.searchRecipeByIngredient(request, session);
+        RecipeListVo data = recipeSearchService.searchRecipeOfMember(request, session);
     	return data;
     }
     
     @GetMapping("/bookmark")
     public @ResponseBody RecipeListVo bookmark(HttpServletRequest request, HttpSession session) {
         
-        RecipeListVo data = recipeSearchService.searchRecipeByIngredient(request, session);
+        RecipeListVo data = recipeSearchService.searchRecipeOfBookmark(request, session);
     	return data;    
     }
 	

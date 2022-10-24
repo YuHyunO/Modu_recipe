@@ -48,6 +48,7 @@ public interface RecipeMapper {
 	List<RecipeList> selectRecipeListByRandom(@Param("beginRow")int beginRow, @Param("endRow")int endRow);
 	List<RecipeList> selectRecipeListByIngredients(@Param("query")String query, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
 	List<RecipeList> selectRecipeListOfMember(@Param("email")String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
+	List<RecipeList> selectRecipeListOfMemberByType(@Param("email")String email, @Param("type")int type, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
 	List<RecipeList> selectRecipeListOfBookmark(@Param("email")String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
 	
 	int selectRecipeCount();
@@ -55,8 +56,9 @@ public interface RecipeMapper {
 	int selectRecipeCountByCategory(@Param("category")String category, @Param("period")int period);
 	int selectRecipeCountByKeyword(@Param("nameOption")String nameOption, @Param("keyword")String keyword, @Param("period")int period);
 	int selectRecipeCountByIngredient(@Param("keyword")String keyword, @Param("period")int period);
-	int selectRecipeCountByIngredients(String query);
+	int selectRecipeCountByIngredients(@Param("query")String query);
 	int selectRecipeCountOfMember(String email);
+	int selectRecipeCountOfMemberByType(@Param("email")String email, @Param("type")int type);
 	int selectRecipeCountOfBookmark(String email);
 	
 	// 베스트 레시피
