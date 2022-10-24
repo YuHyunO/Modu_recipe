@@ -100,7 +100,10 @@ function addReply(e){
     event.preventDefault();
     let commentID = $(e).attr('id').split('-')[2] + "-" + $(e).attr('id').split('-')[3];
     let targetCommentID = "#comment-" + commentID;
-
+    
+    //let test = $("#nested-reply").val();
+    //console.log(test);
+    
     let text = $(e).find('textarea[name=reply]');
     let lines = text.val().split("\n");
     let reviewText = '';
@@ -199,17 +202,20 @@ function addReply(e){
             </div><!-- end comment-content -->\
         </div><!-- end comment-body -->\
     </li><!-- end comment -->';
-
+    
     if(targetCommentID === "#comment-0-0"){
         // console.log("메인댓글");
         $(targetCommentID).prepend(htmlMain);
         console.log(targetCommentID);
         $(e).parents('.reply-write').html('');
     }else {
-        // console.log("대댓글");
-        $(targetCommentID).append(htmlSub);
-        console.log(targetCommentID);
-        $(e).parents('.reply-write').html('');
+        //console.log("대댓글");
+        //console.log(targetCommentID);      
+    	//let reply = $("#nested-reply").val();
+    	let reply = document.getElementById("nested-reply");
+		let rreplyForm = $('#reply-form-135000-0001')
+		let info = rreplyForm.serializeArray();		
+		console.log(reply);
     }
 }
 
@@ -218,22 +224,36 @@ function addReplyForm(e){
 	
     let commentID = $(e).attr("class").split(' ')[0];
     console.log("commentId: "+commentID);
+  
+    
     let targetCommentID = "#comment-" + commentID.split('-')[1] + "-" + commentID.split('-')[2];
+   
     let replyFormIDValue = "reply-form-" + commentID.split('-')[1] + "-" + commentID.split('-')[2];
+    console.log("replyFormIDValue "+replyFormIDValue);
+    
+    
+    
     let replyFormID = "#reply-form-" + commentID.split('-')[1] + "-" + commentID.split('-')[2];
     let targetComment = $(targetCommentID);
     let replyForm = $(replyFormID);
 
+    
     let html = 
     '<li><div class="row reply-write p-2">\
         <div class="row pb-2">\
-            <form class="comment-form" type="POST" id="'+ replyFormIDValue +'" onSubmit="addReply(this)"> \
-                <div class="row">\
+            <form class="comment-form" id="'+ replyFormIDValue +'" type="POST" onSubmit="test(this)">\
+            <div class="row">\
+            <div>\
+	        	<input name="rrId" type="hidden" value="94"/>\
+	        	<input name="MEmail" type="hidden" value="admin@modu.com"/>\
+	        	<input name="MNickname" type="hidden" value="관리자"/>\
+	        	<input name="profileImg" type="hidden" value="default_profile_img.png"/>\
+            </div>\
                     <div class="col px-0 comment-file" style="min-width:100px; max-width:100px;">\
                         <img class="border" src="/imgs/pic_none.gif" alt="파일첨부" width="100" height="100" style="cursor:pointer;">\
                     </div>\
                     <div class="col px-0">\
-                        <textarea id="contentsRreply" class="w-100 h-100 border comment-text"  name="reply" maxlength="300" placeholder="리뷰를 남겨주세요" required></textarea>\
+                        <textarea name="reply" id="nested-reply" class="w-100 h-100 border comment-text"  maxlength="300" placeholder="리뷰를 남겨주세요" required></textarea>\
                     </div>\
                     <div class="col px-0 comment-btn" style="min-width:120px; max-width:120px;">\
                         <button id= "insertNestedReply" class="btn w-100 h-100 border comment-submit" type="submit" style>등록</button>\
@@ -248,11 +268,14 @@ function addReplyForm(e){
     }
 }
 
+//댓글REPLY인서트
 $(function(){
 	$("#insertReply").on("click", function(){
-		let reply =  $("#contentsReply").val()
-		let mainForm = $('#reply-form-0-0')
-		let info = mainForm.serializeArray();		
+		console.log("insertReply");
+		let reply =  $("#contentsReply").val();
+		let mainForm = $('#reply-form-0-0');
+		let info = mainForm.serializeArray();
+		console.log("info :"+info);
 		alert("reply"+reply);
 		$.ajax({
 			url: "../recipe/insert.do", 
@@ -273,6 +296,38 @@ $(function(){
 		});
 	});
 });
+
+//대댓글NestedReply인서트
+function NestedReply(e){
+	event.preventDefault();
+	console.log("NestedReply");
+	console.log($(e).attr("class"));
+	let data = $(e).serializeArray();
+	console.log(data);
+	$.ajax({
+		url: "../recipe/insertNestedReply.do", 
+		type: "POST", 
+		data: data,
+		dataType:"text",
+		success: function(data){
+			if(!data){
+				 alert("존재하지 않는 name");
+				 return false;
+			 }
+			alert("#성공!"+data);
+			$(targetCommentID).append(htmlSub);
+			$(e).parents('.reply-write').html('');
+		},		
+		error: function(error){
+			alert("err"+error);
+		}
+	
+	});
+}
+
+
+
+
 
 /*
  -> 파일drag&drop/미완,사진경로변경예정
@@ -297,53 +352,3 @@ $(function(e){
 });
 
 */
-/* 
--> 더보기 (숨기기)/미완,프론트단에서처리X
-function showMore(e){
-	console.log("e: "+ e);
-	let comment = $('.comment');
-	let totalComment = comment.length;
-	console.log(totalComment);
-	
-	//console.log(comment)
-	//console.log($('.comment').attr('class'));	
-	//console.log(comment_array);
-
-		if(comment.attr('class') === 'comment'){	 
-			comment.attr('class', 'commentShow');
-		}			
-}
-/* 
--> 대댓글/미완 
-$(function(){
-	$("#insertNestedReply").on("click", function(){
-		let reply =  $("#contentsRreply").val()
-		let mainForm = $('#reply-form-0-0')
-		let info = mainForm.serializeArray();		
-		alert("reply"+reply);
-		$.ajax({
-			url: "../recipe/insert.do", 
-			type: "POST", 
-			data: info,
-			dataType:"text",
-			success: function(data){
-				if(!data){
-					 alert("존재하지 않는 name");
-					 return false;
-				 }
-				alert("#성공!"+data);
-			},
-			error: function(error){
-				alert("err"+error);
-			}
-		
-		});
-	});
-});
-
-*/
-
-
-
-
-

@@ -14,4 +14,5 @@ public class RecipeDetail {
 	private List<Ingredient> ingredient;
 	private List<Direction> direction;
 	private List<RecipeTag> tag;
+	
 }

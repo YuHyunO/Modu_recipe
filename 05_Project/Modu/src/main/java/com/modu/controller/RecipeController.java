@@ -47,15 +47,17 @@ public class RecipeController {
 	
 	@GetMapping("/detail")
 	public ModelAndView recipeDetail() {
-		long id = 150;
+		long id = 298;
+		long rrId = 100;
 		RecipeDetail recipeDetail = recipeFindingService.findRecipedetails(id);
 		String starPoint = recipeFindingService.getStarPoint(recipeDetail);
 		List<RecipeReplyList> selectReply = recipeRegisterService.findRecipeReply(id);
-
+		List<RecipeNestedReply> selectNestedReply = recipeRegisterService.findRecipeNestedReply(rrId);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("recipe/detail");
 		mv.addObject("rec", recipeDetail);
 		mv.addObject("rep", selectReply);
+		mv.addObject("rrep", selectNestedReply);
 		mv.addObject("id", id);
 		mv.addObject("starPoint", starPoint);
 		return mv;
@@ -64,7 +66,7 @@ public class RecipeController {
 	@PostMapping("/insert.do")
 	public @ResponseBody String insertReply(RecipeReply recipeReply) {
 		String result = recipeRegisterService.registerReply(recipeReply);
-		log.info("#recipeReply" + recipeReply);
+
 		return result;
 	}
 
@@ -78,9 +80,17 @@ public class RecipeController {
 		recipeRegisterService.delete(id);
 		return "redirect:detail";
 	}
+	
+	@PostMapping("/insertNestedReply.do")
+	public @ResponseBody String insertNestedReply (RecipeNestedReply recipeNestedReply) {
+		System.out.println("# "+recipeNestedReply);
+		String result = recipeRegisterService.registerNestedReply(recipeNestedReply);
+		System.out.println("#nestedReply" +recipeNestedReply);
+		return result;
+	}
+
 	/*
-	 * ->´ë´ñ±Û/¹Ì¿Ï
-	 * 
+	 * ->´ë´ñ±Û/¹Ì¿Ï 
 	 * @PostMapping("/insertRreply.do") public @ResponseBody String
 	 * insertNestedReply (RecipeNestedReply recipeNestedReply){ String result =
 	 * recipeRegisterService.registerNestedReply(recipeNestedReply);

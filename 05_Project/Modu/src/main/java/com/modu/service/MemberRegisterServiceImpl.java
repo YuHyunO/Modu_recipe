@@ -29,6 +29,7 @@ import lombok.extern.log4j.Log4j;
 @Service
 public class MemberRegisterServiceImpl implements MemberRegisterService {
 	
+	@Inject
 	private MemberMapper memberMapper;
 	private MultipartHttpServletRequest multipartRequest;
 	private Map<String, List<Object>> map;

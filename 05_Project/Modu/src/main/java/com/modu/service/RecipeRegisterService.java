@@ -14,6 +14,7 @@ public interface RecipeRegisterService {
 	String registerReply(RecipeReply recipeReply);
 	List<RecipeReplyList> findRecipeReply(long id);
 	void delete(long id);
+	List<RecipeNestedReply> findRecipeNestedReply(long rrId);
 	String registerNestedReply(RecipeNestedReply recipeNestedReply);
 
 }

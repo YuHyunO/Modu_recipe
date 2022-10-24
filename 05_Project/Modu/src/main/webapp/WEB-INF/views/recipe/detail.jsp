@@ -147,8 +147,7 @@
 										</div>
 										<div class="col-md-4 step-img">
 											<figure class="ratio ratio-4x3">
-												<a
-													href="javascript:viewLargePic('/imgs/content/thumb-1.png')">
+												<a href="javascript:viewLargePic('/imgs/content/thumb-1.png')">
 													<img class="rounded-3" src="/imgs/content/thumb-1.png"
 													alt="Recipe Image">
 												</a>
@@ -171,6 +170,7 @@
 					<div
 						class="row comment-section border-top py-3 justify-content-center">
 						<div class="row comments pt-3">
+						
 							<h2 class="comments-title text-start mb-2">
 								리뷰<span>(4)</span>
 							</h2>
@@ -193,7 +193,7 @@
 												</span>
 												<div>
 													<button class="reply-135000-0001 reply-btn"
-														onclick="addReplyForm(this)">
+														onclick="">
 													수정</a>
 													<button class="reply-135000-0001 reply-btn"
 														onclick="location.href='/recipe/del.do?id=${rep.id}'">
@@ -205,7 +205,7 @@
 											</div>
 											<!-- end comment-meta -->
 											<div class="comment-content d-flex">
-												<p class="p-2 m-0 col-9">${rep.reply}</p>
+												<p class="p-2 m-0 col-9">${rep.reply}</p>	
 												<figure class="comment-image">
 													<img class="rounded-3" src="/imgs/content/dessert-l.png"
 														alt="comment-image">
@@ -249,7 +249,7 @@
 									<div class="row">
 										<div>
 											<input name="mEmail" type="hidden" value="admin@modu.com">
-											<input name="rId" type="hidden" value="150"> <input
+											<input name="rId" type="hidden" value="298"> <input
 												name="mNickname" type="hidden" value="관리자"> <input
 												name="profileImg" type="hidden"
 												value="default_profile_img.png">
@@ -330,8 +330,10 @@
 										alt=""></a>
 								</figure>
 								<h2 class="post-title m-0">
-									<a href="#">Quod Mazim Placerat Facer Possim Assum</a>
-								</h2></li>
+									<a href="#">Ullamcorper Suscipit Lobortis Nisl ut Aliquip
+										Commodo Consequat</a>	
+								</h2>
+							</li>
 						</ul>
 					</div>
 					<!-- end widget -->
@@ -432,6 +434,25 @@
 		<%@ include file="/WEB-INF/views/common/bottom.jsp"%>
 	</div>
 	<!-- end #page hfeed site -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>
