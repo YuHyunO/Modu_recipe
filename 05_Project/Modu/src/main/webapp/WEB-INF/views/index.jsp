@@ -44,8 +44,7 @@
 				class="main-container row d-flex justify-content-center m-0 py-4">
 
 				<div class="row">
-					<div id="left-side" class="col-md-2"></div>
-					<div id="primary" class="content-area col-md-8">
+					<div id="primary" class="content-area col-md-9">
 
 						<div class="recipes-section pt-3 pb-3">
 							<div class="container p-0">
@@ -158,7 +157,7 @@
 					<!-- end primary(주요 메인영역) 종료-->
 
 					<!--사이드 영역(secondary) 시작-->
-					<div id="secondary" class="col-md-2">
+					<div id="secondary" class="col-md-3">
 						<div class="widget post-type-widget pt-3 pb-3">
 							<!-- widget 최근 본 게시물 -->
 							<div class="widget-title-outer">
