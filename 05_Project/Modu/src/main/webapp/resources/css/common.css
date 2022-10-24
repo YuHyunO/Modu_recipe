@@ -261,12 +261,25 @@
 
 /* 이미지 100% */
 .ratio-100 {
-	position: relative;
-    width: 100%;
+	position: relative !important;
+    width: 100% !important;
 	-bs-aspect-ratio: 100% !important;
 }
 
 .ratio-100>* {
     top: 0;
     left: 0;
+}
+
+/* 최근 본 게시물 */
+.widget-title {
+	font-size: 1rem !important;
+	font-weight: 600 !important;
+}
+
+.post-category {
+	font-size: 0.8rem !important;
+}
+
+#secondary .post-title {
 }
