@@ -2,9 +2,6 @@ package com.modu.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -81,12 +78,12 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
 	}
 
     @Override
-    public RecipeDetail RecipeRead(long id) {//
+    public RecipeDetail RecipeRead(long id) {
         long rId = id;
         Recipe recipe = recipeMapper.selectRecipe(id);
         List<Ingredient> ingredient = recipeMapper.selectIngredient(rId);
         List<Direction> direction = recipeMapper.selectDirection(rId);
-        List<RecipeTag> tag = recipeMapper.selectRecipeTag(rId);
+        List<RecipeTag> recipetag = recipeMapper.selectRecipeTag(rId);
         RecipeDetail recipeDetail = new RecipeDetail();
 
         recipeDetail.setRecipe(recipe);
@@ -96,8 +93,8 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
 //        }
         recipeDetail.setDirection(direction);
         log.info("####2: " + direction);
-        recipeDetail.setTag(tag);
-        log.info("####3: " + tag);
+        recipeDetail.setTag(recipetag);
+        log.info("####3: " + recipetag);
         return recipeDetail;
     }
 

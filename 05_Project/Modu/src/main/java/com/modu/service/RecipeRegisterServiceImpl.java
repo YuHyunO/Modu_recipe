@@ -69,104 +69,104 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
             ArrayList<String> directions,
             ArrayList<String> tags) {
 	    
-//	    // 데이터 확인
-//	    log.info("#registerRecipe email: " + (String)session.getAttribute("email"));
-//        log.info("#registerRecipe nickname: " + (String)session.getAttribute("nickname"));
-//        log.info("#registerRecipe profileImg: " + (String)session.getAttribute("profileImg"));
-//        log.info("#registerRecipe title: " + request.getParameter("title"));
-//        log.info("#registerRecipe info: " + request.getParameter("info"));
-//        log.info("#registerRecipe food: " + request.getParameter("food"));
-//        log.info("#registerRecipe sort: " + request.getParameter("sort"));
-//        log.info("#registerRecipe ingredient: " + request.getParameter("ingredient"));
-//        log.info("#registerRecipe serving: " + request.getParameter("serving"));
-//        log.info("#registerRecipe cooktime: " + request.getParameter("cooktime"));
-//        log.info("#registerRecipe difficultyLevel: " + request.getParameter("difficultyLevel"));
-//        log.info("#registerRecipe accessibility: " + Integer.parseInt(request.getParameter("accessibility")));
-//        
-//        // 레시피 등록(*레시피 아이디 리턴)
-//        recipe.setMEmail((String)session.getAttribute("email"));
-//        recipe.setMNickname((String)session.getAttribute("nickname"));
-//        recipe.setProfileImg((String)session.getAttribute("profileImg"));
-//        recipe.setTitle(request.getParameter("title"));
-//        recipe.setInfo(request.getParameter("info"));
-//        recipe.setFood(request.getParameter("food"));
-//        recipe.setSort(request.getParameter("sort"));
-//        recipe.setIngredient(request.getParameter("ingredient"));
-//        recipe.setServing(request.getParameter("serving"));
-//        recipe.setCookTime(request.getParameter("cooktime"));
-//        recipe.setDifficultyLevel(request.getParameter("difficultyLevel"));
-//        recipe.setAccessibility(Integer.parseInt(request.getParameter("accessibility")));
-//        
-//        int result = recipeMapper.insertRecipe(recipe);
-//        Long id = recipe.getId();
-//        log.info("#registerRecipe insert result: " + result);
-//        log.info("#registerRecipe ID: " + id);
-//        
-//        // 메인재료 등록
-//        String mainItem;
-//        for (int i=0; i<mainItems.size(); i++) {
-//            mainItem = mainItems.get(i);
-//            ingredient.setRId(id);
-//            ingredient.setIngredientType(0);
-//            ingredient.setIngredient(mainItem.split("-")[0]);
-//            ingredient.setQuantity(mainItem.split("-")[1]);
-//            recipeMapper.insertIngredient(ingredient);
-//        }
-//        
-//        // 양념재료 등록
-//        String subItem;
-//        for (int i=0; i<subItems.size(); i++) {
-//            subItem = subItems.get(i);
-//            ingredient.setRId(id);
-//            ingredient.setIngredientType(1);
-//            ingredient.setIngredient(subItem.split("-")[0]);
-//            ingredient.setQuantity(subItem.split("-")[1]);
-//            recipeMapper.insertIngredient(ingredient);
-//        }
-//        
-//        // 요리순서 등록 및 파일 업로드
-//        String text = "STEP-";
-//        String content;
-//        int num = 0;
-//        int step = 0;
-//        for (MultipartFile file : files) {
-//            String ofname = file.getOriginalFilename();
-//            log.info("#파일 이름: " + ofname);
-//            fileInfoList.clear();
-//            fileInfoList.add(text + Integer.toString(num));
-//            if (ofname != null) ofname = ofname.trim();
-//            if (ofname.length() != 0) {
-//                if (num == 0) {
-//                    String[] urlAndName = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + id + "\\", fileInfoList);
-//                    log.info("#url: " + urlAndName[0]);
-//                    recipe.setFoodPhoto(urlAndName[1]);
-//                    recipeMapper.updateRecipePhoto(recipe); 
-//                } else {
-//                    if(num > directions.size()) {
-//                    } else {
-//                        String[] urlAndName = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + id + "\\", fileInfoList);                
-//                        log.info("#url: " + urlAndName[0]);
-//                        content = directions.get(step - 1 + num);
-//                        direction.setRId(id);
-//                        direction.setDirection(content);
-//                        direction.setStep(step + num);
-//                        direction.setOriginalFile(ofname);
-//                        direction.setSaveFile(urlAndName[1]);
-//                        recipeMapper.insertDirection(direction);
-//                        log.info("#registerRecipe direction: " + direction);
-//                    }
-//                }
-//            }
-//            num += 1;
-//        }
-//        String tag;
-//        for(int i=0; i<tags.size(); i++) {
-//            tag = tags.get(i);
-//            Tag.setRId(id);
-//            Tag.setTag(tag);
-//            recipeMapper.insertTag(Tag);
-//            
-//        }
+	    // 데이터 확인
+	    log.info("#registerRecipe email: " + (String)session.getAttribute("email"));
+        log.info("#registerRecipe nickname: " + (String)session.getAttribute("nickname"));
+        log.info("#registerRecipe profileImg: " + (String)session.getAttribute("profileImg"));
+        log.info("#registerRecipe title: " + request.getParameter("title"));
+        log.info("#registerRecipe info: " + request.getParameter("info"));
+        log.info("#registerRecipe food: " + request.getParameter("food"));
+        log.info("#registerRecipe sort: " + request.getParameter("sort"));
+        log.info("#registerRecipe ingredient: " + request.getParameter("ingredient"));
+        log.info("#registerRecipe serving: " + request.getParameter("serving"));
+        log.info("#registerRecipe cooktime: " + request.getParameter("cooktime"));
+        log.info("#registerRecipe difficultyLevel: " + request.getParameter("difficultyLevel"));
+        log.info("#registerRecipe accessibility: " + Integer.parseInt(request.getParameter("accessibility")));
+        
+        // 레시피 등록(*레시피 아이디 리턴)
+        recipe.setMEmail((String)session.getAttribute("email"));
+        recipe.setMNickname((String)session.getAttribute("nickname"));
+        recipe.setProfileImg((String)session.getAttribute("profileImg"));
+        recipe.setTitle(request.getParameter("title"));
+        recipe.setInfo(request.getParameter("info"));
+        recipe.setFood(request.getParameter("food"));
+        recipe.setSort(request.getParameter("sort"));
+        recipe.setIngredient(request.getParameter("ingredient"));
+        recipe.setServing(request.getParameter("serving"));
+        recipe.setCookTime(request.getParameter("cooktime"));
+        recipe.setDifficultyLevel(request.getParameter("difficultyLevel"));
+        recipe.setAccessibility(Integer.parseInt(request.getParameter("accessibility")));
+        
+        int result = recipeMapper.insertRecipe(recipe);
+        Long id = recipe.getId();
+        log.info("#registerRecipe insert result: " + result);
+        log.info("#registerRecipe ID: " + id);
+        
+        // 메인재료 등록
+        String mainItem;
+        for (int i=0; i<mainItems.size(); i++) {
+            mainItem = mainItems.get(i);
+            ingredient.setRId(id);
+            ingredient.setIngredientType(0);
+            ingredient.setIngredient(mainItem.split("-")[0]);
+            ingredient.setQuantity(mainItem.split("-")[1]);
+            recipeMapper.insertIngredient(ingredient);
+        }
+        
+        // 양념재료 등록
+        String subItem;
+        for (int i=0; i<subItems.size(); i++) {
+            subItem = subItems.get(i);
+            ingredient.setRId(id);
+            ingredient.setIngredientType(1);
+            ingredient.setIngredient(subItem.split("-")[0]);
+            ingredient.setQuantity(subItem.split("-")[1]);
+            recipeMapper.insertIngredient(ingredient);
+        }
+        
+        // 요리순서 등록 및 파일 업로드
+        String text = "STEP-";
+        String content;
+        int num = 0;
+        int step = 0;
+        for (MultipartFile file : files) {
+            String ofname = file.getOriginalFilename();
+            log.info("#파일 이름: " + ofname);
+            fileInfoList.clear();
+            fileInfoList.add(text + Integer.toString(num));
+            if (ofname != null) ofname = ofname.trim();
+            if (ofname.length() != 0) {
+                if (num == 0) {
+                    String[] urlAndName = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + id + "\\", fileInfoList);
+                    log.info("#url: " + urlAndName[0]);
+                    recipe.setFoodPhoto(urlAndName[1]);
+                    recipeMapper.updateRecipePhoto(recipe); 
+                } else {
+                    if(num > directions.size()) {
+                    } else {
+                        String[] urlAndName = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + id + "\\", fileInfoList);                
+                        log.info("#url: " + urlAndName[0]);
+                        content = directions.get(step - 1 + num);
+                        direction.setRId(id);
+                        direction.setDirection(content);
+                        direction.setStep(step + num);
+                        direction.setOriginalFile(ofname);
+                        direction.setSaveFile(urlAndName[1]);
+                        recipeMapper.insertDirection(direction);
+                        log.info("#registerRecipe direction: " + direction);
+                    }
+                }
+            }
+            num += 1;
+        }
+        String tag;
+        for(int i=0; i<tags.size(); i++) {
+            tag = tags.get(i);
+            Tag.setRId(id);
+            Tag.setTag(tag);
+            recipeMapper.insertTag(Tag);
+            
+        }
 	}
 
 	@Override
@@ -214,8 +214,17 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
         recipeMapper.updateRecipe(recipe);
         recipeMapper.updateIngredient(ingredient);
         recipeMapper.updateDirection(direction);
-        recipeMapper.updateTag(Tag);
+        recipeMapper.updateRecipeTag(Tag);
         recipeMapper.updateRecipePhoto(recipe);
+    }
+
+    @Override
+    public void recipeDelete(long id) {
+        long rId = id;
+        recipeMapper.deleteRecipe(id);
+        recipeMapper.deleteIngredientAll(rId);
+        recipeMapper.deleteDirectionAll(rId);
+        recipeMapper.deleteTagAll(rId);
     }
 
 //    @Override

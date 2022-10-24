@@ -19,7 +19,7 @@ public class BoardReply {
 	private String mNickname;
 	private String profileImg;
 	private String reply;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yy/ MM/dd hh:mm", timezone="Asia/Seoul")
 	private Date replyDate;
 	private int nestedReply;
 }

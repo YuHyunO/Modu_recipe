@@ -18,10 +18,10 @@ public interface RecipeMapper {
 	void insertDirection(Direction direction);
 	void insertTag(RecipeTag recipeTag);
 	/* 				***** 				*/
-	Recipe updateRecipe(Recipe recipe);
-	Ingredient updateIngredient(Ingredient ingredient);
-	Direction updateDirection(Direction direction);
-	RecipeTag updateTag(RecipeTag recipeTag);
+	void updateRecipe(Recipe recipe);
+	void updateIngredient(Ingredient ingredient);
+	void updateDirection(Direction direction);
+	void updateRecipeTag(RecipeTag tag);
 	void updateRecipeHits(long id);
 	void updateReplyCount(long id);
 	

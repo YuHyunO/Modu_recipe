@@ -16,7 +16,7 @@ import com.modu.domain.recipe.RecipeListVo;
 import com.modu.mapper.RecipeMapper;
 
 @Service
-public class SearchServiceImpl implements SearchService {
+public class RecipeSearchServiceImpl implements RecipeSearchService {
 	@Autowired
 	private RecipeMapper recipeMapper;
 
@@ -152,43 +152,6 @@ public class SearchServiceImpl implements SearchService {
 	}
 	
 	@Override
-<<<<<<< HEAD:05_Project/Modu/src/main/java/com/modu/service/SearchServiceImpl.java
-	public RecipeListVo searchRecipeByIngredient(HttpServletRequest request, HttpSession session) {
-		String[] ingredients = request.getParameterValues("data");
-		if(ingredients == null) {
-			System.out.println("Data is null\n");
-		}else {
-			for(int i=0; i<ingredients.length; i++) {
-				String item = ingredients[i];
-				System.out.println("item : "+item);
-			}
-		}
-		System.out.println();
-		int currentPage = 1;
-		int pageSize = 8;
-		int totalPage;
-		int totalPost = recipeMapper.selectRecipeCount(); 
-		
-		totalPage = totalPost/pageSize;
-		if(totalPost % pageSize > 0) {
-			totalPage = totalPage + 1;
-		}		
-		
-		if(currentPage<1) { 
-			currentPage = 1;
-		}else if(currentPage>totalPage) { 
-			currentPage = totalPage;
-		}
-		
-		int endRow = currentPage*pageSize;
-		int beginRow = endRow-pageSize+1;
-		
-		session.setAttribute("myCurrentPage", currentPage);				
-		
-		RecipeListVo data = new RecipeListVo();
-		
-		return data;
-=======
     public RecipeListVo searchRecipeByIngredient(HttpServletRequest request, HttpSession session) {
         String[] ingredients = request.getParameterValues("list");
         String query = "";
@@ -383,6 +346,5 @@ public class SearchServiceImpl implements SearchService {
         data.setTotalPage(totalPage);  
         
         return data;
->>>>>>> 844e045a256e24b6289486ec9ae5bfca9298244e:05_Project/Modu/src/main/java/com/modu/service/RecipeSearchServiceImpl.java
 	}
 }

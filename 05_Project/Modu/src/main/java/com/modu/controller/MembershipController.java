@@ -21,6 +21,7 @@ import com.modu.domain.recipe.RecipeListVo;
 import com.modu.service.FileUploadService;
 import com.modu.service.MemberRegisterService;
 import com.modu.service.MembershipService;
+import com.modu.service.RecipeSearchService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -34,6 +35,7 @@ public class MembershipController {
 	private MemberRegisterService memberRegisterService;
 	private FileUploadService filuploadservice; //by @AllArgsConstructor
 	private MembershipService membershipService;
+	private RecipeSearchService recipeSearchService;
 	
 	/*
 	//마이페이지 페이지 이동(MemberController.java 에 있는 메소드 가져옴)
@@ -55,7 +57,6 @@ public class MembershipController {
         return mv;
     }
     
-
     @GetMapping("/recommend")
     public @ResponseBody RecipeListVo recommend(HttpServletRequest request, HttpSession session) {        
         
@@ -77,13 +78,13 @@ public class MembershipController {
     	return data;    
     }
 	
-    @GetMapping("/mypage-post")
+    @GetMapping("/post")
     public @ResponseBody String post(HttpServletRequest request, HttpSession session) {
     	
     	return "4";
     }
 	
-    @GetMapping("/mypage-follow")
+    @GetMapping("/follow")
     public @ResponseBody List<FollowList> follow(HttpServletRequest request, HttpSession session) {
     	
     	List<FollowList> testList = membershipService.getFollowList(request, session);

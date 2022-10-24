@@ -34,71 +34,10 @@
 		<div class="head-title py-4 m-0">
 			<div class="container">
 				<p class="page-title m-0 fs-2">INDEX</p>
-<<<<<<< HEAD
-			</div><!-- end container -->
-		</div><!-- end head-title -->
-		
-		<div class="main d-flex justify-content-center">
-			<div class="main-container row d-flex justify-content-center m-0 py-4">
-			
-			<div class="row">
-			<div id="primary" class="content-area col-md-10">
-			
-				<div class="recipes-section pt-3 pb-3">
-					<div class="container">
-						<div
-							class="section-title d-flex justify-content-between align-items-center">
-							<h4 class="mb-0 py-3 ms-3">
-								베스트 레시피
-								</h3>
-								<a href="/recipe/list" class="btn-more h-100">더보기</a>
-						</div>
-						<!-- end section-title -->
-						<div class="row">
-							<c:forEach var="recipe" items="${recipeList}">
-								<div class="col-6 col-md-3">
-									<div class="recipe-thumb">
-										<img src="imgs/recipe/${recipe.foodPhoto}" alt="Recipe Image">
-									</div>
-									<div class="recipe-desc">
-										<div class="recipe-title">
-											<a href="/recipe/detail/${recipe.id}">${recipe.title}</a>
-										</div>
-										<figure class="profile">
-											<img class="profile-img"
-												src="pics/profile/${recipe.profileImg}" alt="작성자">
-											<span><em>${recipe.MNickname}</em></span>
-										</figure>
-										<div class="recipe-icons d-flex justify-content-between">
-											<span class="d-flex align-items-center"> 
-											<c:if test="${recipe.star} ne 0">
-												<img class="stars" src="imgs/stars${recipe.star}.png">
-												<span class="p-1 mt-1">${recipe.star}(500)</span>
-											</c:if>
-											</span> 
-											<span class="d-flex align-items-center"> 
-												<span class="p-1 mt-1">
-												조회 <fmt:formatNumber type="number" maxFractionDigits="3" value="${recipe.hits}" />
-												</span>
-											</span>
-										</div>
-									</div>
-									<!-- end recipe-desc -->
-								</div>
-								<!-- end col -->
-							</c:forEach>
-						</div>
-						<!-- end row -->
-					</div>
-					<!-- end container -->
-				</div>
-				<!-- end recipes -->
-=======
 			</div>
 			<!-- end container -->
 		</div>
 		<!-- end head-title -->
->>>>>>> 844e045a256e24b6289486ec9ae5bfca9298244e
 
 		<div class="main d-flex justify-content-center">
 			<div
