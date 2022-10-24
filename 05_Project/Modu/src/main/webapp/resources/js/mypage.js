@@ -4,7 +4,7 @@ let currentPage = 1;
 function setPage(e){
 	currentPage = $(e).text();
 	let id = $(e).attr("id");
-
+	console.log("###"+id);
 	if(id =="pre" || id == "next"){
 		currentPage = id;
 	}
@@ -100,7 +100,6 @@ function displayRecommened(response){
 	let currentPage = response.currentPage;
 	let totalPage = response.totalPage; 	
 	let html = "";
-
 	console.log("##mode: "+mode);
 	for(let item of recipeList){
 		html += '<div id="recipe-item" class="col-6 col-md-3">';
@@ -138,6 +137,7 @@ function displayMyRecipe(response){
 	let totalPage = response.totalPage; 	
 	let html = "";
 	console.log("##mode: "+mode);
+	console.log(response.recipeList);
 	for(let item of recipeList){
 		html += '<div id="recipe-item" class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
@@ -174,6 +174,7 @@ function displayBookmark(response){
 	let totalPage = response.totalPage; 	
 	let html = "";
 	console.log("##mode: "+mode);
+	console.log(response.recipeList);
 	for(let item of recipeList){
 		html += '<div id="recipe-item" class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
@@ -198,7 +199,7 @@ function displayBookmark(response){
 		html += '</div>';
 		html += '</div>';
 		html += '</div>';
-
+				
 	}
 	$("#recipe-list-3").html(html);
 	setPagingArea();
@@ -239,6 +240,7 @@ function displayFollowing(response){
 		$("#following-list").html(html);
 		paginate(currentPage, totalPage);
 	}
+}
 
 function setPagingArea(){
 	let commonPagingArea = "";
@@ -328,7 +330,7 @@ function paginate(currentPage, totalPage){
 	$("#pagination-next-"+mode).html(divNext);
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 // 권장하는 방법 - 마이페이지 접속시 항상 실행되는 제이쿼리 function
 $(function(){
 	  // script
@@ -415,5 +417,5 @@ function getTypeOption(){
 
 function activePage(e){
 	$('.page-number').removeClass('active');
-	$(e).addClass('active');
+	$(e).addClass('active')
 }

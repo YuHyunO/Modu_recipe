@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%> 
 
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<%@ include file="/WEB-INF/views/common/head.jsp"%>
+<%@ include file="/WEB-INF/views/common/head.jsp"%><!-- 공통 부분 END -->
 <link href="/css/mypage.css" rel="stylesheet">
 <script src="/js/mypage.js"></script>
 <title>모두의식탁 - 마이페이지</title>
@@ -22,11 +22,6 @@
 	    width: 600px;
 } 
 */
-
-.friendprofileimg {
-	width: 120px;
-	height: 120px;
-}
 </style>
 </head>
 <body>
@@ -41,25 +36,32 @@
 
 		<div class="main d-flex justify-content-center">
 			<div class="main-container row d-flex justify-content-center m-0 py-4">
-
+				
 				<div class="row">
 					<div id="primary" class="content-area col-md-9">
-
+					
 						<div id="content" class="site-content">
 							<!--프로필 영역 시작 -->
 							<div class="profile-details rounded-3 text-center">
 								<!-- <figure class="profile-ava"></figure> -->
 								<div>
 									<!-- 첨부파일이 없을 때 -->
-									<c:if test="${ member.profileImg=='default_profile_img.png' || member.profileImg==null}">
-										<img id="mypage_defaultimg" src="/imgs/mypage/default_profile_img.png" alt="default_profileimg" />
+									<c:if
+										test="${ member.profileImg=='default_profile_img.png' || member.profileImg==null}">
+										<img 
+										id="mypage_defaultimg"
+										src="/imgs/mypage/default_profile_img.png" 
+										alt="default_profileimg" />
 									</c:if>
 									<!-- 첨부파일이 있을 때 미리보기 사진 보임-->
-									<c:if test="${ member.profileImg!='default_profile_img.png' && member.profileImg!=null}">
-										<img src="<spring:url value = '/pics/profile/${ member.profileImg }'/>" id="mypage_profileimg" alt="현재프로필사진" />
+									<c:if
+										test="${ member.profileImg!='default_profile_img.png' && member.profileImg!=null}">
+											<img 
+											src="<spring:url value = '/pics/profile/${ member.profileImg }'/>" 
+											id="mypage_profileimg"
+											alt="현재프로필사진"/>
 									</c:if>
-								</div>
-								<br />
+								</div><br/>
 								<div class="profile-context">
 									<div class="profile-name">
 										<h1>${sessionScope.nickname}님의 마이페이지</h1>
@@ -67,19 +69,24 @@
 										<!-- <h4 class="archive-title text-center"> -->
 									</div>
 									<div class="profile-content py-3">
-										마이페이지에서 추천 레시피를 소개받고,<br /> 나만의 레시피를 작성해보거나,<br /> 다양한 쉐프들과 친구를 맺어보세요!
+										마이페이지에서 추천 레시피를 소개받고,<br/>
+										나만의 레시피를 작성해보거나,<br/>
+										다양한 쉐프들과 친구를 맺어보세요!
 									</div>
 
 									<!-- 회원정보 수정 버튼-->
 									<div class="py-3">
-										<button class="btn btn-outline-secondary btn-md me-3 member-btn" type="button" onclick="location.href='/member/modifymyinfo'">
-											<i class="bi-person-fill me-1"></i> 내 정보 수정
-										</button>
+										<button
+											class="btn btn-outline-secondary btn-md me-3 member-btn"
+											type="button" onclick="location.href='/member/modifymyinfo'">
+                      						<i class="bi-person-fill me-1"></i>
+											내 정보 수정</button>
 										<!--로그인 버튼-->
-										<button class="btn btn-outline-secondary btn-md member-btn" type="button" onclick="location.href='/member/point'">
-											<i class="bi-key-fill me-1"></i> 포인트 조회
-										</button>
-									</div>
+										<button class="btn btn-outline-secondary btn-md member-btn"
+											type="button" onclick="location.href='/member/point'">
+											<i class="bi-key-fill me-1"></i>
+											포인트 조회</button>
+							 		</div>
 								</div>
 								<!-- end profile-context -->
 							</div>
@@ -87,10 +94,8 @@
 
 							<div class="my-content">
 								<!-- 탭갈피+탭내용 합침 -->
-								<!-- 탭갈피 myTab 시작/ 아티클,아티클,북마크,레시피,북마크 순서 --->
-								<!-- href="javascript:void(0)" onclick="setUrl(this)" --> 
+								<!-- 탭갈피 시작/ 아티클,아티클,북마크,레시피,북마크 순서 -->
 								<ul class="nav nav-tabs" id="myTab" role="tablist">
-
 									<li class="nav-item"><a class="nav-link tab-menu active"
 										id="ingredient-tab" data-toggle="tab" href="#ingredient" onclick="setUrl(this)"
 										role="tab" aria-controls="ingredient" aria-selected="false">냉장고 비우기</a></li>
@@ -109,19 +114,17 @@
 									<li class="nav-item"><a class="nav-link tab-menu"
 										id="myfriend-tab" data-toggle="tab" href="#myfriend" onclick="setUrl(this)"
 										role="tab" aria-controls="myfriend" aria-selected="false">친구 관리</a></li>
-
 								</ul>
 
 								<!--탭 컨텐츠 시작-->
 								<div class="tab-content" id="myTabContent">
 
 									<!-- 탭1 시작(냉장고 비우기)-->
-									<div class="tab-pane fade show active" 
-									id="ingredient" 
-									role="tabpanel" 
-									aria-labelledby="ingredient-tab">
+									<div class="tab-pane fade show active" id="ingredient"
+										role="tabpanel" aria-labelledby="ingredient-tab">
 										<div id="tab1-content" class="site-content pb-3">
-											<h4 class="archive-title text-center">냉장고 속 재료를 조합하여 요리해보기</h4>
+											<h4 class="archive-title text-center">냉장고 속 재료를 조합하여
+												요리해보기</h4>
 											<div class="backbox rounded-3 text-center py-3">
 												지금 냉장고 속 재료를 체크해보세요.<br /> 맞춤형 레시피를 볼 수 있어요!
 											</div>
@@ -143,7 +146,8 @@
 													<!--야채 사진-->
 													<div class="col-md-4">
 														<figure>
-															<img class="rounded-3 category-pic" src="/imgs/mypage/vegetables.jpg" alt="image_null" />
+															<img class="rounded-3 category-pic"
+																src="/imgs/mypage/vegetables.jpg" alt="image_null" />
 														</figure>
 													</div>
 												</div>
@@ -164,7 +168,8 @@
 													<!--사진-->
 													<div class="col-md-4">
 														<figure>
-															<img class="rounded-3 category-pic" src="/imgs/mypage/meat.jpg" alt="image_null" />
+															<img class="rounded-3 category-pic"
+																src="/imgs/mypage/meat.jpg" alt="image_null" />
 														</figure>
 													</div>
 												</div>
@@ -184,7 +189,8 @@
 													<!--사진-->
 													<div class="col-md-4">
 														<figure>
-															<img class="rounded-3 category-pic" src="/imgs/mypage/fishes.jpg" alt="image_null" />
+															<img class="rounded-3 category-pic"
+																src="/imgs/mypage/fishes.jpg" alt="image_null" />
 														</figure>
 													</div>
 												</div>
@@ -199,12 +205,14 @@
 														<h5>가공품</h5>
 													</div>
 													<div class="col-md-6">
-														<div class="processedSection row" id="processedSection"></div>
+														<div class="processedSection row" id="processedSection">
+														</div>
 													</div>
 													<!--사진-->
 													<div class="col-md-4">
 														<figure>
-															<img class="rounded-3 category-pic" src="/imgs/mypage/processed.jpg" alt="image_null" />
+															<img class="rounded-3 category-pic"
+																src="/imgs/mypage/processed.jpg" alt="image_null" />
 														</figure>
 													</div>
 												</div>
@@ -219,12 +227,14 @@
 														<h5>양념</h5>
 													</div>
 													<div class="col-md-6">
-														<div class="seasoningSection row" id="seasoningSection"></div>
+														<div class="seasoningSection row" id="seasoningSection">
+														</div>
 													</div>
 													<!--사진-->
 													<div class="col-md-4">
 														<figure>
-															<img class="rounded-3 category-pic" src="/imgs/mypage/seasoning.jpg" alt="image_null" />
+															<img class="rounded-3 category-pic"
+																src="/imgs/mypage/seasoning.jpg" alt="image_null" />
 														</figure>
 													</div>
 												</div>
@@ -244,7 +254,8 @@
 													<!--사진-->
 													<div class="col-md-4">
 														<figure>
-															<img class="rounded-3 category-pic" src="/imgs/mypage/milk.png" alt="image_null" />
+															<img class="rounded-3 category-pic"
+																src="/imgs/mypage/milk.png" alt="image_null" />
 														</figure>
 													</div>
 												</div>
@@ -254,22 +265,12 @@
 											<br />
 
 											<div class="rounded-3" id="finalIngredient">
-												<span>최종 선택된 재료 :</span>
-												<span id='result'></span>
+												<span>최종 선택된 재료 :</span> <span id='result'></span>
 											</div>
 											<br /> <br />
 
 											<!--레시피 검색 버튼-->
-<!-- 											<div class="text-center">
-												<button 
-												class="btn-search gold-btn" 
-												id="searchsubmit" 
-												type="submit">레시피 검색</button>
-											</div> -->
-											
-											<!--재료선택 리셋 버튼-->
 											<div class="text-center">
-
 												<button class="btn-search gold-btn" id="search-reset"
 													onclick="location.reload()">다시 선택</button>
 													<!-- 추후 reload 없이 초기화 기능 구현할 것 -->											
@@ -288,9 +289,7 @@
 									<!-- id="ingredient" 종료 -->
 
 									<!-- 탭2 시작(나의 레시피)-->
-									<div class="tab-pane fade" 
-										id="myrecipe" 
-										role="tabpane2" 
+									<div class="tab-pane fade" id="article" role="tabpane2"
 										aria-labelledby="article-tab">
 										<div id="tab2-content" class="site-content">
 											<h3 class="archive-title text-center">나의 레시피</h3>
@@ -298,7 +297,6 @@
 
 											<!--공개/비공개버튼 2개-->
 											<div class="text-end pb-3">
-
 											  <!--<button class="btn gold-btn me-3 p-2" id="openBtn" type="button">
 										                            공개 레시피</button>
 										          <button class="btn gold-btn p-2" id="closedBtn" type="button">
@@ -321,10 +319,11 @@
 										</div>
 										<!-- id="tab2-content" 종료-->
 									</div>
-									<!-- id="myrecipe" 종료, 탭2 전체 종료-->
+									<!-- id="article" 종료, 탭2 전체 종료-->
 
 									<!-- 탭3 (북마크 레시피) 시작 -->
-									<div class="tab-pane fade" id="bookmark" role="tabpane3" aria-labelledby="bookmark-tab">
+									<div class="tab-pane fade" id="bookmark" role="tabpane3"
+										aria-labelledby="bookmark-tab">
 										<div id="tab3-content" class="site-content">
 											<h3 class="archive-title text-center">북마크 한 레시피</h3>
 											<br />
@@ -334,7 +333,6 @@
 											
 											<div id="paging-area-3" class="page common-area">
 											</div>	
-
 											<!-- end Page -->
 										</div>
 										<!-- id=tab3-content 종료-->

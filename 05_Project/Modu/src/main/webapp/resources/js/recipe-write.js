@@ -575,19 +575,19 @@ function register(e) {
 	// 공개범위
 	let openRange = $(".open-range-box").find("select");
 	let accessibility;
-
+	
 	switch (openRange.val()) {
-		case "비공개 저장":
+		case "저장 및 공개":
 			accessibility = 0;
 			break;
-		case "저장 및 공개":
+		case "비공개 저장":
 			accessibility = 1;
 			break;
 		case "임시저장":
 			accessibility = 2;
 			break;
 	}
-	
+	console.log("accessibility: "+accessibility);
 	formData.append("accessibility", accessibility);
 	
 	for (let key of formData.keys()){
