@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.modu.domain.member.FollowList;
+import com.modu.domain.member.FollowListVo;
 import com.modu.domain.member.Member;
 import com.modu.domain.recipe.RecipeListVo;
 import com.modu.service.FileUploadService;
@@ -85,10 +86,10 @@ public class MembershipController {
     }
 	
     @GetMapping("/follow")
-    public @ResponseBody List<FollowList> follow(HttpServletRequest request, HttpSession session) {
-    	
-    	List<FollowList> testList = membershipService.getFollowList(request, session);
-    	return testList;
+    public @ResponseBody FollowListVo follow(HttpServletRequest request, HttpSession session) {
+            	
+        FollowListVo data = membershipService.getFollowList(request, session);      
+        return data;
     }
 		
 	//마이페이지 페이지 이동

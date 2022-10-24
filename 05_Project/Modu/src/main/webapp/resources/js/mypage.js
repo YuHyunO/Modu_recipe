@@ -1,4 +1,5 @@
 let mode;
+let state;
 let currentPage = 1;
 
 function setPage(e){
@@ -8,6 +9,7 @@ function setPage(e){
 	if(id =="pre" || id == "next"){
 		currentPage = id;
 	}
+	
 	setUrl(mode);
 }
 
@@ -60,10 +62,12 @@ function setData(url, mode){
 			   		currentPage: currentPage }
    		   break;
    case 2: data = { currentPage: currentPage,
-		   			type: getTypeOption()} 
+		   			type: getTypeOption() } 
    		   break;
    case 3: data = { currentPage: currentPage }
    		   break;
+   case 5: data = { currentPage: currentPage,
+		   			state: state }
    }
    dataAgent(url, data, mode);
 }
@@ -137,7 +141,6 @@ function displayMyRecipe(response){
 	let totalPage = response.totalPage; 	
 	let html = "";
 	console.log("##mode: "+mode);
-	console.log(response.recipeList);
 	for(let item of recipeList){
 		html += '<div id="recipe-item" class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
@@ -209,15 +212,12 @@ function displayMyPost(response){
 	console.log("4");
 }
 
-function displayFollowing(response){ 
-	console.log("탭5-팔로잉탭 display 진입");
-	console.log(response);
-	
-	let followList = response;
+function displayFollow(response){ 
+	let followList = response.followList;
 	let currentPage = response.currentPage;
-	let totalPage = response.totalPage; 
-	let html = "";
-
+	let totalPage = response.totalPage;
+	let html = "";	
+	console.log("###"+mode);
 	for(let item of followList){
 		//console.log("##item:"+item); //##item:[object Object]
 		html += '<div class="col-md-3">';
@@ -235,10 +235,14 @@ function displayFollowing(response){
 		html += '</div>';
 		html += '</div>';
 		html += '</div>';
-
-		$("#following-list").html(html);
-		paginate(currentPage, totalPage);
 	}
+	if(state == 1){		
+		$("#following-list").html(html);
+	}else if(state == 2){
+		$("#follower-list").html(html);
+	}
+	setPagingArea();
+	paginate(currentPage, totalPage);
 }
 
 function setPagingArea(){
@@ -412,6 +416,16 @@ function getTypeOption(){
 	let type = selector.options[selector.selectedIndex].value;
 	currentPage = 1;
 	return type;
+}
+
+function getState(e){
+	state = $(e).val();
+	mode = 5;
+	setUrl(mode);
+}
+
+function setFollowPageId(state){
+	
 }
 
 function activePage(e){
