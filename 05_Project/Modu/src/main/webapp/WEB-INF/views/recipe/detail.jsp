@@ -91,8 +91,16 @@
 							<!-- end recipe author -->
 							<div class="recipe-option d-flex justify-content-end col">
 								<div class="d-flex flex-column text-center">
-									<button class="recipe-scrap" onclick="clickScrap(this)">
-									</button>
+									<c:choose>
+										<c:when test="${scrapState eq true}">
+											<button class="recipe-scrap-clicked" onclick="clickScrap(this)">
+											</button>
+										</c:when>
+										<c:when test="${scrapState eq false}">
+											<button class="recipe-scrap" onclick="clickScrap(this)">
+											</button>
+										</c:when>
+									</c:choose> 
 									<span>스크랩</span>
 								</div>
 								<div class="d-flex flex-column text-center">
