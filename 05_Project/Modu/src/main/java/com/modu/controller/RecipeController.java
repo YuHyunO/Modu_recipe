@@ -158,19 +158,17 @@ public class RecipeController {
     public String deleteRecipe(long id, HttpServletRequest request) { //
         HttpSession session = request.getSession();
         String getId = request.getParameter("id");
-        id = Integer.parseInt(getId);
-        log.info("#####99: " + id);
+        id = Integer.parseInt(getId);      
         recipeRegisterService.recipeDelete(id);
         return "redirect:/";
     }
     
     @GetMapping("/detail")
-    public ModelAndView recipeDetail(HttpSession session) {
-        long id = 150;
+    public ModelAndView recipeDetail(HttpServletRequest request, HttpSession session) {
         String email = (String)session.getAttribute("email");
-        RecipeDetail recipeDetail = recipeFindingService.findRecipedetails(id);
-        String starPoint = recipeFindingService.getStarPoint(recipeDetail);
-        List<RecipeReplyList> selectReply = recipeRegisterService.findRecipeReply(id);
+        long id = Long.parseLong(request.getParameter("no"));
+        RecipeDetail detail = recipeFindingService.getRecipeDetails(id);
+        String starPoint = recipeFindingService.getStarPoint(detail);
         boolean scrapState = false;
         if(email != null) {
             if (recipeFindingService.getScrap(id, email) == null) {
@@ -183,9 +181,7 @@ public class RecipeController {
         
         ModelAndView mv = new ModelAndView();
         mv.setViewName("recipe/detail");
-        mv.addObject("rec", recipeDetail);
-        mv.addObject("rep", selectReply);
-        mv.addObject("id", id);
+        mv.addObject("detail", detail);        
         mv.addObject("starPoint", starPoint);
         mv.addObject("scrapState", scrapState);
         mv.addObject("replyCount", replyCount);

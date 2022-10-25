@@ -194,7 +194,7 @@ function updateData(recipeList, pageSize){
 		html += '</div>';
 		html += '<div class="recipe-desc">';
 		html += '<h2 class="recipe-title">';
-		html += '<a href="javascript:void(0)" onclick="saveCookie('+item.id+');location.href=\'/recipe/detail?no='+item.id+'\'">'+item.title+'</a>';
+		html += '<a href="javascript:void(0)" onclick="saveCookie('+item.id+')">'+item.title+'</a>';
 		html += '</h2>';
 		html += '<figure class="profile">';
 		html += '<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">';
