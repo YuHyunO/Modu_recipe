@@ -283,8 +283,10 @@
 					<div
 						class="accessibility form-bg p-4 border-top d-flex justify-content-center" name="accessibility">
 						<div class="mx-1">
-							<input name"id" type="hidden" value="${rs.recipe.ig}"/>
+							<input name="id" type="hidden" value="${rs.recipe.id}"/>
 							<button type="button" onclick="update(this)" class="btn gold-btn me-3">등록</button>
+							<button type="button" onclick="del(this)" class="btn gold-btn me-3">삭제</button>
+							<td><a href="delete.do?id=${id}">삭제</a></td>
 							<button type="reset" class="cancel btn btn-secondary">취소</button>
 						</div>
 					</div>

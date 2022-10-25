@@ -651,6 +651,14 @@ function checkData(e) {
 	}
 	return true;
 }
+function del(e){
+	 if (confirm("정말 삭제하시겠습니까??") == true){
+		 location.href='delete.do?id=${id}'
+	 }else{
+	     return false;
+	 }
+}
+
 
 // 요리순서 글자수 제한로직
 function checkByte(e, maxByte) {

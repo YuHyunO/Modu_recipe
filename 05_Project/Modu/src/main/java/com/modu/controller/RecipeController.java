@@ -94,21 +94,22 @@ public class RecipeController {
 	    return map;
 	}
 	
-	@GetMapping("/read")
+	@GetMapping("/update")
 	public ModelAndView RecipeRead(long id) {
 	    RecipeDetail recipeDetail = recipeFindingService.RecipeRead(id);
 	    ModelAndView mv = new ModelAndView();
-	    mv.setViewName("recipe/read");
+	    mv.setViewName("recipe/update");
 	    mv.addObject("rs", recipeDetail);
 	    mv.addObject("id", id);
 	    return mv;
 	}
 	
 	@GetMapping("/delete")
-	public String deleteRecipe(HttpServletRequest request) {
+	public String deleteRecipe(long id, HttpServletRequest request) { //
 	    HttpSession session = request.getSession();
 	    String getId = request.getParameter("id");
-	    long id = Long.parseLong(getId);
+	    id = Integer.parseInt(getId);
+	    log.info("#####99: " + id);
 	    recipeRegisterService.recipeDelete(id);
 	    return "redirect:/";
 	}
