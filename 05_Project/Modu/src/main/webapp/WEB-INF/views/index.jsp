@@ -8,23 +8,72 @@
 <%@ include file="/WEB-INF/views/common/head.jsp"%>
 <link href="/css/common.css" rel="stylesheet">
 <link href="/css/index.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
 <title>모두의 식탁</title>
 </head>
 <style type="text/css">
 
+.fixed01{
+  display:flex;
+  justify-content:center;
+  text-align:center;
+  
+  width: 100%; height: 300px;  /* 배경이미지는 최소 1920*960으로 제작해야 문제가 안생김 */
+  background-image: url("imgs/index/main1.png");
+  background-repeat: no-repeat; /* 배경이미지X */
+  background-size: cover;  /* 요소를 비율에 맞게 커버 */
+  background-position: center; /* 이미지를 요소의 정가운데로 처리 */
+ /*  background-attachment: fixed; */ /* 스크롤바 움직일때 이미지가 따라다님 */
+}
+
+.fixed02{
+  width: 100%; height: 200px;
+  /* 배경이미지는 최소 1920*960으로 제작해야 문제가 안생김 */
+  background-image: url("imgs/index/main2.jpg");
+  background-repeat: no-repeat; /* 배경이미지X */
+  background-size: cover; /* 요소를 비율에 맞게 커버 */
+  background-position: center; /* 이미지를 요소의 정가운데로 처리 */
+  /* background-attachment: fixed; */ /* 스크롤바 움직일때 이미지가 따라다님 */
+}
+
+.fixed03{
+  width: 100%; height: 200px; /* 배경이미지는 최소 1920*960으로 제작해야 문제가 안생김 */
+  background-image: url("imgs/index/index.jpg");
+  background-repeat: no-repeat; /* 배경이미지X */
+  background-size: cover; /* 요소를 비율에 맞게 커버 */
+  background-position: center; /* 이미지를 요소의 정가운데로 처리 */
+  /* background-attachment: fixed; */ /* 스크롤바 움직일때 이미지가 따라다님 */
+}
+
+.fixed04{
+  width: 100%; height: 200px; /* 배경이미지는 최소 1920*960으로 제작해야 문제가 안생김 */
+  background-image: url("imgs/index/index2.png");
+  background-repeat: no-repeat; /* 배경이미지X */
+  background-size: cover; /* 요소를 비율에 맞게 커버 */
+  background-position: center; /* 이미지를 요소의 정가운데로 처리 */
+  /* background-attachment: fixed; */ /* 스크롤바 움직일때 이미지가 따라다님 */
+}
 </style>
 <body>
 	<div id="page" class="hfeed site">
 		<!-- start page wrapper -->
 		<%@ include file="/WEB-INF/views/common/menu.jsp"%>
-		<div class="head-title py-4 m-0">
-			<div class="container">
+				
+		<div class="head-title py-1 m-0">
+<!-- 			<div class="container">
 				<p class="page-title m-0 fs-2">INDEX</p>
-			</div>
+			</div> -->
 			<!-- end container -->
+	        <div class="fixed01">
+	        	<p class="mention">
+	        		Welcome. <br/>
+	        		We have collected fresh & good-taste recipes. <br/>
+	        		Let's share the recipe together.
+	        	</p>
+	        </div>
 		</div>
-		<!-- end head-title -->
-
+	
 		<div class="main d-flex justify-content-center">
 			<div class="main-container row d-flex justify-content-center m-0 py-4">
 
@@ -82,6 +131,15 @@
 						</div>
 						<!-- end recipes -->
 
+		<div class="head-title py-0 m-0">
+	        <div class="fixed02">
+	        	<p class="mention" style="color:white">
+	        		We have collected fresh & good-taste recipes. <br/>
+	        		Let's share the recipe together.
+	        	</p>
+	        </div>
+		</div>		<!-- end head-title -->
+		
 						<div class="chef-section py-3 mb-3">
 							<div class="container px-0">
 								<div
@@ -138,6 +196,26 @@
 							<!-- end 쉐프 container -->
 						</div>
 						<!-- end chef-section -->
+						
+<!-- 						<div class="head-title py-0 m-0">
+					        <div class="fixed03">
+	        	<p class="mention">
+	        		Welcome. <br/>
+	        		We have collected fresh & good-taste recipes. <br/>
+	        		Let's share the recipe together.
+	        	</p>
+					        </div>
+						</div>end head-title
+						<div class="head-title py-0 m-0">
+					        <div class="fixed04">
+	        	<p class="mention">
+	        		Welcome. <br/>
+	        		We have collected fresh & good-taste recipes. <br/>
+	        		Let's share the recipe together.
+	        	</p>
+					        </div>
+						</div> -->		<!-- end head-title -->
+						
 					</div>
 					<!-- end primary(주요 메인영역) 종료-->
 	
