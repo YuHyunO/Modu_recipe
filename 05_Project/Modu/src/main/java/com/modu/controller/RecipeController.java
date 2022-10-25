@@ -43,9 +43,10 @@ public class RecipeController {
     private RecipeRegisterService recipeRegisterService;
     @Autowired
     private RecipeSearchService searchService;
-
     @Autowired
     private MembershipService membershipService;
+    @Autowired
+    private RecipeLegacyMapper recipeLegacyMapper;
 
 
     @GetMapping("/list")
@@ -121,6 +122,7 @@ public class RecipeController {
                 scrapState = true;
             }
         }
+        long replyCount = recipeLegacyMapper.selectReplyCount(id);
         
         ModelAndView mv = new ModelAndView();
         mv.setViewName("recipe/detail");
@@ -129,6 +131,7 @@ public class RecipeController {
         mv.addObject("id", id);
         mv.addObject("starPoint", starPoint);
         mv.addObject("scrapState", scrapState);
+        mv.addObject("replyCount", replyCount);
         return mv;
     }
 

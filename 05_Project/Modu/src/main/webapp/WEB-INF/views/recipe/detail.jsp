@@ -59,7 +59,7 @@
 								<div class="detail-desc d-flex flex-column">
 									<div class="recipe-rating m-0 p-1 d-flex align-items-center">
 										<img class="star-rate-img me-2" src="/imgs/stars3.png" alt="stars">
-										<span>${rec.recipe.star}</span> <span class="ps-1">(4)</span>
+										<span>${rec.recipe.star}</span> <span class="ps-1">(${replyCount})</span>
 									</div>
 									<div class="fs-4 py-3 m-0">${rec.recipe.title}</div>
 									<div class="m-0">${rec.recipe.info}</div>
@@ -187,7 +187,7 @@
 						class="row comment-section border-top py-3 justify-content-center">
 						<div class="row comments pt-3">
 							<h2 class="comments-title text-start mb-2">
-								리뷰<span>(4)</span>
+								리뷰<span>(${replyCount})</span>
 							</h2>
 							<ol class="comment-list" id="comment-0-0">
 								<c:forEach items="${rep}" var="rep">
