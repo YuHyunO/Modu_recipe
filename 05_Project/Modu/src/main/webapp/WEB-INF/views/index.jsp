@@ -41,8 +41,7 @@
 		<!-- end head-title -->
 
 		<div class="main d-flex justify-content-center">
-			<div
-				class="main-container row d-flex justify-content-center m-0 py-4">
+			<div class="main-container row d-flex justify-content-center m-0 py-4">
 
 				<div class="row">
 					<div id="primary" class="content-area col-md-9">

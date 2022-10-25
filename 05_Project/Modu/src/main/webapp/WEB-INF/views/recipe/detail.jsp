@@ -25,10 +25,10 @@
 		<div class="main d-flex justify-content-center">
 			<div class="main-container row d-flex justify-content-center m-0 py-4">
 				
-	<div class="row">
-		<div id="primary" class="content-area col-md-9">
+		<div class="row">
+			<div id="main-content" class="content-area col-md-9">
 		
-			<!-- 사진 팝업 -->
+			<!-- 사진 팝업(hidden) -->
 			<div id="viewPicDivModal" class="modal" role="dialog"
 				aria-hidden="true" style="display: none;">
 				<div class="modal-dialog">
@@ -41,13 +41,13 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- end 사진 팝업 -->
-			<div class="row py-3 px-5">
+			</div><!-- end 사진 팝업 -->
+			
+			<!-- primary 본격 시작 -->
 				<!-- <div class="container col-md-2"></div> -->
 				<input class="recipe-id" hidden="true" value="${id}">
-				<div class="container col-sm-10 col-md-8 col-lg-6 col-xl-5">
-					<div class="recipe-content m-0" id="primary">
+				<div class="col-md-9 col-lg-6 col-xl-9">
+					<div id="primary" class="recipe-content m-0">
 						<div class="row py-3">
 							<div class="col-md-6">
 								<figure class="ratio ratio-4x3 p-3 m-0">
@@ -177,6 +177,7 @@
 						<!-- end col -->
 					</div>
 					<!-- end 조리순서 -->
+					
 					<div class="row tag-section d-flex">
 						<span class="tag-head ms-2 py-3"></span>
 						<c:forEach items="${rec.tag}" var="t">
@@ -184,6 +185,7 @@
 						</c:forEach>
 					</div>
 					<!-- end 태그 -->
+					
 					<div
 						class="row comment-section border-top py-3 justify-content-center">
 						<div class="row comments pt-3">
@@ -240,11 +242,14 @@
 							</ol>
 							<!-- end comment-list -->
 						</div>
-						<!-- end 리뷰 -->
+						<!-- end row comments pt-3, 리뷰 댓글list -->
+						
 						<div class="row view-more p-2">
 							<button class="btn w-100 h-100 border more-view-btn"
 								onclick="showMore(this)">더보기</button>
 						</div>
+						
+						<!-- 별점+댓글창 -->
 						<div class="comment-write p-2">
 							<div class="row w-100 m-0">
 								<div class="col py-1">
@@ -259,6 +264,7 @@
 								</div>
 							</div>
 							<!-- end star row -->
+							
 							<div class="row w-100 m-0 pb-2">
 								<form class="comment-form" type="POST" id="reply-form-0-0"
 									onSubmit="addReply(this)">
@@ -289,16 +295,17 @@
 									</div><!-- end row -->
 								</form><!-- end comment-form -->
 							</div> <!-- end row w-100 pb-2 -->
-						</div> <!-- end comment-write 리뷰 작성 -->
-					</div><!-- end 리뷰 -->
+							
+						</div> <!-- end class="comment-write p-2", comment-write 리뷰 작성 -->
+					</div><!-- end row comment-section, 리뷰 전체 -->
 				</div>
-				</div>
+
 			</div><!-- end primary(원래 main) -->
 			
 			<!-- 사이드 영역(secondary), 모듈화 -->
 			<%@ include file="/WEB-INF/views/common/secondary.jsp"%>
 			</div><!-- end row(primary+secondary)-->
-			</div><!-- end main-container -->
+		  </div><!-- end main-container -->
 		</div><!-- end main -->
 		
 			<div class="row related-recipe border py-3 px-5">
@@ -400,7 +407,7 @@
 				<button class="col next-icon px-0"></button>
 					</div><!-- end row -->
 				</div><!-- end container -->
-			</div><!-- end 추천 레시피 -->
+			</div><!-- end row related-recipe/추천 레시피 -->
 
 		<%@ include file="/WEB-INF/views/common/bottom.jsp"%>
 	</div><!-- end #page hfeed site -->

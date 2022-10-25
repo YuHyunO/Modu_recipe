@@ -282,6 +282,14 @@ a {
     text-decoration: none;
 }
 
+@media (min-width: 992px)
+#secondary .widget {
+    padding: 0 0 0px 0px;
+    border-left: 1px dotted #ddd;
+    font-size: 14px;
+}
+
+
 /* 사이드 영역(Secondary) 관련 */
 #secondary .tagcloud a {
     padding: 5px 10px;
@@ -350,4 +358,3 @@ a {
     justify-content: center;
     align-items: center;  
 }
-
