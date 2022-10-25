@@ -92,10 +92,10 @@
 								<!-- end section-title -->
 								<div class="row">
 									<c:forEach var="recipe" items="${recipeList}">
-										<div class="col-6 col-md-3">
+										<div class="col-6 col-md-3 rounded-3" style="border-radius: 1rem!important;">
 											<div class="recipe-thumb">
-												<img src="imgs/recipe/${recipe.foodPhoto}"
-													alt="Recipe Image">
+													<img src="imgs/recipe/recipe_basic_img.png"
+														alt="Recipe Image">
 											</div>
 											<div class="recipe-desc">
 												<div class="recipe-title">
@@ -112,7 +112,8 @@
 															<img class="stars" src="imgs/stars${recipe.star}.png">
 															<span class="p-1 mt-1">${recipe.star}(500)</span>
 														</c:if>
-													</span> <span class="d-flex align-items-center"> <span
+													</span>
+													<span class="d-flex align-items-center"> <span
 														class="p-1 mt-1"> 조회 <fmt:formatNumber
 																type="number" maxFractionDigits="3"
 																value="${recipe.hits}" />

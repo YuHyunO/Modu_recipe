@@ -32,7 +32,7 @@
     margin-bottom: 1rem;
     justify-content:center;
 	text-align: center;
-	font-family: 'Montserrat', sans-serif !important;
+	font-family: 'Fasthand-Regular', sans-serif !important;
 	/* font-family: 'Fasthand-Regular', sans-serif !important; */
 	font-size:100px bolder;
 }
@@ -48,12 +48,34 @@
     justify-content:center;
 	text-align: center;
 }
+
 /* 베스트 레시피 타이틀 글씨체 변경 */
 .recipe-title a {
-	font-family: 'NotoSerifKR-Medium', sans-serif !important;
+	font-family: 'SongMyung-Regular', sans-serif !important;
 	font-size:17px;
 	width: auto;
     text-decoration: none;
+}
+
+.recipe-thumb {
+    border: #937062 solid 1px;
+    border-bottom: none;
+    box-shadow: 1px 1px 1px 1px #6d5248;
+}
+
+.recipe-desc {
+    border: #937062 solid 1px;
+    border-top: none;
+    box-shadow: 1px 1px 1px 1px #6d5248;
+    padding: 15px 10px 15px 10px;
+     height: 165px;
+    /* background-color: rgba(147, 112, 98, 0.1); */
+}
+
+@media (max-width: 1016px)
+.recipe-desc {
+    height: 200px;
+    border-radius: 2rem!important;
 }
 
 /* 쉐프 랭킹 */

@@ -6,6 +6,7 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/views/common/head.jsp"%>
+<link href="/css/common.css" rel="stylesheet">
 <link href="/css/mypage.css" rel="stylesheet">
 <script src="/js/mypage.js"></script>
 <title>모두의식탁 - 마이페이지</title>
