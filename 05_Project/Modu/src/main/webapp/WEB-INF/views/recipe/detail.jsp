@@ -85,7 +85,7 @@
 									</span>
 								</span>
 								<span>
-									<button class="btn btn-outline-success subscribe-btn me-2" data-email="${rec.recipe.MEmail}" onclick="clickSubscribe(this)">소식받기</button>
+									<button class="btn btn-outline-success subscribe-btn me-2" data-email="${rec.recipe.MEmail}" onclick="clickSubscribe(this)">친구 추가</button>
 								</span>
 							</div>
 							<!-- end recipe author -->

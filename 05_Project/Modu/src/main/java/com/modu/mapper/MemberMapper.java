@@ -17,7 +17,7 @@ public interface MemberMapper {
 	void deleteMember(String email); //회원탈퇴
 	
 	void insertFollow(@Param("email")String email, @Param("followee")String followee);
-	void deleteFollow(long id);
+	void deleteFollow(@Param("email")String email, @Param("followee")String followee);
 	
 	String selectEmailCheck(String email);
 	String selectNicknameCheck(String nickname);
@@ -48,5 +48,5 @@ public interface MemberMapper {
 	void deleteProfileImg(String email); //프로필사진만 삭제
 	
 	// 팔로워 확인
-	FollowList selectFollowerOnebyEmails(@Param("targetEmail")String targetEmail, @Param("email")String email);
+	FollowList selectFollowerOnebyEmails(@Param("email")String email, @Param("targetEmail")String targetEmail);
 }

@@ -168,7 +168,7 @@ public class RecipeController {
         long rId = Long.parseLong(id);
         
         if (email == null) {
-            map.put("error", "스크랩 기능은 로그인 후 이용할 수 있습니다.");
+            map.put("error", "스크랩 기능은 로그인 후 이용하실 수 있습니다.");
             return map;
         } else {
             msg = membershipService.scrapService(rId, email, 1);
@@ -188,7 +188,7 @@ public class RecipeController {
         long rId = Long.parseLong(id);
         
         if (email == null) {
-            map.put("error", "스크랩 기능은 로그인 후 이용할 수 있습니다.");
+            map.put("error", "스크랩 기능은 로그인 후 이용하실 수 있습니다.");
             return map;
         } else {
             msg = membershipService.scrapService(rId, email, -1);
@@ -208,13 +208,53 @@ public class RecipeController {
         String result;
         
         if (email == null) {
-            map.put("error", "팔로우 기능은 로그인 후 이용할 수 있습니다.");
+            map.put("error", "친구추가는 로그인 후 이용하실 수 있습니다.");
             return map;
         } else {
-            membershipService.followService(targetEmail, email, 1);
+            msg = membershipService.followService(targetEmail, email, 1);
             map.put("user", email);
-            map.put("msg", "test 성공");
+            map.put("msg", msg);
             return map;
         }
+    }
+    
+    @ResponseBody
+    @PostMapping("/follow/delete")
+    public HashMap<String, Object> deleteFollow(HttpServletRequest request, HttpSession session){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        String targetEmail = request.getParameter("targetEmail");
+        String email = (String)session.getAttribute("email");
+        String msg;
+        String result;
+        
+        if (email == null) {
+            map.put("error", "친구추가는 로그인 후 이용하실 수 있습니다.");
+            return map;
+        } else {
+            msg = membershipService.followService(targetEmail, email, -1);
+            map.put("user", email);
+            map.put("msg", msg);
+            return map;
+        }
+    }
+    
+    @ResponseBody
+    @PostMapping("/follow/check")
+    public HashMap<String, Object> checkFollow(HttpServletRequest request, HttpSession session){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        String targetEmail = request.getParameter("targetEmail");
+        String email = (String)session.getAttribute("email");
+        String msg;
+        String result;
+        
+        if (email != null) {
+            msg = membershipService.followService(targetEmail, email, 0);
+            map.put("user", email);
+            map.put("state", msg); //팔로우 서비스에서 친구이면 true 아니면 false 리턴
+        } else {
+            msg = "사용자가 로그인 중이지 않음";
+            map.put("state", "false");
+        }
+        return map;
     }
 }
