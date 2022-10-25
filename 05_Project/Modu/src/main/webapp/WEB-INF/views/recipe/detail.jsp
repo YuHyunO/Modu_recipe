@@ -5,18 +5,16 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/views/common/head.jsp"%>
-<!-- 공통 부분 END -->
 <link href="/css/recipe-detail.css" rel="stylesheet">
 <script src="/js/recipe-detail.js"></script>
 <script src="/js/recipe-detailSub.js"></script>
-
+<link href="/css/common.css" rel="stylesheet">
 <title>모두의 식탁 - 레시피</title>
 </head>
 <body>
 	<div id="page" class="hfeed site">
 		<!-- start page wrapper -->
 		<%@ include file="/WEB-INF/views/common/menu.jsp"%>
-
 		<div class="head-title py-4 m-0">
 			<div class="container">
 				<p class="page-title m-0 fs-2">RECIPE</p>
@@ -24,8 +22,12 @@
 			<!-- end container -->
 		</div>
 		<!-- end head-title -->
-
-		<div class="main">
+		<div class="main d-flex justify-content-center">
+			<div class="main-container row d-flex justify-content-center m-0 py-4">
+				
+	<div class="row">
+		<div id="primary" class="content-area col-md-9">
+		
 			<!-- 사진 팝업 -->
 			<div id="viewPicDivModal" class="modal" role="dialog"
 				aria-hidden="true" style="display: none;">
@@ -42,9 +44,8 @@
 			</div>
 			<!-- end 사진 팝업 -->
 			<div class="row py-3 px-5">
-				<div class="container col-md-2">
-					<input class="recipe-id" hidden="true" value="${id}">
-				</div>
+				<!-- <div class="container col-md-2"></div> -->
+				<input class="recipe-id" hidden="true" value="${id}">
 				<div class="container col-sm-10 col-md-8 col-lg-6 col-xl-5">
 					<div class="recipe-content m-0" id="primary">
 						<div class="row py-3">
@@ -285,74 +286,21 @@
 											<button id="insertReply"
 												class="btn w-100 h-100 border comment-submit" type="submit">등록</button>
 										</div>
-									</div>
-									<!-- end row -->
-								</form>
-								<!-- end comment-form -->
-							</div> 
-							<!-- end row pb-2 -->
-						</div>
-						<!-- end 리뷰 작성 -->
-					</div>
-					<!-- end 리뷰 -->
+									</div><!-- end row -->
+								</form><!-- end comment-form -->
+							</div> <!-- end row w-100 pb-2 -->
+						</div> <!-- end comment-write 리뷰 작성 -->
+					</div><!-- end 리뷰 -->
 				</div>
-				<!-- end 메인 컨테이너 -->
-				<div class="container col-md-2 d-flex justify-content-center" id="secondary">
-					<div class="widget post-type-widget px-3 m-0">
-						<div class="widget-title-outer">
-							<h3 class="widget-title pb-2 mb-0">최근 본 레시피</h3>
-						</div>
-						<ul>
-							<li class="d-flex flex-column"><span
-								class="post-category pb-1 m-0"> <a href="#">Uncategorized</a>
-							</span>
-								<figure class="post-thumbnail w-100 h-100">
-									<a href="#"><img class="rounded-3" src="/imgs/content/thumb-post-01.png"
-										alt=""></a>
-								</figure>
-								<h2 class="post-title m-0">
-									<a href="#">Lorem Ipsum Dolor Sit Amet, Consetetuer
-										Adipiscing Elit</a>
-								</h2></li>
-							<li class="d-flex flex-column"><span
-								class="post-category pb-1 m-0"> <a href="#">Cooking
-										Tips</a>
-							</span>
-								<figure class="post-thumbnail w-100 h-100">
-									<a href="#"><img class="rounded-3" src="/imgs/content/thumb-post-02.png"
-										alt=""></a>
-								</figure>
-								<h2 class="post-title m-0">
-									<a href="#">Euismod Tincidunt ut Laoreet Dolore Magna
-										Aliquam</a>
-								</h2></li>
-							<li class="d-flex flex-column"><span
-								class="post-category pb-1 m-0"> <a href="#">Kitchen</a>
-							</span>
-								<figure class="post-thumbnail w-100 h-100">
-									<a href="#"><img class="rounded-3" src="/imgs/content/thumb-post-03.png"
-										alt=""></a>
-								</figure>
-								<h2 class="post-title m-0">
-									<a href="#">Ullamcorper Suscipit Lobortis Nisl ut Aliquip
-										Commodo Consequat</a>
-								</h2></li>
-							<li class="d-flex flex-column"><span
-								class="post-category pb-1 m-0"> <a href="#">Vegetable</a>
-							</span>
-								<figure class="post-thumbnail w-100 h-100">
-									<a href="#"><img class="rounded-3" src="/imgs/content/thumb-post-04.png"
-										alt=""></a>
-								</figure>
-								<h2 class="post-title m-0">
-									<a href="#">Quod Mazim Placerat Facer Possim Assum</a>
-								</h2></li>
-						</ul>
-					</div>
-					<!-- end widget -->
 				</div>
-				<!-- end secondary -->
-			</div>
+			</div><!-- end primary(원래 main) -->
+			
+			<!-- 사이드 영역(secondary), 모듈화 -->
+			<%@ include file="/WEB-INF/views/common/secondary.jsp"%>
+			</div><!-- end row(primary+secondary)-->
+			</div><!-- end main-container -->
+		</div><!-- end main -->
+		
 			<div class="row related-recipe border py-3 px-5">
 				<div class="container">
 					<div class="row justify-content-center">
@@ -402,8 +350,7 @@
 											<span class="p-1 mt-1">${li.star}</span>
 										</span>
 									</div>
-								</div>
-								<!-- end recipe-desc -->
+								</div><!-- end recipe-desc -->
 							</div><!-- end col -->
 							<div class="col-6 col-md-3">
 								<div class="recipe-thumb">
@@ -446,23 +393,17 @@
 											<span class="p-1 mt-1">${li.star}</span>
 										</span>
 									</div>
-								</div>
-								<!-- end recipe-desc -->
+								</div><!-- end recipe-desc -->
 							</div><!-- end col -->
-						</div>
-						<!-- end list -->
-						<button class="col next-icon px-0"></button>
-					</div>
-					<!-- end row -->
-				</div>
-				<!-- end container -->
-			</div>
-			<!-- end 추천 레시피 -->
-		</div>
-		<!-- end main -->
+						</div><!-- end list -->
+						
+				<button class="col next-icon px-0"></button>
+					</div><!-- end row -->
+				</div><!-- end container -->
+			</div><!-- end 추천 레시피 -->
+
 		<%@ include file="/WEB-INF/views/common/bottom.jsp"%>
-	</div>
-	<!-- end #page hfeed site -->
+	</div><!-- end #page hfeed site -->
 
 </body>
 </html>
