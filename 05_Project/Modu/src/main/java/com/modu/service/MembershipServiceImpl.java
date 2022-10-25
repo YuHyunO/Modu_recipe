@@ -128,9 +128,27 @@ public class MembershipServiceImpl implements MembershipService {
     public String followService(String targetEmail, String email, int mode) {
         String msg;
         if (mode == 1) {
-            FollowList result = recipeFindingService.getFollower(targetEmail, email);
+            FollowList result = recipeFindingService.getFollower(email, targetEmail);
+            log.info(targetEmail + " " +email);
             log.info("#followServiceImpl: " + result);
+            if (result == null) { // 현재 해당 대상을 팔로우하고 있지 않을 경우(데이터가 없을 경우)
+                log.info("#followServiceImpl 인서트 작동");
+                memberMapper.insertFollow(email, targetEmail);
+                msg = "친구 추가에 성공 하였습니다.";
+            } else {
+                msg = "이미 친구목록에 있습니다.";
+            }
+        } else if (mode == -1) {
+            memberMapper.deleteFollow(email, targetEmail);
+            msg = "친구 목록에서 삭제 하였습니다.";
+        } else {
+            FollowList result = recipeFindingService.getFollower(email, targetEmail);
+            if (result == null) { // 현재 해당 대상을 팔로우하고 있지 않을 경우(데이터가 없을 경우)
+                msg = "false";
+            } else { // 현대 해당 대상을 팔로우하고 있을 경우
+                msg = "true";
+            }
         }
-        return null;
+        return msg;
     }
 }

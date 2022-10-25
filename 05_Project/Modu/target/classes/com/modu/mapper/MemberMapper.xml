@@ -64,14 +64,14 @@
 	</select>
 	
 	<!-- 마이페이지 탭5 - 친구관리 -->
-	<insert id="insertFollowing">
+	<insert id="insertFollow">
 		insert into FOLLOW values(FOLLOW_SEQ.nextval,
 									#{email},
 									#{followee},
 									SYSDATE)
 	</insert>
-	<delete id="deleteFollowing" parameterType="long">
-		delete from FOLLOW where ID=#{id}
+	<delete id="deleteFollow" parameterType="String">
+		delete follow where M_EMAIL=#{email} and FOLLOWEE=#{followee}
 	</delete>
 	<delete id="deleteFollower" parameterType="long">
 		delete from FOLLOW where ID=#{id}
@@ -165,6 +165,6 @@
 		where EMAIL = #{email}
 	</update>
 	<select id="selectFollowerOnebyEmails" parameterType="String" resultType="FollowList">
-		select * from FOLLOW where M_EMAIL=#{targetEmail} and FOLLOWEE=#{email}
+		select * from FOLLOW where M_EMAIL=#{email} and FOLLOWEE=#{targetEmail}
 	</select>
 </mapper>

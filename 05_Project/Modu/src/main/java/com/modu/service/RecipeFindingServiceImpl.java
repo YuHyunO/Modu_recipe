@@ -2,6 +2,9 @@ package com.modu.service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -107,9 +110,19 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
     }
 
     @Override
+    public List<RecipeList> findRecentRecipes(HttpServletRequest request){
+        String[] cookieId = request.getParameterValues("id");
+        List<RecipeList> recipeList = new ArrayList<RecipeList>();
+        
+        for(int i=0; i<cookieId.length; i++) {
+            long id = Long.parseLong(cookieId[i]);
+            recipeList.add(recipeMapper.selectRecipeSummary(id));
+        }                       
+        return recipeList;
+    }
+
     public FollowList getFollower(String targetEmail, String email) {
         followList = memberMapper.selectFollowerOnebyEmails(targetEmail, email);
         return followList;
     }
-
 }

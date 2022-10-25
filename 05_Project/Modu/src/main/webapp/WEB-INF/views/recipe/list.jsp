@@ -113,11 +113,11 @@
 						<c:forEach items="${data.recipeList}" var="li">
 							<div id="recipe-item" class="col-6 col-md-3">
 								<div class="recipe-thumb">
-									<img src="/imgs/content/thumb-1.png" alt="/imgs/content/thumb-1.png">
+									<img src="${li.foodPhoto}" alt="/imgs/content/thumb-1.png">
 								</div>
 								<div class="recipe-desc">
 									<h2 class="recipe-title">
-										<a href="${li.id}">${li.title}</a>
+										<a href="javascript:void(0)" onclick="saveCookie(${li.id})">${li.title}</a>
 									</h2>
 									<figure class="profile">
 						
