@@ -5,10 +5,10 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/views/common/head.jsp"%>
+<link href="/css/common.css" rel="stylesheet">
 <link href="/css/recipe-detail.css" rel="stylesheet">
 <script src="/js/recipe-detail.js"></script>
 <script src="/js/recipe-detailSub.js"></script>
-<link href="/css/common.css" rel="stylesheet">
 <title>모두의 식탁 - 레시피</title>
 </head>
 <body>

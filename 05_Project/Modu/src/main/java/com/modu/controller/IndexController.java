@@ -1,15 +1,10 @@
 package com.modu.controller;
 
-import java.io.IOException;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.modu.domain.member.Member;
@@ -40,9 +35,12 @@ public class IndexController {
 		
 		// 랭킹 TOP 6 멤버 확인
 		for (Member member: rankList) {
-			//log.info("#IndexController: " + member);
+			log.info("#IndexController: " + member);
 		}
-		
+        // 베스트 레시피(8개) 확인
+        for (RecipeList recipeList1: recipeList) {
+            log.info("#IndexController: " + recipeList1);
+        }
 		ModelAndView mv = new ModelAndView("index", "rankList", rankList);
 		mv.addObject("recipeList", recipeList);
 		return mv;
