@@ -97,7 +97,7 @@ public class RecipeController {
         return map;
     }
     
-    @GetMapping("/read")
+    @GetMapping("/udate")
     public ModelAndView RecipeRead(long id) {
         RecipeDetail recipeDetail = recipeFindingService.RecipeRead(id);
         ModelAndView mv = new ModelAndView();
@@ -105,6 +105,62 @@ public class RecipeController {
         mv.addObject("rs", recipeDetail);
         mv.addObject("id", id);
         return mv;
+    }
+    /* Mypage 내가 작성한 레시피 등록되면 연동시킬 session을 이용한 read
+    @GetMapping("/update")
+    public ModelAndView RecipeRead(HttpSession session) {//
+        String ids = (String)session.getAttribute("id");
+        long id = Integer.parseInt(ids);
+        long rId = id;
+        RecipeDetail recipeDetail = recipeFindingService.RecipeRead(id);
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("recipe/update");
+        mv.addObject("rs", recipeDetail);
+        mv.addObject("id", id);
+        return mv;
+    }
+    */
+  
+//  @PostMapping("/update")
+//  public String  updateRecipe(RecipeDetail recipeDetail,
+//          HttpServletRequest request,
+//            HttpSession session,
+//            ArrayList<MultipartFile> files,
+//            ArrayList<String> mainItems,
+//            ArrayList<String> subItems,
+//            ArrayList<String> directions,
+//            ArrayList<String> tags) {
+//      recipeRegisterService.updateRecipe(recipeDetail, request, 
+//              session, files, mainItems,subItems,directions, tags);
+//      return "redirect:detail";
+//  }
+//    
+//    @ResponseBody
+//    @PostMapping("/update")
+//    public String updateRecipe(@RequestParam long id,
+//            @RequestParam HttpServletRequest request,
+//            @RequestParam HttpSession session,
+//            @RequestParam ArrayList<MultipartFile> files, 
+//            @RequestParam ArrayList<String> mainItems,
+//            @RequestParam ArrayList<String> subItems,
+//            @RequestParam ArrayList<String> directions,
+//            @RequestParam ArrayList<String> tags) {
+//        Recipe recipe = new Recipe();
+//        Ingredient ingredient = new Ingredient();
+//        Direction direction = new Direction();
+//        RecipeTag recipeTag = new RecipeTag();
+//        recipeRegisterService.updateRecipe(id,request,session,files,mainItems,subItems,directions,tags);
+//       return "redirect:detail";
+//    }
+    
+    @GetMapping("/delete")
+    public String deleteRecipe(long id, HttpServletRequest request) { //
+        HttpSession session = request.getSession();
+        String getId = request.getParameter("id");
+        id = Integer.parseInt(getId);
+        log.info("#####99: " + id);
+        recipeRegisterService.recipeDelete(id);
+        return "redirect:/";
     }
     
     @GetMapping("/detail")
