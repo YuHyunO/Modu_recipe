@@ -1,30 +1,23 @@
-/* ������ �ڽ� */
 .profile-details {
-	background-color: rgba(147, 112, 98, 0.2);
-	color: #666;
-	text-align: center;
-	padding: 20px
-}
-
-/*친구 프로필 사진 크기 조절*/
-.site-content img {
-    max-width: 70%;
-}
-
-/* 
-	.profile-details {
 	    background-color: rgba(147, 112, 98, 0.2);
 	    color: #666;
 	    text-align:center;  
 	    justify-content: center;
 	    align-items: center;  
-	    padding: 0px;
+	    padding: 20px;
 	    border-radius: 5rem!important;
-	    width: 600px;
-} 
-*/
+	    width: 100%;
+}
 
-/* ���� ���� �̹��� */
+.site-content img {
+    max-width: 70%;
+}
+
+a {
+	width: auto;
+    text-decoration: none;
+}
+
 #mypage_profileimg, #mypage_defaultimg {
 	max-width: 200px;
 	max-height: 200px;
@@ -36,7 +29,6 @@
 	/* background:gray; */
 }
 
-/* �� ���� */
 .nav-link {
 	color: #241c19;
 }
@@ -45,7 +37,6 @@
 	color: #937062;
 }
 
-/* ����� ������ ������ ��õ ���� box */
 .backbox {
 	background-color: rgba(147, 112, 98, 0.2);
 	padding: 5px;
@@ -59,7 +50,6 @@
 	padding: 10px
 }
 
-/* ������ �˻� ��ư */
 .gold-btn {
 	border-radius: 5px;
 	border: none;
@@ -71,7 +61,6 @@
 	background-color: rgb(170, 130, 110) !important;
 }
 
-/* üũ�ڽ� */
 .check-div {
 	min-width: 125px;
 	max-width: 125px;
@@ -87,7 +76,6 @@
 	}
 }
 
-/* �� �޴� */
 .tab-menu {
 	font-size: 1rem !important;
 }
@@ -102,7 +90,6 @@
 	}
 }
 
-/* ���� ������ �̹��� */
 .category-pic {
 	border-radius: 10px !important;
 	max-height: 230px;
@@ -114,7 +101,6 @@
 	}
 }
 
-/* ���� ��ŷ */
 .chef-pic {
 	border-radius: 50%;
 	width: 70%;
@@ -132,7 +118,7 @@
 }
 
 .banner {
-	width: 100%;
+	width: 90%;
 }
 
 #secondary .tagcloud a {
@@ -143,7 +129,6 @@
 	background-color: rgb(170, 130, 110) !important;
 }
 
-/* ��Ÿ */
 @media ( max-width :454px) {
 	.main * {
 		font-size: 0.8rem;
@@ -190,7 +175,6 @@
 	box-shadow: 0 0 0 .2rem rgba(147, 112, 98, 0.25);
 }
 
- /*��5 - ģ������ ��ư*/
 .handlemyfriendBtn {
 	font-size: 13px;
 	margin: auto 0;
@@ -228,7 +212,6 @@
 	display: flex;
 }
 
-/* ��5 ģ������- ģ���ڽ� ��� �ֱ�, ������ ����*/
 .team-col {
 	text-align: center;
 	justify-content: center;
