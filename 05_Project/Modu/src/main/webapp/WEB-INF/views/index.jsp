@@ -11,22 +11,7 @@
 <title>모두의 식탁</title>
 </head>
 <style type="text/css">
-#lock_ad {
-	width: 100%;
-}
 
-.banner {
-	width: 90%;
-}
-
-#navbarSupportedContent a {
-	color: #937062 !important;
-	width: 70px;
-	font-weight: 700;
-	font-size: 15px;
-	text-transform: uppercase;
-	letter-spacing: 1px;
-}
 </style>
 <body>
 	<div id="page" class="hfeed site">
@@ -65,7 +50,7 @@
 											</div>
 											<div class="recipe-desc">
 												<div class="recipe-title">
-													<a href="/recipe/detail/${recipe.id}">${recipe.title}</a>
+													<a href="/recipe/detail?no=${recipe.id}">${recipe.title}</a>
 												</div>
 												<figure class="profile">
 													<img class="profile-img"

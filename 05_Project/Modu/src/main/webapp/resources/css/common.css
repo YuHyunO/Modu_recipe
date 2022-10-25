@@ -47,7 +47,7 @@
 	height: 25px;
 }
 
-/* ±Ý»ö Å×µÎ¸® */
+/* ï¿½Ý»ï¿½ ï¿½×µÎ¸ï¿½ */
 .gold-top {
 	border-top: 1px solid rgb(147, 112, 98) !important;
 }
@@ -168,7 +168,7 @@
 	}
 }
 
-/* ·¹½ÃÇÇ Ä«µå ºÎºÐ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ ï¿½Îºï¿½ */
 .recipe-title {
 	height: 65px;
 	border: none;
@@ -236,7 +236,7 @@
 	}
 }
 
-/* ÆäÀÌÁö³×ÀÌ¼Ç */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ */
 .page-link {
 	color: rgb(150, 150, 150) !important;
 	width: 35px;
@@ -254,12 +254,12 @@
 	color: black !important;
 }
 
-/* Æ÷ÀÎÆ® Ä¿¼­ */
+/* ï¿½ï¿½ï¿½ï¿½Æ® Ä¿ï¿½ï¿½ */
 .pointer {
 	cursor: pointer !important;
 }
 
-/* ÀÌ¹ÌÁö 100% */
+/* ï¿½Ì¹ï¿½ï¿½ï¿½ 100% */
 .ratio-100 {
 	position: relative !important;
     width: 100% !important;
@@ -271,7 +271,7 @@
     left: 0;
 }
 
-/* ÃÖ±Ù º» °Ô½Ã¹° */
+/* ï¿½Ö±ï¿½ ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ */
 .widget-title {
 	font-size: 1rem !important;
 	font-weight: 600 !important;
@@ -290,7 +290,7 @@ a {
 }
 
 
-/* »çÀÌµå ¿µ¿ª(Secondary) °ü·Ã */
+/* ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½(Secondary) ï¿½ï¿½ï¿½ï¿½ */
 #secondary .tagcloud a {
     padding: 5px 10px;
     /* background-color: #e33d26; */
@@ -357,4 +357,13 @@ a {
     text-align:center;  
     justify-content: center;
     align-items: center;  
+}
+
+#navbarSupportedContent a {
+	color: #937062 !important;
+	width: 70px;
+	font-weight: 700;
+	font-size: 15px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
 }
