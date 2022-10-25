@@ -111,17 +111,15 @@
 	<select id="selectRecipe" parameterType="long" resultType="Recipe">
 		select * from RECIPE where ID=#{id}
 	</select>
-	<!-- Read 출력문 순서대로 Data 가져오기 위한 Order by id 추가 -->
 	<select id="selectIngredient" parameterType="long" resultType="Ingredient">
-		select * from INGREDIENT where R_ID=#{rId} order by id
+		select * from INGREDIENT where R_ID=#{rId}
 	</select>
 	<select id="selectDirection" parameterType="long" resultType="Direction">
-		select * from DIRECTION where R_ID=#{rId} order by id
+		select * from DIRECTION where R_ID=#{rId}
 	</select>
 	<select id="selectRecipeTag" parameterType="long" resultType="RecipeTag">
-		select * from RECIPE_TAG where R_ID=#{rId} order by id
+		select * from RECIPE_TAG where R_ID=#{rId}
 	</select>
-	<!-- Read 출력문 순서대로 Data 가져오기 위한 Order by id 추가  끝--> 
 	<select id="selectRecipeListBy" resultType="RecipeList">
 		select * from (select ROWNUM list,
 		                      ID,
@@ -325,27 +323,7 @@
 				              M_EMAIL,
 				              STAR,
 				              STARS,
-				              HITS from (select DISTINCT(r.ID) ID,
-										        r.FOOD_PHOTO, 
-										        r.TITLE,
-										        r.FOOD,
-										        r.PROFILE_IMG,
-										        r.M_NICKNAME,
-										        r.M_EMAIL,
-										        r.STAR,
-										        r.STARS,
-										        r.HITS from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID where ingr.INGREDIENT like '%재료1%'
-				                         intersect
-				                         select DISTINCT(r.ID) ID,
-										        r.FOOD_PHOTO, 
-										        r.TITLE,
-										        r.FOOD,
-										        r.PROFILE_IMG,
-										        r.M_NICKNAME,
-										        r.M_EMAIL,
-										        r.STAR,
-										        r.STARS,
-										        r.HITS from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID where ingr.INGREDIENT like '%재료2%')
+				              HITS from (${query}))
 		where list BETWEEN #{beginRow} AND #{endRow}         		              		            
 	</select>
 	<select id="selectRecipeListOfMember" resultType="RecipeList">

@@ -59,7 +59,7 @@
 								<div class="detail-desc d-flex flex-column">
 									<div class="recipe-rating m-0 p-1 d-flex align-items-center">
 										<img class="star-rate-img me-2" src="/imgs/stars3.png" alt="stars">
-										<span>${rec.recipe.star}</span> <span class="ps-1">(4)</span>
+										<span>${rec.recipe.star}</span> <span class="ps-1">(${replyCount})</span>
 									</div>
 									<div class="fs-4 py-3 m-0">${rec.recipe.title}</div>
 									<div class="m-0">${rec.recipe.info}</div>
@@ -85,22 +85,31 @@
 									</span>
 								</span>
 								<span>
-									<button class="btn btn-outline-success subscribe-btn me-2" onclick="clickSubscribe(this)">소식받기</button>
+									<button class="btn btn-outline-success subscribe-btn me-2" data-email="${rec.recipe.MEmail}" onclick="clickSubscribe(this)">친구 추가</button>
 								</span>
 							</div>
 							<!-- end recipe author -->
 							<div class="recipe-option d-flex justify-content-end col">
 								<div class="d-flex flex-column text-center">
-									<button class="recipe-scrap" onclick="clickScrap(this)">
-									</button>
+									<c:choose>
+										<c:when test="${scrapState eq true}">
+											<button class="recipe-scrap-clicked" onclick="clickScrap(this)">
+											</button>
+										</c:when>
+										<c:when test="${scrapState eq false}">
+											<button class="recipe-scrap" onclick="clickScrap(this)">
+											</button>
+										</c:when>
+									</c:choose> 
 									<span>스크랩</span>
 								</div>
 								<div class="d-flex flex-column text-center">
-									<button class="recipe-share"></button>
+									<input type="hidden" value="http://modu-table/recipe/detail/${id}" id="recipe-link"/>
+									<button class="recipe-share" onclick="shareLink(this)"></button>
 									<span>공유</span>
 								</div>
 								<div class="d-flex flex-column text-center">
-									<button class="recipe-reply-top"></button>
+									<button class="recipe-reply-top" onclick="moveScroll(this)"></button>
 									<span>댓글</span>
 								</div>
 							</div>
@@ -178,7 +187,7 @@
 						class="row comment-section border-top py-3 justify-content-center">
 						<div class="row comments pt-3">
 							<h2 class="comments-title text-start mb-2">
-								리뷰<span>(4)</span>
+								리뷰<span>(${replyCount})</span>
 							</h2>
 							<ol class="comment-list" id="comment-0-0">
 								<c:forEach items="${rep}" var="rep">

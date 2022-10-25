@@ -1,3 +1,6 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=cf32888c5b4dc99f2ecd65234b8d8b66add6a79c
 eclipse.preferences.version=1
 encoding//src/main/java/com/modu/controller/FreeBoardController.java=MS949
 encoding//src/main/java/com/modu/controller/IndexController.java=MS949
@@ -16,6 +19,7 @@ encoding//src/main/webapp/WEB-INF/views/freeboard/detail.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/freeboard/list.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/freeboard/write.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/index.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/member/mypage.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/member/register.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/recipe/write.jsp=UTF-8
+encoding//src/main/webapp/resources/css=MS949
+encoding/<project>=MS949

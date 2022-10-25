@@ -1,4 +1,5 @@
 let mode;
+let state;
 let currentPage = 1;
 
 function setPage(e){
@@ -8,6 +9,7 @@ function setPage(e){
 	if(id =="pre" || id == "next"){
 		currentPage = id;
 	}
+	
 	setUrl(mode);
 }
 
@@ -60,10 +62,12 @@ function setData(url, mode){
 			   		currentPage: currentPage }
    		   break;
    case 2: data = { currentPage: currentPage,
-		   			type: getTypeOption()} 
+		   			type: getTypeOption() } 
    		   break;
    case 3: data = { currentPage: currentPage }
    		   break;
+   case 5: data = { currentPage: currentPage,
+		   			state: state }
    }
    dataAgent(url, data, mode);
 }
@@ -173,6 +177,7 @@ function displayBookmark(response){
 	let totalPage = response.totalPage; 	
 	let html = "";
 	console.log("##mode: "+mode);
+	console.log(response.recipeList);
 	for(let item of recipeList){
 		html += '<div id="recipe-item" class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
@@ -196,8 +201,7 @@ function displayBookmark(response){
 		html += '</span>';
 		html += '</div>';
 		html += '</div>';
-		html += '</div>';
-				
+		html += '</div>';				
 	}
 	$("#recipe-list-3").html(html);
 	setPagingArea();
@@ -208,8 +212,37 @@ function displayMyPost(response){
 	console.log("4");
 }
 
-function displayFollow(response){	
-	console.log("5");
+function displayFollow(response){ 
+	let followList = response.followList;
+	let currentPage = response.currentPage;
+	let totalPage = response.totalPage;
+	let html = "";	
+	console.log("###"+mode);
+	for(let item of followList){
+		//console.log("##item:"+item); //##item:[object Object]
+		html += '<div class="col-md-3">';
+		html += '<div class="team-col">';
+		html += '<input type="hidden" value="'+item.id+'">';
+		html += '<figure>';
+		html += '<img class="friendProfileimg" src="/pics/profile/'+item.profileImg+'" alt="파일없음"> ';
+		html += '</figure>';
+		html += '<p class="team-name">'+item.nickname+'</p>';
+		html += '<large class="team-tag">'+item.email+'</large>';
+		html += '<small class="team-tag">'+item.followDate+'부터 팔로잉</small>';
+		html += '<div class="handlemyfriend">';
+		html += '<button class="handlemyfriendBtn" onclick="../gofriendrecipe?id='+item.id+'">레시피 보기</button>&nbsp;';
+		html += '<button class="handlemyfriendBtn" onclick="../deletefriend?id='+item.id+'">구독 끊기</button>';
+		html += '</div>';
+		html += '</div>';
+		html += '</div>';
+	}
+	if(state == 1){		
+		$("#following-list").html(html);
+	}else if(state == 2){
+		$("#follower-list").html(html);
+	}
+	setPagingArea();
+	paginate(currentPage, totalPage);
 }
 
 function setPagingArea(){
@@ -385,9 +418,18 @@ function getTypeOption(){
 	return type;
 }
 
+function getState(e){
+	state = $(e).val();
+	mode = 5;
+	setUrl(mode);
+}
+
+function setFollowPageId(state){
+	
+}
+
 function activePage(e){
 	$('.page-number').removeClass('active');
 	$(e).addClass('active')
 }
-
 

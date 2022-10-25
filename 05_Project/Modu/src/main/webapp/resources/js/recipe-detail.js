@@ -1,4 +1,4 @@
-function clickSubscribe(e){
+/*function clickSubscribe(e){
     //let request = new XMLHttpRequest();
     if ($(e).hasClass('subscribe-btn')){
         $(e).removeClass('subscribe-btn');
@@ -13,7 +13,7 @@ function clickSubscribe(e){
     }
 }
 
-/*function clickScrap(e){
+function clickScrap(e){
     //let request = new XMLHttpRequest();
     if ($(e).hasClass('recipe-scrap')){
         $(e).removeClass('recipe-scrap');
