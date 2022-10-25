@@ -143,7 +143,7 @@ function addReply(e){
         + star_point + '.png" alt="stars" style="width:80px; height:15px; margin-bottom:5px;">';
     }
     let htmlMain = 
-    '<li class="comment" id="comment-135000-0001"><!-- start comment -->\
+    '<li class="comment" id="comment-135000-0001">\
         <div class="comment-body">\
             <div class="comment-meta d-flex justify-content-between align-items-center">\
                 <span class="d-flex align-items-center">\
@@ -155,22 +155,19 @@ function addReply(e){
                     <span>' + starHtml + '</span>\
                 </span>\
                 <span class="reply-btn px-2">\
-                <span class="reply-btn px-2">\
-                    <button class="reply-' + commentID + ' reply-btn" onclick="">수정</a>\
                     <button class="reply-' + commentID + ' reply-btn" onclick="">삭제</a>\
                     <button class="reply-' + commentID + ' reply-btn" onclick="addReplyForm(this)">답글</a>\
-            </span>\
                 </span>\
-            </div><!-- end comment-meta -->\
+            </div>\
             <div class="comment-content d-flex">\
                 <p class="p-2 m-0 col-9">\
                     '+ reviewText + '</p>\
                 <figure class="comment-image">\
                     <img class="rounded-3" src="/imgs/content/dessert-l.png" alt="comment-image">\
-                </figure><!-- end comment-author vcard -->\
-            </div><!-- end comment-content -->\
-        </div><!-- end comment-body -->\
-    </li><!-- end li -->\
+                </figure>\
+            </div>\
+        </div>\
+    </li>\
     <ol class="re-comment px-0" id="recomment-' + commentID + '"></ol>';
 
     let htmlSub = 
@@ -274,101 +271,123 @@ $(function(){
 	});
 });
 
-$(document).ready(function(){
-	  let cookie = getCookie("recipe");
-	  let id = { id: cookie.split(",") }	 
-	  $.ajax({
-		 url: "/recipe/recent-recipe",
-		 type: "GET",
-		 data: id,
-		 dataType: "JSON",
-		 traditional: true,
-		 success: function(response){
-
-		 },
-		 error: function(error){
-			 console.log("X");
-		 }
-	  });
-})
-
-function getCookie(name) {
-	  let matches = document.cookie.match(new RegExp(
-	    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-	  ));
-	  return matches ? decodeURIComponent(matches[1]) : undefined;
+let mode;
+function setUrl(e){
+	let val = $(e).val();
+	let url;
+	switch(val){
+	case "1": url = "/recipe/recipe-reply";
+			mode = 1; break;
+	case "2": url = "/recipe/recipe-nested-reply";
+		 	mode = 2;
+	}
+	setData(e, url);
 }
 
-/*
- -> 파일drag&drop/미완,사진경로변경예정
-$(function(e){
-    let fileList = [];
-    $('.comment-file').on("dragenter", function(e){
-        e.preventDefault();
-        e.stopPropagation();
-    }).on("dragover", function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        $(e).css("border-color", "#FFD8D8");
-    }).on("dragleave", function(e){
-        e.preventDefault();
-        e.stopPropagation();
-        $(e).css("border-color", "#FFF");
-    }).on("drop", function(e){
-        e.preventDefault();
-        let files = e.originalEvent.dataTransfer.files;
-        console.log(files);
-    })
-});
-
-*/
-/* 
--> 더보기 (숨기기)/미완,프론트단에서처리X
-function showMore(e){
-	console.log("e: "+ e);
-	let comment = $('.comment');
-	let totalComment = comment.length;
-	console.log(totalComment);
+let id;
+function setData(e, url){
+	let data;
+	id = $(e).attr("id");
 	
-	//console.log(comment)
-	//console.log($('.comment').attr('class'));	
-	//console.log(comment_array);
-
-		if(comment.attr('class') === 'comment'){	 
-			comment.attr('class', 'commentShow');
-		}			
+	switch(mode){
+	case 1: data = {rId: id};
+			  break;
+	case 2: data = {rrId: id};		 	 
+	}
+	
+	dataAgent(url, data);
 }
-/* 
--> 대댓글/미완 
-$(function(){
-	$("#insertNestedReply").on("click", function(){
-		let reply =  $("#contentsRreply").val()
-		let mainForm = $('#reply-form-0-0')
-		let info = mainForm.serializeArray();		
-		alert("reply"+reply);
-		$.ajax({
-			url: "../recipe/insert.do", 
-			type: "POST", 
-			data: info,
-			dataType:"text",
-			success: function(data){
-				if(!data){
-					 alert("존재하지 않는 name");
-					 return false;
-				 }
-				alert("#성공!"+data);
-			},
-			error: function(error){
-				alert("err"+error);
-			}
-		
-		});
+
+function getData(e){
+	id = e;
+	mode = 4;
+}
+
+function dataAgent(url, data){
+	$.ajax({
+		url: url,
+		type: "GET",
+		data: data,
+		dataType: "JSON",
+		tranditional: true,
+		success: function(response){
+			switch(mode){
+			case 1: displayMoreReply(response);
+					break;
+			case 2: displayMoreNestedReply(response);	 	 
+			}						
+		},
+		error: function(error){
+			console.log("X");
+		}
 	});
-});
+}
 
-*/
+function displayMoreReply(response){
+	let html = '';
+	console.log(response.length);
+	for(let item of response){
+		html += '<li class="comment">';
+		html += '<div class="comment-body">';
+		html += '<div class="comment-meta d-flex justify-content-between align-items-center">';
+		html += '<span class="d-flex align-items-center">';
+		html += '<figure class="comment-author">';
+		html += '<img src="/imgs/content/'+item.profileImg+'" alt="작성자">';
+		html += '</figure><b class="fn px-2">'+item.mNickname+'</b>';
+		html += '<span class="star-rate-block">';
+		html += '<span class="px-2">'+item.replyDate+'</span>';	
+		html += '<img class="star-rate-img2" src="/imgs/stars4.png" alt="stars" style="width: 80px; height: 15px; margin-bottom: 5px;">';	
+		html += '</span>';
+		html += '</span>';
+		html += '<div>';
+		html += '<button class="reply-135000-0001 reply-btn" onclick="getDate('+item.id+')">삭제</a>';
+		html += '<button class="reply-135000-0001 reply-btn" onclick="addReplyForm(this)">답글</a>';
+		html += '</div>';
+		html += '</div>';
+		html += '<div class="comment-content d-flex">';
+		html += '<p class="p-2 m-0 col-9">'+item.reply+'</p>';
+		html += '<figure class="comment-image">';
+		html += '<img class="rounded-3" src="/imgs/content/dessert-l.png" alt="comment-image">';
+		html += '</figure>';
+		html += '</div>';
+		html += '</div> ';
+		html += '</li>';
+		
+		$("#comment-area").append(html);				
+	}
 
+}
 
+function displayMoreNestedReply(response){
+	let html = '';
+	console.log(response.length);
+	for(let item of response){
+		html += '<li class="comment row">';
+		html += '<div class="col" style="max-width: 40px;">';
+		html += '<img src="/imgs/reply-arrow.png" alt="화살표">';
+		html += '</div>';
+		html += '<div class="comment-body col">';
+		html += '<div class="comment-meta d-flex justify-content-between align-items-center">';
+		html += '<span class="d-flex align-items-center">';
+		html += '<figure class="comment-author">';
+		html += '<img src="/imgs/content/'+item.profileImg+'" alt="작성자">';
+		html += '</figure>';
+		html += '<b class="fn ps-2">'+item.mNickname+'</b>';
+		html += '<span class="px-2">'+item.replyDate+'</span>';
+		html += '</span>';
+		html += '<span class="reply-btn px-2">';
+		html += '<button class="reply-135000-0001 reply-btn" onclick="getData('+item.id+'});">삭제</button>';
+		html += '</span>';
+		html += '</div>';
+		html += '<div class="comment-content">';
+		html += '<p class="p-2 m-0">'+item.reply+'</p>';
+		html += '</div>';
+		html += '</div>';
+		html += '</li>';
+	}
+
+	$("#recomment-area-"+id).append(html);
+}
 
 
 

@@ -13,26 +13,26 @@
 	font-family: 'Jua', sans-serif !important;
 }
 
-/*¿µ¹®¿ë*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 @font-face {
-  font-family: "Montserrat"; /* »ç¿ëÇÏ°í ½ÍÀº font-family¸íÀ» ÁöÁ¤ */
-  src: url("../css/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("opentype"); /* ÆùÆ®ÆÄÀÏ ºÒ·¯¿À±â */
+  font-family: "Montserrat"; /* ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ font-familyï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+  src: url("../css/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("opentype"); /* ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ */
 }
 
-/*¿µ¹®¿ë*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 @font-face {
-  font-family: "Fasthand-Regular"; /* »ç¿ëÇÏ°í ½ÍÀº font-family¸íÀ» ÁöÁ¤ */
-  src: url("../css/fonts/Fasthand-Regular.ttf") format("opentype"); /* ÆùÆ®ÆÄÀÏ ºÒ·¯¿À±â */
-}
-
-@font-face {
-  font-family: "SongMyung-Regular"; /* »ç¿ëÇÏ°í ½ÍÀº font-family¸íÀ» ÁöÁ¤ */
-  src: url("../css/fonts/SongMyung-Regular.ttf") format("opentype"); /* ÆùÆ®ÆÄÀÏ ºÒ·¯¿À±â */
+  font-family: "Fasthand-Regular"; /* ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ font-familyï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+  src: url("../css/fonts/Fasthand-Regular.ttf") format("opentype"); /* ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ */
 }
 
 @font-face {
-  font-family: "NotoSerifKR-Medium"; /* »ç¿ëÇÏ°í ½ÍÀº font-family¸íÀ» ÁöÁ¤ */
-  src: url("../css/fonts/NotoSerifKR-Medium.otf") format("opentype"); /* ÆùÆ®ÆÄÀÏ ºÒ·¯¿À±â */
+  font-family: "SongMyung-Regular"; /* ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ font-familyï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+  src: url("../css/fonts/SongMyung-Regular.ttf") format("opentype"); /* ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ */
+}
+
+@font-face {
+  font-family: "NotoSerifKR-Medium"; /* ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ font-familyï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ */
+  src: url("../css/fonts/NotoSerifKR-Medium.otf") format("opentype"); /* ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ */
 }
 
 .brand {
@@ -68,7 +68,7 @@
 	height: 25px;
 }
 
-/* ±Ý»ö Å×µÎ¸® */
+/* ï¿½Ý»ï¿½ ï¿½×µÎ¸ï¿½ */
 .gold-top {
 	border-top: 1px solid rgb(147, 112, 98) !important;
 }
@@ -189,7 +189,7 @@
 	}
 }
 
-/* ·¹½ÃÇÇ Ä«µå ºÎºÐ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ ï¿½Îºï¿½ */
 .recipe-title {
 	height: 65px;
 	border: none;
@@ -257,7 +257,7 @@
 	}
 }
 
-/* ÆäÀÌÁö³×ÀÌ¼Ç */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ */
 .page-link {
 	color: rgb(150, 150, 150) !important;
 	width: 35px;
@@ -275,12 +275,12 @@
 	color: black !important;
 }
 
-/* Æ÷ÀÎÆ® Ä¿¼­ */
+/* ï¿½ï¿½ï¿½ï¿½Æ® Ä¿ï¿½ï¿½ */
 .pointer {
 	cursor: pointer !important;
 }
 
-/* ÀÌ¹ÌÁö 100% */
+/* ï¿½Ì¹ï¿½ï¿½ï¿½ 100% */
 .ratio-100 {
 	position: relative !important;
     width: 100% !important;
@@ -292,13 +292,12 @@
     left: 0;
 }
 
-/* secondary ½ÃÀÛ - ÃÖ±Ù º» °Ô½Ã¹°  widget*/
 .widget-title {
 	font-size: 1rem !important;
 	font-weight: 600 !important;
 }
 
-/* secondary À§Á¬ ÀüÃ¼ ±Û¾¾Ã¼ º¯°æ*/
+/* secondary ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½Û¾ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½*/
 .widget a {
 	font-family: 'NotoSerifKR-Medium', sans-serif !important;
 	font-size:15px;
@@ -335,7 +334,6 @@
     font-size: 14px;
 }
 
-/* »çÀÌµå ¿µ¿ª(Secondary) °ü·Ã */
 #secondary .tagcloud a {
     padding: 5px 10px;
     /* background-color: #e33d26; */

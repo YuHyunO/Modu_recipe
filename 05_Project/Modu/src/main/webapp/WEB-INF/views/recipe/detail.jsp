@@ -41,24 +41,13 @@
 						</div>
 					</div>
 				</div>
-<<<<<<< HEAD
-			</div>
-			<!-- end 사진 팝업 -->
-			<div class="row py-3 px-5">
-				<div class="container col-md-2">
-					<input class="recipe-id" hidden="true" value="${detail.recipe.id}">
-				</div>
-				<div class="container col-sm-10 col-md-8 col-lg-6 col-xl-5">
-					<div class="recipe-content m-0" id="primary">
-=======
 			</div><!-- end 사진 팝업 -->
 			
 			<!-- primary 본격 시작 -->
 				<!-- <div class="container col-md-2"></div> -->
-				<input class="recipe-id" hidden="true" value="${id}">
+				<input class="recipe-id" hidden="true" value="${detail.recipe.id}">
 				<div class="col-md-9 col-lg-6 col-xl-9">
 					<div id="primary" class="recipe-content m-0">
->>>>>>> 25fdba1eb0510b0ce3028c831f40902ed642b7f9
 						<div class="row py-3">
 							<div class="col-md-6">
 								<figure class="ratio ratio-4x3 p-3 m-0">
@@ -116,7 +105,7 @@
 									<span>스크랩</span>
 								</div>
 								<div class="d-flex flex-column text-center">
-									<input type="hidden" value="http://modu-table/recipe/detail/${id}" id="recipe-link"/>
+									<input type="hidden" value="http://modu-table/recipe/detail/${detail.recipe.id}" id="recipe-link"/>
 									<button class="recipe-share" onclick="shareLink(this)"></button>
 									<span>공유</span>
 								</div>
@@ -197,70 +186,82 @@
 					</div>
 					<!-- end 태그 -->
 					
-					<div
-						class="row comment-section border-top py-3 justify-content-center">
+					<div class="row comment-section border-top py-3 justify-content-center">
 						<div class="row comments pt-3">
 							<h2 class="comments-title text-start mb-2">
 								리뷰<span>(${replyCount})</span>
 							</h2>
-							<ol class="comment-list" id="comment-0-0">
-								<c:forEach items="${detail.replyList}" var="li">
-									<li class="comment" id="comment-135000-0001">
-										<!-- start comment -->
+							<ol class="comment-list" id="comment-area">
+								<c:forEach items="${detail.replyList}" var="li">							
+									<li class="comment">
 										<div class="comment-body">
-											<div
-												class="comment-meta d-flex justify-content-between align-items-center">
+											<div class="comment-meta d-flex justify-content-between align-items-center">
 												<span class="d-flex align-items-center">
 													<figure class="comment-author">
-														<img src="/imgs/content/auth-00.png" alt="작성자">
-													</figure> <!-- end comment-author vcard --> <b class="fn px-2">${li.nickname}</b>
-													<span class="star-rate-block"> <span class="px-2">${li.replyDate}</span>
-														<img class="star-rate-img2" src="/imgs/stars4.png"
-														alt="stars"
-														style="width: 80px; height: 15px; margin-bottom: 5px;">
-												</span>
+														<img src="${li.profileImg}" alt="작성자">
+													</figure><b class="fn px-2">${li.nickname}</b>
+													<span class="star-rate-block"> 
+														<span class="px-2">${li.replyDate}</span>
+														<img class="star-rate-img2" src="/imgs/stars4.png" alt="stars" style="width: 80px; height: 15px; margin-bottom: 5px;">
+													</span>
 												</span>
 												<div>
-													<button class="reply-135000-0001 reply-btn"
-														onclick="addReplyForm(this)">
-													수정</a>
-													<button class="reply-135000-0001 reply-btn"
-														onclick="location.href='/recipe/del.do?id=${li.id}'">
-													삭제</a>
-													<button class="reply-135000-0001 reply-btn"
-														onclick="addReplyForm(this)">
-													답글</a>
+													<button class="reply-135000-0001 reply-btn" onclick="">삭제</a>
+													<button class="reply-135000-0001 reply-btn" onclick="addReplyForm(this)">답글</a>
 												</div>
 											</div>
-											<!-- end comment-meta -->
 											<div class="comment-content d-flex">
 												<p class="p-2 m-0 col-9">${li.reply}</p>
 												<figure class="comment-image">
 													<img class="rounded-3" src="/imgs/content/dessert-l.png"
 														alt="comment-image">
 												</figure>
-												<!-- end comment-author vcard -->
 											</div>
-											<!-- end comment-content -->
-										</div> <!-- end comment-body -->
+										</div> 
 									</li>
-									<!-- end li -->
+									<c:if test="${li.nestedReply eq 1}">																																
+										<ol class="re-comment px-0" id="recomment-area-${li.id}">										
+											<c:forEach items="${detail.nestedReplyList}" var="lis">
+											<c:if test="${li.id eq lis.rrId}">
+												<li class="comment row">
+										        	<div class="col" style="max-width: 40px;">										        
+										           		<img src="/imgs/reply-arrow.png" alt="화살표">
+											        </div>
+											        <div class="comment-body col">
+											            <div class="comment-meta d-flex justify-content-between align-items-center">
+											                <span class="d-flex align-items-center">
+											                    <figure class="comment-author">
+											                        <img src="/imgs/content/auth-03.png" alt="작성자">
+											                    </figure>
+											                    <b class="fn ps-2">${lis.MNickname}</b>
+											                    <span class="px-2">${lis.replyDate}</span>
+											                </span>
+											                <span class="reply-btn px-2">
+											                    <button class="reply-135000-0001 reply-btn" 
+											                    onclick="getData(${lis.id});">삭제</button>
+											                </span>
+											            </div>
+											            <div class="comment-content">
+											                <p class="p-2 m-0">${li.reply}</p>
+											            </div>												           																											            
+											        </div>
+										    	</li>
+										    </c:if>
+									    	</c:forEach>										    																
+										</ol>									
+										<div class="row view-more py-2" style="max-width: 300px;">
+											<button id="${li.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="2">대댓글 더보기</button>
+										</div>
+									</c:if>																							
 								</c:forEach>
-							 <ol class="re-comment px-0" id="recomment-135000-0001">
-							 </ol>
-							 <li class="comment" id="comment-135000-0002">									
-							</ol>
-							<!-- end comment-list -->
+							</ol>							
 						</div>
-						<!-- end 리뷰 -->
+						<!-- end row comments pt-3, 리뷰 댓글list -->
 						<c:if test="${replyCount != 0}">
 							<div class="row view-more p-2">
-								<button class="btn w-100 h-100 border more-view-btn"
-									onclick="showMore(this)">더보기</button>
+								<button id="${detail.recipe.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="1">더보기</button>
 							</div>
 						</c:if>
-						<!-- end row comments pt-3, 리뷰 댓글list -->
-
 						<!-- 별점+댓글창 -->
 						<div class="comment-write p-2">
 							<div class="row w-100 m-0">
@@ -281,13 +282,6 @@
 								<form class="comment-form" type="POST" id="reply-form-0-0"
 									onSubmit="addReply(this)">
 									<div class="row">
-										<div>
-											<input name="mEmail" type="hidden" value="admin@modu.com">
-											<input name="rId" type="hidden" value="150"> <input
-												name="mNickname" type="hidden" value="관리자"> <input
-												name="profileImg" type="hidden"
-												value="default_profile_img.png">
-										</div>
 										<div class="col px-0 comment-file"
 											style="min-width: 100px; max-width: 100px;">
 											<input type="file" hidden> <img class="border"
@@ -304,21 +298,18 @@
 											<button id="insertReply"
 												class="btn w-100 h-100 border comment-submit" type="submit">등록</button>
 										</div>
-									</div><!-- end row -->
-								</form><!-- end comment-form -->
-							</div> <!-- end row w-100 pb-2 -->
-							
-						</div> <!-- end class="comment-write p-2", comment-write 리뷰 작성 -->
-					</div><!-- end row comment-section, 리뷰 전체 -->
-				</div>
-
-			</div><!-- end primary(원래 main) -->
+									</div>
+								</form>
+							</div>						
+						</div>
+					</div>
+				</div>				
+			</div>
 			
-			<!-- 사이드 영역(secondary), 모듈화 -->
 			<%@ include file="/WEB-INF/views/common/secondary.jsp"%>
-			</div><!-- end row(primary+secondary)-->
-		  </div><!-- end main-container -->
-		</div><!-- end main -->
+			</div>
+		  </div>
+		</div>
 		
 			<div class="row related-recipe border py-3 px-5">
 				<div class="container">
@@ -334,7 +325,7 @@
 								</div>
 								<div class="recipe-desc">
 									<h2 class="recipe-title p-0">
-										<a href="#">제목</a>
+										<a href="#">$제목</a>
 									</h2>
 									<figure class="profile mb-1">
 										<img class="profile-img" src="/imgs/content/auth-00.png"

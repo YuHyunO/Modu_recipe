@@ -99,7 +99,7 @@
 											</div>
 											<div class="recipe-desc">
 												<div class="recipe-title">
-													<a href="/recipe/detail/${recipe.id}">${recipe.title}</a>
+													<a href="/recipe/detail?no=${recipe.id}">${recipe.title}</a>
 												</div>
 												<figure class="profile">
 													<img class="profile-img"

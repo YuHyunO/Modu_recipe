@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
-
+<script src="/js/cookie.js"></script>
 <!--사이드 영역(secondary) 시작-->
 <div id="secondary" class="col-md-3">
 	<div class="widget post-type-widget pt-3">
@@ -23,54 +23,54 @@
 			</li>
 			<li>
 				<span class="post-category">
-					<a id="recipe-type-1" href="#">카테고리4</a>
+					<a id="recipe-type-2" href="#">카테고리4</a>
 				</span>
 				<figure class="post-thumbnail">
-					<a id="recipe-img-1" href="#"> <img class="rounded-3"
+					<a id="recipe-img-2" href="#"> <img class="rounded-3"
 						src="/imgs/content/thumb-post-02.png" alt="" />
 					</a>
 				</figure>
 				<h2 class="post-title">
-					<a id="recipe-title-1" href="#">이탈리안 미슐랭 쉐프의 바질파스타 만들기</a>
+					<a id="recipe-title-2" href="#">이탈리안 미슐랭 쉐프의 바질파스타 만들기</a>
 				</h2>
 			</li>
 			<li>
 				<span class="post-category">
-					<a id="recipe-type-1" href="#">카테고리3</a>
+					<a id="recipe-type-3" href="#">카테고리3</a>
 				</span>
 				<figure class="post-thumbnail">
-					<a id="recipe-img-1" href="#"> <img class="rounded-3"
+					<a id="recipe-img-3" href="#"> <img class="rounded-3"
 						src="/imgs/content/thumb-post-03.png" alt="" />
 					</a>
 				</figure>
 				<h2 class="post-title">
-					<a id="recipe-title-1" href="#">에어프라이기로 굽는 10분요리, 허브삼겹살</a>
+					<a id="recipe-title-3" href="#">에어프라이기로 굽는 10분요리, 허브삼겹살</a>
 				</h2>
 			</li>
 			<li>
 				<span class="post-category">
-					<a id="recipe-type-1" href="#">카테고리1</a>
+					<a id="recipe-type-4" href="#">카테고리1</a>
 				</span>
 				<figure class="post-thumbnail">
-					<a id="recipe-img-1" href="#"> <img class="rounded-3"
+					<a id="recipe-img-4" href="#"> <img class="rounded-3"
 						src="/imgs/content/thumb-post-04.png" alt="" />
 					</a>
 				</figure>
 				<h2 class="post-title">
-					<a id="recipe-title-1" href="#">토마토로 챙겨먹는 건강식 조리법</a>
+					<a id="recipe-title-4" href="#">토마토로 챙겨먹는 건강식 조리법</a>
 				</h2>
 			</li>
 			<li>
 				<span class="post-category">
-					<a id="recipe-type-1" href="#">카테고리2</a>
+					<a id="recipe-type-5" href="#">카테고리2</a>
 				</span>
 				<figure class="post-thumbnail">
-					<a id="recipe-img-1" href="#"> <img class="rounded-3"
+					<a id="recipe-img-5" href="#"> <img class="rounded-3"
 						src="/imgs/content/thumb-post-02.png" alt="" />
 					</a>
 				</figure>
 				<h2 class="post-title">
-					<a id="recipe-title-1" href="#">초밥 레시피</a>
+					<a id="recipe-title-5" href="#">초밥 레시피</a>
 				</h2>
 			</li>
 		</ul>
