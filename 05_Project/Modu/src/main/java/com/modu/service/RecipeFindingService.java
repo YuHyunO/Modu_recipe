@@ -3,6 +3,8 @@ package com.modu.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import com.modu.domain.member.Scrap;
@@ -17,4 +19,5 @@ public interface RecipeFindingService {
 	String getStarPoint(RecipeDetail recipeDetail);
 	RecipeDetail RecipeRead(long id);
 	Scrap getScrap(long rId, String email);
+	List<RecipeList> findRecentRecipes(HttpServletRequest request);
 }

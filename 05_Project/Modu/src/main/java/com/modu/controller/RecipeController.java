@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.modu.domain.member.Scrap;
 import com.modu.domain.recipe.RecipeDetail;
+import com.modu.domain.recipe.RecipeList;
 import com.modu.domain.recipe.RecipeListVo;
 import com.modu.domain.recipe.RecipeReply;
 import com.modu.domain.recipe.RecipeReplyList;
@@ -196,5 +197,10 @@ public class RecipeController {
             map.put("msg", msg);
             return map;
         }
+    }
+    
+    @GetMapping("/recent-recipe")
+    public @ResponseBody List<RecipeList> displayRecentRecipe(HttpServletRequest request){
+        return recipeFindingService.findRecentRecipes(request);
     }
 }

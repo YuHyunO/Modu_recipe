@@ -274,6 +274,31 @@ $(function(){
 	});
 });
 
+$(document).ready(function(){
+	  let cookie = getCookie("recipe");
+	  let id = { id: cookie.split(",") }	 
+	  $.ajax({
+		 url: "/recipe/recent-recipe",
+		 type: "GET",
+		 data: id,
+		 dataType: "JSON",
+		 traditional: true,
+		 success: function(response){
+
+		 },
+		 error: function(error){
+			 console.log("X");
+		 }
+	  });
+})
+
+function getCookie(name) {
+	  let matches = document.cookie.match(new RegExp(
+	    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+	  ));
+	  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
 /*
  -> 파일drag&drop/미완,사진경로변경예정
 $(function(e){
