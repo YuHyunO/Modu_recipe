@@ -190,11 +190,11 @@ function updateData(recipeList, pageSize){
 	for(let item of recipeList){
 		html += '<div id="recipe-item" class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
-		html += '<img src="/imgs/content/thumb-1.png" alt="/imgs/content/thumb-1.png">';
+		html += '<img src="'+item.foodPhoto+'" alt="/imgs/content/thumb-1.png">';
 		html += '</div>';
 		html += '<div class="recipe-desc">';
 		html += '<h2 class="recipe-title">';
-		html += '<a href="'+item.id+'">'+item.title+'</a>';
+		html += '<a href="javascript:void(0)" onclick="saveCookie('+item.id+');location.href=\'/recipe/detail?no='+item.id+'\'">'+item.title+'</a>';
 		html += '</h2>';
 		html += '<figure class="profile">';
 		html += '<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">';
@@ -297,6 +297,26 @@ function paginate(curPage, totalPage){
 	$("#pagination-next").html(divNext);
 }
 
+let recentRecipe = new Array();
+function saveCookie(id){
+	if(recentRecipe.length == 0){
+		recentRecipe.unshift(id);
+	}
+	if(recentRecipe.includes(id) == false){	
+			recentRecipe.unshift(id);
+	}	
+	if(recentRecipe.length>5){
+		recentRecipe.length = 5;	
+	}
+	document.cookie = "recipe="+recentRecipe;		
+	window.location.href="/recipe/detail?no="+id;
+}
 
+function getCookie(name) {
+	  let matches = document.cookie.match(new RegExp(
+	    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+	  ));
+	  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
 
 

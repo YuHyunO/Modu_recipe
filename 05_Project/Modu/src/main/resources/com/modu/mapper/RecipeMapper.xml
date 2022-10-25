@@ -383,6 +383,9 @@
 		where list BETWEEN #{beginRow} AND #{endRow}
 		order by sid desc
 	</select>
+	<select id="selectRecipeSummary" parameterType="long" resultType="RecipeList">
+		select ID, FOOD_PHOTO, TITLE, SORT from RECIPE where ID=#{id}
+	</select>
 	
 	
 	<select id="selectRecipeCount" resultType="int">
