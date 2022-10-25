@@ -44,9 +44,10 @@ public class RecipeController {
     private RecipeRegisterService recipeRegisterService;
     @Autowired
     private RecipeSearchService searchService;
-
     @Autowired
     private MembershipService membershipService;
+    @Autowired
+    private RecipeLegacyMapper recipeLegacyMapper;
 
 
     @GetMapping("/list")
@@ -97,7 +98,7 @@ public class RecipeController {
         return map;
     }
     
-    @GetMapping("/read")
+    @GetMapping("/udate")
     public ModelAndView RecipeRead(long id) {
         RecipeDetail recipeDetail = recipeFindingService.RecipeRead(id);
         ModelAndView mv = new ModelAndView();
@@ -105,6 +106,62 @@ public class RecipeController {
         mv.addObject("rs", recipeDetail);
         mv.addObject("id", id);
         return mv;
+    }
+    /* Mypage 내가 작성한 레시피 등록되면 연동시킬 session을 이용한 read
+    @GetMapping("/update")
+    public ModelAndView RecipeRead(HttpSession session) {//
+        String ids = (String)session.getAttribute("id");
+        long id = Integer.parseInt(ids);
+        long rId = id;
+        RecipeDetail recipeDetail = recipeFindingService.RecipeRead(id);
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("recipe/update");
+        mv.addObject("rs", recipeDetail);
+        mv.addObject("id", id);
+        return mv;
+    }
+    */
+  
+//  @PostMapping("/update")
+//  public String  updateRecipe(RecipeDetail recipeDetail,
+//          HttpServletRequest request,
+//            HttpSession session,
+//            ArrayList<MultipartFile> files,
+//            ArrayList<String> mainItems,
+//            ArrayList<String> subItems,
+//            ArrayList<String> directions,
+//            ArrayList<String> tags) {
+//      recipeRegisterService.updateRecipe(recipeDetail, request, 
+//              session, files, mainItems,subItems,directions, tags);
+//      return "redirect:detail";
+//  }
+//    
+//    @ResponseBody
+//    @PostMapping("/update")
+//    public String updateRecipe(@RequestParam long id,
+//            @RequestParam HttpServletRequest request,
+//            @RequestParam HttpSession session,
+//            @RequestParam ArrayList<MultipartFile> files, 
+//            @RequestParam ArrayList<String> mainItems,
+//            @RequestParam ArrayList<String> subItems,
+//            @RequestParam ArrayList<String> directions,
+//            @RequestParam ArrayList<String> tags) {
+//        Recipe recipe = new Recipe();
+//        Ingredient ingredient = new Ingredient();
+//        Direction direction = new Direction();
+//        RecipeTag recipeTag = new RecipeTag();
+//        recipeRegisterService.updateRecipe(id,request,session,files,mainItems,subItems,directions,tags);
+//       return "redirect:detail";
+//    }
+    
+    @GetMapping("/delete")
+    public String deleteRecipe(long id, HttpServletRequest request) { //
+        HttpSession session = request.getSession();
+        String getId = request.getParameter("id");
+        id = Integer.parseInt(getId);
+        log.info("#####99: " + id);
+        recipeRegisterService.recipeDelete(id);
+        return "redirect:/";
     }
     
     @GetMapping("/detail")
@@ -122,6 +179,7 @@ public class RecipeController {
                 scrapState = true;
             }
         }
+        long replyCount = recipeLegacyMapper.selectReplyCount(id);
         
         ModelAndView mv = new ModelAndView();
         mv.setViewName("recipe/detail");
@@ -130,6 +188,7 @@ public class RecipeController {
         mv.addObject("id", id);
         mv.addObject("starPoint", starPoint);
         mv.addObject("scrapState", scrapState);
+        mv.addObject("replyCount", replyCount);
         return mv;
     }
 
@@ -169,7 +228,7 @@ public class RecipeController {
         long rId = Long.parseLong(id);
         
         if (email == null) {
-            map.put("error", "스크랩 기능은 로그인 후 이용할 수 있습니다.");
+            map.put("error", "스크랩 기능은 로그인 후 이용하실 수 있습니다.");
             return map;
         } else {
             msg = membershipService.scrapService(rId, email, 1);
@@ -189,7 +248,7 @@ public class RecipeController {
         long rId = Long.parseLong(id);
         
         if (email == null) {
-            map.put("error", "스크랩 기능은 로그인 후 이용할 수 있습니다.");
+            map.put("error", "스크랩 기능은 로그인 후 이용하실 수 있습니다.");
             return map;
         } else {
             msg = membershipService.scrapService(rId, email, -1);
@@ -202,5 +261,65 @@ public class RecipeController {
     @GetMapping("/recent-recipe")
     public @ResponseBody List<RecipeList> displayRecentRecipe(HttpServletRequest request){
         return recipeFindingService.findRecentRecipes(request);
+    }
+
+    @ResponseBody
+    @PostMapping("/follow/insert")
+    public HashMap<String, Object> insertFollow(HttpServletRequest request, HttpSession session){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        String targetEmail = request.getParameter("targetEmail");
+        String email = (String)session.getAttribute("email");
+        String msg;
+        String result;
+        
+        if (email == null) {
+            map.put("error", "친구추가는 로그인 후 이용하실 수 있습니다.");
+            return map;
+        } else {
+            msg = membershipService.followService(targetEmail, email, 1);
+            map.put("user", email);
+            map.put("msg", msg);
+            return map;
+        }
+    }
+    
+    @ResponseBody
+    @PostMapping("/follow/delete")
+    public HashMap<String, Object> deleteFollow(HttpServletRequest request, HttpSession session){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        String targetEmail = request.getParameter("targetEmail");
+        String email = (String)session.getAttribute("email");
+        String msg;
+        String result;
+        
+        if (email == null) {
+            map.put("error", "친구추가는 로그인 후 이용하실 수 있습니다.");
+            return map;
+        } else {
+            msg = membershipService.followService(targetEmail, email, -1);
+            map.put("user", email);
+            map.put("msg", msg);
+            return map;
+        }
+    }
+    
+    @ResponseBody
+    @PostMapping("/follow/check")
+    public HashMap<String, Object> checkFollow(HttpServletRequest request, HttpSession session){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        String targetEmail = request.getParameter("targetEmail");
+        String email = (String)session.getAttribute("email");
+        String msg;
+        String result;
+        
+        if (email != null) {
+            msg = membershipService.followService(targetEmail, email, 0);
+            map.put("user", email);
+            map.put("state", msg); //팔로우 서비스에서 친구이면 true 아니면 false 리턴
+        } else {
+            msg = "사용자가 로그인 중이지 않음";
+            map.put("state", "false");
+        }
+        return map;
     }
 }
