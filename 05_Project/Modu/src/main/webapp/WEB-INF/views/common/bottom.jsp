@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col">
 				<div class="copy">
-					<p>Copyright &copy;2022 모두의식탁 Made by Kosmo Final Team 1st.  All rights reserved.</p>
+					<p class="footer_notion">Copyright &copy;2022 모두의식탁 Made by Kosmo Final Team 1st.  All rights reserved.</p>
 				</div>
 				<!-- end copy -->
 			</div>
