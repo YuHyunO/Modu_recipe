@@ -1,23 +1,19 @@
-/* 프로필 박스 */
+/* 프로필 박스, 모서리 둥글게 추가 */
 .profile-details {
-	background-color: rgba(147, 112, 98, 0.2);
-	color: #666;
-	text-align: center;
-	padding: 20px
-}
-
-/* 
-	.profile-details {
 	    background-color: rgba(147, 112, 98, 0.2);
 	    color: #666;
 	    text-align:center;  
 	    justify-content: center;
 	    align-items: center;  
-	    padding: 0px;
+	    padding: 20px;
 	    border-radius: 5rem!important;
-	    width: 600px;
-} 
-*/
+	    width: 100%;
+}
+
+a {
+	width: auto;
+    text-decoration: none;
+}
 
 /* 현재 프사 이미지 */
 #mypage_profileimg, #mypage_defaultimg {
@@ -127,7 +123,7 @@
 }
 
 .banner {
-	width: 100%;
+	width: 90%;
 }
 
 #secondary .tagcloud a {
