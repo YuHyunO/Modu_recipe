@@ -428,6 +428,13 @@ function setFollowPageId(state){
 	
 }
 
+function getCookie(name) {
+	  let matches = document.cookie.match(new RegExp(
+	    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+	  ));
+	  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
 function activePage(e){
 	$('.page-number').removeClass('active');
 	$(e).addClass('active')

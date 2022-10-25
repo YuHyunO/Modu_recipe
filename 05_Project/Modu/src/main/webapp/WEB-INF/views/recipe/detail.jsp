@@ -41,6 +41,16 @@
 						</div>
 					</div>
 				</div>
+<<<<<<< HEAD
+			</div>
+			<!-- end 사진 팝업 -->
+			<div class="row py-3 px-5">
+				<div class="container col-md-2">
+					<input class="recipe-id" hidden="true" value="${detail.recipe.id}">
+				</div>
+				<div class="container col-sm-10 col-md-8 col-lg-6 col-xl-5">
+					<div class="recipe-content m-0" id="primary">
+=======
 			</div><!-- end 사진 팝업 -->
 			
 			<!-- primary 본격 시작 -->
@@ -48,6 +58,7 @@
 				<input class="recipe-id" hidden="true" value="${id}">
 				<div class="col-md-9 col-lg-6 col-xl-9">
 					<div id="primary" class="recipe-content m-0">
+>>>>>>> 25fdba1eb0510b0ce3028c831f40902ed642b7f9
 						<div class="row py-3">
 							<div class="col-md-6">
 								<figure class="ratio ratio-4x3 p-3 m-0">
@@ -60,16 +71,16 @@
 								<div class="detail-desc d-flex flex-column">
 									<div class="recipe-rating m-0 p-1 d-flex align-items-center">
 										<img class="star-rate-img me-2" src="/imgs/stars3.png" alt="stars">
-										<span>${rec.recipe.star}</span> <span class="ps-1">(${replyCount})</span>
+										<span>${detail.recipe.star}</span> <span class="ps-1">(${replyCount})</span>
 									</div>
-									<div class="fs-4 py-3 m-0">${rec.recipe.title}</div>
-									<div class="m-0">${rec.recipe.info}</div>
+									<div class="fs-4 py-3 m-0">${detail.recipe.title}</div>
+									<div class="m-0">${detail.recipe.info}</div>
 								</div>
 								<!-- recipe desc -->
 								<div class="recipe-info py-3 d-flex justify-content-end">
-									<span class="recipe-amount pt-5 px-2">${rec.recipe.serving}</span>
-									<span class="recipe-time pt-5 px-2">${rec.recipe.cookTime}</span>
-									<span class="recipe-person pt-5 px-2">${rec.recipe.difficultyLevel}</span>
+									<span class="recipe-amount pt-5 px-2">${detail.recipe.serving}</span>
+									<span class="recipe-time pt-5 px-2">${detail.recipe.cookTime}</span>
+									<span class="recipe-person pt-5 px-2">${detail.recipe.difficultyLevel}</span>
 								</div>
 
 							</div>
@@ -82,11 +93,11 @@
 								<span>
 									<img src="/imgs/content/auth-03.png" alt="recipe author">
 									<span>Posted by 
-										<a href="#">${rec.recipe.MNickname}</a>
+										<a href="#">${detail.recipe.MNickname}</a>
 									</span>
 								</span>
 								<span>
-									<button class="btn btn-outline-success subscribe-btn me-2" data-email="${rec.recipe.MEmail}" onclick="clickSubscribe(this)">친구 추가</button>
+									<button class="btn btn-outline-success subscribe-btn me-2" data-email="${detail.recipe.MEmail}" onclick="clickSubscribe(this)">친구 추가</button>
 								</span>
 							</div>
 							<!-- end recipe author -->
@@ -122,9 +133,9 @@
 									<strong>[재료]</strong>
 								</p>
 								<ul>
-									<c:forEach items="${rec.ingredient}" var="i">
-										<c:if test="${i.ingredientType eq 0}">
-											<li>${i.ingredient}&nbsp;${i.quantity}</li>
+									<c:forEach items="${detail.ingredient}" var="li">
+										<c:if test="${li.ingredientType eq 0}">
+											<li>${li.ingredient}&nbsp;${li.quantity}</li>
 										</c:if>
 									</c:forEach>
 								</ul>
@@ -135,9 +146,9 @@
 									<strong>[양념]</strong>
 								</p>
 								<ul>
-									<c:forEach items="${rec.ingredient}" var="i">
-										<c:if test="${i.ingredientType eq 1}">
-											<li>${i.ingredient}&nbsp;${i.quantity}</li>
+									<c:forEach items="${detail.ingredient}" var="li">
+										<c:if test="${li.ingredientType eq 1}">
+											<li>${li.ingredient}&nbsp;${li.quantity}</li>
 										</c:if>
 									</c:forEach>
 								</ul>
@@ -154,12 +165,12 @@
 							</p>
 							<div class="p-0">
 								<div class="row d-flex step justify-content-center py-2">
-									<c:forEach items="${rec.direction}" var="d">
+									<c:forEach items="${detail.direction}" var="li">
 										<div class="row col-md-8">
 											<div class="step-title">
-												<strong>STEP &nbsp; ${d.step}</strong>
+												<strong>STEP &nbsp; ${li.step}</strong>
 											</div>
-											<div class="step-main">${d.direction}</div>
+											<div class="step-main">${li.direction}</div>
 										</div>
 										<div class="col-md-4 step-img">
 											<figure class="ratio ratio-4x3">
@@ -180,8 +191,8 @@
 					
 					<div class="row tag-section d-flex">
 						<span class="tag-head ms-2 py-3"></span>
-						<c:forEach items="${rec.tag}" var="t">
-							<span class="tag-body py-3 w-75"><a href="#"><em>${t.tag}</em></a>								
+						<c:forEach items="${detail.tag}" var="li">
+							<span class="tag-body py-3 w-75"><a href="#"><em>${li.tag}</em></a>								
 						</c:forEach>
 					</div>
 					<!-- end 태그 -->
@@ -193,7 +204,7 @@
 								리뷰<span>(${replyCount})</span>
 							</h2>
 							<ol class="comment-list" id="comment-0-0">
-								<c:forEach items="${rep}" var="rep">
+								<c:forEach items="${detail.replyList}" var="li">
 									<li class="comment" id="comment-135000-0001">
 										<!-- start comment -->
 										<div class="comment-body">
@@ -202,8 +213,8 @@
 												<span class="d-flex align-items-center">
 													<figure class="comment-author">
 														<img src="/imgs/content/auth-00.png" alt="작성자">
-													</figure> <!-- end comment-author vcard --> <b class="fn px-2">${rep.nickname}</b>
-													<span class="star-rate-block"> <span class="px-2">${rep.replyDate}</span>
+													</figure> <!-- end comment-author vcard --> <b class="fn px-2">${li.nickname}</b>
+													<span class="star-rate-block"> <span class="px-2">${li.replyDate}</span>
 														<img class="star-rate-img2" src="/imgs/stars4.png"
 														alt="stars"
 														style="width: 80px; height: 15px; margin-bottom: 5px;">
@@ -214,7 +225,7 @@
 														onclick="addReplyForm(this)">
 													수정</a>
 													<button class="reply-135000-0001 reply-btn"
-														onclick="location.href='/recipe/del.do?id=${rep.id}'">
+														onclick="location.href='/recipe/del.do?id=${li.id}'">
 													삭제</a>
 													<button class="reply-135000-0001 reply-btn"
 														onclick="addReplyForm(this)">
@@ -223,7 +234,7 @@
 											</div>
 											<!-- end comment-meta -->
 											<div class="comment-content d-flex">
-												<p class="p-2 m-0 col-9">${rep.reply}</p>
+												<p class="p-2 m-0 col-9">${li.reply}</p>
 												<figure class="comment-image">
 													<img class="rounded-3" src="/imgs/content/dessert-l.png"
 														alt="comment-image">
@@ -235,20 +246,21 @@
 									</li>
 									<!-- end li -->
 								</c:forEach>
-								<ol class="re-comment px-0" id="recomment-135000-0001">
-								</ol>
-								<li class="comment" id="comment-135000-0002">
-									
+							 <ol class="re-comment px-0" id="recomment-135000-0001">
+							 </ol>
+							 <li class="comment" id="comment-135000-0002">									
 							</ol>
 							<!-- end comment-list -->
 						</div>
+						<!-- end 리뷰 -->
+						<c:if test="${replyCount != 0}">
+							<div class="row view-more p-2">
+								<button class="btn w-100 h-100 border more-view-btn"
+									onclick="showMore(this)">더보기</button>
+							</div>
+						</c:if>
 						<!-- end row comments pt-3, 리뷰 댓글list -->
-						
-						<div class="row view-more p-2">
-							<button class="btn w-100 h-100 border more-view-btn"
-								onclick="showMore(this)">더보기</button>
-						</div>
-						
+
 						<!-- 별점+댓글창 -->
 						<div class="comment-write p-2">
 							<div class="row w-100 m-0">
@@ -322,17 +334,17 @@
 								</div>
 								<div class="recipe-desc">
 									<h2 class="recipe-title p-0">
-										<a href="${li.id}">${li.title}제목</a>
+										<a href="#">제목</a>
 									</h2>
 									<figure class="profile mb-1">
 										<img class="profile-img" src="/imgs/content/auth-00.png"
 											alt="작성자">
-										<span><em> ${li.MNickname}닉네임</em></span>
+										<span><em> 닉네임</em></span>
 									</figure>
 									<div class="recipe-icons d-flex justify-content-between">
 										<span class="d-flex align-items-center"> 
 											<img class="stars" src="/imgs/stars5.png"> 
-											<span class="p-1 mt-1">${li.star}</span>
+											<span class="p-1 mt-1">#</span>
 										</span>
 									</div>
 								</div>
@@ -344,17 +356,17 @@
 								</div>
 								<div class="recipe-desc">
 									<h2 class="recipe-title p-0">
-										<a href="${li.id}">${li.title}제목</a>
+										<a href="#">제목</a>
 									</h2>
 									<figure class="profile mb-1">
 										<img class="profile-img" src="/imgs/content/auth-00.png"
 											alt="작성자">
-										<span><em> ${li.MNickname}닉네임</em></span>
+										<span><em> 닉네임</em></span>
 									</figure>
 									<div class="recipe-icons d-flex justify-content-between">
 										<span class="d-flex align-items-center"> 
 											<img class="stars" src="/imgs/stars5.png"> 
-											<span class="p-1 mt-1">${li.star}</span>
+											<span class="p-1 mt-1">#</span>
 										</span>
 									</div>
 								</div><!-- end recipe-desc -->
@@ -365,17 +377,17 @@
 								</div>
 								<div class="recipe-desc">
 									<h2 class="recipe-title p-0">
-										<a href="${li.id}">${li.title}제목</a>
+										<a href="#">제목</a>
 									</h2>
 									<figure class="profile mb-1">
 										<img class="profile-img" src="/imgs/content/auth-00.png"
 											alt="작성자">
-										<span><em> ${li.MNickname}닉네임</em></span>
+										<span><em> 닉네임</em></span>
 									</figure>
 									<div class="recipe-icons d-flex justify-content-between">
 										<span class="d-flex align-items-center"> 
 											<img class="stars" src="/imgs/stars5.png"> 
-											<span class="p-1 mt-1">${li.star}</span>
+											<span class="p-1 mt-1">#</span>
 										</span>
 									</div>
 								</div>
@@ -387,17 +399,17 @@
 								</div>
 								<div class="recipe-desc">
 									<h2 class="recipe-title p-0">
-										<a href="${li.id}">${li.title}제목</a>
+										<a href="#">제목</a>
 									</h2>
 									<figure class="profile mb-1">
 										<img class="profile-img" src="/imgs/content/auth-00.png"
 											alt="작성자">
-										<span><em> ${li.MNickname}닉네임</em></span>
+										<span><em> 닉네임</em></span>
 									</figure>
 									<div class="recipe-icons d-flex justify-content-between">
 										<span class="d-flex align-items-center"> 
 											<img class="stars" src="/imgs/stars5.png"> 
-											<span class="p-1 mt-1">${li.star}</span>
+											<span class="p-1 mt-1">#</span>
 										</span>
 									</div>
 								</div><!-- end recipe-desc -->
