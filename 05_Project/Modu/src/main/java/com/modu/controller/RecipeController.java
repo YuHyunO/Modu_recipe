@@ -101,11 +101,11 @@ public class RecipeController {
         return map;
     }
     
-    @GetMapping("/udate")
+    @GetMapping("/update")
     public ModelAndView RecipeRead(long id) {
         RecipeDetail recipeDetail = recipeFindingService.RecipeRead(id);
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("recipe/read");
+        mv.setViewName("recipe/update");
         mv.addObject("rs", recipeDetail);
         mv.addObject("id", id);
         return mv;
@@ -141,9 +141,9 @@ public class RecipeController {
 //    
 //    @ResponseBody
 //    @PostMapping("/update")
-//    public String updateRecipe(@RequestParam long id,
-//            @RequestParam HttpServletRequest request,
-//            @RequestParam HttpSession session,
+//    public String updateRecipe(
+//            HttpServletRequest request,
+//            HttpSession session,
 //            @RequestParam ArrayList<MultipartFile> files, 
 //            @RequestParam ArrayList<String> mainItems,
 //            @RequestParam ArrayList<String> subItems,

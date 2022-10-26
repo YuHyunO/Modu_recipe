@@ -23,7 +23,7 @@ $(function () {
 	let tag = $('#tag');
 	$('#tag').keyup(
 		function (e) {
-			// 태그 정규식표현 로직
+			// 태그 정규 표현식 로직
 			let tagsRegex = /[^a-z|A-Z|ㄱ-ㅎ|가-힣|\,/\s]/g;
 			
 			if(!tagsRegex.test(tag.val())){
@@ -101,14 +101,44 @@ $(function () {
 	let foodInput = $("input[name=food]"); 
 	$(foodInput).keyup(function() {
 		// 음식 이름 정규식 표현 로직
-		let foodRegex = /[`()<>{}~!@#$%^&*|\\\'\";:\/?-_+=]/gi;
+		let foodRegex = /[^a-z|A-Z|ㄱ-ㅎ|가-힣|]/g;
+//		//foodInput의 길이가 0이 아닐때 if문을 사용
+//		if(foodInput.val().length != 0){
 		if (!foodRegex.test($("input[name=food]").val())) {
-			// alert("특수문자 없음");
+			('.warning-text').text(" ");
 		}else {
-			alert("음식 이름에는 특수문자를 사용하실 수 없습니다.");
+			alert("특수문자 안대용");
 			return false;
 		}
+//		}else {
+//			foodInput.find('.warning-text').text("");
+//		}
 	});
+//	function checkValue(e, text, limit, mode){
+//		if (mode === 1){
+//			if (e.val().trim().length < limit){
+//				alert(text + "은(는) " + limit + "글자 이상 작성해주세요");
+//				e.focus();
+//				window.scrollTo({ top: e.offset().top - 50, behavior: "smooth" });
+//				return false;
+//			} else {
+//				return true;
+//			}
+//		} else {
+//			let target;
+//			if (e.parent().find('.warning-text').length === 0){
+//				target = e.parents().find("#" + e.attr("id").replace("-text", ""));
+//			} else {
+//				target = e.parent(); 
+//			}
+//			if (e.val().trim().length > limit){
+//				target.find('.warning-text').text(" ");
+//				
+//			} else {
+//				target.find('.warning-text').text("*" + limit + "글자 이상 작성해주세요");
+//			}
+//		}
+//	}
 	
 	let title = $("input[name=title"); // 레시피 제목
 	let info = $("textarea[name=info]"); // 레시피 소개

@@ -52,13 +52,14 @@
 									<label for="food" class="form-label mb-1 form-title">음식이름</label> 
 									<input class="form-control" type="text" name="food" placeholder="예) 닭볶음탕"
 									value="${rs.recipe.food}">
+									<p class="warning-text m-1">특수문자를 사용하실 수 없습니다.</p>
 									
 								</div>
 								<div class="cooking-title pb-3">
 									<label for="title" class="form-label mb-1 form-title">레시피제목</label> 
 									<input class="form-control" type="text" name="title" placeholder="예) 닭볶음탕 황금 레시피"
 									value="${rs.recipe.title}">
-									<p class="warning-text m-1">*10글자 이상 작성해주세요</p>
+									<p class="warning-text m-1">10글자 이상 작성해주세요</p>
 								</div>
 							</div>
 						</div>
