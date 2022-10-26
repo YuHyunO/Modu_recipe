@@ -146,20 +146,24 @@
 		function LoginCheck(){
 			alert('로그인 후 이용하실 수 있습니다.');
 			location.href='/member/login';
-		} 
-		/*function downCheck(){
-		const 
-		
-		download.do?saveFile=${file.saveFile}
-	}*/
-	function preve(){
-		alert("preve 클릭")
-		
-	}
-	function next(){
-		alert("넥스트 클릭")
-		
-	}
+		}
+		function prevView(){
+			const prevIp = ${board.boardDetailNextPrev.prevId}
+			if(prevIp>0){
+				location.href="detail?id=${board.boardDetailNextPrev.prevId}";
+			}else{
+				alert("처음 글 입니다.");
+			}
+			
+		}
+		function nextView(){
+			const nextIp = ${board.boardDetailNextPrev.nextId}
+			if(nextIp>0){
+				location.href="detail?id=${board.boardDetailNextPrev.nextId}";
+			}else{
+				alert("마지막 글 입니다.");
+			}
+		}
 </script>
 </head>
 <body>
@@ -267,8 +271,8 @@
 							<div>
 								<div class="board-menu py-2 px-3 float-end">
 									<a href="list">목록</a> <a
-										href="detail?id=${board.boardDetailNextPrev.prevId}">| 이전글 |</a> <a
-										href="detail?id=${board.boardDetailNextPrev.nextId}">다음글</a>
+										href="javascript:void(0);" onclick="prevView();">| 이전글 |</a> <a
+										href="javascript:void(0);" onclick="nextView();">다음글</a>
 								</div>
 							</div>
 							<div class="py-3"></div>
