@@ -175,8 +175,8 @@
 									REPLY, 
 									FILES from (select * from BOARD where POST_DATE BETWEEN CURRENT_DATE-#{period} AND CURRENT_DATE AND POST_TYPE=1
 				                                 intersect
-				                                 select * from BOARD where ${nameOption} like '%'||#{keyword}||'%')
-				                      order by LPAD(id, 10, '0') desc)
+				                                 select * from BOARD where ${nameOption} like '%'||#{keyword}||'%' order by LPAD(id, 10, '0') desc)
+				                      )
 				where list BETWEEN #{beginRow} AND #{endRow}
 				]]>
 			</when>
@@ -193,8 +193,8 @@
 										UPDATE_DATE, 
 										HITS, 
 										REPLY, 
-										FILES from (select * from BOARD where ${nameOption} like '%'||#{keyword}||'%' AND POST_TYPE=1)
-				                order by LPAD(id, 10, '0') desc)
+										FILES from (select * from BOARD where ${nameOption} like '%'||#{keyword}||'%' AND POST_TYPE=1 order by LPAD(id, 10, '0') desc)
+				                )
 				where list BETWEEN #{beginRow} AND #{endRow}
 				]]>				
 			</otherwise>
@@ -218,7 +218,7 @@
 		where list BETWEEN #{beginRow} AND #{endRow}	
 	</select>
 	
-	<select id="selectBoardCountByKeyword" resultType="int">
+	<select id="selectBoardCountByKeyword" resultType="long">
 		<choose>
 			<when test="period != 0">
 				<![CDATA[

@@ -36,7 +36,7 @@
 								<div id="board-search"
 									class="mb-3 d-flex justify-content-between align-items-center">
 									<div class="selects">
-								<select id="period-selector"class="gold-border p-1 filter-period" onchange="setData()">
+								<select id="period-selector"class="gold-border p-1 filter-period" onchange="setData()" style="display: none;">
 									<option value="0">전체기간</option>
 									<option value="1">1일</option>
 									<option value="7">1주</option>

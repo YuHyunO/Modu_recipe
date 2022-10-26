@@ -36,11 +36,10 @@ public interface BoardMapper {
 	
 	//자유게시판 페이징을 위한 select 추가
 	List<Board> selectFreePostsByType(@Param("type") int type, @Param("beginRow")long beginRow, @Param("endRow")long endRow);
-    long selectBoardCountByPeriod(int period);
-    long selectBoardCountByIngredient(String keyword, int period);
-    long selectBoardCountByKeyword(String nameOption, String keyword, int period);
-    List<Board> selectBoardListBy(long beginRow, long endRow);
-    List<Board> selectBoardListByPeriod(int period, long beginRow, long endRow);
+    long selectBoardCountByPeriod(@Param("period")int period);
+    long selectBoardCountByKeyword(@Param("nameOption")String nameOption,@Param("keyword")String keyword,@Param("period")int period);
+    List<Board> selectBoardListBy(@Param("beginRow")long beginRow,@Param("endRow")long endRow);
+    List<Board> selectBoardListByPeriod(@Param("period")int period,@Param("beginRow")long beginRow,@Param("endRow")long endRow);
     List<Board> selectBoardListByKeyword(@Param("nameOption")String nameOption, @Param("keyword")String keyword,
             @Param("period")int period, @Param("beginRow")long beginRow, @Param("endRow")long endRow);
 	BoardDetailNextPrev selectBoardNextPrev(@Param("id")long id);
