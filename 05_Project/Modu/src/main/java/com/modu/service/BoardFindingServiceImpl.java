@@ -30,8 +30,6 @@ public class BoardFindingServiceImpl implements BoardFindingService {
 
 	@Override
 	public BoardListVo listingPosts(HttpServletRequest request, HttpSession session) {
-       // String cpStr = request.getParameter("curPage");
-       // String psStr = request.getParameter("pgSize");
         int type = 1;
         long curPage = 1;
         long pgSize = 10;
@@ -50,16 +48,12 @@ public class BoardFindingServiceImpl implements BoardFindingService {
             case "2": String nameOption = request.getParameter("nameOption");
                       String keyword = request.getParameter("keyword");
                       period = Integer.parseInt(request.getParameter("period"));
-                      //if (nameOption.equals("ingredient")) {
-                      //    totalPost = boardMapper.selectBoardCountByIngredient(keyword, period);
-                      //}else {
                           if(nameOption.equals("title")) {
                               nameOption = "TITLE";
                           }else if(nameOption.equals("mNickname")) {
                               nameOption = "M_NICKNAME";
                           }
                       totalPost = boardMapper.selectBoardCountByKeyword(nameOption, keyword, period);
-                      //}
             }
         }catch(NullPointerException ne) {}
         
@@ -138,11 +132,6 @@ public class BoardFindingServiceImpl implements BoardFindingService {
         }
         
         return boardList;
-    }
-	
-	private long endRow(long beginRow, long endRow) {
-        // TODO Auto-generated method stub
-        return 0;
     }
     public BoardDetail getPost(long id) {
 		BoardDetail boardDetail = new BoardDetail();

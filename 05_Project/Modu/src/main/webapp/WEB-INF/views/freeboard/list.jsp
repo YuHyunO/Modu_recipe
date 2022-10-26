@@ -111,7 +111,7 @@
 							</table>
 							<div class="write text-end my-3">
 								<c:if test="${sessionScope.email == null}">
-									<a href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';" class="nav-link"					
+									<a href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';"					
 											><button type="button" id="write-btn"
 										class="gold-border gold-btn">글쓰기</button></a>
 								</c:if>

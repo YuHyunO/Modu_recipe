@@ -66,9 +66,7 @@ public class FreeBoardController {
         BoardDetail board = boardService.getPost(id);
         long beginRow = 1;
         long endRow = 6;
-        log.info("#3211 " + board.getBoard().getPostDate());
         Date gPD = board.getBoard().getPostDate();
-        log.info("#3212 " + gPD);
         //SimpleDateFormat board.getBoard().getPostDate() = new SimpleDateFormat("MM-dd hh:mm"); 
         //gPD.format(new Date());
         //board.getBoard().setPostDate();
