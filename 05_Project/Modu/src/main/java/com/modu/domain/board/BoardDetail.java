@@ -16,5 +16,6 @@ public class BoardDetail {
 	private Board board;
 	private List<BoardFile> boardFile;
 	private List<BoardReply> boardReply;
-	private List<BoardNestedReply> boardNestedReply;	
+	private List<BoardNestedReply> boardNestedReply;
+	private BoardDetailNextPrev boardDetailNextPrev;
 }

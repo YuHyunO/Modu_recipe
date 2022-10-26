@@ -8,9 +8,10 @@ import javax.servlet.http.HttpSession;
 import com.modu.domain.board.Board;
 import com.modu.domain.board.BoardDetail;
 import com.modu.domain.board.BoardList;
+import com.modu.domain.board.BoardListVo;
 
 public interface BoardFindingService {
-	BoardList listingPosts(HttpServletRequest request, HttpSession session);
+	BoardListVo listingPosts(HttpServletRequest request, HttpSession session);
 	BoardDetail getPost(long id);
 	
 	

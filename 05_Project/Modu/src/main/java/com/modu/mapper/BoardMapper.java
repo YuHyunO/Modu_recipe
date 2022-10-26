@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.modu.domain.board.Board;
 import com.modu.domain.board.BoardDetail;
+import com.modu.domain.board.BoardDetailNextPrev;
 import com.modu.domain.board.BoardFile;
 import com.modu.domain.board.BoardNestedReply;
 import com.modu.domain.board.BoardReply;
@@ -35,7 +36,14 @@ public interface BoardMapper {
 	
 	//자유게시판 페이징을 위한 select 추가
 	List<Board> selectFreePostsByType(@Param("type") int type, @Param("beginRow")long beginRow, @Param("endRow")long endRow);
-	
+    long selectBoardCountByPeriod(int period);
+    long selectBoardCountByIngredient(String keyword, int period);
+    long selectBoardCountByKeyword(String nameOption, String keyword, int period);
+    List<Board> selectBoardListBy(long beginRow, long endRow);
+    List<Board> selectBoardListByPeriod(int period, long beginRow, long endRow);
+    List<Board> selectBoardListByKeyword(@Param("nameOption")String nameOption, @Param("keyword")String keyword,
+            @Param("period")int period, @Param("beginRow")long beginRow, @Param("endRow")long endRow);
+	BoardDetailNextPrev selectBoardNextPrev(@Param("id")long id);
 
 
 	

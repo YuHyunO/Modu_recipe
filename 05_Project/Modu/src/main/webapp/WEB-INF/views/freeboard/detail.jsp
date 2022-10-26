@@ -152,6 +152,14 @@
 		
 		download.do?saveFile=${file.saveFile}
 	}*/
+	function preve(){
+		alert("preve 클릭")
+		
+	}
+	function next(){
+		alert("넥스트 클릭")
+		
+	}
 </script>
 </head>
 <body>
@@ -165,7 +173,7 @@
 			<!-- end container -->
 		</div>
 		<!-- end head-title -->
-
+		
 		<div class="main">
 			<div
 				class="main-container row d-flex justify-content-center m-0 py-4">
@@ -258,9 +266,9 @@
 							<!-- end board-main -->
 							<div>
 								<div class="board-menu py-2 px-3 float-end">
-									<a href="javascript:void(0)">목록</a> <a
-										href="javascript:void(0)">| 이전글 |</a> <a
-										href="javascript:void(0)">다음글</a>
+									<a href="list">목록</a> <a
+										href="detail?id=${board.boardDetailNextPrev.prevId}">| 이전글 |</a> <a
+										href="detail?id=${board.boardDetailNextPrev.nextId}">다음글</a>
 								</div>
 							</div>
 							<div class="py-3"></div>
@@ -273,7 +281,7 @@
 														<div class="reply-author d-flex justify-content-between">
 															<div class="author-main d-flex align-items-center px-3 pt-2">
 																<figure class="profile m-0">
-																	<img class="profile-img" src="/imgs/content/auth-01.png"
+																	<img class="profile-img" src="/imgs/mypage/profile/${i.profileImg}"
 																		alt="작성자">
 																</figure>
 																<span class="m-nickname ps-2">${i.MNickname}</b> <span
@@ -335,6 +343,9 @@
 			</div>
 			<!-- end main-container -->
 		</div>
+		<textarea name="sessionNickname" style="display: none;">${sessionScope.nickname}</textarea>
+		<textarea name="sessionProfile" style="display: none;">${sessionScope.profileImg}</textarea>
+		<!-- <textarea name="sessionPostDate" style="display: none;"></textarea> -->
 		<!-- end main -->
 		<%@ include file="/WEB-INF/views/common/bottom.jsp"%>
 	</div>
