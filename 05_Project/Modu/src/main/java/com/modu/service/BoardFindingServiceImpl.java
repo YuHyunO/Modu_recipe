@@ -58,7 +58,7 @@ public class BoardFindingServiceImpl implements BoardFindingService {
                           }else if(nameOption.equals("mNickname")) {
                               nameOption = "M_NICKNAME";
                           }
-                       //   totalPost = boardMapper.selectBoardCountByKeyword(nameOption, keyword, period);
+                      totalPost = boardMapper.selectBoardCountByKeyword(nameOption, keyword, period);
                       //}
             }
         }catch(NullPointerException ne) {}

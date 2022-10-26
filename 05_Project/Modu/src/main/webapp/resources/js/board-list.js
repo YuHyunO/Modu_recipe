@@ -105,7 +105,7 @@ function dataAgent(data){
 			let totalPage = response.totalPage;
 			let boardList = response.boardList;
 			let pageSize = response.pgSize;
-			//console.log("cP : " + curPage +"  tP : " +  totalPage + "  pS  " + pageSize + " boardList : " + boardList);
+			console.log("#01 cP : " + curPage +"  tP : " +  totalPage );
 			if(totalPage == 0){
 				showNullData();
 			}
