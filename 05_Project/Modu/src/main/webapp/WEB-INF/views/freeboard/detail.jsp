@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %> 
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -21,7 +22,6 @@
 				var bId = parseInt(bId0);
 				var text = $('#replyArea').val();
 				 if (text.length <= 10) {
-					 alert("false1");
 						false;
 				 }else{
 					 $.ajax({
@@ -294,7 +294,12 @@
 															<div id='removeReply' style="display: none;" >${i.id}
 															</div>
 																<div class="author-items px-3">
-																	<button class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
+																	<c:if test="${sessionScope.email == i.MEmail}">
+																		<button class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
+																	</c:if>
+																	<c:if test="${sessionScope.email != i.MEmail}">
+																		<button style="display: none;" class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
+																	</c:if>
 																	<button class="reply-1 reply-btn"
 																		onclick="addReplyForm(this)">댓글</button>
 																</div>
@@ -312,11 +317,16 @@
 									<form class="comment-form" type="POST" id="main-reply"
 										onsubmit="addReply(this);">
 										<div class="row">
-													<!-- 임시로 더보기 -->
-														<input type='button' id="theBoGi" style="text-align: center; background-color: orange;" onclick='count()' value='더보기'>
+												<c:if test="${fn:length(list.list) > 5}">
+														<input type='button' id="theBoGi" style="text-align: center; " onclick='count()' value='더보기'>
 															<br></br>
 														<textarea id='plusResult' style='display:none;'>6</textarea>
-													<!-- 임시로 더보기 끝 -->
+												</c:if>
+												<c:if test="${fn:length(list.list) == 0}">
+														<input type='button' id="theBoGi" style="text-align: center; display: none; " onclick='count()' value='더보기'>
+															<br></br>
+														<textarea id='plusResult' style='display:none;'>6</textarea>
+												</c:if>
 											<div class="col px-0">
 												<textarea class="w-100 h-100 border comment-text p-2"
 													name="reply" maxlength="300" rows=3 placeholder="댓글을 남겨주세요"
