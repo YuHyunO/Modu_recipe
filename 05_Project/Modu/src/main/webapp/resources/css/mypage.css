@@ -1,268 +1,254 @@
-/* ������ �ڽ� */
-.profile-details { 
-    background-color: rgba(147, 112, 98, 0.2);
-    color:#666;
-    text-align:center;
-    padding:20px
-}
-
-/* 
-	.profile-details {
+.profile-details {
 	    background-color: rgba(147, 112, 98, 0.2);
 	    color: #666;
 	    text-align:center;  
 	    justify-content: center;
 	    align-items: center;  
-	    padding: 0px;
+	    padding: 20px;
 	    border-radius: 5rem!important;
-	    width: 600px;
-} 
-*/
-
-	/* 현재 프사 이미지 */
-	#mypage_profileimg,
-	#mypage_defaultimg {
-    max-width: 200px;
-    max-height: 200px;
-    margin: auto 0; /*  여백 없앰 */
-    border-radius:100px; /* 숫자 클수록 원에 가까워짐 */
-    padding: 0.3em 0.3em 0.3em 0.3em; /* 테두리 회색 장식 */
-    text-align:center;
-    cursor:pointer;
-    /* background:gray; */
-}
-    
-/* �� ���� */
-.nav-link {
-    color: #241c19;
-}
-.nav-link.active {
-    color: #937062;
+	    width: 100%;
 }
 
-/* ����� ������ ������ ��õ ���� box */
-.backbox { 
-    background-color: rgba(147, 112, 98, 0.2);
-    padding:5px;
-    text-align:center;        
+.site-content img {
+    max-width: 70%;
 }
 
-/* ���� ���õ� ��� ��� */
-#finalIngredient { 
-    background-color: rgba(147, 112, 98, 0.2);
-    border: 1px solid #edd7c5;
-    padding:10px
-}
-
-/* ������ �˻� ��ư */
-.gold-btn {
-    border-radius: 5px;
-    border: none;
-    color:white;
-    background-color: rgb(140, 110, 100) !important;
-}
-
-.gold-btn:hover {
-    background-color: rgb(170, 130, 110) !important;
-}
-
-/* üũ�ڽ� */
-.check-div {
-    min-width: 125px;
-    max-width: 125px;
-}
-
-.main-container {
-    max-width: 1400px;
-}
-
-@media(max-width:454px){ 
-    .check-div {
-        min-width: 100px;
-    }
-}
-
-/* �� �޴� */
-.tab-menu {
-    font-size: 1rem !important;    
-}
-
-.tab-menu.active {
-    color: darkcyan !important;
-}
-
-@media(max-width:454px){
-    .tab-menu {
-        font-size: 0.8rem !important;    
-    }
-}
-
-/* ���� ������ �̹��� */
-.category-pic {
-    border-radius: 10px !important;
-    max-height: 230px;
-}
-
-@media(max-width:454px){ 
-    .category-pic {
-        margin-top: 15px;
-    }
-}
-
-/* ���� ��ŷ */
-.chef-pic {
-    border-radius: 50%;
-    width: 70%;
-}
-
-.chef-name {
-    color: black;
+a {
+	width: auto;
     text-decoration: none;
 }
 
-@media(max-width:454px){
-    .chef-list {
-        font-size: 0.8rem;
-    }
+#mypage_profileimg, #mypage_defaultimg {
+	max-width: 200px;
+	max-height: 200px;
+	margin: auto 0; 
+	border-radius: 100px; 
+	padding: 0.3em 0.3em 0.3em 0.3em;
+	text-align: center;
+	cursor: pointer;
+	/* background:gray; */
 }
 
-/* �ֱ� �� �Խù� */
-.widget-title {
-    font-size: 1rem !important;
-    font-weight: 600 !important;
+.nav-link {
+	color: #241c19;
 }
 
-.post-category {
-    font-size: 0.8rem !important;
+.nav-link.active {
+	color: #937062;
+}
+
+.backbox {
+	background-color: rgba(147, 112, 98, 0.2);
+	padding: 5px;
+	text-align: center;
+}
+
+
+#finalIngredient {
+	background-color: rgba(147, 112, 98, 0.2);
+	border: 1px solid #edd7c5;
+	padding: 10px
+}
+
+.gold-btn {
+	border-radius: 5px;
+	border: none;
+	color: white;
+	background-color: rgb(140, 110, 100) !important;
+}
+
+.gold-btn:hover {
+	background-color: rgb(170, 130, 110) !important;
+}
+
+.check-div {
+	min-width: 125px;
+	max-width: 125px;
+}
+
+.main-container {
+	max-width: 1400px;
+}
+
+@media ( max-width :454px) {
+	.check-div {
+		min-width: 100px;
+	}
+}
+
+.tab-menu {
+	font-size: 1rem !important;
+}
+
+.tab-menu.active {
+	color: darkcyan !important;
+}
+
+@media ( max-width :454px) {
+	.tab-menu {
+		font-size: 0.8rem !important;
+	}
+}
+
+.category-pic {
+	border-radius: 10px !important;
+	max-height: 230px;
+}
+
+@media ( max-width :454px) {
+	.category-pic {
+		margin-top: 15px;
+	}
+}
+
+.chef-pic {
+	border-radius: 50%;
+	width: 70%;
+}
+
+.chef-name {
+	color: black;
+	text-decoration: none;
+}
+
+@media ( max-width :454px) {
+	.chef-list {
+		font-size: 0.8rem;
+	}
 }
 
 .banner {
-    width: 100%;
+	width: 90%;
 }
 
 #secondary .tagcloud a {
-    background-color: rgb(140, 110, 100) !important;
+	background-color: rgb(140, 110, 100) !important;
 }
 
 #secondary .tagcloud a:hover {
-    background-color: rgb(170, 130, 110) !important;
+	background-color: rgb(170, 130, 110) !important;
 }
 
-/* ��Ÿ */
-@media(max-width:454px){
-    .main * {
-        font-size: 0.8rem;
-    }
-}
-     .tab2-button, .tab5-button {
-        border:0;
-        outline:0;
-        appearance: auto;
-        writing-mode: horizontal-tb !important;
-        text-rendering: auto;
-        color: buttontext;
-        letter-spacing: normal;
-        word-spacing: normal;
-        line-height: normal;
-        text-transform: none;
-        text-indent: 0px;
-        text-shadow: none;
-        display: inline-block;
-        text-align: center;
-        align-items: flex-start;
-        cursor: default;
-        box-sizing: border-box;
-        background-color: buttonface;
-        margin: 0em;
-        padding: 8px 16px;
-        border-width: 0px;
-        border-style: outset;
-        border-color: buttonborder;
-        border-image: initial;
-    }
-    .tab2-button, .tab2-button.disabled, .tab2-button:disabled,
-    .tab5-button, .tab5-button.disabled, .tab5-button:disabled {
-      color: rgb(6, 6, 6);
-      background:rgb(214, 200, 194);
-    }
-    .tab2-button:hover, .tab2-button:focus,.tab2-button.focused,
-    .tab5-button:hover, .tab5-button:focus,.tab5-button.focused {
-      color: #fff;
-      background: #937062;
-      box-shadow:0 0 0 .2rem rgba(147, 112, 98, 0.25);
-    }
-
-    /*탭5 - 친구관리 버튼*/
-    .handlemyfriendBtn {
-    font-size: 13px;
-      margin:auto 0; /* 가운데 정렬 */
-      display:block;
-      width: auto;
-      padding: 5px 5px;
-      border-radius: 2px;
-      cursor: pointer;
-      border: 0;
-      outline: 0;
-      text-align:center;
-      justify-content:center;
-    }
-
-	.handlemyfriendBtn:hover {
-	  margin:auto 0; /* 가운데 정렬 */
-      display:block;
-      width: auto;
-      padding: 5px 5px;
-      border-radius: 2px;
-      cursor: pointer;
-      border: 0;
-      outline: 0;
-    background:rgba(147, 112, 98, 0.6);
-    border-color:#e33d26;
-      text-align:center;
-      justify-content:center;
+@media ( max-width :454px) {
+	.main * {
+		font-size: 0.8rem;
 	}
-
-    .handlemyfriend {
-   	 text-align:center;
-     margin:auto 0; /* 가운데 정렬 */
-  	justify-content: center;
-  	align-items: center;
-   	display: flex;
-    }
-    
-    /* 탭5 친구관리- 친구박스 배경 넣기, 사이즈 조절*/    
-    .team-col {
-    text-align:center;
-    justify-content:center;
-    border:1px solid #ddd;
-    margin:15px 0;
-    padding:10px;
-    }
-    
-    .team-col:hover {
-    background:rgba(147, 112, 98, 0.2);
-    border-color:#e33d26;
-    box-shadow:5px 5px 0 0 rgba(0,0,0,0.1)
-    }
-    
-    .team-col figure{
-    margin:10px 10px;
-    }
-    
-    .team-col figure img{
-    border-radius:10%
-    }
-    
-.team-name {
-    font-weight: 700;
-    font-size: 16px;
-    margin-bottom: 5px;
 }
 
- .team-tag {
-    font-size: 15px;
-    text-transform: uppercase;
-    color: #999;
-    margin-bottom: 5px;
-    display: block;
+.tab2-button, .tab5-button {
+	border: 0;
+	outline: 0;
+	appearance: auto;
+	writing-mode: horizontal-tb !important;
+	text-rendering: auto;
+	color: buttontext;
+	letter-spacing: normal;
+	word-spacing: normal;
+	line-height: normal;
+	text-transform: none;
+	text-indent: 0px;
+	text-shadow: none;
+	display: inline-block;
+	text-align: center;
+	align-items: flex-start;
+	cursor: default;
+	box-sizing: border-box;
+	background-color: buttonface;
+	margin: 0em;
+	padding: 8px 16px;
+	border-width: 0px;
+	border-style: outset;
+	border-color: buttonborder;
+	border-image: initial;
+}
+
+.tab2-button, .tab2-button.disabled, .tab2-button:disabled, .tab5-button,
+	.tab5-button.disabled, .tab5-button:disabled {
+	color: rgb(6, 6, 6);
+	background: rgb(214, 200, 194);
+}
+
+.tab2-button:hover, .tab2-button:focus, .tab2-button.focused,
+	.tab5-button:hover, .tab5-button:focus, .tab5-button.focused {
+	color: #fff;
+	background: #937062;
+	box-shadow: 0 0 0 .2rem rgba(147, 112, 98, 0.25);
+}
+
+.handlemyfriendBtn {
+	font-size: 13px;
+	margin: auto 0;
+	display: block;
+	width: auto;
+	padding: 5px 5px;
+	border-radius: 2px;
+	cursor: pointer;
+	border: 0;
+	outline: 0;
+	text-align: center;
+	justify-content: center;
+}
+
+.handlemyfriendBtn:hover {
+	margin: auto 0;
+	display: block;
+	width: auto;
+	padding: 5px 5px;
+	border-radius: 2px;
+	cursor: pointer;
+	border: 0;
+	outline: 0;
+	background: rgba(147, 112, 98, 0.6);
+	border-color: #e33d26;
+	text-align: center;
+	justify-content: center;
+}
+
+.handlemyfriend {
+	text-align: center;
+	margin: auto 0;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
+
+.team-col {
+	text-align: center;
+	justify-content: center;
+	border: 1px solid #ddd;
+	margin: 15px 0;
+	padding: 10px;
+}
+
+.team-col:hover {
+	background: rgba(147, 112, 98, 0.2);
+	border-color: #e33d26;
+	box-shadow: 5px 5px 0 0 rgba(0, 0, 0, 0.1)
+}
+
+.team-col figure {
+	margin: 10px 10px;
+}
+
+.team-col figure img {
+	border-radius: 10%
+}
+
+.team-name {
+	font-weight: 700;
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+
+.team-tag {
+	font-size: 15px;
+	text-transform: uppercase;
+	color: #999;
+	margin-bottom: 5px;
+	display: block;
+}
+
+/*친구 프로필 사진 크기 조절*/
+.site-content img {
+    max-width: 70%;
 }

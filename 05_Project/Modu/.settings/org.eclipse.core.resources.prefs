@@ -9,7 +9,6 @@ encoding//src/main/java/com/modu/mapper/MemberMapper.java=UTF-8
 encoding//src/main/java/com/modu/service/FileUploadService.java=UTF-8
 encoding//src/main/java/com/modu/service/MemberRegisterService.java=UTF-8
 encoding//src/main/java/com/modu/service/MemberRegisterServiceImpl.java=UTF-8
-encoding//src/main/java/com/modu/service/SearchServiceImpl.java=MS949
 encoding//src/main/webapp/WEB-INF/views/common/head.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/common/menu.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/freeboard/detail.jsp=UTF-8

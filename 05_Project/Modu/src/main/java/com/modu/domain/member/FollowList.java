@@ -16,6 +16,6 @@ public class FollowList {
 	private String email;
 	private String nickname;
 	private String profileImg;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd aa hh:mm", timezone="Asia/Seoul")
 	private Date followDate;
 }

@@ -131,8 +131,9 @@
 		                      M_EMAIL,
 		                      STAR,
 		                      STARS,
-		                      HITS from RECIPE order by ID desc)
+		                      HITS from RECIPE)
 		where list BETWEEN #{beginRow} AND #{endRow}
+		order by ID desc
 	</select>
 	<select id="selectRecipeListByPeriod" resultType="RecipeList">
 		select * from (select ROWNUM list,
@@ -146,8 +147,9 @@
 		                      STAR,
 		                      STARS,
 		                      HITS from RECIPE
-		                where POST_DATE BETWEEN <![CDATA[CURRENT_DATE-#{period}]]> AND CURRENT_DATE order by ID desc)
-		where list BETWEEN #{beginRow} AND #{endRow}	
+		                where POST_DATE BETWEEN <![CDATA[CURRENT_DATE-#{period}]]> AND CURRENT_DATE)
+		where list BETWEEN #{beginRow} AND #{endRow}
+		order by ID desc
 	</select>
 	<select id="selectRecipeListByCategory" resultType="RecipeList">
 		<choose>
@@ -165,9 +167,9 @@
 				                      STARS,
 				                      HITS from (select * from RECIPE where POST_DATE BETWEEN CURRENT_DATE-#{period} AND CURRENT_DATE
 				                                 intersect
-				                                 select * from RECIPE where SORT like '%'||#{category}||'%' OR INGREDIENT like '%'||#{category}||'%')
-				                      order by ID desc)
+				                                 select * from RECIPE where SORT like '%'||#{category}||'%' OR INGREDIENT like '%'||#{category}||'%'))
 				where list BETWEEN #{beginRow} AND #{endRow}
+				order by ID desc
 				]]>
 			</when>
 			<otherwise>
@@ -182,9 +184,9 @@
 				                      M_EMAIL,
 				                      STAR,
 				                      STARS,
-				                      HITS from (select * from RECIPE where SORT like '%'||#{category}||'%' OR INGREDIENT like '%'||#{category}||'%')
-				                      order by ID desc)
+				                      HITS from (select * from RECIPE where SORT like '%'||#{category}||'%' OR INGREDIENT like '%'||#{category}||'%'))
 				where list BETWEEN #{beginRow} AND #{endRow}
+				order by ID desc
 				]]>			
 			</otherwise>
 		</choose>
@@ -205,9 +207,9 @@
 				                      STARS,
 				                      HITS from (select * from RECIPE where POST_DATE BETWEEN CURRENT_DATE-#{period} AND CURRENT_DATE
 				                                 intersect
-				                                 select * from RECIPE where ${nameOption} like '%'||#{keyword}||'%')
-				                      order by ID desc)
+				                                 select * from RECIPE where ${nameOption} like '%'||#{keyword}||'%'))
 				where list BETWEEN #{beginRow} AND #{endRow}
+				order by ID desc
 				]]>
 			</when>
 			<otherwise>
@@ -222,9 +224,9 @@
 				                      M_EMAIL,
 				                      STAR,
 				                      STARS,
-				                      HITS from (select * from RECIPE where ${nameOption} like '%'||#{keyword}||'%')
-				                order by ID desc)
+				                      HITS from (select * from RECIPE where ${nameOption} like '%'||#{keyword}||'%'))
 				where list BETWEEN #{beginRow} AND #{endRow}
+				order by ID desc
 				]]>				
 			</otherwise>
 		</choose>
@@ -263,9 +265,9 @@
 												        r.M_EMAIL,
 												        r.STAR,
 												        r.STARS,
-												        r.HITS from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID where ingr.INGREDIENT like '%'||#{keyword}||'%')
-								      order by ID desc)
+												        r.HITS from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID where ingr.INGREDIENT like '%'||#{keyword}||'%'))
 				where list BETWEEN #{beginRow} AND #{endRow}
+				order by ID desc
 				]]>
 			</when>
 			<otherwise>
@@ -321,30 +323,69 @@
 				              M_EMAIL,
 				              STAR,
 				              STARS,
-				              HITS from (select DISTINCT(r.ID) ID,
-										        r.FOOD_PHOTO, 
-										        r.TITLE,
-										        r.FOOD,
-										        r.PROFILE_IMG,
-										        r.M_NICKNAME,
-										        r.M_EMAIL,
-										        r.STAR,
-										        r.STARS,
-										        r.HITS from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID where ingr.INGREDIENT like '%재료1%'
-				                         intersect
-				                         select DISTINCT(r.ID) ID,
-										        r.FOOD_PHOTO, 
-										        r.TITLE,
-										        r.FOOD,
-										        r.PROFILE_IMG,
-										        r.M_NICKNAME,
-										        r.M_EMAIL,
-										        r.STAR,
-										        r.STARS,
-										        r.HITS from RECIPE r left join INGREDIENT ingr on r.ID=ingr.R_ID where ingr.INGREDIENT like '%재료2%')
+				              HITS from (${query}))
 		where list BETWEEN #{beginRow} AND #{endRow}         		              		            
 	</select>
-	
+	<select id="selectRecipeListOfMember" resultType="RecipeList">
+		select * from (select ROWNUM list,
+				              ID,
+				              FOOD_PHOTO,
+				              TITLE, 
+				              FOOD, 
+				              PROFILE_IMG,
+				              M_NICKNAME,
+				              M_EMAIL,
+				              STAR,
+				              STARS,
+				              HITS from RECIPE where M_EMAIL=#{email})
+		where list BETWEEN #{beginRow} AND #{endRow}
+		order by ID desc				            
+	</select>
+	<select id="selectRecipeListOfMemberByType" resultType="RecipeList">
+		select * from (select ROWNUM list,
+				              ID,
+				              FOOD_PHOTO,
+				              TITLE, 
+				              FOOD, 
+				              PROFILE_IMG,
+				              M_NICKNAME,
+				              M_EMAIL,
+				              STAR,
+				              STARS,
+				              HITS from RECIPE where M_EMAIL=#{email} and ACCESSIBILITY=#{type})
+		where list BETWEEN #{beginRow} AND #{endRow}
+		order by ID desc				             
+	</select>	
+	<select id="selectRecipeListOfBookmark" resultType="RecipeList">
+		select * from (select ROWNUM list,
+		                      sid,
+		                      ID,
+		                      FOOD_PHOTO,
+		                      TITLE, 
+		                      FOOD, 
+		                      PROFILE_IMG,
+		                      M_NICKNAME,
+		                      M_EMAIL,
+		                      STAR,
+		                      STARS,
+		                      HITS from (select DISTINCT(r.ID),
+		                                        s.ID sid,
+		                                        r.FOOD_PHOTO,
+		                                        r.TITLE, 
+		                                        r.FOOD, 
+		                                        r.PROFILE_IMG,
+		                                        r.M_NICKNAME,
+		                                        r.M_EMAIL,
+		                                        r.STAR,
+		                                        r.STARS,
+		                                        r.HITS from RECIPE r inner join SCRAP s on r.ID = s.R_ID
+		                                  where r.M_EMAIL=#{email}))              
+		where list BETWEEN #{beginRow} AND #{endRow}
+		order by sid desc
+	</select>
+	<select id="selectRecipeSummary" parameterType="long" resultType="RecipeList">
+		select ID, FOOD_PHOTO, TITLE, SORT from RECIPE where ID=#{id}
+	</select>
 	
 	
 	<select id="selectRecipeCount" resultType="int">
@@ -401,6 +442,19 @@
 			</otherwise>
 		</choose>		
 	</select>
+	<select id="selectRecipeCountByIngredients" parameterType="String" resultType="int">
+		 select NVL(MAX(ROWNUM), 0) from (${query})   	
+	</select>
+	<select id="selectRecipeCountOfMember" parameterType="String" resultType="int">
+		select NVL(MAX(ROWNUM), 0) from RECIPE where M_EMAIL=#{email}
+	</select>
+	<select id="selectRecipeCountOfMemberByType" resultType="int">
+		select NVL(MAX(ROWNUM), 0) from RECIPE where M_EMAIL=#{email} and ACCESSIBILITY=#{type}
+	</select>	
+	<select id="selectRecipeCountOfBookmark" parameterType="String" resultType="int">
+		select NVL(MAX(ROWNUM), 0) from (select DISTINCT(r.ID) from RECIPE r inner join SCRAP s on r.ID = s.R_ID where r.M_EMAIL=#{email})
+	</select>
+	
 	<!-- 베스트 레시피 -->
 	<select id="selectRecipeListByBestHits" parameterType="long" resultType="RecipeList">
 		select * from (select * from RECIPE order by HITS desc)

@@ -1,3 +1,13 @@
+a {
+	width: auto;
+    text-decoration: none;
+}
+
+#main-content {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .search-btn {
     background: url("/imgs/search.svg") center no-repeat;
 }
@@ -9,14 +19,6 @@
 .star-rate-img {
     max-width: 100px !important;
     height: 20px;
-}
-
-.star1 {                
-    background: url("/imgs/star1.png") center/100% no-repeat;
-}
-
-.star2 {
-    background: url("/imgs/star2.png") center/100% no-repeat;
 }
 
 .recipe-rating {
@@ -59,6 +61,10 @@
 
 .recipe-option span {
     font-size: 0.8rem;
+}
+
+.recipe-auth {
+	min-width: 260px;
 }
 
 .recipe-scrap {
@@ -113,26 +119,6 @@
     font-size: 0.8rem;
 }
 
-.recipe-title a {
-    color: black;
-}
-
-.recipe-thumb {
-    border: darkgray solid 1px;
-    border-bottom: none;
-    box-shadow: 1px 1px 1px 1px darkgray;
-}
-
-.recipe-desc {
-    border: darkgray solid 1px;
-    border-top: none;
-    box-shadow: 1px 1px 1px 1px darkgray;
-}
-
-.recipe-title {
-    border: none;
-}
-
 .previous-icon {
     background: url("/imgs/previous.png") center/60% no-repeat;
     border: none;
@@ -147,12 +133,56 @@
     max-width: 50px !important;
 }
 
+/* 추천 레시피 카드 */
+.recipe-title {
+	height: 50px !important;
+}
+
+.recipe-desc .recipe-title {
+	font-size: 1rem !important;
+}
+
+.recipe-desc {
+	height: 140px !important;
+}
+
+.profile-img {
+	width: auto !important;
+}
+
+/* 최근 본 게시물 */
+.widget-title {
+	font-size: 1rem !important;
+	font-weight: 600 !important;
+}
+
+.post-category {
+	font-size: 0.8rem !important;
+}
+
+.post-type-widget {
+	max-width: 250px !important;
+}
+
+
+@media (min-width: 992px){
+	#secondary {
+		padding: 0 0 0px 0px;
+		border-left: 1px dotted #ddd;
+	}
+	
+	#secondary .widget {
+	    padding: none !important;
+	    border-left: none !important;;
+	}
+}
+
 ul li {
     margin-bottom: 5px !important;
 }
 
 .star-point {
-    background: url("/imgs/star1.png") center/80% no-repeat;
+    background: url("/imgs/recipe/star1.png") center/80% no-repeat;
     margin: 0px;
     margin-left:-10px;
     padding: 0px;
@@ -162,7 +192,7 @@ ul li {
 }
 
 .star-clicked {
-    background: url("/imgs/star2.png") center/80% no-repeat;
+    background: url("/imgs/recipe/star2.png") center/80% no-repeat;
     margin: 0px;
     margin-left:-10px;
     padding: 0px;
@@ -170,11 +200,6 @@ ul li {
     width:28px;
     width:25px;
     background-position-y: 0px;
-}
-
-.comments, .comment-write, .reply-write {
-    max-width: 650px;
-    place-content: center;
 }
 
 .comment-meta {
@@ -264,7 +289,7 @@ img {
     }
 
     .star-point {
-        background: url("/imgs/star1.png") center/80% no-repeat;
+        background: url("/imgs/recipe/star1.png") center/80% no-repeat;
         margin: 0px;
         margin-left:-10px;
         padding: 0px;
@@ -273,7 +298,7 @@ img {
     }
 
     .star-clicked {
-        background: url("/imgs/star2.png") center/80% no-repeat;
+        background: url("/imgs/recipe/star2.png") center/80% no-repeat;
         margin: 0px;
         margin-left:-10px;
         padding: 0px;
@@ -294,12 +319,6 @@ img {
         border-color: black;
     }
 
-    .recipe-info {
-        width: 300px;
-        font-size: 0.5rem;
-        padding-right: 30px;
-    }
-
     .recipe-option button {
         width: 50px;
         height: 40px;
@@ -307,7 +326,7 @@ img {
 
     .recipe-auth {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         padding: 10px 0px 10px 0px;
     }
 
@@ -333,15 +352,15 @@ img {
 
     .tag-body a {
         padding-right: 10px;
-        font-size: 0.5rem;
+        font-size: 0.8rem;
     }
 
     .comment-meta {
         font-size: 0.5rem;
     }
-
-    .comment-text {
-        font-size: 0.5rem !important;
+    
+    .comment-content > p {
+    	font-size: 0.8rem;
     }
 
     .star-rate-block {
@@ -352,6 +371,11 @@ img {
     }
 
     .star-rate-img {
+        max-width: 80px !important;
+        height: 17px !important;
+    }
+    
+    .star-rate-img2 {
         max-width: 50px !important;
         height: 10px !important;
     }

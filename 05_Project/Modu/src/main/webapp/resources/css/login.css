@@ -14,7 +14,7 @@
     color: #937062;
 }
 
-/* ë¡œê·¸ì¸ ì‹¤íŒ¨ì‹œ ê²½ê³ ê¸€ */
+/* ·Î±×ÀÎ ½ÇÆÐ½Ã °æ°í±Û */
 .login_warn2 {
 	text-align: center;
 	display: inline-block;
@@ -33,7 +33,7 @@
 	width: 100%;
 }
 
-/* ë¹„ë°€ë²ˆí˜¸ë¥¼ ìžŠìœ¼ì…¨ë‚˜ìš”, ì´ë¯¸ íšŒì›ì´ì‹ ê°€ìš”? ë¬¸êµ¬ */
+/* ºñ¹Ð¹øÈ£¸¦ ÀØÀ¸¼Ì³ª¿ä, ÀÌ¹Ì È¸¿øÀÌ½Å°¡¿ä? ¹®±¸ */
 .forgotpwd, .goregister {
 	font-size: 13px;
 	color: #42332d;
