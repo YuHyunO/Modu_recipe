@@ -39,7 +39,6 @@ public class BoardFindingServiceImpl implements BoardFindingService {
         long totalPost = boardMapper.selectPostCountByType(1);
         
         try {
-log.info("#3331 value : " + request.getParameter("value") );
             switch(request.getParameter("value")) {
             case "0": int period = Integer.parseInt(request.getParameter("period"));
                       if(period == 0) {
@@ -51,7 +50,6 @@ log.info("#3331 value : " + request.getParameter("value") );
             case "2": String nameOption = request.getParameter("nameOption");
                       String keyword = request.getParameter("keyword");
                       period = Integer.parseInt(request.getParameter("period"));
-log.info("#3332# " + period);
                       //if (nameOption.equals("ingredient")) {
                       //    totalPost = boardMapper.selectBoardCountByIngredient(keyword, period);
                       //}else {
@@ -62,17 +60,14 @@ log.info("#3332# " + period);
                           }
                        //   totalPost = boardMapper.selectBoardCountByKeyword(nameOption, keyword, period);
                       //}
-log.info("##3333 " + totalPost);
             }
         }catch(NullPointerException ne) {}
-log.info("##334 중간");
         
         if(request.getParameter("curPage") != null) {
             if(session.getAttribute("curPage") != null) {
                 curPage = (long)session.getAttribute("curPage");
             }
             String param = request.getParameter("curPage");
-log.info("##3341 curP : " + param);
             try {
                 curPage = Integer.parseInt(request.getParameter("curPage"));
             }catch(NumberFormatException nfe) {
@@ -87,14 +82,11 @@ log.info("##3341 curP : " + param);
         
         if(request.getParameter("pgSize") != null) {          
             pgSize = Integer.parseInt(request.getParameter("pgSize"));
-log.info("##3342  pgSize: " + pgSize);
         }else if(session.getAttribute("pgSize") != null) {
             pgSize = (long)session.getAttribute("pgSize");   
-log.info("##3343  pgSize: " + pgSize);
         }
         
         totalPage = (long) (totalPost/pgSize);
-log.info("##3343  totalPage : " + totalPage);
         if(totalPost % pgSize > 0) {
             totalPage = totalPage + 1;
         }       
@@ -110,92 +102,19 @@ log.info("##3343  totalPage : " + totalPage);
         
         long endRow = curPage*pgSize;
         long beginRow = endRow-pgSize+1;
-log.info("##3343  endRow , beginRow : " + endRow + "  " + beginRow);
         List<Board> boardList = boardMapper.selectFreePostsByType(type, beginRow, endRow);
-log.info("##3344  pgSize: " + boardList);
         if(request.getParameter("value")!=null) {
             boardList = getSearchedBoards(request, beginRow, endRow);
         }
         
         BoardListVo data = new BoardListVo(boardList, curPage, pgSize, totalPage);
-        log.info("#331 :  " + data);
         return data;
-        
- /*       
-        String nameOption = request.getParameter("nameOption");
-        String keyword = request.getParameter("keyword");
-        //int period = Integer.parseInt(request.getParameter("period"));
-        
-        // (1) cp
-        
-        if (cpStr == null) {
-            Object cpObj = session.getAttribute("curPage");
-            if (cpObj != null) {
-                curPage = (Long) cpObj;
-            }
-        } else {
-            cpStr = cpStr.trim();
-            curPage = Long.parseLong(cpStr);
-        }
-        session.setAttribute("curPage", curPage);
-
-        // (2) ps
-
-        if (psStr == null) {
-            Object psObj = session.getAttribute("pgSize");
-            if (psObj != null) {
-                pgSize = (Long) psObj;
-            }
-        } else {
-            psStr = psStr.trim();
-            long psParam = Long.parseLong(psStr);
-
-            Object psObj = session.getAttribute("pgSize");
-            if (psObj != null) {
-                long psSession = (Long) psObj;
-                if (psSession != psParam) {
-                    curPage = 1;
-                    session.setAttribute("curPage", curPage);
-                }
-            } else {
-                if (pgSize != psParam) {
-                    curPage = 1;
-                    session.setAttribute("curPage", curPage);
-                }
-            }
-            pgSize = psParam;
-        }
-        session.setAttribute("pgSize", pgSize);		
-	    
-		long endRow = pgSize*curPage; 
-		long beginRow = endRow-pgSize+1;
-		
-		long startPage, endPage;
-		boolean prev, next;
-		long totalPosts = boardMapper.selectPostCountByType(1);
-		endPage = (long) (Math.ceil(curPage/5.0)) * 5;
-		startPage = endPage - 4;
-		prev = startPage > 1;
-		long realEnd = (long)(Math.ceil(totalPosts * 1.0) / pgSize);
-		endPage = realEnd <= endPage? realEnd : endPage;
-		next = endPage < realEnd;
-		List<Board> listPosts = boardMapper.selectFreePostsByType(type, beginRow, endRow);
-		 
-		long listSize = totalPosts/pgSize; 
-		if (totalPosts%pgSize != 0) listSize++;
-		
-		BoardList boardList = new BoardList(listPosts, totalPost, totalPage, pgSize, curPage, type,startPage,endPage,prev,next);
-		return boardList;
-		*/
-        
 	}
 	private List<Board> getSearchedBoards(HttpServletRequest request, long beginRow, long endRow){
-	    log.info("##335 시작");
         String value = request.getParameter("value");
         int period = Integer.parseInt(request.getParameter("period"));
         String nameOption;
         String keyword;
-        log.info("#333 :  " + value + "  " + period);
         List<Board> boardList = new ArrayList<Board>();
            
         switch(value) {
@@ -207,24 +126,14 @@ log.info("##3344  pgSize: " + boardList);
                       break;
                   }        
         case "2": nameOption = request.getParameter("nameOption");
-log.info("#333nameOption  :  " + nameOption);
                   keyword = request.getParameter("keyword");
-  log.info("#333keyword  :  " + keyword);       
                   if (nameOption.equals("title")) {
                       nameOption = "TITLE";
-  log.info("#333nameOption 11  :  " + nameOption);  
                   }else if(nameOption.equals("mNickname")) {
                       nameOption = "M_NICKNAME";
-  log.info("#333nameOption 22 :  " + nameOption);  
                   }
-                  /*else if(nameOption.equals("ingredient")) {
-                      recipeList = boardMapper.selectBoardListByIngredient(keyword, period, beginRow, endRow);
-                      break;
-                  }*/
-  log.info("333끌" +"nameOption,"+nameOption +"keyword,"+keyword+"period,"+period+ "beginRow," +beginRow+"endRow: "+endRow);
   
                   boardList = boardMapper.selectBoardListByKeyword(nameOption, keyword, period, beginRow, endRow);
-  log.info("333 브레이크 전 boardList  : " + boardList);
                   break;
         }
         
@@ -239,12 +148,7 @@ log.info("#333nameOption  :  " + nameOption);
 		BoardDetail boardDetail = new BoardDetail();
 		Board board = boardMapper.selectPost(id);
 		BoardDetailNextPrev nextPrev = boardMapper.selectBoardNextPrev(id);
-		log.info("#4444 " + nextPrev);
-		log.info("##44445  " + nextPrev.getTitle());
 		List<BoardFile> boardFile = boardMapper.selectFile(id);
-		log.info("##44446  " + nextPrev.getPrevId());
-		log.info("##44447  " + nextPrev.getNextId());
-		
 		boardDetail.setBoard(board);
 		boardDetail.setBoardFile(boardFile);
 		boardDetail.setBoardDetailNextPrev(nextPrev);
