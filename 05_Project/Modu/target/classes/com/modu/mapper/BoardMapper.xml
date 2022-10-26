@@ -129,8 +129,126 @@
 			      HITS, 
 			      REPLY, 
 			      FILES from 
-	      (select * from BOARD order by LPAD(id, 10, '0') desc)) 
+	      (select * from BOARD where POST_TYPE=1 order by LPAD(id, 10, '0') desc)) 
 	      where posts BETWEEN #{beginRow} AND #{endRow}
 	     ]]>
+	</select>
+	
+	<!-- 검색으로 ㄱ 자유게시판 리스트 불러오기 -->
+	<!-- <select id="selectBoardListByKeyword" resultType="Board">
+		<![CDATA[
+			 select * from 
+	     (select ROWNUM posts, 
+				ID, 
+				M_EMAIL,
+				M_NICKNAME, 
+				PROFILE_IMG, 
+				POST_TYPE, 
+				TITLE, 
+				POST_DATE, 
+				UPDATE_DATE, 
+				HITS, 
+				REPLY, 
+				FILES from
+	      (select * from BOARD where POST_DATE BETWEEN CURRENT_DATE-#{period} AND CURRENT_DATE
+				                                 intersect
+				                                 select * from BOARD where ${nameOption} like '%'||#{keyword}||'%')
+				                      order by ID desc)
+				where list BETWEEN #{beginRow} AND #{endRow}
+		]]>	
+	</select>
+	-->
+	<select id="selectBoardListByKeyword" resultType="Board">
+	<choose>
+			<when test="period != 0">
+				<![CDATA[
+				select * from (select ROWNUM list,
+									ID, 
+									M_EMAIL,
+									M_NICKNAME, 
+									PROFILE_IMG, 
+									POST_TYPE, 
+									TITLE, 
+									POST_DATE, 
+									UPDATE_DATE, 
+									HITS, 
+									REPLY, 
+									FILES from (select * from BOARD where POST_DATE BETWEEN CURRENT_DATE-#{period} AND CURRENT_DATE AND POST_TYPE=1
+				                                 intersect
+				                                 select * from BOARD where ${nameOption} like '%'||#{keyword}||'%')
+				                      order by LPAD(id, 10, '0') desc)
+				where list BETWEEN #{beginRow} AND #{endRow}
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				select * from (select ROWNUM list,
+										ID, 
+										M_EMAIL,
+										M_NICKNAME, 
+										PROFILE_IMG, 
+										POST_TYPE, 
+										TITLE, 
+										POST_DATE, 
+										UPDATE_DATE, 
+										HITS, 
+										REPLY, 
+										FILES from (select * from BOARD where ${nameOption} like '%'||#{keyword}||'%' AND POST_TYPE=1)
+				                order by LPAD(id, 10, '0') desc)
+				where list BETWEEN #{beginRow} AND #{endRow}
+				]]>				
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="selectBoardListByPeriod" resultType="Board">
+		select * from (select ROWNUM list,
+						ID, 
+						M_EMAIL,
+						M_NICKNAME, 
+						PROFILE_IMG, 
+						POST_TYPE, 
+						TITLE, 
+						POST_DATE, 
+						UPDATE_DATE, 
+						HITS, 
+						REPLY, 
+						FILES from BOARD
+		                where POST_DATE BETWEEN <![CDATA[CURRENT_DATE-#{period}]]> AND CURRENT_DATE AND POST_TYPE=1 order by LPAD(id, 10, '0') desc)
+		where list BETWEEN #{beginRow} AND #{endRow}	
+	</select>
+	
+	<select id="selectBoardCountByKeyword" resultType="int">
+		<choose>
+			<when test="period != 0">
+				<![CDATA[
+				select NVL(MAX(ROWNUM), 0) from (select * from BOARD where POST_DATE BETWEEN CURRENT_DATE-#{period} AND CURRENT_DATE AND POST_TYPE=1
+				                                 intersect
+				                                 select * from BOARD where ${nameOption} like '%'||#{keyword}||'%')
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				select NVL(MAX(ROWNUM), 0) from (select * from BOARD where ${nameOption} like '%'||#{keyword}||'%' AND POST_TYPE=1)
+				]]>				
+			</otherwise>
+		</choose>		
+	</select>
+	
+	<select id="selectBoardNextPrev" resultType="BoardDetailNextPrev">
+			SELECT * FROM(SELECT ID ID, 
+                     M_EMAIL,
+                     M_NICKNAME, 
+                     PROFILE_IMG, 
+                     POST_TYPE, 
+                     TITLE, 
+                     POST_DATE, 
+                     UPDATE_DATE, 
+                     HITS, 
+                     REPLY, 
+                     FILES,
+                     LAG(ID,1,-1) OVER(ORDER BY ID ASC) AS PREVID,
+                     LEAD(ID,1,-1) OVER(ORDER BY ID ASC) AS NEXTID 
+               FROM BOARD where POST_TYPE=1) WHERE ID= #{id}
 	</select>
 </mapper>

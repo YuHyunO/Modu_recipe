@@ -2,6 +2,10 @@ package com.modu.service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,48 +19,53 @@ import com.modu.domain.recipe.RecipeDetail;
 import com.modu.domain.recipe.RecipeTag;
 import com.modu.fileset.Path;
 import com.modu.domain.recipe.RecipeList;
+import com.modu.domain.recipe.RecipeNestedReply;
+import com.modu.domain.recipe.RecipeReplyList;
 import com.modu.mapper.MemberMapper;
 import com.modu.mapper.RecipeLegacyMapper;
 import com.modu.mapper.RecipeMapper;
+
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
+@AllArgsConstructor
 @Service
-public class RecipeFindingServiceImpl implements RecipeFindingService {
-	
-    private Recipe recipe = new Recipe();
-    private Ingredient ingredient = new Ingredient();
-    private Direction direction = new Direction();
-    private FollowList followList = new FollowList();
-    private ArrayList<String> fileInfoList = new ArrayList<String>();
+public class RecipeFindingServiceImpl implements RecipeFindingService {	
     
-	@Autowired
 	private RecipeMapper recipeMapper;
+    private RecipeLegacyMapper recipeLegacyMapper;	
+    private MemberMapper memberMapper;
 	
-	@Autowired
-    private RecipeLegacyMapper recipeLegacyMapper;
+    @Override
+	public RecipeDetail getRecipeDetails(long id) {        
+        long rId = id;
+        int beginRow = 1;
+        int endRow = 5;
+        int subEndRow = 2;
+        Recipe recipe = recipeMapper.selectRecipe(id);
+        List<Ingredient> ingredient = recipeMapper.selectIngredient(id);
+        List<Direction> direction = recipeMapper.selectDirection(id);
+        List<RecipeTag> tag = recipeMapper.selectRecipeTag(id);
+        List<RecipeReplyList> replyList = recipeLegacyMapper.selectReplyBy(rId, beginRow, endRow);
+        System.out.println("##"+replyList);
+        List<RecipeNestedReply> nestedReplyList = new ArrayList<RecipeNestedReply>();
+        for(RecipeReplyList item:replyList) {
+            long rrId = item.getId();
+            List<RecipeNestedReply> data = recipeLegacyMapper.selectNestedReplyBy(rrId, beginRow, subEndRow);
+            for(RecipeNestedReply list:data) {
+                nestedReplyList.add(list);
+            }
+        }
+        RecipeDetail details = new RecipeDetail(recipe, ingredient, direction, tag, replyList, nestedReplyList);
+        
+	    return details;
+	}
 	
-	@Autowired private FileUploadService fileUploadService;
-	@Autowired private MemberMapper memberMapper;
 	@Override
 	public List<RecipeList> selectRecipeListByBestHits(long beginRow, long endRow) {
 		return recipeMapper.selectRecipeListByBestHits(beginRow, endRow);
 
-	}
-	
-	@Override
-	public RecipeDetail findRecipedetails(long id) {
-		long rId = id;
-		Recipe recipe = recipeMapper.selectRecipe(id);
-		List<Ingredient> ingredient = recipeMapper.selectIngredient(rId);
-		List<Direction> direction = recipeMapper.selectDirection(rId);
-		List<RecipeTag> recipetag = recipeMapper.selectRecipeTag(rId);
-		RecipeDetail recipeDetail = new RecipeDetail();
-		recipeDetail.setRecipe(recipe);
-		recipeDetail.setIngredient(ingredient);
-		recipeDetail.setDirection(direction);
-		recipeDetail.setTag(recipetag);
-		return recipeDetail;
 	}
 
 	@Override
@@ -65,10 +74,7 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
 		String starPoint = Double.toString(star);
 		String starPoint1 = starPoint.substring(0, 1);
 		String starPoint2 = starPoint.substring(2, 3);
-		int starPointResult;
-		
-		//System.out.println("####스타포인트1:" + starPoint1);
-		//System.out.println("####스타포인트2:" + starPoint2);
+		int starPointResult;		
 		
 		if (Integer.parseInt(starPoint2) >= 5) {
 			starPointResult = Integer.parseInt(starPoint1) + 1;
@@ -107,9 +113,40 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
     }
 
     @Override
-    public FollowList getFollower(String targetEmail, String email) {
-        followList = memberMapper.selectFollowerOnebyEmails(targetEmail, email);
-        return followList;
+    public List<RecipeList> findRecentRecipes(HttpServletRequest request){
+        String[] cookieId = request.getParameterValues("id");
+        List<RecipeList> recipeList = new ArrayList<RecipeList>();
+        
+        for(int i=0; i<cookieId.length; i++) {
+            long id = Long.parseLong(cookieId[i]);
+            recipeList.add(recipeMapper.selectRecipeSummary(id));
+        }                       
+        return recipeList;
     }
 
+    public FollowList getFollower(String targetEmail, String email) {
+        
+        FollowList followList = memberMapper.selectFollowerOnebyEmails(targetEmail, email);
+        return followList;
+    }
+    
+    public List<RecipeReplyList> getReply(HttpServletRequest request){
+        long rId = Long.parseLong(request.getParameter("rId"));
+        int beginRow = 1;
+        
+        int endRow = beginRow + 4;
+        
+        List<RecipeReplyList> replyList = recipeLegacyMapper.selectReplyBy(rId, beginRow, endRow);
+        return replyList;
+    }
+    
+    public List<RecipeNestedReply> getNestedReply(HttpServletRequest request){
+        long rrId = Long.parseLong(request.getParameter("rrId"));
+        int beginRow = 1; 
+        
+        int endRow = beginRow + 2;               
+        
+        List<RecipeNestedReply> replyList = recipeLegacyMapper.selectNestedReplyBy(rrId, beginRow, endRow);
+        return replyList;
+    }
 }

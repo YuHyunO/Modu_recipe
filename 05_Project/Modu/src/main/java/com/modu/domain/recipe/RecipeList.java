@@ -18,4 +18,5 @@ public class RecipeList {
     private double star;
     private int stars;
     private long hits;
+    private String sort;
 }

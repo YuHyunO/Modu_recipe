@@ -17,17 +17,16 @@ import com.modu.domain.recipe.RecipeList;
 import com.modu.service.MembershipService;
 import com.modu.service.RecipeFindingService;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
+@AllArgsConstructor
 @Controller
 public class IndexController {
 	
-	@Autowired
 	private MembershipService membershipService;
-	
-	@Autowired
-	private RecipeFindingService recipeFindingservice;
+	private RecipeFindingService recipeFindingService;	
 	
 	@GetMapping("/")
 	public ModelAndView index() {
@@ -36,7 +35,7 @@ public class IndexController {
 		endRow = 8;
 		
 		List<Member> rankList = membershipService.selectMemberRankS();
-		List<RecipeList> recipeList = recipeFindingservice.selectRecipeListByBestHits(beginRow, endRow);
+		List<RecipeList> recipeList = recipeFindingService.selectRecipeListByBestHits(beginRow, endRow);
 		
 		// ·©Å· TOP 6 ¸â¹ö È®ÀÎ
 		for (Member member: rankList) {
@@ -47,5 +46,10 @@ public class IndexController {
 		mv.addObject("recipeList", recipeList);
 		return mv;
 	}
+	
+    @GetMapping("/recent-recipe")
+    public @ResponseBody List<RecipeList> displayRecentRecipe(HttpServletRequest request){
+        return recipeFindingService.findRecentRecipes(request);
+    }
 	
 }

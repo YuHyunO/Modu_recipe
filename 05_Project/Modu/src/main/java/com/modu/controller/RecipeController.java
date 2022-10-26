@@ -21,9 +21,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.modu.domain.member.Scrap;
 import com.modu.domain.recipe.RecipeDetail;
+import com.modu.domain.recipe.RecipeList;
 import com.modu.domain.recipe.RecipeListVo;
+import com.modu.domain.recipe.RecipeNestedReply;
 import com.modu.domain.recipe.RecipeReply;
 import com.modu.domain.recipe.RecipeReplyList;
+import com.modu.domain.recipe.RecipeReplyPhoto;
 import com.modu.mapper.RecipeLegacyMapper;
 import com.modu.service.MembershipService;
 import com.modu.service.RecipeFindingService;
@@ -47,6 +50,7 @@ public class RecipeController {
     private MembershipService membershipService;
     @Autowired
     private RecipeLegacyMapper recipeLegacyMapper;
+  
 
 
     @GetMapping("/list")
@@ -154,22 +158,25 @@ public class RecipeController {
 //    }
     
     @GetMapping("/delete")
-    public String deleteRecipe(long id, HttpServletRequest request) { //
+    public String deleteRecipe(long id, HttpServletRequest request) {
         HttpSession session = request.getSession();
         String getId = request.getParameter("id");
-        id = Integer.parseInt(getId);
-        log.info("#####99: " + id);
+        id = Integer.parseInt(getId);      
         recipeRegisterService.recipeDelete(id);
         return "redirect:/";
     }
     
     @GetMapping("/detail")
-    public ModelAndView recipeDetail(HttpSession session) {
-        long id = 150;
+    public ModelAndView recipeDetail(HttpServletRequest request, HttpSession session) {
         String email = (String)session.getAttribute("email");
-        RecipeDetail recipeDetail = recipeFindingService.findRecipedetails(id);
-        String starPoint = recipeFindingService.getStarPoint(recipeDetail);
-        List<RecipeReplyList> selectReply = recipeRegisterService.findRecipeReply(id);
+        long id = 0;
+        try {
+            id = Long.parseLong(request.getParameter("no"));
+        }catch(NumberFormatException nfe) {
+            return  new ModelAndView("redirect:/");
+        }
+        RecipeDetail detail = recipeFindingService.getRecipeDetails(id);
+        String starPoint = recipeFindingService.getStarPoint(detail);
         boolean scrapState = false;
         if(email != null) {
             if (recipeFindingService.getScrap(id, email) == null) {
@@ -182,40 +189,60 @@ public class RecipeController {
         
         ModelAndView mv = new ModelAndView();
         mv.setViewName("recipe/detail");
-        mv.addObject("rec", recipeDetail);
-        mv.addObject("rep", selectReply);
-        mv.addObject("id", id);
+        mv.addObject("detail", detail);        
         mv.addObject("starPoint", starPoint);
         mv.addObject("scrapState", scrapState);
         mv.addObject("replyCount", replyCount);
         return mv;
     }
 
+    @GetMapping("/recipe-reply")
+    public @ResponseBody List<RecipeReplyList> callReplyData(HttpServletRequest request){
+        
+        List<RecipeReplyList> data = recipeFindingService.getReply(request);
+        return data;
+    }
+    
+    @GetMapping("/recipe-nested-reply")
+    public @ResponseBody List<RecipeNestedReply> callNestedReplyData(HttpServletRequest request){
+        
+        List<RecipeNestedReply> data = recipeFindingService.getNestedReply(request);
+        return data;
+    }
+    
     @PostMapping("/insert.do")
-    public @ResponseBody String insertReply(RecipeReply recipeReply) {
+    public @ResponseBody String insertReply(RecipeReply recipeReply, MultipartFile file, RecipeReplyPhoto replyPhoto){
+        System.out.println("zzzzz");
         String result = recipeRegisterService.registerReply(recipeReply);
+        recipeRegisterService.registerReplyPhoto(replyPhoto);
+        System.out.println(result);
+        System.out.println(replyPhoto);
         log.info("#recipeReply" + recipeReply);
         return result;
     }
-
     @GetMapping("/del.do")
     public String deleteReply(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        // System.out.println("session"+session);
         String paramId = request.getParameter("id");
         long id = Long.parseLong(paramId);
-        // System.out.println("id"+id);
-        recipeRegisterService.delete(id);
+        recipeRegisterService.deleteReply(id);
         return "redirect:detail";
     }
-    /*
-     * ->´ë´ñ±Û/¹Ì¿Ï
-     * 
-     * @PostMapping("/insertRreply.do") public @ResponseBody String
-     * insertNestedReply (RecipeNestedReply recipeNestedReply){ String result =
-     * recipeRegisterService.registerNestedReply(recipeNestedReply);
-     * log.info("#recipeNestedReply" +recipeNestedReply); return result; }
-     */
+    @PostMapping("/insertNestedReply.do")
+    public @ResponseBody String insertNestedReply (RecipeNestedReply recipeNestedReply) {
+        System.out.println("# "+recipeNestedReply);    
+        String result = recipeRegisterService.registerNestedReply(recipeNestedReply);
+        System.out.println("#nestedReply" + recipeNestedReply);
+        return result;
+    } 
+    @GetMapping("/delNestedReply.do")
+    public String delNestedReply(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        String paramId = request.getParameter("id");
+        long id = Long.parseLong(paramId);
+        recipeRegisterService.deleteNestedReply(id);
+        return "redirect:detail";
+    }
     
     @ResponseBody
     @PostMapping("/scrap/insert")
@@ -255,8 +282,8 @@ public class RecipeController {
             map.put("msg", msg);
             return map;
         }
-    }
-    
+    }  
+
     @ResponseBody
     @PostMapping("/follow/insert")
     public HashMap<String, Object> insertFollow(HttpServletRequest request, HttpSession session){

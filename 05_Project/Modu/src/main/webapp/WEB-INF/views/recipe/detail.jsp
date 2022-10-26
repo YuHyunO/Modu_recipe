@@ -5,18 +5,16 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/views/common/head.jsp"%>
-<!-- 공통 부분 END -->
 <link href="/css/recipe-detail.css" rel="stylesheet">
 <script src="/js/recipe-detail.js"></script>
 <script src="/js/recipe-detailSub.js"></script>
-
+<link href="/css/common.css" rel="stylesheet">
 <title>모두의 식탁 - 레시피</title>
 </head>
 <body>
 	<div id="page" class="hfeed site">
 		<!-- start page wrapper -->
 		<%@ include file="/WEB-INF/views/common/menu.jsp"%>
-
 		<div class="head-title py-4 m-0">
 			<div class="container">
 				<p class="page-title m-0 fs-2">RECIPE</p>
@@ -24,9 +22,13 @@
 			<!-- end container -->
 		</div>
 		<!-- end head-title -->
-
-		<div class="main">
-			<!-- 사진 팝업 -->
+		<div class="main d-flex justify-content-center">
+			<div class="main-container row d-flex justify-content-center m-0 py-4">
+				
+		<div class="row">
+			<div id="main-content" class="content-area col-md-9">
+		
+			<!-- 사진 팝업(hidden) -->
 			<div id="viewPicDivModal" class="modal" role="dialog"
 				aria-hidden="true" style="display: none;">
 				<div class="modal-dialog">
@@ -39,14 +41,13 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- end 사진 팝업 -->
-			<div class="row py-3 px-5">
-				<div class="container col-md-2">
-					<input class="recipe-id" hidden="true" value="${id}">
-				</div>
-				<div class="container col-sm-10 col-md-8 col-lg-6 col-xl-5">
-					<div class="recipe-content m-0" id="primary">
+			</div><!-- end 사진 팝업 -->
+			
+			<!-- primary 본격 시작 -->
+				<!-- <div class="container col-md-2"></div> -->
+				<input class="recipe-id" hidden="true" value="${detail.recipe.id}">
+				<div class="col-md-9 col-lg-6 col-xl-9">
+					<div id="primary" class="recipe-content m-0">
 						<div class="row py-3">
 							<div class="col-md-6">
 								<figure class="ratio ratio-4x3 p-3 m-0">
@@ -59,16 +60,16 @@
 								<div class="detail-desc d-flex flex-column">
 									<div class="recipe-rating m-0 p-1 d-flex align-items-center">
 										<img class="star-rate-img me-2" src="/imgs/stars3.png" alt="stars">
-										<span>${rec.recipe.star}</span> <span class="ps-1">(${replyCount})</span>
+										<span>${detail.recipe.star}</span> <span class="ps-1">(${replyCount})</span>
 									</div>
-									<div class="fs-4 py-3 m-0">${rec.recipe.title}</div>
-									<div class="m-0">${rec.recipe.info}</div>
+									<div class="fs-4 py-3 m-0">${detail.recipe.title}</div>
+									<div class="m-0">${detail.recipe.info}</div>
 								</div>
 								<!-- recipe desc -->
 								<div class="recipe-info py-3 d-flex justify-content-end">
-									<span class="recipe-amount pt-5 px-2">${rec.recipe.serving}</span>
-									<span class="recipe-time pt-5 px-2">${rec.recipe.cookTime}</span>
-									<span class="recipe-person pt-5 px-2">${rec.recipe.difficultyLevel}</span>
+									<span class="recipe-amount pt-5 px-2">${detail.recipe.serving}</span>
+									<span class="recipe-time pt-5 px-2">${detail.recipe.cookTime}</span>
+									<span class="recipe-person pt-5 px-2">${detail.recipe.difficultyLevel}</span>
 								</div>
 
 							</div>
@@ -81,11 +82,11 @@
 								<span>
 									<img src="/imgs/content/auth-03.png" alt="recipe author">
 									<span>Posted by 
-										<a href="#">${rec.recipe.MNickname}</a>
+										<a href="#">${detail.recipe.MNickname}</a>
 									</span>
 								</span>
 								<span>
-									<button class="btn btn-outline-success subscribe-btn me-2" data-email="${rec.recipe.MEmail}" onclick="clickSubscribe(this)">친구 추가</button>
+									<button class="btn btn-outline-success subscribe-btn me-2" data-email="${detail.recipe.MEmail}" onclick="clickSubscribe(this)">친구 추가</button>
 								</span>
 							</div>
 							<!-- end recipe author -->
@@ -104,7 +105,7 @@
 									<span>스크랩</span>
 								</div>
 								<div class="d-flex flex-column text-center">
-									<input type="hidden" value="http://modu-table/recipe/detail/${id}" id="recipe-link"/>
+									<input type="hidden" value="http://modu-table/recipe/detail/${detail.recipe.id}" id="recipe-link"/>
 									<button class="recipe-share" onclick="shareLink(this)"></button>
 									<span>공유</span>
 								</div>
@@ -121,9 +122,9 @@
 									<strong>[재료]</strong>
 								</p>
 								<ul>
-									<c:forEach items="${rec.ingredient}" var="i">
-										<c:if test="${i.ingredientType eq 0}">
-											<li>${i.ingredient}&nbsp;${i.quantity}</li>
+									<c:forEach items="${detail.ingredient}" var="li">
+										<c:if test="${li.ingredientType eq 0}">
+											<li>${li.ingredient}&nbsp;${li.quantity}</li>
 										</c:if>
 									</c:forEach>
 								</ul>
@@ -134,9 +135,9 @@
 									<strong>[양념]</strong>
 								</p>
 								<ul>
-									<c:forEach items="${rec.ingredient}" var="i">
-										<c:if test="${i.ingredientType eq 1}">
-											<li>${i.ingredient}&nbsp;${i.quantity}</li>
+									<c:forEach items="${detail.ingredient}" var="li">
+										<c:if test="${li.ingredientType eq 1}">
+											<li>${li.ingredient}&nbsp;${li.quantity}</li>
 										</c:if>
 									</c:forEach>
 								</ul>
@@ -153,12 +154,12 @@
 							</p>
 							<div class="p-0">
 								<div class="row d-flex step justify-content-center py-2">
-									<c:forEach items="${rec.direction}" var="d">
+									<c:forEach items="${detail.direction}" var="li">
 										<div class="row col-md-8">
 											<div class="step-title">
-												<strong>STEP &nbsp; ${d.step}</strong>
+												<strong>STEP &nbsp; ${li.step}</strong>
 											</div>
-											<div class="step-main">${d.direction}</div>
+											<div class="step-main">${li.direction}</div>
 										</div>
 										<div class="col-md-4 step-img">
 											<figure class="ratio ratio-4x3">
@@ -176,74 +177,92 @@
 						<!-- end col -->
 					</div>
 					<!-- end 조리순서 -->
+					
 					<div class="row tag-section d-flex">
 						<span class="tag-head ms-2 py-3"></span>
-						<c:forEach items="${rec.tag}" var="t">
-							<span class="tag-body py-3 w-75"><a href="#"><em>${t.tag}</em></a>								
+						<c:forEach items="${detail.tag}" var="li">
+							<span class="tag-body py-3 w-75"><a href="#"><em>${li.tag}</em></a>								
 						</c:forEach>
 					</div>
 					<!-- end 태그 -->
-					<div
-						class="row comment-section border-top py-3 justify-content-center">
+					
+					<div class="row comment-section border-top py-3 justify-content-center">
 						<div class="row comments pt-3">
 							<h2 class="comments-title text-start mb-2">
 								리뷰<span>(${replyCount})</span>
 							</h2>
-							<ol class="comment-list" id="comment-0-0">
-								<c:forEach items="${rep}" var="rep">
-									<li class="comment" id="comment-135000-0001">
-										<!-- start comment -->
+							<ol class="comment-list" id="comment-area">
+								<c:forEach items="${detail.replyList}" var="li">							
+									<li class="comment">
 										<div class="comment-body">
-											<div
-												class="comment-meta d-flex justify-content-between align-items-center">
+											<div class="comment-meta d-flex justify-content-between align-items-center">
 												<span class="d-flex align-items-center">
 													<figure class="comment-author">
-														<img src="/imgs/content/auth-00.png" alt="작성자">
-													</figure> <!-- end comment-author vcard --> <b class="fn px-2">${rep.nickname}</b>
-													<span class="star-rate-block"> <span class="px-2">${rep.replyDate}</span>
-														<img class="star-rate-img2" src="/imgs/stars4.png"
-														alt="stars"
-														style="width: 80px; height: 15px; margin-bottom: 5px;">
-												</span>
+														<img src="${li.profileImg}" alt="작성자">
+													</figure><b class="fn px-2">${li.nickname}</b>
+													<span class="star-rate-block"> 
+														<span class="px-2">${li.replyDate}</span>
+														<img class="star-rate-img2" src="/imgs/stars4.png" alt="stars" style="width: 80px; height: 15px; margin-bottom: 5px;">
+													</span>
 												</span>
 												<div>
-													<button class="reply-135000-0001 reply-btn"
-														onclick="addReplyForm(this)">
-													수정</a>
-													<button class="reply-135000-0001 reply-btn"
-														onclick="location.href='/recipe/del.do?id=${rep.id}'">
-													삭제</a>
-													<button class="reply-135000-0001 reply-btn"
-														onclick="addReplyForm(this)">
-													답글</a>
+													<button class="reply-135000-0001 reply-btn" onclick="">삭제</a>
+													<button class="reply-135000-0001 reply-btn" onclick="addReplyForm(this)">답글</a>
 												</div>
 											</div>
-											<!-- end comment-meta -->
 											<div class="comment-content d-flex">
-												<p class="p-2 m-0 col-9">${rep.reply}</p>
+												<p class="p-2 m-0 col-9">${li.reply}</p>
 												<figure class="comment-image">
 													<img class="rounded-3" src="/imgs/content/dessert-l.png"
 														alt="comment-image">
 												</figure>
-												<!-- end comment-author vcard -->
 											</div>
-											<!-- end comment-content -->
-										</div> <!-- end comment-body -->
+										</div> 
 									</li>
-									<!-- end li -->
+									<c:if test="${li.nestedReply eq 1}">																																
+										<ol class="re-comment px-0" id="recomment-area-${li.id}">										
+											<c:forEach items="${detail.nestedReplyList}" var="lis">
+											<c:if test="${li.id eq lis.rrId}">
+												<li class="comment row">
+										        	<div class="col" style="max-width: 40px;">										        
+										           		<img src="/imgs/reply-arrow.png" alt="화살표">
+											        </div>
+											        <div class="comment-body col">
+											            <div class="comment-meta d-flex justify-content-between align-items-center">
+											                <span class="d-flex align-items-center">
+											                    <figure class="comment-author">
+											                        <img src="/imgs/content/auth-03.png" alt="작성자">
+											                    </figure>
+											                    <b class="fn ps-2">${lis.MNickname}</b>
+											                    <span class="px-2">${lis.replyDate}</span>
+											                </span>
+											                <span class="reply-btn px-2">
+											                    <button class="reply-135000-0001 reply-btn" 
+											                    onclick="getData(${lis.id});">삭제</button>
+											                </span>
+											            </div>
+											            <div class="comment-content">
+											                <p class="p-2 m-0">${li.reply}</p>
+											            </div>												           																											            
+											        </div>
+										    	</li>
+										    </c:if>
+									    	</c:forEach>										    																
+										</ol>									
+										<div class="row view-more py-2" style="max-width: 300px;">
+											<button id="${li.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="2">대댓글 더보기</button>
+										</div>
+									</c:if>																							
 								</c:forEach>
-								<ol class="re-comment px-0" id="recomment-135000-0001">
-								</ol>
-								<li class="comment" id="comment-135000-0002">
-									
-							</ol>
-							<!-- end comment-list -->
+							</ol>							
 						</div>
-						<!-- end 리뷰 -->
-						<div class="row view-more p-2">
-							<button class="btn w-100 h-100 border more-view-btn"
-								onclick="showMore(this)">더보기</button>
-						</div>
+						<!-- end row comments pt-3, 리뷰 댓글list -->
+						<c:if test="${replyCount != 0}">
+							<div class="row view-more p-2">
+								<button id="${detail.recipe.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="1">더보기</button>
+							</div>
+						</c:if>
+						<!-- 별점+댓글창 -->
 						<div class="comment-write p-2">
 							<div class="row w-100 m-0">
 								<div class="col py-1">
@@ -258,17 +277,11 @@
 								</div>
 							</div>
 							<!-- end star row -->
+							
 							<div class="row w-100 m-0 pb-2">
 								<form class="comment-form" type="POST" id="reply-form-0-0"
 									onSubmit="addReply(this)">
 									<div class="row">
-										<div>
-											<input name="mEmail" type="hidden" value="admin@modu.com">
-											<input name="rId" type="hidden" value="150"> <input
-												name="mNickname" type="hidden" value="관리자"> <input
-												name="profileImg" type="hidden"
-												value="default_profile_img.png">
-										</div>
 										<div class="col px-0 comment-file"
 											style="min-width: 100px; max-width: 100px;">
 											<input type="file" hidden> <img class="border"
@@ -286,73 +299,18 @@
 												class="btn w-100 h-100 border comment-submit" type="submit">등록</button>
 										</div>
 									</div>
-									<!-- end row -->
 								</form>
-								<!-- end comment-form -->
-							</div> 
-							<!-- end row pb-2 -->
+							</div>						
 						</div>
-						<!-- end 리뷰 작성 -->
 					</div>
-					<!-- end 리뷰 -->
-				</div>
-				<!-- end 메인 컨테이너 -->
-				<div class="container col-md-2 d-flex justify-content-center" id="secondary">
-					<div class="widget post-type-widget px-3 m-0">
-						<div class="widget-title-outer">
-							<h3 class="widget-title pb-2 mb-0">최근 본 레시피</h3>
-						</div>
-						<ul>
-							<li class="d-flex flex-column"><span
-								class="post-category pb-1 m-0"> <a href="#">Uncategorized</a>
-							</span>
-								<figure class="post-thumbnail w-100 h-100">
-									<a href="#"><img class="rounded-3" src="/imgs/content/thumb-post-01.png"
-										alt=""></a>
-								</figure>
-								<h2 class="post-title m-0">
-									<a href="#">Lorem Ipsum Dolor Sit Amet, Consetetuer
-										Adipiscing Elit</a>
-								</h2></li>
-							<li class="d-flex flex-column"><span
-								class="post-category pb-1 m-0"> <a href="#">Cooking
-										Tips</a>
-							</span>
-								<figure class="post-thumbnail w-100 h-100">
-									<a href="#"><img class="rounded-3" src="/imgs/content/thumb-post-02.png"
-										alt=""></a>
-								</figure>
-								<h2 class="post-title m-0">
-									<a href="#">Euismod Tincidunt ut Laoreet Dolore Magna
-										Aliquam</a>
-								</h2></li>
-							<li class="d-flex flex-column"><span
-								class="post-category pb-1 m-0"> <a href="#">Kitchen</a>
-							</span>
-								<figure class="post-thumbnail w-100 h-100">
-									<a href="#"><img class="rounded-3" src="/imgs/content/thumb-post-03.png"
-										alt=""></a>
-								</figure>
-								<h2 class="post-title m-0">
-									<a href="#">Ullamcorper Suscipit Lobortis Nisl ut Aliquip
-										Commodo Consequat</a>
-								</h2></li>
-							<li class="d-flex flex-column"><span
-								class="post-category pb-1 m-0"> <a href="#">Vegetable</a>
-							</span>
-								<figure class="post-thumbnail w-100 h-100">
-									<a href="#"><img class="rounded-3" src="/imgs/content/thumb-post-04.png"
-										alt=""></a>
-								</figure>
-								<h2 class="post-title m-0">
-									<a href="#">Quod Mazim Placerat Facer Possim Assum</a>
-								</h2></li>
-						</ul>
-					</div>
-					<!-- end widget -->
-				</div>
-				<!-- end secondary -->
+				</div>				
 			</div>
+			
+			<%@ include file="/WEB-INF/views/common/secondary.jsp"%>
+			</div>
+		  </div>
+		</div>
+		
 			<div class="row related-recipe border py-3 px-5">
 				<div class="container">
 					<div class="row justify-content-center">
@@ -367,17 +325,17 @@
 								</div>
 								<div class="recipe-desc">
 									<h2 class="recipe-title p-0">
-										<a href="${li.id}">${li.title}제목</a>
+										<a href="#">$제목</a>
 									</h2>
 									<figure class="profile mb-1">
 										<img class="profile-img" src="/imgs/content/auth-00.png"
 											alt="작성자">
-										<span><em> ${li.MNickname}닉네임</em></span>
+										<span><em> 닉네임</em></span>
 									</figure>
 									<div class="recipe-icons d-flex justify-content-between">
 										<span class="d-flex align-items-center"> 
 											<img class="stars" src="/imgs/stars5.png"> 
-											<span class="p-1 mt-1">${li.star}</span>
+											<span class="p-1 mt-1">#</span>
 										</span>
 									</div>
 								</div>
@@ -389,17 +347,38 @@
 								</div>
 								<div class="recipe-desc">
 									<h2 class="recipe-title p-0">
-										<a href="${li.id}">${li.title}제목</a>
+										<a href="#">제목</a>
 									</h2>
 									<figure class="profile mb-1">
 										<img class="profile-img" src="/imgs/content/auth-00.png"
 											alt="작성자">
-										<span><em> ${li.MNickname}닉네임</em></span>
+										<span><em> 닉네임</em></span>
 									</figure>
 									<div class="recipe-icons d-flex justify-content-between">
 										<span class="d-flex align-items-center"> 
 											<img class="stars" src="/imgs/stars5.png"> 
-											<span class="p-1 mt-1">${li.star}</span>
+											<span class="p-1 mt-1">#</span>
+										</span>
+									</div>
+								</div><!-- end recipe-desc -->
+							</div><!-- end col -->
+							<div class="col-6 col-md-3">
+								<div class="recipe-thumb">
+									<img src="/imgs/content/thumb-2.png" alt="Recipe Image">
+								</div>
+								<div class="recipe-desc">
+									<h2 class="recipe-title p-0">
+										<a href="#">제목</a>
+									</h2>
+									<figure class="profile mb-1">
+										<img class="profile-img" src="/imgs/content/auth-00.png"
+											alt="작성자">
+										<span><em> 닉네임</em></span>
+									</figure>
+									<div class="recipe-icons d-flex justify-content-between">
+										<span class="d-flex align-items-center"> 
+											<img class="stars" src="/imgs/stars5.png"> 
+											<span class="p-1 mt-1">#</span>
 										</span>
 									</div>
 								</div>
@@ -411,58 +390,30 @@
 								</div>
 								<div class="recipe-desc">
 									<h2 class="recipe-title p-0">
-										<a href="${li.id}">${li.title}제목</a>
+										<a href="#">제목</a>
 									</h2>
 									<figure class="profile mb-1">
 										<img class="profile-img" src="/imgs/content/auth-00.png"
 											alt="작성자">
-										<span><em> ${li.MNickname}닉네임</em></span>
+										<span><em> 닉네임</em></span>
 									</figure>
 									<div class="recipe-icons d-flex justify-content-between">
 										<span class="d-flex align-items-center"> 
 											<img class="stars" src="/imgs/stars5.png"> 
-											<span class="p-1 mt-1">${li.star}</span>
+											<span class="p-1 mt-1">#</span>
 										</span>
 									</div>
-								</div>
-								<!-- end recipe-desc -->
+								</div><!-- end recipe-desc -->
 							</div><!-- end col -->
-							<div class="col-6 col-md-3">
-								<div class="recipe-thumb">
-									<img src="/imgs/content/thumb-2.png" alt="Recipe Image">
-								</div>
-								<div class="recipe-desc">
-									<h2 class="recipe-title p-0">
-										<a href="${li.id}">${li.title}제목</a>
-									</h2>
-									<figure class="profile mb-1">
-										<img class="profile-img" src="/imgs/content/auth-00.png"
-											alt="작성자">
-										<span><em> ${li.MNickname}닉네임</em></span>
-									</figure>
-									<div class="recipe-icons d-flex justify-content-between">
-										<span class="d-flex align-items-center"> 
-											<img class="stars" src="/imgs/stars5.png"> 
-											<span class="p-1 mt-1">${li.star}</span>
-										</span>
-									</div>
-								</div>
-								<!-- end recipe-desc -->
-							</div><!-- end col -->
-						</div>
-						<!-- end list -->
-						<button class="col next-icon px-0"></button>
-					</div>
-					<!-- end row -->
-				</div>
-				<!-- end container -->
-			</div>
-			<!-- end 추천 레시피 -->
-		</div>
-		<!-- end main -->
+						</div><!-- end list -->
+						
+				<button class="col next-icon px-0"></button>
+					</div><!-- end row -->
+				</div><!-- end container -->
+			</div><!-- end row related-recipe/추천 레시피 -->
+
 		<%@ include file="/WEB-INF/views/common/bottom.jsp"%>
-	</div>
-	<!-- end #page hfeed site -->
+	</div><!-- end #page hfeed site -->
 
 </body>
 </html>

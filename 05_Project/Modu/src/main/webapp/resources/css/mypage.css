@@ -1,25 +1,23 @@
-/* ÇÁ·ÎÇÊ ¹Ú½º */
 .profile-details {
-	background-color: rgba(147, 112, 98, 0.2);
-	color: #666;
-	text-align: center;
-	padding: 20px
-}
-
-/* 
-	.profile-details {
 	    background-color: rgba(147, 112, 98, 0.2);
 	    color: #666;
 	    text-align:center;  
 	    justify-content: center;
 	    align-items: center;  
-	    padding: 0px;
+	    padding: 20px;
 	    border-radius: 5rem!important;
-	    width: 600px;
-} 
-*/
+	    width: 100%;
+}
 
-/* ÇöÀç ÇÁ»ç ÀÌ¹ÌÁö */
+.site-content img {
+    max-width: 70%;
+}
+
+a {
+	width: auto;
+    text-decoration: none;
+}
+
 #mypage_profileimg, #mypage_defaultimg {
 	max-width: 200px;
 	max-height: 200px;
@@ -31,7 +29,6 @@
 	/* background:gray; */
 }
 
-/* ÅÇ ¼±ÅÃ */
 .nav-link {
 	color: #241c19;
 }
@@ -40,7 +37,6 @@
 	color: #937062;
 }
 
-/* ³ÃÀå°í ¸ÂÃãÇü ·¹½ÃÇÇ ÃßÃµ ¼³¸í box */
 .backbox {
 	background-color: rgba(147, 112, 98, 0.2);
 	padding: 5px;
@@ -54,7 +50,6 @@
 	padding: 10px
 }
 
-/* ·¹½ÃÇÇ °Ë»ö ¹öÆ° */
 .gold-btn {
 	border-radius: 5px;
 	border: none;
@@ -66,7 +61,6 @@
 	background-color: rgb(170, 130, 110) !important;
 }
 
-/* Ã¼Å©¹Ú½º */
 .check-div {
 	min-width: 125px;
 	max-width: 125px;
@@ -82,7 +76,6 @@
 	}
 }
 
-/* ÅÇ ¸Ş´º */
 .tab-menu {
 	font-size: 1rem !important;
 }
@@ -97,7 +90,6 @@
 	}
 }
 
-/* ³ªÀÇ ·¹½ÃÇÇ ÀÌ¹ÌÁö */
 .category-pic {
 	border-radius: 10px !important;
 	max-height: 230px;
@@ -109,7 +101,6 @@
 	}
 }
 
-/* ½¦ÇÁ ·©Å· */
 .chef-pic {
 	border-radius: 50%;
 	width: 70%;
@@ -127,7 +118,7 @@
 }
 
 .banner {
-	width: 100%;
+	width: 90%;
 }
 
 #secondary .tagcloud a {
@@ -138,7 +129,6 @@
 	background-color: rgb(170, 130, 110) !important;
 }
 
-/* ±âÅ¸ */
 @media ( max-width :454px) {
 	.main * {
 		font-size: 0.8rem;
@@ -185,7 +175,6 @@
 	box-shadow: 0 0 0 .2rem rgba(147, 112, 98, 0.25);
 }
 
- /*ÅÇ5 - Ä£±¸°ü¸® ¹öÆ°*/
 .handlemyfriendBtn {
 	font-size: 13px;
 	margin: auto 0;
@@ -223,7 +212,6 @@
 	display: flex;
 }
 
-/* ÅÇ5 Ä£±¸°ü¸®- Ä£±¸¹Ú½º ¹è°æ ³Ö±â, »çÀÌÁî Á¶Àı*/
 .team-col {
 	text-align: center;
 	justify-content: center;
@@ -258,4 +246,9 @@
 	color: #999;
 	margin-bottom: 5px;
 	display: block;
+}
+
+/*ì¹œêµ¬ í”„ë¡œí•„ ì‚¬ì§„ í¬ê¸° ì¡°ì ˆ*/
+.site-content img {
+    max-width: 70%;
 }

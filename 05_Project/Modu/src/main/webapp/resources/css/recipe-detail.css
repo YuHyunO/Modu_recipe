@@ -1,3 +1,13 @@
+a {
+	width: auto;
+    text-decoration: none;
+}
+
+#main-content {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .search-btn {
     background: url("/imgs/search.svg") center no-repeat;
 }
@@ -157,7 +167,7 @@
 
 @media (min-width: 992px){
 	#secondary {
-		padding: 0 0 50px 30px;
+		padding: 0 0 0px 0px;
 		border-left: 1px dotted #ddd;
 	}
 	
