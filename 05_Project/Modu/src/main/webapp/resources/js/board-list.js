@@ -37,10 +37,10 @@ function setPage(e){
 	}
 
 	if(sessionStorage.getItem("keyword")!=null){
-		console.log("2: towards setKeywordData(); setPage(e): "+sessionStorage.getItem("keyword"));
+		//console.log("2: towards setKeywordData(); setPage(e): "+sessionStorage.getItem("keyword"));
 		setKeywordData(1);
 	}else{
-		console.log("2: towards setData()");
+		//console.log("2: towards setData()");
 		setData();
 	}
 }
@@ -60,8 +60,8 @@ function setData(){
 }
 
 function setKeywordData(status){
-	console.log("setKeywordData(): "+sessionStorage.getItem("keyword"));
-	console.log("setKeywordData(): "+sessionStorage.getItem("nameOption"));
+	//console.log("setKeywordData(): "+sessionStorage.getItem("keyword"));
+	//console.log("setKeywordData(): "+sessionStorage.getItem("nameOption"));
 	
 	let periodSelector = document.getElementById("period-selector");
 	let nameSelector = document.getElementById("name-selector");
