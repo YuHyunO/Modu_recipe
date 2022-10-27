@@ -123,14 +123,14 @@
 		                       r.REPLY_DATE,
 		                       NVL2(rp.ID, 1, 0) PHOTO_PRESENSE
 		                from RECIPE_REPLY r left join RECIPE_REPLY_PHOTO rp on r.ID=rp.RR_ID 
-		                where r.R_ID=#{rId}) A
+		                where r.R_ID=#{rId} order by ID desc) A
 		                inner join
 		               (select DISTINCT(ID), NESTED_REPLY
 		                from(select r.ID,
 		                            NVL2(nr.ID, 1, 0) NESTED_REPLY     
 		                     from RECIPE_REPLY r left join RECIPE_NESTED_REPLY nr on r.ID=nr.RR_ID
 		                     where r.R_ID=#{rId})) B
-		                     on A.ID=B.ID order by A.ID desc)
+		                     on A.ID=B.ID)
 		where list BETWEEN #{beginRow} AND #{endRow}
 	</select>
 	<select id="selectReplyOfMember" parameterType="String" resultType="RecipeReplyList">
@@ -183,18 +183,18 @@
 		where rr.ID=#{rrId} order by rrId desc, rnr.ID desc			
 	</select>
 	<select id="selectNestedReplyBy" resultType="RecipeNestedReply">
-		select * from (select ROWNUM list,
-		                      rnr.ID,
-		                      rr.R_ID, 
-		                      rr.ID rrId, 
-		                      rnr.M_EMAIL,
-		                      rnr.M_NICKNAME,
-		                      rnr.PROFILE_IMG,
-		                      rnr.REPLY,
-		                      rnr.REPLY_DATE
-		               from RECIPE_REPLY rr right join RECIPE_NESTED_REPLY rnr on rr.ID=rnr.RR_ID
-		               where rr.ID=#{rrId} order by rrId desc, rnr.ID desc)
-		where list BETWEEN #{beginRow} AND #{endRow}	
+        select * from
+		(select ROWNUM list, A.* from (select rnr.ID,
+                                              rr.R_ID, 
+                                              rr.ID rrId, 
+                                              rnr.M_EMAIL,
+                                              rnr.M_NICKNAME,
+                                              rnr.PROFILE_IMG,
+                                              rnr.REPLY,
+                                              rnr.REPLY_DATE
+                                       from RECIPE_REPLY rr right join RECIPE_NESTED_REPLY rnr on rr.ID=rnr.RR_ID
+                                       where rr.ID=#{rrId} order by rrId desc, rnr.ID desc) A)
+        where list BETWEEN #{beginRow} AND #{endRow}
 	</select>
 	<select id="selectNestedReplyOfMember" parameterType="String" resultType="RecipeNestedReply">
 		select rnr.ID,

@@ -23,4 +23,5 @@ public class RecipeReplyList {
 	private Date replyDate;
 	private int photoPresense;
 	private int nestedReply;
+	private int list;
 }
