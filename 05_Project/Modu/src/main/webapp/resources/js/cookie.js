@@ -2,7 +2,7 @@ $(document).ready(function(){
 	  let cookie = getCookie("recipe");
 	  let id = { id: cookie.split(",") }
 	  let url = "";
-	  	  
+	    
 	  $.ajax({
 		 url: "recent-recipe",
 		 type: "GET",

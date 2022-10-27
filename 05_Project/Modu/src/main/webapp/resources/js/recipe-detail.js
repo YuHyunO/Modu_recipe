@@ -274,6 +274,9 @@ $(function(){
 let mode;
 function setUrl(e){
 	let val = $(e).val();
+	if(val == ""){		
+		val = "2";
+	}
 	let url;
 	switch(val){
 	case "1": url = "/recipe/recipe-reply";
@@ -287,20 +290,28 @@ function setUrl(e){
 let id;
 function setData(e, url){
 	let data;
-	id = $(e).attr("id");
-	
+	id = $(e).attr("id");		
+
 	switch(mode){
-	case 1: data = {rId: id};
+	case 1: data = {rId: id,
+					lastIndex: getLastIndex(id)};
 			  break;
-	case 2: data = {rrId: id};		 	 
-	}
-	
+	case 2: data = {rrId: id,
+					lastIndex: getLastIndex(id)};		 	 
+	}	
 	dataAgent(url, data);
 }
 
-function getData(e){
-	id = e;
-	mode = 4;
+function getLastIndex(id){
+	let lastIndex;
+	if (mode == 1){
+		lastIndex = $("#comment-add").attr("value");
+		console.log(lastIndex);
+	}else if (mode == 2){
+		lastIndex = $("#nested-add-"+id).attr("value");
+		console.log(lastIndex);
+	}
+	return lastIndex;
 }
 
 function dataAgent(url, data){
@@ -325,9 +336,10 @@ function dataAgent(url, data){
 
 function displayMoreReply(response){
 	let html = '';
-	console.log(response.length);
+	let i = 1;
 	for(let item of response){
-		html += '<li class="comment">';
+		i++;
+		html += '<li class="comment" value="'+item.list+'">';			
 		html += '<div class="comment-body">';
 		html += '<div class="comment-meta d-flex justify-content-between align-items-center">';
 		html += '<span class="d-flex align-items-center">';
@@ -355,14 +367,18 @@ function displayMoreReply(response){
 		
 		$("#comment-area").append(html);				
 	}
-
+	let value = $("#comment-add").attr("value");
+	let val = parseInt(value);
+	let lastIndex = val + parseInt(i);
+	$("#comment-add").attr("value", lastIndex);	
 }
 
 function displayMoreNestedReply(response){
 	let html = '';
-	console.log(response.length);
+	let i = 0;
 	for(let item of response){
-		html += '<li class="comment row">';
+		i++;
+		html += '<li class="comment row" value="'+item.list+'">';
 		html += '<div class="col" style="max-width: 40px;">';
 		html += '<img src="/imgs/reply-arrow.png" alt="화살표">';
 		html += '</div>';
@@ -384,9 +400,14 @@ function displayMoreNestedReply(response){
 		html += '</div>';
 		html += '</div>';
 		html += '</li>';
+				
+		$("#recomment-area-"+id).append(html);		
 	}
-
-	$("#recomment-area-"+id).append(html);
+	let value = $("#nested-add-"+id).attr("value");
+	let val = parseInt(value);
+	let lastIndex = val + parseInt(i);
+	$("#nested-add-"+id).attr("value", lastIndex)
+	console.log("##nested"+$("#nested-add-"+id).attr("value"));
 }
 
 

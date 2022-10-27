@@ -206,7 +206,7 @@ public class RecipeController {
     @GetMapping("/recipe-nested-reply")
     public @ResponseBody List<RecipeNestedReply> callNestedReplyData(HttpServletRequest request){
         
-        List<RecipeNestedReply> data = recipeFindingService.getNestedReply(request);
+        List<RecipeNestedReply> data = recipeFindingService.getNestedReply(request);       
         return data;
     }
     
