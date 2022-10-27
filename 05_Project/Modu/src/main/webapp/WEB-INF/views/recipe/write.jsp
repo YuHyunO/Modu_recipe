@@ -49,6 +49,7 @@
 								<div class="cooking-title pb-3">
 									<label for="food" class="form-label mb-1 form-title">음식이름</label> 
 									<input class="form-control" type="text" name="food" placeholder="예) 닭볶음탕">
+									<p class="warning-text m-1"></p>
 									
 								</div>
 								<div class="cooking-title pb-3">

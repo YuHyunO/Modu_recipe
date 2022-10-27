@@ -23,6 +23,7 @@ import com.modu.domain.board.Board;
 import com.modu.domain.board.BoardDetail;
 import com.modu.domain.board.BoardFile;
 import com.modu.domain.board.BoardList;
+import com.modu.domain.board.BoardListVo;
 import com.modu.domain.board.BoardReply;
 import com.modu.domain.board.BoardReplyList;
 import com.modu.fileset.Path;
@@ -46,9 +47,17 @@ public class FreeBoardController {
 
     @GetMapping("/list")
     public ModelAndView boardList(HttpServletRequest request, HttpSession session){
-        BoardList list = boardService.listingPosts(request,session);
-        ModelAndView mv = new ModelAndView("freeboard/list", "list", list);
+        BoardListVo data = boardService.listingPosts(request,session);
+        ModelAndView mv = new ModelAndView("freeboard/list", "data", data);
         return mv;
+    }
+    @GetMapping("/list.do")
+    public @ResponseBody BoardListVo ajaxBoardList(HttpServletRequest request, HttpSession session) {
+        log.info("#list ajax 1");
+        BoardListVo data = boardService.listingPosts(request, session);
+        log.info("#list ajax 2");
+        log.info("#list2  data1 :  " + data);
+        return data; 
     }
     
 
@@ -57,9 +66,7 @@ public class FreeBoardController {
         BoardDetail board = boardService.getPost(id);
         long beginRow = 1;
         long endRow = 6;
-        log.info("#3211 " + board.getBoard().getPostDate());
         Date gPD = board.getBoard().getPostDate();
-        log.info("#3212 " + gPD);
         //SimpleDateFormat board.getBoard().getPostDate() = new SimpleDateFormat("MM-dd hh:mm"); 
         //gPD.format(new Date());
         //board.getBoard().setPostDate();
