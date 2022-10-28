@@ -23,7 +23,7 @@ $(function () {
 	let tag = $('#tag');
 	$('#tag').keyup(
 		function (e) {
-			// 태그 정규식표현 로직
+			// 태그 정규 표현식 로직
 			let tagsRegex = /[^a-z|A-Z|ㄱ-ㅎ|가-힣|\,/\s]/g;
 			
 			if(!tagsRegex.test(tag.val())){
@@ -98,17 +98,24 @@ $(function () {
 		}
 	}); // 재료 정규식 표현 END
 	
-	let foodInput = $("input[name=food]"); 
-	$(foodInput).keyup(function() {
-		// 음식 이름 정규식 표현 로직
-		let foodRegex = /[`()<>{}~!@#$%^&*|\\\'\";:\/?-_+=]/gi;
-		if (!foodRegex.test($("input[name=food]").val())) {
-			// alert("특수문자 없음");
-		}else {
-			alert("음식 이름에는 특수문자를 사용하실 수 없습니다.");
-			return false;
+	let food = $("input[name=food]");
+	$(food).keyup(() => {
+		checkfood(food,"음식이름");
+	})
+	function checkfood(e, text){
+		let foodRegex = /[^a-z|A-Z|ㄱ-ㅎ|가-힣|]/g;
+		let target;
+		if (e.parent().find('.warning-text').length === 0){
+			target = e.parents().find("#" + e.attr("id").replace("-text", ""));
+		} else {
+			target = e.parent(); 
 		}
-	});
+		if (!foodRegex.test($("input[name=food]").val())){
+			target.find('.warning-text').text(" ");
+		} else {
+			target.find('.warning-text').text("특수문자를 사용하실수 없습니다.");
+		}
+	}
 	
 	let title = $("input[name=title"); // 레시피 제목
 	let info = $("textarea[name=info]"); // 레시피 소개

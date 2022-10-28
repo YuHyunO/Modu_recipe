@@ -51,6 +51,7 @@ public interface RecipeMapper {
     List<RecipeList> selectRecipeListOfMember(@Param("email")String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
     List<RecipeList> selectRecipeListOfMemberByType(@Param("email")String email, @Param("type")int type, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
     List<RecipeList> selectRecipeListOfBookmark(@Param("email")String email, @Param("beginRow")int beginRow, @Param("endRow")int endRow);
+    RecipeList selectRecipeSummary(long id);
     
     int selectRecipeCount();
     int selectRecipeCountByPeriod(int period);

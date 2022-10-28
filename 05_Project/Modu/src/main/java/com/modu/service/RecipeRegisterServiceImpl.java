@@ -4,35 +4,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.modu.domain.recipe.Direction;
 import com.modu.domain.recipe.Ingredient;
 import com.modu.domain.recipe.Recipe;
-import com.modu.domain.recipe.RecipeDetail;
 import com.modu.domain.recipe.RecipeTag;
+import com.modu.domain.recipe.RecipeNestedReply;
+import com.modu.domain.recipe.RecipeReply;
+import com.modu.domain.recipe.RecipeReplyList;
+import com.modu.domain.recipe.RecipeReplyPhoto;
+import com.modu.mapper.RecipeLegacyMapper;
+
 import com.modu.fileset.Path;
-import com.modu.mapper.MemberMapper;
 import com.modu.mapper.RecipeMapper;
 
 import lombok.extern.log4j.Log4j;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
-
-import com.modu.domain.recipe.RecipeNestedReply;
-import com.modu.domain.recipe.RecipeReply;
-import com.modu.domain.recipe.RecipeReplyList;
-import com.modu.mapper.RecipeLegacyMapper;
 
 @Log4j
 @Controller
@@ -43,7 +36,6 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
     private Ingredient ingredient = new Ingredient();
     private Direction direction = new Direction();
     private RecipeTag Tag = new RecipeTag();
-
     private ArrayList<String> fileInfoList = new ArrayList<String>();
 
     @Autowired
@@ -51,9 +43,6 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
 
     @Autowired
     private RecipeMapper recipeMapper;
-
-    @Autowired
-    private MemberMapper memberMapper;
 
     @Autowired
     FileUploadService fileUploadService;
@@ -177,11 +166,6 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
     }
 
     @Override
-    public void delete(long id) {
-        recipeLegacyMapper.deleteReply(id);
-    }
-
-    @Override
     public String registerReply(RecipeReply recipeReply) {
         String result;
         try {
@@ -196,17 +180,33 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
     }
 
     @Override
-    public String registerNestedReply(RecipeNestedReply recipeNestedReply) {
+    public String registerNestedReply(RecipeNestedReply recipenestedReply) {
         String result;
         try {
-            recipeLegacyMapper.insertNestedReply(recipeNestedReply);
+            recipeLegacyMapper.insertNestedReply(recipenestedReply);
             result = "성공";
         } catch (Exception e) {
-            System.out.println("#registerNestedReply: " + e);
+            System.out.println("#insertRReply exception: " + e);
             result = "실패";
         }
-        System.out.println("#registerNestedReply: " + result);
+        System.out.println("insertRReply:" + result);
         return result;
+
+    }
+
+    @Override
+    public void registerReplyPhoto(RecipeReplyPhoto recipereplyPhoto) {
+        recipeLegacyMapper.insertReplyPhoto(recipereplyPhoto);
+    }
+
+    @Override
+    public void deleteReply(long id) {
+        recipeLegacyMapper.deleteReply(id);
+    }
+
+    @Override
+    public void deleteNestedReply(long id) {
+        recipeLegacyMapper.deleteNestedReply(id);
     }
 
     @Override
@@ -227,7 +227,7 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
         long id = Long.parseLong(recipeId);
         MultipartFile imageFile;
         String ofname;
-        
+
         log.info("#registerRecipe recipeId: " + id);
         log.info("#registerRecipe email: " + (String) session.getAttribute("email"));
         log.info("#registerRecipe nickname: " + (String) session.getAttribute("nickname"));
@@ -242,7 +242,7 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
         log.info("#registerRecipe cooktime: " + request.getParameter("cooktime"));
         log.info("#registerRecipe difficultyLevel: " + request.getParameter("difficultyLevel"));
         log.info("#registerRecipe accessibility: " + Integer.parseInt(request.getParameter("accessibility")));
-        
+
         // 레시피 수정
         recipe.setId(id);
         recipe.setMEmail((String) session.getAttribute("email"));
@@ -254,7 +254,8 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
         if (fileChanges.get(0).equals("true")) {
             imageFile = files.get(0);
             ofname = imageFile.getOriginalFilename();
-            if (ofname != null) ofname = ofname.trim();
+            if (ofname != null)
+                ofname = ofname.trim();
             if (ofname.length() != 0) {
                 fileInfoList.clear();
                 fileInfoList.add("STEP-0");
@@ -264,7 +265,7 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
             }
         } else {
             recipe.setFoodPhoto(request.getParameter("foodPhoto"));
-            
+
         }
         recipe.setSort(request.getParameter("sort"));
         recipe.setIngredient(request.getParameter("ingredient"));
@@ -273,10 +274,10 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
         recipe.setDifficultyLevel(request.getParameter("difficultyLevel"));
         recipe.setAccessibility(Integer.parseInt(request.getParameter("accessibility")));
         recipeMapper.updateRecipe(recipe);
-        
+
         // 해당 레시피 재료 삭제
         recipeMapper.deleteIngredientAll(id);
-        
+
         // 메인재료 등록
         String mainItem;
         for (int i = 0; i < mainItems.size(); i++) {
@@ -298,26 +299,27 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
             ingredient.setQuantity(subItem.split("-")[1]);
             recipeMapper.insertIngredient(ingredient);
         }
-        
+
         // 조리순서 업데이트
         List<Direction> directionList = recipeMapper.selectDirection(id);
         Direction oldDirection = new Direction();
-        
+
         int fileNum = 0;
         int step = 1;
-        for(int i=0; i<directions.size(); i++) {
+        for (int i = 0; i < directions.size(); i++) {
             oldDirection = directionList.get(i);
             direction.setRId(id);
             direction.setDirection(directions.get(i));
             direction.setStep(step + i);
 
-            log.info("#fileChanges: " + fileChanges.get(i+1));
-            
-            if (fileChanges.get(i+1).equals("true")) {
+            log.info("#fileChanges: " + fileChanges.get(i + 1));
+
+            if (fileChanges.get(i + 1).equals("true")) {
                 log.info("#파일 변경 있음");
                 imageFile = files.get(fileNum);
                 ofname = imageFile.getOriginalFilename();
-                if (ofname != null) ofname = ofname.trim();
+                if (ofname != null)
+                    ofname = ofname.trim();
                 if (ofname.length() != 0) {
                     fileInfoList.clear();
                     fileInfoList.add("STEP-" + Integer.toString(step + i));
@@ -326,54 +328,15 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
                     direction.setOriginalFile(ofname);
                     direction.setSaveFile(urlAndName[1]);
                 }
-                fileNum ++;
+                fileNum++;
             } else {
                 direction.setOriginalFile(oldDirection.getOriginalFile());
-                direction.setSaveFile(oldDirection.getSaveFile());  
+                direction.setSaveFile(oldDirection.getSaveFile());
             }
             log.info("#direction: " + direction);
             recipeMapper.updateDirection(direction);
         }
-        
-        /*
-        String text = "STEP-";
-        String content;
-        int num = 0;
-        int step = 0;
-        for (MultipartFile file : files) {
-            String ofname = file.getOriginalFilename();
-            log.info("#파일 이름: " + ofname);
-            fileInfoList.clear();
-            fileInfoList.add(text + Integer.toString(num));
-            if (ofname != null)
-                ofname = ofname.trim();
-            if (ofname.length() != 0) {
-                if (num == 0) {
-                    String[] urlAndName = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + id + "\\",
-                            fileInfoList);
-                    log.info("#url: " + urlAndName[0]);
-                    recipe.setFoodPhoto(urlAndName[1]);
-                    recipeMapper.updateRecipePhoto(recipe);
-                } else {
-                    if (num > directions.size()) {
-                    } else {
-                        String[] urlAndName = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + id + "\\",
-                                fileInfoList);
-                        log.info("#url: " + urlAndName[0]);
-                        content = directions.get(step - 1 + num);
-                        direction.setRId(id);
-                        direction.setDirection(content);
-                        direction.setStep(step + num);
-                        direction.setOriginalFile(ofname);
-                        direction.setSaveFile(urlAndName[1]);
-                        recipeMapper.updateDirection(direction);
-                        log.info("#registerRecipe direction: " + direction);
-                    }
-                }
-            }
-            num += 1;
-        }
-        */
+
         // 기존 태그 삭제
         recipeMapper.deleteTagAll(id);
         // 태그 등록

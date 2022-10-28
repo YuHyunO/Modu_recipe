@@ -6,42 +6,76 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/views/common/head.jsp"%>
-<link href="css/index.css" rel="stylesheet">
+<link href="/css/common.css" rel="stylesheet">
+<link href="/css/index.css" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
 <title>모두의 식탁</title>
 </head>
 <style type="text/css">
-#lock_ad {
-	width: 100%;
+
+.fixed01{
+  display:flex;
+  justify-content:center;
+  text-align:center;
+  
+  width: 100%; height: 300px;  /* 배경이미지는 최소 1920*960으로 제작해야 문제가 안생김 */
+  background-image: url("imgs/index/main1.png");
+  background-repeat: no-repeat; /* 배경이미지X */
+  background-size: cover;  /* 요소를 비율에 맞게 커버 */
+  background-position: center; /* 이미지를 요소의 정가운데로 처리 */
+ /*  background-attachment: fixed; */ /* 스크롤바 움직일때 이미지가 따라다님 */
 }
 
-.banner {
-	width: 100%;
+.fixed02{
+  width: 100%; height: 200px;
+  /* 배경이미지는 최소 1920*960으로 제작해야 문제가 안생김 */
+  background-image: url("imgs/index/main2.jpg");
+  background-repeat: no-repeat; /* 배경이미지X */
+  background-size: cover; /* 요소를 비율에 맞게 커버 */
+  background-position: center; /* 이미지를 요소의 정가운데로 처리 */
+  /* background-attachment: fixed; */ /* 스크롤바 움직일때 이미지가 따라다님 */
 }
 
-#navbarSupportedContent a {
-	color: #937062 !important;
-	width: 70px;
-	font-weight: 700;
-	font-size: 15px;
-	text-transform: uppercase;
-	letter-spacing: 1px;
+.fixed03{
+  width: 100%; height: 200px; /* 배경이미지는 최소 1920*960으로 제작해야 문제가 안생김 */
+  background-image: url("imgs/index/index.jpg");
+  background-repeat: no-repeat; /* 배경이미지X */
+  background-size: cover; /* 요소를 비율에 맞게 커버 */
+  background-position: center; /* 이미지를 요소의 정가운데로 처리 */
+  /* background-attachment: fixed; */ /* 스크롤바 움직일때 이미지가 따라다님 */
+}
+
+.fixed04{
+  width: 100%; height: 200px; /* 배경이미지는 최소 1920*960으로 제작해야 문제가 안생김 */
+  background-image: url("imgs/index/index2.png");
+  background-repeat: no-repeat; /* 배경이미지X */
+  background-size: cover; /* 요소를 비율에 맞게 커버 */
+  background-position: center; /* 이미지를 요소의 정가운데로 처리 */
+  /* background-attachment: fixed; */ /* 스크롤바 움직일때 이미지가 따라다님 */
 }
 </style>
 <body>
 	<div id="page" class="hfeed site">
 		<!-- start page wrapper -->
 		<%@ include file="/WEB-INF/views/common/menu.jsp"%>
-		<div class="head-title py-4 m-0">
-			<div class="container">
+				
+		<div class="head-title py-1 m-0">
+<!-- 			<div class="container">
 				<p class="page-title m-0 fs-2">INDEX</p>
-			</div>
+			</div> -->
 			<!-- end container -->
+	        <div class="fixed01">
+	        	<p class="mention">
+	        		Welcome. <br/>
+	        		We have collected fresh & good-taste recipes. <br/>
+	        		Let's share the recipe together.
+	        	</p>
+	        </div>
 		</div>
-		<!-- end head-title -->
-
+	
 		<div class="main d-flex justify-content-center">
-			<div
-				class="main-container row d-flex justify-content-center m-0 py-4">
+			<div class="main-container row d-flex justify-content-center m-0 py-4">
 
 				<div class="row">
 					<div id="primary" class="content-area col-md-9">
@@ -65,7 +99,7 @@
 											</div>
 											<div class="recipe-desc">
 												<div class="recipe-title">
-													<a href="/recipe/detail/${recipe.id}">${recipe.title}</a>
+													<a href="/recipe/detail?no=${recipe.id}">${recipe.title}</a>
 												</div>
 												<figure class="profile">
 													<img class="profile-img"
@@ -97,6 +131,15 @@
 						</div>
 						<!-- end recipes -->
 
+		<div class="head-title py-0 m-0">
+	        <div class="fixed02">
+	        	<p class="mention" style="color:white">
+	        		We have collected fresh & good-taste recipes. <br/>
+	        		Let's share the recipe together.
+	        	</p>
+	        </div>
+		</div>		<!-- end head-title -->
+		
 						<div class="chef-section py-3 mb-3">
 							<div class="container px-0">
 								<div
@@ -153,88 +196,31 @@
 							<!-- end 쉐프 container -->
 						</div>
 						<!-- end chef-section -->
+						
+<!-- 						<div class="head-title py-0 m-0">
+					        <div class="fixed03">
+	        	<p class="mention">
+	        		Welcome. <br/>
+	        		We have collected fresh & good-taste recipes. <br/>
+	        		Let's share the recipe together.
+	        	</p>
+					        </div>
+						</div>end head-title
+						<div class="head-title py-0 m-0">
+					        <div class="fixed04">
+	        	<p class="mention">
+	        		Welcome. <br/>
+	        		We have collected fresh & good-taste recipes. <br/>
+	        		Let's share the recipe together.
+	        	</p>
+					        </div>
+						</div> -->		<!-- end head-title -->
+						
 					</div>
 					<!-- end primary(주요 메인영역) 종료-->
-
-					<!--사이드 영역(secondary) 시작-->
-					<div id="secondary" class="col-md-3">
-						<div class="widget post-type-widget pt-3 pb-3">
-							<!-- widget 최근 본 게시물 -->
-							<div class="widget-title-outer">
-								<h3 class="widget-title">새로운 게시물</h3>
-							</div>
-							<ul>
-								<li><span class="post-category"> <a href="#">카테고리1-레시피</a>
-								</span>
-									<figure class="post-thumbnail">
-										<a href="#"> <img class="rounded-3"
-											src="/imgs/content/thumb-post-01.png" alt="" />
-										</a>
-									</figure>
-									<h2 class="post-title">
-										<a href="#">손쉬운 수제버거 레시피</a>
-									</h2></li>
-								<li><span class="post-category"> <a href="#">쉐프
-											랭킹</a>
-								</span>
-									<figure class="post-thumbnail">
-										<a href="#"> <img class="rounded-3"
-											src="/imgs/content/thumb-post-02.png" alt="" />
-										</a>
-									</figure>
-									<h2 class="post-title">
-										<a href="#">미슐랭 쉐프의 요리 꿀팁</a>
-									</h2></li>
-								<li><span class="post-category"> <a href="#">자유게시판</a>
-								</span>
-									<figure class="post-thumbnail">
-										<a href="#"> <img class="rounded-3"
-											src="/imgs/content/thumb-post-03.png" alt="" />
-										</a>
-									</figure>
-									<h2 class="post-title">
-										<a href="#">가산역에 새로 생긴 돼지갈비집 맛있나요?</a>
-									</h2></li>
-								<li><span class="post-category"> <a href="#">Vegetable</a>
-								</span>
-									<figure class="post-thumbnail">
-										<a href="#"> <img class="rounded-3"
-											src="/imgs/content/thumb-post-04.png" alt="" />
-										</a>
-									</figure>
-									<h2 class="post-title">
-										<a href="#">토마토바나나쉐이크 만들기</a>
-									</h2></li>
-						</div>
-						<!-- end widget 최근 본 게시물 -->
-						<!--새로운 태그들-->
-						<div class="widget">
-							<div class="widget-title-outer">
-								<h3 class="widget-title">새로 등록된 태그</h3>
-							</div>
-							<div class="tagcloud d-flex">
-							<div class="row px-2">
-								<a href="#" class="me-1 mb-1">#나시고랭</a>
-								<a href="#" class="me-1 mb-1">#칵테일새우</a>
-								<a href="#" class="me-1 mb-1">#스테이크</a>
-								<a href="#" class="me-1 mb-1">#돈까스</a>
-								<a href="#" class="me-1 mb-1">#새우볶음밥</a>
-							</div>
-								
-								
-							</div>
-						</div>
-						<!-- end widget -->
-
-						<!--광고 배너 이미지-->
-						<div class="widget">
-							<a href="#"> <img id="lock_ad" class="rounded-3 banner"
-								src="/imgs/index/lock_ad.gif" alt="lockandlock_ad.gif" />
-							</a>
-						</div>
-						<!-- end 광고 배너 -->
-					</div>
-					<!-- end #secondary, 사이드영역 끝 -->
+	
+			<!-- 사이드 영역(secondary), 모듈화 -->
+			<%@ include file="/WEB-INF/views/common/secondary.jsp"%>
 				</div>
 				<!-- end row -->
 			</div>

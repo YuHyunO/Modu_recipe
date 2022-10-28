@@ -119,7 +119,7 @@ public class MemberController {
 	//로그인 post
 	@PostMapping("/login")
 	public ModelAndView login(Member member, HttpServletRequest req){
-		log.info("#login 로그인 post메소드 진입!!");
+		//log.info("#login 로그인 post메소드 진입!!");
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = req.getSession();
 		Member memberInfo = memberRegisterService.login(member); //select EMAIL, NICKNAME from MEMBER where EMAIL=? and PWD=?

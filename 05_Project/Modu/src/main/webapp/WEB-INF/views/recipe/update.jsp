@@ -77,6 +77,7 @@
 									<label for="food" class="form-label mb-1 form-title">음식이름</label> 
 									<input class="form-control" type="text" name="food" placeholder="예) 닭볶음탕"
 									value="${rs.recipe.food}">
+									<p class="warning-text m-1"></p>
 									
 								</div>
 								<div class="cooking-title pb-3">
@@ -90,8 +91,7 @@
 					</div>
 					<!-- end cooking-information 레시피정보 -->
 					<div class="cooking-introduce form-bg px-4">
-						<label for="info" class="form-label mb-1 form-title">레시피
-							소개</label>
+						<label for="info" class="form-label mb-1 form-title">레시피 소개</label>
 						<textarea class="form-control" id="info" name="info" rows=5 
 						placeholder="레시피에 대한 소개글을 써주세요">${rs.recipe.info}</textarea>
 						<p class="warning-text m-1"></p>
