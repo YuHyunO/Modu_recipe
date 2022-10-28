@@ -96,6 +96,7 @@ function clickSubscribe(e){
     			} else {
     				$(e).removeClass('subscribe-btn');
 			        $(e).addClass('subscribe-btn-clicked');
+			        $(".subscribe-btn-clicked").text("친구 해제");
     		        alert(response.msg);
     			}
     		},
@@ -119,6 +120,7 @@ function clickSubscribe(e){
     			} else {
     				$(e).removeClass('subscribe-btn-clicked');
     		        $(e).addClass('subscribe-btn');
+    		        $(".subscribe-btn").text("친구 추가");
     		        alert(response.msg);
     			}
     		},
@@ -148,6 +150,7 @@ $(function(){
 				if (response.state === "true"){
 			        $(".subscribe-btn").addClass('subscribe-btn-clicked');
 			        $(".subscribe-btn").removeClass('subscribe-btn');
+			        $(".subscribe-btn-clicked").text("친구 해제");
 				} else {}
 			}
 		},
