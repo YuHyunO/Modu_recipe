@@ -67,7 +67,8 @@
 						  SERVING=#{serving},
 						  COOK_TIME=#{cookTime},
 						  DIFFICULTY_LEVEL=#{difficultyLevel},
-						  UPDATE_DATE=SYSDATE
+						  UPDATE_DATE=SYSDATE,
+						  ACCESSIBILITY=#{accessibility}
 		where ID=#{id}
 	</update>
 	<update id="updateIngredient" parameterType="Ingredient">
@@ -81,7 +82,7 @@
 							 DIRECTION=#{direction},
 							 ORIGINAL_FILE=#{originalFile},
 							 SAVE_FILE=#{saveFile}
-		where ID=#{id}							 
+		where R_ID=#{rId} and STEP=#{step}							 
 	</update>
 	<delete id="deleteRecipe" parameterType="long">
 		delete from RECIPE where ID=#{id}
