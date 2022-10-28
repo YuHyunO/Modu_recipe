@@ -139,7 +139,7 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
             beginRow = Integer.parseInt(request.getParameter("lastIndex"));
             System.out.println("##"+beginRow);
         }catch(NumberFormatException nfe) {}
-        int endRow = beginRow + 1;
+        int endRow = beginRow + 5;
         
         List<RecipeReplyList> replyList = recipeLegacyMapper.selectReplyBy(rId, beginRow, endRow);
         return replyList;
@@ -148,13 +148,18 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
     @Override    
     public List<RecipeNestedReply> getNestedReply(HttpServletRequest request){
         long rrId = Long.parseLong(request.getParameter("rrId"));
-        int beginRow = 0;         
+        int beginRow = 0;
+        System.out.println("##beginRow1 : "+beginRow);
         try {
             beginRow = Integer.parseInt(request.getParameter("lastIndex"));
+            System.out.println("#try#beginRow : "+beginRow);
         }catch(NumberFormatException nfe) {}
-        int endRow = beginRow + 1;
-        
-        List<RecipeNestedReply> replyList = recipeLegacyMapper.selectNestedReplyBy(rrId, beginRow, endRow);        
+        int endRow = beginRow+4;
+        System.out.println("##endRow1 : "+endRow);
+        List<RecipeNestedReply> replyList = recipeLegacyMapper.selectNestedReplyBy(rrId, beginRow, endRow);
+        for(RecipeNestedReply item:replyList) {
+            System.out.println("#"+item);
+        }
         return replyList;
     }
 }
