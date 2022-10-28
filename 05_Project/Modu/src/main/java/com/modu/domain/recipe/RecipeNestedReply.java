@@ -21,4 +21,5 @@ public class RecipeNestedReply {
 	private String reply;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd hh:mm:ss", timezone="Asia/Seoul")
 	private Date replyDate;
+	private int list;
 }

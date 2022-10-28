@@ -193,7 +193,7 @@
 							</h2>
 							<ol class="comment-list" id="comment-area">
 								<c:forEach items="${detail.replyList}" var="li">							
-									<li class="comment">
+									<li class="comment" value="${li.list}">
 										<div class="comment-body">
 											<div class="comment-meta d-flex justify-content-between align-items-center">
 												<span class="d-flex align-items-center">
@@ -213,54 +213,39 @@
 											<div class="comment-content d-flex">
 												<p class="p-2 m-0 col-9">${li.reply}</p>
 												<figure class="comment-image">
-													<img class="rounded-3" src="/imgs/content/dessert-l.png"
-														alt="comment-image">
+													<img class="rounded-3" src="/imgs/content/dessert-l.png" alt="comment-image">
 												</figure>
 											</div>
-										</div> 
-									</li>
-									<c:if test="${li.nestedReply eq 1}">																																
-										<ol class="re-comment px-0" id="recomment-area-${li.id}">										
-											<c:forEach items="${detail.nestedReplyList}" var="lis">
-											<c:if test="${li.id eq lis.rrId}">
-												<li class="comment row">
-										        	<div class="col" style="max-width: 40px;">										        
-										           		<img src="/imgs/reply-arrow.png" alt="화살표">
-											        </div>
-											        <div class="comment-body col">
-											            <div class="comment-meta d-flex justify-content-between align-items-center">
-											                <span class="d-flex align-items-center">
-											                    <figure class="comment-author">
-											                        <img src="/imgs/content/auth-03.png" alt="작성자">
-											                    </figure>
-											                    <b class="fn ps-2">${lis.MNickname}</b>
-											                    <span class="px-2">${lis.replyDate}</span>
-											                </span>
-											                <span class="reply-btn px-2">
-											                    <button class="reply-135000-0001 reply-btn" 
-											                    onclick="getData(${lis.id});">삭제</button>
-											                </span>
-											            </div>
-											            <div class="comment-content">
-											                <p class="p-2 m-0">${li.reply}</p>
-											            </div>												           																											            
-											        </div>
-										    	</li>
-										    </c:if>
-									    	</c:forEach>										    																
-										</ol>									
-										<div class="row view-more py-2" style="max-width: 300px;">
-											<button id="${li.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="2">대댓글 더보기</button>
 										</div>
+										<c:if test="${li.nestedReply eq 1}">
+										<div id="nested-add-${li.id}" class="row view-more py-2" value="0" style="max-width: 300px;">
+											<a id="${li.id}" href="javascript:void(0)" onclick="setUrl(this)">▼댓글 보기</a>
+										</div>	
+										</c:if>									
+									</li>
+									<c:if test="${li.nestedReply eq 1}">																																						
+										<ol class="re-comment px-0" id="recomment-area-${li.id}">										
+													<!-- 대댓글 영역 -->									 											
+										</ol>																			
 									</c:if>																							
 								</c:forEach>
+								<br/>
 							</ol>							
 						</div>
 						<!-- end row comments pt-3, 리뷰 댓글list -->
-						<c:if test="${replyCount != 0}">
-							<div class="row view-more p-2">
+						<c:if test="${replyCount != 0}">							
+							<c:choose>
+							<c:when test="${replyCount >= 5}">
+								<div id="comment-add" class="row view-more p-2" value="5">
 								<button id="${detail.recipe.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="1">더보기</button>
-							</div>
+								</div>								
+							</c:when>
+							<c:otherwise>
+								<div id="comment-add" class="row view-more p-2" value="${replyCount}">
+								<button id="${detail.recipe.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="1">더보기</button>
+								</div>									
+							</c:otherwise>
+							</c:choose>
 						</c:if>
 						<!-- 별점+댓글창 -->
 						<div class="comment-write p-2">

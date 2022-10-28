@@ -16,6 +16,30 @@
 <body>
 	<script type="text/javascript" language="javascript"
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#sort").val("${rs.recipe.sort}").prop("selected", true);
+			$("#ingredient").val("${rs.recipe.ingredient}").prop("selected", true);
+			$("#serving").val("${rs.recipe.serving}").prop("selected", true);
+			$("#cooktime").val("${rs.recipe.cookTime}").prop("selected", true);
+			$("#difficultyLevel").val("${rs.recipe.difficultyLevel}").prop("selected", true);
+			let accessibility;
+			let accessNumber = ${rs.recipe.accessibility};
+			console.log(accessNumber);
+			switch (accessNumber) {
+			case 0:
+				accessibility = "저장 및 공개";
+				break;
+			case 1:
+				accessibility = "비공개 저장";
+				break;
+			case 2:
+				accessibility = "임시저장";
+				break;
+			}
+			$("#accessibility").val(accessibility).prop("selected", true);
+		});
+	</script>
 	<div id="page" class="hfeed site">
 		<!-- start page wrapper -->
 
@@ -35,7 +59,7 @@
 
 				<div class="col-md-10 main-box px-0">
 					<div class="pt-4 form-bg top-round"></div>
-					<div class="p-4 p-title form-bg h3 mb-0 text-center">#레시피 등록</div>
+					<div class="p-4 p-title form-bg h3 mb-0 text-center" data-id="${rs.recipe.id}">#레시피 등록</div>
 					<div class="cooking-information form-bg p-4">
 						<div class="row">
 							<div class="main-photo col-4 pointer">
@@ -43,8 +67,9 @@
 									onchange="imgUpload(this)" />
 								<div class="text-center ratio-100" onclick="fileUpButton(this)">
 								
-									<img class="w-100 rounded-3 food_photo"
-										src="/pics/recipe/${rs.recipe.id}/${rs.recipe.foodPhoto}">
+									<img class="w-100 rounded-3 step-photo food-photo"
+										src="/pics/recipe/${rs.recipe.id}/${rs.recipe.foodPhoto}"
+										data-food-photo="${rs.recipe.foodPhoto}">
 								</div>
 							</div>
 							<div class="main-intro col-8">
@@ -66,19 +91,17 @@
 					</div>
 					<!-- end cooking-information 레시피정보 -->
 					<div class="cooking-introduce form-bg px-4">
-						<label for="info" class="form-label mb-1 form-title">레시피
-							소개</label>
-						<textarea class="form-control" id="info" name="info" rows=5 placeholder="레시피에 대한 소개글을 써주세요">
-						${rs.recipe.info}</textarea>
+						<label for="info" class="form-label mb-1 form-title">레시피 소개</label>
+						<textarea class="form-control" id="info" name="info" rows=5 
+						placeholder="레시피에 대한 소개글을 써주세요">${rs.recipe.info}</textarea>
 						<p class="warning-text m-1"></p>
 					</div>
 					<!-- end cooking-introduce 레시피소개 -->
 					<div class="category p-4 form-bg">
 						<div class="form-content row align-items-center">
-							<label class="form-label mb-1 pe-3 form-title">카테고리</label> <select
-								class="form-select mx-2" name="sort" id="sort" text="종류별">
-								<option selected>${rs.recipe.sort}</option>
-								<option value="종류별" hidden>종류별</option>
+							<label class="form-label mb-1 pe-3 form-title">카테고리</label> 
+							<select class="form-select mx-2" name="sort" id="sort" text="종류별">
+								<option value="종류별">종류별</option>
 								<option value="밑반찬">밑반찬</option>
 								<option value="메인반찬">메인반찬</option>
 								<option value="국/탕/찌개">국/탕/찌개</option>
@@ -88,10 +111,9 @@
 								<option value="샐러드">샐러드</option>
 								<option value="스프">스프</option>
 								<option value="기타">기타</option>
-							</select> <select class="form-select me-2" name="ingredient"
-								id="ingredient" text="재료별">
-								<option selected>${rs.recipe.ingredient}</option>>
-								<option value="재료별" hidden>재료별</option>
+							</select> 
+							<select class="form-select me-2" name="ingredient" id="ingredient" text="재료별">
+								<option value="재료별">재료별</option>
 								<option value="소고기">소고기</option>
 								<option value="돼지고기">돼지고기</option>
 								<option value="닭고기">닭고기</option>
@@ -108,8 +130,7 @@
 						<div class="d-flex row align-items-center">
 							<label class="form-label mb-1 pe-3 form-title">요리정보</label> <select
 								class="form-select mx-2" name="serving" id="serving">
-								<option selected>${rs.recipe.serving}</option>
-								<option value="인원" hidden>인원</option>
+								<option value="인원">인원</option>
 								<option value="1인분">1인분</option>
 								<option value="2인분">2인분</option>
 								<option value="3인분">3인분</option>
@@ -120,8 +141,7 @@
 							<!--                            <label class="form-label ms-2 mb-0 p-1">시간</label>-->
 							<select class="form-select me-2" name="cookTime" id="cooktime"
 								text="요리시간">
-								<option selected>${rs.recipe.cookTime}</option>
-								<option value="요리시간" hidden>요리시간</option>
+								<option value="요리시간">요리시간</option>
 								<option value="5분이내">5분이내</option>
 								<option value="10분이내">10분이내</option>
 								<option value="15분이내">15분이내</option>
@@ -135,8 +155,7 @@
 							<!--                            <label class="form-label ms-2 mb-0 p-1">난이도</label>-->
 							<select class="form-select" name="difficultyLevel"
 								id="difficultyLevel" text="난이도">
-								<option selected>${rs.recipe.difficultyLevel}</option>
-								<option value="난이도" hidden>난이도</option>
+								<option value="난이도">난이도</option>
 								<option value="아무나">아무나</option>
 								<option value="초급">초급</option>
 								<option value="중급">중급</option>
@@ -272,9 +291,9 @@
 					<div class="open-range form-bg p-4 pt-0">
 						<div class="form-label mb-1 form-title open-range-title">공개범위</div>
 						<div class="open-range-box d-flex">
-							<select class="form-select py-1">
+							<select class="form-select py-1" id="accessibility">
 								<option value="저장 및 공개" selected>저장 및 공개</option>
-								<option value="비공개저장">비공개저장</option>
+								<option value="비공개 저장">비공개 저장</option>
 								<option value="임시저장">임시저장</option>
 							</select>
 						</div>

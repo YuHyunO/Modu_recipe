@@ -123,30 +123,38 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
         }                       
         return recipeList;
     }
-
+    
+    @Override
     public FollowList getFollower(String targetEmail, String email) {
         
         FollowList followList = memberMapper.selectFollowerOnebyEmails(targetEmail, email);
         return followList;
     }
     
+    @Override
     public List<RecipeReplyList> getReply(HttpServletRequest request){
-        long rId = Long.parseLong(request.getParameter("rId"));
+        long rId = Long.parseLong(request.getParameter("rId"));        
         int beginRow = 1;
-        
-        int endRow = beginRow + 4;
+        try {
+            beginRow = Integer.parseInt(request.getParameter("lastIndex"));
+            System.out.println("##"+beginRow);
+        }catch(NumberFormatException nfe) {}
+        int endRow = beginRow + 1;
         
         List<RecipeReplyList> replyList = recipeLegacyMapper.selectReplyBy(rId, beginRow, endRow);
         return replyList;
     }
     
+    @Override    
     public List<RecipeNestedReply> getNestedReply(HttpServletRequest request){
         long rrId = Long.parseLong(request.getParameter("rrId"));
-        int beginRow = 1; 
+        int beginRow = 0;         
+        try {
+            beginRow = Integer.parseInt(request.getParameter("lastIndex"));
+        }catch(NumberFormatException nfe) {}
+        int endRow = beginRow + 1;
         
-        int endRow = beginRow + 2;               
-        
-        List<RecipeNestedReply> replyList = recipeLegacyMapper.selectNestedReplyBy(rrId, beginRow, endRow);
+        List<RecipeNestedReply> replyList = recipeLegacyMapper.selectNestedReplyBy(rrId, beginRow, endRow);        
         return replyList;
     }
 }
