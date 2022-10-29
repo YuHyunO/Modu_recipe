@@ -12,6 +12,7 @@
 <title>모두의 식탁 - 레시피</title>
 </head>
 <body>
+	<input type="hidden" id="page-type" value="recipe-detail"/>
 	<div id="page" class="hfeed site">
 		<!-- start page wrapper -->
 		<%@ include file="/WEB-INF/views/common/menu.jsp"%>
@@ -236,19 +237,10 @@
 							</ol>							
 						</div>
 						<!-- end row comments pt-3, 리뷰 댓글list -->
-						<c:if test="${replyCount != 0}">							
-							<c:choose>
-							<c:when test="${replyCount >= 5}">
-								<div id="comment-add" class="row view-more p-2" value="5">
-								<button id="add-${detail.recipe.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="1">더보기</button>
-								</div>								
-							</c:when>
-							<c:otherwise>
-								<div id="comment-add" class="row view-more p-2" value="${replyCount}">
-								<button id="add-${detail.recipe.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="1">더보기</button>
-								</div>									
-							</c:otherwise>
-							</c:choose>
+						<c:if test="${replyCount >= 5 }">							
+							<div id="comment-add" class="row view-more p-2" value="5">
+							<button id="add-${detail.recipe.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="1">더보기</button>
+							</div>								
 						</c:if>
 						<!-- 별점+댓글창 -->
 						<div class="comment-write p-2">

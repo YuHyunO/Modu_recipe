@@ -13,7 +13,6 @@
 
 </head>
 <body>
-
 	<div id="page" class="hfeed site">
 		<!-- start page wrapper -->
 		<%@ include file="/WEB-INF/views/common/menu.jsp"%>

@@ -14,3 +14,18 @@ $(window).resize(function(){
 		subMenuBar.removeClass("show");
 	}
 });
+
+let recentRecipe = new Array();
+function saveCookie(id){
+	if(recentRecipe.length == 0){
+		recentRecipe.unshift(id);
+	}
+	if(recentRecipe.includes(id) == false){	
+			recentRecipe.unshift(id);
+	}	
+	if(recentRecipe.length>5){
+		recentRecipe.length = 5;	
+	}
+	document.cookie = "recipe="+recentRecipe;		
+	window.location.href="/recipe/detail?no="+id;
+}

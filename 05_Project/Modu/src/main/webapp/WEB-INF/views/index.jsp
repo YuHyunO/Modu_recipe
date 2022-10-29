@@ -8,8 +8,8 @@
 <%@ include file="/WEB-INF/views/common/head.jsp"%>
 <link href="/css/common.css" rel="stylesheet">
 <link href="/css/index.css" rel="stylesheet">
-	<link rel="preconnect" href="https://fonts.gstatic.com">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
 <title>모두의 식탁</title>
 </head>
 <style type="text/css">
@@ -56,6 +56,7 @@
 }
 </style>
 <body>
+	<input type="hidden" id="page-type" value="index"/>
 	<div id="page" class="hfeed site">
 		<!-- start page wrapper -->
 		<%@ include file="/WEB-INF/views/common/menu.jsp"%>
@@ -99,7 +100,7 @@
 											</div>
 											<div class="recipe-desc">
 												<div class="recipe-title">
-													<a href="/recipe/detail?no=${recipe.id}">${recipe.title}</a>
+													<a href="javascript:void(0)" onclick="saveCookie(${recipe.id})">${recipe.title}</a>
 												</div>
 												<figure class="profile">
 													<img class="profile-img"

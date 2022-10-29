@@ -171,6 +171,13 @@ public class RecipeController {
         mv.addObject("replyCount", replyCount);
         return mv;
     }
+    
+    @GetMapping("/recent-recipe")
+    public @ResponseBody List<RecipeList> callRecentRecipe(HttpServletRequest request){
+        List<RecipeList> data = recipeFindingService.findRecentRecipes(request);
+        return data;
+    }
+    
 
     @GetMapping("/recipe-reply")
     public @ResponseBody List<RecipeReplyList> callReplyData(HttpServletRequest request){
