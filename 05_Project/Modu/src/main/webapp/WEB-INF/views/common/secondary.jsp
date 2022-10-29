@@ -7,72 +7,8 @@
 		<div class="widget-title-outer">
 			<h3 class="widget-title">최근 본 레시피</h3>
 		</div>
-		<ul>
-			<li>
-				<span class="post-category">
-					<a id="recipe-type-1" href="#">카테고리1</a>
-				</span>
-				<figure class="post-thumbnail">
-					<a id="recipe-img-1" href="#"> <img class="rounded-3"
-						src="/imgs/content/thumb-post-01.png" alt="" />
-					</a>
-				</figure>
-				<h2 class="post-title">
-					<a id="recipe-title-1" href="#">손쉬운 수제버거 레시피</a>
-				</h2>
-			</li>
-			<li>
-				<span class="post-category">
-					<a id="recipe-type-2" href="#">카테고리4</a>
-				</span>
-				<figure class="post-thumbnail">
-					<a id="recipe-img-2" href="#"> <img class="rounded-3"
-						src="/imgs/content/thumb-post-02.png" alt="" />
-					</a>
-				</figure>
-				<h2 class="post-title">
-					<a id="recipe-title-2" href="#">이탈리안 미슐랭 쉐프의 바질파스타 만들기</a>
-				</h2>
-			</li>
-			<li>
-				<span class="post-category">
-					<a id="recipe-type-3" href="#">카테고리3</a>
-				</span>
-				<figure class="post-thumbnail">
-					<a id="recipe-img-3" href="#"> <img class="rounded-3"
-						src="/imgs/content/thumb-post-03.png" alt="" />
-					</a>
-				</figure>
-				<h2 class="post-title">
-					<a id="recipe-title-3" href="#">에어프라이기로 굽는 10분요리, 허브삼겹살</a>
-				</h2>
-			</li>
-			<li>
-				<span class="post-category">
-					<a id="recipe-type-4" href="#">카테고리1</a>
-				</span>
-				<figure class="post-thumbnail">
-					<a id="recipe-img-4" href="#"> <img class="rounded-3"
-						src="/imgs/content/thumb-post-04.png" alt="" />
-					</a>
-				</figure>
-				<h2 class="post-title">
-					<a id="recipe-title-4" href="#">토마토로 챙겨먹는 건강식 조리법</a>
-				</h2>
-			</li>
-			<li>
-				<span class="post-category">
-					<a id="recipe-type-5" href="#">카테고리2</a>
-				</span>
-				<figure class="post-thumbnail">
-					<a id="recipe-img-5" href="#"> <img class="rounded-3"
-						src="/imgs/content/thumb-post-02.png" alt="" />
-					</a>
-				</figure>
-				<h2 class="post-title">
-					<a id="recipe-title-5" href="#">초밥 레시피</a>
-				</h2>
-			</li>
+		<ul id="recent-recipe-area">
+		<!-- 최근 본 레시피 영역 -->
 		</ul>
 	</div><!-- end class="widget post-type-widget pt-3 pb-3" -->
 		

@@ -348,7 +348,7 @@ function displayMoreReply(response){
 		html += '<span class="d-flex align-items-center">';
 		html += '<figure class="comment-author">';
 		html += '<img src="/imgs/content/'+item.profileImg+'" alt="작성자">';
-		html += '</figure><b class="fn px-2">'+item.mNickname+'</b>';
+		html += '</figure><b class="fn px-2">'+item.mnickname+'</b>';
 		html += '<span class="star-rate-block">';
 		html += '<span class="px-2">'+item.replyDate+'</span>';	
 		html += '<img class="star-rate-img2" src="/imgs/stars4.png" alt="stars" style="width: 80px; height: 15px; margin-bottom: 5px;">';	
