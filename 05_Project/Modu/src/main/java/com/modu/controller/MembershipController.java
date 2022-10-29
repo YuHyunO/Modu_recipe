@@ -18,10 +18,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.modu.domain.member.FollowList;
 import com.modu.domain.member.FollowListVo;
 import com.modu.domain.member.Member;
+import com.modu.domain.recipe.RecipeList;
 import com.modu.domain.recipe.RecipeListVo;
 import com.modu.service.FileUploadService;
 import com.modu.service.MemberRegisterService;
 import com.modu.service.MembershipService;
+import com.modu.service.RecipeFindingService;
 import com.modu.service.RecipeSearchService;
 
 import lombok.AllArgsConstructor;
@@ -37,7 +39,7 @@ public class MembershipController {
 	private FileUploadService filuploadservice; //by @AllArgsConstructor
 	private MembershipService membershipService;
 	private RecipeSearchService recipeSearchService;
-	
+	private RecipeFindingService recipeFindingService;
 	/*
 	//마이페이지 페이지 이동(MemberController.java 에 있는 메소드 가져옴)
 	@GetMapping("mypage")
@@ -92,6 +94,11 @@ public class MembershipController {
         return data;
     }
 		
+    @GetMapping("/recent-recipe")
+    public @ResponseBody List<RecipeList> callRecentRecipe(HttpServletRequest request){
+        List<RecipeList> data = recipeFindingService.findRecentRecipes(request);
+        return data;
+    }
 	//마이페이지 페이지 이동
 	/*@GetMapping("gofriendrecipe")
 	public ModelAndView goFriendRecipe(HttpSession session) {

@@ -348,7 +348,7 @@ function displayMoreReply(response){
 		html += '<span class="d-flex align-items-center">';
 		html += '<figure class="comment-author">';
 		html += '<img src="/imgs/content/'+item.profileImg+'" alt="작성자">';
-		html += '</figure><b class="fn px-2">'+item.mNickname+'</b>';
+		html += '</figure><b class="fn px-2">'+item.mnickname+'</b>';
 		html += '<span class="star-rate-block">';
 		html += '<span class="px-2">'+item.replyDate+'</span>';	
 		html += '<img class="star-rate-img2" src="/imgs/stars4.png" alt="stars" style="width: 80px; height: 15px; margin-bottom: 5px;">';	
@@ -370,15 +370,16 @@ function displayMoreReply(response){
 		
 		$("#comment-area").append(html);				
 	}
-	if(response.length == 0){
+	let location = (document.querySelector("#comment-add").offsetTop)-500;
+	if(response.length < 5){
 		$("#add-"+rId).text("위로이동");
 		$("#add-"+rId).attr("onclick", "scrollUpToReview("+rId+")");
+		window.scrollTo({top:location, behavior:"smooth"});
 	}else{
 		let value = $("#comment-add").attr("value");
 		let val = parseInt(value);
 		let lastIndex = val + parseInt(i);
-		$("#comment-add").attr("value", lastIndex);
-		let location = (document.querySelector("#comment-add").offsetTop)-500;		
+		$("#comment-add").attr("value", lastIndex);				
 		window.scrollTo({top:location, behavior:"smooth"});
 	}	
 }

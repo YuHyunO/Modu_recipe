@@ -48,8 +48,9 @@ public class IndexController {
 	}
 	
     @GetMapping("/recent-recipe")
-    public @ResponseBody List<RecipeList> displayRecentRecipe(HttpServletRequest request){
-        return recipeFindingService.findRecentRecipes(request);
+    public @ResponseBody List<RecipeList> callRecentRecipe(HttpServletRequest request){
+        List<RecipeList> data = recipeFindingService.findRecentRecipes(request);
+        return data;
     }
 	
 }
