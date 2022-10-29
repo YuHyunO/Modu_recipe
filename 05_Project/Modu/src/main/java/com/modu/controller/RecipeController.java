@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -142,7 +143,7 @@ public class RecipeController {
     }
 
     @GetMapping("/detail")
-    public ModelAndView recipeDetail(HttpServletRequest request, HttpSession session) {
+    public ModelAndView recipeDetail(HttpServletRequest request, HttpSession session, HttpServletResponse response) {
         String email = (String)session.getAttribute("email");
         long id = 0;
         try {
@@ -150,7 +151,7 @@ public class RecipeController {
         }catch(NumberFormatException nfe) {
             return  new ModelAndView("redirect:/");
         }
-        RecipeDetail detail = recipeFindingService.getRecipeDetails(id);
+        RecipeDetail detail = recipeFindingService.getRecipeDetails(id, request, response);
         String starPoint = recipeFindingService.getStarPoint(detail);
 
         boolean scrapState = false;

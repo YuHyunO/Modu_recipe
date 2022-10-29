@@ -145,16 +145,16 @@ public class FreeBoardController {
      }
      
      @GetMapping("update.do")
-     public ModelAndView update(long id) {
-         BoardDetail board = boardService.getPost(id); 
+     public ModelAndView update(long id, HttpServletRequest request, HttpServletResponse response) {
+         BoardDetail board = boardService.getPost(id, request, response); 
          ModelAndView mv = new ModelAndView("freeboard/update", "board", board);
          return mv;
      }
      @PostMapping("update.do")
-     public String update(Board board,BoardFile boardFile, MultipartFile file) {
+     public String update(Board board,BoardFile boardFile, MultipartFile file,HttpServletRequest request, HttpServletResponse response) {
          long id = board.getId();
          long fId = boardFile.getId();
-         boardService.getPost(id);
+         boardService.getPost(id,request, response);
          String ofname = file.getOriginalFilename();
          if(ofname != null) ofname = ofname.trim();
             if(ofname.length() != 0) {
