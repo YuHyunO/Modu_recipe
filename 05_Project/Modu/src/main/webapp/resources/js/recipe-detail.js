@@ -274,6 +274,9 @@ $(function(){
 let mode;
 function setUrl(e){
 	let val = $(e).val();
+	if(val == ""){		
+		val = "2";
+	}
 	let url;
 	switch(val){
 	case "1": url = "/recipe/recipe-reply";
@@ -288,19 +291,28 @@ let id;
 function setData(e, url){
 	let data;
 	id = $(e).attr("id");
+	id = id.split("-")[1];	
+	console.log("id: "+id);
+	console.log("mode: "+mode);
 	
 	switch(mode){
-	case 1: data = {rId: id};
+	case 1: data = {rId: id,
+					lastIndex: getLastIndex(id)};
 			  break;
-	case 2: data = {rrId: id};		 	 
-	}
-	
+	case 2: data = {rrId: id,
+					lastIndex: getLastIndex(id)};		 	 
+	}	
 	dataAgent(url, data);
 }
 
-function getData(e){
-	id = e;
-	mode = 4;
+function getLastIndex(id){
+	let lastIndex;
+	if (mode == 1){
+		lastIndex = $("#comment-add").attr("value");	
+	}else if (mode == 2){
+		lastIndex = $("#nested-add-"+id).attr("value");		
+	}
+	return lastIndex;
 }
 
 function dataAgent(url, data){
@@ -323,11 +335,14 @@ function dataAgent(url, data){
 	});
 }
 
+let rId;
 function displayMoreReply(response){
-	let html = '';
-	console.log(response.length);
+	let i = 1;
 	for(let item of response){
-		html += '<li class="comment">';
+		rId = item.rid;	
+		i++;
+		let html = '';
+		html += '<li class="comment" value="'+item.list+'">';			
 		html += '<div class="comment-body">';
 		html += '<div class="comment-meta d-flex justify-content-between align-items-center">';
 		html += '<span class="d-flex align-items-center">';
@@ -355,14 +370,27 @@ function displayMoreReply(response){
 		
 		$("#comment-area").append(html);				
 	}
-
+	if(response.length == 0){
+		$("#add-"+rId).text("위로이동");
+		$("#add-"+rId).attr("onclick", "scrollUpToReview("+rId+")");
+	}else{
+		let value = $("#comment-add").attr("value");
+		let val = parseInt(value);
+		let lastIndex = val + parseInt(i);
+		$("#comment-add").attr("value", lastIndex);
+		let location = (document.querySelector("#comment-add").offsetTop)-500;		
+		window.scrollTo({top:location, behavior:"smooth"});
+	}	
 }
 
-function displayMoreNestedReply(response){
-	let html = '';
-	console.log(response.length);
+let rrId;
+function displayMoreNestedReply(response){		
+	let i = 1;	
 	for(let item of response){
-		html += '<li class="comment row">';
+		i++;
+		rrId = item.rrId;
+		let html = '';
+		html += '<li class="comment row" value="'+item.list+'">';
 		html += '<div class="col" style="max-width: 40px;">';
 		html += '<img src="/imgs/reply-arrow.png" alt="화살표">';
 		html += '</div>';
@@ -372,7 +400,7 @@ function displayMoreNestedReply(response){
 		html += '<figure class="comment-author">';
 		html += '<img src="/imgs/content/'+item.profileImg+'" alt="작성자">';
 		html += '</figure>';
-		html += '<b class="fn ps-2">'+item.mNickname+'</b>';
+		html += '<b class="fn ps-2">'+item.mnickname+'</b>';
 		html += '<span class="px-2">'+item.replyDate+'</span>';
 		html += '</span>';
 		html += '<span class="reply-btn px-2">';
@@ -383,10 +411,40 @@ function displayMoreNestedReply(response){
 		html += '<p class="p-2 m-0">'+item.reply+'</p>';
 		html += '</div>';
 		html += '</div>';
-		html += '</li>';
+		html += '</li>';		
+		$("#recomment-area-"+id).append(html);		
 	}
+	$("#readd-"+rrId).text("▲댓글 접기");
+	$("#readd-"+rrId).attr("onclick", "foldReply("+rrId+")");	
+	$("#nested-sub-add-"+rrId).html('<a id="subreadd-'+rrId+'" href="javascript:void(0)" onclick="setUrl(this)">▼더보기</a>');
+	
+	if(response.length<5){
+		$("#subreadd-"+rrId).text("▲위로가기");
+		$("#subreadd-"+rrId).attr("onclick", "scrollUpToParent("+rrId+")");
+	}
+	let value = $("#nested-add-"+rrId).attr("value");
+	let val = parseInt(value);
+	let lastIndex = val + parseInt(i);
+	$("#nested-add-"+id).attr("value", lastIndex);
+	let location = (document.querySelector("#nested-sub-add-"+rrId).offsetTop)-600;		
+	window.scrollTo({top:location, behavior:"smooth"});	
+}
 
-	$("#recomment-area-"+id).append(html);
+function scrollUpToReview(){
+	let location = (document.querySelector("#review-loc").offsetTop);		
+	window.scrollTo({top:location, behavior:"smooth"});	
+}
+function scrollUpToParent(){
+	let location = (document.querySelector("#readd-"+rrId).offsetTop);		
+	window.scrollTo({top:location, behavior:"smooth"});	
+}
+
+function foldReply(id){
+	$("#recomment-area-"+id).empty();
+	$("#readd-"+id).text("▼댓글 보기");
+	$("#nested-sub-add-"+id).empty();
+	$("#readd-"+id).attr("onclick", "setUrl(this)");
+	$("#nested-add-"+id).attr("value", 1);	
 }
 
 

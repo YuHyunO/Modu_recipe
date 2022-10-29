@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,8 +63,8 @@ public class FreeBoardController {
     
 
     @GetMapping("/detail")
-    public ModelAndView boardDetail(long id) {
-        BoardDetail board = boardService.getPost(id);
+    public ModelAndView boardDetail(long id,HttpServletRequest request, HttpServletResponse response) {
+        BoardDetail board = boardService.getPost(id,request, response);
         long beginRow = 1;
         long endRow = 6;
         Date gPD = board.getBoard().getPostDate();

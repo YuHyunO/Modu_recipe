@@ -264,4 +264,14 @@
 		where list BETWEEN #{beginRow} AND #{endRow}
 	</select>	
 	 -->	
+	 <!-- 게시판 조회수 증가 -->
+	 <update id="viewCount">
+	 	update 
+	 			Board 
+		set 
+				hits = hits + 1
+		where 
+				id = #{id}
+	 </update>
+	 
 </mapper>

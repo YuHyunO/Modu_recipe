@@ -186,22 +186,22 @@
 					</div>
 					<!-- end 태그 -->
 					
-					<div class="row comment-section border-top py-3 justify-content-center">
+					<div id="review-loc" class="row comment-section border-top py-3 justify-content-center">
 						<div class="row comments pt-3">
 							<h2 class="comments-title text-start mb-2">
 								리뷰<span>(${replyCount})</span>
 							</h2>
 							<ol class="comment-list" id="comment-area">
-								<c:forEach items="${detail.replyList}" var="li">							
-									<li class="comment">
+								<c:forEach items="${detail.replyList}" var="li">	<!-- forEach문으로 detail의 replyList를 li에 담는다 -->						
+									<li class="comment" value="${li.list}"> <!-- li에 담은 값에서 list를 하나씩 뽑아서 배치 -->
 										<div class="comment-body">
 											<div class="comment-meta d-flex justify-content-between align-items-center">
 												<span class="d-flex align-items-center">
 													<figure class="comment-author">
-														<img src="${li.profileImg}" alt="작성자">
-													</figure><b class="fn px-2">${li.nickname}</b>
+														<img src="${li.profileImg}" alt="작성자"> <!-- 담긴 Data(li)에서 profileImg만 뽑아서 보여준다(여기서는 댓글을 등록한 작성자 -->
+													</figure><b class="fn px-2">${li.nickname}</b> <!-- 옆에 닉네임도 출력 -->
 													<span class="star-rate-block"> 
-														<span class="px-2">${li.replyDate}</span>
+														<span class="px-2">${li.replyDate}</span> <!-- li에 담긴 DATA를 뽑아서 보여줄때 작성한 그 날짜 -->
 														<img class="star-rate-img2" src="/imgs/stars4.png" alt="stars" style="width: 80px; height: 15px; margin-bottom: 5px;">
 													</span>
 												</span>
@@ -211,56 +211,44 @@
 												</div>
 											</div>
 											<div class="comment-content d-flex">
-												<p class="p-2 m-0 col-9">${li.reply}</p>
+												<p class="p-2 m-0 col-9">${li.reply}</p> <!-- ???? -->
 												<figure class="comment-image">
-													<img class="rounded-3" src="/imgs/content/dessert-l.png"
-														alt="comment-image">
+													<img class="rounded-3" src="/imgs/content/dessert-l.png" alt="comment-image">
 												</figure>
 											</div>
-										</div> 
-									</li>
-									<c:if test="${li.nestedReply eq 1}">																																
-										<ol class="re-comment px-0" id="recomment-area-${li.id}">										
-											<c:forEach items="${detail.nestedReplyList}" var="lis">
-											<c:if test="${li.id eq lis.rrId}">
-												<li class="comment row">
-										        	<div class="col" style="max-width: 40px;">										        
-										           		<img src="/imgs/reply-arrow.png" alt="화살표">
-											        </div>
-											        <div class="comment-body col">
-											            <div class="comment-meta d-flex justify-content-between align-items-center">
-											                <span class="d-flex align-items-center">
-											                    <figure class="comment-author">
-											                        <img src="/imgs/content/auth-03.png" alt="작성자">
-											                    </figure>
-											                    <b class="fn ps-2">${lis.MNickname}</b>
-											                    <span class="px-2">${lis.replyDate}</span>
-											                </span>
-											                <span class="reply-btn px-2">
-											                    <button class="reply-135000-0001 reply-btn" 
-											                    onclick="getData(${lis.id});">삭제</button>
-											                </span>
-											            </div>
-											            <div class="comment-content">
-											                <p class="p-2 m-0">${li.reply}</p>
-											            </div>												           																											            
-											        </div>
-										    	</li>
-										    </c:if>
-									    	</c:forEach>										    																
-										</ol>									
-										<div class="row view-more py-2" style="max-width: 300px;">
-											<button id="${li.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="2">대댓글 더보기</button>
 										</div>
+										<c:if test="${li.nestedReply eq 1}"> <!-- nestedRelpy의 type값이 1이라면 -->
+										<div id="nested-add-${li.id}" class="row view-more py-2" value="1" style="max-width: 300px;"> <!-- 대댓글의 id값을 불러온다 -->
+											<a id="readd-${li.id}" href="javascript:void(0)" onclick="setUrl(this)">▼댓글 보기</a> <!-- ????? -->
+										</div>	
+										</c:if>									
+									</li>
+									<c:if test="${li.nestedReply eq 1}">																																						
+										<ol class="re-comment px-0" id="recomment-area-${li.id}">										
+													<!-- 대댓글 영역 -->									 											
+										</ol>
+										<div id="nested-sub-add-${li.id}">
+											
+										</div>																			
 									</c:if>																							
 								</c:forEach>
+								<br/>
 							</ol>							
 						</div>
 						<!-- end row comments pt-3, 리뷰 댓글list -->
-						<c:if test="${replyCount != 0}">
-							<div class="row view-more p-2">
-								<button id="${detail.recipe.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="1">더보기</button>
-							</div>
+						<c:if test="${replyCount != 0}">							
+							<c:choose>
+							<c:when test="${replyCount >= 5}">
+								<div id="comment-add" class="row view-more p-2" value="5">
+								<button id="add-${detail.recipe.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="1">더보기</button>
+								</div>								
+							</c:when>
+							<c:otherwise>
+								<div id="comment-add" class="row view-more p-2" value="${replyCount}">
+								<button id="add-${detail.recipe.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="1">더보기</button>
+								</div>									
+							</c:otherwise>
+							</c:choose>
 						</c:if>
 						<!-- 별점+댓글창 -->
 						<div class="comment-write p-2">
