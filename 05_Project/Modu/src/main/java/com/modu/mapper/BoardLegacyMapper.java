@@ -29,6 +29,7 @@ public interface BoardLegacyMapper {
 	long selectNestedReplyCount(long brId);
 	long selectReplyCountByMember(String email);
 	long viewCount(long id);
+	void replyCountUpdate(@Param("id")long id, @Param("rrCount")long rrCount);
 }
 
 

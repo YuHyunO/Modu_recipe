@@ -50,6 +50,7 @@ public class FreeBoardController {
     public ModelAndView boardList(HttpServletRequest request, HttpSession session){
         BoardListVo data = boardService.listingPosts(request,session);
         ModelAndView mv = new ModelAndView("freeboard/list", "data", data);
+        log.info("#1029 1 : " + data+ "  mv " + mv);
         return mv;
     }
     @GetMapping("/list.do")
@@ -68,9 +69,6 @@ public class FreeBoardController {
         long beginRow = 1;
         long endRow = 6;
         Date gPD = board.getBoard().getPostDate();
-        //SimpleDateFormat board.getBoard().getPostDate() = new SimpleDateFormat("MM-dd hh:mm"); 
-        //gPD.format(new Date());
-        //board.getBoard().setPostDate();
         BoardReplyList list = boardReplyService.getReply(id,beginRow,endRow);
         ModelAndView mv = new ModelAndView();
         mv.setViewName("freeboard/detail");

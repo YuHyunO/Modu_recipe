@@ -40,4 +40,5 @@ public interface RecipeLegacyMapper {
 	
 	Scrap selectScrapByRecipeId(@Param("rId")long rId, @Param("mEmail")String mEmail);
 	long recipeViewCount(long id);
+	long viewReply(long id);
 }

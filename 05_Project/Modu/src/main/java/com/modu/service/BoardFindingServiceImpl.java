@@ -40,7 +40,6 @@ public class BoardFindingServiceImpl implements BoardFindingService {
         long pgSize = 10;
         long totalPage;
         long totalPost = boardMapper.selectPostCountByType(1);
-        
         try {
             switch(request.getParameter("value")) {
             case "0": int period = Integer.parseInt(request.getParameter("period"));
@@ -105,6 +104,9 @@ public class BoardFindingServiceImpl implements BoardFindingService {
         if(request.getParameter("value")!=null) {
             boardList = getSearchedBoards(request, beginRow, endRow);
         }
+       // long bId = boardList.set(index, element)
+       // boardLegacyMapper.selectReplyCount(bId);
+        //log.info("1029 2 data : " + boardList);
         
         BoardListVo data = new BoardListVo(boardList, curPage, pgSize, totalPage);
         return data;
@@ -139,6 +141,10 @@ public class BoardFindingServiceImpl implements BoardFindingService {
         return boardList;
     }
     public BoardDetail getPost(long id,HttpServletRequest request,HttpServletResponse response) {
+        //long bId = id;
+       // long replyCount = boardLegacyMapper.selectReplyCount(bId);
+       // log.info("#1029 956 : " + replyCount);
+        
         String stringId = String.valueOf(id);
         Cookie oldCookie = null;
         Cookie[] cookies = request.getCookies();
@@ -171,11 +177,23 @@ public class BoardFindingServiceImpl implements BoardFindingService {
         
 		BoardDetail boardDetail = new BoardDetail();
 		Board board = boardMapper.selectPost(id);
+		long rrCount = boardLegacyMapper.selectReplyCount(id);
+		long rCount = board.getReply();
+		log.info("1029 rcount : " + rCount  + " rrcount2 : " + rrCount);
+		if(rCount != rrCount) {
+		    boardLegacyMapper.replyCountUpdate(id, rrCount);
+		    log.info("#1029  4   성공");
+		}else {
+		    log.info("#1029 5 다름");
+		}
+		
 		BoardDetailNextPrev nextPrev = boardMapper.selectBoardNextPrev(id);
 		List<BoardFile> boardFile = boardMapper.selectFile(id);
 		boardDetail.setBoard(board);
 		boardDetail.setBoardFile(boardFile);
 		boardDetail.setBoardDetailNextPrev(nextPrev);
+		
+		
 		return boardDetail;
 	}	
 

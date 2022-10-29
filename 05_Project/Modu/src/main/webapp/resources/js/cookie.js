@@ -1,4 +1,4 @@
-$(document).ready(function(e){
+/*$(document).ready(function(e){
 	let pageType = document.getElementById("page-type").value;
 	console.log("##"+pageType);
 	setUrl();	  		 
@@ -54,7 +54,7 @@ function displayData(response){
 		html += '<a id="recipe-type-'+i+'" href="#">'+item.sort+'</a>';
 		html += '</span>';
 		html += '<figure class="post-thumbnail">';
-		html += '<a id="recipe-img-'+i+'" href="#"> <img class="rounded-3" src="/imgs/content/'+item.foodPhoto+'" alt="" />';
+		html += '<a id="recipe-img-'+i+'" href="#"> <img class="rounded-3" src="/imgs/content/item.png" alt="d" />';
 		html += '</a>';
 		html += '</figure>';
 		html += '<h2 class="post-title">';
@@ -73,4 +73,4 @@ function getCookie(name) {
 	    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
 	  ));
 	  return matches ? decodeURIComponent(matches[1]) : undefined;
-}
+}*/

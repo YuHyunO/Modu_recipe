@@ -273,5 +273,29 @@
 		where 
 				id = #{id}
 	 </update>
-	 
+	<!--  <select id="viewReply">
+	 	select 
+	 			count(ID)
+		from 
+				BOARD_REPLY 
+		where 
+				b_id=#{id}
+	</select>
+	<update id="replyCount">
+		update 
+				Board
+		set 
+				reply = reply + 1
+		where 
+				id = #{id}
+	</update>
+	 -->
+	 <update id="replyCountUpdate">
+	 	update 
+				Board
+		set 
+				reply = #{rrCount}
+		where 
+				id = #{id}
+	 </update>
 </mapper>
