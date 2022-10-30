@@ -227,7 +227,7 @@ function displayFollow(response){
 		html += '<img class="friendProfileimg" src="/pics/profile/'+item.profileImg+'" alt="파일없음"> ';
 		html += '</figure>';
 		html += '<p class="team-name">'+item.nickname+'</p>';
-		html += '<large class="team-tag">'+item.email+'</large>';
+		html += '<small class="team-tag" style="text-transform: none;">'+item.email+'</small>';
 		html += '<small class="team-tag">'+item.followDate+'부터 친구중</small>';
 		html += '<div class="handlemyfriend">';
 		html += '<button class="handlemyfriendBtn" onclick="../gofriendrecipe?id='+item.id+'">레시피 보기</button>&nbsp;';
