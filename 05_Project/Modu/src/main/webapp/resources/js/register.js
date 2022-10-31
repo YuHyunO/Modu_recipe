@@ -23,7 +23,12 @@ $(function() { // 비밀번호 2개 일치여부 확인, 이메일/닉네임 중
 					url : "/member/register/emailvalidcheck",
 					data : data,
 					success : function(result) {
-						if (result == 'noshow') { // 이메일 10자 미만시
+						console.log(result);
+						if (result == 'noshow') { // 이메일 공란일 시
+							$('.email_ajax_1').css("display", "none");
+							$('.email_ajax_2').css("display", "none");
+							$('.email_ajax_3').css("display", "none");
+						} else if (result == 'short') { // 이메일 10자 미만시
 							$('.email_ajax_1').css("display", "none");
 							$('.email_ajax_2').css("display", "none");
 							$('.email_ajax_3').css("display", "inline-block");
@@ -54,20 +59,22 @@ $(function() { // 비밀번호 2개 일치여부 확인, 이메일/닉네임 중
 					url : "/member/register/nicknamevalidcheck",
 					data : data,
 					success : function(result) {
-						if (result == 'noshow') { // 닉네임 3자 미만시
+						//console.log(result);
+						if (result == 'noshow') { // 공란일 시
 							$('.nickname_ajax_1').css("display", "none");
 							$('.nickname_ajax_2').css("display", "none");
-							$('.nickname_ajax_3')
-									.css("display", "inline-block");
+							$('.nickname_ajax_3').css("display", "none");
+						} else if (result == 'short') { // 닉네임 3자 미만 입력시
+							$('.nickname_ajax_1').css("display", "none");
+							$('.nickname_ajax_2').css("display", "none");
+							$('.nickname_ajax_3').css("display", "inline-block");
 						} else if (result == 'success') { // 닉네임 사용 가능, 중복X
-							$('.nickname_ajax_1')
-									.css("display", "inline-block");
+							$('.nickname_ajax_1').css("display", "inline-block");
 							$('.nickname_ajax_2').css("display", "none");
 							$('.nickname_ajax_3').css("display", "none");
 						} else if (result == 'fail') { // 닉네임 사용 불가, 중복 닉네임
 							$('.nickname_ajax_1').css("display", "none");
-							$('.nickname_ajax_2')
-									.css("display", "inline-block");
+							$('.nickname_ajax_2').css("display", "inline-block");
 							$('.nickname_ajax_3').css("display", "none");
 						}
 					} // success 종료

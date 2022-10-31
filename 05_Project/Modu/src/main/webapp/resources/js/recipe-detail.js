@@ -385,9 +385,9 @@ function displayMoreNestedReply(response){
 		html += '</li>';		
 		$("#recomment-area-"+id).append(html);		
 	}
-	$("#readd-"+rrId).text("▲댓글 접기");
+	$("#readd-"+rrId).text("▲대댓글 접기");
 	$("#readd-"+rrId).attr("onclick", "foldReply("+rrId+")");	
-	$("#nested-sub-add-"+rrId).html('<a id="subreadd-'+rrId+'" href="javascript:void(0)" onclick="setUrl(this)">▼더보기</a>');
+	$("#nested-sub-add-"+rrId).html('<a id="subreadd-'+rrId+'" href="javascript:void(0)" onclick="setUrl(this)">▼대댓글 더보기</a>');
 	
 	if(response.length<5){
 		$("#subreadd-"+rrId).text("▲위로가기");
@@ -412,7 +412,7 @@ function scrollUpToParent(){
 
 function foldReply(id){
 	$("#recomment-area-"+id).empty();
-	$("#readd-"+id).text("▼댓글 보기");
+	$("#readd-"+id).text("▼대댓글 보기");
 	$("#nested-sub-add-"+id).empty();
 	$("#readd-"+id).attr("onclick", "setUrl(this)");
 	$("#nested-add-"+id).attr("value", 1);	

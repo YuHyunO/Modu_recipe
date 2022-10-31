@@ -13,7 +13,6 @@
 <title>모두의 식탁</title>
 </head>
 <style type="text/css">
-
 .fixed01{
   display:flex;
   justify-content:center;
@@ -85,18 +84,22 @@
 							<div class="container p-0">
 								<div
 									class="section-title d-flex justify-content-between align-items-center">
-									<h4 class="mb-0 py-3 ms-3">
-										베스트 레시피
-										</h3>
-										<a href="/recipe/list" class="btn-more h-100">더보기</a>
+									<h4 class="mb-0 py-3 ms-3">베스트 레시피</h3>
+									<a href="/recipe/list" class="btn-more h-100">더보기</a>
 								</div>
 								<!-- end section-title -->
 								<div class="row">
 									<c:forEach var="recipe" items="${recipeList}">
 										<div class="col-6 col-md-3">
 											<div class="recipe-thumb">
-												<img src="imgs/recipe/${recipe.foodPhoto}"
-													alt="Recipe Image">
+												<c:if test="${recipe.foodPhoto ne 'recipe_basic_img.png'}">
+													<img src="/pics/recipe/${recipe.id}/${recipe.foodPhoto}" 
+														alt="recipe_mainImage">
+												</c:if>
+												<c:if test="${recipe.foodPhoto eq 'recipe_basic_img.png'}">
+													<img src="/pics/recipe/recipe_basic_img.png" 
+														alt="recipe_basicImage">
+												</c:if>
 											</div>
 											<div class="recipe-desc">
 												<div class="recipe-title">
@@ -104,20 +107,22 @@
 												</div>
 												<figure class="profile">
 													<img class="profile-img"
-														src="pics/profile/${recipe.profileImg}" alt="작성자">
+														src="/pics/profile/${recipe.profileImg}" alt="작성자">
 													<span><em>${recipe.MNickname}</em></span>
 												</figure>
 												<div class="recipe-icons d-flex justify-content-between">
-													<span class="d-flex align-items-center"> <c:if
-															test="${recipe.star} ne 0">
+													<span class="d-flex align-items-center">
+														<c:if test="${recipe.star ne 0}">
 															<img class="stars" src="imgs/stars${recipe.star}.png">
 															<span class="p-1 mt-1">${recipe.star}(500)</span>
 														</c:if>
-													</span> <span class="d-flex align-items-center"> <span
-														class="p-1 mt-1"> 조회 <fmt:formatNumber
-																type="number" maxFractionDigits="3"
-																value="${recipe.hits}" />
 													</span>
+													<span class="d-flex align-items-center"> 
+														<span class="p-1 mt-1">조회수
+															<fmt:formatNumber
+																	type="number" maxFractionDigits="3"
+																	value="${recipe.hits}" />
+														</span>
 													</span>
 												</div>
 											</div>
@@ -198,24 +203,25 @@
 						</div>
 						<!-- end chef-section -->
 						
-<!-- 						<div class="head-title py-0 m-0">
+ 						<div class="head-title py-0 m-0">
 					        <div class="fixed03">
-	        	<p class="mention">
-	        		Welcome. <br/>
-	        		We have collected fresh & good-taste recipes. <br/>
-	        		Let's share the recipe together.
-	        	</p>
+					        	<p class="mention">
+					        		Welcome. <br/>
+					        		We have collected fresh & good-taste recipes. <br/>
+					        		Let's share the recipe together.
+					        	</p>
 					        </div>
-						</div>end head-title
+						</div><br>
 						<div class="head-title py-0 m-0">
 					        <div class="fixed04">
-	        	<p class="mention">
-	        		Welcome. <br/>
-	        		We have collected fresh & good-taste recipes. <br/>
-	        		Let's share the recipe together.
-	        	</p>
+					        	<p class="mention">
+					        		Welcome. <br/>
+					        		We have collected fresh & good-taste recipes. <br/>
+					        		Let's share the recipe together.
+					        	</p>
 					        </div>
-						</div> -->		<!-- end head-title -->
+						</div>
+						<!-- end head-title -->
 						
 					</div>
 					<!-- end primary(주요 메인영역) 종료-->

@@ -14,12 +14,11 @@
     color: #937062;
 }
 
-/* ·Î±×ÀÎ ½ÇÆÐ½Ã °æ°í±Û */
 .login_warn2 {
 	text-align: center;
 	display: inline-block;
 	font-size: 13px;
-	color: green;
+	color: #ad0404;
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
@@ -33,7 +32,7 @@
 	width: 100%;
 }
 
-/* ºñ¹Ð¹øÈ£¸¦ ÀØÀ¸¼Ì³ª¿ä, ÀÌ¹Ì È¸¿øÀÌ½Å°¡¿ä? ¹®±¸ */
+/* ï¿½ï¿½Ð¹ï¿½È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½, ï¿½Ì¹ï¿½ È¸ï¿½ï¿½ï¿½Ì½Å°ï¿½ï¿½ï¿½? ï¿½ï¿½ï¿½ï¿½ */
 .forgotpwd, .goregister {
 	font-size: 13px;
 	color: #42332d;

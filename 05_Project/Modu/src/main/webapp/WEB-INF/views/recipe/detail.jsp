@@ -47,7 +47,7 @@
 			<!-- primary 본격 시작 -->
 				<!-- <div class="container col-md-2"></div> -->
 				<input class="recipe-id" hidden="true" value="${detail.recipe.id}">
-				<div class="col-md-9 col-lg-6 col-xl-9">
+				<div class="col-md-9 col-lg-9 col-xl-9">
 					<div id="primary" class="recipe-content m-0">
 						<div class="row py-3">
 							<div class="col-md-6">
@@ -87,8 +87,8 @@
 									</span>
 								</span>
 								<span>
-								<!-- 내가 쓴 레시피에는 친구추가 버튼이 뜨지 않도록 함 -->
- 								<c:if test="${sessionScope.email == detail.recipe.MEmail }">
+									<!-- 내가 쓴 레시피에는 친구추가 버튼이 뜨지 않도록 함 -->
+	 								<c:if test="${sessionScope.email == detail.recipe.MEmail }">
 										<input type="hidden" class="btn btn-outline-success subscribe-btn me-2" 
 										data-email="${detail.recipe.MEmail}" 
 										onclick="clickSubscribe(this)">
@@ -103,17 +103,23 @@
 							<!-- end recipe author -->
 							<div class="recipe-option d-flex justify-content-end col">
 								<div class="d-flex flex-column text-center">
-									<c:choose>
-										<c:when test="${scrapState eq true}">
-											<button class="recipe-scrap-clicked" onclick="clickScrap(this)">
-											</button>
-										</c:when>
-										<c:when test="${scrapState eq false}">
-											<button class="recipe-scrap" onclick="clickScrap(this)">
-											</button>
-										</c:when>
-									</c:choose> 
-									<span>스크랩</span>
+									<!-- 내가 쓴 레시피에는 스크랩 버튼이 뜨지 않도록 함 -->
+	 								<c:if test="${sessionScope.email == detail.recipe.MEmail }">
+	 									<input type="hidden">
+									</c:if>
+									<c:if test="${sessionScope.email != detail.recipe.MEmail }">
+										<c:choose>
+											<c:when test="${scrapState eq true}">
+												<button class="recipe-scrap-clicked" onclick="clickScrap(this)">
+												</button>
+											</c:when>
+											<c:when test="${scrapState eq false}">
+												<button class="recipe-scrap" onclick="clickScrap(this)">
+												</button>
+											</c:when>
+										</c:choose>
+										<span>스크랩</span>
+									 </c:if>
 								</div>
 								<div class="d-flex flex-column text-center">
 									<input type="hidden" value="http://modu-table/recipe/detail/${detail.recipe.id}" id="recipe-link"/>
@@ -230,7 +236,7 @@
 										</div>
 										<c:if test="${li.nestedReply eq 1}"> <!-- nestedRelpy의 type값이 1이라면 -->
 										<div id="nested-add-${li.id}" class="row view-more py-2" value="1" style="max-width: 300px;"> <!-- 대댓글의 id값을 불러온다 -->
-											<a id="readd-${li.id}" href="javascript:void(0)" onclick="setUrl(this)">▼댓글 보기</a> <!-- ????? -->
+											<a id="readd-${li.id}" href="javascript:void(0)" onclick="setUrl(this)">▼대댓글 보기</a> <!-- ????? -->
 										</div>	
 										</c:if>									
 									</li>

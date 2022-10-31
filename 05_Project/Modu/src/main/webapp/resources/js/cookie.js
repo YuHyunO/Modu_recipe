@@ -49,18 +49,30 @@ function cookieAgent(url, data){
 function displayData(response){
 	let i = 0;
 	let html = "";
+	console.log(response);
+	
 	for(let item of response){
 		html += '<li>';
 		html += '<span class="post-category">';
-		html += '<a href="../recipe/detail?no='+item.id+'" target="_blank">'+item.sort+'</a>';
+		html += '<a href="../recipe/detail?no='+item.id+'">'+item.sort+'</a>';
 		html += '</span>';
 		html += '<figure class="post-thumbnail">';
-		html += '<a id="recipe-img-'+i+'" href="#">'
-		html += '<img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipe_mainImage">';
-		html += '</a>';
+			html += '<a href="../recipe/detail?no='+item.id+'">';
+			html += '<c:choose>';
+				html += '<c:when test="${'+item.foodPhoto+' eq "recipe_basic_img.png"}">';
+				html += '<img src="/pics/recipe/recipe_basic_img.png" alt="recipe_basicImage">';
+				html += '</c:when>';
+				html += '<c:otherwise>';
+				html += '<img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipe_mainImage">';
+				html += '</c:otherwise>';
+			html += '</c:choose>';
+/*				html += '<c:if test="${'+item.foodPhoto+' ne "recipe_basic_img.png"}">'
+				html += '<img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipe_mainImage">';
+				html += '</c:if>'*/
+			html += '</a>';
 		html += '</figure>';
 		html += '<h2 class="post-title">';
-		html += '<a id="recipe-title-'+i+'" href="#">'+item.title+'</a>';
+		html += '<a href="../recipe/detail?no='+item.id+'">'+item.title+'</a>';
 		html += '</h2>';
 		html += '</li>';
 		i++;

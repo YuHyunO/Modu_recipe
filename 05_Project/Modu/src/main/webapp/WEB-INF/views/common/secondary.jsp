@@ -11,10 +11,10 @@
 		<ul id="recent-recipe-area"></ul>
 	</div><!-- end class="widget post-type-widget pt-3 pb-3" -->
 		
-	<!--새로운 태그들-->
+	<!--실시간 레시피 키워드-->
 	<div class="widget post-type-widget pt-3">
 		<div class="widget-title-outer">
-			<h3 class="widget-title">추천 레시피 키워드</h3>
+			<h3 class="widget-title">실시간 레시피 키워드</h3>
 		</div>
 		<div class="tagcloud d-flex">
 			<div class="row px-2">
@@ -45,6 +45,6 @@
 		<a href="#"> <img id="lockandlock_ad" class="rounded-3 banner"
 			src="/imgs/index/lock_ad.gif" alt="lockandlock_ad.gif" />
 		</a>
-	</div>	<!-- end 광고 배너 -->
+	</div>	<!-- end 광고 -->
 
 </div> <!-- end #secondary, 사이드영역 끝 -->
