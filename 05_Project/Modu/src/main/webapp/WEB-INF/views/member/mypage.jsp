@@ -47,9 +47,10 @@
 									<c:if
 										test="${ member.profileImg!='default_profile_img.png' && member.profileImg!=null}">
 											<img 
-											src="<spring:url value = '/pics/profile/${ member.profileImg }'/>" 
+											src="/pics/profile/${ member.profileImg }"
 											id="mypage_profileimg"
-											alt="현재프로필사진"/>
+											alt="프로필사진"/>
+											<%-- 주소 불안정(인식 못할 대 있음) src="<spring:url value='/pics/profile/${ member.profileImg }'/>" --%>
 									</c:if>
 								</div><br/>
 								<div class="profile-context">
