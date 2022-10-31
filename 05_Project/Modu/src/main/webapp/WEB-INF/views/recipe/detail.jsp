@@ -87,7 +87,15 @@
 									</span>
 								</span>
 								<span>
-									<button class="btn btn-outline-success subscribe-btn me-2" data-email="${detail.recipe.MEmail}" onclick="clickSubscribe(this)">친구 추가</button>
+									<c:if test="${ sessionScope.email != detail.recipe.MEmail }">
+										<button class="btn btn-outline-success subscribe-btn me-2" 
+										data-email="${detail.recipe.MEmail}" onclick="clickSubscribe(this)">친구 추가</button>
+									</c:if>
+									<!-- 내가 작성한 레시피에는 친구 추가가 뜨지 않도록 함 -->
+									<c:if test="${ sessionScope.email == detail.recipe.MEmail }">
+										<input type="hidden" class="btn btn-outline-success subscribe-btn me-2" 
+										data-email="${detail.recipe.MEmail}" onclick="clickSubscribe(this)">
+									</c:if>
 								</span>
 							</div>
 							<!-- end recipe author -->
