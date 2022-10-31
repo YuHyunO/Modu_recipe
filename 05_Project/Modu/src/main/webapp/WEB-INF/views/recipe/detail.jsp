@@ -29,20 +29,20 @@
 		<div class="row">
 			<div id="main-content" class="content-area col-md-9">
 		
-			<!-- 사진 팝업(hidden) -->
-			<div id="viewPicDivModal" class="modal" role="dialog"
-				aria-hidden="true" style="display: none;">
-				<div class="modal-dialog">
-					<div class="modal-content" style="padding: 0; width: 600px;">
-						<div class="modal-header">
-							<h4 class="modal-title">사진</h4>
-						</div>
-						<div class="modal-body" style="padding: 5px; max-width: 600px;">
-							<div id="viewPicModalCont"></div>
+				<!-- 사진 클릭시 팝업(hidden), 사용 안함 -->
+				<div id="viewPicDivModal" class="modal" role="dialog"
+					aria-hidden="true" style="display: none;">
+					<div class="modal-dialog">
+						<div class="modal-content" style="padding: 0; width: 600px;">
+							<div class="modal-header">
+								<h4 class="modal-title">사진</h4>
+							</div>
+							<div class="modal-body" style="padding: 5px; max-width: 600px;">
+								<div id="viewPicModalCont"></div>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div><!-- end 사진 팝업 -->
+				</div><!-- end 사진 팝업 -->
 			
 			<!-- primary 본격 시작 -->
 				<!-- <div class="container col-md-2"></div> -->
@@ -403,7 +403,7 @@
 							</div><!-- end col -->
 						</div><!-- end list -->
 						
-				<button class="col next-icon px-0"></button>
+						<button class="col next-icon px-0"></button>
 					</div><!-- end row -->
 				</div><!-- end container -->
 			</div><!-- end row related-recipe/추천 레시피 -->

@@ -4,7 +4,7 @@ a {
 }
 
 #main-content {
-    display: flex;
+     display: flex;
     justify-content: flex-end;
 }
 
@@ -133,7 +133,7 @@ a {
     max-width: 50px !important;
 }
 
-/* ÃßÃµ ·¹½ÃÇÇ Ä«µå */
+/* ï¿½ï¿½Ãµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ */
 .recipe-title {
 	height: 50px !important;
 }
@@ -150,7 +150,7 @@ a {
 	width: auto !important;
 }
 
-/* ÃÖ±Ù º» °Ô½Ã¹° */
+/* ï¿½Ö±ï¿½ ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ */
 .widget-title {
 	font-size: 1rem !important;
 	font-weight: 600 !important;
@@ -382,7 +382,7 @@ img {
     
   
 /*
-´õº¸±â¼û±â±â
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 .comment{
 	display:none;
 }
