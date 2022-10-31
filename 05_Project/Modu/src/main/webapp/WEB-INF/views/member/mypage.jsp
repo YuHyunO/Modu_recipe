@@ -50,7 +50,7 @@
 											src="/pics/profile/${ member.profileImg }"
 											id="mypage_profileimg"
 											alt="프로필사진"/>
-											<%-- 주소 불안정(인식 못할 대 있음) src="<spring:url value='/pics/profile/${ member.profileImg }'/>" --%>
+											<%-- 주소 불안정(인식 못할 대 있음 src="<spring:url value='/pics/profile/${ member.profileImg }'/>" --%>
 									</c:if>
 								</div><br/>
 								<div class="profile-context">

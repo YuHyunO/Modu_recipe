@@ -23,7 +23,12 @@ $(function() { // 비밀번호 2개 일치여부 확인, 이메일/닉네임 중
 					url : "/member/register/emailvalidcheck",
 					data : data,
 					success : function(result) {
-						if (result == 'noshow') { // 이메일 10자 미만시
+						console.log(result);
+						if (result == 'noshow') { // 이메일 공란일 시
+							$('.email_ajax_1').css("display", "none");
+							$('.email_ajax_2').css("display", "none");
+							$('.email_ajax_3').css("display", "none");
+						} else if (result == 'short') { // 이메일 10자 미만시
 							$('.email_ajax_1').css("display", "none");
 							$('.email_ajax_2').css("display", "none");
 							$('.email_ajax_3').css("display", "inline-block");
@@ -54,20 +59,22 @@ $(function() { // 비밀번호 2개 일치여부 확인, 이메일/닉네임 중
 					url : "/member/register/nicknamevalidcheck",
 					data : data,
 					success : function(result) {
-						if (result == 'noshow') { // 닉네임 3자 미만시
+						//console.log(result);
+						if (result == 'noshow') { // 공란일 시
 							$('.nickname_ajax_1').css("display", "none");
 							$('.nickname_ajax_2').css("display", "none");
-							$('.nickname_ajax_3')
-									.css("display", "inline-block");
+							$('.nickname_ajax_3').css("display", "none");
+						} else if (result == 'short') { // 닉네임 3자 미만 입력시
+							$('.nickname_ajax_1').css("display", "none");
+							$('.nickname_ajax_2').css("display", "none");
+							$('.nickname_ajax_3').css("display", "inline-block");
 						} else if (result == 'success') { // 닉네임 사용 가능, 중복X
-							$('.nickname_ajax_1')
-									.css("display", "inline-block");
+							$('.nickname_ajax_1').css("display", "inline-block");
 							$('.nickname_ajax_2').css("display", "none");
 							$('.nickname_ajax_3').css("display", "none");
 						} else if (result == 'fail') { // 닉네임 사용 불가, 중복 닉네임
 							$('.nickname_ajax_1').css("display", "none");
-							$('.nickname_ajax_2')
-									.css("display", "inline-block");
+							$('.nickname_ajax_2').css("display", "inline-block");
 							$('.nickname_ajax_3').css("display", "none");
 						}
 					} // success 종료
@@ -109,8 +116,7 @@ $(function() { // 회원가입 페이지 들어오면 작동되는 fuction
 		// console.log(marketingCheck); // 선택약관
 
 		// 1. 이메일,닉네임 모두 사용가능일 시(중복 아닐 때)
-		if (emailCheck === 'inline-block'
-				&& nickCheck === 'inline-block') {
+		if (emailCheck === 'inline-block' && nickCheck === 'inline-block') {
 			// 하나라도 공란일시 alert
 			if ($("#id_email").val() == "") {
 				alert("이메일을 입력해주세요.");
@@ -137,9 +143,17 @@ $(function() { // 회원가입 페이지 들어오면 작동되는 fuction
 						} // success 종료
 					}); // ajax 종료
 				}
-		} else { // 2. 이메일 혹은 닉네임 하나 이상 중복일 때
+		} else if (emailCheck != 'inline-block' && nickCheck === 'inline-block'){ // 2. 이메일만 사용 불가일 경우
 			// 가입불가(submit 막기 위해 아무동작 하지 않음)
-			alert("이메일 또는 닉네임을 다시 확인해주세요.");
+			alert("입력하신 이메일은 사용 불가합니다.");
+			$('#id_email').focus();
+		} else if (emailCheck === 'inline-block' && nickCheck != 'inline-block'){ // 3. 닉네임만 사용 불가일 경우
+			// 가입불가(submit 막기 위해 아무동작 하지 않음)
+			alert("입력하신 닉네임은 사용 불가합니다.");
+			$('#id_nickname').focus();
+		} else { // 4. 이메일 및 닉네임 둘다 사용 불가일 때
+			// 가입불가(submit 막기 위해 아무동작 하지 않음)
+			alert("이메일 혹은 닉네임을 다시 확인해주세요.");
 			$('#id_email').focus();
 		}
 	});

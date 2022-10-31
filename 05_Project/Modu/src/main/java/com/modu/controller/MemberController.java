@@ -56,9 +56,12 @@ public class MemberController {
 		int result = memberRegisterService.checkEmail(email);
 		log.info("#2_이메일 result: "+ result);
 		log.info("#3_이메일 길이 email.length(): "+ email.length());
-		if(email.length()==0 || 0<email.length() && email.length()<10) {
-			return "noshow";			
-		} else if(result == 0) { 
+        if( email.length()==0 ) {
+            return "noshow";            
+        } else if( email.length()!=0 && 0<email.length() && email.length()<10 ) {
+            return "short";            
+        } 		
+		else if(result == 0) { 
 			return "success";
 		} else { 
 			return "fail";
@@ -73,9 +76,11 @@ public class MemberController {
 		int result = memberRegisterService.checkNickname(nickname);
 		log.info("#2_닉네임 중복체크 result: "+ result);
 		log.info("#3_닉네임 길이 nickname.length(): "+ nickname.length());
-		if( 0<nickname.length() && nickname.length()<3 ) {
+		if( nickname.length() == 0 ) {
 			return "noshow";			
-		} else if(result == 0) { 
+		} else if( nickname.length() != 0 && 0<nickname.length() && nickname.length()<3 ) {
+            return "short";            
+        } else if(result == 0) { 
 			return "success";
 		} else { 
 			return "fail";
