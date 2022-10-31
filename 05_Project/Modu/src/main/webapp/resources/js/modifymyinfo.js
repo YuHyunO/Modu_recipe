@@ -213,6 +213,7 @@ $(document).ready(function() { //현재 페이지 들어오면 항상 수행
 								}
 							} else { //닉네임 중복시 수정불가
 								console.log('닉네임 중복으로 수정불가-아무 동작 없음');
+								alert("사용할 수 없는 닉네임입니다.");
 							}
 						}); //$("#modifyOkBtn").on("click", function()  종료
 				}); //$(document).ready(function(){} 종료

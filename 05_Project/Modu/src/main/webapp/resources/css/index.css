@@ -56,6 +56,14 @@
     text-decoration: none;
 }
 
+.recipe-thumb {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    /* object-fit: fill; */
+    /* height: 110px; */
+}
+
 /* ���� ��ŷ */
 .chef-pic {
     border-radius: 50%;

@@ -91,14 +91,18 @@
 								<div class="row">
 									<c:forEach var="recipe" items="${recipeList}">
 										<div class="col-6 col-md-3">
-											<div class="recipe-thumb">
+											<div>
 												<c:if test="${recipe.foodPhoto ne 'recipe_basic_img.png'}">
-													<img src="/pics/recipe/${recipe.id}/${recipe.foodPhoto}" 
-														alt="recipe_mainImage">
+													<div>
+														<img class="recipe-thumb" src="/pics/recipe/${recipe.id}/${recipe.foodPhoto}" 
+															alt="recipe_mainImage" >
+													</div>
 												</c:if>
 												<c:if test="${recipe.foodPhoto eq 'recipe_basic_img.png'}">
-													<img src="/pics/recipe/recipe_basic_img.png" 
+													<div>	
+													<img class="recipe-thumb" src="/pics/recipe/recipe_basic_img.png" 
 														alt="recipe_basicImage">
+													</div style="object-fit: cover;">
 												</c:if>
 											</div>
 											<div class="recipe-desc">
