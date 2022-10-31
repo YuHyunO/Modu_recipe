@@ -1,33 +1,3 @@
-/*function clickSubscribe(e){
-    //let request = new XMLHttpRequest();
-    if ($(e).hasClass('subscribe-btn')){
-        $(e).removeClass('subscribe-btn');
-        $(e).addClass('subscribe-btn-clicked');
-        //request.open("GET", "?res_name={{name}}");
-        //request.send();
-    } else {
-        $(e).removeClass('subscribe-btn-clicked');
-        $(e).addClass('subscribe-btn');
-        //request.open("GET", "?res_name={{name}}-rm");
-        //request.send();
-    }
-}
-
-function clickScrap(e){
-    //let request = new XMLHttpRequest();
-    if ($(e).hasClass('recipe-scrap')){
-        $(e).removeClass('recipe-scrap');
-        $(e).addClass('recipe-scrap-clicked');
-        //request.open("GET", "?res_name={{name}}");
-        //request.send();
-    } else {
-        $(e).removeClass('recipe-scrap-clicked');
-        $(e).addClass('recipe-scrap');
-        //request.open("GET", "?res_name={{name}}-rm");
-        //request.send();
-    }
-}*/
-
 let star_point = 0;
 
 function clickStar(e){

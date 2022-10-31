@@ -1,3 +1,4 @@
+
 package com.modu.service;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import com.modu.domain.member.FollowListVo;
 import com.modu.domain.member.Member;
 
 public interface MembershipService {
-    /* ï¿½ëœï¿½ë£ï¿½ì‚•ï¿½ëœï¿½ë£ï¿½ì‚•ï¿½ëœï¿½ë£ï¿½ì‚•ï¿½ëœï¿½ë£ï¿½ì‚•ï¿½ëœï¿½ë£ï¿½ì‚• ï¿½ëœï¿½ë£ï¿½ì‚•1~ï¿½ëœï¿½ë£ï¿½ì‚•5 ï¿½ëœï¿½ë–¥é‡‰ì•¹ì‚• ï¿½ëœï¿½ë£ï¿½ì‚•ï¿½ëœï¿½ë£ï¿½ì‚•ï¿½ëœå ï¿½ ï¿½ëœï¿½ë£ï¿½ì‚•ï¿½ëœï¿½ë£ï¿½ì‚•ï¿½ëœï¿½ë£ï¿½ì‚•ï¿½ëœï¿½ë–›ï¿½ë£ï¿½ì‚• ï¿½ëœï¿½ë™—ï¿½ëˆ¦ï¿½ì‚• */
+    /* ¸¶ÀÌÆäÀÌÁö ÅÇ1~ÅÇ5 ºÎºĞ ±â´ÉÀÇ ÀÎÅÍÆäÀÌ½º ÀÛ¼º */
     List<Member> selectMemberRankS();
     FollowListVo getFollowList(HttpServletRequest request, HttpSession session);
     String scrapService(long rId, String email, int mode);

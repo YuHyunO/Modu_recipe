@@ -106,17 +106,17 @@ function displayRecommened(response){
 	let html = "";
 	console.log("##mode: "+mode);
 	for(let item of recipeList){
-		html += '<div id="recipe-item" class="col-6 col-md-3">';
-		html += '<div class="recipe-thumb">';
-		html += '<img id="recommendrecipe" src="/imgs/content/thumb-1.png" alt="/imgs/content/thumb-1.png">';
+		html += '<div class="col-6 col-md-3">';
+		html += '<div>';
+		html += '<img class="recipe-thumb" src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipe_mainImage">';
 		html += '</div>';
 		html += '<div class="recipe-desc">';
 		html += '<h2 class="recipe-title">';
-		html += '<a href="../recipe/detail?no='+item.id+'" target="_blank">'+item.title+'</a>'; //http://127.0.0.1:8080/recipe/detail?no=632
+		html += '<a href="../recipe/detail?no='+item.id+'" target="_blank">'+item.title+'</a>'; //http://127.0.0.1:8080/recipe/detail?no=460
 		html += '</h2>';
 		html += '<figure class="profile">';
-		html += '<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">';
-		html += '<span><em>&nbsp;'+item.nickname+'</em></span>';
+		html += '<img class="profile-img" src="/pics/profile/'+item.profileImg+'" alt="작성자">';
+		html += '<span><em>&nbsp;'+item.mnickname+'</em></span>';
 		html += '</figure>';
 		html += '<div class="recipe-icons d-flex justify-content-between">';
 		html += '<span class="d-flex align-items-center">';
@@ -124,7 +124,7 @@ function displayRecommened(response){
 		html += '<span class="p-1 mt-1">'+item.star+'('+item.stars+')</span>';
 		html += '</span>';
 		html += '<span class="d-flex align-items-center">';
-		html += '<span class="p-1 mt-1">조회 '+item.hits+'</span>';
+		html += '<span class="p-1 mt-1">조회수 '+item.hits+'</span>';
 		html += '</span>';
 		html += '</div>';
 		html += '</div>';
@@ -142,17 +142,17 @@ function displayMyRecipe(response){
 	let html = "";
 	console.log("##mode: "+mode);
 	for(let item of recipeList){
-		html += '<div id="recipe-item" class="col-6 col-md-3">';
+		html += '<div class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
-		html += '<img src="/imgs/content/thumb-1.png" alt="/imgs/content/thumb-1.png">';
+		html += '<img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipe_mainImage">';
 		html += '</div>';
 		html += '<div class="recipe-desc">';
 		html += '<h2 class="recipe-title">';
-		html += '<a href="'+item.id+'">'+item.title+'</a>';
+		html += '<a href="../recipe/detail?no='+item.id+'" target="_blank">'+item.title+'</a>';
 		html += '</h2>';
 		html += '<figure class="profile">';
-		html += '<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">';
-		html += '<span><em>&nbsp;'+item.nickname+'</em></span>';
+		html += '<img class="profile-img" src="/pics/profile/'+item.profileImg+'" alt="작성자">';
+		html += '<span><em>&nbsp;'+item.mnickname+'</em></span>';
 		html += '</figure>';
 		html += '<div class="recipe-icons d-flex justify-content-between">';
 		html += '<span class="d-flex align-items-center">';
@@ -160,7 +160,7 @@ function displayMyRecipe(response){
 		html += '<span class="p-1 mt-1">'+item.star+'('+item.stars+')</span>';
 		html += '</span>';
 		html += '<span class="d-flex align-items-center">';
-		html += '<span class="p-1 mt-1">조회 '+item.hits+'</span>';
+		html += '<span class="p-1 mt-1">조회수 '+item.hits+'</span>';
 		html += '</span>';
 		html += '</div>';
 		html += '</div>';
@@ -188,8 +188,8 @@ function displayBookmark(response){
 		html += '<a href="'+item.id+'">'+item.title+'</a>';
 		html += '</h2>';
 		html += '<figure class="profile">';
-		html += '<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">';
-		html += '<span><em>&nbsp;'+item.nickname+'</em></span>';
+		html += '<img class="profile-img" src="/pics/profile/'+item.profileImg+'" alt="작성자">';
+		html += '<span><em>&nbsp;'+item.mnickname+'</em></span>';
 		html += '</figure>';
 		html += '<div class="recipe-icons d-flex justify-content-between">';
 		html += '<span class="d-flex align-items-center">';
