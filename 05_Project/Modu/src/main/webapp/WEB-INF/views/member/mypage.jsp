@@ -639,8 +639,8 @@
 						</div><!-- end id="content", 프로필+ 탭전체영역 종료-->
 					</div><!-- end primary(주요 메인영역) 종료-->
 
-			<!-- 사이드 영역(secondary), 모듈화 -->
-			<%@ include file="/WEB-INF/views/common/secondary.jsp"%>
+					<!-- 사이드 영역(secondary), 모듈화 -->
+					<%@ include file="/WEB-INF/views/common/secondary.jsp"%>
 			
 				</div><!-- end row -->
 			</div><!-- end main-container -->

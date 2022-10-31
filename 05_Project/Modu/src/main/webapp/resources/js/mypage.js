@@ -154,7 +154,7 @@ function displayMyRecipe(response){
 		html += '</div>';
 		html += '<div class="recipe-desc">';
 		html += '<h2 class="recipe-title">';
-		html += '<a href="../recipe/detail?no='+item.id+'" target="_blank">'+item.title+'</a>';
+		html += '<a href="../recipe/detail?no='+item.id+'">'+item.title+'</a>';
 		html += '</h2>';
 		html += '<figure class="profile">';
 		html += '<img class="profile-img" src="/pics/profile/'+item.profileImg+'" alt="작성자">';
