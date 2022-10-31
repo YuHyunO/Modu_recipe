@@ -118,7 +118,6 @@ public class MemberController {
 		} else {
 			return "redirect:/";
 		}
-		
 	}
 
 	//로그인 post
@@ -157,8 +156,8 @@ public class MemberController {
 		String email = (String)session.getAttribute("email");
 		Member member1 = memberRegisterService.readMyInfo(email); 
 		ModelAndView mv = new ModelAndView("member/mypage", "member", member1); 
-		log.info("######마이페이지 이동get member1: "+member1);
-		log.info("######마이페이지 이동get mv: "+mv);
+		//log.info("######마이페이지 이동get member1: "+member1);
+		//log.info("######마이페이지 이동get mv: "+mv);
 		return mv;
 	}
 	

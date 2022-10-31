@@ -9,21 +9,15 @@
 	    width: 100%;
 }
 
-.site-content img {
-    max-width: 80%;
-}
-
-#recommendrecipeimg {
-	max-width: 100%;
-}
 a {
 	width: auto;
     text-decoration: none;
 }
 
+/* 마이페이지 프로필사진 */
 #mypage_profileimg, #mypage_defaultimg {
-	max-width: 200px;
-	max-height: 200px;
+    max-width: 200px;
+    max-height: 200px;
 	margin: auto 0; 
 	border-radius: 100px; 
 	padding: 0.3em 0.3em 0.3em 0.3em;
@@ -46,6 +40,14 @@ a {
 	text-align: center;
 }
 
+/*마이페이지 탭1 - 야채 해산물류 사진 크기 */
+.site-content img {
+    max-width: 80%;
+}
+
+.recipe-thumb img {
+	max-width: 100%;
+}
 
 #finalIngredient {
 	background-color: rgba(147, 112, 98, 0.2);
@@ -178,6 +180,19 @@ a {
 	box-shadow: 0 0 0 .2rem rgba(147, 112, 98, 0.25);
 }
 
+/*탭4 - 나의 레시피 중 제목 말고 레시피 설명 부분 */
+.recipe-info {
+	font-family: 'NotoSerifKR-Medium', sans-serif !important;
+	font-size:14px;
+	width: auto;
+    text-decoration: none;
+}
+
+.myPost_thumbnail img {
+	max-width: 100%;
+}
+
+/* 탭5 - 친구관리 */
 .handlemyfriendBtn {
 	font-size: 13px;
 	margin: auto 0;
@@ -244,14 +259,9 @@ a {
 }
 
 .team-tag {
-	font-size: 15px;
-	text-transform: uppercase;
+	font-size: 14px;
+	text-transform: lowercase;
 	color: #999;
 	margin-bottom: 5px;
 	display: block;
-}
-
-/*친구 프로필 사진 크기 조절*/
-.site-content img {
-    max-width: 70%;
 }
