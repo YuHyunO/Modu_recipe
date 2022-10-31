@@ -4,7 +4,10 @@ function addReply(e){
     let targetCommentID = $(e).attr('id');
     let replyId; //댓글 넘버
     let html;
-
+    let sessionNick = $(e).find('textarea[name=sessionNickname]');
+    let sessionProfile = $(e).find('textarea[name=sessionProfile]');
+    let sNick = sessionNick.val();
+    let sProfile = sessionProfile.val();
     let text = $(e).find('textarea[name=reply]');
     if (text.val().length <= 10) {
         alert("10글자 이상 입력해주세요"); //댓글 10글자 이하일 경우 경고창 띄우기
@@ -46,19 +49,18 @@ function addReply(e){
         " " + hours + ":" + minutes;
 
         if(targetCommentID.split('-')[0] === "main"){ //메인댓글일 경우
-            replyId = ""; 
+            replyId = "";
             html = 
             '<div class="reply py-3" id="reply-"'+ replyId +'>\
                 <div class="reply-author d-flex justify-content-between">\
                     <div class="author-main d-flex align-items-center px-3 pt-2">\
                         <figure class="profile m-0">\
-                            <img class="profile-img" src="images/content/auth-01.png" alt="작성자">\
+                            <img class="profile-img" src="/imgs/mypage/profile/'+sProfile+'" alt="작성자">\
                         </figure>\
-                        <span class="m-nickname ps-2">Kein</b>\
+                        <span class="m-nickname ps-2">'+sNick+'</b>\
                         <span class="post-date px-2">'+ dateText +'</span>\
                     </div>\
                     <div class="author-items px-3">\
-                        <button class="reply-'+ replyId +' reply-btn" onclick="">수정</a>\
                         <button class="reply-'+ replyId +' reply-btn" onclick="">삭제</a>\
                         <button class="reply-'+ replyId +' reply-btn" onclick="addReplyForm(this)">답글</a>\
                     </div>\
@@ -68,7 +70,7 @@ function addReply(e){
                 </div>\
             </div><!-- end reply -->';
 
-            $('.reply-list').append(html);
+            $('.reply-list').prepend(html);
         } else {  //대댓글일 경우
             replyId = targetCommentID.split('-')[2];
             console.log(replyId);
@@ -83,11 +85,10 @@ function addReply(e){
                             <figure class="profile m-0">\
                                 <img class="profile-img" src="images/content/auth-01.png" alt="작성자">\
                             </figure>\
-                            <span class="m-nickname ps-2">Kein</b>\
+                            <span class="m-nickname ps-2">'+sessionNickname+'</b>\
                             <span class="post-date px-2">'+ dateText +'</span>\
                         </div>\
                         <div class="author-items px-3">\
-                            <button class="reply-'+ replyId +' reply-btn" onclick="">수정</a>\
                             <button class="reply-'+ replyId +' reply-btn" onclick="">삭제</a>\
                             <button class="reply-'+ replyId +' reply-btn" onclick="addReplyForm(this)">댓글</a>\
                         </div>\
@@ -98,7 +99,7 @@ function addReply(e){
                 </div>\
             </div><!-- end reply -->';
 
-            $('#reply-' + replyId).append(html);
+            $('#reply-' + replyId).prepend(html);
             $('.review-write').parent().html('');
             $('#main-reply').css('display', 'block');
         }

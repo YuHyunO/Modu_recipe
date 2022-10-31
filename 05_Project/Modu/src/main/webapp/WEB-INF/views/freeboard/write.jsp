@@ -76,7 +76,7 @@
 						</div>
 						<div class="form-group align-items-center mb-3 p-0 mb-0 file">
 							<input class="form-control" type="file" id="formFileMultiple"
-								name='file' multiple="multiple">
+								name='file'>
 						</div>
 						<div class="border-top mt-3 pb-2"></div>
 						<div class="d-flex justify-content-center my-3 p-2 pe-0">

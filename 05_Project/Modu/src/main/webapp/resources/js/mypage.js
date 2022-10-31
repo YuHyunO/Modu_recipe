@@ -108,11 +108,11 @@ function displayRecommened(response){
 	for(let item of recipeList){
 		html += '<div id="recipe-item" class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
-		html += '<img src="/imgs/content/thumb-1.png" alt="/imgs/content/thumb-1.png">';
+		html += '<img id="recommendrecipe" src="/imgs/content/thumb-1.png" alt="/imgs/content/thumb-1.png">';
 		html += '</div>';
 		html += '<div class="recipe-desc">';
 		html += '<h2 class="recipe-title">';
-		html += '<a href="'+item.id+'">'+item.title+'</a>';
+		html += '<a href="../recipe/detail?no='+item.id+'" target="_blank">'+item.title+'</a>'; //http://127.0.0.1:8080/recipe/detail?no=632
 		html += '</h2>';
 		html += '<figure class="profile">';
 		html += '<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">';
@@ -222,7 +222,7 @@ function displayFollow(response){
 		//console.log("##item:"+item); //##item:[object Object]
 		html += '<div class="col-md-3">';
 		html += '<div class="team-col">';
-		html += '<input type="hidden" value="'+item.id+'">';
+		html += '<input type="hidden" id="followId" value="'+item.id+'">';
 		html += '<figure>';
 		html += '<img class="friendProfileimg" src="/pics/profile/'+item.profileImg+'" alt="파일없음"> ';
 		html += '</figure>';
@@ -230,8 +230,8 @@ function displayFollow(response){
 		html += '<small class="team-tag" style="text-transform: none;">'+item.email+'</small>';
 		html += '<small class="team-tag">'+item.followDate+'부터 친구중</small>';
 		html += '<div class="handlemyfriend">';
-		html += '<button class="handlemyfriendBtn" onclick="../gofriendrecipe?id='+item.id+'">레시피 보기</button>&nbsp;';
-		html += '<button class="handlemyfriendBtn" onclick="../deletefriend?id='+item.id+'">구독 끊기</button>';
+		html += '<button class="handlemyfriendBtn" onclick="../gofriendrecipe?id='+item.email+'">레시피 보기</button>&nbsp;';
+		html += '<button class="handlemyfriendBtn" onclick="removeFollow(this);">구독 끊기</button>'; //onclick="../deletefriend?id='+item.id+'"
 		html += '</div>';
 		html += '</div>';
 		html += '</div>';

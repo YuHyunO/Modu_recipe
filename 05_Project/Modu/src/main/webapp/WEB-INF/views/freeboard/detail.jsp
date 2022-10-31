@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %> 
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -21,7 +22,6 @@
 				var bId = parseInt(bId0);
 				var text = $('#replyArea').val();
 				 if (text.length <= 10) {
-					 alert("false1");
 						false;
 				 }else{
 					 $.ajax({
@@ -146,12 +146,24 @@
 		function LoginCheck(){
 			alert('로그인 후 이용하실 수 있습니다.');
 			location.href='/member/login';
-		} 
-		/*function downCheck(){
-		const 
-		
-		download.do?saveFile=${file.saveFile}
-	}*/
+		}
+		function prevView(){
+			const prevIp = ${board.boardDetailNextPrev.prevId}
+			if(prevIp>0){
+				location.href="detail?id=${board.boardDetailNextPrev.prevId}";
+			}else{
+				alert("처음 글 입니다.");
+			}
+			
+		}
+		function nextView(){
+			const nextIp = ${board.boardDetailNextPrev.nextId}
+			if(nextIp>0){
+				location.href="detail?id=${board.boardDetailNextPrev.nextId}";
+			}else{
+				alert("마지막 글 입니다.");
+			}
+		}
 </script>
 </head>
 <body>
@@ -165,7 +177,7 @@
 			<!-- end container -->
 		</div>
 		<!-- end head-title -->
-
+		
 		<div class="main">
 			<div
 				class="main-container row d-flex justify-content-center m-0 py-4">
@@ -258,9 +270,9 @@
 							<!-- end board-main -->
 							<div>
 								<div class="board-menu py-2 px-3 float-end">
-									<a href="javascript:void(0)">목록</a> <a
-										href="javascript:void(0)">| 이전글 |</a> <a
-										href="javascript:void(0)">다음글</a>
+									<a href="list">목록</a> <a
+										href="javascript:void(0);" onclick="prevView();">| 이전글 |</a> <a
+										href="javascript:void(0);" onclick="nextView();">다음글</a>
 								</div>
 							</div>
 							<div class="py-3"></div>
@@ -273,7 +285,7 @@
 														<div class="reply-author d-flex justify-content-between">
 															<div class="author-main d-flex align-items-center px-3 pt-2">
 																<figure class="profile m-0">
-																	<img class="profile-img" src="/imgs/content/auth-01.png"
+																	<img class="profile-img" src="/imgs/mypage/profile/${i.profileImg}"
 																		alt="작성자">
 																</figure>
 																<span class="m-nickname ps-2">${i.MNickname}</b> <span
@@ -282,7 +294,12 @@
 															<div id='removeReply' style="display: none;" >${i.id}
 															</div>
 																<div class="author-items px-3">
-																	<button class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
+																	<c:if test="${sessionScope.email == i.MEmail}">
+																		<button class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
+																	</c:if>
+																	<c:if test="${sessionScope.email != i.MEmail}">
+																		<button style="display: none;" class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
+																	</c:if>
 																	<button class="reply-1 reply-btn"
 																		onclick="addReplyForm(this)">댓글</button>
 																</div>
@@ -293,6 +310,8 @@
 														</div>
 													</div>
 											</c:forEach>
+											<textarea name='sessionNickname' id='sessionNickname'  style='display:none;'>${sessionScope.MNickname}</textarea>
+											<textarea name='sessionProfile' style='display:none;'>${sessionScope.profileImg}</textarea>
 									<!-- end reply -->
 								</div>
 								<!-- end reply-list -->
@@ -300,11 +319,16 @@
 									<form class="comment-form" type="POST" id="main-reply"
 										onsubmit="addReply(this);">
 										<div class="row">
-													<!-- 임시로 더보기 -->
-														<input type='button' id="theBoGi" style="text-align: center; background-color: orange;" onclick='count()' value='더보기'>
+												<c:if test="${fn:length(list.list) > 5}">
+														<input type='button' id="theBoGi" style="text-align: center; " onclick='count()' value='더보기'>
 															<br></br>
 														<textarea id='plusResult' style='display:none;'>6</textarea>
-													<!-- 임시로 더보기 끝 -->
+												</c:if>
+												<c:if test="${fn:length(list.list) == 0}">
+														<input type='button' id="theBoGi" style="text-align: center; display: none; " onclick='count()' value='더보기'>
+															<br></br>
+														<textarea id='plusResult' style='display:none;'>6</textarea>
+												</c:if>
 											<div class="col px-0">
 												<textarea class="w-100 h-100 border comment-text p-2"
 													name="reply" maxlength="300" rows=3 placeholder="댓글을 남겨주세요"
@@ -335,6 +359,9 @@
 			</div>
 			<!-- end main-container -->
 		</div>
+		<textarea name="sessionNickname" style="display: none;">${sessionScope.nickname}</textarea>
+		<textarea name="sessionProfile" style="display: none;">${sessionScope.profileImg}</textarea>
+		<!-- <textarea name="sessionPostDate" style="display: none;"></textarea> -->
 		<!-- end main -->
 		<%@ include file="/WEB-INF/views/common/bottom.jsp"%>
 	</div>

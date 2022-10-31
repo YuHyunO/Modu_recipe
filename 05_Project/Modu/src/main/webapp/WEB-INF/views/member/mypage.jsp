@@ -14,6 +14,7 @@
 </style>
 </head>
 <body>
+	<input type="hidden" id="page-type" value="mypage"/>
 	<div id="page" class="hfeed site">
 		<!-- start page wrapper -->
 		<%@ include file="/WEB-INF/views/common/menu.jsp"%>
@@ -48,7 +49,7 @@
 											<img 
 											src="<spring:url value = '/pics/profile/${ member.profileImg }'/>" 
 											id="mypage_profileimg"
-											alt="현재프로필사진"/>
+											alt="mypage_profileimg"/>
 									</c:if>
 								</div><br/>
 								<div class="profile-context">
@@ -256,7 +257,7 @@
 											<div class="rounded-3" id="finalIngredient">
 												<span>최종 선택된 재료 :</span> <span id='result'></span>
 											</div>
-											<br /> <br />
+											<br><br>
 
 											<!--레시피 검색 버튼-->
 											<div class="text-center">
@@ -264,8 +265,7 @@
 													onclick="location.reload()">다시 선택</button>
 													<!-- 추후 reload 없이 초기화 기능 구현할 것 -->											
 											</div>
-											<br/><br/>
-											
+											<br><br>
 											<div id="recipe-list-1" class="row">
 											</div>					
 																												
@@ -539,6 +539,34 @@
 							                            }
 							                          });
 							                        });
+							                        
+							                        function removeFollow(e) { //친구 구독끊기 버튼 클릭시
+						                        		let followId = $('#followId').val();
+						                        		console.log("#followId: ", followId);
+							                        	
+						                        		var result = confirm("정말 구독을 끊으시겠습니까?");
+							                        	if (result == true) {
+							                        		
+							                        		$.ajax({
+							                        			type : "POST",
+							                        			url : "/mypage/unfollow",
+							                        			data : {id: followId},
+							                        			success : function(result) {
+							                        				if(result=="success"){
+										                        		console.log("친구 구독끊기 성공");
+								                        				alert("정상적으로 구독 끊기 되었습니다.");
+								                        				//location.reload(); //현재 접속중인 페이지를 새로고침
+							                        					location.href("/member/mypage");
+							                        				}
+
+							                        			} // success 종료
+							                        		}); // ajax 종료					
+							                        	} else {
+							                        		e.preventDefault();
+							                        		alert("구독 끊기를 취소하셨습니다.");
+							                        		return false;
+							                        	}
+							                        }
 						                      </script>
 										</div>
 										<!-- id="tab5-content" 종료-->

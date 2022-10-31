@@ -23,7 +23,7 @@ $(function () {
 	let tag = $('#tag');
 	$('#tag').keyup(
 		function (e) {
-			// 태그 정규식표현 로직
+			// 태그 정규 표현식 로직
 			let tagsRegex = /[^a-z|A-Z|ㄱ-ㅎ|가-힣|\,/\s]/g;
 			
 			if(!tagsRegex.test(tag.val())){
@@ -98,17 +98,24 @@ $(function () {
 		}
 	}); // 재료 정규식 표현 END
 	
-	let foodInput = $("input[name=food]"); 
-	$(foodInput).keyup(function() {
-		// 음식 이름 정규식 표현 로직
-		let foodRegex = /[`()<>{}~!@#$%^&*|\\\'\";:\/?-_+=]/gi;
-		if (!foodRegex.test($("input[name=food]").val())) {
-			// alert("특수문자 없음");
-		}else {
-			alert("음식 이름에는 특수문자를 사용하실 수 없습니다.");
-			return false;
+	let food = $("input[name=food]");
+	$(food).keyup(() => {
+		checkfood(food,"음식이름");
+	})
+	function checkfood(e, text){
+		let foodRegex = /[^a-z|A-Z|ㄱ-ㅎ|가-힣|]/g;
+		let target;
+		if (e.parent().find('.warning-text').length === 0){
+			target = e.parents().find("#" + e.attr("id").replace("-text", ""));
+		} else {
+			target = e.parent(); 
 		}
-	});
+		if (!foodRegex.test($("input[name=food]").val())){
+			target.find('.warning-text').text(" ");
+		} else {
+			target.find('.warning-text').text("특수문자를 사용하실수 없습니다.");
+		}
+	}
 	
 	let title = $("input[name=title"); // 레시피 제목
 	let info = $("textarea[name=info]"); // 레시피 소개
@@ -490,6 +497,7 @@ function update(e) {
 
 	// 음식 이름, 레시피 제목, 레시피 소개
 	let food = $("input[name=food]");
+	let foodPhoto = $(".food-photo");
 	let title = $("input[name=title");
 	let info = $("textarea[name=info]");
 	
@@ -497,12 +505,13 @@ function update(e) {
 		return false;	
 	};
 	
-	
 	if (checkValue(info, "레시피 소개", 20, 1) === false){
 		return false;	
 	};
 	
+	formData.append("id", $(".p-title").attr("data-id"));
 	formData.append("food", food.val());
+	formData.append("foodPhoto", $(foodPhoto[0]).attr("data-food-photo"));
 	formData.append("title", title.val());
 	formData.append("info", info.val());		
 	
@@ -577,10 +586,10 @@ function update(e) {
 	let accessibility;
 
 	switch (openRange.val()) {
-		case "비공개 저장":
+		case "저장 및 공개":
 			accessibility = 0;
 			break;
-		case "저장 및 공개":
+		case "비공개 저장":
 			accessibility = 1;
 			break;
 		case "임시저장":
@@ -589,22 +598,40 @@ function update(e) {
 	}
 	
 	formData.append("accessibility", accessibility);
-	
-	for (let key of formData.keys()){
-		//console.log(key, formData.get(key));
-	}
-	
+	console.log("#openRange: " + openRange.val());
+	console.log("#accessibility: " + accessibility);
 	// 이미지 파일
 	let hiddenInput = $('.hidden-input');
+	let stepPhotos = $('.step-photo');
 	for (i = 0; i < hiddenInput.length; i++) {
+		console.log(hiddenInput[i].files[0]);
 		if (hiddenInput[i].files[0] === undefined) {
-			alert("사진이 빠진 곳이 없는지 확인해주세요!");
-			return false;
+			if (stepPhotos[i].src !== undefined){
+			} else {
+				alert("사진이 빠진 곳이 없는지 확인해주세요!");
+				return false;
+			}
 		}
 	}
 	
 	for (i = 0; i < hiddenInput.length; i++) {
+		
 		formData.append("files", hiddenInput[i].files[0]);
+		if (hiddenInput[i].files[0] === undefined){
+			formData.append("fileChanges", "false");
+		} else {
+			formData.append("fileChanges", "true");
+		}
+	}
+	
+	for (let key of formData.keys()){ // 데이터 확인
+		if (key == "files"){
+			for(i=0;i<=key.length;i++){
+				//console.log(formData.get(key[i]));
+			}
+		} else {
+			//console.log(key, formData.get(key));
+		}
 	}
 	
 	$.ajax({
@@ -614,10 +641,10 @@ function update(e) {
 		processData: false,
 		contentType: false,
 		data: formData,
-		success: function (response) {
-		alert("레시피가 업데이트 되었습니다.");
+		success: function(response) {
+			alert("레시피가 업데이트 되었습니다.");
 		},
-		error: function (response) {
+		error: function(response) {
 			alert("레시피 업데이트를 실패 했습니다.");
 		}
 	});

@@ -6,8 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
- 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -35,7 +36,6 @@ import com.modu.service.RecipeSearchService;
 
 import lombok.extern.log4j.Log4j;
 
-
 @Log4j
 @Controller
 @RequestMapping("recipe")
@@ -51,17 +51,15 @@ public class RecipeController {
     @Autowired
     private RecipeLegacyMapper recipeLegacyMapper;
   
-
-
     @GetMapping("/list")
     public ModelAndView recipeList(HttpServletRequest request, HttpSession session) {
         RecipeListVo data = searchService.searchRecipe(request, session);
         ModelAndView mv = new ModelAndView("recipe/list", "data", data);
         return mv;
     }
-    
+
     @GetMapping("/list.do")
-    public @ResponseBody RecipeListVo updateRecipeList(HttpServletRequest request, HttpSession session){
+    public @ResponseBody RecipeListVo updateRecipeList(HttpServletRequest request, HttpSession session) {
         RecipeListVo data = searchService.searchRecipe(request, session);
         return data;
     }
@@ -75,88 +73,66 @@ public class RecipeController {
     @PostMapping("/write")
     public String submit(HttpServletRequest request, HttpSession session) {
         log.info("########write: " + request.getParameter("food"));
-        //recipeRegisterService.registerRecipe(request, session);
+        // recipeRegisterService.registerRecipe(request, session);
         return "redirect:/";
     }
-    
+
     @ResponseBody
     @PostMapping("/register")
     public HashMap<String, Object> register(
             HttpServletRequest request,
             HttpSession session,
-            @RequestParam ArrayList<MultipartFile> files, 
+            @RequestParam ArrayList<MultipartFile> files,
             @RequestParam ArrayList<String> mainItems,
             @RequestParam ArrayList<String> subItems,
             @RequestParam ArrayList<String> directions,
             @RequestParam ArrayList<String> tags) {
         HashMap<String, Object> map = new HashMap<String, Object>();
         log.info("#RecipeController Upload");
-        if((String)session.getAttribute("email") == null) {
+        if ((String) session.getAttribute("email") == null) {
             map.put("msg", "로그인 후 이용 해주세요");
         } else {
             recipeRegisterService.registerRecipe(request, session, files, mainItems, subItems, directions, tags);
             log.info("#####1" + tags);
             map.put("msg", "서비스로 데이터 전송 성공");
-        } 
+        }
         return map;
     }
-    
-    @GetMapping("/udate")
-    public ModelAndView RecipeRead(long id) {
-        RecipeDetail recipeDetail = recipeFindingService.RecipeRead(id);
-        ModelAndView mv = new ModelAndView();
-        mv.setViewName("recipe/read");
-        mv.addObject("rs", recipeDetail);
-        mv.addObject("id", id);
-        return mv;
-    }
-    /* Mypage 내가 작성한 레시피 등록되면 연동시킬 session을 이용한 read
+
     @GetMapping("/update")
-    public ModelAndView RecipeRead(HttpSession session) {//
-        String ids = (String)session.getAttribute("id");
-        long id = Integer.parseInt(ids);
-        long rId = id;
+    public ModelAndView RecipeRead(long id, HttpSession session) {
         RecipeDetail recipeDetail = recipeFindingService.RecipeRead(id);
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("recipe/update");
-        mv.addObject("rs", recipeDetail);
-        mv.addObject("id", id);
+        String email = (String)session.getAttribute("email");
+        String recipeEmail = recipeDetail.getRecipe().getMEmail();
+        
+        if (!recipeEmail.equals(email)) {
+            mv.setViewName("redirect:/");
+        } else {
+            mv.setViewName("recipe/update");
+            mv.addObject("rs", recipeDetail);
+            mv.addObject("id", id);
+        }
         return mv;
     }
-    */
-  
-//  @PostMapping("/update")
-//  public String  updateRecipe(RecipeDetail recipeDetail,
-//          HttpServletRequest request,
-//            HttpSession session,
-//            ArrayList<MultipartFile> files,
-//            ArrayList<String> mainItems,
-//            ArrayList<String> subItems,
-//            ArrayList<String> directions,
-//            ArrayList<String> tags) {
-//      recipeRegisterService.updateRecipe(recipeDetail, request, 
-//              session, files, mainItems,subItems,directions, tags);
-//      return "redirect:detail";
-//  }
-//    
-//    @ResponseBody
-//    @PostMapping("/update")
-//    public String updateRecipe(@RequestParam long id,
-//            @RequestParam HttpServletRequest request,
-//            @RequestParam HttpSession session,
-//            @RequestParam ArrayList<MultipartFile> files, 
-//            @RequestParam ArrayList<String> mainItems,
-//            @RequestParam ArrayList<String> subItems,
-//            @RequestParam ArrayList<String> directions,
-//            @RequestParam ArrayList<String> tags) {
-//        Recipe recipe = new Recipe();
-//        Ingredient ingredient = new Ingredient();
-//        Direction direction = new Direction();
-//        RecipeTag recipeTag = new RecipeTag();
-//        recipeRegisterService.updateRecipe(id,request,session,files,mainItems,subItems,directions,tags);
-//       return "redirect:detail";
-//    }
-    
+
+    @ResponseBody
+    @PostMapping("/update")
+    public HashMap<String, Object> updateRecipe(
+            HttpServletRequest request,
+            HttpSession session,
+            @RequestParam(value="files", required=false) ArrayList<MultipartFile> files,
+            @RequestParam ArrayList<String> mainItems,
+            @RequestParam ArrayList<String> subItems,
+            @RequestParam ArrayList<String> directions,
+            @RequestParam ArrayList<String> tags,
+            @RequestParam ArrayList<String> fileChanges) {
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        log.info("#updateRecipe");
+        recipeRegisterService.updateRecipe(request, session, files, mainItems, subItems, directions, tags, fileChanges);
+        return map;
+    }
+
     @GetMapping("/delete")
     public String deleteRecipe(long id, HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -165,9 +141,9 @@ public class RecipeController {
         recipeRegisterService.recipeDelete(id);
         return "redirect:/";
     }
-    
+
     @GetMapping("/detail")
-    public ModelAndView recipeDetail(HttpServletRequest request, HttpSession session) {
+    public ModelAndView recipeDetail(HttpServletRequest request, HttpSession session, HttpServletResponse response) {
         String email = (String)session.getAttribute("email");
         long id = 0;
         try {
@@ -175,18 +151,19 @@ public class RecipeController {
         }catch(NumberFormatException nfe) {
             return  new ModelAndView("redirect:/");
         }
-        RecipeDetail detail = recipeFindingService.getRecipeDetails(id);
+        RecipeDetail detail = recipeFindingService.getRecipeDetails(id, request, response);
         String starPoint = recipeFindingService.getStarPoint(detail);
+
         boolean scrapState = false;
-        if(email != null) {
+        if (email != null) {
             if (recipeFindingService.getScrap(id, email) == null) {
-                //스크랩 중 아님
+                // 스크랩 중 아님
             } else {
                 scrapState = true;
             }
         }
         long replyCount = recipeLegacyMapper.selectReplyCount(id);
-        
+
         ModelAndView mv = new ModelAndView();
         mv.setViewName("recipe/detail");
         mv.addObject("detail", detail);        
@@ -195,6 +172,13 @@ public class RecipeController {
         mv.addObject("replyCount", replyCount);
         return mv;
     }
+    
+    @GetMapping("/recent-recipe")
+    public @ResponseBody List<RecipeList> callRecentRecipe(HttpServletRequest request){
+        List<RecipeList> data = recipeFindingService.findRecentRecipes(request);
+        return data;
+    }
+    
 
     @GetMapping("/recipe-reply")
     public @ResponseBody List<RecipeReplyList> callReplyData(HttpServletRequest request){
@@ -243,16 +227,16 @@ public class RecipeController {
         recipeRegisterService.deleteNestedReply(id);
         return "redirect:detail";
     }
-    
+
     @ResponseBody
     @PostMapping("/scrap/insert")
-    public HashMap<String, Object> insertScrap(HttpServletRequest request, HttpSession session){
+    public HashMap<String, Object> insertScrap(HttpServletRequest request, HttpSession session) {
         HashMap<String, Object> map = new HashMap<String, Object>();
-        String id = (String)request.getParameter("id");
-        String email = (String)session.getAttribute("email");
+        String id = (String) request.getParameter("id");
+        String email = (String) session.getAttribute("email");
         String msg;
         long rId = Long.parseLong(id);
-        
+
         if (email == null) {
             map.put("error", "스크랩 기능은 로그인 후 이용하실 수 있습니다.");
             return map;
@@ -263,16 +247,16 @@ public class RecipeController {
             return map;
         }
     }
-    
+
     @ResponseBody
     @PostMapping("/scrap/delete")
-    public HashMap<String, Object> deleteScrap(HttpServletRequest request, HttpSession session){
+    public HashMap<String, Object> deleteScrap(HttpServletRequest request, HttpSession session) {
         HashMap<String, Object> map = new HashMap<String, Object>();
-        String id = (String)request.getParameter("id");
-        String email = (String)session.getAttribute("email");
+        String id = (String) request.getParameter("id");
+        String email = (String) session.getAttribute("email");
         String msg;
         long rId = Long.parseLong(id);
-        
+
         if (email == null) {
             map.put("error", "스크랩 기능은 로그인 후 이용하실 수 있습니다.");
             return map;
@@ -282,17 +266,17 @@ public class RecipeController {
             map.put("msg", msg);
             return map;
         }
-    }  
+    }
 
     @ResponseBody
     @PostMapping("/follow/insert")
-    public HashMap<String, Object> insertFollow(HttpServletRequest request, HttpSession session){
+    public HashMap<String, Object> insertFollow(HttpServletRequest request, HttpSession session) {
         HashMap<String, Object> map = new HashMap<String, Object>();
         String targetEmail = request.getParameter("targetEmail");
-        String email = (String)session.getAttribute("email");
+        String email = (String) session.getAttribute("email");
         String msg;
         String result;
-        
+
         if (email == null) {
             map.put("error", "친구추가는 로그인 후 이용하실 수 있습니다.");
             return map;
@@ -303,16 +287,16 @@ public class RecipeController {
             return map;
         }
     }
-    
+
     @ResponseBody
     @PostMapping("/follow/delete")
-    public HashMap<String, Object> deleteFollow(HttpServletRequest request, HttpSession session){
+    public HashMap<String, Object> deleteFollow(HttpServletRequest request, HttpSession session) {
         HashMap<String, Object> map = new HashMap<String, Object>();
         String targetEmail = request.getParameter("targetEmail");
-        String email = (String)session.getAttribute("email");
+        String email = (String) session.getAttribute("email");
         String msg;
         String result;
-        
+
         if (email == null) {
             map.put("error", "친구추가는 로그인 후 이용하실 수 있습니다.");
             return map;
@@ -323,20 +307,20 @@ public class RecipeController {
             return map;
         }
     }
-    
+
     @ResponseBody
     @PostMapping("/follow/check")
-    public HashMap<String, Object> checkFollow(HttpServletRequest request, HttpSession session){
+    public HashMap<String, Object> checkFollow(HttpServletRequest request, HttpSession session) {
         HashMap<String, Object> map = new HashMap<String, Object>();
         String targetEmail = request.getParameter("targetEmail");
-        String email = (String)session.getAttribute("email");
+        String email = (String) session.getAttribute("email");
         String msg;
         String result;
-        
+
         if (email != null) {
             msg = membershipService.followService(targetEmail, email, 0);
             map.put("user", email);
-            map.put("state", msg); //팔로우 서비스에서 친구이면 true 아니면 false 리턴
+            map.put("state", msg); // 팔로우 서비스에서 친구이면 true 아니면 false 리턴
         } else {
             msg = "사용자가 로그인 중이지 않음";
             map.put("state", "false");

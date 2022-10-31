@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import com.modu.domain.board.Board;
 import com.modu.domain.board.BoardDetail;
 import com.modu.domain.board.BoardFile;
 import com.modu.domain.board.BoardList;
+import com.modu.domain.board.BoardListVo;
 import com.modu.domain.board.BoardReply;
 import com.modu.domain.board.BoardReplyList;
 import com.modu.fileset.Path;
@@ -46,23 +48,27 @@ public class FreeBoardController {
 
     @GetMapping("/list")
     public ModelAndView boardList(HttpServletRequest request, HttpSession session){
-        BoardList list = boardService.listingPosts(request,session);
-        ModelAndView mv = new ModelAndView("freeboard/list", "list", list);
+        BoardListVo data = boardService.listingPosts(request,session);
+        ModelAndView mv = new ModelAndView("freeboard/list", "data", data);
+        log.info("#1029 1 : " + data+ "  mv " + mv);
         return mv;
+    }
+    @GetMapping("/list.do")
+    public @ResponseBody BoardListVo ajaxBoardList(HttpServletRequest request, HttpSession session) {
+        log.info("#list ajax 1");
+        BoardListVo data = boardService.listingPosts(request, session);
+        log.info("#list ajax 2");
+        log.info("#list2  data1 :  " + data);
+        return data; 
     }
     
 
     @GetMapping("/detail")
-    public ModelAndView boardDetail(long id) {
-        BoardDetail board = boardService.getPost(id);
+    public ModelAndView boardDetail(long id,HttpServletRequest request, HttpServletResponse response) {
+        BoardDetail board = boardService.getPost(id,request, response);
         long beginRow = 1;
         long endRow = 6;
-        log.info("#3211 " + board.getBoard().getPostDate());
         Date gPD = board.getBoard().getPostDate();
-        log.info("#3212 " + gPD);
-        //SimpleDateFormat board.getBoard().getPostDate() = new SimpleDateFormat("MM-dd hh:mm"); 
-        //gPD.format(new Date());
-        //board.getBoard().setPostDate();
         BoardReplyList list = boardReplyService.getReply(id,beginRow,endRow);
         ModelAndView mv = new ModelAndView();
         mv.setViewName("freeboard/detail");
@@ -137,16 +143,16 @@ public class FreeBoardController {
      }
      
      @GetMapping("update.do")
-     public ModelAndView update(long id) {
-         BoardDetail board = boardService.getPost(id); 
+     public ModelAndView update(long id, HttpServletRequest request, HttpServletResponse response) {
+         BoardDetail board = boardService.getPost(id, request, response); 
          ModelAndView mv = new ModelAndView("freeboard/update", "board", board);
          return mv;
      }
      @PostMapping("update.do")
-     public String update(Board board,BoardFile boardFile, MultipartFile file) {
+     public String update(Board board,BoardFile boardFile, MultipartFile file,HttpServletRequest request, HttpServletResponse response) {
          long id = board.getId();
          long fId = boardFile.getId();
-         boardService.getPost(id);
+         boardService.getPost(id,request, response);
          String ofname = file.getOriginalFilename();
          if(ofname != null) ofname = ofname.trim();
             if(ofname.length() != 0) {

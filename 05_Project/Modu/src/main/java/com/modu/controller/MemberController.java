@@ -258,7 +258,7 @@ public class MemberController {
 		}
 	}  
       
-	//내정보수정 - 현재 나의 프로필사진만 삭제
+	//내정보수정 - 현재 나의 프로필 사진만 삭제
 	@ResponseBody //주석처리시 return ""의 jsp를 찾아서 리턴
 	@GetMapping("/removemyprofileimg")
 	public String removeMyProfileImg(@RequestParam String profileImg, HttpSession session) { 
