@@ -10,9 +10,12 @@
 }
 
 .site-content img {
-    max-width: 70%;
+    max-width: 80%;
 }
 
+#recommendrecipeimg {
+	max-width: 100%;
+}
 a {
 	width: auto;
     text-decoration: none;
