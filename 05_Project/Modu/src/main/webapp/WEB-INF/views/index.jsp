@@ -94,8 +94,9 @@
 											<div>
 												<c:if test="${recipe.foodPhoto ne 'recipe_basic_img.png'}">
 													<div>
-														<img class="recipe-thumb" src="/pics/recipe/${recipe.id}/${recipe.foodPhoto}" 
-															alt="recipe_mainImage" >
+														<img class="recipe-thumb" 
+															src="/pics/recipe/${recipe.id}/${recipe.foodPhoto}" 
+															alt="recipe_mainImage">
 													</div>
 												</c:if>
 												<c:if test="${recipe.foodPhoto eq 'recipe_basic_img.png'}">

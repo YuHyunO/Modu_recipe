@@ -52,19 +52,21 @@
 						<div class="row py-3">
 							<div class="col-md-6">
 								<figure class="ratio ratio-4x3 p-3 m-0">
-									<img class="rounded-3" src="/imgs/content/image-recipe.png"
-										alt="IMG 01">
+									<img class="rounded-3" 
+										src="/pics/recipe/${detail.recipe.id}/${detail.recipe.foodPhoto}"
+										alt="recipe_mainImage">
 								</figure>
 							</div>
 							<!-- end col -->
 							<div class="col-md-6 d-flex flex-column justify-content-between">
 								<div class="detail-desc d-flex flex-column">
 									<div class="recipe-rating m-0 p-1 d-flex align-items-center">
-										<img class="star-rate-img me-2" src="/imgs/stars3.png" alt="stars">
+										<img class="star-rate-img me-2" 
+											src="/imgs/stars3.png" alt="stars">
 										<span>${detail.recipe.star}</span> <span class="ps-1">(${replyCount})</span>
 									</div>
 									<div class="fs-4 py-3 m-0">${detail.recipe.title}</div>
-									<div class="m-0">${detail.recipe.info}</div>
+									<div class="recipeinfo m-0">${detail.recipe.info}</div>
 								</div>
 								<!-- recipe desc -->
 								<div class="recipe-info py-3 d-flex justify-content-end">
@@ -81,7 +83,8 @@
 							class="row option-section border-top border-bottom py-3 d-flex justify-content-between">
 							<div class="recipe-auth align-self-center col px-2">
 								<span>
-									<img src="/imgs/content/auth-03.png" alt="recipe author">
+									<img src="/pics/profile/${detail.recipe.profileImg}" 
+										alt="recipe author">
 									<span>Posted by 
 										<a href="#">${detail.recipe.MNickname}</a>
 									</span>
@@ -118,7 +121,7 @@
 												</button>
 											</c:when>
 										</c:choose>
-										<span>스크랩</span>
+										<span>북마크</span>
 									 </c:if>
 								</div>
 								<div class="d-flex flex-column text-center">
@@ -174,19 +177,19 @@
 									<c:forEach items="${detail.direction}" var="li">
 										<div class="row col-md-8">
 											<div class="step-title">
-												<strong>STEP &nbsp; ${li.step}</strong>
+												<strong>STEP&nbsp;${li.step}</strong>
 											</div>
 											<div class="step-main">${li.direction}</div>
 										</div>
 										<div class="col-md-4 step-img">
 											<figure class="ratio ratio-4x3">
-												<a
-													href="javascript:viewLargePic('/imgs/content/thumb-1.png')">
-													<img class="rounded-3" src="/imgs/content/thumb-1.png"
-													alt="Recipe Image">
+												<a href="javascript:viewLargePic('/imgs/content/thumb-1.png')"> 
+														<img class="rounded-3" 
+															src="/pics/recipe/${li.RId}/${li.saveFile}"
+															alt="Recipe-STEP-Image">
 												</a>
 											</figure>
-										</div>
+										</div><br>
 									</c:forEach>
 								</div>
 							</div>
@@ -313,7 +316,8 @@
 						<button class="col previous-icon px-0"></button>
 						<div class="row col-sm-10 col-md-8 col-lg-6 col-xl-5 px-0">
 							<h3 class="py-4 mb-0 text-start">
-								<span class="text-danger">베이컨</span> 추천 레시피
+								<!-- <span class="text-danger">베이컨</span>추천 레시피 -->
+								<span class="text-danger">${detail.tag[0].tag}</span>&nbsp;추천 레시피
 							</h3>
 							<div class="col-6 col-md-3">
 								<div class="recipe-thumb">

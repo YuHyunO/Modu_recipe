@@ -1,7 +1,7 @@
 #secondary .post-type-widget .post-thumbnail img {
     width: 100%;
     height: 75px;
-    object-fit: fill;
+    object-fit: cover;
 }
 
 .widget-title {
