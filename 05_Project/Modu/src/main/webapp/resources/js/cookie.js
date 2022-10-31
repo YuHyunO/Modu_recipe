@@ -1,10 +1,10 @@
-/*$(document).ready(function(e){
+$(document).ready(function(e){
 	let pageType = document.getElementById("page-type").value;
 	console.log("##"+pageType);
-	setUrl();	  		 
+	setSecondaryUrl();	  		 
 })
 
-function setUrl(){
+function setSecondaryUrl(){
 	  let pageType = document.getElementById("page-type").value;
 	  let url;
 	  
@@ -18,10 +18,10 @@ function setUrl(){
 	  case "mypage":
 	  				url = "/mypage/recent-recipe";
 	  }
-	  setData(url);
+	  setSecondaryData(url);
 }
 
-function setData(url){
+function setSecondaryData(url){
 	  let cookie = getCookie("recipe");
 	  console.log("##setdata cookie: ",cookie); //rid가 출력
 	  //let data = { id: cookie }
@@ -52,10 +52,11 @@ function displayData(response){
 	for(let item of response){
 		html += '<li>';
 		html += '<span class="post-category">';
-		html += '<a id="recipe-type-'+i+'" href="#">'+item.sort+'</a>';
+		html += '<a href="../recipe/detail?no='+item.id+'" target="_blank">'+item.sort+'</a>';
 		html += '</span>';
 		html += '<figure class="post-thumbnail">';
-		html += '<a id="recipe-img-'+i+'" href="#"> <img class="rounded-3" src="/imgs/content/item.png" alt="d" />';
+		html += '<a id="recipe-img-'+i+'" href="#">'
+		html += '<img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipe_mainImage">';
 		html += '</a>';
 		html += '</figure>';
 		html += '<h2 class="post-title">';
@@ -72,4 +73,4 @@ function getCookie(name) {
 	    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
 	  ));
 	  return matches ? decodeURIComponent(matches[1]) : undefined;
-}*/
+}

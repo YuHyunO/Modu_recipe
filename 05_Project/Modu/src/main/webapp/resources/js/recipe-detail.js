@@ -66,7 +66,7 @@ function viewLargePic(url){
 }
     
 function addReply(e){
-    // 작성자, 작성자 사진은 세션이용해서 추가
+    // 작성자, 작성자 사진은 세션 이용해서 추가
     event.preventDefault();
     let commentID = $(e).attr('id').split('-')[2] + "-" + $(e).attr('id').split('-')[3];
     let targetCommentID = "#comment-" + commentID;
