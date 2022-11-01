@@ -10,10 +10,8 @@ import com.modu.domain.member.Member;
 public interface MemberMapper {
 
 	void insertMember(Member member); //회원가입
-	
 	Member selectMember(String email); //미사용
 	void updatePoint(@Param("email") String email, @Param("point") int point);
-	
 	void deleteMember(String email); //회원탈퇴
 	
 	void insertFollow(@Param("email")String email, @Param("followee")String followee);
@@ -30,6 +28,7 @@ public interface MemberMapper {
 	int selectFollowingCount(@Param("email") String email);
 	int selectFollowerCount(@Param("email") String email);
 	
+	void deleteMyFollow(int id);//마이페이지에서 팔로우 및 팔로워 삭제(구독 끊기)
 	
 	List<String> selectEmails(int bound);
 	
@@ -44,7 +43,6 @@ public interface MemberMapper {
 
 	void updateMember(Member member); //내정보수정 post(프로필사진 없음)
 	void updateMember2(Member member); //프로필사진 포함 내정보수정
-	
 	void deleteProfileImg(String email); //프로필사진만 삭제
 	
 	// 팔로워 확인

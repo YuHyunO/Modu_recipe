@@ -1,33 +1,3 @@
-/*function clickSubscribe(e){
-    //let request = new XMLHttpRequest();
-    if ($(e).hasClass('subscribe-btn')){
-        $(e).removeClass('subscribe-btn');
-        $(e).addClass('subscribe-btn-clicked');
-        //request.open("GET", "?res_name={{name}}");
-        //request.send();
-    } else {
-        $(e).removeClass('subscribe-btn-clicked');
-        $(e).addClass('subscribe-btn');
-        //request.open("GET", "?res_name={{name}}-rm");
-        //request.send();
-    }
-}
-
-function clickScrap(e){
-    //let request = new XMLHttpRequest();
-    if ($(e).hasClass('recipe-scrap')){
-        $(e).removeClass('recipe-scrap');
-        $(e).addClass('recipe-scrap-clicked');
-        //request.open("GET", "?res_name={{name}}");
-        //request.send();
-    } else {
-        $(e).removeClass('recipe-scrap-clicked');
-        $(e).addClass('recipe-scrap');
-        //request.open("GET", "?res_name={{name}}-rm");
-        //request.send();
-    }
-}*/
-
 let star_point = 0;
 
 function clickStar(e){
@@ -96,7 +66,7 @@ function viewLargePic(url){
 }
     
 function addReply(e){
-    // 작성자, 작성자 사진은 세션이용해서 추가
+    // 작성자, 작성자 사진은 세션 이용해서 추가
     event.preventDefault();
     let commentID = $(e).attr('id').split('-')[2] + "-" + $(e).attr('id').split('-')[3];
     let targetCommentID = "#comment-" + commentID;
@@ -415,9 +385,9 @@ function displayMoreNestedReply(response){
 		html += '</li>';		
 		$("#recomment-area-"+id).append(html);		
 	}
-	$("#readd-"+rrId).text("▲댓글 접기");
+	$("#readd-"+rrId).text("▲대댓글 접기");
 	$("#readd-"+rrId).attr("onclick", "foldReply("+rrId+")");	
-	$("#nested-sub-add-"+rrId).html('<a id="subreadd-'+rrId+'" href="javascript:void(0)" onclick="setUrl(this)">▼더보기</a>');
+	$("#nested-sub-add-"+rrId).html('<a id="subreadd-'+rrId+'" href="javascript:void(0)" onclick="setUrl(this)">▼대댓글 더보기</a>');
 	
 	if(response.length<5){
 		$("#subreadd-"+rrId).text("▲위로가기");
@@ -442,7 +412,7 @@ function scrollUpToParent(){
 
 function foldReply(id){
 	$("#recomment-area-"+id).empty();
-	$("#readd-"+id).text("▼댓글 보기");
+	$("#readd-"+id).text("▼대댓글 보기");
 	$("#nested-sub-add-"+id).empty();
 	$("#readd-"+id).attr("onclick", "setUrl(this)");
 	$("#nested-add-"+id).attr("value", 1);	

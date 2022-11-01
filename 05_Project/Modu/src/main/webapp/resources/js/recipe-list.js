@@ -36,6 +36,7 @@ function searchTag(e){
     $(e).addClass('active');
     setCategoryData(text);
 }
+
 var data;
 var pageSize = 8;
 var currentPage = 1;

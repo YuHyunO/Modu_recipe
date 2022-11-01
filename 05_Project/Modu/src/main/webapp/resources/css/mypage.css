@@ -1,3 +1,8 @@
+a {
+	width: auto;
+    text-decoration: none;
+}
+
 .profile-details {
 	    background-color: rgba(147, 112, 98, 0.2);
 	    color: #666;
@@ -9,12 +14,11 @@
 	    width: 100%;
 }
 
-a {
-	width: auto;
-    text-decoration: none;
+#recommendrecipeimg {
+	max-width: 100%;
 }
 
-/* ë§ˆì´í˜ì´ì§€ í”„ë¡œí•„ì‚¬ì§„ */
+/* ¸¶ÀÌÆäÀÌÁö ÇÁ·ÎÇÊ»çÁø */
 #mypage_profileimg, #mypage_defaultimg {
     max-width: 200px;
     max-height: 200px;
@@ -40,7 +44,7 @@ a {
 	text-align: center;
 }
 
-/*ë§ˆì´í˜ì´ì§€ íƒ­1 - ì•¼ì±„ í•´ì‚°ë¬¼ë¥˜ ì‚¬ì§„ í¬ê¸° */
+/*¸¶ÀÌÆäÀÌÁö ÅÇ1 - ¾ßÃ¤ ÇØ»ê¹°·ù »çÁø Å©±â */
 .site-content img {
     max-width: 80%;
 }
@@ -98,6 +102,7 @@ a {
 .category-pic {
 	border-radius: 10px !important;
 	max-height: 230px;
+	max-width: 80%;
 }
 
 @media ( max-width :454px) {
@@ -180,7 +185,7 @@ a {
 	box-shadow: 0 0 0 .2rem rgba(147, 112, 98, 0.25);
 }
 
-/*íƒ­4 - ë‚˜ì˜ ë ˆì‹œí”¼ ì¤‘ ì œëª© ë§ê³  ë ˆì‹œí”¼ ì„¤ëª… ë¶€ë¶„ */
+/*ÅÇ4 - ³ªÀÇ ·¹½ÃÇÇ Áß Á¦¸ñ ¸»°í ·¹½ÃÇÇ ¼³¸í ºÎºĞ */
 .recipe-info {
 	font-family: 'NotoSerifKR-Medium', sans-serif !important;
 	font-size:14px;
@@ -192,7 +197,7 @@ a {
 	max-width: 100%;
 }
 
-/* íƒ­5 - ì¹œêµ¬ê´€ë¦¬ */
+/* ÅÇ5 - Ä£±¸°ü¸® */
 .handlemyfriendBtn {
 	font-size: 13px;
 	margin: auto 0;
@@ -264,4 +269,9 @@ a {
 	color: #999;
 	margin-bottom: 5px;
 	display: block;
+}
+
+.friendProfileimg {
+    max-width: 150px;
+    max-height: 150px;
 }
