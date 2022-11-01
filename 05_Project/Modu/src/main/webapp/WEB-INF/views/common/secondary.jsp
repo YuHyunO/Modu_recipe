@@ -7,79 +7,14 @@
 		<div class="widget-title-outer">
 			<h3 class="widget-title">최근 본 레시피</h3>
 		</div>
-		<ul>
-			<li>
-				<span class="post-category">
-					<a id="recipe-type-1" href="#">카테고리1</a>
-				</span>
-				<figure class="post-thumbnail">
-					<a id="recipe-img-1" href="#"> <img class="rounded-3"
-						src="/imgs/content/thumb-post-01.png" alt="" />
-					</a>
-				</figure>
-				<h2 class="post-title">
-					<a id="recipe-title-1" href="#">손쉬운 수제버거 레시피</a>
-				</h2>
-			</li>
-			<li>
-				<span class="post-category">
-					<a id="recipe-type-2" href="#">카테고리4</a>
-				</span>
-				<figure class="post-thumbnail">
-					<a id="recipe-img-2" href="#"> <img class="rounded-3"
-						src="/imgs/content/thumb-post-02.png" alt="" />
-					</a>
-				</figure>
-				<h2 class="post-title">
-					<a id="recipe-title-2" href="#">이탈리안 미슐랭 쉐프의 바질파스타 만들기</a>
-				</h2>
-			</li>
-			<li>
-				<span class="post-category">
-					<a id="recipe-type-3" href="#">카테고리3</a>
-				</span>
-				<figure class="post-thumbnail">
-					<a id="recipe-img-3" href="#"> <img class="rounded-3"
-						src="/imgs/content/thumb-post-03.png" alt="" />
-					</a>
-				</figure>
-				<h2 class="post-title">
-					<a id="recipe-title-3" href="#">에어프라이기로 굽는 10분요리, 허브삼겹살</a>
-				</h2>
-			</li>
-			<li>
-				<span class="post-category">
-					<a id="recipe-type-4" href="#">카테고리1</a>
-				</span>
-				<figure class="post-thumbnail">
-					<a id="recipe-img-4" href="#"> <img class="rounded-3"
-						src="/imgs/content/thumb-post-04.png" alt="" />
-					</a>
-				</figure>
-				<h2 class="post-title">
-					<a id="recipe-title-4" href="#">토마토로 챙겨먹는 건강식 조리법</a>
-				</h2>
-			</li>
-			<li>
-				<span class="post-category">
-					<a id="recipe-type-5" href="#">카테고리2</a>
-				</span>
-				<figure class="post-thumbnail">
-					<a id="recipe-img-5" href="#"> <img class="rounded-3"
-						src="/imgs/content/thumb-post-02.png" alt="" />
-					</a>
-				</figure>
-				<h2 class="post-title">
-					<a id="recipe-title-5" href="#">초밥 레시피</a>
-				</h2>
-			</li>
-		</ul>
+		<!-- 최근 본 레시피 영역 -->
+		<ul id="recent-recipe-area"></ul>
 	</div><!-- end class="widget post-type-widget pt-3 pb-3" -->
 		
-	<!--새로운 태그들-->
+	<!--실시간 레시피 키워드-->
 	<div class="widget post-type-widget pt-3">
 		<div class="widget-title-outer">
-			<h3 class="widget-title">추천 레시피 키워드</h3>
+			<h3 class="widget-title">실시간 레시피 키워드</h3>
 		</div>
 		<div class="tagcloud d-flex">
 			<div class="row px-2">
@@ -110,6 +45,6 @@
 		<a href="#"> <img id="lockandlock_ad" class="rounded-3 banner"
 			src="/imgs/index/lock_ad.gif" alt="lockandlock_ad.gif" />
 		</a>
-	</div>	<!-- end 광고 배너 -->
+	</div>	<!-- end 광고 -->
 
 </div> <!-- end #secondary, 사이드영역 끝 -->

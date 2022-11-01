@@ -1,28 +1,27 @@
-/* ¸ŞÀÎ¿µ¿ª »çÀÌÁî Á¦ÇÑ */
 .main-container {
     max-width: 1400px;
 }
 
-/*¿µ¹®¿ë*/
+/*å ì™ì˜™å ì™ì˜™å ì™ì˜™*/
 @font-face {
-  font-family: "Montserrat"; /* »ç¿ëÇÏ°í ½ÍÀº font-family¸íÀ» ÁöÁ¤ */
-  src: url("../css/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("opentype"); /* ÆùÆ®ÆÄÀÏ ºÒ·¯¿À±â */
+  font-family: "Montserrat"; /* å ì™ì˜™å ì™ì˜™æ§‹å ï¿½ å ì™ì˜™å ì™ì˜™ font-familyå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ */
+  src: url("../css/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("opentype"); /* å ì™ì˜™íŠ¸å ì™ì˜™å ì™ì˜™ å ìŒ€ë¤„ì˜™å ì™ì˜™å ì™ì˜™ */
 }
 
-/*¿µ¹®¿ë*/
+/*å ì™ì˜™å ì™ì˜™å ì™ì˜™*/
 @font-face {
-  font-family: "Fasthand-Regular"; /* »ç¿ëÇÏ°í ½ÍÀº font-family¸íÀ» ÁöÁ¤ */
-  src: url("../css/fonts/Fasthand-Regular.ttf") format("opentype"); /* ÆùÆ®ÆÄÀÏ ºÒ·¯¿À±â */
-}
-
-@font-face {
-  font-family: "SongMyung-Regular"; /* »ç¿ëÇÏ°í ½ÍÀº font-family¸íÀ» ÁöÁ¤ */
-  src: url("../css/fonts/SongMyung-Regular.ttf") format("opentype"); /* ÆùÆ®ÆÄÀÏ ºÒ·¯¿À±â */
+  font-family: "Fasthand-Regular"; /* å ì™ì˜™å ì™ì˜™æ§‹å ï¿½ å ì™ì˜™å ì™ì˜™ font-familyå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ */
+  src: url("../css/fonts/Fasthand-Regular.ttf") format("opentype"); /* å ì™ì˜™íŠ¸å ì™ì˜™å ì™ì˜™ å ìŒ€ë¤„ì˜™å ì™ì˜™å ì™ì˜™ */
 }
 
 @font-face {
-  font-family: "NotoSerifKR-Medium"; /* »ç¿ëÇÏ°í ½ÍÀº font-family¸íÀ» ÁöÁ¤ */
-  src: url("../css/fonts/NotoSerifKR-Medium.otf") format("opentype"); /* ÆùÆ®ÆÄÀÏ ºÒ·¯¿À±â */
+  font-family: "SongMyung-Regular"; /* å ì™ì˜™å ì™ì˜™æ§‹å ï¿½ å ì™ì˜™å ì™ì˜™ font-familyå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ */
+  src: url("../css/fonts/SongMyung-Regular.ttf") format("opentype"); /* å ì™ì˜™íŠ¸å ì™ì˜™å ì™ì˜™ å ìŒ€ë¤„ì˜™å ì™ì˜™å ì™ì˜™ */
+}
+
+@font-face {
+  font-family: "NotoSerifKR-Medium"; /* å ì™ì˜™å ì™ì˜™æ§‹å ï¿½ å ì™ì˜™å ì™ì˜™ font-familyå ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™ */
+  src: url("../css/fonts/NotoSerifKR-Medium.otf") format("opentype"); /* å ì™ì˜™íŠ¸å ì™ì˜™å ì™ì˜™ å ìŒ€ë¤„ì˜™å ì™ì˜™å ì™ì˜™ */
 }
 
 .mention {
@@ -32,8 +31,7 @@
     margin-bottom: 1rem;
     justify-content:center;
 	text-align: center;
-	font-family: 'Montserrat', sans-serif !important;
-	/* font-family: 'Fasthand-Regular', sans-serif !important; */
+	font-family: 'Fasthand-Regular', sans-serif !important;
 	font-size:100px bolder;
 }
 
@@ -48,15 +46,20 @@
     justify-content:center;
 	text-align: center;
 }
-/* º£½ºÆ® ·¹½ÃÇÇ Å¸ÀÌÆ² ±Û¾¾Ã¼ º¯°æ */
+
 .recipe-title a {
 	font-family: 'NotoSerifKR-Medium', sans-serif !important;
-	font-size:17px;
+	font-size:15px;
 	width: auto;
     text-decoration: none;
 }
 
-/* ½¦ÇÁ ·©Å· */
+.recipe-thumb {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+}
+
 .chef-pic {
     border-radius: 50%;
     width: 70%;
@@ -80,7 +83,7 @@
     width: 20%;
 }
 
-/* ±âÅ¸ */
+/* å ì™ì˜™íƒ€ */
 .btn-more {
      color: black;
      text-decoration: none;

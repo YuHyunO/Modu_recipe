@@ -4,7 +4,9 @@ package com.modu.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import com.modu.domain.board.BoardList;
 import com.modu.domain.board.BoardListVo;
 import com.modu.domain.recipe.RecipeList;
 import com.modu.domain.recipe.RecipeListVo;
+import com.modu.mapper.BoardLegacyMapper;
 import com.modu.mapper.BoardMapper;
 
 import lombok.extern.log4j.Log4j;
@@ -27,6 +30,8 @@ import lombok.extern.log4j.Log4j;
 public class BoardFindingServiceImpl implements BoardFindingService {
 	@Autowired
 	private BoardMapper boardMapper;
+	@Autowired
+	private BoardLegacyMapper boardLegacyMapper;
 
 	@Override
 	public BoardListVo listingPosts(HttpServletRequest request, HttpSession session) {
@@ -35,7 +40,6 @@ public class BoardFindingServiceImpl implements BoardFindingService {
         long pgSize = 10;
         long totalPage;
         long totalPost = boardMapper.selectPostCountByType(1);
-        
         try {
             switch(request.getParameter("value")) {
             case "0": int period = Integer.parseInt(request.getParameter("period"));
@@ -100,6 +104,9 @@ public class BoardFindingServiceImpl implements BoardFindingService {
         if(request.getParameter("value")!=null) {
             boardList = getSearchedBoards(request, beginRow, endRow);
         }
+       // long bId = boardList.set(index, element)
+       // boardLegacyMapper.selectReplyCount(bId);
+        //log.info("1029 2 data : " + boardList);
         
         BoardListVo data = new BoardListVo(boardList, curPage, pgSize, totalPage);
         return data;
@@ -133,14 +140,60 @@ public class BoardFindingServiceImpl implements BoardFindingService {
         
         return boardList;
     }
-    public BoardDetail getPost(long id) {
+    public BoardDetail getPost(long id,HttpServletRequest request,HttpServletResponse response) {
+        //long bId = id;
+       // long replyCount = boardLegacyMapper.selectReplyCount(bId);
+       // log.info("#1029 956 : " + replyCount);
+        
+        String stringId = String.valueOf(id);
+        Cookie oldCookie = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("postView")) {
+                    oldCookie = cookie;
+                }
+            }
+        }
+
+        if (oldCookie != null) {
+            if (!oldCookie.getValue().contains("[" + stringId + "]")) {//이프 올드쿠키에 문자열 [아이디번호] 포함되어있으면
+                //  []로 감싸는 이유는  101 과 10 이 똑같이 10 부분이 중복되서 조회수가 카운트 되지 않을까바 [101],[10]처럼 감싸고 감싼걸 찾는것
+                boardLegacyMapper.viewCount(id);
+                oldCookie.setValue(oldCookie.getValue() + "_[" + id + "]");
+                oldCookie.setPath("/");
+                oldCookie.setMaxAge(60 * 60 * 24); //초단위로 설정된다. 24*60*60-> 24번*60번*60초=24시간
+                response.addCookie(oldCookie);
+            }
+        } else {
+            boardLegacyMapper.viewCount(id);
+            Cookie newCookie = new Cookie("postView","[" + id + "]");
+            newCookie.setPath("/");
+            newCookie.setMaxAge(60 * 60 * 24);
+            response.addCookie(newCookie);
+        }
+        
+        
+        
 		BoardDetail boardDetail = new BoardDetail();
 		Board board = boardMapper.selectPost(id);
+		long rrCount = boardLegacyMapper.selectReplyCount(id);
+		long rCount = board.getReply();
+		log.info("1029 rcount : " + rCount  + " rrcount2 : " + rrCount);
+		if(rCount != rrCount) {
+		    boardLegacyMapper.replyCountUpdate(id, rrCount);
+		    log.info("#1029  4   성공");
+		}else {
+		    log.info("#1029 5 다름");
+		}
+		
 		BoardDetailNextPrev nextPrev = boardMapper.selectBoardNextPrev(id);
 		List<BoardFile> boardFile = boardMapper.selectFile(id);
 		boardDetail.setBoard(board);
 		boardDetail.setBoardFile(boardFile);
 		boardDetail.setBoardDetailNextPrev(nextPrev);
+		
+		
 		return boardDetail;
 	}	
 

@@ -12,6 +12,7 @@
 <title>모두의 식탁 - 레시피</title>
 </head>
 <body>
+	<input type="hidden" id="page-type" value="recipe-detail"/>
 	<div id="page" class="hfeed site">
 		<!-- start page wrapper -->
 		<%@ include file="/WEB-INF/views/common/menu.jsp"%>
@@ -28,42 +29,44 @@
 		<div class="row">
 			<div id="main-content" class="content-area col-md-9">
 		
-			<!-- 사진 팝업(hidden) -->
-			<div id="viewPicDivModal" class="modal" role="dialog"
-				aria-hidden="true" style="display: none;">
-				<div class="modal-dialog">
-					<div class="modal-content" style="padding: 0; width: 600px;">
-						<div class="modal-header">
-							<h4 class="modal-title">사진</h4>
-						</div>
-						<div class="modal-body" style="padding: 5px; max-width: 600px;">
-							<div id="viewPicModalCont"></div>
+				<!-- 사진 클릭시 팝업(hidden), 사용 안함 -->
+				<div id="viewPicDivModal" class="modal" role="dialog"
+					aria-hidden="true" style="display: none;">
+					<div class="modal-dialog">
+						<div class="modal-content" style="padding: 0; width: 600px;">
+							<div class="modal-header">
+								<h4 class="modal-title">사진</h4>
+							</div>
+							<div class="modal-body" style="padding: 5px; max-width: 600px;">
+								<div id="viewPicModalCont"></div>
+							</div>
 						</div>
 					</div>
-				</div>
-			</div><!-- end 사진 팝업 -->
+				</div><!-- end 사진 팝업 -->
 			
 			<!-- primary 본격 시작 -->
 				<!-- <div class="container col-md-2"></div> -->
 				<input class="recipe-id" hidden="true" value="${detail.recipe.id}">
-				<div class="col-md-9 col-lg-6 col-xl-9">
+				<div class="col-md-9 col-lg-9 col-xl-9">
 					<div id="primary" class="recipe-content m-0">
 						<div class="row py-3">
 							<div class="col-md-6">
 								<figure class="ratio ratio-4x3 p-3 m-0">
-									<img class="rounded-3" src="/imgs/content/image-recipe.png"
-										alt="IMG 01">
+									<img class="rounded-3" 
+										src="/pics/recipe/${detail.recipe.id}/${detail.recipe.foodPhoto}"
+										alt="recipe_mainImage">
 								</figure>
 							</div>
 							<!-- end col -->
 							<div class="col-md-6 d-flex flex-column justify-content-between">
 								<div class="detail-desc d-flex flex-column">
 									<div class="recipe-rating m-0 p-1 d-flex align-items-center">
-										<img class="star-rate-img me-2" src="/imgs/stars3.png" alt="stars">
+										<img class="star-rate-img me-2" 
+											src="/imgs/stars3.png" alt="stars">
 										<span>${detail.recipe.star}</span> <span class="ps-1">(${replyCount})</span>
 									</div>
 									<div class="fs-4 py-3 m-0">${detail.recipe.title}</div>
-									<div class="m-0">${detail.recipe.info}</div>
+									<div class="recipeinfo m-0">${detail.recipe.info}</div>
 								</div>
 								<!-- recipe desc -->
 								<div class="recipe-info py-3 d-flex justify-content-end">
@@ -80,29 +83,46 @@
 							class="row option-section border-top border-bottom py-3 d-flex justify-content-between">
 							<div class="recipe-auth align-self-center col px-2">
 								<span>
-									<img src="/imgs/content/auth-03.png" alt="recipe author">
+									<img src="/pics/profile/${detail.recipe.profileImg}" 
+										alt="recipe author">
 									<span>Posted by 
 										<a href="#">${detail.recipe.MNickname}</a>
 									</span>
 								</span>
 								<span>
-									<button class="btn btn-outline-success subscribe-btn me-2" data-email="${detail.recipe.MEmail}" onclick="clickSubscribe(this)">친구 추가</button>
+									<!-- 내가 쓴 레시피에는 친구추가 버튼이 뜨지 않도록 함 -->
+	 								<c:if test="${sessionScope.email == detail.recipe.MEmail }">
+										<input type="hidden" class="btn btn-outline-success subscribe-btn me-2" 
+										data-email="${detail.recipe.MEmail}" 
+										onclick="clickSubscribe(this)">
+									</c:if>
+									<c:if test="${sessionScope.email != detail.recipe.MEmail }">
+										<button class="btn btn-outline-success subscribe-btn me-2" 
+										data-email="${detail.recipe.MEmail}" 
+										onclick="clickSubscribe(this)">친구 추가</button>
+									 </c:if>
 								</span>
 							</div>
 							<!-- end recipe author -->
 							<div class="recipe-option d-flex justify-content-end col">
 								<div class="d-flex flex-column text-center">
-									<c:choose>
-										<c:when test="${scrapState eq true}">
-											<button class="recipe-scrap-clicked" onclick="clickScrap(this)">
-											</button>
-										</c:when>
-										<c:when test="${scrapState eq false}">
-											<button class="recipe-scrap" onclick="clickScrap(this)">
-											</button>
-										</c:when>
-									</c:choose> 
-									<span>스크랩</span>
+									<!-- 내가 쓴 레시피에는 스크랩 버튼이 뜨지 않도록 함 -->
+	 								<c:if test="${sessionScope.email == detail.recipe.MEmail }">
+	 									<input type="hidden">
+									</c:if>
+									<c:if test="${sessionScope.email != detail.recipe.MEmail }">
+										<c:choose>
+											<c:when test="${scrapState eq true}">
+												<button class="recipe-scrap-clicked" onclick="clickScrap(this)">
+												</button>
+											</c:when>
+											<c:when test="${scrapState eq false}">
+												<button class="recipe-scrap" onclick="clickScrap(this)">
+												</button>
+											</c:when>
+										</c:choose>
+										<span>북마크</span>
+									 </c:if>
 								</div>
 								<div class="d-flex flex-column text-center">
 									<input type="hidden" value="http://modu-table/recipe/detail/${detail.recipe.id}" id="recipe-link"/>
@@ -157,19 +177,19 @@
 									<c:forEach items="${detail.direction}" var="li">
 										<div class="row col-md-8">
 											<div class="step-title">
-												<strong>STEP &nbsp; ${li.step}</strong>
+												<strong>STEP&nbsp;${li.step}</strong>
 											</div>
 											<div class="step-main">${li.direction}</div>
 										</div>
 										<div class="col-md-4 step-img">
 											<figure class="ratio ratio-4x3">
-												<a
-													href="javascript:viewLargePic('/imgs/content/thumb-1.png')">
-													<img class="rounded-3" src="/imgs/content/thumb-1.png"
-													alt="Recipe Image">
+												<a href="javascript:viewLargePic('/imgs/content/thumb-1.png')"> 
+														<img class="rounded-3" 
+															src="/pics/recipe/${li.RId}/${li.saveFile}"
+															alt="Recipe-STEP-Image">
 												</a>
 											</figure>
-										</div>
+										</div><br>
 									</c:forEach>
 								</div>
 							</div>
@@ -186,22 +206,22 @@
 					</div>
 					<!-- end 태그 -->
 					
-					<div class="row comment-section border-top py-3 justify-content-center">
+					<div id="review-loc" class="row comment-section border-top py-3 justify-content-center">
 						<div class="row comments pt-3">
 							<h2 class="comments-title text-start mb-2">
 								리뷰<span>(${replyCount})</span>
 							</h2>
 							<ol class="comment-list" id="comment-area">
-								<c:forEach items="${detail.replyList}" var="li">							
-									<li class="comment" value="${li.list}">
+								<c:forEach items="${detail.replyList}" var="li">	<!-- forEach문으로 detail의 replyList를 li에 담는다 -->						
+									<li class="comment" value="${li.list}"> <!-- li에 담은 값에서 list를 하나씩 뽑아서 배치 -->
 										<div class="comment-body">
 											<div class="comment-meta d-flex justify-content-between align-items-center">
 												<span class="d-flex align-items-center">
 													<figure class="comment-author">
-														<img src="${li.profileImg}" alt="작성자">
-													</figure><b class="fn px-2">${li.nickname}</b>
+														<img src="${li.profileImg}" alt="작성자"> <!-- 담긴 Data(li)에서 profileImg만 뽑아서 보여준다(여기서는 댓글을 등록한 작성자 -->
+													</figure><b class="fn px-2">${li.nickname}</b> <!-- 옆에 닉네임도 출력 -->
 													<span class="star-rate-block"> 
-														<span class="px-2">${li.replyDate}</span>
+														<span class="px-2">${li.replyDate}</span> <!-- li에 담긴 DATA를 뽑아서 보여줄때 작성한 그 날짜 -->
 														<img class="star-rate-img2" src="/imgs/stars4.png" alt="stars" style="width: 80px; height: 15px; margin-bottom: 5px;">
 													</span>
 												</span>
@@ -211,41 +231,35 @@
 												</div>
 											</div>
 											<div class="comment-content d-flex">
-												<p class="p-2 m-0 col-9">${li.reply}</p>
+												<p class="p-2 m-0 col-9">${li.reply}</p> <!-- ???? -->
 												<figure class="comment-image">
 													<img class="rounded-3" src="/imgs/content/dessert-l.png" alt="comment-image">
 												</figure>
 											</div>
 										</div>
-										<c:if test="${li.nestedReply eq 1}">
-										<div id="nested-add-${li.id}" class="row view-more py-2" value="0" style="max-width: 300px;">
-											<a id="${li.id}" href="javascript:void(0)" onclick="setUrl(this)">▼댓글 보기</a>
+										<c:if test="${li.nestedReply eq 1}"> <!-- nestedRelpy의 type값이 1이라면 -->
+										<div id="nested-add-${li.id}" class="row view-more py-2" value="1" style="max-width: 300px;"> <!-- 대댓글의 id값을 불러온다 -->
+											<a id="readd-${li.id}" href="javascript:void(0)" onclick="setUrl(this)">▼대댓글 보기</a> <!-- ????? -->
 										</div>	
 										</c:if>									
 									</li>
 									<c:if test="${li.nestedReply eq 1}">																																						
 										<ol class="re-comment px-0" id="recomment-area-${li.id}">										
 													<!-- 대댓글 영역 -->									 											
-										</ol>																			
+										</ol>
+										<div id="nested-sub-add-${li.id}">
+											
+										</div>																			
 									</c:if>																							
 								</c:forEach>
 								<br/>
 							</ol>							
 						</div>
 						<!-- end row comments pt-3, 리뷰 댓글list -->
-						<c:if test="${replyCount != 0}">							
-							<c:choose>
-							<c:when test="${replyCount >= 5}">
-								<div id="comment-add" class="row view-more p-2" value="5">
-								<button id="${detail.recipe.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="1">더보기</button>
-								</div>								
-							</c:when>
-							<c:otherwise>
-								<div id="comment-add" class="row view-more p-2" value="${replyCount}">
-								<button id="${detail.recipe.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="1">더보기</button>
-								</div>									
-							</c:otherwise>
-							</c:choose>
+						<c:if test="${replyCount >= 5 }">							
+							<div id="comment-add" class="row view-more p-2" value="5">
+							<button id="add-${detail.recipe.id}" class="btn w-100 h-100 border more-view-btn" onclick="setUrl(this)" value="1">더보기</button>
+							</div>								
 						</c:if>
 						<!-- 별점+댓글창 -->
 						<div class="comment-write p-2">
@@ -302,7 +316,8 @@
 						<button class="col previous-icon px-0"></button>
 						<div class="row col-sm-10 col-md-8 col-lg-6 col-xl-5 px-0">
 							<h3 class="py-4 mb-0 text-start">
-								<span class="text-danger">베이컨</span> 추천 레시피
+								<!-- <span class="text-danger">베이컨</span>추천 레시피 -->
+								<span class="text-danger">${detail.tag[0].tag}</span>&nbsp;추천 레시피
 							</h3>
 							<div class="col-6 col-md-3">
 								<div class="recipe-thumb">
@@ -392,7 +407,7 @@
 							</div><!-- end col -->
 						</div><!-- end list -->
 						
-				<button class="col next-icon px-0"></button>
+						<button class="col next-icon px-0"></button>
 					</div><!-- end row -->
 				</div><!-- end container -->
 			</div><!-- end row related-recipe/추천 레시피 -->

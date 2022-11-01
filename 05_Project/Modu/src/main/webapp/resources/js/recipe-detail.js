@@ -1,33 +1,3 @@
-/*function clickSubscribe(e){
-    //let request = new XMLHttpRequest();
-    if ($(e).hasClass('subscribe-btn')){
-        $(e).removeClass('subscribe-btn');
-        $(e).addClass('subscribe-btn-clicked');
-        //request.open("GET", "?res_name={{name}}");
-        //request.send();
-    } else {
-        $(e).removeClass('subscribe-btn-clicked');
-        $(e).addClass('subscribe-btn');
-        //request.open("GET", "?res_name={{name}}-rm");
-        //request.send();
-    }
-}
-
-function clickScrap(e){
-    //let request = new XMLHttpRequest();
-    if ($(e).hasClass('recipe-scrap')){
-        $(e).removeClass('recipe-scrap');
-        $(e).addClass('recipe-scrap-clicked');
-        //request.open("GET", "?res_name={{name}}");
-        //request.send();
-    } else {
-        $(e).removeClass('recipe-scrap-clicked');
-        $(e).addClass('recipe-scrap');
-        //request.open("GET", "?res_name={{name}}-rm");
-        //request.send();
-    }
-}*/
-
 let star_point = 0;
 
 function clickStar(e){
@@ -96,7 +66,7 @@ function viewLargePic(url){
 }
     
 function addReply(e){
-    // 작성자, 작성자 사진은 세션이용해서 추가
+    // 작성자, 작성자 사진은 세션 이용해서 추가
     event.preventDefault();
     let commentID = $(e).attr('id').split('-')[2] + "-" + $(e).attr('id').split('-')[3];
     let targetCommentID = "#comment-" + commentID;
@@ -290,8 +260,11 @@ function setUrl(e){
 let id;
 function setData(e, url){
 	let data;
-	id = $(e).attr("id");		
-
+	id = $(e).attr("id");
+	id = id.split("-")[1];	
+	console.log("id: "+id);
+	console.log("mode: "+mode);
+	
 	switch(mode){
 	case 1: data = {rId: id,
 					lastIndex: getLastIndex(id)};
@@ -305,11 +278,9 @@ function setData(e, url){
 function getLastIndex(id){
 	let lastIndex;
 	if (mode == 1){
-		lastIndex = $("#comment-add").attr("value");
-		console.log(lastIndex);
+		lastIndex = $("#comment-add").attr("value");	
 	}else if (mode == 2){
-		lastIndex = $("#nested-add-"+id).attr("value");
-		console.log(lastIndex);
+		lastIndex = $("#nested-add-"+id).attr("value");		
 	}
 	return lastIndex;
 }
@@ -334,18 +305,20 @@ function dataAgent(url, data){
 	});
 }
 
+let rId;
 function displayMoreReply(response){
-	let html = '';
 	let i = 1;
 	for(let item of response){
+		rId = item.rid;	
 		i++;
+		let html = '';
 		html += '<li class="comment" value="'+item.list+'">';			
 		html += '<div class="comment-body">';
 		html += '<div class="comment-meta d-flex justify-content-between align-items-center">';
 		html += '<span class="d-flex align-items-center">';
 		html += '<figure class="comment-author">';
 		html += '<img src="/imgs/content/'+item.profileImg+'" alt="작성자">';
-		html += '</figure><b class="fn px-2">'+item.mNickname+'</b>';
+		html += '</figure><b class="fn px-2">'+item.mnickname+'</b>';
 		html += '<span class="star-rate-block">';
 		html += '<span class="px-2">'+item.replyDate+'</span>';	
 		html += '<img class="star-rate-img2" src="/imgs/stars4.png" alt="stars" style="width: 80px; height: 15px; margin-bottom: 5px;">';	
@@ -367,17 +340,27 @@ function displayMoreReply(response){
 		
 		$("#comment-area").append(html);				
 	}
-	let value = $("#comment-add").attr("value");
-	let val = parseInt(value);
-	let lastIndex = val + parseInt(i);
-	$("#comment-add").attr("value", lastIndex);	
+	let location = (document.querySelector("#comment-add").offsetTop)-500;
+	if(response.length < 5){
+		$("#add-"+rId).text("위로이동");
+		$("#add-"+rId).attr("onclick", "scrollUpToReview("+rId+")");
+		window.scrollTo({top:location, behavior:"smooth"});
+	}else{
+		let value = $("#comment-add").attr("value");
+		let val = parseInt(value);
+		let lastIndex = val + parseInt(i);
+		$("#comment-add").attr("value", lastIndex);				
+		window.scrollTo({top:location, behavior:"smooth"});
+	}	
 }
 
-function displayMoreNestedReply(response){
-	let html = '';
-	let i = 0;
+let rrId;
+function displayMoreNestedReply(response){		
+	let i = 1;	
 	for(let item of response){
 		i++;
+		rrId = item.rrId;
+		let html = '';
 		html += '<li class="comment row" value="'+item.list+'">';
 		html += '<div class="col" style="max-width: 40px;">';
 		html += '<img src="/imgs/reply-arrow.png" alt="화살표">';
@@ -388,7 +371,7 @@ function displayMoreNestedReply(response){
 		html += '<figure class="comment-author">';
 		html += '<img src="/imgs/content/'+item.profileImg+'" alt="작성자">';
 		html += '</figure>';
-		html += '<b class="fn ps-2">'+item.mNickname+'</b>';
+		html += '<b class="fn ps-2">'+item.mnickname+'</b>';
 		html += '<span class="px-2">'+item.replyDate+'</span>';
 		html += '</span>';
 		html += '<span class="reply-btn px-2">';
@@ -399,15 +382,40 @@ function displayMoreNestedReply(response){
 		html += '<p class="p-2 m-0">'+item.reply+'</p>';
 		html += '</div>';
 		html += '</div>';
-		html += '</li>';
-				
+		html += '</li>';		
 		$("#recomment-area-"+id).append(html);		
 	}
-	let value = $("#nested-add-"+id).attr("value");
+	$("#readd-"+rrId).text("▲대댓글 접기");
+	$("#readd-"+rrId).attr("onclick", "foldReply("+rrId+")");	
+	$("#nested-sub-add-"+rrId).html('<a id="subreadd-'+rrId+'" href="javascript:void(0)" onclick="setUrl(this)">▼대댓글 더보기</a>');
+	
+	if(response.length<5){
+		$("#subreadd-"+rrId).text("▲위로가기");
+		$("#subreadd-"+rrId).attr("onclick", "scrollUpToParent("+rrId+")");
+	}
+	let value = $("#nested-add-"+rrId).attr("value");
 	let val = parseInt(value);
 	let lastIndex = val + parseInt(i);
-	$("#nested-add-"+id).attr("value", lastIndex)
-	console.log("##nested"+$("#nested-add-"+id).attr("value"));
+	$("#nested-add-"+id).attr("value", lastIndex);
+	let location = (document.querySelector("#nested-sub-add-"+rrId).offsetTop)-600;		
+	window.scrollTo({top:location, behavior:"smooth"});	
+}
+
+function scrollUpToReview(){
+	let location = (document.querySelector("#review-loc").offsetTop);		
+	window.scrollTo({top:location, behavior:"smooth"});	
+}
+function scrollUpToParent(){
+	let location = (document.querySelector("#readd-"+rrId).offsetTop);		
+	window.scrollTo({top:location, behavior:"smooth"});	
+}
+
+function foldReply(id){
+	$("#recomment-area-"+id).empty();
+	$("#readd-"+id).text("▼대댓글 보기");
+	$("#nested-sub-add-"+id).empty();
+	$("#readd-"+id).attr("onclick", "setUrl(this)");
+	$("#nested-add-"+id).attr("value", 1);	
 }
 
 

@@ -36,6 +36,7 @@ function searchTag(e){
     $(e).addClass('active');
     setCategoryData(text);
 }
+
 var data;
 var pageSize = 8;
 var currentPage = 1;
@@ -297,26 +298,7 @@ function paginate(curPage, totalPage){
 	$("#pagination-next").html(divNext);
 }
 
-let recentRecipe = new Array();
-function saveCookie(id){
-	if(recentRecipe.length == 0){
-		recentRecipe.unshift(id);
-	}
-	if(recentRecipe.includes(id) == false){	
-			recentRecipe.unshift(id);
-	}	
-	if(recentRecipe.length>5){
-		recentRecipe.length = 5;	
-	}
-	document.cookie = "recipe="+recentRecipe;		
-	window.location.href="/recipe/detail?no="+id;
-}
 
-function getCookie(name) {
-	  let matches = document.cookie.match(new RegExp(
-	    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-	  ));
-	  return matches ? decodeURIComponent(matches[1]) : undefined;
-}
+
 
 

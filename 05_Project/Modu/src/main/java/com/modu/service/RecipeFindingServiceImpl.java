@@ -3,7 +3,9 @@ package com.modu.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +40,35 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
     private MemberMapper memberMapper;
 	
     @Override
-	public RecipeDetail getRecipeDetails(long id) {        
+	public RecipeDetail getRecipeDetails(long id, HttpServletRequest request, HttpServletResponse response) {  
+        String stringId = String.valueOf(id);
+        Cookie oldCookie = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("recipeView")) {
+                    oldCookie = cookie;
+                }
+            }
+        }
+
+        if (oldCookie != null) {
+            if (!oldCookie.getValue().contains("[" + stringId + "]")) {//이프 올드쿠키에 문자열 [아이디번호] 포함되어있으면
+                //  []로 감싸는 이유는  101 과 10 이 똑같이 10 부분이 중복되서 조회수가 카운트 되지 않을까바 [101],[10]처럼 감싸고 감싼걸 찾는것
+                recipeLegacyMapper.recipeViewCount(id);
+                oldCookie.setValue(oldCookie.getValue() + "_[" + id + "]");
+                oldCookie.setPath("/");
+                oldCookie.setMaxAge(60 * 60 * 24); //초단위로 설정된다. 24*60*60-> 24번*60번*60초=24시간
+                response.addCookie(oldCookie);
+            }
+        } else {
+            recipeLegacyMapper.recipeViewCount(id);
+            Cookie newCookie = new Cookie("recipeView","[" + id + "]");
+            newCookie.setPath("/");
+            newCookie.setMaxAge(60 * 60 * 24);
+            response.addCookie(newCookie);
+        }
+        
         long rId = id;
         int beginRow = 1;
         int endRow = 5;
@@ -139,7 +169,7 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
             beginRow = Integer.parseInt(request.getParameter("lastIndex"));
             System.out.println("##"+beginRow);
         }catch(NumberFormatException nfe) {}
-        int endRow = beginRow + 1;
+        int endRow = beginRow + 5;
         
         List<RecipeReplyList> replyList = recipeLegacyMapper.selectReplyBy(rId, beginRow, endRow);
         return replyList;
@@ -148,13 +178,18 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
     @Override    
     public List<RecipeNestedReply> getNestedReply(HttpServletRequest request){
         long rrId = Long.parseLong(request.getParameter("rrId"));
-        int beginRow = 0;         
+        int beginRow = 0;
+        System.out.println("##beginRow1 : "+beginRow);
         try {
             beginRow = Integer.parseInt(request.getParameter("lastIndex"));
+            System.out.println("#try#beginRow : "+beginRow);
         }catch(NumberFormatException nfe) {}
-        int endRow = beginRow + 1;
-        
-        List<RecipeNestedReply> replyList = recipeLegacyMapper.selectNestedReplyBy(rrId, beginRow, endRow);        
+        int endRow = beginRow+4;
+        System.out.println("##endRow1 : "+endRow);
+        List<RecipeNestedReply> replyList = recipeLegacyMapper.selectNestedReplyBy(rrId, beginRow, endRow);
+        for(RecipeNestedReply item:replyList) {
+            System.out.println("#"+item);
+        }
         return replyList;
     }
 }

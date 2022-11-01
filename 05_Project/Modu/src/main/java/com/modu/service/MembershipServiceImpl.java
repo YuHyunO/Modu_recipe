@@ -151,4 +151,9 @@ public class MembershipServiceImpl implements MembershipService {
         }
         return msg;
     }
+    
+    @Override
+    public void removeMyFollow(int id) {
+        memberMapper.deleteMyFollow(id); 
+    }
 }

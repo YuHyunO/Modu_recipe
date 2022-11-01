@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -142,7 +143,7 @@ public class RecipeController {
     }
 
     @GetMapping("/detail")
-    public ModelAndView recipeDetail(HttpServletRequest request, HttpSession session) {
+    public ModelAndView recipeDetail(HttpServletRequest request, HttpSession session, HttpServletResponse response) {
         String email = (String)session.getAttribute("email");
         long id = 0;
         try {
@@ -150,7 +151,7 @@ public class RecipeController {
         }catch(NumberFormatException nfe) {
             return  new ModelAndView("redirect:/");
         }
-        RecipeDetail detail = recipeFindingService.getRecipeDetails(id);
+        RecipeDetail detail = recipeFindingService.getRecipeDetails(id, request, response);
         String starPoint = recipeFindingService.getStarPoint(detail);
 
         boolean scrapState = false;
@@ -171,6 +172,13 @@ public class RecipeController {
         mv.addObject("replyCount", replyCount);
         return mv;
     }
+    
+    @GetMapping("/recent-recipe")
+    public @ResponseBody List<RecipeList> callRecentRecipe(HttpServletRequest request){
+        List<RecipeList> data = recipeFindingService.findRecentRecipes(request);
+        return data;
+    }
+    
 
     @GetMapping("/recipe-reply")
     public @ResponseBody List<RecipeReplyList> callReplyData(HttpServletRequest request){
@@ -270,7 +278,7 @@ public class RecipeController {
         String result;
 
         if (email == null) {
-            map.put("error", "친구추가는 로그인 후 이용하실 수 있습니다.");
+            map.put("error", "친구 추가는 로그인 후 이용하실 수 있습니다.");
             return map;
         } else {
             msg = membershipService.followService(targetEmail, email, 1);

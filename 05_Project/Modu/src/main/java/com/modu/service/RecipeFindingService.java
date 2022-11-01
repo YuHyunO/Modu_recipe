@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -18,7 +19,7 @@ import com.modu.domain.recipe.RecipeReplyList;
 
 public interface RecipeFindingService {
 	/* 레시피 조회,검색 관련 기능 중심으로 인터페이스 작성 */
-    RecipeDetail getRecipeDetails(long id);
+    RecipeDetail getRecipeDetails(long id, HttpServletRequest request, HttpServletResponse response);
 	List<RecipeList> selectRecipeListByBestHits(long beginRow, long endRow);
 	String getStarPoint(RecipeDetail recipeDetail);
 	RecipeDetail RecipeRead(long id);

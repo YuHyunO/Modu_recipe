@@ -1,27 +1,25 @@
 package com.modu.controller;
 
-import java.util.Enumeration;
 import java.util.List;
-import java.util.Vector;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.modu.domain.member.FollowList;
 import com.modu.domain.member.FollowListVo;
-import com.modu.domain.member.Member;
+import com.modu.domain.recipe.RecipeList;
 import com.modu.domain.recipe.RecipeListVo;
 import com.modu.service.FileUploadService;
 import com.modu.service.MemberRegisterService;
 import com.modu.service.MembershipService;
+import com.modu.service.RecipeFindingService;
 import com.modu.service.RecipeSearchService;
 
 import lombok.AllArgsConstructor;
@@ -33,27 +31,12 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("mypage")
 public class MembershipController {
 
-	private MemberRegisterService memberRegisterService;
-	private FileUploadService filuploadservice; //by @AllArgsConstructor
 	private MembershipService membershipService;
 	private RecipeSearchService recipeSearchService;
-	
-	/*
-	//¸¶ÀÌÆäÀÌÁö ÆäÀÌÁö ÀÌµ¿(MemberController.java ¿¡ ÀÖ´Â ¸Ş¼Òµå °¡Á®¿È)
-	@GetMapping("mypage")
-	public ModelAndView goMypage(HttpSession session) {
-		String email = (String)session.getAttribute("email");
-		Member member1 = memberRegisterService.readMyInfo(email); 
-		ModelAndView mv = new ModelAndView("member/mypage", "member", member1); 
-		log.info("######¸¶ÀÌÆäÀÌÁö ÀÌµ¿get member1: "+member1);
-		log.info("######¸¶ÀÌÆäÀÌÁö ÀÌµ¿get mv: "+mv);
-		return mv;
-	}
-	*/
+	private RecipeFindingService recipeFindingService;
 	
     @GetMapping("/main")
     public ModelAndView myPage(HttpServletRequest request, HttpSession session) {    
-    	
         ModelAndView mv = new ModelAndView("member/mypage");
         return mv;
     }
@@ -62,6 +45,10 @@ public class MembershipController {
     public @ResponseBody RecipeListVo recommend(HttpServletRequest request, HttpSession session) {        
         
         RecipeListVo data = recipeSearchService.searchRecipeByIngredient(request, session);
+        //log.info("ë§ˆì´í˜ì´ì§€ íƒ­1-ì¶”ì²œë ˆì‹œí”¼ ë°›ì•„ì˜¨ ë°ì´í„° data: "+data);
+        //RecipeListVo(recipeList=[RecipeList(id=631, foodPhoto=7_1666235571492.jpg, title=ìˆ™ì£¼ë¡œ ê°„ë‹¨í•œ ë‚˜ì‹œê³ ë­ ë³¶ìŒë°¥ ë§Œë“¤ê¸°ğŸ˜‰âœ¨, food=ë‚˜ì‹œê³ ë­, profileImg=favicon_1666336841209.ico, mNickname=ê·¸ë£¨í„°ê¸°1, mEmail=111@naver.com, star=0.0, stars=0, hits=1, sort=null),
+        //RecipeList(id=632, foodPhoto=7_1666595387511.jpg, title=ë§›ìˆëŠ” ìƒˆìš°ë³¶ìŒë°¥ì„ë‹ˆë‹¤, food=ìƒˆìš°ë³¶ìŒë°¥, profileImg=favicon_1666336841209.ico, mNickname=ê·¸ë£¨í„°ê¸°1, mEmail=111@naver.com, star=0.0, stars=0, hits=1, sort=null)], 
+        //currentPage=1, pageSize=0, totalPage=1)
     	return data;
     }
     
@@ -91,8 +78,35 @@ public class MembershipController {
         FollowListVo data = membershipService.getFollowList(request, session);      
         return data;
     }
-		
-	//¸¶ÀÌÆäÀÌÁö ÆäÀÌÁö ÀÌµ¿
+
+    @PostMapping("/unfollow")
+    public String removeFollow(@RequestParam("id") int id, HttpServletRequest request, HttpSession session) {
+                
+        membershipService.removeMyFollow(id);      
+        return "success";
+    }
+/*
+    //È¸ï¿½ï¿½ Å»ï¿½ï¿½         
+    @PostMapping("/removemyinfo")
+    public String removeMyinfo(@RequestParam("email") String email, HttpSession session, HttpServletRequest req) { //req ï¿½Ê¿ï¿½
+        Member member = memberRegisterService.readMyInfo(email);    
+        if(member.getEmail().equals((String)session.getAttribute("email"))) {
+            memberRegisterService.removeMyInfo(email);
+            session.invalidate(); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¿È­
+            req.getSession(true); //ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Øºï¿½ true
+            return "redirect:/";
+        } else {
+            return "redirect:/";
+        }
+    }
+    */
+    
+    @GetMapping("/recent-recipe")
+    public @ResponseBody List<RecipeList> callRecentRecipe(HttpServletRequest request){
+        List<RecipeList> data = recipeFindingService.findRecentRecipes(request);
+        return data;
+    }
+	//ë§ˆì´í˜ì´ì§€ í˜ì´ì§€ ì´ë™
 	/*@GetMapping("gofriendrecipe")
 	public ModelAndView goFriendRecipe(HttpSession session) {
 		
@@ -102,8 +116,8 @@ public class MembershipController {
 		//Member member1 = memberRegisterService.readMyInfo(email); 
 		ModelAndView mv = new ModelAndView("member/mypage", "followlist", followlist);
 		
-		log.info("######¸¶ÀÌÆäÀÌÁö ÀÌµ¿get member1: "+followlist);
-		log.info("######¸¶ÀÌÆäÀÌÁö ÀÌµ¿get mv: "+mv);
+		log.info("######ë§ˆì´í˜ì´ì§€ ì´ë™get member1: "+followlist);
+		log.info("######ë§ˆì´í˜ì´ì§€ ì´ë™get mv: "+mv);
 		
 		return mv;
 	}*/

@@ -48,39 +48,43 @@ public class MemberController {
 		return "member/register"; //view의 member 폴더속 register.jsp
 	}
 
-	//회원가입시 이메일 중복검사 ajax 문구 띄움
-	@PostMapping("/register/emailvalidcheck")
-	@ResponseBody
-	public String emailValidCheck(String email){
-		log.info("#1_이메일 중복체크 진입 & 입력한 email:"+ email);
-		int result = memberRegisterService.checkEmail(email);
-		log.info("#2_이메일 result: "+ result);
-		log.info("#3_이메일 길이 email.length(): "+ email.length());
-		if(email.length()==0 || 0<email.length() && email.length()<10) {
-			return "noshow";			
-		} else if(result == 0) { 
-			return "success";
-		} else { 
-			return "fail";
-		}
-	}
-	
-	//회원가입시 닉네임 중복검사 ajax 문구 띄움
-	@PostMapping("/register/nicknamevalidcheck")
-	@ResponseBody
-	public String nicknameValidCheck(String nickname){
-		log.info("#1_닉네임 중복체크 진입 & nickname:"+ nickname);
-		int result = memberRegisterService.checkNickname(nickname);
-		log.info("#2_닉네임 중복체크 result: "+ result);
-		log.info("#3_닉네임 길이 nickname.length(): "+ nickname.length());
-		if( 0<nickname.length() && nickname.length()<3 ) {
-			return "noshow";			
-		} else if(result == 0) { 
-			return "success";
-		} else { 
-			return "fail";
-		}
-	}
+    //회원가입시 이메일 중복검사 ajax 문구 띄움
+    @PostMapping("/register/emailvalidcheck")
+    @ResponseBody
+    public String emailValidCheck(String email){
+        //log.info("#1_이메일 중복체크 진입 & 입력한 email:"+ email);
+        int result = memberRegisterService.checkEmail(email);
+        //log.info("#2_이메일 result: "+ result);
+        //log.info("#3_이메일 길이 email.length(): "+ email.length());
+        if( email.length()==0 ) {
+            return "noshow";            
+        } else if( email.length()!=0 && 0<email.length() && email.length()<10 ) {
+            return "short";            
+        } else if(result == 0) { 
+            return "success";
+        } else { 
+            return "fail";
+        }
+    }
+    
+    //회원가입시 닉네임 중복검사 ajax 문구 띄움
+    @PostMapping("/register/nicknamevalidcheck")
+    @ResponseBody
+    public String nicknameValidCheck(String nickname){
+        //log.info("#1_닉네임 중복체크 진입 & nickname:"+ nickname);
+        int result = memberRegisterService.checkNickname(nickname);
+        //log.info("#2_닉네임 중복체크 result: "+ result);
+        //log.info("#3_닉네임 길이 nickname.length(): "+ nickname.length());
+        if( nickname.length() == 0 ) {
+            return "noshow";            
+        } else if( nickname.length() != 0 && 0<nickname.length() && nickname.length()<3 ) {
+            return "short";            
+        } else if(result == 0) { 
+            return "success";
+        } else { 
+            return "fail";
+        }
+    }
 	
 	//회원가입 약관 팝업창 1,2
 	@GetMapping("/agreement1")
@@ -113,7 +117,6 @@ public class MemberController {
 		} else {
 			return "redirect:/";
 		}
-		
 	}
 
 	//로그인 post
@@ -177,20 +180,20 @@ public class MemberController {
 	public String nicknameValidCheck(String nickname, HttpServletRequest req){
 		HttpSession session = req.getSession();
 		int result = memberRegisterService.checkNickname(nickname);
-		log.info("#3_닉네임 중복체크 result: "+ result);
-		log.info("#4_닉네임 길이 checkNickname.length() : "+ nickname.length());
-		log.info("#5_세션 정보 session.getAttribute(\"nickname\") : " + session.getAttribute("nickname")); 
+		//log.info("#3_닉네임 중복체크 result: "+ result);
+		//log.info("#4_닉네임 길이 checkNickname.length() : "+ nickname.length());
+		//log.info("#5_세션 정보 session.getAttribute(\"nickname\") : " + session.getAttribute("nickname")); 
 		
-		if(nickname.length()<3) {
-			log.info("#닉네임 길이가 3자 미만일 때: return noshow");
-			return "noshow";			
+		if( nickname.length() == 0 ) {
+            return "noshow";            
+        } else if( nickname.length()<3 ) {
+			return "short";			
 		} else if(result == 0) { 
-			log.info("#닉네임 중복 없을 때 성공: return success");
 			return "success";
 		} else { 
-			log.info("#다른 닉네임과 이미 중복일 때: return fail");
 			return "fail";
 		}
+		
 	}
 
 	//내정보 수정 post
@@ -258,7 +261,7 @@ public class MemberController {
 		}
 	}  
       
-	//내정보수정 - 현재 나의 프로필사진만 삭제
+	//내정보수정 - 현재 나의 프로필 사진만 삭제
 	@ResponseBody //주석처리시 return ""의 jsp를 찾아서 리턴
 	@GetMapping("/removemyprofileimg")
 	public String removeMyProfileImg(@RequestParam String profileImg, HttpSession session) { 

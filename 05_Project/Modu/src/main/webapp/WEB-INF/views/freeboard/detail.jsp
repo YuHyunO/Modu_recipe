@@ -310,6 +310,8 @@
 														</div>
 													</div>
 											</c:forEach>
+											<textarea name='sessionNickname' id='sessionNickname'  style='display:none;'>${sessionScope.MNickname}</textarea>
+											<textarea name='sessionProfile' style='display:none;'>${sessionScope.profileImg}</textarea>
 									<!-- end reply -->
 								</div>
 								<!-- end reply-list -->

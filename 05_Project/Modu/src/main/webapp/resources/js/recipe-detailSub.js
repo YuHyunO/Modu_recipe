@@ -24,7 +24,7 @@ function clickScrap(e){
     			}
     		},
     		error: function (response) {
-    			console.log("서버와 통신에 실패하였습니다.")
+    			console.log("서버와의 통신에 실패하였습니다.")
     		}
     	});
     } else { // 스크랩 해제
@@ -46,7 +46,7 @@ function clickScrap(e){
     			}
     		},
     		error: function (response) {
-    			console.log("서버와 통신에 실패하였습니다.")
+    			console.log("서버와의 통신에 실패하였습니다.")
     		}
     	}); 
     }
@@ -91,7 +91,7 @@ function clickSubscribe(e){
     		success: function (response) {
     			userEmail = response.user;
     			if (userEmail === undefined){
-    				console.log("로그인 정보가 없습니다.");
+    				console.log("친구 추가 및 해제는 로그인 후 가능합니다.");
     	        	alert(response.error);
     			} else {
     				$(e).removeClass('subscribe-btn');
@@ -101,7 +101,7 @@ function clickSubscribe(e){
     			}
     		},
     		error: function (response) {
-    			console.log("서버와 통신에 실패하였습니다.")
+    			console.log("서버와의 통신에 실패하였습니다.")
     		}
     	});
     } else { // 친구추가 취소(팔로우 취소)
@@ -115,7 +115,7 @@ function clickSubscribe(e){
     		success: function (response) {
     			userEmail = response.user;
     			if (userEmail === undefined){
-    				console.log("로그인 정보가 없습니다.");
+    				console.log("친구 추가 및 해제는 로그인 후 가능합니다.");
     	        	alert(response.error);
     			} else {
     				$(e).removeClass('subscribe-btn-clicked');
@@ -125,7 +125,7 @@ function clickSubscribe(e){
     			}
     		},
     		error: function (response) {
-    			console.log("서버와 통신에 실패하였습니다.")
+    			console.log("서버와의 통신에 실패하였습니다.")
     		}
     	});
     }
@@ -136,6 +136,7 @@ $(function(){
 	let userEmail; // 이메일 정보
 	let formData = new FormData();
 	formData.append("targetEmail", targetEmail);
+	
 	$.ajax({
 		url: "/recipe/follow/check.json",
 		type: "POST",
