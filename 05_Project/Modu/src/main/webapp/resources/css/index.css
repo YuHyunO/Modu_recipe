@@ -1,28 +1,27 @@
-/* ���ο��� ������ ���� */
 .main-container {
     max-width: 1400px;
 }
 
-/*������*/
+/*占쏙옙占쏙옙占쏙옙*/
 @font-face {
-  font-family: "Montserrat"; /* ����ϰ� ���� font-family���� ���� */
-  src: url("../css/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("opentype"); /* ��Ʈ���� �ҷ����� */
+  font-family: "Montserrat"; /* 占쏙옙占쏙옙構占� 占쏙옙占쏙옙 font-family占쏙옙占쏙옙 占쏙옙占쏙옙 */
+  src: url("../css/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("opentype"); /* 占쏙옙트占쏙옙占쏙옙 占쌀뤄옙占쏙옙占쏙옙 */
 }
 
-/*������*/
+/*占쏙옙占쏙옙占쏙옙*/
 @font-face {
-  font-family: "Fasthand-Regular"; /* ����ϰ� ���� font-family���� ���� */
-  src: url("../css/fonts/Fasthand-Regular.ttf") format("opentype"); /* ��Ʈ���� �ҷ����� */
-}
-
-@font-face {
-  font-family: "SongMyung-Regular"; /* ����ϰ� ���� font-family���� ���� */
-  src: url("../css/fonts/SongMyung-Regular.ttf") format("opentype"); /* ��Ʈ���� �ҷ����� */
+  font-family: "Fasthand-Regular"; /* 占쏙옙占쏙옙構占� 占쏙옙占쏙옙 font-family占쏙옙占쏙옙 占쏙옙占쏙옙 */
+  src: url("../css/fonts/Fasthand-Regular.ttf") format("opentype"); /* 占쏙옙트占쏙옙占쏙옙 占쌀뤄옙占쏙옙占쏙옙 */
 }
 
 @font-face {
-  font-family: "NotoSerifKR-Medium"; /* ����ϰ� ���� font-family���� ���� */
-  src: url("../css/fonts/NotoSerifKR-Medium.otf") format("opentype"); /* ��Ʈ���� �ҷ����� */
+  font-family: "SongMyung-Regular"; /* 占쏙옙占쏙옙構占� 占쏙옙占쏙옙 font-family占쏙옙占쏙옙 占쏙옙占쏙옙 */
+  src: url("../css/fonts/SongMyung-Regular.ttf") format("opentype"); /* 占쏙옙트占쏙옙占쏙옙 占쌀뤄옙占쏙옙占쏙옙 */
+}
+
+@font-face {
+  font-family: "NotoSerifKR-Medium"; /* 占쏙옙占쏙옙構占� 占쏙옙占쏙옙 font-family占쏙옙占쏙옙 占쏙옙占쏙옙 */
+  src: url("../css/fonts/NotoSerifKR-Medium.otf") format("opentype"); /* 占쏙옙트占쏙옙占쏙옙 占쌀뤄옙占쏙옙占쏙옙 */
 }
 
 .mention {
@@ -33,7 +32,6 @@
     justify-content:center;
 	text-align: center;
 	font-family: 'Fasthand-Regular', sans-serif !important;
-	/* font-family: 'Fasthand-Regular', sans-serif !important; */
 	font-size:100px bolder;
 }
 
@@ -48,15 +46,20 @@
     justify-content:center;
 	text-align: center;
 }
-/* ����Ʈ ������ Ÿ��Ʋ �۾�ü ���� */
+
 .recipe-title a {
 	font-family: 'NotoSerifKR-Medium', sans-serif !important;
-	font-size:17px;
+	font-size:15px;
 	width: auto;
     text-decoration: none;
 }
 
-/* ���� ��ŷ */
+.recipe-thumb {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+}
+
 .chef-pic {
     border-radius: 50%;
     width: 70%;
@@ -80,7 +83,7 @@
     width: 20%;
 }
 
-/* ��Ÿ */
+/* 占쏙옙타 */
 .btn-more {
      color: black;
      text-decoration: none;

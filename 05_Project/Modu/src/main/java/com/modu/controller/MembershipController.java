@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,23 +31,9 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("mypage")
 public class MembershipController {
 
-	private MemberRegisterService memberRegisterService;
-	private FileUploadService filuploadservice; //by @AllArgsConstructor
 	private MembershipService membershipService;
 	private RecipeSearchService recipeSearchService;
 	private RecipeFindingService recipeFindingService;
-	/*
-	//마이페이지 페이지 이동(MemberController.java 에 있는 메소드 가져옴)
-	@GetMapping("mypage")
-	public ModelAndView goMypage(HttpSession session) {
-		String email = (String)session.getAttribute("email");
-		Member member1 = memberRegisterService.readMyInfo(email); 
-		ModelAndView mv = new ModelAndView("member/mypage", "member", member1); 
-		log.info("######마이페이지 이동get member1: "+member1);
-		log.info("######마이페이지 이동get mv: "+mv);
-		return mv;
-	}
-	*/
 	
     @GetMapping("/main")
     public ModelAndView myPage(HttpServletRequest request, HttpSession session) {    
@@ -90,7 +78,29 @@ public class MembershipController {
         FollowListVo data = membershipService.getFollowList(request, session);      
         return data;
     }
-		
+
+    @PostMapping("/unfollow")
+    public String removeFollow(@RequestParam("id") int id, HttpServletRequest request, HttpSession session) {
+                
+        membershipService.removeMyFollow(id);      
+        return "success";
+    }
+/*
+    //ȸ�� Ż��         
+    @PostMapping("/removemyinfo")
+    public String removeMyinfo(@RequestParam("email") String email, HttpSession session, HttpServletRequest req) { //req �ʿ�
+        Member member = memberRegisterService.readMyInfo(email);    
+        if(member.getEmail().equals((String)session.getAttribute("email"))) {
+            memberRegisterService.removeMyInfo(email);
+            session.invalidate(); //���� �����ϰ� �ִ� ������ ��ȿȭ
+            req.getSession(true); //���ο� ������ ���� �غ� true
+            return "redirect:/";
+        } else {
+            return "redirect:/";
+        }
+    }
+    */
+    
     @GetMapping("/recent-recipe")
     public @ResponseBody List<RecipeList> callRecentRecipe(HttpServletRequest request){
         List<RecipeList> data = recipeFindingService.findRecentRecipes(request);

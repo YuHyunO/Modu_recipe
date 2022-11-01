@@ -55,7 +55,22 @@ $(document).ready(function () {
 									url : "/member/modify-myinfo/nicknamevalidcheck",
 									data : data,
 									success : function(result) {
-										if (result == 'noshow') { // 닉네임 3자 미만시 
+										if (result == 'noshow') { // 닉네임 공란일시 
+											console.log(result);
+											
+											$('.nickname_ajax_1')
+													.css("display",
+															"none");
+											$('.nickname_ajax_2')
+													.css("display",
+															"none");
+											$('.nickname_ajax_3')
+													.css("display",
+															"none");
+											$('.nickname_ajax_4')
+													.css("display",
+															"none");
+										} else if (result == 'short') { // 닉네임 3자 미만시 
 											console.log(result);
 											$('.nickname_ajax_1')
 													.css("display",
@@ -84,7 +99,7 @@ $(document).ready(function () {
 													.css("display",
 															"none");
 										} else if (inputNickname === "${member.nickname}") { //아래 else if (result == 'fail')와 순서 바뀌면 안됨, 기존 내 닉네임과 동일할 때
-											console.log("원래 나의 닉네임(변경사항 없음)");
+											console.log("(변경사항 없음) 원래 나의 닉네임");
 											$('.nickname_ajax_1')
 													.css("display",
 															"none");
@@ -163,12 +178,8 @@ $(document).ready(function() { //현재 페이지 들어오면 항상 수행
 							let nickCheckok4 = $(
 									'.nickname_ajax_4')
 									.css('display');
-							console.log($(
-									'.nickname_ajax_1')
-									.css('display')); //닉네임 중복여부 알려줌: inline-block(사용가능), none(사용불가)
-							console.log($(
-									'.nickname_ajax_4')
-									.css('display')); //변경사항이 없습니다.(변경없음)
+							console.log(nickCheckok1); //닉네임 중복여부 알려줌: inline-block(사용가능), none(사용불가)
+							console.log(nickCheckok4); //변경사항이 없습니다.(변경없음)
 							var value = $(
 									"input[type=radio][name=marketing]:checked")
 									.val();
@@ -180,7 +191,7 @@ $(document).ready(function() { //현재 페이지 들어오면 항상 수행
 									|| nickCheckok1 === 'none'
 									&& nickCheckok2 === 'none'
 									&& nickCheckok3 === 'none'
-									&& nickCheckok3 === 'none') { // 닉네임 사용 가능할 때
+									&& nickCheckok4 === 'none') { // 닉네임 사용 가능할 때
 								//여기서부턴 하나라도 공란일시 alert 됨        
 								if ($("#id_pwd1").val() == ""
 										|| $("#id_pwd2")
@@ -202,6 +213,7 @@ $(document).ready(function() { //현재 페이지 들어오면 항상 수행
 								}
 							} else { //닉네임 중복시 수정불가
 								console.log('닉네임 중복으로 수정불가-아무 동작 없음');
+								alert("사용할 수 없는 닉네임입니다.");
 							}
 						}); //$("#modifyOkBtn").on("click", function()  종료
 				}); //$(document).ready(function(){} 종료

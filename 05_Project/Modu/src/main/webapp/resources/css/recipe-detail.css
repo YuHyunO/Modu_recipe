@@ -4,7 +4,7 @@ a {
 }
 
 #main-content {
-    display: flex;
+     display: flex;
     justify-content: flex-end;
 }
 
@@ -39,6 +39,44 @@ a {
 
 .recipe-person {
     background: url("/imgs/person.svg") center no-repeat;
+}
+
+.recipe-content img, .entry-content img {
+    max-width: 100%;
+    object-fit: fill;
+}
+
+.recipe-thumb {
+    width: 100%;
+    /* height: 130px; */
+    object-fit: cover;
+}
+
+li,
+.recipeinfo,
+.step-main {
+	font-family: 'NotoSerifKR-Medium', sans-serif !important;
+	font-size:15px;
+	width: auto;
+    text-decoration: none;
+}
+
+.recommend-recipe-thumb {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.recipe-auth img {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+}
+
+.recipe-auth span {
+    font-size: 16px;
+    font-style: italic;
+    margin-left: 10px;
 }
 
 .subscribe-btn {
@@ -133,7 +171,7 @@ a {
     max-width: 50px !important;
 }
 
-/* ÃßÃµ ·¹½ÃÇÇ Ä«µå */
+/* ï¿½ï¿½Ãµ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½ */
 .recipe-title {
 	height: 50px !important;
 }
@@ -150,7 +188,7 @@ a {
 	width: auto !important;
 }
 
-/* ÃÖ±Ù º» °Ô½Ã¹° */
+/* ï¿½Ö±ï¿½ ï¿½ï¿½ ï¿½Ô½Ã¹ï¿½ */
 .widget-title {
 	font-size: 1rem !important;
 	font-weight: 600 !important;
@@ -382,7 +420,7 @@ img {
     
   
 /*
-´õº¸±â¼û±â±â
+ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 .comment{
 	display:none;
 }

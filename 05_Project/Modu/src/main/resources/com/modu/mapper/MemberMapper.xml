@@ -63,7 +63,7 @@
 		select POINT from MEMBER where EMAIL=#{email}
 	</select>
 	
-	<!-- 마이페이지 탭5 - 친구관리 -->
+	<!-- 레시피 상세페이지 - 친구 추가, 친구 삭제 -->
 	<insert id="insertFollow">
 		insert into FOLLOW values(FOLLOW_SEQ.nextval,
 									#{email},
@@ -73,10 +73,8 @@
 	<delete id="deleteFollow" parameterType="String">
 		delete follow where M_EMAIL=#{email} and FOLLOWEE=#{followee}
 	</delete>
-	<delete id="deleteFollower" parameterType="long">
-		delete from FOLLOW where ID=#{id}
-	</delete>
 	
+	<!-- 마이페이지 탭5 - 친구관리 -->
 	<select id="selectFollowing" resultType="FollowList">
 		select * from(select ROWNUM list,
 							 f.ID ID,
@@ -107,7 +105,10 @@
 	<select id="selectFollowerCount" parameterType="String" resultType="int">
 		select NVL(MAX(ROWNUM), 0) from FOLLOW where FOLLOWEE=#{email}
 	</select>
-
+	<delete id="deleteMyFollow" parameterType="int">
+		delete from FOLLOW where ID=#{id}
+	</delete>
+	
 	<!-- 테스트용 -->
 	<select id="selectEmails" parameterType="int"
 		resultType="String">

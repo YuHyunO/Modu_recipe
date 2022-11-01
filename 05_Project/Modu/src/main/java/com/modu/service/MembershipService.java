@@ -1,3 +1,4 @@
+
 package com.modu.service;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface MembershipService {
     FollowListVo getFollowList(HttpServletRequest request, HttpSession session);
     String scrapService(long rId, String email, int mode);
     String followService(String targetEmail, String email, int mode);
+
+    void removeMyFollow(int id);
 }

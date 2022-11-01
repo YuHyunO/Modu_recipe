@@ -278,7 +278,7 @@ public class RecipeController {
         String result;
 
         if (email == null) {
-            map.put("error", "친구추가는 로그인 후 이용하실 수 있습니다.");
+            map.put("error", "친구 추가는 로그인 후 이용하실 수 있습니다.");
             return map;
         } else {
             msg = membershipService.followService(targetEmail, email, 1);

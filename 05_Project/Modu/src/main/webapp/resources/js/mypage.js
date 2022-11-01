@@ -114,9 +114,9 @@ function displayRecommened(response){
 	console.log("##recipeList[0].m_nickname: "+recipeList[0].m_nickname);
 	console.log("##recipeList[0].m_email: "+recipeList[0].m_email);
 	for(let item of recipeList){
-		html += '<div id="recipe-item" class="col-6 col-md-3">';
-		html += '<div class="recipe-thumb">';
-		html += '<img id="recommendrecipeimg" src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipe_mainImage">';
+		html += '<div class="col-6 col-md-3">';
+		html += '<div>';
+		html += '<img class="recipe-thumb" src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipe_mainImage">';
 		html += '</div>';
 		html += '<div class="recipe-desc">';
 		html += '<h2 class="recipe-title">';
@@ -124,7 +124,7 @@ function displayRecommened(response){
 		html += '</h2>';
 		html += '<figure class="profile">';
 		html += '<img class="profile-img" src="/pics/profile/'+item.profileImg+'" alt="작성자">';
-		html += '<span><em>&nbsp;'+item.mNickname+'</em></span>';
+		html += '<span><em>&nbsp;'+item.mnickname+'</em></span>';
 		html += '</figure>';
 		html += '<div class="recipe-icons d-flex justify-content-between">';
 		html += '<span class="d-flex align-items-center">';
@@ -150,17 +150,17 @@ function displayMyRecipe(response){
 	let html = "";
 	console.log("##mode: "+mode);
 	for(let item of recipeList){
-		html += '<div id="recipe-item" class="col-6 col-md-3">';
+		html += '<div class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
-		html += '<img src="/imgs/content/thumb-1.png" alt="/imgs/content/thumb-1.png">';
+		html += '<img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipe_mainImage">';
 		html += '</div>';
 		html += '<div class="recipe-desc">';
 		html += '<h2 class="recipe-title">';
-		html += '<a href="'+item.id+'">'+item.title+'</a>';
+		html += '<a href="../recipe/detail?no='+item.id+'" target="_blank">'+item.title+'</a>';
 		html += '</h2>';
 		html += '<figure class="profile">';
-		html += '<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">';
-		html += '<span><em>&nbsp;'+item.nickname+'</em></span>';
+		html += '<img class="profile-img" src="/pics/profile/'+item.profileImg+'" alt="작성자">';
+		html += '<span><em>&nbsp;'+item.mnickname+'</em></span>';
 		html += '</figure>';
 		html += '<div class="recipe-icons d-flex justify-content-between">';
 		html += '<span class="d-flex align-items-center">';
@@ -168,7 +168,7 @@ function displayMyRecipe(response){
 		html += '<span class="p-1 mt-1">'+item.star+'('+item.stars+')</span>';
 		html += '</span>';
 		html += '<span class="d-flex align-items-center">';
-		html += '<span class="p-1 mt-1">조회 '+item.hits+'</span>';
+		html += '<span class="p-1 mt-1">조회수 '+item.hits+'</span>';
 		html += '</span>';
 		html += '</div>';
 		html += '</div>';
@@ -196,8 +196,8 @@ function displayBookmark(response){
 		html += '<a href="'+item.id+'">'+item.title+'</a>';
 		html += '</h2>';
 		html += '<figure class="profile">';
-		html += '<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">';
-		html += '<span><em>&nbsp;'+item.nickname+'</em></span>';
+		html += '<img class="profile-img" src="/pics/profile/'+item.profileImg+'" alt="작성자">';
+		html += '<span><em>&nbsp;'+item.mnickname+'</em></span>';
 		html += '</figure>';
 		html += '<div class="recipe-icons d-flex justify-content-between">';
 		html += '<span class="d-flex align-items-center">';
@@ -230,16 +230,16 @@ function displayFollow(response){
 		//console.log("##item:"+item); //##item:[object Object]
 		html += '<div class="col-md-3">';
 		html += '<div class="team-col">';
-		html += '<input type="hidden" value="'+item.id+'">';
+		html += '<input type="hidden" id="followId" value="'+item.id+'">';
 		html += '<figure>';
 		html += '<img class="friendProfileimg" src="/pics/profile/'+item.profileImg+'" alt="파일없음"> ';
 		html += '</figure>';
 		html += '<p class="team-name">'+item.nickname+'</p>';
-		html += '<large class="team-tag">'+item.email+'</large>';
+		html += '<small class="team-tag" style="text-transform: none;">'+item.email+'</small>';
 		html += '<small class="team-tag">'+item.followDate+'부터 친구중</small>';
 		html += '<div class="handlemyfriend">';
-		html += '<button class="handlemyfriendBtn" onclick="../gofriendrecipe?id='+item.id+'">레시피 보기</button>&nbsp;';
-		html += '<button class="handlemyfriendBtn" onclick="../deletefriend?id='+item.id+'">구독 끊기</button>';
+		html += '<button class="handlemyfriendBtn" onclick="../gofriendrecipe?id='+item.email+'">레시피 보기</button>&nbsp;';
+		html += '<button class="handlemyfriendBtn" onclick="removeFollow(this);">구독 끊기</button>'; //onclick="../deletefriend?id='+item.id+'"
 		html += '</div>';
 		html += '</div>';
 		html += '</div>';

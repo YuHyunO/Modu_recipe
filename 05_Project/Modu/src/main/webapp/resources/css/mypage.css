@@ -1,3 +1,8 @@
+a {
+	width: auto;
+    text-decoration: none;
+}
+
 .profile-details {
 	    background-color: rgba(147, 112, 98, 0.2);
 	    color: #666;
@@ -15,10 +20,6 @@
 
 #recommendrecipeimg {
 	max-width: 100%;
-}
-a {
-	width: auto;
-    text-decoration: none;
 }
 
 #mypage_profileimg, #mypage_defaultimg {
@@ -46,6 +47,18 @@ a {
 	text-align: center;
 }
 
+.rounded-3 category-pic {
+	max-width: 70%;
+}
+
+/*留덉씠�럹�씠吏� �꺆1 - �빞梨� �빐�궛臾쇰쪟 �궗吏� �겕湲� */
+.site-content img {
+    max-width: 100%;
+}
+
+.recipe-thumb {
+    max-width: 100%;
+}
 
 #finalIngredient {
 	background-color: rgba(147, 112, 98, 0.2);
@@ -96,6 +109,7 @@ a {
 .category-pic {
 	border-radius: 10px !important;
 	max-height: 230px;
+	max-width: 80%;
 }
 
 @media ( max-width :454px) {
@@ -178,6 +192,19 @@ a {
 	box-shadow: 0 0 0 .2rem rgba(147, 112, 98, 0.25);
 }
 
+/*�꺆4 - �굹�쓽 �젅�떆�뵾 以� �젣紐� 留먭퀬 �젅�떆�뵾 �꽕紐� 遺�遺� */
+.recipe-info {
+	font-family: 'NotoSerifKR-Medium', sans-serif !important;
+	font-size:14px;
+	width: auto;
+    text-decoration: none;
+}
+
+.myPost_thumbnail img {
+	max-width: 100%;
+}
+
+/* �꺆5 - 移쒓뎄愿�由� */
 .handlemyfriendBtn {
 	font-size: 13px;
 	margin: auto 0;
@@ -244,14 +271,15 @@ a {
 }
 
 .team-tag {
-	font-size: 15px;
+	font-size: 14px;
 	text-transform: uppercase;
 	color: #999;
 	margin-bottom: 5px;
 	display: block;
 }
 
-/*친구 프로필 사진 크기 조절*/
-.site-content img {
-    max-width: 70%;
+/*移쒓뎄 �봽濡쒗븘 �궗吏� �겕湲� */
+.friendProfileimg {
+    max-width: 150px;
+    max-height: 150px;
 }

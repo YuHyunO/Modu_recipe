@@ -48,8 +48,7 @@
 										test="${ member.profileImg!='default_profile_img.png' && member.profileImg!=null}">
 											<img 
 											src="/pics/profile/${ member.profileImg }"
-											id="mypage_profileimg"
-											alt="프로필사진"/>
+											id="mypage_profileimg" alt="mypage_profileimg"/>
 											<%-- 주소 불안정(인식 못할 대 있음 src="<spring:url value='/pics/profile/${ member.profileImg }'/>" --%>
 									</c:if>
 								</div><br/>
@@ -96,11 +95,11 @@
 										
 									<li class="nav-item"><a class="nav-link tab-menu"
 										id="bookmark-tab" data-toggle="tab" href="#bookmark" onclick="setUrl(this)"
-										role="tab" aria-controls="bookmark" aria-selected="false">북마크한 레시피</a></li>
+										role="tab" aria-controls="bookmark" aria-selected="false">북마크 레시피</a></li>
 											
 									<li class="nav-item"><a class="nav-link tab-menu"
 										id="mypost-tab" data-toggle="tab" href="#mypost" onclick="setUrl(this)" 
-										role="tab" aria-controls="mypost" aria-selected="false">내 게시글</a></li>
+										role="tab" aria-controls="mypost" aria-selected="false">나의 게시글/댓글</a></li>
 										
 									<li class="nav-item"><a class="nav-link tab-menu"
 										id="myfriend-tab" data-toggle="tab" href="#myfriend" onclick="setUrl(this)"
@@ -113,7 +112,7 @@
 									<!-- 탭1 시작(냉장고 비우기)-->
 									<div class="tab-pane fade show active" id="ingredient"
 										role="tabpanel" aria-labelledby="ingredient-tab">
-										<div id="tab1-content" class="site-content pb-3">
+										<div id="tab1-content" class="pb-3"><!-- class명에서 site-content 지움 -->
 											<h4 class="archive-title text-center">냉장고 속 재료를 조합하여
 												요리해보기</h4>
 											<div class="backbox rounded-3 text-center py-3">
@@ -258,7 +257,7 @@
 											<div class="rounded-3" id="finalIngredient">
 												<span>최종 선택된 재료 :</span> <span id='result'></span>
 											</div>
-											<br /> <br />
+											<br><br>
 
 											<!--레시피 검색 버튼-->
 											<div class="text-center">
@@ -266,8 +265,7 @@
 													onclick="location.reload()">다시 선택</button>
 													<!-- 추후 reload 없이 초기화 기능 구현할 것 -->											
 											</div>
-											<br/><br/>
-											
+											<br><br>
 											<div id="recipe-list-1" class="row">
 											</div>					
 																												
@@ -284,8 +282,7 @@
 										aria-labelledby="article-tab">
 										<div id="tab2-content" class="site-content">
 											<h3 class="archive-title text-center">나의 레시피</h3>
-											<br />
-
+											<br>
 											<!--공개/비공개버튼 2개-->
 											<div class="text-end pb-3">
 											  <!--<button class="btn gold-btn me-3 p-2" id="openBtn" type="button">
@@ -298,13 +295,10 @@
 													<option value="2">임시저장 레시피</option>
 												</select>
 											</div>
-											<br/><br/>
-											
-											<div id="recipe-list-2" class="row">
-											</div>																	
-											
-											<div id="paging-area-2" class="page common-area">
-											</div>												
+											<br><br>
+										
+											<div id="recipe-list-2" class="row"></div>																	
+											<div id="paging-area-2" class="page common-area"></div>												
 												<!-- end col -->
 											<!-- end Page -->
 										</div>
@@ -316,8 +310,8 @@
 									<div class="tab-pane fade" id="bookmark" role="tabpane3"
 										aria-labelledby="bookmark-tab">
 										<div id="tab3-content" class="site-content">
-											<h3 class="archive-title text-center">북마크 한 레시피</h3>
-											<br />
+											<h3 class="archive-title text-center">북마크 레시피</h3>
+											<br>
 
 											<div id="recipe-list-3" class="row">
 											</div>					
@@ -335,7 +329,7 @@
 
 										<div id="tab4-content" class="site-content">
 											<h3 class="archive-title text-center">나의 게시글</h3>
-											<br />
+											<br>
 											<div class="article-cover">
 												<div class="article-list">
 													<!--첫번째 레시피 시작 -->
@@ -357,7 +351,7 @@
 															<h4>
 																<a href="#" target="_blank">훈제연어야채샐러드</a>
 															</h4>
-															<span>훈제연어의 훈연한 그 맛은 감칠맛이 나서 잘 맞는 드레싱만 얹어주면 인기만점의
+															<span class="recipe-info">훈제연어의 훈연한 그 맛은 감칠맛이 나서 잘 맞는 드레싱만 얹어주면 인기만점의
 																샐러드예요. 야채를 듬뿍 곁들여 건강하게 준비한 훈제연어 샐러드 소개합니다.</span> <a href="#"
 																class="readmore" target="_blank"><em>더보기</em></a>
 														</div>
@@ -386,7 +380,7 @@
 															<h4>
 																<a href="#" target="_blank">훈제연어야채샐러드</a>
 															</h4>
-															<span>훈제연어의 훈연한 그 맛은 감칠맛이 나서 잘 맞는 드레싱만 얹어주면 인기만점의
+															<span class="recipe-info">훈제연어의 훈연한 그 맛은 감칠맛이 나서 잘 맞는 드레싱만 얹어주면 인기만점의
 																샐러드예요. 야채를 듬뿍 곁들여 건강하게 준비한 훈제연어 샐러드 소개합니다.</span> <a href="#"
 																class="readmore" target="_blank"><em>더보기</em></a>
 														</div>
@@ -416,7 +410,7 @@
 															<h4>
 																<a href="#">삼겹살간장조림</a>
 															</h4>
-															<span> 삼겹살을 아이들과는 구우면서 먹을수가 없.어.요.......​ 그래서 아이들과
+															<span class="recipe-info"> 삼겹살을 아이들과는 구우면서 먹을수가 없.어.요.......​ 그래서 아이들과
 																먹을땐 간장양념에 조림으로 해서 먹는답니다^^​ 네이버메인에도 올랐던 레시피 보여드릴게요. </span> <a
 																href="#" class="readmore"><em>더보기</em></a>
 														</div>
@@ -445,7 +439,129 @@
 															<h4>
 																<a href="#">나시고랭</a>
 															</h4>
-															<span>나시고랭은 인도네이사식 볶음밥으로 우리나라 볶음밥과 거의 비슷합니다 저는 아이들
+															<span class="recipe-info">나시고랭은 인도네이사식 볶음밥으로 우리나라 볶음밥과 거의 비슷합니다 저는 아이들
+																볶음밥에 피시소스나 굴 소스를 가끔 넣는데 나시고랭도 마찬가지예요~ 숙주가 들어가서 아삭한 식감과
+																계란을 스크램블 한 맛이 아주 좋답니다 볶음밥 보다 약간은 특별한 나시고랭 어렵지 않아요^^</span> <a
+																href="#" class="readmore"><em>더보기</em></a>
+														</div>
+													</div>
+													<!--end row-->
+												</div>
+												<!--end article-list -->
+											</div>
+											<!-- end article-cover -->
+
+											<div class="page mt-5">
+												<nav aria-label="Page navigation">
+													<ul class="pagination justify-content-center">
+														<li class="page-item"><a
+															class="page-link page-previous" href="#">＜</a></li>
+														<li class="page-item"><a
+															class="page-link active page-number"
+															href="javascript:void(0);" onclick="activePage(this)">1</a></li>
+														<li class="page-item"><a
+															class="page-link page-number" href="javascript:void(0);"
+															onclick="activePage(this)">2</a></li>
+														<li class="page-item"><a
+															class="page-link page-number" href="javascript:void(0);"
+															onclick="activePage(this)">3</a></li>
+														<li class="page-item"><a
+															class="page-link page-number" href="javascript:void(0);"
+															onclick="activePage(this)">4</a></li>
+														<li class="page-item"><a
+															class="page-link page-number" href="javascript:void(0);"
+															onclick="activePage(this)">5</a></li>
+														<li class="page-item"><a class="page-link page-next"
+															href="#">＞</a></li>
+													</ul>
+												</nav>
+											</div>
+											<!-- end Page -->			
+											<br><br>
+
+											<h3 class="archive-title text-center">나의 댓글</h3>
+											<br>
+											<div class="article-cover">
+												<div class="article-list">
+													<!--두번째 레시피 시작 -->
+													<div class="row">
+														<div class="col-md-1">
+															<div class="entry-date">
+																<time class="published" datetime="2019-12-22"
+																	title="postdate">
+																	Dec<span class="date">22</span>2019
+																</time>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<figure>
+																<img src="/imgs/content/list-01.png" alt="" />
+															</figure>
+														</div>
+														<div class="col-md-7">
+															<h4>
+																<a href="#" target="_blank">훈제연어야채샐러드</a>
+															</h4>
+															<span class="recipe-info">훈제연어의 훈연한 그 맛은 감칠맛이 나서 잘 맞는 드레싱만 얹어주면 인기만점의
+																샐러드예요. 야채를 듬뿍 곁들여 건강하게 준비한 훈제연어 샐러드 소개합니다.</span> <a href="#"
+																class="readmore" target="_blank"><em>더보기</em></a>
+														</div>
+													</div>
+													<!--end row-->
+												</div>
+												<!-- end class="article-list", 두번째 레시피 종료 -->
+
+												<div class="article-list">
+													<!--세번째 레시피 시작-->
+													<div class="row">
+														<div class="col-md-1">
+															<div class="entry-date">
+																<time class="published" datetime="2019-12-22"
+																	title="December 22, 2019 - 21:12 pm">
+																	July<span class="date">22</span>2019
+																</time>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<figure>
+																<img src="/imgs/content/list-03.png" alt="" />
+															</figure>
+														</div>
+
+														<div class="col-md-7">
+															<h4>
+																<a href="#">삼겹살간장조림</a>
+															</h4>
+															<span class="recipe-info"> 삼겹살을 아이들과는 구우면서 먹을수가 없.어.요.......​ 그래서 아이들과
+																먹을땐 간장양념에 조림으로 해서 먹는답니다^^​ 네이버메인에도 올랐던 레시피 보여드릴게요. </span> <a
+																href="#" class="readmore"><em>더보기</em></a>
+														</div>
+													</div>
+													<!--end row-->
+												</div>
+												<!--end class="article-list", 세번째 레시피 종료 -->
+
+												<div class="article-list">
+													<div class="row">
+														<div class="col-md-1">
+															<div class="entry-date">
+																<time class="published" datetime="2019-12-22"
+																	title="December 22, 2019 - 21:12 pm">
+																	Dec<span class="date">23</span>2019
+																</time>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<figure>
+																<img src="/imgs/content/list-04.png" alt="" />
+															</figure>
+														</div>
+
+														<div class="col-md-7">
+															<h4>
+																<a href="#">나시고랭</a>
+															</h4>
+															<span class="recipe-info">나시고랭은 인도네이사식 볶음밥으로 우리나라 볶음밥과 거의 비슷합니다 저는 아이들
 																볶음밥에 피시소스나 굴 소스를 가끔 넣는데 나시고랭도 마찬가지예요~ 숙주가 들어가서 아삭한 식감과
 																계란을 스크램블 한 맛이 아주 좋답니다 볶음밥 보다 약간은 특별한 나시고랭 어렵지 않아요^^</span> <a
 																href="#" class="readmore"><em>더보기</em></a>
@@ -541,6 +657,34 @@
 							                            }
 							                          });
 							                        });
+							                        
+							                        function removeFollow(e) { //친구 구독끊기 버튼 클릭시
+						                        		let followId = $('#followId').val();
+						                        		console.log("#followId: ", followId);
+							                        	
+						                        		var result = confirm("정말 구독을 끊으시겠습니까?");
+							                        	if (result == true) {
+							                        		
+							                        		$.ajax({
+							                        			type : "POST",
+							                        			url : "/mypage/unfollow",
+							                        			data : {id: followId},
+							                        			success : function(result) {
+							                        				if(result=="success"){
+										                        		console.log("친구 구독끊기 성공");
+								                        				alert("정상적으로 구독 끊기 되었습니다.");
+								                        				//location.reload(); //현재 접속중인 페이지를 새로고침
+							                        					location.href("/member/mypage");
+							                        				}
+
+							                        			} // success 종료
+							                        		}); // ajax 종료					
+							                        	} else {
+							                        		e.preventDefault();
+							                        		alert("구독 끊기를 취소하셨습니다.");
+							                        		return false;
+							                        	}
+							                        }
 						                      </script>
 										</div>
 										<!-- id="tab5-content" 종료-->
