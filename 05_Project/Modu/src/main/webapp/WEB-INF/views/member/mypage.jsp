@@ -47,7 +47,7 @@
 									<c:if
 										test="${ member.profileImg!='default_profile_img.png' && member.profileImg!=null}">
 											<img 
-											src="<spring:url value = '/pics/profile/${ member.profileImg }'/>" 
+											src="/pics/profile/${ member.profileImg }" 
 											id="mypage_profileimg"
 											alt="mypage_profileimg"/>
 									</c:if>
