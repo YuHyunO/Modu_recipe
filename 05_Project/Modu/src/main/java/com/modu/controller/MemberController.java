@@ -160,7 +160,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	//내정보수정 페이지 이동
+	//내정보 수정 페이지 이동
 	@GetMapping("/modifymyinfo")
 	public ModelAndView goModify(HttpSession session) { 
 		String email = (String)session.getAttribute("email");

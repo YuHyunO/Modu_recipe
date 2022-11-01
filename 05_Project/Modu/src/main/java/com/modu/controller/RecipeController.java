@@ -40,6 +40,7 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping("recipe")
 public class RecipeController {
+    
     @Autowired
     private RecipeFindingService recipeFindingService;
     @Autowired

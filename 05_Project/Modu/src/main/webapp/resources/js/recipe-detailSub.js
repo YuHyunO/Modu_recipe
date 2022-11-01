@@ -1,10 +1,10 @@
 function clickScrap(e){
 	let recipeId = $('.recipe-id').val();
-	let loginUser; // ÀÌ¸ŞÀÏ Á¤º¸
+	let loginUser; // ì´ë©”ì¼ ì •ë³´
 	let formData = new FormData();
 	formData.append("id", recipeId);
 	
-    if ($(e).hasClass('recipe-scrap')){ // ½ºÅ©·¦ Ãß°¡
+    if ($(e).hasClass('recipe-scrap')){ // ìŠ¤í¬ë© ì¶”ê°€
         $.ajax({
     		url: "/recipe/scrap/insert.json",
     		type: "POST",
@@ -15,7 +15,7 @@ function clickScrap(e){
     		success: function (response) {
     			loginUser = response.user;
     			if (loginUser === undefined){
-    				console.log("·Î±×ÀÎ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+    				console.log("ë¡œê·¸ì¸ ì •ë³´ê°€ ì—†ìŠµë‹ˆë‹¤.");
     	        	alert(response.error);
     			} else {
 	    			$(e).removeClass('recipe-scrap');
@@ -24,10 +24,10 @@ function clickScrap(e){
     			}
     		},
     		error: function (response) {
-    			console.log("¼­¹ö¿ÍÀÇ Åë½Å¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.")
+    			console.log("ì„œë²„ì™€ì˜ í†µì‹ ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.")
     		}
     	});
-    } else { // ½ºÅ©·¦ ÇØÁ¦
+    } else { // ìŠ¤í¬ë© í•´ì œ
     	$.ajax({
     		url: "/recipe/scrap/delete.json",
     		type: "POST",
@@ -46,7 +46,7 @@ function clickScrap(e){
     			}
     		},
     		error: function (response) {
-    			console.log("¼­¹ö¿ÍÀÇ Åë½Å¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.")
+    			console.log("ì„œë²„ì™€ì˜ í†µì‹ ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.")
     		}
     	}); 
     }
@@ -58,7 +58,7 @@ function shareLink(e){
 	link.select();
 	let copy = document.execCommand('copy');
 	link.attr("type", "hidden");
-	alert(link.val() + "\n¸µÅ© ÁÖ¼Ò°¡ º¹»çµÇ¾ú½À´Ï´Ù.");
+	alert(link.val() + "\në§í¬ ì£¼ì†Œê°€ ë³µì‚¬ë˜ì—ˆìŠµë‹ˆë‹¤.");
 }
 
 function moveScroll(e){
@@ -72,15 +72,15 @@ function moveScroll(e){
 }
 
 function clickSubscribe(e){
-	//±¸µ¶ÇÒ ´ë»ó email,
-	//³» ÀÌ¸ŞÀÏ email
+	//êµ¬ë…í•  ëŒ€ìƒ email,
+	//ë‚´ ì´ë©”ì¼ email
 	let targetEmail = $(e).attr("data-email");
 	console.log(targetEmail);
-	let userEmail; // ÀÌ¸ŞÀÏ Á¤º¸
+	let userEmail; // ì´ë©”ì¼ ì •ë³´
 	let formData = new FormData();
 	formData.append("targetEmail", targetEmail);
 	
-	 if ($(e).hasClass('subscribe-btn')){ // Ä£±¸Ãß°¡(ÆÈ·Î¿ì)
+	 if ($(e).hasClass('subscribe-btn')){ // ì¹œêµ¬ì¶”ê°€(íŒ”ë¡œìš°)
         $.ajax({
     		url: "/recipe/follow/insert.json",
     		type: "POST",
@@ -91,20 +91,20 @@ function clickSubscribe(e){
     		success: function (response) {
     			userEmail = response.user;
     			if (userEmail === undefined){
-    				console.log("Ä£±¸ Ãß°¡ ¹× ÇØÁ¦´Â ·Î±×ÀÎ ÈÄ °¡´ÉÇÕ´Ï´Ù.");
+    				console.log("ì¹œêµ¬ ì¶”ê°€ ë° í•´ì œëŠ” ë¡œê·¸ì¸ í›„ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
     	        	alert(response.error);
     			} else {
     				$(e).removeClass('subscribe-btn');
 			        $(e).addClass('subscribe-btn-clicked');
-			        $(".subscribe-btn-clicked").text("Ä£±¸ ÇØÁ¦");
+			        $(".subscribe-btn-clicked").text("ì¹œêµ¬ í•´ì œ");
     		        alert(response.msg);
     			}
     		},
     		error: function (response) {
-    			console.log("¼­¹ö¿ÍÀÇ Åë½Å¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.")
+    			console.log("ì„œë²„ì™€ì˜ í†µì‹ ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.")
     		}
     	});
-    } else { // Ä£±¸Ãß°¡ Ãë¼Ò(ÆÈ·Î¿ì Ãë¼Ò)
+    } else { // ì¹œêµ¬ì¶”ê°€ ì·¨ì†Œ(íŒ”ë¡œìš° ì·¨ì†Œ)
         $.ajax({
     		url: "/recipe/follow/delete.json",
     		type: "POST",
@@ -115,17 +115,17 @@ function clickSubscribe(e){
     		success: function (response) {
     			userEmail = response.user;
     			if (userEmail === undefined){
-    				console.log("Ä£±¸ Ãß°¡ ¹× ÇØÁ¦´Â ·Î±×ÀÎ ÈÄ °¡´ÉÇÕ´Ï´Ù.");
+    				console.log("ì¹œêµ¬ ì¶”ê°€ ë° í•´ì œëŠ” ë¡œê·¸ì¸ í›„ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
     	        	alert(response.error);
     			} else {
     				$(e).removeClass('subscribe-btn-clicked');
     		        $(e).addClass('subscribe-btn');
-    		        $(".subscribe-btn").text("Ä£±¸ Ãß°¡");
+    		        $(".subscribe-btn").text("ì¹œêµ¬ ì¶”ê°€");
     		        alert(response.msg);
     			}
     		},
     		error: function (response) {
-    			console.log("¼­¹ö¿ÍÀÇ Åë½Å¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.")
+    			console.log("ì„œë²„ì™€ì˜ í†µì‹ ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.")
     		}
     	});
     }
@@ -133,7 +133,7 @@ function clickSubscribe(e){
 
 $(function(){
 	let targetEmail = $(".subscribe-btn").attr("data-email");
-	let userEmail; // ÀÌ¸ŞÀÏ Á¤º¸
+	let userEmail; // ì´ë©”ì¼ ì •ë³´
 	let formData = new FormData();
 	formData.append("targetEmail", targetEmail);
 	
@@ -151,12 +151,12 @@ $(function(){
 				if (response.state === "true"){
 			        $(".subscribe-btn").addClass('subscribe-btn-clicked');
 			        $(".subscribe-btn").removeClass('subscribe-btn');
-			        $(".subscribe-btn-clicked").text("Ä£±¸ ÇØÁ¦");
+			        $(".subscribe-btn-clicked").text("ì¹œêµ¬ í•´ì œ");
 				} else {}
 			}
 		},
 		error: function (response) {
-			console.log("¼­¹ö¿Í Åë½Å¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.")
+			console.log("ì„œë²„ì™€ í†µì‹ ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.")
 		}
 	});
 });

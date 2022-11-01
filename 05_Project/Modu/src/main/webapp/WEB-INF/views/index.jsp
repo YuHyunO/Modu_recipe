@@ -143,7 +143,7 @@
 						<!-- end recipes -->
 
 		<div class="head-title py-0 m-0">
-	        <div class="fixed02">
+	        <div class="fixed04">
 	        	<p class="mention" style="color:white">
 	        		We have collected fresh & good-taste recipes. <br/>
 	        		Let's share the recipe together.
@@ -207,27 +207,6 @@
 							<!-- end 쉐프 container -->
 						</div>
 						<!-- end chef-section -->
-						
- 						<div class="head-title py-0 m-0">
-					        <div class="fixed03">
-					        	<p class="mention">
-					        		Welcome. <br/>
-					        		We have collected fresh & good-taste recipes. <br/>
-					        		Let's share the recipe together.
-					        	</p>
-					        </div>
-						</div><br>
-						<div class="head-title py-0 m-0">
-					        <div class="fixed04">
-					        	<p class="mention">
-					        		Welcome. <br/>
-					        		We have collected fresh & good-taste recipes. <br/>
-					        		Let's share the recipe together.
-					        	</p>
-					        </div>
-						</div>
-						<!-- end head-title -->
-						
 					</div>
 					<!-- end primary(주요 메인영역) 종료-->
 	
