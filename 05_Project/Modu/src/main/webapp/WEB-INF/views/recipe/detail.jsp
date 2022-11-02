@@ -60,11 +60,13 @@
 							<!-- end col -->
 							<div class="col-md-6 d-flex flex-column justify-content-between">
 								<div class="detail-desc d-flex flex-column">
+									<c:if test="${detail.recipe.star} neq 0">
 									<div class="recipe-rating m-0 p-1 d-flex align-items-center">
 										<img class="star-rate-img me-2" 
 											src="/imgs/stars3.png" alt="stars">
 										<span>${detail.recipe.star}</span> <span class="ps-1">(${replyCount})</span>
 									</div>
+									</c:if>
 									<div class="fs-4 py-3 m-0">${detail.recipe.title}</div>
 									<div class="recipeinfo m-0">${detail.recipe.info}</div>
 								</div>

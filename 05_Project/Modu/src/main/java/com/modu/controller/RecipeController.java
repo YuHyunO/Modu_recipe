@@ -1,7 +1,6 @@
 package com.modu.controller;
 
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.modu.domain.member.Scrap;
 import com.modu.domain.recipe.RecipeDetail;
 import com.modu.domain.recipe.RecipeList;
 import com.modu.domain.recipe.RecipeListVo;
@@ -196,8 +193,16 @@ public class RecipeController {
     }
     
     @PostMapping("/insert.do")
-    public @ResponseBody String insertReply(RecipeReply recipeReply, MultipartFile file, RecipeReplyPhoto replyPhoto){
-        System.out.println("zzzzz");
+    public @ResponseBody String insertReply(
+            RecipeReply recipeReply, 
+            MultipartFile file, 
+            RecipeReplyPhoto replyPhoto, 
+            HttpSession session){
+        String email = (String)session.getAttribute("email");
+        String member = (String)session.getAttribute("member");
+        log.info("#recipeReply: " + recipeReply);
+        log.info(email);
+        log.info(member);
         String result = recipeRegisterService.registerReply(recipeReply);
         recipeRegisterService.registerReplyPhoto(replyPhoto);
         System.out.println(result);
@@ -205,6 +210,7 @@ public class RecipeController {
         log.info("#recipeReply" + recipeReply);
         return result;
     }
+    
     @GetMapping("/del.do")
     public String deleteReply(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -213,13 +219,15 @@ public class RecipeController {
         recipeRegisterService.deleteReply(id);
         return "redirect:detail";
     }
+    
     @PostMapping("/insertNestedReply.do")
     public @ResponseBody String insertNestedReply (RecipeNestedReply recipeNestedReply) {
         System.out.println("# "+recipeNestedReply);    
         String result = recipeRegisterService.registerNestedReply(recipeNestedReply);
         System.out.println("#nestedReply" + recipeNestedReply);
         return result;
-    } 
+    }
+    
     @GetMapping("/delNestedReply.do")
     public String delNestedReply(HttpServletRequest request) {
         HttpSession session = request.getSession();
