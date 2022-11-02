@@ -197,6 +197,15 @@ a {
 	max-width: 100%;
 }
 
+tr {
+	color:white;
+	text-align:center;
+}
+
+thead {
+	background: #937062;
+}
+
 /* 徘5 - 模备包府 */
 .handlemyfriendBtn {
 	font-size: 13px;

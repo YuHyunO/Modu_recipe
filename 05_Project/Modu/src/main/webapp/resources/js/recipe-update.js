@@ -1,11 +1,11 @@
 $(function () {
 	//페이지 뒤로가기 방지
-//	function prevent(){
-//		history.pushState(null, null, location.href);
-//		window.onpopstate = function(event) {
-//		    history.go(1);
-//		}
-//	}
+	function prevent(){
+		history.pushState(null, null, location.href);
+		window.onpopstate = function(event) {
+		    history.go(1);
+		}
+	}
 //	
 //	$(window).on("mousemove", () => {0
 //		prevent();
@@ -679,11 +679,25 @@ function checkData(e) {
 	return true;
 }
 function del(e){
-	 if (confirm("정말 삭제하시겠습니까??") == true){
-		 location.href='delete.do?id=${id}'
-	 }else{
-	     return false;
-	 }
+	var result = confirm("정말 레시피를 삭제하시겠습니까?");
+	 if (result == true){
+			let data = $('#recipeUpdateID').val();
+			console.log("#삭제요청한 레시피id : ", data);
+					
+			$.ajax({
+				type : "GET",
+				url : "/recipe/delete",
+				data : { id : data },
+				success : function(result) {
+					alert("레시피가 정상적으로 삭제되었습니다.");
+					location.href="/member/mypage";
+				} // success 종료
+			}); // ajax 종료					
+		} else {
+			//e.preventDefault();
+			alert("레시피 삭제를 취소하셨습니다.");
+			return false;
+		}
 }
 
 

@@ -168,6 +168,8 @@ function displayMyRecipe(response){
 		html += '<span class="d-flex align-items-center">';
 		html += '<span class="p-1 mt-1">조회수 '+item.hits+'</span>';
 		html += '</span>';
+		html += '<a href="/recipe/update?id='+item.id+'"><button type="button" class="gold-btn">수정</button></a>';
+		//html += '<a href="/recipe/delete?id='+item.id+'" onclick="javascript:alert('정말 레시피를 삭제하시겠습니까?');"><button type="button" class="gold-btn">삭제</button></a>';
 		html += '</div>';
 		html += '</div>';
 		html += '</div>';		
@@ -216,6 +218,8 @@ function displayBookmark(response){
 
 function displayMyPost(response){
 	console.log("4");
+	
+	
 }
 
 function displayFollow(response){ 

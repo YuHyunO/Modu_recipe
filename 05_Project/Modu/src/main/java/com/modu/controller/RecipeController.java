@@ -91,7 +91,7 @@ public class RecipeController {
         HashMap<String, Object> map = new HashMap<String, Object>();
         log.info("#RecipeController Upload");
         if ((String) session.getAttribute("email") == null) {
-            map.put("msg", "로그인 후 이용 해주세요");
+            map.put("msg", "로그인 후 이용 해주세요.");
         } else {
             recipeRegisterService.registerRecipe(request, session, files, mainItems, subItems, directions, tags);
             log.info("#####1" + tags);
@@ -205,6 +205,7 @@ public class RecipeController {
         log.info("#recipeReply" + recipeReply);
         return result;
     }
+    
     @GetMapping("/del.do")
     public String deleteReply(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -213,6 +214,7 @@ public class RecipeController {
         recipeRegisterService.deleteReply(id);
         return "redirect:detail";
     }
+    
     @PostMapping("/insertNestedReply.do")
     public @ResponseBody String insertNestedReply (RecipeNestedReply recipeNestedReply) {
         System.out.println("# "+recipeNestedReply);    
@@ -220,6 +222,7 @@ public class RecipeController {
         System.out.println("#nestedReply" + recipeNestedReply);
         return result;
     } 
+    
     @GetMapping("/delNestedReply.do")
     public String delNestedReply(HttpServletRequest request) {
         HttpSession session = request.getSession();
