@@ -147,18 +147,12 @@ a {
 }
 
 /* 마이페이지 탭2 - 내 레시피 */
-h2, a {
-  /* display: inline-block; */
-  display: flex;
-	justify-content: right;
-}
-
 .recipe-title {
 	height: auto;
 	padding-bottom: 1px !important;
 	margin-top: auto;
     margin-bottom: auto;
-    padding-bottom: auto;
+    padding-bottom: 0px;
     border-bottom: 1px solid #333;
    /*  border: none; */
     white-space: normal !important;
