@@ -38,6 +38,7 @@ public class MembershipController {
     @GetMapping("/main")
     public ModelAndView myPage(HttpServletRequest request, HttpSession session) {    
         ModelAndView mv = new ModelAndView("member/mypage");
+        log.info("#마이페이지 진입 mv: "+mv); //model is null
         return mv;
     }
     
