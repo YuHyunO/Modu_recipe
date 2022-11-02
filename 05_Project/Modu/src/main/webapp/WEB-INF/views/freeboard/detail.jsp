@@ -285,12 +285,7 @@
 														<div class="reply-author d-flex justify-content-between">
 															<div class="author-main d-flex align-items-center px-3 pt-2">
 																<figure class="profile m-0">
-<<<<<<< HEAD
-																	<img class="profile-img" src="/pics/profile/${i.profileImg}"
-																		alt="작성자">
-=======
 																	<img class="profile-img" src="/pics/profile/${i.profileImg}" alt="img">
->>>>>>> 34284b62ae711da09f925da8f9ae9852702823b3
 																</figure>
 																<span class="m-nickname ps-2">${i.MNickname}</b> <span
 																	class="post-date px-2">${i.replyDate}</span>
