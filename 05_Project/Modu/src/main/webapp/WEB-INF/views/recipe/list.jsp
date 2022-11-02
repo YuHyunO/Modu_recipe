@@ -113,7 +113,7 @@
 						<c:forEach items="${data.recipeList}" var="li">
 							<div id="recipe-item" class="col-6 col-md-3">
 								<div class="recipe-thumb">
-									<img src="${li.foodPhoto}" alt="/imgs/content/thumb-1.png">
+									<img src="/imgs/${li.foodPhoto}" alt="/imgs/content/thumb-1.png">
 								</div>
 								<div class="recipe-desc">
 									<h2 class="recipe-title">
