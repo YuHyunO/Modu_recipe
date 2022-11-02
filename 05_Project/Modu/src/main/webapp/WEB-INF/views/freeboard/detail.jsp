@@ -119,18 +119,16 @@
 				        </div>\
 				    </div>'
 		}
-		function removeReply(){
-			console.log("board 상세페이지 removeReply 진입");
-			
+		function removeReply(replyNum){
+			const reNum = replyNum;
+			let rNum = replyNum.innerText;
 			let para = document.location.href.split("=");
 			let bId = para[1];
-			const removeReply = document.getElementById('removeReply');
-			let number = removeReply.innerText;
 			if (confirm("정말 댓글을 삭제하시겠습니까?") == true){
 				$.ajax({
 					url: "../freeboard/removeReply", 
 					type: "POST", 
-					data: {"id":number},
+					data: {"id":reNum},
 					success: function(data){
 						console.log("#댓글삭제 success 진입");
 						location.href='detail?id='+bId+''; } ,
@@ -248,6 +246,8 @@
 								<p class="mb-1 pb-3 px-2 gold-bottom" style="font-weight: bold;">댓글(${board.board.reply})</p>
 								<div class="reply-list">
 										<c:forEach items="${list.list}" var="i">
+										
+										
 													<div class="reply py-3" id="reply-1">
 														<div class="reply-author d-flex justify-content-between">
 															<div class="author-main d-flex align-items-center px-3 pt-2">
@@ -259,13 +259,12 @@
 															</div>
 															<div id='removeReply' style="display: none;" >${i.id}</div>
 															<div class="author-items px-3">
+															
 																<c:if test="${sessionScope.email == i.MEmail}">
-																	<button class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
+																	<button class="reply-1 reply-btn" onclick="removeReply(${i.id})">삭제</button>																	
 																</c:if>
-																<c:if test="${sessionScope.email != i.MEmail}">
-																	<button style="display: none;" class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
-																</c:if>
-																<button class="reply-1 reply-btn"
+																																
+																<button style='display: none;' class="reply-1 reply-btn"
 																	onclick="addReplyForm(this)">댓글</button>
 															</div>
 														</div>
@@ -274,6 +273,8 @@
 															<p class="textarea p-3">${i.reply}</p>
 														</div>
 													</div>
+													
+													
 											</c:forEach>
 											<textarea name='sessionNickname' id='sessionNickname'  style='display:none;'>${sessionScope.MNickname}</textarea>
 											<textarea name='sessionProfile' style='display:none;'>${sessionScope.profileImg}</textarea>
