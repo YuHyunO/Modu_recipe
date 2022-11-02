@@ -91,7 +91,7 @@
 						<div class="form-group align-items-center mb-3 p-0">
 							<label for="title" class="m-0 p-2">제목</label> <input type="text"
 								size="50" name="title" id="title" class="form-control rounded-1"
-								maxlength="30" value="${board.board.title}" readonly/>
+								maxlength="30" value="${board.board.title}"/>
 						</div>
 
 						<div class="form-group align-items-center mb-3 p-0">
