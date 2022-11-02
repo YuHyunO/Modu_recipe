@@ -40,7 +40,7 @@
 		});
 		
 		function deleteCheck() {
-			 if (confirm("정말 삭제하시겠습니까??") == true){
+			 if (confirm("정말 삭제하시겠습니까?") == true){
 				 location.href='delete.do?id=${board.board.id}';
 			 }else{
 			     return false;
@@ -87,7 +87,7 @@
 							html +=	"	</div>";
 							html +=	"	<!-- end author -->";
 							html +=	"	<div class='reply-content'>";
-							html +=	"		<p class='p-3'>"+item.reply+"</p>";
+							html +=	"		<p class='textarea p-3'>"+item.reply+"</p>";
 							html +=	"	</div>";
 							html +=	"</div>";
 						}
@@ -120,20 +120,23 @@
 				    </div>'
 		}
 		function removeReply(){
-			console.log("board 상세페이지 removeReply 진입");
+			console.log("#게시판 댓글삭제 removeReply 메소드 진입");
 			
 			let para = document.location.href.split("=");
 			let bId = para[1];
 			const removeReply = document.getElementById('removeReply');
 			let number = removeReply.innerText;
-			if (confirm("정말 댓글을 삭제하시겠습니까?") == true){
+			console.log("#삭제전- 삭제할 댓글 id:",number);
+			
+			if (confirm("정말 ${number}번 댓글을 삭제하시겠습니까?") == true){
 				$.ajax({
 					url: "../freeboard/removeReply", 
 					type: "POST", 
 					data: {"id":number},
 					success: function(data){
-						console.log("#댓글삭제 success 진입");
-						location.href='detail?id='+bId+''; } ,
+						console.log("#삭제 성공한 댓글 id:",number);
+						location.href='detail?id='+bId+'';
+						} ,
 					error: function(eror){
 						alert("fail"); }
 				});
@@ -285,13 +288,13 @@
 										onsubmit="addReply(this);">
 										<div class="row">
 												<c:if test="${fn:length(list.list) > 5}">
-														<input type='button' id="theBoGi" style="text-align: center; " onclick='count()' value='더보기'>
-															<br></br>
+														<input type='button' id="theBoGi" style="text-align: center; border:none;" onclick='count()' value='댓글 더보기'>
+														<br></br>
 														<textarea id='plusResult' style='display:none;'>6</textarea>
 												</c:if>
 												<c:if test="${fn:length(list.list) == 0}">
-														<input type='button' id="theBoGi" style="text-align: center; display: none; " onclick='count()' value='더보기'>
-															<br></br>
+														<input type='button' id="theBoGi" style="text-align: center; display: none; " onclick='count()' value='댓글 더보기'>
+														<br></br>
 														<textarea id='plusResult' style='display:none;'>6</textarea>
 												</c:if>
 											<div class="col px-0">
