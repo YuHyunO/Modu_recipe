@@ -55,7 +55,7 @@ function addReply(e){
                 <div class="reply-author d-flex justify-content-between">\
                     <div class="author-main d-flex align-items-center px-3 pt-2">\
                         <figure class="profile m-0">\
-                            <img class="profile-img" src="/imgs/mypage/profile/'+sProfile+'" alt="작성자">\
+                            <img class="profile-img" src="/pics/profile/'+sProfile+'" alt="작성자">\
                         </figure>\
                         <span class="m-nickname ps-2">'+sNick+'</b>\
                         <span class="post-date px-2">'+ dateText +'</span>\

@@ -626,7 +626,7 @@ function register(e) {
 				alert(response.msg);
 			} else {
 				alert("레시피가 등록 되었습니다.");
-				location.href="/";
+				location.reload();
 			}
 		},
 		error: function (response) {

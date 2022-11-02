@@ -3,5 +3,6 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/05_Project/Modu/src/main/java/com/modu/controller/MemberController.java" charset="EUC-KR" />
     <file url="file://$PROJECT_DIR$/05_Project/Modu/src/main/java/com/modu/controller/RecipeController.java" charset="x-windows-949" />
+    <file url="file://$PROJECT_DIR$/05_Project/Modu/src/main/webapp/resources/css/common.css" charset="EUC-KR" />
   </component>
 </project>

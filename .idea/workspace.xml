@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9d88acd5-9b52-4cd6-8540-80f62a4a4b1d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/05_Project/Modu/src/main/webapp/resources/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/05_Project/Modu/src/main/webapp/resources/css/common.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/05_Project/Modu/src/main/webapp/resources/js/recipe-write.js" beforeDir="false" afterPath="$PROJECT_DIR$/05_Project/Modu/src/main/webapp/resources/js/recipe-write.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
