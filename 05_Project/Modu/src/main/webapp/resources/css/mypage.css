@@ -148,7 +148,9 @@ a {
 
 /* 마이페이지 탭2 - 내 레시피 */
 h2, a {
-  display: inline-block;
+  /* display: inline-block; */
+  display: flex;
+	justify-content: right;
 }
 
 .recipe-title {
@@ -174,15 +176,17 @@ h2, a {
     float: right;
     padding-block-end: 1px;
     padding-block-start: 1px;
+    display: inline-block;
 }
+
 
 @media (max-width: 454px)
 .profile {
-    margin-bottom: 1px !important;
+    margin: 0.5px !important;
 }
 
 figure .profile {
-    margin: 0 0 1rem !important;
+   margin:  0.5px !important;
 }
 
 .tab2-button, .tab5-button {
