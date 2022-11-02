@@ -58,7 +58,10 @@ form textarea {
 }
 
 #filedelete {
-	
+	height: auto;
+    width: auto;
+    border-style: none;
+    float: left;
 }
 
 .form-btn {

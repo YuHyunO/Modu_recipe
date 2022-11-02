@@ -220,7 +220,7 @@
 									<div
 										class="content-cover d-flex flex-column justify-content-between">
 										<div class="content p-2">
-											<p class="textarea">${board.board.content}</p>
+											<div class="textarea" style="white-space:pre;"><c:out value="${board.board.content}" /></div>
 										</div>
 										<div
 											class="div file d-flex justify-content-end align-items-center p-2">

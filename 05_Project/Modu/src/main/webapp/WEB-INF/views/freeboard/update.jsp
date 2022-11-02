@@ -101,7 +101,7 @@
 						</div>
 						<div class="form-group align-items-center mb-3 p-0 mb-0 file">
 							<input class="form-control" type="file" id="formFileMultiple"
-								name='file' multiple="multiple" value="">
+								name='file' multiple="multiple" value=""><br>
 								<c:if test='${board.boardFile != null }'>
 									<c:forEach var="file" items="${board.boardFile}">
 										<button type='button' class="me-2" id="filedelete" onclick='fileIdSubmit()'>첨부파일: ${file.originalFile} 삭제

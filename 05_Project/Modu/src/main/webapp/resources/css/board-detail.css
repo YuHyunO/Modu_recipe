@@ -45,6 +45,7 @@
     border-radius: 0px !important;
     font-family: 'NotoSerifKR-Medium', sans-serif !important;
     font-size: 15px;
+    border-style: none;
 }
 
 .file a {
