@@ -29,7 +29,6 @@
 				
 				<div class="row">
 					<div id="primary" class="content-area col-md-9">
-					
 						<div id="content" class="site-content">
 							<!--프로필 영역 시작 -->
 							<div class="profile-details rounded-3 text-center">
@@ -46,9 +45,8 @@
 									<!-- 첨부파일이 있을 때 미리보기 사진 보임-->
 									<c:if
 										test="${ member.profileImg!='default_profile_img.png' && member.profileImg!=null}">
-											<img 
-											src="/pics/profile/${ member.profileImg }"
-											id="mypage_profileimg" alt="mypage_profileimg"/>
+											<img src="/pics/profile/${ member.profileImg }"
+												id="mypage_profileimg" alt="mypage_profileimg"/>
 											<%-- 주소 불안정(인식 못할 대 있음 src="<spring:url value='/pics/profile/${ member.profileImg }'/>" --%>
 									</c:if>
 								</div><br/>
@@ -63,7 +61,6 @@
 										나만의 레시피를 작성해보거나,<br/>
 										다양한 쉐프들과 친구를 맺어보세요!
 									</div>
-
 									<!-- 회원정보 수정 버튼-->
 									<div class="py-3">
 										<button
@@ -100,7 +97,6 @@
 									<li class="nav-item"><a class="nav-link tab-menu"
 										id="mypost-tab" data-toggle="tab" href="#mypost" onclick="setUrl(this)" 
 										role="tab" aria-controls="mypost" aria-selected="false">나의 게시글/댓글</a></li>
-										
 									<li class="nav-item"><a class="nav-link tab-menu"
 										id="myfriend-tab" data-toggle="tab" href="#myfriend" onclick="setUrl(this)"
 										role="tab" aria-controls="myfriend" aria-selected="false">친구 관리</a></li>
@@ -113,12 +109,11 @@
 									<div class="tab-pane fade show active" id="ingredient"
 										role="tabpanel" aria-labelledby="ingredient-tab">
 										<div id="tab1-content" class="pb-3"><!-- class명에서 site-content 지움 -->
-											<h4 class="archive-title text-center">냉장고 속 재료를 조합하여
-												요리해보기</h4>
+											<h4 class="archive-title text-center">냉장고 속 재료를 조합하여 요리해보기</h4>
 											<div class="backbox rounded-3 text-center py-3">
 												지금 냉장고 속 재료를 체크해보세요.<br /> 맞춤형 레시피를 볼 수 있어요!
 											</div>
-											<br />
+											<br>
 											<div class="article-list">
 												<div class="row">
 													<!-- 채소류 row -->
@@ -127,12 +122,10 @@
 													</div>
 													<!--체크영역 시작-->
 													<div class="col-md-6">
-														<!-- 영역 크기 조절 -->
 														<div class="vegetableSection row" id="vegetableSection">
 															<!--js 제이쿼리 $(function(){});가 실행되는 부분-재료명 나열 -->
 														</div>
-													</div>
-													<!-- col-md-6 종료-->
+													</div><!-- col-md-6 종료-->
 													<!--야채 사진-->
 													<div class="col-md-4">
 														<figure>
@@ -312,7 +305,6 @@
 										<div id="tab3-content" class="site-content">
 											<h3 class="archive-title text-center">북마크 레시피</h3>
 											<br>
-
 											<div id="recipe-list-3" class="row">
 											</div>					
 											
@@ -327,7 +319,7 @@
 									<div class="tab-pane fade" id="mypost" role="tabpane4"
 										aria-labelledby="mypost-tab">
 
-										<div id="tab4-content" class="site-content">
+										<div id="tab4-content" class="myPost_thumbnail">
 											<h3 class="archive-title text-center">나의 게시글</h3>
 											<br>
 											<div class="article-cover">
@@ -344,16 +336,17 @@
 														</div>
 														<div class="col-md-4">
 															<figure>
-																<img src="/imgs/content/list-01.png" alt="" />
+																<img class="recipe-thumb" src="/imgs/content/list-01.png" alt="" />
 															</figure>
 														</div>
 														<div class="col-md-7">
 															<h4>
 																<a href="#" target="_blank">훈제연어야채샐러드</a>
 															</h4>
-															<span class="recipe-info">훈제연어의 훈연한 그 맛은 감칠맛이 나서 잘 맞는 드레싱만 얹어주면 인기만점의
-																샐러드예요. 야채를 듬뿍 곁들여 건강하게 준비한 훈제연어 샐러드 소개합니다.</span> <a href="#"
-																class="readmore" target="_blank"><em>더보기</em></a>
+															<span class="recipe-info">
+															훈제연어의 훈연한 그 맛은 감칠맛이 나서 잘 맞는 드레싱만 얹어주면 인기만점의
+																샐러드예요. 야채를 듬뿍 곁들여 건강하게 준비한 훈제연어 샐러드 소개합니다.</span>
+															<a href="" class="readmore" target="_blank"><em>더보기</em></a>
 														</div>
 													</div>
 													<!--end row-->
@@ -373,7 +366,7 @@
 														</div>
 														<div class="col-md-4">
 															<figure>
-																<img src="/imgs/content/list-01.png" alt="" />
+																<img class="recipe-thumb" src="/imgs/content/list-01.png" alt="" />
 															</figure>
 														</div>
 														<div class="col-md-7">
@@ -381,8 +374,8 @@
 																<a href="#" target="_blank">훈제연어야채샐러드</a>
 															</h4>
 															<span class="recipe-info">훈제연어의 훈연한 그 맛은 감칠맛이 나서 잘 맞는 드레싱만 얹어주면 인기만점의
-																샐러드예요. 야채를 듬뿍 곁들여 건강하게 준비한 훈제연어 샐러드 소개합니다.</span> <a href="#"
-																class="readmore" target="_blank"><em>더보기</em></a>
+																샐러드예요. 야채를 듬뿍 곁들여 건강하게 준비한 훈제연어 샐러드 소개합니다.</span>
+																<a href="" class="readmore" target="_blank"><em>더보기</em></a>
 														</div>
 													</div>
 													<!--end row-->
@@ -402,7 +395,7 @@
 														</div>
 														<div class="col-md-4">
 															<figure>
-																<img src="/imgs/content/list-03.png" alt="" />
+																<img class="recipe-thumb" src="/imgs/content/list-03.png" alt="" />
 															</figure>
 														</div>
 
@@ -431,7 +424,7 @@
 														</div>
 														<div class="col-md-4">
 															<figure>
-																<img src="/imgs/content/list-04.png" alt="" />
+																<img class="recipe-thumb" src="/imgs/content/list-04.png" alt="" />
 															</figure>
 														</div>
 
@@ -599,7 +592,99 @@
 												</nav>
 											</div>
 											<!-- end Page -->
+											<br><br>
 
+											<h3 class="archive-title text-center">나의 댓글</h3>
+											<br>
+											<div class="article-cover">
+												<div class="article-list">
+													<!--첫번째 레시피 시작 -->
+													<div class="row">
+														<div class="col-md-1">
+															<div class="entry-date">
+																<time class="published" datetime="2019-12-22"
+																	title="postdate">
+																	Dec<span class="date">22</span>2019
+																</time>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<figure>
+																<img class="recipe-thumb" src="/imgs/content/list-01.png" alt="" />
+															</figure>
+														</div>
+														<div class="col-md-7">
+															<h4>
+																<a href="#" target="_blank">훈제연어야채샐러드</a>
+															</h4>
+															<span class="recipe-info">훈제연어의 훈연한 그 맛은 감칠맛이 나서 잘 맞는 드레싱만 얹어주면 인기만점의
+																샐러드예요. 야채를 듬뿍 곁들여 건강하게 준비한 훈제연어 샐러드 소개합니다.</span>
+															<a href="" class="readmore" target="_blank"><em>더보기</em></a>
+														</div>
+													</div>
+													<!--end row-->
+												</div>
+												<!-- end class="article-list", 첫번째 레시피 종료 -->
+
+												<div class="article-list">
+													<!--두번째 레시피 시작-->
+													<div class="row">
+														<div class="col-md-1">
+															<div class="entry-date">
+																<time class="published" datetime="2019-12-22"
+																	title="December 22, 2019 - 21:12 pm">
+																	July<span class="date">22</span>2019
+																</time>
+															</div>
+														</div>
+														<div class="col-md-4">
+															<figure>
+																<img class="recipe-thumb" src="/imgs/content/list-03.png" alt="" />
+															</figure>
+														</div>
+
+														<div class="col-md-7">
+															<h4>
+																<a href="#">삼겹살간장조림</a>
+															</h4>
+															<span class="recipe-info"> 삼겹살을 아이들과는 구우면서 먹을수가 없.어.요.......​ 그래서 아이들과
+																먹을땐 간장양념에 조림으로 해서 먹는답니다^^​ 네이버메인에도 올랐던 레시피 보여드릴게요. </span> <a
+																href="#" class="readmore"><em>더보기</em></a>
+														</div>
+													</div>
+													<!--end row-->
+												</div>
+												<!--end class="article-list", 두번째 레시피 종료 -->
+											</div>
+											<!-- end article-cover -->
+
+											<div class="page mt-5">
+												<nav aria-label="Page navigation">
+													<ul class="pagination justify-content-center">
+														<li class="page-item"><a
+															class="page-link page-previous" href="#">＜</a></li>
+														<li class="page-item"><a
+															class="page-link active page-number"
+															href="javascript:void(0);" onclick="activePage(this)">1</a></li>
+														<li class="page-item"><a
+															class="page-link page-number" href="javascript:void(0);"
+															onclick="activePage(this)">2</a></li>
+														<li class="page-item"><a
+															class="page-link page-number" href="javascript:void(0);"
+															onclick="activePage(this)">3</a></li>
+														<li class="page-item"><a
+															class="page-link page-number" href="javascript:void(0);"
+															onclick="activePage(this)">4</a></li>
+														<li class="page-item"><a
+															class="page-link page-number" href="javascript:void(0);"
+															onclick="activePage(this)">5</a></li>
+														<li class="page-item"><a class="page-link page-next"
+															href="#">＞</a></li>
+													</ul>
+												</nav>
+											</div>
+											<!-- end Page -->
+											
 										</div>
 										<!-- id="tab4-content" 종료-->
 									</div>
@@ -696,8 +781,8 @@
 						</div><!-- end id="content", 프로필+ 탭전체영역 종료-->
 					</div><!-- end primary(주요 메인영역) 종료-->
 
-			<!-- 사이드 영역(secondary), 모듈화 -->
-			<%@ include file="/WEB-INF/views/common/secondary.jsp"%>
+					<!-- 사이드 영역(secondary), 모듈화 -->
+					<%@ include file="/WEB-INF/views/common/secondary.jsp"%>
 			
 				</div><!-- end row -->
 			</div><!-- end main-container -->

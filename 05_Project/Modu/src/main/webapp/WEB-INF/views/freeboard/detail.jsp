@@ -27,16 +27,13 @@
 					 $.ajax({
 							url: "/freeboard/addReply", 
 							type: "POST", 
-							data: {"reply": reply, "bId": bId
-							},
+							data: {"reply": reply, "bId": bId },
 							success: function(data){
 								addReply(this);
 								$("#replyArea").val("");
-							} 
-							,
+							} ,
 							error: function(eror){
 							}
-							
 						});
 				 }
 			});			
@@ -59,24 +56,27 @@
 				var para = document.location.href.split("=");
 				var bId0 = para[1];
 				var Id = parseInt(bId0);
+				
 				$.ajax({
 					url: "../freeboard/moreViewReply", 
 					type: "POST", 
-					data: {"id": Id ,"endRow":number
-					},
+					data: { "id": Id ,"endRow":number },
 					 dataType : 'json',
 					success: function(data){
 						var html = "";
 						let list = data.list;
+						console.log("###"+data);
+						console.log("###"+list);
+						src="/pics/profile/${recipe.profileImg}" alt="작성자">
 						for(let item of list){
 							html +=	"<div class='reply py-3' id='reply-1'>";
 							html +=	"	<div class='reply-author d-flex justify-content-between'>";
 							html +=	"		<div class='author-main d-flex align-items-center px-3 pt-2'>";
 							html +=	"			<figure class='profile m-0'>";
-							html +=	"				<img class='profile-img' src='/imgs/content/auth-01.png'";
+							html +=	"				<img class='profile-img' src='/pics/profile/"+item.profileImg+"'";
 							html +=	"					alt='작성자'>";
 							html +=	"			</figure>";
-							html +=	"			<span class='m-nickname ps-2'>"+item.mnickname+"</b> <span";
+							html +=	"			<span class='m-nickname ps-2'>"+item.mNickname+"</b> <span";
 							html +=	"				class='post-date px-2'>"+item.replyDate+"</span>";
 							html +=	"		</div>";
 							html +=	"		<div class='author-items px-3'>";
@@ -184,7 +184,7 @@
 				<div class="main-size col-md-8 row justify-content-center">
 					<div id="board" class="my-3 row px-0">
 						<div class="container p-0">
-							<div class="board-search text-center m-0 w-100">
+<!-- 							<div class="board-search text-center m-0 w-100">
 								<div id="board-search"
 									class="mb-3 d-flex justify-content-between align-items-center">
 									<div class="selects">
@@ -213,14 +213,14 @@
 										</select>
 									</div>
 								</div>
-								<!-- end board-search -->
-							</div>
+								end board-search
+							</div> -->
 							<div class="board-main gold-border rounded-1">
 								<div
 									class="board-title gold-bottom d-flex justify-content-between align-items-center p-2">
 									<div class="div title-text col-8 text-start p-2">${board.board.title}</div>
 									<div class="div title-items align-items-center text-end px-2">
-										<span class="hits ms-2">조회: ${board.board.hits}</span>
+										<span class="hits ms-2">조회수 ${board.board.hits}</span>
 									</div>
 								</div>
 								<!-- board-title -->
@@ -231,8 +231,8 @@
 												<img class="profile-img" src="/pics/profile/${board.board.profileImg}"
 													alt="작성자">
 											</figure>
-											<span class="m-nickname ps-2">${board.board.MNickname}</b> <span
-												class="post-date px-2">${board.board.postDate}</span>
+											<span class="m-nickname ps-2">${board.board.MNickname}</b>
+											<span class="post-date px-2">${board.board.postDate}</span>
 										</div>
 										<c:if test="${sessionScope.email == board.board.MEmail}">
 											<div class="">
@@ -285,8 +285,12 @@
 														<div class="reply-author d-flex justify-content-between">
 															<div class="author-main d-flex align-items-center px-3 pt-2">
 																<figure class="profile m-0">
+<<<<<<< HEAD
 																	<img class="profile-img" src="/pics/profile/${i.profileImg}"
 																		alt="작성자">
+=======
+																	<img class="profile-img" src="/pics/profile/${i.profileImg}" alt="img">
+>>>>>>> 34284b62ae711da09f925da8f9ae9852702823b3
 																</figure>
 																<span class="m-nickname ps-2">${i.MNickname}</b> <span
 																	class="post-date px-2">${i.replyDate}</span>

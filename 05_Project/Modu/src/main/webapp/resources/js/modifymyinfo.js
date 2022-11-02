@@ -223,7 +223,7 @@ function removeMember(e) { //탈퇴버튼 클릭시
 	var result = confirm("정말 탈퇴하시겠습니까? \n탈퇴후 모든 정보가 파기되며 되돌릴 수 없으니 신중해주세요.");
 	if (result == true) {
 		let data = $('#id_email').val();
-		console.log(data);
+		console.log("회원탈퇴 요청한 이메일 data : ",data);
 		
 		$.ajax({
 			type : "POST",

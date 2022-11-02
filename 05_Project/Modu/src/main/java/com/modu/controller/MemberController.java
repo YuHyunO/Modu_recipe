@@ -41,21 +41,17 @@ public class MemberController {
 
 	private ArrayList<String> fileInfoList = new ArrayList<String>();
 
-	
 	//회원가입 페이지 이동
 	@GetMapping("/register")
 	public String goRegister() {
 		return "member/register"; //view의 member 폴더속 register.jsp
 	}
 
-    //회원가입시 이메일 중복검사 ajax 문구 띄움
+    //회원가입시 이메일 중복검사 ajax 
     @PostMapping("/register/emailvalidcheck")
     @ResponseBody
     public String emailValidCheck(String email){
-        //log.info("#1_이메일 중복체크 진입 & 입력한 email:"+ email);
         int result = memberRegisterService.checkEmail(email);
-        //log.info("#2_이메일 result: "+ result);
-        //log.info("#3_이메일 길이 email.length(): "+ email.length());
         if( email.length()==0 ) {
             return "noshow";            
         } else if( email.length()!=0 && 0<email.length() && email.length()<10 ) {
@@ -67,14 +63,11 @@ public class MemberController {
         }
     }
     
-    //회원가입시 닉네임 중복검사 ajax 문구 띄움
+    //회원가입시 닉네임 중복검사 ajax 문구
     @PostMapping("/register/nicknamevalidcheck")
     @ResponseBody
     public String nicknameValidCheck(String nickname){
-        //log.info("#1_닉네임 중복체크 진입 & nickname:"+ nickname);
         int result = memberRegisterService.checkNickname(nickname);
-        //log.info("#2_닉네임 중복체크 result: "+ result);
-        //log.info("#3_닉네임 길이 nickname.length(): "+ nickname.length());
         if( nickname.length() == 0 ) {
             return "noshow";            
         } else if( nickname.length() != 0 && 0<nickname.length() && nickname.length()<3 ) {
@@ -155,12 +148,12 @@ public class MemberController {
 		String email = (String)session.getAttribute("email");
 		Member member1 = memberRegisterService.readMyInfo(email); 
 		ModelAndView mv = new ModelAndView("member/mypage", "member", member1); 
-		log.info("######마이페이지 이동get member1: "+member1);
-		log.info("######마이페이지 이동get mv: "+mv);
+		//log.info("######마이페이지 이동get member1: "+member1);
+		//log.info("######마이페이지 이동get mv: "+mv);
 		return mv;
 	}
 	
-	//내정보수정 페이지 이동
+	//내정보 수정 페이지 이동
 	@GetMapping("/modifymyinfo")
 	public ModelAndView goModify(HttpSession session) { 
 		String email = (String)session.getAttribute("email");
@@ -216,11 +209,10 @@ public class MemberController {
 			session.setAttribute("marketing", memberInfo.getMarketing());
 			session.setAttribute("profileImg", memberInfo.getProfileImg());
 			session.setAttribute("member", memberInfo);
-			log.info("#4_현재 세션에 저장된 (수정후) 닉네임 get "+session.getAttribute("nickname")); //스크루바
-			log.info("#4_현재 세션에 저장된 (수정후) 마케팅여부 get "+session.getAttribute("marketing")); //0 = 미동의
-			log.info("#4_현재 세션에 저장된 (수정후) 프로필사진 get "+session.getAttribute("profileImg"));
-			log.info("#4_현재 세션에 저장된 (수정후) member get "+session.getAttribute("member"));
-			//Member(email=111@naver.com, pwd=1111, nickname=zeze, profileImg=, name=한서인, phone=01055554, marketing=0, apiUsing=0, signupDate=null, updateDate=null, authority=0, point=0)
+			//log.info("#4_현재 세션에 저장된 (수정후) 닉네임 get "+session.getAttribute("nickname")); //스크루바
+			//log.info("#4_현재 세션에 저장된 (수정후) 마케팅여부 get "+session.getAttribute("marketing")); //0 = 미동의
+			//log.info("#4_현재 세션에 저장된 (수정후) 프로필사진 get "+session.getAttribute("profileImg"));
+			//log.info("#4_현재 세션에 저장된 (수정후) member get "+session.getAttribute("member"));
 			return "redirect:mypage";
 			
 		} else { //업로드할 파일이 존재할 때
@@ -240,9 +232,9 @@ public class MemberController {
 			member.setProfileImgOrg(ofname);
 			member.setProfileImg(saveFileName);
 			member.setProfileImgSize(fsize);
-			log.info("#############파일업로드 fileInfoList: "+fileInfoList);
-			log.info("#############fileInfoList==null:"+fileInfoList==null);
-			log.info("#############fileInfoList.size():"+fileInfoList.size());
+			//log.info("#############파일업로드 fileInfoList: "+fileInfoList);
+			//log.info("#############fileInfoList==null:"+fileInfoList==null);
+			//log.info("#############fileInfoList.size():"+fileInfoList.size());
 			filuploadservice.saveImgFile(file, Path.PROFILE_PATH, fileInfoList); //파일업로드서비스단에서 실제 로컬에 물리적 파일 생성
 			
 			
@@ -252,10 +244,10 @@ public class MemberController {
 			session.setAttribute("marketing", memberInfo.getMarketing());
 			session.setAttribute("profileImg", memberInfo.getProfileImg());
 			session.setAttribute("member", memberInfo);
-			log.info("#6_현재 세션에 저장된 (수정후) 닉네임 get "+session.getAttribute("nickname")); //스크루바
-			log.info("#6_현재 세션에 저장된 (수정후) 마케팅여부 get "+session.getAttribute("marketing")); //0 = 미동의
-			log.info("#6_현재 세션에 저장된 (수정후) 프로필사진 get "+session.getAttribute("profileImg"));
-			log.info("#6_현재 세션에 저장된 (수정후) member get "+session.getAttribute("member"));
+			//log.info("#6_현재 세션에 저장된 (수정후) 닉네임 get "+session.getAttribute("nickname")); //스크루바
+			//log.info("#6_현재 세션에 저장된 (수정후) 마케팅여부 get "+session.getAttribute("marketing")); //0 = 미동의
+			//log.info("#6_현재 세션에 저장된 (수정후) 프로필사진 get "+session.getAttribute("profileImg"));
+			//log.info("#6_현재 세션에 저장된 (수정후) member get "+session.getAttribute("member"));
 			//Member(email=111@naver.com, pwd=1111, nickname=zeze, profileImg=, name=한서인, phone=01055554, marketing=0, apiUsing=0, signupDate=null, updateDate=null, authority=0, point=0)
 			return "redirect:mypage";
 		}

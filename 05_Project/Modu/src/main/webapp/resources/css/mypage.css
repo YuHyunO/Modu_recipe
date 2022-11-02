@@ -14,17 +14,14 @@ a {
 	    width: 100%;
 }
 
-.site-content img {
-    max-width: 80%;
-}
-
 #recommendrecipeimg {
 	max-width: 100%;
 }
 
+/* ¸¶ÀÌÆäÀÌÁö ÇÁ·ÎÇÊ»çÁø */
 #mypage_profileimg, #mypage_defaultimg {
-	max-width: 200px;
-	max-height: 200px;
+    max-width: 200px;
+    max-height: 200px;
 	margin: auto 0; 
 	border-radius: 100px; 
 	padding: 0.3em 0.3em 0.3em 0.3em;
@@ -47,17 +44,13 @@ a {
 	text-align: center;
 }
 
-.rounded-3 category-pic {
-	max-width: 70%;
-}
-
-/*ï§ë‰ì” ï¿½ëŸ¹ï¿½ì” ï§ï¿½ ï¿½êº†1 - ï¿½ë¹ï§¢ï¿½ ï¿½ë¹ï¿½ê¶›è‡¾ì‡°ìªŸ ï¿½ê¶—ï§ï¿½ ï¿½ê²•æ¹²ï¿½ */
+/*¸¶ÀÌÆäÀÌÁö ÅÇ1 - ¾ßÃ¤ ÇØ»ê¹°·ù »çÁø Å©±â */
 .site-content img {
-    max-width: 100%;
+    max-width: 80%;
 }
 
-.recipe-thumb {
-    max-width: 100%;
+.recipe-thumb img {
+	max-width: 100%;
 }
 
 #finalIngredient {
@@ -192,7 +185,7 @@ a {
 	box-shadow: 0 0 0 .2rem rgba(147, 112, 98, 0.25);
 }
 
-/*ï¿½êº†4 - ï¿½êµ¹ï¿½ì“½ ï¿½ì …ï¿½ë–†ï¿½ëµ¾ ä»¥ï¿½ ï¿½ì £ï§ï¿½ ï§ë¨­í€¬ ï¿½ì …ï¿½ë–†ï¿½ëµ¾ ï¿½ê½•ï§ï¿½ éºï¿½éºï¿½ */
+/*ÅÇ4 - ³ªÀÇ ·¹½ÃÇÇ Áß Á¦¸ñ ¸»°í ·¹½ÃÇÇ ¼³¸í ºÎºĞ */
 .recipe-info {
 	font-family: 'NotoSerifKR-Medium', sans-serif !important;
 	font-size:14px;
@@ -204,7 +197,7 @@ a {
 	max-width: 100%;
 }
 
-/* ï¿½êº†5 - ç§»ì’“ë„æ„¿ï¿½ç”±ï¿½ */
+/* ÅÇ5 - Ä£±¸°ü¸® */
 .handlemyfriendBtn {
 	font-size: 13px;
 	margin: auto 0;
@@ -272,13 +265,12 @@ a {
 
 .team-tag {
 	font-size: 14px;
-	text-transform: uppercase;
+	text-transform: lowercase;
 	color: #999;
 	margin-bottom: 5px;
 	display: block;
 }
 
-/*ç§»ì’“ë„ ï¿½ë´½æ¿¡ì’—ë¸˜ ï¿½ê¶—ï§ï¿½ ï¿½ê²•æ¹²ï¿½ */
 .friendProfileimg {
     max-width: 150px;
     max-height: 150px;
