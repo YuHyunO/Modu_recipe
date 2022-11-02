@@ -42,11 +42,12 @@
 }
 
 .textarea {
-    border-radius: 0px !important;
+	width:auto;
+    border-radius: 5px !important;
+    border:none;
     font-family: 'NotoSerifKR-Medium', sans-serif !important;
     font-size: 15px;
     white-space:pre;
-
 }
 
 .file a {
