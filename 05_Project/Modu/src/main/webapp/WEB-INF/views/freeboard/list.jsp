@@ -102,7 +102,9 @@
 													class="title">${li.title}</span> <span class="reply">[${li.reply}]</span>
 											</a>
 											</th>
-											<td class="nickname">${li.MNickname}</td>
+											<td class="nickname">
+												<img class="profile-img" src="/pics/profile/${li.profileImg}" alt="img">
+											${li.MNickname}</td>
 											<td class="post-date">${li.postDate}</td>
 											<td class="hits">${li.hits}</td>
 										</tr>
