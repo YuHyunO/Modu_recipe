@@ -62,6 +62,7 @@ form textarea {
     width: auto;
     border-style: none;
     float: left;
+    font-family: 'NotoSerifKR-Medium', sans-serif !important;
 }
 
 .form-btn {
