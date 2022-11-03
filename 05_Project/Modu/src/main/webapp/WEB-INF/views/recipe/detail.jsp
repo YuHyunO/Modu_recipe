@@ -283,8 +283,8 @@
 								<form class="comment-form" type="POST" id="reply-form-0-0"
 									onSubmit="addReply(this)">
 									<div class="row">
-										<div class="col px-0 comment-file"
-											style="min-width: 100px; max-width: 100px;">
+										<input type="hidden" value="${detail.recipe.id}" name="rId"/>
+										<div class="col px-0 comment-file" style="min-width: 100px; max-width: 100px;">
 											<input type="file" hidden> <img class="border"
 												src="/imgs/pic_none.gif" alt="파일첨부" width="100" height="100"
 												style="cursor: pointer;">

@@ -217,13 +217,13 @@ function addReplyForm(e){
 
 $(function(){
 	$("#insertReply").on("click", function(){
-		let reply =  $("#contentsReply").val()
-		let mainForm = $('#reply-form-0-0')
-		let data = mainForm.serializeArray();		
+		let reply =  $("#contentsReply").val();
+		let mainForm = $('#reply-form-0-0');
+		let data = mainForm.serializeArray();
 		//alert("reply"+reply);
 		$.ajax({
 			url: "/recipe/insert.do", 
-			type: "POST", 
+			type: "POST",
 			data: data,
 			dataType:"text",
 			success: function(data){

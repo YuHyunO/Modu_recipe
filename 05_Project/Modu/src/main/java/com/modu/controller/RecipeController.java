@@ -164,7 +164,7 @@ public class RecipeController {
 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("recipe/detail");
-        mv.addObject("detail", detail);        
+        mv.addObject("detail", detail);
         mv.addObject("starPoint", starPoint);
         mv.addObject("scrapState", scrapState);
         mv.addObject("replyCount", replyCount);
@@ -199,10 +199,15 @@ public class RecipeController {
             RecipeReplyPhoto replyPhoto, 
             HttpSession session){
         String email = (String)session.getAttribute("email");
-        String member = (String)session.getAttribute("member");
-        log.info("#recipeReply: " + recipeReply);
+        String nickName = (String)session.getAttribute("nickname");
+        String profileImg = (String)session.getAttribute("profileImg");
+        recipeReply.setMEmail(email);
+        recipeReply.setMNickname(nickName);
+        recipeReply.setProfileImg(profileImg);
         log.info(email);
-        log.info(member);
+        log.info(nickName);
+        log.info(profileImg);
+        log.info("#recipeReply: " + recipeReply);
         String result = recipeRegisterService.registerReply(recipeReply);
         recipeRegisterService.registerReplyPhoto(replyPhoto);
         System.out.println(result);
