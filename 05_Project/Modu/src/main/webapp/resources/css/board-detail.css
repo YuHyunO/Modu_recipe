@@ -19,7 +19,7 @@
     height: 30px;
 }
 
-/* °Ô½ÃÆÇ ¹Ùµð */
+/* ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½Ùµï¿½ */
 .author span{
     width: 200px;
     height: 40px;
@@ -39,6 +39,14 @@
 
 .file, .board-menu, .title-items {
     font-size: 0.8rem;
+}
+
+pre, .textarea {
+    border-radius: 5px !important;
+    border:none;
+    font-family: 'NotoSerifKR-Medium', sans-serif !important;
+    font-size: 15px;
+    white-space:pre;
 }
 
 .file a {
@@ -64,6 +72,7 @@
 
 .comment-text {
     resize: none;
+    font-family: 'NotoSerifKR-Medium', sans-serif !important;
 }
 
 .comment-submit {

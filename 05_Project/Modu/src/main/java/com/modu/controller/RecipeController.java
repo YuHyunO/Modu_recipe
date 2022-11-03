@@ -88,7 +88,7 @@ public class RecipeController {
         HashMap<String, Object> map = new HashMap<String, Object>();
         log.info("#RecipeController Upload");
         if ((String) session.getAttribute("email") == null) {
-            map.put("msg", "로그인 후 이용 해주세요");
+            map.put("msg", "로그인 후 이용 해주세요.");
         } else {
             recipeRegisterService.registerRecipe(request, session, files, mainItems, subItems, directions, tags);
             log.info("#####1" + tags);

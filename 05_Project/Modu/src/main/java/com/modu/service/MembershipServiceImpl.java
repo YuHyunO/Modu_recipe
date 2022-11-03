@@ -106,19 +106,19 @@ public class MembershipServiceImpl implements MembershipService {
     @Override
     public String scrapService(long rId, String email, int mode) {
         String msg;
-        if (mode == 1) { // ½ºÅ©·¦ Ãß°¡
+        if (mode == 1) { // ºÏ¸¶Å© Ãß°¡
             if (recipeFindingService.getScrap(rId, email) == null) {
                 recipeLegacyMapper.insertScrap(email, rId);
-                msg = "½ºÅ©·¦ µÇ¾ú½À´Ï´Ù.";
+                msg = "ºÏ¸¶Å© µÇ¾ú½À´Ï´Ù.";
             } else {
-                msg = "ÀÌ¹Ì ½ºÅ©·¦ Áß ÀÔ´Ï´Ù.";
+                msg = "ÀÌ¹Ì ºÏ¸¶Å© Áß ÀÔ´Ï´Ù.";
             }
-        } else { // ½ºÅ©·¦ ÇØÁ¦
+        } else { // ºÏ¸¶Å© ÇØÁ¦
             if (recipeFindingService.getScrap(rId, email) == null) {
-                msg = "½ºÅ©·¦ ÁßÀÌ ¾Æ´Õ´Ï´Ù.";
+                msg = "ºÏ¸¶Å© ÁßÀÌ ¾Æ´Õ´Ï´Ù.";
             } else {
                 recipeLegacyMapper.deleteScrap(rId, email);
-                msg = "½ºÅ©·¦ÀÌ ÇØÁ¦ µÇ¾ú½À´Ï´Ù.";
+                msg = "ºÏ¸¶Å©°¡ ÇØÁ¦ µÇ¾ú½À´Ï´Ù.";
             }
         }
         return msg;

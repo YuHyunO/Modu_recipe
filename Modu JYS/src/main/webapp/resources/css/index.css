@@ -1,0 +1,87 @@
+/* 메인영역 사이즈 제한 */
+.main-container {
+    max-width: 1400px;
+}
+
+/*영문용*/
+@font-face {
+  font-family: "Montserrat"; /* 사용하고 싶은 font-family명을 지정 */
+  src: url("../css/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("opentype"); /* 폰트파일 불러오기 */
+}
+
+/*영문용*/
+@font-face {
+  font-family: "Fasthand-Regular"; /* 사용하고 싶은 font-family명을 지정 */
+  src: url("../css/fonts/Fasthand-Regular.ttf") format("opentype"); /* 폰트파일 불러오기 */
+}
+
+@font-face {
+  font-family: "SongMyung-Regular"; /* 사용하고 싶은 font-family명을 지정 */
+  src: url("../css/fonts/SongMyung-Regular.ttf") format("opentype"); /* 폰트파일 불러오기 */
+}
+
+@font-face {
+  font-family: "NotoSerifKR-Medium"; /* 사용하고 싶은 font-family명을 지정 */
+  src: url("../css/fonts/NotoSerifKR-Medium.otf") format("opentype"); /* 폰트파일 불러오기 */
+}
+
+.mention {
+    /* margin-top: 0; */
+    padding:90px;
+    display:flex;
+    margin-bottom: 1rem;
+    justify-content:center;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif !important;
+	/* font-family: 'Fasthand-Regular', sans-serif !important; */
+	font-size:100px bolder;
+}
+
+.fixed01, .fixed02, .fixed03, .fixed04 {
+	display:flex;
+    justify-content:center;
+	text-align: center;
+}
+
+.page-title {
+	display:flex;
+    justify-content:center;
+	text-align: center;
+}
+/* 베스트 레시피 타이틀 글씨체 변경 */
+.recipe-title a {
+	font-family: 'NotoSerifKR-Medium', sans-serif !important;
+	font-size:17px;
+	width: auto;
+    text-decoration: none;
+}
+
+/* 쉐프 랭킹 */
+.chef-pic {
+    border-radius: 50%;
+    width: 70%;
+}
+
+.chef-name {
+    color: black;
+    text-decoration: none;
+}
+
+/* mobile size */
+@media(max-width:454px){
+    .chef-list {
+        font-size: 0.8rem;
+    }
+}
+
+@media (min-width: 768px)
+.col-md-3 {
+    flex: 0 0 auto;
+    width: 20%;
+}
+
+/* 기타 */
+.btn-more {
+     color: black;
+     text-decoration: none;
+}

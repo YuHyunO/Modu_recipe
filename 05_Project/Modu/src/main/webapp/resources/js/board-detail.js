@@ -27,7 +27,7 @@ function addReply(e){
                 reviewText += lines[i] + "<br>";
             }
         }
-        console("#reviewText: "+reviewText);
+        //console.log("#reviewText: "+reviewText); //작성한 댓글 내용
         
         let time = new Date();
         let month = String(time.getMonth() + 1);
@@ -75,7 +75,7 @@ function addReply(e){
                     </div>\
                 </div><!-- end author -->\
                 <div class="reply-content">\
-                    <p class="p-3">' + reviewText +'</p>\
+                    <p class="textarea p-3">' + reviewText +'</p>\
                 </div>\
             </div><!-- end reply -->';
 

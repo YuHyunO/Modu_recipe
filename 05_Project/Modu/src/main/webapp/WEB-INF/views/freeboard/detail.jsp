@@ -40,7 +40,7 @@
 		});
 		
 		function deleteCheck() {
-			 if (confirm("정말 삭제하시겠습니까??") == true){
+			 if (confirm("정말 삭제하시겠습니까?") == true){
 				 location.href='delete.do?id=${board.board.id}';
 			 }else{
 			     return false;
@@ -67,7 +67,7 @@
 						let list = data.list;
 						console.log("###"+data);
 						console.log("###"+list);
-						src="/pics/profile/${recipe.profileImg}" alt="작성자">
+
 						for(let item of list){
 							html +=	"<div class='reply py-3' id='reply-1'>";
 							html +=	"	<div class='reply-author d-flex justify-content-between'>";
@@ -87,7 +87,7 @@
 							html +=	"	</div>";
 							html +=	"	<!-- end author -->";
 							html +=	"	<div class='reply-content'>";
-							html +=	"		<p class='p-3'>"+item.reply+"</p>";
+							html +=	"		<p class='textarea p-3'>"+item.reply+"</p>";
 							html +=	"	</div>";
 							html +=	"</div>";
 						}
@@ -119,24 +119,30 @@
 				        </div>\
 				    </div>'
 		}
+		
 		function removeReply(){
+			console.log("#게시판 댓글삭제 removeReply 메소드 진입");
+			
 			let para = document.location.href.split("=");
-			let bId = para[1];
-			const removeReply = document.getElementById('removeReply');
+			let bId = para[1]; //해당 게시글 Id
+			//console.log("#삭제전- para:",para); //para: (2) ['http://127.0.0.1:8080/freeboard/detail?id', '354']
+			//console.log("#삭제전- bId:",bId); //354
+			
+			const removeReply = document.getElementById('removeReply'); //무조건 상위댓글만 뽑힘
 			let number = removeReply.innerText;
-			if (confirm("정말 삭제하시겠습니까??") == true){
+			console.log("#삭제전-삭제할 댓글 id(number):",number); //무조건 상위댓글 id만 뽑힘 16143
+			
+			if (confirm("정말 ${number}번 댓글을 삭제하시겠습니까?") == true){
 				$.ajax({
 					url: "../freeboard/removeReply", 
 					type: "POST", 
-					data: {"id":number
-					},
+					data: { "id" : number },
 					success: function(data){
+						console.log("#삭제 성공한 댓글 id:", number);
 						location.href='detail?id='+bId+'';
-					}
-					,
+						} ,
 					error: function(eror){
-						alert("fail");
-					}
+						alert("fail"); }
 				});
 				
 			 }else{
@@ -172,7 +178,7 @@
 		<%@ include file="/WEB-INF/views/common/menu.jsp"%>
 		<div class="head-title py-4 m-0">
 			<div class="container">
-				<p class="page-title m-0 fs-2">free board</p>
+				<p class="page-title m-0 fs-2">자유게시판</p>
 			</div>
 			<!-- end container -->
 		</div>
@@ -184,37 +190,6 @@
 				<div class="main-size col-md-8 row justify-content-center">
 					<div id="board" class="my-3 row px-0">
 						<div class="container p-0">
-<!-- 							<div class="board-search text-center m-0 w-100">
-								<div id="board-search"
-									class="mb-3 d-flex justify-content-between align-items-center">
-									<div class="selects">
-										<select class="gold-border p-1 filter-period">
-											<option selected="selected">전체기간</option>
-											<option>1일</option>
-											<option>1주</option>
-											<option>1개월</option>
-											<option>6개월</option>
-											<option>1년</option>
-										</select> <select class="gold-border p-1 filter-group">
-											<option selected="selected">제목만</option>
-											<option>글작성자</option>
-											<option>댓글내용</option>
-											<option>댓글작성자</option>
-										</select>
-									</div>
-									<div class="d-flex justify-content-end search-box">
-										<input id="search" class="border px-2" type="search"
-											name="search" placeholder="검색어를 입력해주세요" value="">
-										<button type="submit" class="search-btn border">검색</button>
-										<select class="gold-border p-1 ms-2">
-											<option selected="selected">10</option>
-											<option>15</option>
-											<option>20</option>
-										</select>
-									</div>
-								</div>
-								end board-search
-							</div> -->
 							<div class="board-main gold-border rounded-1">
 								<div
 									class="board-title gold-bottom d-flex justify-content-between align-items-center p-2">
@@ -251,15 +226,19 @@
 									<div class="py-0 border-top"></div>
 									<div
 										class="content-cover d-flex flex-column justify-content-between">
+<%-- 										<div class="content p-2">
+											<textarea cols="5" rows="200"><c:out value="${board.board.content}"/></textarea>
+										</div> --%>
 										<div class="content p-2">
-											<p>${board.board.content}</p>
+											<pre class="contentarea"><c:out value="${board.board.content}"/></pre>
 										</div>
 										<div
 											class="div file d-flex justify-content-end align-items-center p-2">
 											<c:forEach var="file" items="${board.boardFile}">
 												<div id='downSave' style='display: none;'>
 												</div>
-													<a href="download.do?saveFile=${file.saveFile}" class="me-2" id="me-2">첨부파일: ${file.originalFile}
+													<a href="download.do?saveFile=${file.saveFile}" class="me-2" id="me-2">
+													첨부파일: ${file.originalFile}
 											<button class="down-btn" onclick='downCheck()'>다운로드</button></a>
 											</c:forEach>
 										</div>
@@ -277,40 +256,33 @@
 							</div>
 							<div class="py-3"></div>
 							<div class="reply-container pb-3">
-								<p class="mb-1 pb-3 px-2 gold-bottom" style="font-weight: bold;">댓글
-									(${board.board.reply})</p>
+								<p class="mb-1 pb-3 px-2 gold-bottom" style="font-weight: bold;">댓글(${board.board.reply})</p>
 								<div class="reply-list">
 										<c:forEach items="${list.list}" var="i">
 													<div class="reply py-3" id="reply-1">
 														<div class="reply-author d-flex justify-content-between">
 															<div class="author-main d-flex align-items-center px-3 pt-2">
 																<figure class="profile m-0">
-<<<<<<< HEAD
-																	<img class="profile-img" src="/pics/profile/${i.profileImg}"
-																		alt="작성자">
-=======
 																	<img class="profile-img" src="/pics/profile/${i.profileImg}" alt="img">
->>>>>>> 34284b62ae711da09f925da8f9ae9852702823b3
 																</figure>
-																<span class="m-nickname ps-2">${i.MNickname}</b> <span
-																	class="post-date px-2">${i.replyDate}</span>
+																<span class="m-nickname ps-2">${i.MNickname}</b>
+																<span class="post-date px-2">${i.replyDate}</span>
 															</div>
-															<div id='removeReply' style="display: none;" >${i.id}
+															<div id='removeReply' style="display: none;" >${i.id}</div>
+															<div class="author-items px-3">
+																<c:if test="${sessionScope.email == i.MEmail}">
+																	<button class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
+																</c:if>
+																<c:if test="${sessionScope.email != i.MEmail}">
+																	<button style="display: none;" class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
+																</c:if>
+																<button class="reply-1 reply-btn"
+																	onclick="addReplyForm(this)">답글</button>
 															</div>
-																<div class="author-items px-3">
-																	<c:if test="${sessionScope.email == i.MEmail}">
-																		<button class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
-																	</c:if>
-																	<c:if test="${sessionScope.email != i.MEmail}">
-																		<button style="display: none;" class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
-																	</c:if>
-																	<button class="reply-1 reply-btn"
-																		onclick="addReplyForm(this)">댓글</button>
-																</div>
 														</div>
 														<!-- end author -->
 														<div class="reply-content">
-															<p class="p-3">${i.reply}</p>
+															<p class="textarea p-3">${i.reply}</p>
 														</div>
 													</div>
 											</c:forEach>
@@ -324,13 +296,13 @@
 										onsubmit="addReply(this);">
 										<div class="row">
 												<c:if test="${fn:length(list.list) > 5}">
-														<input type='button' id="theBoGi" style="text-align: center; " onclick='count()' value='더보기'>
-															<br></br>
+														<input type='button' id="theBoGi" style="text-align: center; border:none;" onclick='count()' value='댓글 더보기'>
+														<br></br>
 														<textarea id='plusResult' style='display:none;'>6</textarea>
 												</c:if>
 												<c:if test="${fn:length(list.list) == 0}">
-														<input type='button' id="theBoGi" style="text-align: center; display: none; " onclick='count()' value='더보기'>
-															<br></br>
+														<input type='button' id="theBoGi" style="text-align: center; display: none; " onclick='count()' value='댓글 더보기'>
+														<br></br>
 														<textarea id='plusResult' style='display:none;'>6</textarea>
 												</c:if>
 											<div class="col px-0">
