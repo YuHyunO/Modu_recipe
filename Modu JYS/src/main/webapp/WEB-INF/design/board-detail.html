@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Yellowtail" rel="stylesheet">
+        <link href="css/styles.css" rel="stylesheet">
+        <link href="css/common.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="js/common.js"></script>
+        <!-- 공통 부분 END -->
+        <link href="css/board-list.css" rel="stylesheet">
+        <link href="css/board-single.css" rel="stylesheet">
+        <script src="js/board-single.js"></script>
+        <title>모두의식탁 - 게시판</title>
+    </head>
+    <body>
+        <div id="page" class="hfeed site"><!-- start page wrapper -->
+            <header id="masthead" class="site-header navbar-fixed-top d-flex align-items-center p-0">
+                <div class="header-navigation w-100">
+                    <div class="container-fluid">
+        
+                        <div class="row head-row w-100 m-0 p-3">
+        
+                            <div class="brand-col">
+                                <div class="site-branding navbar-brand">
+                                    <a href="index.html"><img src="images/logo.png" alt="모두의식탁" title="logo" class="logo"></a>
+                                </div><!-- end logo -->
+                            </div><!-- end col-md-3 -->
+        
+                            <div class="menu-col">
+                                <nav class="site-navigation navbar navbar-expand-lg navbar-light">
+        
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div class="collapse navbar-collapse">
+                                        <ul class="navbar-nav">
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="index.html">홈<span class="sr-only">(current)</span></a>
+                                            </li>
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">레시피</a>
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                                                    <a class="dropdown-item" href="recipe-list.html">레시피 목록</a>
+                                                    <a class="dropdown-item" href="recipe-single.html">레시피 상세</a>
+                                                    <a class="dropdown-item" href="recipe-write.html">레시피 등록</a>
+                                                </div>
+                                            </li>
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">게시판</a>
+                                                <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                                                    <a class="dropdown-item" href="board-list.html">게시판 목록</a>
+                                                    <a class="dropdown-item" href="board-single.html">게시판 상세</a>
+                                                    <a class="dropdown-item" href="board-write.html">게시판 등록</a>
+                                                </div>
+                                            </li>
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link" href="mypage.html">마이페이지</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="login.html">로그인</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="signup.html">회원가입</a>
+                                            </li>
+                                        </ul>
+                                    </div><!-- end navbar-collapse -->
+                                </nav><!-- end site-navigation -->
+                            </div><!-- end col-md-6 -->
+        
+                            <div class="side-col">
+                                <nav class="social-navigation p-0">
+                                    <div class="social-container py-0">
+                                        <ul class="social-menu">
+                                            <!-- <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li> -->
+                                        </ul>
+                                    </div><!-- end social-container -->
+                                    <div class="search-container py-1">
+                                        <a href="recipe-list.html"><img src="images/search.svg" alt="검색버튼" title="search" class="nav-search"></a>
+                                    </div><!-- end search-container -->
+                                </nav>
+                            </div><!-- end col-md-3 -->
+        
+                        </div><!-- end row -->
+                        
+                    </div><!-- end container-fluid -->
+                </div><!-- end header-navigation -->
+            </header><!-- end #masthead -->
+            <div class="collapse navbar-collapse px-5 mb-3" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">홈<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">레시피</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                            <a class="dropdown-item" href="recipe-list.html">레시피 목록</a>
+                            <a class="dropdown-item" href="recipe-single.html">레시피 상세</a>
+                            <a class="dropdown-item" href="recipe-write.html">레시피 등록</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">게시판</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown3">
+                            <a class="dropdown-item" href="board-list.html">게시판 목록</a>
+                            <a class="dropdown-item" href="board-single.html">게시판 상세</a>
+                            <a class="dropdown-item" href="board-write.html">게시판 등록</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="mypage.html">마이페이지</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">로그인</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="signup.html">회원가입</a>
+                    </li>
+                </ul>
+            </div><!-- end navbar-collapse -->
+
+            <div class="head-title py-4 m-0">
+                <div class="container">
+                    <p class="page-title m-0 fs-2">free board</p>
+                </div><!-- end container -->
+            </div><!-- end head-title -->   
+            
+            <div class="main">
+                <div class="main-container row d-flex justify-content-center m-0 py-4">
+                    <div class="main-size col-md-8 row justify-content-center">
+                        <div id="board" class="my-3 row px-0">
+                            <div class="container p-0">
+                                <div class="board-search text-center m-0 w-100">
+                                    <div id="board-search" class="mb-3 d-flex justify-content-between align-items-center">
+                                        <div class="selects">
+                                            <select class="gold-border p-1 filter-period">
+                                                <option selected="selected">전체기간</option>
+                                                <option>1일</option>
+                                                <option>1주</option>
+                                                <option>1개월</option>
+                                                <option>6개월</option>
+                                                <option>1년</option>
+                                            </select>
+                                            <select class="gold-border p-1 filter-group">
+                                                <option selected="selected">제목만</option>
+                                                <option>글작성자</option>
+                                                <option>댓글내용</option>
+                                                <option>댓글작성자</option>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex justify-content-end search-box">
+                                            <input id="search" class="border px-2" type="search" name="search" placeholder="검색어를 입력해주세요" value="">
+                                            <button type="submit" class="search-btn border">검색</button>
+                                            <select class="gold-border p-1 ms-2">
+                                                <option selected="selected">10</option>
+                                                <option>15</option>
+                                                <option>20</option>
+                                            </select>
+                                        </div>
+                                    </div><!-- end board-search -->
+                                </div>
+                                <div class="board-main gold-border rounded-1">
+                                    <div class="board-title gold-bottom d-flex justify-content-between align-items-center p-2">
+                                        <div class="div title-text col-8 text-start p-2">[美친특가] 르젠 플러스 IH 가열식 가습기 4세대 (2023년형 신형)</div>
+                                        <div class="div title-items align-items-center text-end px-2">
+                                            <span class="hits ms-2">조회: 300</span>
+                                        </div>
+                                    </div><!-- board-title -->
+                                    <div class="board-body p-2">
+                                        <div class="board-head d-flex justify-content-between">
+                                            <div class="author d-flex align-items-center px-2 pt-2">
+                                                <figure class="profile">
+                                                    <img class="profile-img" src="images/content/auth-00.png" alt="작성자">
+                                                </figure>
+                                                <span class="m-nickname ps-2">Jessica</b>
+                                                <span class="post-date px-2">09-20 18:30</span>
+                                            </div>
+                                            <div class="">
+                                                <button class="btn-fix">수정</button>
+                                                <button class="btn-del">삭제</button>
+                                            </div>
+                                        </div><!-- board-head -->
+                                        <div class="py-0 border-top"></div>
+                                        <div class="content-cover d-flex flex-column justify-content-between">
+                                            <div class="content p-2">
+                                                <p>규정을 위반한 사용자들을 신고하고 오리 실험 요청을 할 수 있는 공간이다. 규정에 따라 일반 이용자가 답변 등 신고 처리에 불필요한 내용이 들어간 댓글을 작성하면 안 된다. 단, 피신고자가 반론 정도는 할 수 있다. 편집 차단된 사용자가 신고 게시판에 신고를 하는 건 불가능하다.
+                                                    규정을 위반한 사용자들을 신고하고 오리 실험 요청을 할 수 있는 공간이다. 규정에 따라 일반 이용자가 답변 등 신고 처리에 불필요한 내용이 들어간 댓글을 작성하면 안 된다. 단, 피신고자가 반론 정도는 할 수 있다. 편집 차단된 사용자가 신고 게시판에 신고를 하는 건 불가능하다.
+                                                    규정을 위반한 사용자들을 신고하고 오리 실험 요청을 할 수 있는 공간이다. 규정에 따라 일반 이용자가 답변 등 신고 처리에 불필요한 내용이 들어간 댓글을 작성하면 안 된다. 단, 피신고자가 반론 정도는 할 수 있다. 편집 차단된 사용자가 신고 게시판에 신고를 하는 건 불가능하다.
+                                                </p>
+                                            </div>
+                                            <div class="div file d-flex justify-content-end align-items-center p-2">
+                                                <a href="javascript:void(0)" class="me-2">첨부파일: 게시판 스샷.png</a>
+                                                <button class="down-btn">다운로드</button>
+                                            </div>
+                                        </div>
+                                    </div><!-- board-body -->
+                                </div><!-- end board-main -->
+                                <div>
+                                    <div class="board-menu py-2 px-3 float-end">
+                                        <a href="javascript:void(0)">목록</a>
+                                        <a href="javascript:void(0)">| 이전글 |</a>
+                                        <a href="javascript:void(0)">다음글</a>
+                                    </div>
+                                </div>
+                                <div class="py-3"></div>
+                                <div class="reply-container pb-3">
+                                    <p class="mb-1 pb-3 px-2 gold-bottom" style="font-weight: bold;">댓글 (1)</p>
+                                    <div class="reply-list">
+                                        <div class="reply py-3" id="reply-1">
+                                            <div class="reply-author d-flex justify-content-between">
+                                                <div class="author-main d-flex align-items-center px-3 pt-2">
+                                                    <figure class="profile m-0">
+                                                        <img class="profile-img" src="images/content/auth-01.png" alt="작성자">
+                                                    </figure>
+                                                    <span class="m-nickname ps-2">Kein</b>
+                                                    <span class="post-date px-2">09-20 18:30</span>
+                                                </div>
+                                                <div class="author-items px-3">
+                                                    <button class="reply-1 reply-btn" onclick="">수정</button>
+                                                    <button class="reply-1 reply-btn" onclick="">삭제</button>    
+                                                    <button class="reply-1 reply-btn" onclick="addReplyForm(this)">댓글</button>
+                                                </div>
+                                            </div><!-- end author -->
+                                            <div class="reply-content">
+                                                <p class="p-3">전체 유통기한이 제조일로부터 6개월이며, 국내 반입 기준으로는 4~5개월임을 구매시 참고 부탁드립니다^^
+
+                                                    위 상품은 10/31 까지의 임박재고이며 구매 시 참고 해주세요,
+                                                    
+                                                    최상의 상태를 위해서 빠른 섭취를 추천드립니다:)</p>
+                                            </div>
+                                        </div><!-- end reply -->
+                                    </div><!-- end reply-list -->
+                                    <div class="row p-2">
+                                        <form class="comment-form" type="POST" id="main-reply" onsubmit="addReply(this);">
+                                            <div class="row">
+                                                <div class="col px-0">
+                                                    <textarea class="w-100 h-100 border comment-text p-2" name="reply" maxlength="300" rows=3 placeholder="댓글을 남겨주세요" required></textarea>
+                                                </div>
+                                                <div class="col px-0 comment-btn">
+                                                    <button class="btn w-100 h-100 border comment-submit" type="submit">등록</button>
+                                                </div>
+                                            </div>
+                                        </form><!-- end comment-form -->
+                                    </div>
+                                </div><!-- end reply-container -->
+                            </div><!-- end board container -->
+                        </div><!-- end board -->
+                    </div><!-- end main-size -->
+                </div><!-- end main-container -->
+            </div><!-- end main -->
+
+            <div class="bottom">
+                <div class="container">
+                    <div class="row no-gutters">
+                        <div class="col-md-6">
+                            <div class="copy">
+                                <p>&copy; 2020 Taplak Web Template. Made with <i class="fas fa-heart"></i> by Mattsapii</p>
+                            </div><!-- end copy -->
+                        </div><!-- end col -->
+                        <div class="col-md-6">
+                            <ul class="bottom-nav">
+                                <li><a href="http://www.bootstrapmb.com/">Home</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms and Conditions</a></li>
+                            </ul>
+                        </div><!-- end col -->
+                    </div><!-- end row -->
+                </div><!-- end container -->
+            </div><!-- end bottom -->
+            
+        </div><!-- end #page hfeed site -->
+        <!-- jQuery(necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+        <script src="js/vendor/jquery-3.4.1.min.js"></script>
+        <!-- Include all compiled plugins(below),or include individual files as needed -->
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <!-- Include all compiled plugins(below),or include individual files as needed -->
+        <script src="js/plugin.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>
