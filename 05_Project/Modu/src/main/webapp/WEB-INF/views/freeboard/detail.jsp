@@ -226,15 +226,19 @@
 									<div class="py-0 border-top"></div>
 									<div
 										class="content-cover d-flex flex-column justify-content-between">
+<%-- 										<div class="content p-2">
+											<textarea cols="5" rows="200"><c:out value="${board.board.content}"/></textarea>
+										</div> --%>
 										<div class="content p-2">
-											<textarea class="textarea"><c:out value="${board.board.content}"/></div>
+											<pre class="contentarea"><c:out value="${board.board.content}"/></pre>
 										</div>
 										<div
 											class="div file d-flex justify-content-end align-items-center p-2">
 											<c:forEach var="file" items="${board.boardFile}">
 												<div id='downSave' style='display: none;'>
 												</div>
-													<a href="download.do?saveFile=${file.saveFile}" class="me-2" id="me-2">첨부파일: ${file.originalFile}
+													<a href="download.do?saveFile=${file.saveFile}" class="me-2" id="me-2">
+													첨부파일: ${file.originalFile}
 											<button class="down-btn" onclick='downCheck()'>다운로드</button></a>
 											</c:forEach>
 										</div>
@@ -273,7 +277,7 @@
 																	<button style="display: none;" class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
 																</c:if>
 																<button class="reply-1 reply-btn"
-																	onclick="addReplyForm(this)">댓글</button>
+																	onclick="addReplyForm(this)">답글</button>
 															</div>
 														</div>
 														<!-- end author -->

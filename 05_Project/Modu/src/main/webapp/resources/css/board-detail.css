@@ -41,8 +41,7 @@
     font-size: 0.8rem;
 }
 
-.textarea {
-	width:auto;
+pre, .textarea {
     border-radius: 5px !important;
     border:none;
     font-family: 'NotoSerifKR-Medium', sans-serif !important;
@@ -73,6 +72,7 @@
 
 .comment-text {
     resize: none;
+    font-family: 'NotoSerifKR-Medium', sans-serif !important;
 }
 
 .comment-submit {

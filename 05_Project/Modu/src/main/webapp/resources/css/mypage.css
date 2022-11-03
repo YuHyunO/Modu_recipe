@@ -1,11 +1,8 @@
-a, a:hover {
+a {
 	width: auto;
     text-decoration: none;
-    color:rgb(147, 112, 98);
+    /* color:rgb(147, 112, 98); */
 }
-
-
-
 
 .profile-details {
 	    background-color: rgba(147, 112, 98, 0.2);
