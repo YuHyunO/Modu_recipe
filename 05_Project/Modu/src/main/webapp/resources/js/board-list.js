@@ -128,7 +128,7 @@ function updateData(boardList, pageSize){
 		html += 'class="title">'+item.title+'</span> <span class="reply">['+item.reply+']</span>';
 		html += '</a>';
 		html += '</th>';
-		html += '<td class="nickname">'+item.mnickname+'</td>';
+		html += '<td class="nickname"><img class="profile-img" src="/pics/profile/'+item.profileImg+'" alt="img">'+item.mnickname+'</td>';
 		html += '<td class="post-date">'+item.postDate+'</td>';
 		html += '<td class="hits">'+item.hits+'</td>';
 		html += '</tr>';

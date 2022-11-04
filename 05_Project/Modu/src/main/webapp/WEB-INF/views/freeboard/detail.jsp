@@ -74,7 +74,7 @@
 							html +=	"		<div class='author-main d-flex align-items-center px-3 pt-2'>";
 							html +=	"			<figure class='profile m-0'>";
 							html +=	"				<img class='profile-img' src='/pics/profile/"+item.profileImg+"'";
-							html +=	"					alt='작성자'>";
+							html +=	"					alt='img'>";
 							html +=	"			</figure>";
 							html +=	"			<span class='m-nickname ps-2'>"+item.mNickname+"</b> <span";
 							html +=	"				class='post-date px-2'>"+item.replyDate+"</span>";
@@ -205,7 +205,7 @@
 										<div class="author d-flex align-items-center px-2 pt-2">
 											<figure class="profile">
 												<img class="profile-img" src="/pics/profile/${board.board.profileImg}"
-													alt="작성자">
+													alt="img">
 											</figure>
 											<span class="m-nickname ps-2">${board.board.MNickname}</b>
 											<span class="post-date px-2">${board.board.postDate}</span>
