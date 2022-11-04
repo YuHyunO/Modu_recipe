@@ -42,15 +42,17 @@ import lombok.extern.log4j.Log4j;
 public class FreeBoardController {
     @Autowired
     private BoardFindingService boardService;
+    @Autowired
     private BoardRegisterService boardRegisterService;
+    @Autowired
     private BoardReplyService boardReplyService;
+    @Autowired
     private FileUploadService service;
 
     @GetMapping("/list")
     public ModelAndView boardList(HttpServletRequest request, HttpSession session){
         BoardListVo data = boardService.listingPosts(request,session);
         ModelAndView mv = new ModelAndView("freeboard/list", "data", data);
-        log.info("#1029 1 : " + data+ "  mv " + mv);
         return mv;
     }
     @GetMapping("/list.do")
