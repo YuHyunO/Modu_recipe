@@ -120,9 +120,9 @@
 				    </div>'
 		}
 		
-		function removeReply(){
+		function removeReply(rId){
 			console.log("#게시판 댓글삭제 removeReply 메소드 진입");
-			
+			let rIdNum = rId;
 			let para = document.location.href.split("=");
 			let bId = para[1]; //해당 게시글 Id
 			//console.log("#삭제전- para:",para); //para: (2) ['http://127.0.0.1:8080/freeboard/detail?id', '354']
@@ -130,13 +130,13 @@
 			
 			const removeReply = document.getElementById('removeReply'); //무조건 상위댓글만 뽑힘
 			let number = removeReply.innerText;
-			console.log("#삭제전-삭제할 댓글 id(number):",number); //무조건 상위댓글 id만 뽑힘 16143
+			console.log("#삭제전-삭제할 댓글 id(rIdNum):",rIdNum); //무조건 상위댓글 id만 뽑힘 16143
 			
-			if (confirm("정말 ${number}번 댓글을 삭제하시겠습니까?") == true){
+			if (confirm("정말 댓글을 삭제하시겠습니까?") == true){
 				$.ajax({
 					url: "../freeboard/removeReply", 
 					type: "POST", 
-					data: { "id" : number },
+					data: { "id" : rIdNum },
 					success: function(data){
 						console.log("#삭제 성공한 댓글 id:", number);
 						location.href='detail?id='+bId+'';
@@ -272,12 +272,9 @@
 															<div id='removeReply' style="display: none;" >${i.id}</div>
 															<div class="author-items px-3">
 																<c:if test="${sessionScope.email == i.MEmail}">
-																	<button class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
+																	<button class="reply-1 reply-btn" onclick="removeReply(${i.id})">삭제</button>
 																</c:if>
-																<c:if test="${sessionScope.email != i.MEmail}">
-																	<button style="display: none;" class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
-																</c:if>
-																<button class="reply-1 reply-btn"
+																<button style='display: none;' class="reply-1 reply-btn"
 																	onclick="addReplyForm(this)">답글</button>
 															</div>
 														</div>
