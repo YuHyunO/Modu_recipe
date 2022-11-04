@@ -7,6 +7,7 @@
 <%@ include file="/WEB-INF/views/common/head.jsp"%>
 <!-- 공통 부분 END. -->
 <link href="/css/recipe-list.css" rel="stylesheet">
+<link href="/css/index.css" rel="stylesheet">
 <script src="/js/recipe-list.js"></script>
 
 <title>모두의 식탁 - 레시피 목록</title>
@@ -113,7 +114,7 @@
 						<c:forEach items="${data.recipeList}" var="li">
 							<div id="recipe-item" class="col-6 col-md-3">
 								<div class="recipe-thumb">
-									<img src="${li.foodPhoto}" alt="/imgs/content/thumb-1.png">
+									<img src="/pics/recipe/${li.id}/${li.foodPhoto}" alt="FoodPhoto">
 								</div>
 								<div class="recipe-desc">
 									<h2 class="recipe-title">
@@ -121,7 +122,7 @@
 									</h2>
 									<figure class="profile">
 						
-										<img class="profile-img" src="/imgs/content/auth-00.png"
+										<img class="profile-img" src="/pics/profile/${li.profileImg}"
 											alt="작성자">
 										<span><em> ${li.MNickname}</em></span>
 									</figure>

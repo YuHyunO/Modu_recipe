@@ -134,26 +134,26 @@
 	font-family: 'Jua', sans-serif !important;
 }
 
-/*������*/
-@font-face {
-  font-family: "Montserrat"; /* ����ϰ� ���� font-family���� ���� */
-  src: url("../css/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("opentype"); /* ��Ʈ���� �ҷ����� */
-}
-
-/*������*/
-@font-face {
-  font-family: "Fasthand-Regular"; /* ����ϰ� ���� font-family���� ���� */
-  src: url("../css/fonts/Fasthand-Regular.ttf") format("opentype"); /* ��Ʈ���� �ҷ����� */
-}
 
 @font-face {
-  font-family: "SongMyung-Regular"; /* ����ϰ� ���� font-family���� ���� */
-  src: url("../css/fonts/SongMyung-Regular.ttf") format("opentype"); /* ��Ʈ���� �ҷ����� */
+  font-family: "Montserrat";
+  src: url("../css/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("opentype");
+}
+
+
+@font-face {
+  font-family: "Fasthand-Regular"; 
+  src: url("../css/fonts/Fasthand-Regular.ttf") format("opentype"); 
 }
 
 @font-face {
-  font-family: "NotoSerifKR-Medium"; /* ����ϰ� ���� font-family���� ���� */
-  src: url("../css/fonts/NotoSerifKR-Medium.otf") format("opentype"); /* ��Ʈ���� �ҷ����� */
+  font-family: "SongMyung-Regular"; 
+  src: url("../css/fonts/SongMyung-Regular.ttf") format("opentype"); 
+}
+
+@font-face {
+  font-family: "NotoSerifKR-Medium"; 
+  src: url("../css/fonts/NotoSerifKR-Medium.otf") format("opentype"); 
 }
 
 .brand {
@@ -189,7 +189,7 @@
 	height: 25px;
 }
 
-/* �ݻ� �׵θ� */
+
 .gold-top {
 	border-top: 1px solid rgb(147, 112, 98) !important;
 }
@@ -343,6 +343,7 @@
 
 .profile-img {
 	height: 25px;
+	width: 25px;
 	border-radius: 50%;
 }
 
@@ -378,7 +379,7 @@
 	}
 }
 
-/* ���������̼� */
+
 .page-link {
 	color: rgb(150, 150, 150) !important;
 	width: 35px;
@@ -396,12 +397,12 @@
 	color: black !important;
 }
 
-/* ����Ʈ Ŀ�� */
+
 .pointer {
 	cursor: pointer !important;
 }
 
-/* �̹��� 100% */
+
 .ratio-100 {
 	position: relative !important;
     width: 100% !important;
