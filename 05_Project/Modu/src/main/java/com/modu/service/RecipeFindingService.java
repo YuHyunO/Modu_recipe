@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.modu.domain.recipe.RecipeTag;
 import com.modu.domain.member.FollowList;
 import com.modu.domain.member.Scrap;
 import com.modu.domain.recipe.RecipeDetail;
@@ -29,5 +28,4 @@ public interface RecipeFindingService {
 	FollowList getFollower(String targetEmail, String email);
 	List<RecipeReplyList> getReply(HttpServletRequest request);
 	List<RecipeNestedReply> getNestedReply(HttpServletRequest request);
-    List<RecipeTag> findRecentRecipeTags();
 }

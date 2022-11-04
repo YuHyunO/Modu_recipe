@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.modu.domain.member.Member;
 import com.modu.domain.recipe.RecipeList;
-import com.modu.domain.recipe.RecipeTag;
 import com.modu.service.MembershipService;
 import com.modu.service.RecipeFindingService;
 
@@ -53,10 +52,5 @@ public class IndexController {
         List<RecipeList> data = recipeFindingService.findRecentRecipes(request);
         return data;
     }
-    
-    @GetMapping("/recent-tag")
-    public @ResponseBody List<RecipeTag> callRecentRecipeTag(){
-        List<RecipeTag> recipeTag = recipeFindingService.findRecentRecipeTags();
-        return recipeTag;
-    }
+	
 }

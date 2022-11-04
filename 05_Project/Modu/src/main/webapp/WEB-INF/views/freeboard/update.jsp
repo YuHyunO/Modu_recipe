@@ -16,21 +16,21 @@
 		   var titleF = document.getElementById('title').value;
 		   var contentF = document.getElementById('content').value;;
 		   if(titleF == "" || contentF == "")
-		   {alert("내용을 작성해주세요.");
+		   {alert("내용쓰세요");
 			   return false;
 		   }else{
 			   document.input.submit();
 		   };	  
 	   };
 	   function cancel(){
-			if (confirm("정말 취소하시겠습니까?") == true){
+			if (confirm("정말 취소하시겠습니까??") == true){
 			 	location.href='detail?id=${board.board.id}';
 			}else{
 			    return false;
 			}
 	   };
 	  function fileIdSubmit(){
-			if (confirm("정말 삭제하시겠습니까?") == true){
+			if (confirm("정말 삭제하시겠습니까??") == true){
 				var fileId = document.getElementById('fileId').value;
 				   var fileSaveName = document.getElementById('fileSaveName').value;
 				   $.ajax({
@@ -61,7 +61,7 @@
 		<%@ include file="/WEB-INF/views/common/menu.jsp"%>
 		<div class="head-title py-4 m-0">
 			<div class="container">
-				<p class="page-title m-0 fs-2">자유게시판</p>
+				<p class="page-title m-0 fs-2">free board write</p>
 			</div>
 			<!-- end container -->
 		</div>
@@ -74,7 +74,7 @@
 						enctype="multipart/form-data"
 						class="row justify-content-center p-5 main-size">
 						<input type="hidden" name="id" value="${board.board.id}">
-						<div class="p-4 pt-0 p-title h3 mb-0 text-center">#게시글 수정</div>
+						<div class="p-4 pt-0 p-title h3 mb-0 text-center">#게시판 등록</div>
 						<div class="form-group align-items-center mb-3 p-0"
 							style="display: none !important;">
 							<label for="post_type" class="m-0 p-2">카테고리</label> <select
@@ -89,8 +89,7 @@
 								class="form-control" maxlength="30" value="${board.board.MNickname}" readonly />
 						</div>
 						<div class="form-group align-items-center mb-3 p-0">
-							<label for="title" class="m-0 p-2">제목</label>
-								<input type="text"
+							<label for="title" class="m-0 p-2">제목</label> <input type="text"
 								size="50" name="title" id="title" class="form-control rounded-1"
 								maxlength="30" value="${board.board.title}"/>
 						</div>
@@ -98,14 +97,14 @@
 						<div class="form-group align-items-center mb-3 p-0">
 							<label for="content" class="m-0 p-2">내용</label>
 							<textarea cols="50" rows="10" name="content" id="content"
-								class="form-control" value="${board.board.content}">${board.board.content}</textarea>
+								class="form-control" value="${board.board.content}"></textarea>
 						</div>
 						<div class="form-group align-items-center mb-3 p-0 mb-0 file">
 							<input class="form-control" type="file" id="formFileMultiple"
-								name='file' multiple="multiple" value=""><br>
+								name='file' multiple="multiple" value="">
 								<c:if test='${board.boardFile != null }'>
 									<c:forEach var="file" items="${board.boardFile}">
-										<button type='button' class="me-2" id="filedelete" onclick='fileIdSubmit()'>첨부파일: ${file.originalFile} 삭제
+										<button type='button' class="me-2" id="me-2" onclick='fileIdSubmit()'>첨부파일: ${file.originalFile} 삭제
 										</button>
 										<textarea id='fileId' style='display: none;'>${file.id}</textarea>
 										<textarea id='fileSaveName' style='display: none;' >${file.saveFile}</textarea>

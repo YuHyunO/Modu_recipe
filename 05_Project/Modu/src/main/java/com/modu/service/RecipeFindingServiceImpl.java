@@ -192,10 +192,4 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
         }
         return replyList;
     }
-
-    @Override
-    public List<RecipeTag> findRecentRecipeTags() {
-        List<RecipeTag> recipeTag = recipeLegacyMapper.selectLatestRecipeTag();
-        return recipeTag;
-    }
 }

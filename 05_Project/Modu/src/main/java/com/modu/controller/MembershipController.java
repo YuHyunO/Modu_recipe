@@ -38,7 +38,6 @@ public class MembershipController {
     @GetMapping("/main")
     public ModelAndView myPage(HttpServletRequest request, HttpSession session) {    
         ModelAndView mv = new ModelAndView("member/mypage");
-        log.info("#마이페이지 진입 mv: "+mv); //model is null
         return mv;
     }
     
@@ -46,6 +45,10 @@ public class MembershipController {
     public @ResponseBody RecipeListVo recommend(HttpServletRequest request, HttpSession session) {        
         
         RecipeListVo data = recipeSearchService.searchRecipeByIngredient(request, session);
+        //log.info("마이페이지 탭1-추천레시피 받아온 데이터 data: "+data);
+        //RecipeListVo(recipeList=[RecipeList(id=631, foodPhoto=7_1666235571492.jpg, title=숙주로 간단한 나시고랭 볶음밥 만들기😉✨, food=나시고랭, profileImg=favicon_1666336841209.ico, mNickname=그루터기1, mEmail=111@naver.com, star=0.0, stars=0, hits=1, sort=null),
+        //RecipeList(id=632, foodPhoto=7_1666595387511.jpg, title=맛있는 새우볶음밥임니다, food=새우볶음밥, profileImg=favicon_1666336841209.ico, mNickname=그루터기1, mEmail=111@naver.com, star=0.0, stars=0, hits=1, sort=null)], 
+        //currentPage=1, pageSize=0, totalPage=1)
     	return data;
     }
     
@@ -82,12 +85,46 @@ public class MembershipController {
         membershipService.removeMyFollow(id);      
         return "success";
     }
+/*
+    //ȸ�� Ż��         
+    @PostMapping("/removemyinfo")
+    public String removeMyinfo(@RequestParam("email") String email, HttpSession session, HttpServletRequest req) { //req �ʿ�
+        Member member = memberRegisterService.readMyInfo(email);    
+        if(member.getEmail().equals((String)session.getAttribute("email"))) {
+            memberRegisterService.removeMyInfo(email);
+            session.invalidate(); //���� �����ϰ� �ִ� ������ ��ȿȭ
+            req.getSession(true); //���ο� ������ ���� �غ� true
+            return "redirect:/";
+        } else {
+            return "redirect:/";
+        }
+    }
+    */
     
     @GetMapping("/recent-recipe")
     public @ResponseBody List<RecipeList> callRecentRecipe(HttpServletRequest request){
         List<RecipeList> data = recipeFindingService.findRecentRecipes(request);
         return data;
-    }	
+    }
+	//마이페이지 페이지 이동
+	/*@GetMapping("gofriendrecipe")
+	public ModelAndView goFriendRecipe(HttpSession session) {
+		
+		//String email = (String)session.getAttribute("email");
+		List<FollowList> followlist = membershipService.getFollowList(session);
+		
+		//Member member1 = memberRegisterService.readMyInfo(email); 
+		ModelAndView mv = new ModelAndView("member/mypage", "followlist", followlist);
+		
+		log.info("######마이페이지 이동get member1: "+followlist);
+		log.info("######마이페이지 이동get mv: "+mv);
+		
+		return mv;
+	}*/
+	
+	
+	
+	
 
 	
 }

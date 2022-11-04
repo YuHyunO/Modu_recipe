@@ -43,11 +43,12 @@ a {
 
 .recipe-content img, .entry-content img {
     max-width: 100%;
-    object-fit: cover;
+    object-fit: fill;
 }
 
 .recipe-thumb {
     width: 100%;
+    /* height: 130px; */
     object-fit: cover;
 }
 
@@ -55,14 +56,6 @@ li,
 .recipeinfo,
 .step-main {
 	font-family: 'NotoSerifKR-Medium', sans-serif !important;
-	font-size:15px;
-	width: auto;
-    text-decoration: none;
-}
-
-/* nav_bar 글씨체는 변경되지 않도록 하기 */
-.welcomelogin {
-	font-family: 'Jua', sans-serif !important;
 	font-size:15px;
 	width: auto;
     text-decoration: none;

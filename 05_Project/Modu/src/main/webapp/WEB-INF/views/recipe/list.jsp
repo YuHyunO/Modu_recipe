@@ -113,26 +113,24 @@
 						<c:forEach items="${data.recipeList}" var="li">
 							<div id="recipe-item" class="col-6 col-md-3">
 								<div class="recipe-thumb">
-									<img src="/pics/recipe/${li.id}/${li.foodPhoto}" alt="recipe">
+									<img src="${li.foodPhoto}" alt="/imgs/content/thumb-1.png">
 								</div>
 								<div class="recipe-desc">
 									<h2 class="recipe-title">
 										<a href="javascript:void(0)" onclick="saveCookie(${li.id})">${li.title}</a>
 									</h2>
 									<figure class="profile">
-										<img class="profile-img" src="/pics/profile/${li.profileImg}"
+						
+										<img class="profile-img" src="/imgs/content/auth-00.png"
 											alt="작성자">
 										<span><em> ${li.MNickname}</em></span>
 									</figure>
 									<div class="recipe-icons d-flex justify-content-between">
-										<c:if test="${li.stars} ne 0">
-										<span class="d-flex align-items-center">
-											<img class="stars" src="/imgs/stars5.png"> 
-											<span class="p-1 mt-1">${li.star}(${li.stars})</span>
-										</span>
-										</c:if>
 										<span class="d-flex align-items-center"> 
-											<span class="p-1 mt-1">조회 ${li.hits}</span>
+										<img class="stars" src="/imgs/stars5.png"> 
+										<span class="p-1 mt-1">${li.star}(${li.stars})</span>
+										</span> <span class="d-flex align-items-center"> 
+										<span class="p-1 mt-1">조회 ${li.hits}</span>
 										</span>
 									</div>
 								</div>

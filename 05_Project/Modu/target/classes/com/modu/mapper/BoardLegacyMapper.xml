@@ -36,8 +36,7 @@
 										 			   #{mNickname},
 										 			   #{profileImg},
 										 			   #{reply})
-	</insert>
-	
+	</insert>		
 	<delete id="deleteReply" parameterType="long">
 		delete from BOARD_REPLY where ID=#{id}
 	</delete>

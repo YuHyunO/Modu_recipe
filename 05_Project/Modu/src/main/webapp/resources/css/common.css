@@ -16,7 +16,6 @@
     text-decoration: none;
 }
 
-
 #secondary .widget-title-outer h3 {
     color: #232323;
     font-size: 12px;
@@ -135,24 +134,26 @@
 	font-family: 'Jua', sans-serif !important;
 }
 
+/*������*/
 @font-face {
-  font-family: "Montserrat"; 
-  src: url("../css/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("opentype");
+  font-family: "Montserrat"; /* ����ϰ� ���� font-family���� ���� */
+  src: url("../css/fonts/Montserrat-Italic-VariableFont_wght.ttf") format("opentype"); /* ��Ʈ���� �ҷ����� */
+}
+
+/*������*/
+@font-face {
+  font-family: "Fasthand-Regular"; /* ����ϰ� ���� font-family���� ���� */
+  src: url("../css/fonts/Fasthand-Regular.ttf") format("opentype"); /* ��Ʈ���� �ҷ����� */
 }
 
 @font-face {
-  font-family: "Fasthand-Regular";
-  src: url("../css/fonts/Fasthand-Regular.ttf") format("opentype");
+  font-family: "SongMyung-Regular"; /* ����ϰ� ���� font-family���� ���� */
+  src: url("../css/fonts/SongMyung-Regular.ttf") format("opentype"); /* ��Ʈ���� �ҷ����� */
 }
 
 @font-face {
-  font-family: "SongMyung-Regular";
-  src: url("../css/fonts/SongMyung-Regular.ttf") format("opentype");
-}
-
-@font-face {
-  font-family: "NotoSerifKR-Medium";
-  src: url("../css/fonts/NotoSerifKR-Medium.otf") format("opentype");
+  font-family: "NotoSerifKR-Medium"; /* ����ϰ� ���� font-family���� ���� */
+  src: url("../css/fonts/NotoSerifKR-Medium.otf") format("opentype"); /* ��Ʈ���� �ҷ����� */
 }
 
 .brand {
@@ -164,7 +165,6 @@
 }
 
 .welcomelogin {
-	width: 200px;
 	display: block;
 	padding: 0.5rem 0.5rem;
 	font-size: 14px;
@@ -189,6 +189,7 @@
 	height: 25px;
 }
 
+/* �ݻ� �׵θ� */
 .gold-top {
 	border-top: 1px solid rgb(147, 112, 98) !important;
 }
@@ -220,22 +221,9 @@
 	margin-right: 5px;
 }
 
-.dropdown-menu,
-.dropdown-menu.show  {
+.dropdown-menu.show {
 	left: -5px !important;
 	min-width: 100px !important;
-    border: 1px solid rgba(0,0,0,.15);
-    border-radius: 0.25rem;
-} 
-
-.site-navigation.navbar .dropdown-menu {
-    border: 1px solid rgba(0,0,0,.15);
-}
-
-@media (min-width: 992px)
-.navbar-expand-lg .navbar-nav .dropdown-menu {
-    position: absolute;
-    border: 1px solid rgba(0,0,0,.15);
 }
 
 .dropdown-item {
@@ -355,7 +343,6 @@
 
 .profile-img {
 	height: 25px;
-	width: 25px;
 	border-radius: 50%;
 }
 

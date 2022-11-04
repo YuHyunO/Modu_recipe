@@ -241,22 +241,13 @@
 	<select id="selectScrapByRecipeId" parameterType="Scrap" resultType="Scrap">
 		select * from SCRAP where R_ID=#{rId} and M_EMAIL=#{mEmail}
 	</select>
-	<!-- 레시피 조회수 증가 -->
-	<update id="recipeViewCount">
-		update 
-				RECIPE 
+	 <!-- 레시피 조회수 증가 -->
+	 <update id="recipeViewCount">
+	 	update 
+	 			RECIPE 
 		set 
-			hits = hits + 1
+				hits = hits + 1
 		where 
-			id = #{id}
-	</update>
-	<!-- 최근 등록된 레시피 태그 조회 -->
-	<select id="selectLatestRecipeTag" resultType="RecipeTag">
-		<![CDATA[
-		select * 
-		from RECIPE_TAG 
-		where ROWNUM >=1 and ROWNUM <=8 
-		ORDER BY id desc
-		]]>
-	</select>
+				id = #{id}
+	 </update>
 </mapper>

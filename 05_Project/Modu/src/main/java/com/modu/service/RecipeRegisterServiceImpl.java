@@ -22,7 +22,6 @@ import com.modu.mapper.RecipeMapper;
 
 import lombok.extern.log4j.Log4j;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,12 +84,12 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
         recipe.setCookTime(request.getParameter("cooktime"));
         recipe.setDifficultyLevel(request.getParameter("difficultyLevel"));
         recipe.setAccessibility(Integer.parseInt(request.getParameter("accessibility")));
-        
+
         int result = recipeMapper.insertRecipe(recipe);
-        log.info("#registerRecipe insert result: " + result);
-        
         Long id = recipe.getId();
+        log.info("#registerRecipe insert result: " + result);
         log.info("#registerRecipe ID: " + id);
+
         // 메인재료 등록
         String mainItem;
         for (int i = 0; i < mainItems.size(); i++) {

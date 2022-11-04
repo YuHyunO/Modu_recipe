@@ -34,13 +34,12 @@
 
 							<form id="register_form" method="post">
 								<div class="form-group">
-									<label for="id_email">이메일*</label>
-									<input name="email"
+									<label for="id_email">이메일*</label> <input name="email"
 										type="email" class="form-control" id="id_email"
-										placeholder="you@email.com" maxlength=40 required />
-										<span class="email_ajax_1">사용 가능한 이메일입니다.</span>
-										<span class="email_ajax_2">이미 사용 중인 이메일입니다.</span>
-										<span class="email_ajax_3">올바른 이메일을 입력해주세요.</span>
+										placeholder="you@email.com" maxlength=40 required /> <span
+										class="email_ajax_1">사용 가능한 이메일입니다.</span> <span
+										class="email_ajax_2">이미 사용 중인 이메일입니다.</span> <span
+										class="email_ajax_3">올바른 이메일을 입력해주세요.</span>
 								</div>
 								<div class="form-group">
 									<label for="id_pw1">비밀번호*</label><input name="pwd1"
@@ -55,13 +54,12 @@
 								</div>
 
 								<div class="form-group">
-									<label for="id_nickname">닉네임*</label>
-									<input name="nickname"
+									<label for="id_nickname">닉네임*</label><input name="nickname"
 										type="text" class="form-control" id="id_nickname"
-										placeholder="3자 이상 입력해주세요." maxlength=10 required />
-										<span class="nickname_ajax_1">사용 가능한 닉네임입니다.</span>
-										<span class="nickname_ajax_2">이미 사용 중인 닉네임입니다.</span>
-										<span class="nickname_ajax_3">닉네임은 3자 이상 입력해주세요.</span>
+										placeholder="3자 이상 입력해주세요." maxlength=10 required /> <span
+										class="nickname_ajax_1">사용 가능한 닉네임입니다.</span> <span
+										class="nickname_ajax_2">이미 사용 중인 닉네임입니다.</span> <span
+										class="nickname_ajax_3">닉네임은 3자 이상 입력해주세요.</span>
 								</div>
 
 								<div class="form-group">

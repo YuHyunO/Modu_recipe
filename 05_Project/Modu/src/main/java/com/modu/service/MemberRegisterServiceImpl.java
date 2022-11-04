@@ -58,14 +58,12 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 		Member member = memberMapper.selectMember(email);
 		return member;
 	}
-	
-	//내정보 수정(사진X)
+	//내정보수정(사진X)
 	@Override
 	public Member modifyMyInfo(Member member) {
 		memberMapper.updateMember(member);
 		return member;
 	}
-	
 	//프로필사진 포함하여 내정보수정 post
 	@Override
 	public Member modifyMyInfo2(Member member) { 
@@ -73,22 +71,15 @@ public class MemberRegisterServiceImpl implements MemberRegisterService {
 		return member;
 	}
 	
-	@Override public void removeProfileImg(String email) {
-	  memberMapper.deleteProfileImg(email); 
-	}
 	
-	//회원 탈퇴
+	  @Override public void removeProfileImg(String email) {
+		  memberMapper.deleteProfileImg(email); 
+	  }
+	 
+	
 	@Override
 	public void removeMyInfo(String email) {
-	    log.info("#회원탈퇴 서비스 removeMyInfo 메소드 진입");
-		
-		memberMapper.deleteMemberRecipe(email);
-		memberMapper.deleteMemberRecipeReply(email);
-		memberMapper.deleteMemberRecipeNestedReply(email);
-        memberMapper.deleteMemberBoard(email);
-        memberMapper.deleteMemberBoardReply(email);  
 		memberMapper.deleteMember(email);
-		log.info("#회원탈퇴 서비스 removeMyInfo 탈퇴완료 성공");
 	}
 
 }

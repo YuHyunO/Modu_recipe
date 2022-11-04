@@ -12,13 +12,7 @@ public interface MemberMapper {
 	void insertMember(Member member); //회원가입
 	Member selectMember(String email); //미사용
 	void updatePoint(@Param("email") String email, @Param("point") int point);
-	
 	void deleteMember(String email); //회원탈퇴
-	void deleteMemberRecipe(String email); //회원탈퇴
-	void deleteMemberRecipeReply(String email); //회원탈퇴
-	void deleteMemberRecipeNestedReply(String email); //회원탈퇴
-	void deleteMemberBoard(String email); //회원탈퇴
-	void deleteMemberBoardReply(String email); //회원탈퇴
 	
 	void insertFollow(@Param("email")String email, @Param("followee")String followee);
 	void deleteFollow(@Param("email")String email, @Param("followee")String followee);

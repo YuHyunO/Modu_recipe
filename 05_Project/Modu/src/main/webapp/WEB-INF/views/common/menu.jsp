@@ -32,7 +32,7 @@
 									aria-haspopup="true" aria-expanded="false">레시피</a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown1">
 										<a class="dropdown-item" href="/recipe/list">레시피 목록</a>
-										<!-- <a class="dropdown-item" href="/recipe/detail">레시피 상세</a> --> 
+										<a class="dropdown-item" href="/recipe/detail">레시피 상세</a> 
 										<!-- 세션이 존재할 때 -->
 										<c:if test = "${ sessionScope.email != null }">									
 											<a class="dropdown-item" href="/recipe/write">레시피 등록</a>
@@ -57,7 +57,7 @@
 								<!--세션이 존재할 때-->
 								<c:if test = "${ sessionScope.email != null }">
 									<li class="nav-item">
-										<a href='/member/mypage' class="nav-link">마이페이지</a>
+										<a href='/mypage/main' class="nav-link">마이페이지</a>
 									</li>
 									<li class="nav-item">
 						           		<a href='/member/logout' class="nav-link">로그아웃</a>
@@ -116,7 +116,7 @@
 			aria-haspopup="true" aria-expanded="false">레시피</a>
 			<div class="dropdown-menu" aria-labelledby="navbarDropdown1">
 				<a class="dropdown-item" href="/recipe/list">레시피 목록</a>
-				<!-- <a class="dropdown-item" href="/recipe/detail">레시피 상세</a>--> 
+				<a class="dropdown-item" href="/recipe/detail">레시피 상세</a> 
 				<!-- 세션이 존재할 때 -->
 				<c:if test = "${ sessionScope.email != null }">									
 					<a class="dropdown-item" href="/recipe/write">레시피 등록</a>
