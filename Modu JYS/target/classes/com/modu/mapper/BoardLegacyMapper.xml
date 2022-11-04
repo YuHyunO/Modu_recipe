@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.modu.mapper.BoardLegacyMapper">
+
+	<insert id="insertReply" parameterType="BoardReply">
+		insert into BOARD_REPLY (ID,
+								 B_ID,
+								 M_EMAIL,
+								 M_NICKNAME,
+								 PROFILE_IMG,
+								 REPLY) values(BOARD_REPLY_SEQ.nextval,
+								 			   #{bId},
+								 			   #{mEmail},
+								 			   #{mNickname},
+								 			   #{profileImg},
+								 			   #{reply})
+	</insert>
+	<insert id="insertReplyPicture" parameterType="BoardReplyPicture">
+		insert into BOARD_REPLY_PICTURE values(B_REPLY_PICTURE_SEQ.nextval,
+											  #{brId},
+											  #{originalFile},
+											  #{saveFile})
+	</insert>
+	<insert id="insertNestedReply" parameterType="BoardNestedReply">
+		insert into BOARD_NESTED_REPLY (ID,
+										 BR_ID,
+										 M_EMAIL,
+										 M_NICKNAME,
+										 PROFILE_IMG,
+										 REPLY) values(BOARD_REPLY_SEQ.nextval,
+										 			   #{brId},
+										 			   #{mEmail},
+										 			   #{mNickname},
+										 			   #{profileImg},
+										 			   #{reply})
+	</insert>		
+	<delete id="deleteReply" parameterType="long">
+		delete from BOARD_REPLY where ID=#{id}
+	</delete>
+	<delete id="deleteNestedReply" parameterType="long">
+		delete from BOARD_NESTED_REPLY where ID=#{id}
+	</delete>
+	
+	<select id="selectReply" parameterType="long" resultType="BoardReply">
+		select DISTINCT(ID),
+		       B_ID,
+		       M_EMAIL,
+		       M_NICKNAME,
+		       PROFILE_IMG,
+		       REPLY,
+		       REPLY_DATE,
+		       NESTED_REPLY
+		from (select  br.ID,
+		              br.B_ID,
+		              br.M_EMAIL,
+		              br.M_NICKNAME,
+		              br.PROFILE_IMG,
+		              br.REPLY,
+		              br.REPLY_DATE,
+		              NVL2(bnr.ID, 1, 0) NESTED_REPLY
+		     from BOARD_REPLY br left join BOARD_NESTED_REPLY bnr on br.ID=bnr.BR_ID
+		     where br.B_ID=#{bId} order by br.ID desc)
+		order by ID desc
+	</select>
+	<select id="selectReplyBy" resultType="BoardReply">
+		select * from(select ROWNUM list,
+					       	 ID,
+					         B_ID,
+					         M_EMAIL,
+					         M_NICKNAME,
+					         PROFILE_IMG,
+					         REPLY,
+					         REPLY_DATE,
+					         NESTED_REPLY
+					  from (select DISTINCT(ID) ID,
+					               B_ID,
+					               M_EMAIL,
+					               M_NICKNAME,
+					               PROFILE_IMG,
+					               REPLY,
+					               REPLY_DATE,
+					               NESTED_REPLY
+					        from (select  br.ID,
+					                      br.B_ID,
+							              br.M_EMAIL,
+							              br.M_NICKNAME,
+							              br.PROFILE_IMG,
+						                  br.REPLY,
+						                  br.REPLY_DATE,
+						                  NVL2(bnr.ID, 1, 0) NESTED_REPLY
+						          from BOARD_REPLY br left join BOARD_NESTED_REPLY bnr on br.ID=bnr.BR_ID
+					      	      where br.B_ID=#{bId} order by br.ID desc)
+					       order by ID desc))
+		where list BETWEEN #{beginRow} AND #{endRow}
+	</select>
+	<select id="selectReplyOfMember" parameterType="String" resultType="BoardReply">
+		select ID,
+		       B_ID,
+		       M_EMAIL,
+		       M_NICKNAME,
+		       PROFILE_IMG,
+		       REPLY,
+		       REPLY_DATE
+		from BOARD_REPLY where M_EMAIL=#{email} order by ID desc
+	</select>
+	<select id="selectReplyOfMemberBy" resultType="BoardReply">
+		select * from(select ROWNUM list,
+							 ID,
+					         B_ID,
+					         M_EMAIL,
+					         M_NICKNAME,
+					         PROFILE_IMG,
+					         REPLY,
+					         REPLY_DATE
+					  from BOARD_REPLY where M_EMAIL=#{email} order by ID desc)
+		where list BETWEEN #{beginRow} AND #{endRow}
+	</select>	
+	<select id="selectNestedReply" parameterType="long" resultType="BoardNestedReply">
+		select bnr.ID,
+		       br.B_ID, 
+		       br.ID brId, 
+		       bnr.M_EMAIL,
+		       bnr.M_NICKNAME,
+		       bnr.PROFILE_IMG,
+		       bnr.REPLY,
+		       bnr.REPLY_DATE
+		from BOARD_REPLY br right join BOARD_NESTED_REPLY bnr on br.ID=bnr.BR_ID
+		where br.ID=#{brId} order by brId desc, bnr.ID desc			
+	</select>
+	<select id="selectNestedReplyBy" resultType="BoardNestedReply">
+		select * from (select ROWNUM list,
+		                      bnr.ID,
+		                      br.B_ID, 
+		                      br.ID brId, 
+		                      bnr.M_EMAIL,
+		                      bnr.M_NICKNAME,
+		                      bnr.PROFILE_IMG,
+		                      bnr.REPLY,
+		                      bnr.REPLY_DATE
+		               from BOARD_REPLY br right join BOARD_NESTED_REPLY bnr on br.ID=bnr.BR_ID
+		               where br.ID=#{brId} order by brId desc, bnr.ID desc)
+		where list BETWEEN #{beginRow} AND #{endRow}	
+	</select>
+	<select id="selectNestedReplyOfMember" parameterType="String" resultType="BoardNestedReply">
+		select bnr.ID,
+		       br.B_ID, 
+		       br.ID brId, 
+		       bnr.M_EMAIL,
+		       bnr.M_NICKNAME,
+		       bnr.PROFILE_IMG,
+		       bnr.REPLY,
+		       bnr.REPLY_DATE
+		from BOARD_REPLY br right join BOARD_NESTED_REPLY bnr on br.ID=bnr.BR_ID
+		where bnr.M_EMAIL=#{email} order by brId desc, bnr.ID desc			
+	</select>
+	<select id="selectNestedReplyOfMemberBy" resultType="BoardNestedReply">
+		select * from (select ROWNUM list,
+		                      bnr.ID,
+		                      br.B_ID, 
+		                      br.ID brId, 
+		                      bnr.M_EMAIL,
+		                      bnr.M_NICKNAME,
+		                      bnr.PROFILE_IMG,
+		                      bnr.REPLY,
+		                      bnr.REPLY_DATE
+		               from BOARD_REPLY br right join BOARD_NESTED_REPLY bnr on br.ID=bnr.BR_ID
+		               where bnr.M_EMAIL=#{email} order by brId desc, bnr.ID desc)
+		where list BETWEEN #{beginRow} AND #{endRow}		
+	</select>
+	<select id="selectReplyCount" parameterType="long" resultType="long">
+		select SUM(count) from (select NVL(MAX(ROWNUM), 0) count from BOARD_REPLY where B_ID=#{bId} union all
+                        		select NVL(MAX(ROWNUM), 0) count from BOARD_NESTED_REPLY
+                        		where BR_ID in(select DISTINCT(ID) from BOARD_REPLY
+                        		where B_ID=#{bId}))
+	</select>
+	
+	<select id="selectNestedReplyCount" parameterType="long" resultType="long">
+		select NVL(MAX(ROWNUM), 0) from BOARD_NESTED_REPLY where BR_ID=#{brId}
+	</select>
+	<select id="selectReplyCountByMember" parameterType="String" resultType="long">
+		select SUM(count) from (select NVL(MAX(ROWNUM), 0) count from BOARD_REPLY where M_EMAIL=#{email} union all
+                        		select NVL(MAX(ROWNUM), 0) count from BOARD_NESTED_REPLY
+                        		where BR_ID in(select DISTINCT(ID) from BOARD_REPLY
+                        		where M_EMAIL=#{email}))	
+	</select>
+	
+	
+	<!-- 댓글 조회(사진 포함)
+	<select id="selectReply" parameterType="long" resultType="BoardReplyList">
+		select DISTINCT(br.ID),
+		       br.B_ID,
+		       br.M_EMAIL email,
+		       br.M_NICKNAME nickname,
+		       br.PROFILE_IMG profileImg,
+		       br.REPLY,
+		       brp.SAVE_FILE picture,
+		       br.REPLY_DATE,
+		       br.PICTURE picturePresense
+		from BOARD_REPLY br left join BOARD_REPLY_PICTURE brp on br.ID=brp.BR_ID
+		where br.B_ID=#{bId} order by br.ID desc
+	</select>
+	<select id="selectReplyBy" resultType="BoardReplyList">
+		select * from(select ROWNUM list,
+									ID,
+		                            B_ID,
+		                            email,
+		                            nickname,
+		                            profileImg,
+		                            REPLY,
+		                            picture,
+		                            REPLY_DATE,
+		                            picturePresense
+		              from (select DISTINCT(br.ID),
+		                           br.B_ID,
+		                           br.M_EMAIL email,
+		                           br.M_NICKNAME nickname,
+		                           br.PROFILE_IMG profileImg,
+		                           br.REPLY,
+		                           brp.SAVE_FILE picture,
+		                           br.REPLY_DATE,
+		                           br.PICTURE picturePresense
+		           		   from BOARD_REPLY br left join BOARD_REPLY_PICTURE brp on br.ID=brp.BR_ID
+		          		   where br.B_ID=#{bId} order by br.ID desc))
+		where list BETWEEN #{beginRow} AND #{endRow}
+	</select>
+	<select id="selectReplyOfMember" parameterType="String" resultType="BoardReplyList">
+		select DISTINCT(br.ID),
+		       br.B_ID,
+		       br.M_EMAIL email,
+		       br.M_NICKNAME nickname,
+		       br.PROFILE_IMG profileImg,
+		       br.REPLY,
+		       brp.SAVE_FILE picture,
+		       br.REPLY_DATE,
+		       br.PICTURE picturePresense
+		from BOARD_REPLY br left join BOARD_REPLY_PICTURE brp on br.ID=brp.BR_ID
+		where br.M_EMAIL=#{email} order by br.ID desc
+	</select>
+	<select id="selectReplyOfMemberBy" resultType="BoardReplyList">
+		select * from(select ROWNUM list,
+									ID,
+		                            B_ID,
+		                            email,
+		                            nickname,
+		                            profileImg,
+		                            REPLY,
+		                            picture,
+		                            REPLY_DATE,
+		                            picturePresense
+		              from (select DISTINCT(br.ID),
+		                           br.B_ID,
+		                           br.M_EMAIL email,
+		                           br.M_NICKNAME nickname,
+		                           br.PROFILE_IMG profileImg,
+		                           br.REPLY,
+		                           brp.SAVE_FILE picture,
+		                           br.REPLY_DATE,
+		                           br.PICTURE picturePresense
+		           		    from BOARD_REPLY br left join BOARD_REPLY_PICTURE brp on br.ID=brp.BR_ID
+		          		    where br.M_EMAIL=#{email} order by br.ID desc))
+		where list BETWEEN #{beginRow} AND #{endRow}
+	</select>	
+	 -->	
+</mapper>

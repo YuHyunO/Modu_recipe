@@ -1,0 +1,107 @@
+/* 메인 컨테이너 */
+.main-container {
+    max-width: 1000px !important;
+}
+
+/* 하단 페이징 부분 */
+.pagination li a {
+    color:rgb(150, 150, 150);
+    width: 35px;
+    font-size: 0.9rem;
+}
+
+.pagination li a:hover {
+    color: rgb(0, 0, 0);
+    background-color: rgb(240, 240, 240);
+    font-weight: bolder;
+}
+
+.page-link.active {
+    text-decoration: underline;
+    color:black;
+}
+
+@media(max-width:454px){ 
+    .page-link {
+        font-size: 0.5rem !important;
+    }
+}
+
+/* 기타 */
+.gold-border {
+    border: 1px solid rgb(147, 112, 98) !important;
+}
+
+/* 검색, 버튼 */
+.search-btn {
+    width: 50px;
+    color: white;
+    background-color: rgb(140, 110, 100);
+}
+
+.search-btn:hover {
+    background-color: rgb(170, 130, 110);
+}
+
+#search:focus {
+    outline: none !important;
+    box-shadow: 0 0 5px #719ECE;
+}
+
+@media(max-width:454px){ 
+    .selects select {
+        width: 65px;
+        height: 25px;
+        font-size: 0.7rem;
+    }
+
+    .filter-period {
+        width: 60px !important
+    }
+
+    #search {
+        width: 75px;
+        height: 25px;
+        font-size: 0.7rem;
+    }
+
+    .search-btn {
+        width: 35px;
+        height: 25px;
+        font-size: 0.7rem;
+    }
+
+    .page {
+        height: 25px;
+        font-size: 0.7rem;
+    }
+}
+
+/* 태그 검색 */
+.tag-search {
+    list-style: none;
+}
+
+.tag-li {
+    width: 90px;
+    min-width: 90px;
+    height: 30px;
+    border: 1px solid rgb(147, 112, 98) !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.tag-li:hover, .tag-li.active {
+    color:white;
+    background-color: rgb(170, 130, 110);
+}
+
+@media(max-width:454px){ 
+    .tag-li {
+        width: 60px !important;
+        min-width: 60px !important;
+        font-size: 0.8rem;
+    }
+}

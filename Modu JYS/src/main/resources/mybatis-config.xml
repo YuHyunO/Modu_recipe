@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- Snake_case 를 CamelCase로 바꿔줌 -->
+  <settings>
+  	<setting name="mapUnderscoreToCamelCase" value="true"/>
+  </settings>
+  
+  <typeAliases>
+	<typeAlias alias="Member" type="com.modu.domain.member.Member"/>	
+	<typeAlias alias="FollowList" type="com.modu.domain.member.FollowList"/>
+  	<typeAlias alias="Board" type="com.modu.domain.board.Board"/>  	
+  	<typeAlias alias="BoardFile" type="com.modu.domain.board.BoardFile"/>
+	<typeAlias alias="BoardReply" type="com.modu.domain.board.BoardReply"/>
+	<typeAlias alias="BoardReplyPicture" type="com.modu.domain.board.BoardReplyPicture"/>
+	<typeAlias alias="BoardNestedReply" type="com.modu.domain.board.BoardNestedReply"/>
+	<typeAlias alias="BoardDetail" type="com.modu.domain.board.BoardDetail"/>
+	<typeAlias alias="Recipe" type="com.modu.domain.recipe.Recipe"/>
+	<typeAlias alias="Direction" type="com.modu.domain.recipe.Direction"/>
+	<typeAlias alias="Ingredient" type="com.modu.domain.recipe.Ingredient"/>
+	<typeAlias alias="RecipeTag" type="com.modu.domain.recipe.RecipeTag"/>
+	<typeAlias alias="Rating" type="com.modu.domain.recipe.Rating"/>
+	<typeAlias alias="RecipeReply" type="com.modu.domain.recipe.RecipeReply"/>
+	<typeAlias alias="RecipeReplyPhoto" type="com.modu.domain.recipe.RecipeReplyPhoto"/>
+	<typeAlias alias="RecipeNestedReply" type="com.modu.domain.recipe.RecipeNestedReply"/>
+	<typeAlias alias="RecipeList" type="com.modu.domain.recipe.RecipeList"/>
+	<typeAlias alias="RecipeReplyList" type="com.modu.domain.recipe.RecipeReplyList"/>
+	<typeAlias alias="Scrap" type="com.modu.domain.member.Scrap"/>
+	
+	<!--예성 -->
+	<typeAlias alias="BoardSearchVO" type="com.modu.domain.board.BoardSearchVO"/>
+	
+	
+	<typeAlias alias="BoardDetailNextPrev" type="com.modu.domain.board.BoardDetailNextPrev"/>
+  </typeAliases>
+  
+</configuration>

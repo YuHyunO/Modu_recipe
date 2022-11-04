@@ -60,13 +60,18 @@
 							<!-- end col -->
 							<div class="col-md-6 d-flex flex-column justify-content-between">
 								<div class="detail-desc d-flex flex-column">
-									<div class="recipe-rating m-0 p-1 d-flex align-items-center">
-										<img class="star-rate-img me-2" src="/imgs/stars3.png" alt="stars">
-										<span>${detail.recipe.star}</span>
-										<span class="ps-1">(${replyCount})</span>
-									</div>
-									<div class="fs-4 py-3 m-0">${detail.recipe.title}</div>
+									<c:if test="${detail.recipe.star} neq 0">
+										<div class="recipe-rating m-0 p-1 d-flex align-items-center">
+											<img class="star-rate-img me-2" src="/imgs/stars3.png" alt="stars">
+											<span>${detail.recipe.star}</span>
+											<span class="ps-1">(${replyCount})</span>
+										</div>
+									</c:if>
+									<div id="recipeTitle" class="fs-4 pt-3 pb-1 m-0">${detail.recipe.title}</div>
 									<div class="recipeinfo m-0">${detail.recipe.info}</div>
+									<c:if test="${sessionScope.email == detail.recipe.MEmail }">
+										<a href="/recipe/update?id=${detail.recipe.id}"><button id="recipeUpdateBtn2" type="button" class="gold-btn">레시피 수정</button></a>
+									</c:if>
 								</div>
 								<!-- recipe desc -->
 								<div class="recipe-info py-3 d-flex justify-content-end">
@@ -281,8 +286,8 @@
 								<form class="comment-form" type="POST" id="reply-form-0-0"
 									onSubmit="addReply(this)">
 									<div class="row">
-										<div class="col px-0 comment-file"
-											style="min-width: 100px; max-width: 100px;">
+										<input type="hidden" value="${detail.recipe.id}" name="rId"/>
+										<div class="col px-0 comment-file" style="min-width: 100px; max-width: 100px;">
 											<input type="file" hidden> <img class="border"
 												src="/imgs/pic_none.gif" alt="파일첨부" width="100" height="100"
 												style="cursor: pointer;">

@@ -124,11 +124,11 @@ function updateData(boardList, pageSize){
 	for(let item of boardList){
 		html += '<tr class="border">';
 		html += '<td class="id">'+item.id+'</td>';
-		html += '<td class="title-td text-start"><a href="detail?id='+item.id+'"> <span';
-		html += 'class="title">'+item.title+'</span> <span class="reply">['+item.reply+']</span>';
+		html += '<td class="title-td text-start text"><a href="detail?id='+item.id+'"> <span';
+		html += 'class="title text">'+item.title+'</span> <span class="reply">['+item.reply+']</span>';
 		html += '</a>';
 		html += '</th>';
-		html += '<td class="nickname">'+item.mnickname+'</td>';
+		html += '<td class="nickname text"><img class="profile-img" src="/pics/profile/'+item.profileImg+'" alt="img">'+item.mnickname+'</td>';
 		html += '<td class="post-date">'+item.postDate+'</td>';
 		html += '<td class="hits">'+item.hits+'</td>';
 		html += '</tr>';

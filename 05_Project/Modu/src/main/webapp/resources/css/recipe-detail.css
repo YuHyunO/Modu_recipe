@@ -8,6 +8,13 @@ a {
     justify-content: flex-end;
 }
 
+/* nav_bar 글씨체는 변경되지 않도록 하기 */
+.welcomelogin {
+	font-family: 'Jua', sans-serif !important;
+	font-size:15px;
+	width: auto;
+    text-decoration: none;
+}
 .search-btn {
     background: url("/imgs/search.svg") center no-repeat;
 }
@@ -60,12 +67,18 @@ li,
     text-decoration: none;
 }
 
-/* nav_bar 글씨체는 변경되지 않도록 하기 */
-.welcomelogin {
-	font-family: 'Jua', sans-serif !important;
-	font-size:15px;
-	width: auto;
+#recipeTitle {
+	 display: inline-block;
+}
+#recipeUpdateBtn2 {
+	border-radius: 10px;
+    float: right;
+    border: none;
+    padding-block-end: 1px;
+    padding-block-start: 1px;
+    display: inline-block;
     text-decoration: none;
+    text-decoration-line : none;
 }
 
 .recommend-recipe-thumb {

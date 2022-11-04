@@ -161,7 +161,6 @@ function displayMyRecipe(response){
 		html += '<img class="profile-img" src="/pics/profile/'+item.profileImg+'" alt="작성자">';
 		html += '<span><em>&nbsp;'+item.mnickname+'</em></span>';
 		html += '</figure>';
-		//html += '<a href="/recipe/update?id='+item.id+'"><button id="recipeUpdateBtn" type="button" class="gold-btn">레시피 수정</button></a>';
 		html += '<div class="recipe-icons d-flex justify-content-between">';
 		html += '<span class="d-flex align-items-center">';
 		html += '<span class="p-1 mt-1">조회수 '+item.hits+'</span>';
@@ -171,7 +170,7 @@ function displayMyRecipe(response){
 		html += '<span class="p-1 mt-1">'+item.star+'('+item.stars+')</span>';
 		html += '</span><br>';
 		//html += '<a href="/recipe/update?id='+item.id+'"><button id="recipeUpdateBtn" type="button" class="gold-btn">레시피 수정</button></a>';
-		//html += '<a href="/recipe/delete?id='+item.id+'" onclick="javascript:alert('정말 레시피를 삭제하시겠습니까?');"><button type="button" class="gold-btn">삭제</button></a>';
+		//html += '<a href="/recipe/delete?id='+item.id+'" onclick="javascript:alert("정말 레시피를 삭제하시겠습니까?");"><button type="button" class="gold-btn">삭제</button></a>';
 		html += '</div>';
 		html += '</div>';
 		html += '</div>';		
