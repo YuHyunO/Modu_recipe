@@ -101,10 +101,10 @@
 										<tr class="border">
 											<td class="id">${li.id}</td>
 											<td class="title-td text-start"><a href="detail?id=${li.id}"> <span
-													class="title">${li.title}</span> <span class="reply">[${li.reply}]</span>
+													class="title text">${li.title}</span> <span class="reply">[${li.reply}]</span>
 											</a>
 											</th>
-											<td class="nickname">
+											<td class="nickname text">
 												<img class="profile-img" src="/pics/profile/${li.profileImg}" alt="img">
 											${li.MNickname}</td>
 											<td class="post-date">${li.postDate}</td>

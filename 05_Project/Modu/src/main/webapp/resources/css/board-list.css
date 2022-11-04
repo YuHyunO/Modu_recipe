@@ -129,4 +129,11 @@
     .page-link {
         font-size: 0.8rem !important;
     }
+    .title{
+	    width:10px;
+	    height:15px;
+	    white-space:nowrap;
+	    overflow:hidden;  
+	    text-overflow: ellipsis;
+	}
 }

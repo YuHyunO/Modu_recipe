@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.modu.mapper.BoardMapper">
+	<insert id="insertPost" parameterType="Board">
+		insert into BOARD (ID,
+		M_EMAIL,
+		M_NICKNAME,
+		PROFILE_IMG,
+		POST_TYPE,
+		TITLE,
+		CONTENT) values(BOARD_SEQ.nextval,
+		#{mEmail},
+		#{mNickname},
+		#{profileImg},
+		#{postType},
+		#{title},
+		#{content})
+	</insert>
+	<insert id="insertFile" parameterType="BoardFile">
+		insert into BOARD_FILE
+		values(BOARD_FILE_SEQ.nextval,
+		#{bId},
+		#{originalFile},
+		#{saveFile},
+		#{extension},
+		#{fileSize})
+	</insert>
+
+	<update id="updatePost" parameterType="Board">
+		update BOARD set
+		TITLE=#{title},
+		CONTENT=#{content},
+		UPDATE_DATE=SYSDATE
+		where ID=#{id}
+	</update>
+	<update id="updateFile" parameterType="BoardFile">
+		update BOARD_FILE set
+		ORIGINAL_FILE=#{originalFile},
+		SAVE_FILE=#{saveFile},
+		EXTENSION=#{extension},
+		FILE_SIZE=#{fileSize}
+		where ID=#{id}
+	</update>
+	<update id="updatePostHits" parameterType="long">
+		update BOARD set
+		HITS=HITS+1 where ID=#{id}
+	</update>
+	<update id="updateReplyCount">
+		update BOARD set REPLY=#{count} where ID=#{id}
+	</update>
+	<update id="updateFileEmpty" parameterType="long">
+		update BOARD set
+		FILES=0 where ID=#{id}
+	</update>
+
+	<delete id="deletePost" parameterType="long">
+		delete from BOARD where
+		ID=#{id}
+	</delete>
+	<delete id="deleteFile" parameterType="long">
+		delete from BOARD_FILE
+		where ID=#{id}
+	</delete>
+
+	<select id="selectPostId" parameterType="String"
+		resultType="long">
+		select NVL(MAX(ID),0) from BOARD where M_EMAIL=#{email}
+	</select>
+
+	<select id="selectPost" parameterType="long" resultType="Board">
+		select *
+		from BOARD where ID=#{id}
+	</select>
+	<select id="selectFile" parameterType="long"
+		resultType="BoardFile">
+		select * from BOARD_FILE where B_ID=#{id}
+	</select>
+	<select id="selectPostsByType" resultType="Board">
+		select * from
+		(select ROWNUM posts,
+		ID,
+		M_EMAIL,
+		M_NICKNAME,
+		PROFILE_IMG,
+		POST_TYPE,
+		TITLE,
+		POST_DATE,
+		UPDATE_DATE,
+		HITS,
+		REPLY,
+		FILES
+		from BOARD where POST_TYPE=#{type} order by ID desc)
+		where posts BETWEEN
+		#{beginRow} AND #{endRow}
+	</select>
+	<select id="selectPostsByMember" resultType="Board">
+		select * from
+		(select ROWNUM posts,
+		ID,
+		M_EMAIL,
+		M_NICKNAME,
+		PROFILE_IMG,
+		POST_TYPE,
+		TITLE,
+		POST_DATE,
+		UPDATE_DATE,
+		HITS,
+		REPLY,
+		FILES
+		from BOARD where M_EMAIL=#{email} order by ID desc)
+		where posts BETWEEN
+		#{beginRow} AND #{endRow}
+	</select>
+
+	<select id="selectPostCount" resultType="long">
+		select nvl(MAX(ROWNUM),
+		0) from BOARD
+	</select>
+	<select id="selectPostCountByType" parameterType="int"
+		resultType="long">
+		select nvl(MAX(ROWNUM), 0) from BOARD where
+		POST_TYPE=#{type}
+	</select>
+	<select id="selectPostCountByMember" parameterType="String"
+		resultType="long">
+		select nvl(MAX(ROWNUM), 0) from BOARD where
+		M_EMAIL=#{email}
+	</select>
+
+	<!-- 자유게시판 페이징 위한 셀렉문 -->
+	<select id="selectFreePostsByType" resultType="Board">
+		<![CDATA[
+	     select * from (
+	     	SELECT 
+	     		ROWNUM posts,ID,M_EMAIL,M_NICKNAME,PROFILE_IMG,POST_TYPE,TITLE,POST_DATE,UPDATE_DATE,HITS,REPLY,FILES 
+	     	FROM (
+	     			SELECT 
+	     				* 
+	     			FROM 
+	     				BOARD
+	     			WHERE 
+	     				POST_TYPE = #{type}     				
+     				ORDER BY LPAD(ID, 10, '0') desc
+   					)
+	     		) 
+	      where posts BETWEEN #{beginRow} AND #{endRow}
+	     ]]>
+	</select>
+	<select id="selectBoardListSearch" resultType="Board" parameterType="BoardSearchVO">
+		<![CDATA[
+		  select * from (
+	     	SELECT 
+	     		ROWNUM posts,ID,M_EMAIL,M_NICKNAME,PROFILE_IMG,POST_TYPE,TITLE,POST_DATE,UPDATE_DATE,HITS,REPLY,FILES 
+	     	FROM (
+	     			SELECT 
+	     				* 
+	     			FROM 
+	     				BOARD 
+	     			WHERE 
+	     				POST_TYPE = #{type} 
+     				AND
+     					${sch_type} LIKE '%'||#{value}||'%'
+     				ORDER BY LPAD(ID, 10, '0') desc
+   					)
+	     		) 
+	      where posts BETWEEN #{beginRow} AND #{endRow}
+	     ]]>
+	</select>
+	<!-- 검색으로 ㄱ 자유게시판 리스트 불러오기 -->
+	<!-- <select id="selectBoardListByKeyword" resultType="Board"> <![CDATA[ 
+		select * from (select ROWNUM posts, ID, M_EMAIL, M_NICKNAME, PROFILE_IMG, 
+		POST_TYPE, TITLE, POST_DATE, UPDATE_DATE, HITS, REPLY, FILES from (select 
+		* from BOARD where POST_DATE BETWEEN CURRENT_DATE-#{period} AND CURRENT_DATE 
+		intersect select * from BOARD where ${nameOption} like '%'||#{keyword}||'%') 
+		order by ID desc) where list BETWEEN #{beginRow} AND #{endRow} ]]> </select> -->
+	<select id="selectBoardListByKeyword" resultType="Board">
+		<choose>
+			<when test="period != 0">
+				<![CDATA[
+				select * from (select ROWNUM list,
+									ID, 
+									M_EMAIL,
+									M_NICKNAME, 
+									PROFILE_IMG, 
+									POST_TYPE, 
+									TITLE, 
+									POST_DATE, 
+									UPDATE_DATE, 
+									HITS, 
+									REPLY, 
+									FILES from (select * from BOARD where POST_DATE BETWEEN CURRENT_DATE-#{period} AND CURRENT_DATE AND POST_TYPE=1
+				                                 intersect
+				                                 select * from BOARD where ${nameOption} like '%'||#{keyword}||'%' order by LPAD(id, 10, '0') desc)
+				                      )
+				where list BETWEEN #{beginRow} AND #{endRow}
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				select * from (select ROWNUM list, 
+										ID, 
+										M_EMAIL,
+										M_NICKNAME, 
+										PROFILE_IMG, 
+										POST_TYPE, 
+										TITLE, 
+										POST_DATE, 
+										UPDATE_DATE, 
+										HITS, 
+										REPLY, 
+										FILES from (select * from BOARD where ${nameOption} like '%'||#{keyword}||'%' AND POST_TYPE=1 order by LPAD(id, 10, '0') desc)
+				                )
+				where list BETWEEN #{beginRow} AND #{endRow}
+				]]>
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="selectBoardListByPeriod" resultType="Board">
+		select * from (select ROWNUM list,
+		ID,
+		M_EMAIL,
+		M_NICKNAME,
+		PROFILE_IMG,
+		POST_TYPE,
+		TITLE,
+		POST_DATE,
+		UPDATE_DATE,
+		HITS,
+		REPLY,
+		FILES from BOARD
+		where POST_DATE BETWEEN <![CDATA[CURRENT_DATE-#{period}]]>
+		AND CURRENT_DATE AND POST_TYPE=1 order by LPAD(id, 10, '0') desc)
+		where list BETWEEN #{beginRow} AND #{endRow}
+	</select>
+
+	<select id="selectBoardCountByKeyword" resultType="long">
+		<choose>
+			<when test="period != 0">
+				<![CDATA[
+				select NVL(MAX(ROWNUM), 0) from (select * from BOARD where POST_DATE BETWEEN CURRENT_DATE-#{period} AND CURRENT_DATE AND POST_TYPE=1
+				                                 intersect
+				                                 select * from BOARD where ${nameOption} like '%'||#{keyword}||'%')
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				select NVL(MAX(ROWNUM), 0) from (select * from BOARD where ${nameOption} like '%'||#{keyword}||'%' AND POST_TYPE=1)
+				]]>
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="selectBoardNextPrev"
+		resultType="BoardDetailNextPrev">
+		SELECT * FROM(SELECT ID ID,
+		M_EMAIL,
+		M_NICKNAME,
+		PROFILE_IMG,
+		POST_TYPE,
+		TITLE,
+		POST_DATE,
+		UPDATE_DATE,
+		HITS,
+		REPLY,
+		FILES,
+		LAG(ID,1,-1) OVER(ORDER BY ID ASC) AS PREVID,
+		LEAD(ID,1,-1) OVER(ORDER BY ID ASC) AS NEXTID
+		FROM BOARD where POST_TYPE=1) WHERE ID= #{id}
+	</select>
+</mapper>
