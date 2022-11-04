@@ -65,8 +65,9 @@
 }
 
 .chef-pic {
+	height: 70px !important;
+	width: 70px !important;
     border-radius: 50%;
-    width: 70%;
 }
 
 .chef-name {
