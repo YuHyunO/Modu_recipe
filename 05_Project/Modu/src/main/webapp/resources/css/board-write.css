@@ -51,6 +51,10 @@ body {
     box-shadow: 2px 2px rgb(150, 150, 150);
 }
 
+input {
+	font-family: 'NotoSerifKR-Medium', sans-serif !important;
+}
+
 form textarea {
     border-radius: 0px !important;
     font-family: 'NotoSerifKR-Medium', sans-serif !important;

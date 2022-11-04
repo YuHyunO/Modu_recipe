@@ -16,6 +16,7 @@
     text-decoration: none;
 }
 
+
 #secondary .widget-title-outer h3 {
     color: #232323;
     font-size: 12px;
@@ -163,6 +164,7 @@
 }
 
 .welcomelogin {
+	width: 200px;
 	display: block;
 	padding: 0.5rem 0.5rem;
 	font-size: 14px;
@@ -218,9 +220,22 @@
 	margin-right: 5px;
 }
 
-.dropdown-menu.show {
+.dropdown-menu,
+.dropdown-menu.show  {
 	left: -5px !important;
 	min-width: 100px !important;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 0.25rem;
+} 
+
+.site-navigation.navbar .dropdown-menu {
+    border: 1px solid rgba(0,0,0,.15);
+}
+
+@media (min-width: 992px)
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute;
+    border: 1px solid rgba(0,0,0,.15);
 }
 
 .dropdown-item {

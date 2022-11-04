@@ -287,9 +287,8 @@
 													<option value="1">비공개 레시피</option>
 													<option value="2">임시저장 레시피</option>
 												</select>
-											</div>
-											<br><br>
-										
+											</div><br>
+
 											<div id="recipe-list-2" class="row"></div>																	
 											<div id="paging-area-2" class="page common-area"></div>												
 												<!-- end col -->
@@ -304,24 +303,12 @@
 										aria-labelledby="bookmark-tab">
 										<div id="tab3-content" class="site-content">
 											<h3 class="archive-title text-center">북마크 레시피</h3>
-											<br>
-											<div id="recipe-list-3" class="row">
+<!-- 											<div id="recipe-list-3" class="row">
 											</div>					
-											
 											<div id="paging-area-3" class="page common-area">
-											</div>	
-											<!-- end Page -->
-										</div>
-										<!-- id=tab3-content 종료-->
-									</div>
-									<!--탭3 종료, id="bookmark" 종료 -->
-									<!-- 탭4 레시피 탭(내게시글) 시작-->
-									<div class="tab-pane fade" id="mypost" role="tabpane4"
-										aria-labelledby="mypost-tab">
-
-										<div id="tab4-content" class="myPost_thumbnail">
-											<h3 class="archive-title text-center">나의 게시글</h3>
-											<br>
+											</div> -->
+											<!-- end paging-area-3 -->
+											
 											<div class="article-cover">
 												<div class="article-list">
 													<!--첫번째 레시피 시작 -->
@@ -352,35 +339,6 @@
 													<!--end row-->
 												</div>
 												<!-- end class="article-list", 첫번째 레시피 종료 -->
-
-												<div class="article-list">
-													<!--두번째 레시피 시작 -->
-													<div class="row">
-														<div class="col-md-1">
-															<div class="entry-date">
-																<time class="published" datetime="2019-12-22"
-																	title="postdate">
-																	Dec<span class="date">22</span>2019
-																</time>
-															</div>
-														</div>
-														<div class="col-md-4">
-															<figure>
-																<img class="recipe-thumb" src="/imgs/content/list-01.png" alt="" />
-															</figure>
-														</div>
-														<div class="col-md-7">
-															<h4>
-																<a href="#" target="_blank">훈제연어야채샐러드</a>
-															</h4>
-															<span class="recipe-info">훈제연어의 훈연한 그 맛은 감칠맛이 나서 잘 맞는 드레싱만 얹어주면 인기만점의
-																샐러드예요. 야채를 듬뿍 곁들여 건강하게 준비한 훈제연어 샐러드 소개합니다.</span>
-																<a href="" class="readmore" target="_blank"><em>더보기</em></a>
-														</div>
-													</div>
-													<!--end row-->
-												</div>
-												<!-- end class="article-list", 두번째 레시피 종료 -->
 
 												<div class="article-list">
 													<!--세번째 레시피 시작-->
@@ -469,221 +427,401 @@
 													</ul>
 												</nav>
 											</div>
-											<!-- end Page -->			
-											<br><br>
-
-											<h3 class="archive-title text-center">나의 댓글</h3>
-											<br>
-											<div class="article-cover">
-												<div class="article-list">
-													<!--두번째 레시피 시작 -->
-													<div class="row">
-														<div class="col-md-1">
-															<div class="entry-date">
-																<time class="published" datetime="2019-12-22"
-																	title="postdate">
-																	Dec<span class="date">22</span>2019
-																</time>
-															</div>
-														</div>
-														<div class="col-md-4">
-															<figure>
-																<img src="/imgs/content/list-01.png" alt="" />
-															</figure>
-														</div>
-														<div class="col-md-7">
-															<h4>
-																<a href="#" target="_blank">훈제연어야채샐러드</a>
-															</h4>
-															<span class="recipe-info">훈제연어의 훈연한 그 맛은 감칠맛이 나서 잘 맞는 드레싱만 얹어주면 인기만점의
-																샐러드예요. 야채를 듬뿍 곁들여 건강하게 준비한 훈제연어 샐러드 소개합니다.</span> <a href="#"
-																class="readmore" target="_blank"><em>더보기</em></a>
-														</div>
-													</div>
-													<!--end row-->
-												</div>
-												<!-- end class="article-list", 두번째 레시피 종료 -->
-
-												<div class="article-list">
-													<!--세번째 레시피 시작-->
-													<div class="row">
-														<div class="col-md-1">
-															<div class="entry-date">
-																<time class="published" datetime="2019-12-22"
-																	title="December 22, 2019 - 21:12 pm">
-																	July<span class="date">22</span>2019
-																</time>
-															</div>
-														</div>
-														<div class="col-md-4">
-															<figure>
-																<img src="/imgs/content/list-03.png" alt="" />
-															</figure>
-														</div>
-
-														<div class="col-md-7">
-															<h4>
-																<a href="#">삼겹살간장조림</a>
-															</h4>
-															<span class="recipe-info"> 삼겹살을 아이들과는 구우면서 먹을수가 없.어.요.......​ 그래서 아이들과
-																먹을땐 간장양념에 조림으로 해서 먹는답니다^^​ 네이버메인에도 올랐던 레시피 보여드릴게요. </span> <a
-																href="#" class="readmore"><em>더보기</em></a>
-														</div>
-													</div>
-													<!--end row-->
-												</div>
-												<!--end class="article-list", 세번째 레시피 종료 -->
-
-												<div class="article-list">
-													<div class="row">
-														<div class="col-md-1">
-															<div class="entry-date">
-																<time class="published" datetime="2019-12-22"
-																	title="December 22, 2019 - 21:12 pm">
-																	Dec<span class="date">23</span>2019
-																</time>
-															</div>
-														</div>
-														<div class="col-md-4">
-															<figure>
-																<img src="/imgs/content/list-04.png" alt="" />
-															</figure>
-														</div>
-
-														<div class="col-md-7">
-															<h4>
-																<a href="#">나시고랭</a>
-															</h4>
-															<span class="recipe-info">나시고랭은 인도네이사식 볶음밥으로 우리나라 볶음밥과 거의 비슷합니다 저는 아이들
-																볶음밥에 피시소스나 굴 소스를 가끔 넣는데 나시고랭도 마찬가지예요~ 숙주가 들어가서 아삭한 식감과
-																계란을 스크램블 한 맛이 아주 좋답니다 볶음밥 보다 약간은 특별한 나시고랭 어렵지 않아요^^</span> <a
-																href="#" class="readmore"><em>더보기</em></a>
-														</div>
-													</div>
-													<!--end row-->
-												</div>
-												<!--end article-list -->
-											</div>
-											<!-- end article-cover -->
-
-											<div class="page mt-5">
-												<nav aria-label="Page navigation">
-													<ul class="pagination justify-content-center">
-														<li class="page-item"><a
-															class="page-link page-previous" href="#">＜</a></li>
-														<li class="page-item"><a
-															class="page-link active page-number"
-															href="javascript:void(0);" onclick="activePage(this)">1</a></li>
-														<li class="page-item"><a
-															class="page-link page-number" href="javascript:void(0);"
-															onclick="activePage(this)">2</a></li>
-														<li class="page-item"><a
-															class="page-link page-number" href="javascript:void(0);"
-															onclick="activePage(this)">3</a></li>
-														<li class="page-item"><a
-															class="page-link page-number" href="javascript:void(0);"
-															onclick="activePage(this)">4</a></li>
-														<li class="page-item"><a
-															class="page-link page-number" href="javascript:void(0);"
-															onclick="activePage(this)">5</a></li>
-														<li class="page-item"><a class="page-link page-next"
-															href="#">＞</a></li>
-													</ul>
-												</nav>
-											</div>
 											<!-- end Page -->
-											<br><br>
+											
+										</div>
+										<!-- id=tab3-content 종료-->
+									</div>
+									<!--탭3 종료, id="bookmark" 종료 -->
+									
+									
+									<!-- 탭4 레시피 탭(내게시글) 시작-->
+									<div class="tab-pane fade" id="mypost" role="tabpane4"
+										aria-labelledby="mypost-tab">
 
-											<h3 class="archive-title text-center">나의 댓글</h3>
-											<br>
-											<div class="article-cover">
-												<div class="article-list">
-													<!--첫번째 레시피 시작 -->
-													<div class="row">
-														<div class="col-md-1">
-															<div class="entry-date">
-																<time class="published" datetime="2019-12-22"
-																	title="postdate">
-																	Dec<span class="date">22</span>2019
-																</time>
-															</div>
-														</div>
-														<div class="col-md-4">
-															<figure>
-																<img class="recipe-thumb" src="/imgs/content/list-01.png" alt="" />
-															</figure>
-														</div>
-														<div class="col-md-7">
-															<h4>
-																<a href="#" target="_blank">훈제연어야채샐러드</a>
-															</h4>
-															<span class="recipe-info">훈제연어의 훈연한 그 맛은 감칠맛이 나서 잘 맞는 드레싱만 얹어주면 인기만점의
-																샐러드예요. 야채를 듬뿍 곁들여 건강하게 준비한 훈제연어 샐러드 소개합니다.</span>
-															<a href="" class="readmore" target="_blank"><em>더보기</em></a>
-														</div>
-													</div>
-													<!--end row-->
-												</div>
-												<!-- end class="article-list", 첫번째 레시피 종료 -->
+										<div id="tab4-content" class="myPost_thumbnail">
+											<h3 class="archive-title text-center">나의 게시글</h3>
 
-												<div class="article-list">
-													<!--두번째 레시피 시작-->
-													<div class="row">
-														<div class="col-md-1">
-															<div class="entry-date">
-																<time class="published" datetime="2019-12-22"
-																	title="December 22, 2019 - 21:12 pm">
-																	July<span class="date">22</span>2019
-																</time>
-															</div>
-														</div>
-														<div class="col-md-4">
-															<figure>
-																<img class="recipe-thumb" src="/imgs/content/list-03.png" alt="" />
-															</figure>
-														</div>
-
-														<div class="col-md-7">
-															<h4>
-																<a href="#">삼겹살간장조림</a>
-															</h4>
-															<span class="recipe-info"> 삼겹살을 아이들과는 구우면서 먹을수가 없.어.요.......​ 그래서 아이들과
-																먹을땐 간장양념에 조림으로 해서 먹는답니다^^​ 네이버메인에도 올랐던 레시피 보여드릴게요. </span> <a
-																href="#" class="readmore"><em>더보기</em></a>
-														</div>
-													</div>
-													<!--end row-->
-												</div>
-												<!--end class="article-list", 두번째 레시피 종료 -->
+								<div id="board-search"
+									class="mb-3 d-flex justify-content-between" style="float:right;">
+									<div class="d-flex justify-content-end search-box">
+										<input id="search" class="border px-2" type="search"
+											name="search" placeholder="검색어를 입력해주세요" value="" onsearch="setKeywordData()">
+										<button type="submit" class="search-btn border"  onclick="setKeywordData()">검색</button>
+										<select id="size-selector" class="gold-border p-1 ms-2" onchange="setPageSize()">
+											<c:choose>
+												<c:when test="${data.pgSize == 10}">
+												<option value="10" selected>10</option>
+												<option value="15">15</option>
+												<option value="20">20</option>
+												</c:when>
+												<c:when test="${data.pgSize == 15}">
+												<option value="10">10</option>
+												<option value="15" selected>15</option>
+												<option value="20">20</option>
+												</c:when>
+												<c:when test="${data.pgSize == 20}">
+												<option value="10">10</option>
+												<option value="15">15</option>
+												<option value="20"selected>20</option>
+												</c:when>
+												<c:otherwise>
+												<option value="10">10</option>
+												<option value="15">15</option>
+												<option value="20">20</option>
+												</c:otherwise>																											
+											</c:choose>						
+										</select>
+									</div>
+								</div>
+								<!-- end board-search -->
+								
+							<table class="board-table text-center m-0 w-100">
+								<thead>
+									<tr>
+										<th scope="col" class="th-1 id">순번</th>
+										<th scope="col" class="th-2 title-td">게시글 제목</th>
+										<!-- <th scope="col" class="th-3 nickname">작성자</th> -->
+										<th scope="col" class="th-4 post-date">작성일</th>
+										<th scope="col" class="th-5 hits">조회수</th>
+									</tr>
+								</thead>
+								<tbody class="tbody" id='board-test'>
+<%-- 										<c:if test="${empty data}">
+												<tr align='center' noshade colspan="5">작성한 게시글이 없습니다.</tr>
+										</c:if> --%>
+									<c:forEach items="${data.boardList}" var="li">
+										<c:if test="${empty data.boardList}">
+												<tr align='center' noshade colspan="5">작성한 게시글이 없습니다.</tr>
+										</c:if>
+										<c:if test="${!empty data}">
+											<tr class="border">
+												<td class="id">${li.id}</td>
+												<td class="title-td text-start"><a href="detail?id=${li.id}"> <span
+														class="title">${li.title}</span> <span class="reply">[${li.reply}]</span>
+												</a>
+												</th>
+												<td class="nickname">
+													<img class="profile-img" src="/pics/profile/${li.profileImg}" alt="img">
+															${li.MNickname}</td>
+												<td class="post-date">${li.postDate}</td>
+												<td class="hits">${li.hits}</td>
+											</tr>
+										</c:if>
+									</c:forEach>
+								</tbody>
+							</table>
+							<div class="write text-end my-3">
+								<c:if test="${sessionScope.email == null}">
+									<a href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';"					
+											><button type="button" id="write-btn"
+										class="gold-border gold-btn">글쓰기</button></a>
+								</c:if>
+								<c:if test="${sessionScope.email != null}">
+									<button type="button" id="write-btn"
+										class="gold-border gold-btn"
+										onclick="location.href='/freeboard/write'">글쓰기</button>
+								</c:if>
+							</div>
+							<div class="page">
+								<nav aria-label="Page navigation">
+									<ul id="pagination-ul" class="pagination justify-content-center">
+										<%-- 페이징 처리 --%>
+											<div id="pagination-previous" class="pagination justify-content-center">
+											<c:choose>
+												<c:when test="${data.curPage != 1}">
+													<li class="page-item"><a class="page-link page-previous"
+														href="javascript:void(0);" onclick="setPage(this)" id="pre">＜</a></li>
+												</c:when>
+												<c:when test="${data.curPage == 1}">
+													<li class="page-item"><a class="page-link page-previous"
+														href="javascript:void(0);">＜</a></li>
+												</c:when>								
+											</c:choose>
+											</div>						
+																		
+											<%-- begin 페이지네이션 영역 --%>
+											<div id="pagination-area" class="pagination justify-content-center">
+											<c:choose>	
+											<%-- begin comment : 총 페이지 수가 5개 이상인 경우 --%>												
+											<c:when test="${data.totalPage > 5}">							
+												<c:choose>
+													<c:when test="${data.curPage < 3}">
+														<c:forEach begin="1" end="5" var="i">
+															<c:choose>
+																<c:when test="${i == data.curPage}">
+																	<li class="page-item"><a class="page-link active page-number"
+																		href="javascript:void(0);" onclick="activePage(this);setPage(this);">${i}</a></li>
+																</c:when>
+																<c:otherwise>
+																	<li class="page-item"><a class="page-link page-number" 
+																		href="javascript:void(0);" onclick="activePage(this);setPage(this);">${i}</a></li>
+																</c:otherwise>
+															</c:choose>
+														</c:forEach>
+													</c:when>
+													<%-- begin comment : 현재 페이지가 3페이지 이상인 경우 : 현재 페이지를 가운데 고정 --%>
+													<c:when test="${data.curPage >= 3}">																				
+														<c:choose>
+															<c:when test="${data.totalPage-data.curPage < 2}">												
+																<c:forEach begin="${data.totalPage-4}" end="${data.totalPage}" var="i">
+																	<c:choose>
+																		<c:when test="${i == data.curPage}">
+																			<li class="page-item"><a class="page-link active page-number"
+																				href="javascript:void(0);" onclick="activePage(this);setPage(this);">${i}</a></li>
+																		</c:when>
+																		<c:otherwise>
+																			<li class="page-item"><a class="page-link page-number" 
+																				href="javascript:void(0);" onclick="activePage(this);setPage(this);">${i}</a></li>
+																		</c:otherwise>
+																	</c:choose>														
+																</c:forEach>												
+															</c:when>																								
+															<c:otherwise>
+																<c:forEach begin="${data.curPage-2}" end="${data.curPage+2}" var="i">											
+																	<c:choose>
+																		<c:when test="${i == data.curPage}">
+																			<li class="page-item"><a class="page-link active page-number"
+																				href="javascript:void(0);" onclick="activePage(this);setPage(this);">${i}</a></li>
+																		</c:when>
+																		<c:otherwise>
+																			<li class="page-item"><a class="page-link page-number" 
+																				href="javascript:void(0);" onclick="activePage(this);setPage(this);">${i}</a></li>
+																		</c:otherwise>
+																	</c:choose>	
+																</c:forEach>											
+															</c:otherwise>
+														</c:choose>																															
+													</c:when>
+													<%-- end comment : 현재 페이지가 3페이지 이상인 경우 : 현재 페이지를 가운데 고정 --%>																						
+												</c:choose>							
+											</c:when>
+											<%-- end comment : 총 페이지 수가 5개 이상인 경우 --%>
+											
+											<%-- begin comment : 총 페이지 수가 5개 이하인 경우 --%>
+											<c:when test="${data.totalPage < 5}">
+												<c:forEach begin="1" end="${data.totalPage}" var="i">							
+													<c:choose>							
+														<c:when test="${i == data.curPage}">					
+															<li class="page-item"><a class="page-link active page-number"
+																href="javascript:void(0);" onclick="activePage(this);setPage(this);">${i}</a></li>
+														</c:when>
+														<c:otherwise>
+															<li class="page-item"><a class="page-link page-number" 
+																href="javascript:void(0);" onclick="activePage(this);setPage(this);">${i}</a></li>
+														</c:otherwise>							
+													</c:choose>																						
+												</c:forEach>
+											</c:when>
+											<%-- end comment : 총 페이지 수가 5개 이하인 경우 --%>
+											
+											</c:choose>
+											</div>						
+											<%-- end 페이지네이션 영역 --%>
+											
+											<div id="pagination-next" class="pagination justify-content-center">
+											<c:choose>
+												<c:when test="${data.curPage != data.totalPage}">
+													<li class="page-item"><a class="page-link page-next"
+														href="javascript:void(0);" onclick="setPage(this)" id="next">＞</a></li>
+												</c:when>
+												<c:when test="${data.curPage == data.totalPage}">
+													<li class="page-item"><a class="page-link page-next"
+														href="javascript:void(0);">＞</a></li>
+												</c:when>								
+											</c:choose>
 											</div>
-											<!-- end article-cover -->
+											
+											<%-- end 페이징 처리 --%>
+									</ul>
+								</nav>
+							</div>
+		
+											<h3 class="archive-title text-center">나의 댓글</h3><br>
+	
+							<table class="board-table text-center m-0 w-100">
+								<div id="board-search"
+									class="mb-3 d-flex justify-content-between" style="float:right;">
+									<div class="d-flex justify-content-end search-box">
+										<input id="search" class="border px-2" type="search"
+											name="search" placeholder="검색어를 입력해주세요" value="" onsearch="setKeywordData()">
+										<button type="submit" class="search-btn border"  onclick="setKeywordData()">검색</button>
+										<select id="size-selector" class="gold-border p-1 ms-2" onchange="setPageSize()">
+											<c:choose>
+												<c:when test="${data.pgSize == 10}">
+												<option value="10" selected>10</option>
+												<option value="15">15</option>
+												<option value="20">20</option>
+												</c:when>
+												<c:when test="${data.pgSize == 15}">
+												<option value="10">10</option>
+												<option value="15" selected>15</option>
+												<option value="20">20</option>
+												</c:when>
+												<c:when test="${data.pgSize == 20}">
+												<option value="10">10</option>
+												<option value="15">15</option>
+												<option value="20"selected>20</option>
+												</c:when>
+												<c:otherwise>
+												<option value="10">10</option>
+												<option value="15">15</option>
+												<option value="20">20</option>
+												</c:otherwise>																											
+											</c:choose>						
+										</select>
+									</div>
+								</div>
+								<!-- end board-search -->
+								
+								<thead>
+									<tr>
+										<th scope="col" class="th-1 id">순번</th>
+										<th scope="col" class="th-2 title-td">게시글 제목</th>
+										<th scope="col" class="th-3 text">댓글내용</th>
+										<th scope="col" class="th-4 post-date">작성일</th>
+										<th scope="col" class="th-5 hits">조회수</th>
+									</tr>
+								</thead>
+								<tbody class="tbody" id='board-test'>
+<%-- 										<c:if test="${empty data}">
+												<tr align='center' noshade colspan="5">작성한 게시글이 없습니다.</tr>
+										</c:if> --%>
+									<c:forEach items="${data.boardList}" var="li">
+										<c:if test="${empty data.boardList}">
+												<tr align='center' noshade colspan="5">작성한 게시글이 없습니다.</tr>
+										</c:if>
+										<c:if test="${!empty data}">
+											<tr class="border">
+												<td class="id">${li.id}</td>
+												<td class="title-td text-start"><a href="detail?id=${li.id}"> <span
+														class="title">${li.title}</span> <span class="reply">[${li.reply}]</span>
+												</a>
+												</th>
+												<td class="nickname">
+													<img class="profile-img" src="/pics/profile/${li.profileImg}" alt="img">
+															${li.MNickname}</td>
+												<td class="post-date">${li.postDate}</td>
+												<td class="hits">${li.hits}</td>
+											</tr>
+										</c:if>
+									</c:forEach>
+								</tbody>
+							</table>
 
-											<div class="page mt-5">
-												<nav aria-label="Page navigation">
-													<ul class="pagination justify-content-center">
-														<li class="page-item"><a
-															class="page-link page-previous" href="#">＜</a></li>
-														<li class="page-item"><a
-															class="page-link active page-number"
-															href="javascript:void(0);" onclick="activePage(this)">1</a></li>
-														<li class="page-item"><a
-															class="page-link page-number" href="javascript:void(0);"
-															onclick="activePage(this)">2</a></li>
-														<li class="page-item"><a
-															class="page-link page-number" href="javascript:void(0);"
-															onclick="activePage(this)">3</a></li>
-														<li class="page-item"><a
-															class="page-link page-number" href="javascript:void(0);"
-															onclick="activePage(this)">4</a></li>
-														<li class="page-item"><a
-															class="page-link page-number" href="javascript:void(0);"
-															onclick="activePage(this)">5</a></li>
-														<li class="page-item"><a class="page-link page-next"
-															href="#">＞</a></li>
-													</ul>
-												</nav>
+							<div class="page">
+								<nav aria-label="Page navigation">
+									<ul id="pagination-ul" class="pagination justify-content-center">
+										<%-- 페이징 처리 --%>
+											<div id="pagination-previous" class="pagination justify-content-center">
+											<c:choose>
+												<c:when test="${data.curPage != 1}">
+													<li class="page-item"><a class="page-link page-previous"
+														href="javascript:void(0);" onclick="setPage(this)" id="pre">＜</a></li>
+												</c:when>
+												<c:when test="${data.curPage == 1}">
+													<li class="page-item"><a class="page-link page-previous"
+														href="javascript:void(0);">＜</a></li>
+												</c:when>								
+											</c:choose>
+											</div>						
+																		
+											<%-- begin 페이지네이션 영역 --%>
+											<div id="pagination-area" class="pagination justify-content-center">
+											<c:choose>	
+											<%-- begin comment : 총 페이지 수가 5개 이상인 경우 --%>												
+											<c:when test="${data.totalPage > 5}">							
+												<c:choose>
+													<c:when test="${data.curPage < 3}">
+														<c:forEach begin="1" end="5" var="i">
+															<c:choose>
+																<c:when test="${i == data.curPage}">
+																	<li class="page-item"><a class="page-link active page-number"
+																		href="javascript:void(0);" onclick="activePage(this);setPage(this);">${i}</a></li>
+																</c:when>
+																<c:otherwise>
+																	<li class="page-item"><a class="page-link page-number" 
+																		href="javascript:void(0);" onclick="activePage(this);setPage(this);">${i}</a></li>
+																</c:otherwise>
+															</c:choose>
+														</c:forEach>
+													</c:when>
+													<%-- begin comment : 현재 페이지가 3페이지 이상인 경우 : 현재 페이지를 가운데 고정 --%>
+													<c:when test="${data.curPage >= 3}">																				
+														<c:choose>
+															<c:when test="${data.totalPage-data.curPage < 2}">												
+																<c:forEach begin="${data.totalPage-4}" end="${data.totalPage}" var="i">
+																	<c:choose>
+																		<c:when test="${i == data.curPage}">
+																			<li class="page-item"><a class="page-link active page-number"
+																				href="javascript:void(0);" onclick="activePage(this);setPage(this);">${i}</a></li>
+																		</c:when>
+																		<c:otherwise>
+																			<li class="page-item"><a class="page-link page-number" 
+																				href="javascript:void(0);" onclick="activePage(this);setPage(this);">${i}</a></li>
+																		</c:otherwise>
+																	</c:choose>														
+																</c:forEach>												
+															</c:when>																								
+															<c:otherwise>
+																<c:forEach begin="${data.curPage-2}" end="${data.curPage+2}" var="i">											
+																	<c:choose>
+																		<c:when test="${i == data.curPage}">
+																			<li class="page-item"><a class="page-link active page-number"
+																				href="javascript:void(0);" onclick="activePage(this);setPage(this);">${i}</a></li>
+																		</c:when>
+																		<c:otherwise>
+																			<li class="page-item"><a class="page-link page-number" 
+																				href="javascript:void(0);" onclick="activePage(this);setPage(this);">${i}</a></li>
+																		</c:otherwise>
+																	</c:choose>	
+																</c:forEach>											
+															</c:otherwise>
+														</c:choose>																															
+													</c:when>
+													<%-- end comment : 현재 페이지가 3페이지 이상인 경우 : 현재 페이지를 가운데 고정 --%>																						
+												</c:choose>							
+											</c:when>
+											<%-- end comment : 총 페이지 수가 5개 이상인 경우 --%>
+											
+											<%-- begin comment : 총 페이지 수가 5개 이하인 경우 --%>
+											<c:when test="${data.totalPage < 5}">
+												<c:forEach begin="1" end="${data.totalPage}" var="i">							
+													<c:choose>							
+														<c:when test="${i == data.curPage}">					
+															<li class="page-item"><a class="page-link active page-number"
+																href="javascript:void(0);" onclick="activePage(this);setPage(this);">${i}</a></li>
+														</c:when>
+														<c:otherwise>
+															<li class="page-item"><a class="page-link page-number" 
+																href="javascript:void(0);" onclick="activePage(this);setPage(this);">${i}</a></li>
+														</c:otherwise>							
+													</c:choose>																						
+												</c:forEach>
+											</c:when>
+											<%-- end comment : 총 페이지 수가 5개 이하인 경우 --%>
+											
+											</c:choose>
+											</div>						
+											<%-- end 페이지네이션 영역 --%>
+											
+											<div id="pagination-next" class="pagination justify-content-center">
+											<c:choose>
+												<c:when test="${data.curPage != data.totalPage}">
+													<li class="page-item"><a class="page-link page-next"
+														href="javascript:void(0);" onclick="setPage(this)" id="next">＞</a></li>
+												</c:when>
+												<c:when test="${data.curPage == data.totalPage}">
+													<li class="page-item"><a class="page-link page-next"
+														href="javascript:void(0);">＞</a></li>
+												</c:when>								
+											</c:choose>
 											</div>
-											<!-- end Page -->
+											
+											<%-- end 페이징 처리 --%>
+									</ul>
+								</nav>
+							</div>
 											
 										</div>
 										<!-- id="tab4-content" 종료-->
@@ -710,11 +848,8 @@
 												<p class="text-right">팔로잉: 내가 추가한 친구<br>팔로워: 나를 추가한 친구</p>
 												
 												<section id="tab5-section-1" class="tab5-section">
-													<div id="following-list" class="row">
-													</div>
-		
-													<div id="paging-area-5" class="page common-area">
-													</div>	
+													<div id="following-list" class="row"></div>
+													<div id="paging-area-5" class="page common-area"></div>	
 												</section>
 												
 												<section id="tab5-section-2" class="tab5-section" hidden="true">

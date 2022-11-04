@@ -41,11 +41,12 @@
     font-size: 0.8rem;
 }
 
-.textarea {
-    border-radius: 0px !important;
+pre, .textarea {
+    border-radius: 5px !important;
+    border:none;
     font-family: 'NotoSerifKR-Medium', sans-serif !important;
     font-size: 15px;
-    border-style: none;
+    white-space:pre;
 }
 
 .file a {
@@ -71,6 +72,7 @@
 
 .comment-text {
     resize: none;
+    font-family: 'NotoSerifKR-Medium', sans-serif !important;
 }
 
 .comment-submit {

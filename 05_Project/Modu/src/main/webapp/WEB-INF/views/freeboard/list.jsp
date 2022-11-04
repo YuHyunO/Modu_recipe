@@ -32,6 +32,7 @@
 
 					<div id="board-list" class="my-3 row px-0">
 						<div class="container p-0">
+						
 							<table class="board-table text-center m-0 w-100">
 								<div id="board-search"
 									class="mb-3 d-flex justify-content-between align-items-center">
@@ -82,6 +83,7 @@
 									</div>
 								</div>
 								<!-- end board-search -->
+								
 								<thead>
 									<tr>
 										<th scope="col" class="th-1 id">순번</th>
@@ -236,6 +238,7 @@
 									</ul>
 								</nav>
 							</div>
+							<!-- end="Page" -->
 						</div>
 					</div>
 					<div></div>

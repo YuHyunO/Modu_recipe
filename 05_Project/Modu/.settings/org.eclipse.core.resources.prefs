@@ -23,6 +23,6 @@ encoding//src/main/webapp/WEB-INF/views/member/mypage.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/member/register.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/recipe/list.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/recipe/write.jsp=UTF-8
-encoding//src/main/webapp/resources/css/index.css=UTF-8
+encoding//src/main/webapp/resources/css/index.css=MS949
 encoding//src/main/webapp/resources/css/mypage.css=MS949
 encoding/<project>=MS949

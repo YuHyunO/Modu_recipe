@@ -119,17 +119,26 @@
 				        </div>\
 				    </div>'
 		}
-		function removeReply(replyNum){
-			const reNum = replyNum;
+		
+		function removeReply(){
+			console.log("#게시판 댓글삭제 removeReply 메소드 진입");
+			
 			let para = document.location.href.split("=");
-			let bId = para[1];
-			if (confirm("정말 댓글을 삭제하시겠습니까?") == true){
+			let bId = para[1]; //해당 게시글 Id
+			//console.log("#삭제전- para:",para); //para: (2) ['http://127.0.0.1:8080/freeboard/detail?id', '354']
+			//console.log("#삭제전- bId:",bId); //354
+			
+			const removeReply = document.getElementById('removeReply'); //무조건 상위댓글만 뽑힘
+			let number = removeReply.innerText;
+			console.log("#삭제전-삭제할 댓글 id(number):",number); //무조건 상위댓글 id만 뽑힘 16143
+			
+			if (confirm("정말 ${number}번 댓글을 삭제하시겠습니까?") == true){
 				$.ajax({
 					url: "../freeboard/removeReply", 
 					type: "POST", 
-					data: {"id":reNum},
+					data: { "id" : number },
 					success: function(data){
-						console.log("#삭제 성공한 댓글 id:",reNum);
+						console.log("#삭제 성공한 댓글 id:", number);
 						location.href='detail?id='+bId+'';
 						} ,
 					error: function(eror){
@@ -218,15 +227,19 @@
 									<div class="py-0 border-top"></div>
 									<div
 										class="content-cover d-flex flex-column justify-content-between">
+<%-- 										<div class="content p-2">
+											<textarea cols="5" rows="200"><c:out value="${board.board.content}"/></textarea>
+										</div> --%>
 										<div class="content p-2">
-											<div class="textarea" style="white-space:pre;"><c:out value="${board.board.content}" /></div>
+											<pre class="contentarea"><c:out value="${board.board.content}"/></pre>
 										</div>
 										<div
 											class="div file d-flex justify-content-end align-items-center p-2">
 											<c:forEach var="file" items="${board.boardFile}">
 												<div id='downSave' style='display: none;'>
 												</div>
-													<a href="download.do?saveFile=${file.saveFile}" class="me-2" id="me-2">첨부파일: ${file.originalFile}
+													<a href="download.do?saveFile=${file.saveFile}" class="me-2" id="me-2">
+													첨부파일: ${file.originalFile}
 											<button class="down-btn" onclick='downCheck()'>다운로드</button></a>
 											</c:forEach>
 										</div>
@@ -247,8 +260,6 @@
 								<p class="mb-1 pb-3 px-2 gold-bottom" style="font-weight: bold;">댓글(${board.board.reply})</p>
 								<div class="reply-list">
 										<c:forEach items="${list.list}" var="i">
-										
-										
 													<div class="reply py-3" id="reply-1">
 														<div class="reply-author d-flex justify-content-between">
 															<div class="author-main d-flex align-items-center px-3 pt-2">
@@ -260,13 +271,14 @@
 															</div>
 															<div id='removeReply' style="display: none;" >${i.id}</div>
 															<div class="author-items px-3">
-															
 																<c:if test="${sessionScope.email == i.MEmail}">
-																	<button class="reply-1 reply-btn" onclick="removeReply(${i.id})">삭제</button>																	
+																	<button class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
 																</c:if>
-																																
-																<button style='display: none;' class="reply-1 reply-btn"
-																	onclick="addReplyForm(this)">댓글</button>
+																<c:if test="${sessionScope.email != i.MEmail}">
+																	<button style="display: none;" class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
+																</c:if>
+																<button class="reply-1 reply-btn"
+																	onclick="addReplyForm(this)">답글</button>
 															</div>
 														</div>
 														<!-- end author -->
@@ -274,8 +286,6 @@
 															<p class="textarea p-3">${i.reply}</p>
 														</div>
 													</div>
-													
-													
 											</c:forEach>
 											<textarea name='sessionNickname' id='sessionNickname'  style='display:none;'>${sessionScope.MNickname}</textarea>
 											<textarea name='sessionProfile' style='display:none;'>${sessionScope.profileImg}</textarea>
