@@ -121,6 +121,9 @@ $(function() { // 회원가입 페이지 들어오면 작동되는 fuction
 			if ($("#id_email").val() == "") {
 				alert("이메일을 입력해주세요.");
 				$("#id_email").focus();
+			} else if ($("#id_pw1").val() == "") {
+				alert("비밀번호를 입력해주세요.");
+				$("#id_pw1").focus();
 			} else if ($("#id_pw2").val() == "") {
 				alert("비밀번호를 입력해주세요.");
 				$("#id_pw2").focus();

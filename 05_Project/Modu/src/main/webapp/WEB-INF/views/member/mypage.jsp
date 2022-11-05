@@ -303,21 +303,18 @@
 										aria-labelledby="bookmark-tab">
 										<div id="tab3-content" class="site-content">
 											<h3 class="archive-title text-center">북마크 레시피</h3>
-<!-- 											<div id="recipe-list-3" class="row">
-											</div>					
-											<div id="paging-area-3" class="page common-area">
-											</div> -->
+										
+											<div id="recipe-list-3" class="row"></div>					
+											<div id="paging-area-3" class="page common-area"></div>
 											<!-- end paging-area-3 -->
 											
-											<div class="article-cover">
+<!-- 											<div class="article-cover">
 												<div class="article-list">
-													<!--첫번째 레시피 시작 -->
 													<div class="row">
 														<div class="col-md-1">
 															<div class="entry-date">
 																<time class="published" datetime="2019-12-22"
-																	title="postdate">
-																	Dec<span class="date">22</span>2019
+																	title="postdate">Dec<span class="date">22</span>2019
 																</time>
 															</div>
 														</div>
@@ -336,73 +333,12 @@
 															<a href="" class="readmore" target="_blank"><em>더보기</em></a>
 														</div>
 													</div>
-													<!--end row-->
 												</div>
-												<!-- end class="article-list", 첫번째 레시피 종료 -->
-
-												<div class="article-list">
-													<!--세번째 레시피 시작-->
-													<div class="row">
-														<div class="col-md-1">
-															<div class="entry-date">
-																<time class="published" datetime="2019-12-22"
-																	title="December 22, 2019 - 21:12 pm">
-																	July<span class="date">22</span>2019
-																</time>
-															</div>
-														</div>
-														<div class="col-md-4">
-															<figure>
-																<img class="recipe-thumb" src="/imgs/content/list-03.png" alt="" />
-															</figure>
-														</div>
-
-														<div class="col-md-7">
-															<h4>
-																<a href="#">삼겹살간장조림</a>
-															</h4>
-															<span class="recipe-info"> 삼겹살을 아이들과는 구우면서 먹을수가 없.어.요.......​ 그래서 아이들과
-																먹을땐 간장양념에 조림으로 해서 먹는답니다^^​ 네이버메인에도 올랐던 레시피 보여드릴게요. </span> <a
-																href="#" class="readmore"><em>더보기</em></a>
-														</div>
-													</div>
-													<!--end row-->
-												</div>
-												<!--end class="article-list", 세번째 레시피 종료 -->
-
-												<div class="article-list">
-													<div class="row">
-														<div class="col-md-1">
-															<div class="entry-date">
-																<time class="published" datetime="2019-12-22"
-																	title="December 22, 2019 - 21:12 pm">
-																	Dec<span class="date">23</span>2019
-																</time>
-															</div>
-														</div>
-														<div class="col-md-4">
-															<figure>
-																<img class="recipe-thumb" src="/imgs/content/list-04.png" alt="" />
-															</figure>
-														</div>
-
-														<div class="col-md-7">
-															<h4>
-																<a href="#">나시고랭</a>
-															</h4>
-															<span class="recipe-info">나시고랭은 인도네이사식 볶음밥으로 우리나라 볶음밥과 거의 비슷합니다 저는 아이들
-																볶음밥에 피시소스나 굴 소스를 가끔 넣는데 나시고랭도 마찬가지예요~ 숙주가 들어가서 아삭한 식감과
-																계란을 스크램블 한 맛이 아주 좋답니다 볶음밥 보다 약간은 특별한 나시고랭 어렵지 않아요^^</span> <a
-																href="#" class="readmore"><em>더보기</em></a>
-														</div>
-													</div>
-													<!--end row-->
-												</div>
-												<!--end article-list -->
-											</div>
+												end class="article-list", 첫번째 레시피 종료
+											</div> -->
 											<!-- end article-cover -->
 
-											<div class="page mt-5">
+<!-- 											<div class="page mt-5">
 												<nav aria-label="Page navigation">
 													<ul class="pagination justify-content-center">
 														<li class="page-item"><a
@@ -426,7 +362,7 @@
 															href="#">＞</a></li>
 													</ul>
 												</nav>
-											</div>
+											</div> -->
 											<!-- end Page -->
 											
 										</div>

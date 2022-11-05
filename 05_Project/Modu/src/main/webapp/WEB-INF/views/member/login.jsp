@@ -5,11 +5,10 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/views/common/head.jsp"%>
-<!-- 공통 부분 END -->
 <link href="/css/login.css" rel="stylesheet">
 <title>모두의 식탁 - 로그인</title>
 <style type="text/css">
-/* 비밀번호를 잊으셨나요, 이미 회원이신가요? 문구, login.css만 넣으면 적용안됨*/
+/* 비밀번호를 잊으셨나요, 이미 회원이신가요? 문구, login.css만 넣으면 적용 안됨*/
 .forgotpwd, .goregister {
 	font-size: 13px;
 	color: #42332d;
@@ -67,7 +66,7 @@
 										type="password" class="form-control" id="id_pwd"
 										placeholder="비밀번호를 입력해주세요." maxlength=30 required />
 								</div>
-<!-- 								<div class="form-check">
+<!-- 							<div class="form-check">
 									<input 
 									type="checkbox" 
 									class="form-check-input"
@@ -80,12 +79,12 @@
 								-->
 								<button id="login-button" type="submit"
 									class="btn form-btn gold-btn mt-2">Login</button>
-								<br />
-								<br />
-								<div class="float-right">
+								<br>
+								<br>
+<!-- 								<div class="float-right">
 									<a href="#" class="forgotpwd">이메일 혹은 비밀번호를 잊으셨나요?</a>
 								</div>
-								<br />
+								<br> -->
 								<div class="float-right">
 									<a href="/member/register" class="goregister">아직 회원이 아니신가요?</a>
 								</div>
