@@ -1,12 +1,9 @@
 package com.modu.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,16 +32,14 @@ public class IndexController {
 		endRow = 8;
 		
 		List<Member> rankList = membershipService.selectMemberRankS();
-		List<RecipeList> recipeList = recipeFindingService.selectRecipeListByBestHits(beginRow, endRow);
-		List<RecipeList> latestList = recipeFindingService.selectRecipeListByBestHits(beginRow, endRow - 4);
-		
-		// ·©Å· TOP 6 ¸â¹ö È®ÀÎ
-		for (Member member: rankList) {
-			//log.info("#IndexController: " + member);
-		}
+		List<RecipeList> bestRecipeList = recipeFindingService.getBestRecipeList(beginRow, endRow);
+		List<RecipeList> latestRecipeList = recipeFindingService.getLatestRecipeList(4);
 		
 		ModelAndView mv = new ModelAndView("index", "rankList", rankList);
-		mv.addObject("recipeList", recipeList);
+		mv.addObject("bestRecipeList", bestRecipeList);
+		mv.addObject("latestRecipeList", latestRecipeList);
+		log.info("#IndexController index() bestRecipeList: " + bestRecipeList);
+		log.info("#IndexController index() latestRecipeList: " + latestRecipeList);
 		return mv;
 	}
 	
@@ -53,5 +48,4 @@ public class IndexController {
         List<RecipeList> data = recipeFindingService.findRecentRecipes(request);
         return data;
     }
-	
 }

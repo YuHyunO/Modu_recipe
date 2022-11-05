@@ -90,7 +90,7 @@
 								</div>
 								<!-- end section-title -->
 								<div class="row">
-									<c:forEach var="recipe" items="${recipeList}">
+									<c:forEach var="recipe" items="${bestRecipeList}">
 										<div class="col-sm-4 col-md-3">
 											<div>
 												<c:if test="${recipe.foodPhoto ne 'recipe_basic_img.png'}">
@@ -216,7 +216,7 @@
 								</div>
 								<!-- end section-title -->
 								<div class="row">
-									<c:forEach var="recipe" items="${recipeList}">
+									<c:forEach var="recipe" items="${latestRecipeList}">
 										<div class="col-sm-4 col-md-3">
 											<div>
 												<c:if test="${recipe.foodPhoto ne 'recipe_basic_img.png'}">

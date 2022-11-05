@@ -93,7 +93,7 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
 	}
 	
 	@Override
-	public List<RecipeList> selectRecipeListByBestHits(long beginRow, long endRow) {
+	public List<RecipeList> getBestRecipeList(long beginRow, long endRow) {
 		return recipeMapper.selectRecipeListByBestHits(beginRow, endRow);
 
 	}
@@ -191,5 +191,11 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
             System.out.println("#"+item);
         }
         return replyList;
+    }
+
+    @Override
+    public List<RecipeList> getLatestRecipeList(long limitNumber) {
+        List<RecipeList> recipeList = recipeMapper.selectRecipeListByLatestId(limitNumber);
+        return recipeList;
     }
 }

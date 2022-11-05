@@ -65,7 +65,8 @@ public interface RecipeMapper {
     
     // 베스트 레시피
     List<RecipeList> selectRecipeListByBestHits(@Param("beginRow") long beginRow, @Param("endRow") long endRow);
-    
+    // 최근 등록된 레시피
+    List<RecipeList> selectRecipeListByLatestId(@Param("limitNumber") long limitNumber);
     // 레시피 등록 시 사진은 별도로 업데이트
     int updateRecipePhoto(Recipe recipe);
 }

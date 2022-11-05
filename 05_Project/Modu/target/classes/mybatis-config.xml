@@ -28,7 +28,6 @@
 	<typeAlias alias="RecipeList" type="com.modu.domain.recipe.RecipeList"/>
 	<typeAlias alias="RecipeReplyList" type="com.modu.domain.recipe.RecipeReplyList"/>
 	<typeAlias alias="Scrap" type="com.modu.domain.member.Scrap"/>
-	
 	<typeAlias alias="BoardDetailNextPrev" type="com.modu.domain.board.BoardDetailNextPrev"/>
   </typeAliases>
   
