@@ -70,7 +70,11 @@
 									<div id="recipeTitle" class="fs-4 pt-3 pb-1 m-0">${detail.recipe.title}</div>
 									<div class="recipeinfo m-0">${detail.recipe.info}</div>
 									<c:if test="${sessionScope.email == detail.recipe.MEmail }">
-										<a href="/recipe/update?id=${detail.recipe.id}"><button id="recipeUpdateBtn2" type="button" class="gold-btn">레시피 수정</button></a>
+										<div class="recipe-fix">
+											<a href="/recipe/update?id=${detail.recipe.id}">
+												<button id="recipeUpdateBtn2" type="button" class="gold-btn">레시피 수정</button>
+											</a>
+										</div>
 									</c:if>
 								</div>
 								<!-- recipe desc -->

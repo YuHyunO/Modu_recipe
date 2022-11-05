@@ -189,7 +189,8 @@ function dataAgent(data){
 function updateData(recipeList, pageSize){
 	let html = "";
 	for(let item of recipeList){
-		html += '<div id="recipe-item" class="col-6 col-md-3">';
+		console.log(item);
+		html += '<div id="recipe-item" class="col-sm-4 col-md-3">';
 		html += '<div class="recipe-thumb">';
 		html += '<img src="/pics/recipe/' + item.id + '/' + item.foodPhoto + '" alt="FoodPhoto">';
 		html += '</div>';
@@ -199,7 +200,7 @@ function updateData(recipeList, pageSize){
 		html += '</h2>';
 		html += '<figure class="profile">';
 		html += '<img class="profile-img" src="/pics/profile/' + item.profileImg + '" alt="작성자">';
-		html += '<span><em>&nbsp;' + item.mNickname + '</em></span>';
+		html += '<span><em>&nbsp;' + item.mnickname + '</em></span>';
 		html += '</figure>';
 		html += '<div class="recipe-icons d-flex justify-content-between">';
 		html += '<span class="d-flex align-items-center">';

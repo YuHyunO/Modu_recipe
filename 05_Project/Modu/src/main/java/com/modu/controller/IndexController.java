@@ -36,6 +36,7 @@ public class IndexController {
 		
 		List<Member> rankList = membershipService.selectMemberRankS();
 		List<RecipeList> recipeList = recipeFindingService.selectRecipeListByBestHits(beginRow, endRow);
+		List<RecipeList> latestList = recipeFindingService.selectRecipeListByBestHits(beginRow, endRow - 4);
 		
 		// ·©Å· TOP 6 ¸â¹ö È®ÀÎ
 		for (Member member: rankList) {

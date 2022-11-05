@@ -414,3 +414,6 @@
     left: 0;
 }
 
+.post-thumbnail img {
+	border-radius: 10px;
+}

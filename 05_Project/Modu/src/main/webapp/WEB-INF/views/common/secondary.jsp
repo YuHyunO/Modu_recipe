@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <script src="/js/cookie.js"></script>
 <!--사이드 영역(secondary) 시작-->
-<div id="secondary" class="col-md-3">
+<div id="secondary" class="col-md-3 mt-4">
 	<div class="widget post-type-widget pt-3">
 		<!-- widget 최근 본 게시물 -->
 		<div class="widget-title-outer">

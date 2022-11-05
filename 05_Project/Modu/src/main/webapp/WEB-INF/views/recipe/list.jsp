@@ -112,7 +112,7 @@
 						<div id="recipe-list" class="row">
 						<!-- 반복문 작성 -->
 						<c:forEach items="${data.recipeList}" var="li">
-							<div id="recipe-item" class="col-6 col-md-3">
+							<div id="recipe-item" class="col-sm-4 col-md-3">
 								<div class="recipe-thumb">
 									<img src="/pics/recipe/${li.id}/${li.foodPhoto}" alt="FoodPhoto">
 								</div>
