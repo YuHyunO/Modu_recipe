@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.modu.domain.member.FollowListVo;
+import com.modu.domain.member.Member;
 import com.modu.domain.recipe.RecipeList;
 import com.modu.domain.recipe.RecipeListVo;
-import com.modu.service.FileUploadService;
 import com.modu.service.MemberRegisterService;
 import com.modu.service.MembershipService;
 import com.modu.service.RecipeFindingService;
@@ -32,13 +32,22 @@ import lombok.extern.log4j.Log4j;
 public class MembershipController {
 
 	private MembershipService membershipService;
+	private MemberRegisterService memberRegisterService;
+	
 	private RecipeSearchService recipeSearchService;
 	private RecipeFindingService recipeFindingService;
 	
-	//마이
+	//마이페이지 이동
     @GetMapping("/main")
     public ModelAndView goMypage2(HttpSession session) {    
-        ModelAndView mv = new ModelAndView("mypage/main");
+        //ModelAndView mv = new ModelAndView("member/login");
+        //return mv;
+        
+        String email = (String)session.getAttribute("email");
+        Member member1 = memberRegisterService.readMyInfo(email); 
+        ModelAndView mv = new ModelAndView("member/mypage", "member", member1); 
+        //log.info("######마이페이지 이동get member1: "+member1);
+        //log.info("######마이페이지 이동get mv: "+mv);
         return mv;
     }
     

@@ -16,7 +16,7 @@ function setSecondaryUrl(){
 		  url = "/recipe/recent-recipe";
 		  break;
 	  case "mypage":
-		  url = "/mypage/recent-recipe";
+		  url = "/mypage/main/recent-recipe";
 	  }
 	  setSecondaryData(url);
 }
@@ -41,7 +41,7 @@ function cookieAgent(url, data){
 			displayData(response);
 		},
 		error: function(error){
-			console.log("X");
+			console.log("X 에러발생 ");
 		}
 	});	
 }

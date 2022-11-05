@@ -161,7 +161,6 @@ $(document).ready(function () {
 					$("#preview").empty()
 					$("#file").val("");
 				}); 
-
 	
 $(document).ready(function() { //현재 페이지 들어오면 항상 수행
 		$("#modifyOkBtn").on("click",
@@ -207,8 +206,7 @@ $(document).ready(function() { //현재 페이지 들어오면 항상 수행
 											.focus();
 								} else { //정상일 때 submit
 									console.log('내정보 수정조건 통과!');
-									//$("#modifymyinfo_form").attr("action", "modifymyinfo"); //modifymyinfo_form은 form 태그의 name
-									$("#modifymyinfo_form").submit(); //document.modifymyinfo_form.submit();
+									$("#modifymyinfo_form").submit();
 									alert("회원정보가 정상적으로 변경되었습니다.");
 								}
 							} else { //닉네임 중복시 수정불가
@@ -239,4 +237,5 @@ function removeMember(e) { //탈퇴버튼 클릭시
 		alert("탈퇴를 취소하셨습니다.");
 		return false;
 	}
+	
 }

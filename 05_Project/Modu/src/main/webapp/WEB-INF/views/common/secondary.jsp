@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
+
 <script src="/js/cookie.js"></script>
 <!--사이드 영역(secondary) 시작-->
 <div id="secondary" class="col-md-3 mt-4">
