@@ -89,9 +89,14 @@ public class NoticeController {
     }
 	
 	@GetMapping("/write")
-	public String noticeWrite() {
-		return "notice/write";
-	}
+    public String noticeWrite(HttpSession session) {
+        String email = (String)session.getAttribute("email");
+        if(!email.equals("admin@admin.com")){
+            return "redirect:list";
+        }else {
+            return "notice/write"; 
+        }
+    }
 	
 	@PostMapping("/write.do")
 	public String write(Board board,BoardFile boardFile, MultipartFile file,HttpServletRequest req) {

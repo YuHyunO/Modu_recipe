@@ -101,17 +101,19 @@
 								</tbody>
 							</table>
 							<div class="write text-end my-3">
-								<c:if test="${sessionScope.email == null}">
-									<a href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';"					
+							<c:set var="email" value="admin@admin.com"/>
+								<c:if test="${sessionScope.email != 'admin@admin.com'}">
+									<a href="javascript:alert('관리자만 글을 작성할 수 있습니다.'); location.href='/notice/list';"					
 											><button type="button" id="write-btn"
 										class="gold-border gold-btn">글쓰기</button></a>
 								</c:if>
-								<c:if test="${sessionScope.email != null}">
+								<c:if test="${sessionScope.email == 'admin@admin.com'}">
 									<button type="button" id="write-btn"
 										class="gold-border gold-btn"
 										onclick="location.href='/notice/write'">글쓰기</button>
 								</c:if>
 							</div>
+
 							<div class="page">
 								<nav aria-label="Page navigation">
 									<ul class="pagination justify-content-center">
