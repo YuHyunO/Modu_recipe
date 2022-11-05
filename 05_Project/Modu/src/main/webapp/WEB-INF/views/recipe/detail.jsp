@@ -71,7 +71,7 @@
 									<div class="recipeinfo m-0">${detail.recipe.info}</div>
 									<c:if test="${sessionScope.email == detail.recipe.MEmail }">
 										<div class="recipe-fix">
-											<a href="/recipe/update?id=${detail.recipe.id}" target="_blank">
+											<a href="/recipe/update?id=${detail.recipe.id}">
 												<button id="recipeUpdateBtn2" type="button" class="gold-btn">레시피 수정</button>
 											</a>
 										</div>
