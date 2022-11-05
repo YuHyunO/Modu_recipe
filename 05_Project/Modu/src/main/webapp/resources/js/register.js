@@ -1,8 +1,12 @@
 $(function() { // 비밀번호 2개 일치여부 확인, 이메일/닉네임 중복체크 ajax
 	$('#id_pw2').blur(function() { // 비밀번호 일치 여부 확인 alert
-		if ($('#id_pw1').val().length === 0) {
-		} else if ($('#id_pw1').val() != $('#id_pw2').val()) {
+		if ($('#id_pw1').val() != $('#id_pw2').val()) {
 			if ($('#id_pw2').val() != '') {
+				alert("비밀번호가 일치하지 않습니다.");
+				$('#id_pw1').val('');
+				$('#id_pw2').val('');
+				$('#id_pw1').focus();
+			} else {
 				alert("비밀번호가 일치하지 않습니다.");
 				$('#id_pw1').val('');
 				$('#id_pw2').val('');
