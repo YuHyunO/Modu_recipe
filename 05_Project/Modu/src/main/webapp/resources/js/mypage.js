@@ -113,7 +113,7 @@ function displayRecommened(response){
 	for(let item of recipeList){
 		html += '<div id="recipe-item" class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
-		html += '<img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipe_mainImage">';
+		html += '<a href="../recipe/detail?no='+item.id+'"><img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipeImage"></a>';
 		html += '</div>';
 		html += '<div class="recipe-desc">';
 		html += '<h2 class="recipe-title">';
@@ -150,7 +150,7 @@ function displayMyRecipe(response){
 	for(let item of recipeList){
 		html += '<div class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
-		html += '<img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipe_mainImage">';
+		html += '<a href="../recipe/detail?no='+item.id+'"><img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipeImage"></a>';
 		html += '</div>';
 		html += '<div class="recipe-desc">';
 		html += '<h2 id="recipe-title" class="recipe-title">';
@@ -190,7 +190,7 @@ function displayBookmark(response){
 	for(let item of recipeList){
 		html += '<div id="recipe-item" class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
-		html += '<img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipe_mainImage">';
+		html += '<a href="../recipe/detail?no='+item.id+'"><img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipeImage"></a>';
 		html += '</div>';
 		html += '<div class="recipe-desc">';
 		html += '<h2 class="recipe-title">';

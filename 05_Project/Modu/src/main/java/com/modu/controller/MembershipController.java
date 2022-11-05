@@ -95,28 +95,14 @@ public class MembershipController {
         membershipService.removeMyFollow(id);      
         return "success";
     }
-/*
-    //ȸ�� Ż��         
-    @PostMapping("/removemyinfo")
-    public String removeMyinfo(@RequestParam("email") String email, HttpSession session, HttpServletRequest req) { //req �ʿ�
-        Member member = memberRegisterService.readMyInfo(email);    
-        if(member.getEmail().equals((String)session.getAttribute("email"))) {
-            memberRegisterService.removeMyInfo(email);
-            session.invalidate(); //���� �����ϰ� �ִ� ������ ��ȿȭ
-            req.getSession(true); //���ο� ������ ���� �غ� true
-            return "redirect:/";
-        } else {
-            return "redirect:/";
-        }
-    }
-    */
-    
+
     @GetMapping("/recent-recipe")
     public @ResponseBody List<RecipeList> callRecentRecipe(HttpServletRequest request){
         List<RecipeList> data = recipeFindingService.findRecentRecipes(request);
         return data;
     }
-	//마이페이지 페이지 이동
+    
+	//친구 레시피 list(검색 결과) 페이지로 이동
 	/*@GetMapping("gofriendrecipe")
 	public ModelAndView goFriendRecipe(HttpSession session) {
 		

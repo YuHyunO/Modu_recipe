@@ -361,7 +361,6 @@
 			</div>
 			<!-- end main-container -->
 		</div>
-		
 		<!-- <textarea name="sessionPostDate" style="display: none;"></textarea> -->
 		<!-- end main -->
 		<%@ include file="/WEB-INF/views/common/bottom.jsp"%>

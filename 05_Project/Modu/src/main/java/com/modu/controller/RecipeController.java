@@ -132,14 +132,15 @@ public class RecipeController {
         recipeRegisterService.updateRecipe(request, session, files, mainItems, subItems, directions, tags, fileChanges);
         return map;
     }
-
+    
+    //레시피 삭제
     @GetMapping("/delete")
     public String deleteRecipe(long id, HttpServletRequest request) {
         HttpSession session = request.getSession();
         String getId = request.getParameter("id");
         id = Integer.parseInt(getId);      
         recipeRegisterService.recipeDelete(id);
-        return "redirect:/";
+        return "redirect:list";
     }
 
     @GetMapping("/detail")

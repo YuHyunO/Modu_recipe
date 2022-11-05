@@ -600,6 +600,7 @@ function update(e) {
 	formData.append("accessibility", accessibility);
 	console.log("#openRange: " + openRange.val());
 	console.log("#accessibility: " + accessibility);
+	
 	// 이미지 파일
 	let hiddenInput = $('.hidden-input');
 	let stepPhotos = $('.step-photo');
@@ -645,7 +646,7 @@ function update(e) {
 			alert("레시피가 업데이트 되었습니다.");
 		},
 		error: function(response) {
-			alert("레시피 업데이트를 실패 했습니다.");
+			alert("레시피 업데이트를 실패했습니다.");
 		}
 	});
 }
@@ -678,14 +679,17 @@ function checkData(e) {
 	}
 	return true;
 }
+
 function del(e){
-	 if (confirm("정말 삭제하시겠습니까??") == true){
-		 location.href='delete.do?id=${id}'
+	var recipeId = $(e).val();
+	console.log(recipeId);
+	
+	 if (confirm("정말 삭제하시겠습니까? \n삭제 후 되돌릴 수 없습니다.") == true){
+		 location.href='delete?id='+recipeId;
 	 }else{
 	     return false;
 	 }
 }
-
 
 // 요리순서 글자수 제한로직
 function checkByte(e, maxByte) {

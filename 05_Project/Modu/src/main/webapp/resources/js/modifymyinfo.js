@@ -135,7 +135,7 @@ $(document).ready(function () {
 
 		//프로필 사진 변경사진 업로드시 미리보기 및 삭제 이벤트 처리
 	 	function handleFileSelect(event) {
-			console.log("handleFileSelect 진입시작");
+			console.log("handleFileSelect 진입 시작");
 			var input = this;
 			console.log(input.files);
 			
