@@ -27,23 +27,20 @@
 					 $.ajax({
 							url: "/freeboard/addReply", 
 							type: "POST", 
-							data: {"reply": reply, "bId": bId
-							},
+							data: {"reply": reply, "bId": bId },
 							success: function(data){
 								addReply(this);
 								$("#replyArea").val("");
-							} 
-							,
+							} ,
 							error: function(eror){
 							}
-							
 						});
 				 }
 			});			
 		});
 		
 		function deleteCheck() {
-			 if (confirm("정말 삭제하시겠습니까??") == true){
+			 if (confirm("정말 삭제하시겠습니까?") == true){
 				 location.href='delete.do?id=${board.board.id}';
 			 }else{
 			     return false;
@@ -59,15 +56,18 @@
 				var para = document.location.href.split("=");
 				var bId0 = para[1];
 				var Id = parseInt(bId0);
+				
 				$.ajax({
 					url: "../freeboard/moreViewReply", 
 					type: "POST", 
-					data: {"id": Id ,"endRow":number
-					},
+					data: { "id": Id ,"endRow":number },
 					 dataType : 'json',
 					success: function(data){
 						var html = "";
 						let list = data.list;
+						console.log("###"+data);
+						console.log("###"+list);
+
 						for(let item of list){
 							html +=	"<div class='reply py-3' id='reply-1'>";
 							html +=	"	<div class='reply-author d-flex justify-content-between'>";
@@ -76,7 +76,7 @@
 							html +=	"				<img class='profile-img' src='/pics/profile/"+item.profileImg+"'";
 							html +=	"					alt='img'>";
 							html +=	"			</figure>";
-							html +=	"			<span class='m-nickname ps-2'>"+item.mnickname+"</b> <span";
+							html +=	"			<span class='m-nickname ps-2'>"+item.mNickname+"</b> <span";
 							html +=	"				class='post-date px-2'>"+item.replyDate+"</span>";
 							html +=	"		</div>";
 							html +=	"		<div class='author-items px-3'>";
@@ -87,7 +87,7 @@
 							html +=	"	</div>";
 							html +=	"	<!-- end author -->";
 							html +=	"	<div class='reply-content'>";
-							html +=	"		<p class='p-3'>"+item.reply+"</p>";
+							html +=	"		<p class='textarea p-3'>"+item.reply+"</p>";
 							html +=	"	</div>";
 							html +=	"</div>";
 						}
@@ -124,15 +124,12 @@
 			console.log("#게시판 댓글삭제 removeReply 메소드 진입");
 			let rIdNum = rId;
 			let para = document.location.href.split("=");
-			let bId = para[1];
-			const removeReply = document.getElementById('removeReply');
+			let bId = para[1]; //해당 게시글 Id
+			//console.log("#삭제전- para:",para); //para: (2) ['http://127.0.0.1:8080/freeboard/detail?id', '354']
+			//console.log("#삭제전- bId:",bId); //354
+			
+			const removeReply = document.getElementById('removeReply'); //무조건 상위댓글만 뽑힘
 			let number = removeReply.innerText;
-			if (confirm("정말 삭제하시겠습니까??") == true){
-				$.ajax({
-					url: "../freeboard/removeReply", 
-					type: "POST", 
-					data: {"id":number
-					},
 			console.log("#삭제전-삭제할 댓글 id(rIdNum):",rIdNum); //무조건 상위댓글 id만 뽑힘 16143
 			
 			if (confirm("정말 댓글을 삭제하시겠습니까?") == true){
@@ -141,12 +138,11 @@
 					type: "POST", 
 					data: { "id" : rIdNum },
 					success: function(data){
+						console.log("#삭제 성공한 댓글 id:", number);
 						location.href='detail?id='+bId+'';
-					}
-					,
+						} ,
 					error: function(eror){
-						alert("fail");
-					}
+						alert("fail"); }
 				});
 				
 			 }else{
@@ -296,11 +292,10 @@
 														<div class="reply-author d-flex justify-content-between">
 															<div class="author-main d-flex align-items-center px-3 pt-2">
 																<figure class="profile m-0">
-																	<img class="profile-img" src="/imgs/mypage/profile/${i.profileImg}"
-																		alt="작성자">
+																	<img class="profile-img" src="/pics/profile/${i.profileImg}" alt="img">
 																</figure>
-																<span class="m-nickname ps-2">${i.MNickname}</b> <span
-																	class="post-date px-2">${i.replyDate}</span>
+																<span class="m-nickname ps-2">${i.MNickname}</b>
+																<span class="post-date px-2">${i.replyDate}</span>
 															</div>
 															<div id='removeReply' style="display: none;" >${i.id}</div>
 															<div class="author-items px-3">
@@ -310,20 +305,10 @@
 																<button style='display: none;' class="reply-1 reply-btn"
 																	onclick="addReplyForm(this)">답글</button>
 															</div>
-																<div class="author-items px-3">
-																	<c:if test="${sessionScope.email == i.MEmail}">
-																		<button class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
-																	</c:if>
-																	<c:if test="${sessionScope.email != i.MEmail}">
-																		<button style="display: none;" class="reply-1 reply-btn" onclick="removeReply()">삭제</button>
-																	</c:if>
-																	<button class="reply-1 reply-btn"
-																		onclick="addReplyForm(this)">댓글</button>
-																</div>
 														</div>
 														<!-- end author -->
 														<div class="reply-content">
-															<p class="p-3">${i.reply}</p>
+															<p class="textarea p-3">${i.reply}</p>
 														</div>
 													</div>
 											</c:forEach>

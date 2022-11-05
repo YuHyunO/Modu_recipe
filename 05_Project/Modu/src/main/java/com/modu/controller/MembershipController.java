@@ -35,9 +35,10 @@ public class MembershipController {
 	private RecipeSearchService recipeSearchService;
 	private RecipeFindingService recipeFindingService;
 	
+	//마이
     @GetMapping("/main")
-    public ModelAndView myPage(HttpServletRequest request, HttpSession session) {    
-        ModelAndView mv = new ModelAndView("member/mypage");
+    public ModelAndView goMypage2(HttpSession session) {    
+        ModelAndView mv = new ModelAndView("mypage/main");
         return mv;
     }
     
