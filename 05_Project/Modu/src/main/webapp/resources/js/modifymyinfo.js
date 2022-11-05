@@ -14,7 +14,6 @@ $(document).ready(function () {
 				
 				if(response == 'delete성공'){
 					console.log("if문 진입- delete성공")
-					//$(this).attr('src',"<spring:url value = '/pics/profile/${ member.profileImg }'/>");
 					//location.href="/member/mypage";
 					location.reload(); //현재 접속중인 페이지를 새로고침
 				} else {

@@ -154,9 +154,9 @@ function displayMyRecipe(response){
 		html += '</div>';
 		html += '<div class="recipe-desc">';
 		html += '<h2 id="recipe-title" class="recipe-title">';
-		html += '<a href="../recipe/detail?no='+item.id+'" target="_blank">'+item.title+'&nbsp;</a>';
+		html += '<a href="../recipe/detail?no='+item.id+'">'+item.title+'&nbsp;</a>';
 		html += '</h2>';
-		html += '<a href="/recipe/update?id='+item.id+'"><button id="recipeUpdateBtn" type="button" class="gold-btn">레시피 수정</button></a>';
+		html += '<a href="/recipe/update?id='+item.id+'" target="_blank"><button id="recipeUpdateBtn" type="button" class="gold-btn">레시피 수정</button></a>';
 		html += '<figure class="profile">';
 		html += '<img class="profile-img" src="/pics/profile/'+item.profileImg+'" alt="작성자">';
 		html += '<span><em>&nbsp;'+item.mnickname+'</em></span>';

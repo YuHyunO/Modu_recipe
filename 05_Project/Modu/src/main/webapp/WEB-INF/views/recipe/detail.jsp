@@ -71,7 +71,7 @@
 									<div class="recipeinfo m-0">${detail.recipe.info}</div>
 									<c:if test="${sessionScope.email == detail.recipe.MEmail }">
 										<div class="recipe-fix">
-											<a href="/recipe/update?id=${detail.recipe.id}">
+											<a href="/recipe/update?id=${detail.recipe.id}" target="_blank">
 												<button id="recipeUpdateBtn2" type="button" class="gold-btn">레시피 수정</button>
 											</a>
 										</div>
@@ -193,7 +193,7 @@
 										<div class="col-md-4 step-img">
 											<figure class="ratio ratio-4x3">
 												<a href="javascript:viewLargePic('/imgs/content/thumb-1.png')"> 
-													<img class="rounded-3" src="/pics/recipe/${li.RId}/${li.saveFile}" alt="Recipe-STEP-Image">
+													<img class="recipestep rounded-3" src="/pics/recipe/${li.RId}/${li.saveFile}" alt="Recipe-STEP-Image">
 												</a>
 											</figure>
 										</div><br>

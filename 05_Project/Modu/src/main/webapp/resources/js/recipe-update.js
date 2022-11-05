@@ -644,6 +644,7 @@ function update(e) {
 		data: formData,
 		success: function(response) {
 			alert("레시피가 업데이트 되었습니다.");
+			location.href="/recipe/list";
 		},
 		error: function(response) {
 			alert("레시피 업데이트를 실패했습니다.");
@@ -680,14 +681,27 @@ function checkData(e) {
 	return true;
 }
 
+//레시피 삭제버튼 클릭시 
 function del(e){
-	var recipeId = $(e).val();
-	console.log(recipeId);
+	let recipeId = $(e).val();
+	console.log("#삭제할 레시피 id: "+recipeId);
 	
-	 if (confirm("정말 삭제하시겠습니까? \n삭제 후 되돌릴 수 없습니다.") == true){
-		 location.href='delete?id='+recipeId;
+	var result1 = confirm("정말 삭제하시겠습니까? \n삭제 후 다시 복구할 수 없습니다.");
+	 if (result1 == true){
+			
+			$.ajax({
+				type : "POST",
+				url : "/recipe/delete",
+				data : { id : recipeId },
+				success : function(result) {
+					alert("레시피가 정상적으로 삭제되었습니다.");
+					location.href="/recipe/list";
+				} // success 종료
+			}); // ajax 종료	
+			
+		 //location.href='delete?id='+recipeId;
 	 }else{
-	     return false;
+		return false;
 	 }
 }
 

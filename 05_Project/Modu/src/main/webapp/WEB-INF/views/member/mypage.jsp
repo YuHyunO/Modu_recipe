@@ -843,7 +843,6 @@
 								                        				//location.reload(); //현재 접속중인 페이지를 새로고침
 							                        					location.href("/member/mypage");
 							                        				}
-
 							                        			} // success 종료
 							                        		}); // ajax 종료					
 							                        	} else {

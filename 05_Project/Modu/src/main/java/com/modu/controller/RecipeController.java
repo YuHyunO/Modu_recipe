@@ -134,12 +134,13 @@ public class RecipeController {
     }
     
     //레시피 삭제
-    @GetMapping("/delete")
+    @PostMapping("/delete")
     public String deleteRecipe(long id, HttpServletRequest request) {
-        HttpSession session = request.getSession();
+        //HttpSession session = request.getSession();
         String getId = request.getParameter("id");
         id = Integer.parseInt(getId);      
         recipeRegisterService.recipeDelete(id);
+        log.info("레시피 삭제 성공 in controller");
         return "redirect:list";
     }
 
@@ -179,7 +180,6 @@ public class RecipeController {
         List<RecipeList> data = recipeFindingService.findRecentRecipes(request);
         return data;
     }
-    
 
     @GetMapping("/recipe-reply")
     public @ResponseBody List<RecipeReplyList> callReplyData(HttpServletRequest request){
