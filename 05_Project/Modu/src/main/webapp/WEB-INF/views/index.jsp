@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -109,7 +110,16 @@
 											</div>
 											<div class="recipe-desc">
 												<div class="recipe-title">
-													<a href="javascript:void(0)" onclick="saveCookie(${recipe.id})">${recipe.title}</a>
+													<a href="javascript:void(0)" onclick="saveCookie(${recipe.id})">
+													<c:choose>
+														<c:when test="${fn:length(recipe.title)>28}">
+															<c:out value="${fn:substring(recipe.title,0,27)}"/>...				
+														</c:when>
+														<c:otherwise>
+															<c:out value="${recipe.title}"/>
+														</c:otherwise>
+													</c:choose>
+													</a>
 												</div>
 												<figure class="profile">
 													<img class="profile-img"
@@ -235,7 +245,16 @@
 											</div>
 											<div class="recipe-desc">
 												<div class="recipe-title">
-													<a href="javascript:void(0)" onclick="saveCookie(${recipe.id})">${recipe.title}</a>
+													<a href="javascript:void(0)" onclick="saveCookie(${recipe.id})">
+													<c:choose>
+														<c:when test="${fn:length(recipe.title)>28}">
+															<c:out value="${fn:substring(recipe.title,0,27)}"/>...				
+														</c:when>
+														<c:otherwise>
+															<c:out value="${recipe.title}"/>
+														</c:otherwise>
+													</c:choose>
+													</a>
 												</div>
 												<figure class="profile">
 													<img class="profile-img"
