@@ -8,7 +8,12 @@
 <!-- 공통 부분 END -->
 <link href="/css/board-list.css" rel="stylesheet">
 <script src="/js/board-list.js"></script>
-
+<script>
+	function activePage(obj) {
+		let page_num = obj.text;
+		location.href = "/notice/list?curPage=" + page_num;
+	}
+</script>
 <title>모두의 식탁 - 공지사항 목록</title>
 
 </head>
@@ -33,34 +38,37 @@
 					<div id="board-list" class="my-3 row px-0">
 						<div class="container p-0">
 							<table class="board-table text-center m-0 w-100">
-								<div id="board-search"
-									class="mb-3 d-flex justify-content-between align-items-center">
-									<div class="selects">
-										<select class="gold-border p-1 filter-period">
-											<option selected="selected">전체기간</option>
-											<option>1일</option>
-											<option>1주</option>
-											<option>1개월</option>
-											<option>6개월</option>
-											<option>1년</option>
-										</select> <select class="gold-border p-1 filter-group">
-											<option selected="selected">제목만</option>
-											<option>글작성자</option>
-											<option>댓글내용</option>
-											<option>댓글작성자</option>
-										</select>
+								<form action="" method="GET">
+									
+									<div id="board-search"
+										class="mb-3 d-flex justify-content-between align-items-center">
+											<div class="selects">
+												<select class="gold-border p-1 filter-period">
+													<option selected="selected">전체기간</option>
+													<option>1일</option>
+													<option>1주</option>
+													<option>1개월</option>
+													<option>6개월</option>
+													<option>1년</option>
+												</select> 
+												<select class="gold-border p-1 filter-group" name="sch_type"
+													id="sch_type">
+													<option selected="selected" value="TITLE">제목만</option>
+													<option value="M_NICKNAME">글작성자</option>
+												</select>
+											</div>
+											<div class="d-flex justify-content-end search-box">
+												<input id="value" class="border px-2" type="search"
+													name="value" placeholder="검색어를 입력해주세요" value="">
+												<button type="submit" class="search-btn border">검색</button>
+												<select class="gold-border p-1 ms-2">
+													<option selected="selected">10</option>
+													<option>15</option>
+													<option>20</option>
+												</select>
+											</div>
 									</div>
-									<div class="d-flex justify-content-end search-box">
-										<input id="search" class="border px-2" type="search"
-											name="search" placeholder="검색어를 입력해주세요" value="">
-										<button type="submit" class="search-btn border">검색</button>
-										<select class="gold-border p-1 ms-2">
-											<option selected="selected">10</option>
-											<option>15</option>
-											<option>20</option>
-										</select>
-									</div>
-								</div>
+								</form>
 								<!-- end board-search -->
 								<thead>
 									<tr>
@@ -72,120 +80,37 @@
 									</tr>
 								</thead>
 								<tbody class="tbody">
-									<tr class="border">
-										<td class="id">10</td>
-										<td class="title-td text-start"><a href="detail/"> <span
-												class="title">상세페이지</span> <span class="reply">[1]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
-									<tr class="border">
-										<td class="id">9</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">[美친특가] 10/31 유통기한 임박 LeTAO 르타오 프로마쥬 치즈
-													케이크...</span> <span class="reply">[1]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
-									<tr class="border">
-										<td class="id">8</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">[美친특가] 10/31 유통기한 임박 LeTAO 르타오 프로마쥬 치즈
-													케이크...</span> <span class="reply">[1]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
-									<tr class="border">
-										<td class="id">7</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">[美친특가] 10/31 유통기한 임박 LeTAO 르타오 프로마쥬 치즈
-													케이크...</span> <span class="reply">[1]</span>
-										</a></td>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
-									<tr class="border">
-										<td class="id">6</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">[美친특가] 10/31 유통기한 임박 LeTAO 르타오 프로마쥬 치즈
-													케이크...</span> <span class="reply">[1]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
-									<tr class="border">
-										<td class="id">5</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">[美친특가] 10/31 유통기한 임박 LeTAO 르타오 프로마쥬 치즈
-													케이크...</span> <span class="reply">[1]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
-									<tr class="border">
-										<td class="id">4</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">[美친특가] 10/31 유통기한 임박 LeTAO 르...</span> <span
-												class="reply">[1]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
-									<tr class="border">
-										<td class="id">3</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">주방미학 티타늄 반상기 2인세트(10pcs)</span> <span
-												class="reply">[5]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
-									<tr class="border">
-										<td class="id">2</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">9/27일이후출고 [만개특가] 케어팟 가습기...</span> <span
-												class="reply">[3]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.28</td>
-										<td class="hits">8400</td>
-									</tr>
-									<tr class="border">
-										<td class="id">1</td>
-										<td class="title-td text-start"><a href="#"> <span
-												class="title">[美친특가] 10/31 유통기한 임박 LeTAO 르타오...</span> <span
-												class="reply">[1]</span>
-										</a>
-										</th>
-										<td class="nickname">닉네임</td>
-										<td class="post-date">2022.09.27</td>
-										<td class="hits">3000</td>
-									</tr>
+
+									<c:if test="${empty data}">
+										<tr align='center' noshade colspan="5">데이터가 없습니다.
+										</tr>
+									</c:if>
+									<c:forEach items="${data.boardList}" var="li">
+										<tr class="border">
+											<td class="id">${li.id}</td>
+											<td class="title-td text-start"><a
+												href="detail?id=${li.id}"> <span class="title">${li.title}</span>
+													<span class="reply">[${li.reply}]</span>
+											</a>
+											</th>
+											<td class="nickname">${li.MNickname}</td>
+											<td class="post-date">${li.postDate}</td>
+											<td class="hits">${li.hits}</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 							<div class="write text-end my-3">
-								<button type="button" id="write-btn"
-									class="gold-border gold-btn"
-									onclick="location.href='/freeboard/write'">글쓰기</button>
+								<c:if test="${sessionScope.email == null}">
+									<a href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';"					
+											><button type="button" id="write-btn"
+										class="gold-border gold-btn">글쓰기</button></a>
+								</c:if>
+								<c:if test="${sessionScope.email != null}">
+									<button type="button" id="write-btn"
+										class="gold-border gold-btn"
+										onclick="location.href='/notice/write'">글쓰기</button>
+								</c:if>
 							</div>
 							<div class="page">
 								<nav aria-label="Page navigation">

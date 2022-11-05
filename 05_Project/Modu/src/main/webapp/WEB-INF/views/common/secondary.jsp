@@ -31,20 +31,20 @@
 			</div>
 		</div>
 	</div>	<!-- end widget -->
-
-	<!--비스포크 광고 배너 -->
-	<div class="widget post-type-widget pt-3" style="text-align:center;">
-		<a href="#">
-		<img id="bespoke_ad" class="rounded-3 banner"
-			src="/imgs/mypage/ad_bespoke.PNG"
-			alt="Banner" />
-		</a>
+	<div class="banner-container row">
+		<!--비스포크 광고 배너 -->
+		<div class="widget post-type-widget pt-3 col-sm-6 col-md-12" style="text-align:center;">
+			<a href="#">
+			<img id="bespoke_ad" class="rounded-3 banner"
+				src="/imgs/mypage/ad_bespoke.PNG"
+				alt="Banner" />
+			</a>
+		</div>
+		<!--락앤락 광고 배너-->
+		<div class="widget post-type-widget pt-3 col-sm-6 col-md-12" style="text-align:center;">
+			<a href="#"> <img id="lockandlock_ad" class="rounded-3 banner"
+				src="/imgs/index/lock_ad.gif" alt="lockandlock_ad.gif" />
+			</a>
+		</div>	<!-- end 광고 -->
 	</div>
-	<!--락앤락 광고 배너-->
-	<div class="widget post-type-widget pt-3" style="text-align:center;">
-		<a href="#"> <img id="lockandlock_ad" class="rounded-3 banner"
-			src="/imgs/index/lock_ad.gif" alt="lockandlock_ad.gif" />
-		</a>
-	</div>	<!-- end 광고 -->
-
 </div> <!-- end #secondary, 사이드영역 끝 -->

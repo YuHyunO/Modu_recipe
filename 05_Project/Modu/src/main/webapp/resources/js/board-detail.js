@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 function addReply(e){
     //작성자, 작성자 사진은 세션이용해서 추가
     event.preventDefault();
@@ -106,8 +105,6 @@ function addReply(e){
         }
     }
 }
-=======
->>>>>>> 2a5e34932010946ca5259677c2c8ec42de047e88
 
 function addReplyForm(e){    
     let commentID = $(e).attr("class").split(' ')[0];
