@@ -16,10 +16,7 @@ import com.modu.domain.board.Board;
 import com.modu.domain.board.BoardDetail;
 import com.modu.domain.board.BoardDetailNextPrev;
 import com.modu.domain.board.BoardFile;
-import com.modu.domain.board.BoardList;
 import com.modu.domain.board.BoardListVo;
-import com.modu.domain.recipe.RecipeList;
-import com.modu.domain.recipe.RecipeListVo;
 import com.modu.mapper.BoardLegacyMapper;
 import com.modu.mapper.BoardMapper;
 
@@ -34,8 +31,7 @@ public class BoardFindingServiceImpl implements BoardFindingService {
 	private BoardLegacyMapper boardLegacyMapper;
 
 	@Override
-	public BoardListVo listingPosts(HttpServletRequest request, HttpSession session) {
-        int type = 1;
+	public BoardListVo listingPosts(HttpServletRequest request, HttpSession session, int type) {
         long curPage = 1;
         long pgSize = 10;
         long totalPage;
@@ -84,7 +80,7 @@ public class BoardFindingServiceImpl implements BoardFindingService {
             pgSize = (long)session.getAttribute("pgSize");   
         }
         
-        totalPage = (long) (totalPost/pgSize);
+        totalPage = totalPost/pgSize;
         if(totalPost % pgSize > 0) {
             totalPage = totalPage + 1;
         }       
@@ -140,6 +136,7 @@ public class BoardFindingServiceImpl implements BoardFindingService {
         
         return boardList;
     }
+    @Override
     public BoardDetail getPost(long id,HttpServletRequest request,HttpServletResponse response) {
         //long bId = id;
        // long replyCount = boardLegacyMapper.selectReplyCount(bId);
@@ -195,6 +192,11 @@ public class BoardFindingServiceImpl implements BoardFindingService {
 		
 		
 		return boardDetail;
-	}	
+	}
+    @Override
+    public Board getBoard(long id) {
+        Board board = boardMapper.selectPost(id);
+        return board;
+    }
 
 }

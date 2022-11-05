@@ -116,24 +116,43 @@
 	<!-- 자유게시판 페이징 위한 셀렉문  -->
 	<select id="selectFreePostsByType" resultType="Board">
 		<![CDATA[
-	     select * from 
-	     (select ROWNUM posts, 
-			     ID, 
-			     M_EMAIL,
-			      M_NICKNAME, 
-			      PROFILE_IMG, 
-			      POST_TYPE, 
-			      TITLE, 
-			      POST_DATE, 
-			      UPDATE_DATE, 
-			      HITS, 
-			      REPLY, 
-			      FILES from 
-	      (select * from BOARD where POST_TYPE=1 order by LPAD(id, 10, '0') desc)) 
+	     select * from (
+	     	SELECT 
+	     		ROWNUM posts,ID,M_EMAIL,M_NICKNAME,PROFILE_IMG,POST_TYPE,TITLE,POST_DATE,UPDATE_DATE,HITS,REPLY,FILES 
+	     	FROM (
+	     			SELECT 
+	     				* 
+	     			FROM 
+	     				BOARD
+	     			WHERE 
+	     				POST_TYPE = #{type}     				
+     				ORDER BY LPAD(ID, 10, '0') desc
+   					)
+	     		) 
 	      where posts BETWEEN #{beginRow} AND #{endRow}
 	     ]]>
 	</select>
-	
+	<!-- 공지사항 검색 셀렉문  -->
+	<select id="selectBoardListSearch" resultType="Board" parameterType="BoardSearchVO">
+		<![CDATA[
+		  select * from (
+	     	SELECT 
+	     		ROWNUM posts,ID,M_EMAIL,M_NICKNAME,PROFILE_IMG,POST_TYPE,TITLE,POST_DATE,UPDATE_DATE,HITS,REPLY,FILES 
+	     	FROM (
+	     			SELECT 
+	     				* 
+	     			FROM 
+	     				BOARD 
+	     			WHERE 
+	     				POST_TYPE = #{type} 
+     				AND
+     					${sch_type} LIKE '%'||#{value}||'%'
+     				ORDER BY LPAD(ID, 10, '0') desc
+   					)
+	     		) 
+	      where posts BETWEEN #{beginRow} AND #{endRow}
+	     ]]>
+	</select>
 	<!-- 검색으로 ㄱ 자유게시판 리스트 불러오기 -->
 	<!-- <select id="selectBoardListByKeyword" resultType="Board">
 		<![CDATA[

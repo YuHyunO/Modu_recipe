@@ -1,10 +1,7 @@
 package com.modu.controller;
 
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.modu.domain.board.Board;
 import com.modu.domain.board.BoardDetail;
 import com.modu.domain.board.BoardFile;
-import com.modu.domain.board.BoardList;
 import com.modu.domain.board.BoardListVo;
 import com.modu.domain.board.BoardReply;
 import com.modu.domain.board.BoardReplyList;
@@ -51,14 +46,14 @@ public class FreeBoardController {
 
     @GetMapping("/list")
     public ModelAndView boardList(HttpServletRequest request, HttpSession session){
-        BoardListVo data = boardService.listingPosts(request,session);
+        BoardListVo data = boardService.listingPosts(request,session,1);
         ModelAndView mv = new ModelAndView("freeboard/list", "data", data);
         return mv;
     }
     @GetMapping("/list.do")
     public @ResponseBody BoardListVo ajaxBoardList(HttpServletRequest request, HttpSession session) {
         log.info("#list ajax 1");
-        BoardListVo data = boardService.listingPosts(request, session);
+        BoardListVo data = boardService.listingPosts(request, session,1);
         log.info("#list ajax 2");
         log.info("#list2  data1 :  " + data);
         return data; 
