@@ -7,6 +7,7 @@
 <%@ include file="/WEB-INF/views/common/head.jsp"%>
 <!-- 공통 부분 END. -->
 <link href="/css/recipe-list.css" rel="stylesheet">
+<link href="/css/index.css" rel="stylesheet">
 <script src="/js/recipe-list.js"></script>
 
 <title>모두의 식탁 - 레시피 목록</title>
@@ -111,9 +112,9 @@
 						<div id="recipe-list" class="row">
 						<!-- 반복문 작성 -->
 						<c:forEach items="${data.recipeList}" var="li">
-							<div id="recipe-item" class="col-6 col-md-3">
+							<div id="recipe-item" class="col-sm-4 col-md-3">
 								<div class="recipe-thumb">
-									<img src="/pics/recipe/${li.id}/${li.foodPhoto}" alt="recipe">
+									<img src="/pics/recipe/${li.id}/${li.foodPhoto}" alt="FoodPhoto">
 								</div>
 								<div class="recipe-desc">
 									<h2 class="recipe-title">
@@ -132,6 +133,7 @@
 										</c:if>
 										<span class="d-flex align-items-center"> 
 											<span class="p-1 mt-1">조회수 ${li.hits}</span>
+
 										</span>
 									</div>
 								</div>

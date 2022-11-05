@@ -1,6 +1,7 @@
 package com.modu.controller;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.modu.domain.member.Scrap;
 import com.modu.domain.recipe.RecipeDetail;
 import com.modu.domain.recipe.RecipeList;
 import com.modu.domain.recipe.RecipeListVo;
@@ -37,7 +40,6 @@ import lombok.extern.log4j.Log4j;
 @Controller
 @RequestMapping("recipe")
 public class RecipeController {
-    
     @Autowired
     private RecipeFindingService recipeFindingService;
     @Autowired
@@ -88,7 +90,7 @@ public class RecipeController {
         HashMap<String, Object> map = new HashMap<String, Object>();
         log.info("#RecipeController Upload");
         if ((String) session.getAttribute("email") == null) {
-            map.put("msg", "로그인 후 이용 해주세요.");
+            map.put("msg", "로그인 후 이용 해주세요");
         } else {
             recipeRegisterService.registerRecipe(request, session, files, mainItems, subItems, directions, tags);
             log.info("#####1" + tags);
@@ -164,7 +166,7 @@ public class RecipeController {
 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("recipe/detail");
-        mv.addObject("detail", detail);
+        mv.addObject("detail", detail);        
         mv.addObject("starPoint", starPoint);
         mv.addObject("scrapState", scrapState);
         mv.addObject("replyCount", replyCount);
@@ -193,21 +195,8 @@ public class RecipeController {
     }
     
     @PostMapping("/insert.do")
-    public @ResponseBody String insertReply(
-            RecipeReply recipeReply, 
-            MultipartFile file, 
-            RecipeReplyPhoto replyPhoto, 
-            HttpSession session){
-        String email = (String)session.getAttribute("email");
-        String nickName = (String)session.getAttribute("nickname");
-        String profileImg = (String)session.getAttribute("profileImg");
-        recipeReply.setMEmail(email);
-        recipeReply.setMNickname(nickName);
-        recipeReply.setProfileImg(profileImg);
-        log.info(email);
-        log.info(nickName);
-        log.info(profileImg);
-        log.info("#recipeReply: " + recipeReply);
+    public @ResponseBody String insertReply(RecipeReply recipeReply, MultipartFile file, RecipeReplyPhoto replyPhoto){
+        System.out.println("zzzzz");
         String result = recipeRegisterService.registerReply(recipeReply);
         recipeRegisterService.registerReplyPhoto(replyPhoto);
         System.out.println(result);
@@ -215,7 +204,6 @@ public class RecipeController {
         log.info("#recipeReply" + recipeReply);
         return result;
     }
-    
     @GetMapping("/del.do")
     public String deleteReply(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -224,15 +212,13 @@ public class RecipeController {
         recipeRegisterService.deleteReply(id);
         return "redirect:detail";
     }
-    
     @PostMapping("/insertNestedReply.do")
     public @ResponseBody String insertNestedReply (RecipeNestedReply recipeNestedReply) {
         System.out.println("# "+recipeNestedReply);    
         String result = recipeRegisterService.registerNestedReply(recipeNestedReply);
         System.out.println("#nestedReply" + recipeNestedReply);
         return result;
-    }
-    
+    } 
     @GetMapping("/delNestedReply.do")
     public String delNestedReply(HttpServletRequest request) {
         HttpSession session = request.getSession();

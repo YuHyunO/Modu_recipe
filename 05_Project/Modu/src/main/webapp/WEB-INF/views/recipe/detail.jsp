@@ -70,7 +70,11 @@
 									<div id="recipeTitle" class="fs-4 pt-3 pb-1 m-0">${detail.recipe.title}</div>
 									<div class="recipeinfo m-0">${detail.recipe.info}</div>
 									<c:if test="${sessionScope.email == detail.recipe.MEmail }">
-										<a href="/recipe/update?id=${detail.recipe.id}"><button id="recipeUpdateBtn2" type="button" class="gold-btn">레시피 수정</button></a>
+										<div class="recipe-fix">
+											<a href="/recipe/update?id=${detail.recipe.id}">
+												<button id="recipeUpdateBtn2" type="button" class="gold-btn">레시피 수정</button>
+											</a>
+										</div>
 									</c:if>
 								</div>
 								<!-- recipe desc -->
@@ -189,9 +193,7 @@
 										<div class="col-md-4 step-img">
 											<figure class="ratio ratio-4x3">
 												<a href="javascript:viewLargePic('/imgs/content/thumb-1.png')"> 
-														<img class="rounded-3" 
-															src="/pics/recipe/${li.RId}/${li.saveFile}"
-															alt="Recipe-STEP-Image">
+													<img class="rounded-3" src="/pics/recipe/${li.RId}/${li.saveFile}" alt="Recipe-STEP-Image">
 												</a>
 											</figure>
 										</div><br>
@@ -286,8 +288,8 @@
 								<form class="comment-form" type="POST" id="reply-form-0-0"
 									onSubmit="addReply(this)">
 									<div class="row">
-										<input type="hidden" value="${detail.recipe.id}" name="rId"/>
-										<div class="col px-0 comment-file" style="min-width: 100px; max-width: 100px;">
+										<div class="col px-0 comment-file"
+											style="min-width: 100px; max-width: 100px;">
 											<input type="file" hidden> <img class="border"
 												src="/imgs/pic_none.gif" alt="파일첨부" width="100" height="100"
 												style="cursor: pointer;">
@@ -315,7 +317,7 @@
 		  </div>
 		</div>
 		
-			<div class="row related-recipe border py-3 px-5">
+			<div class="row related-recipe border py-3 px-5" style="display: none;">
 				<div class="container">
 					<div class="row justify-content-center">
 						<button class="col previous-icon px-0"></button>
@@ -330,7 +332,7 @@
 								</div>
 								<div class="recipe-desc">
 									<h2 class="recipe-title p-0">
-										<a href="#">$제목</a>
+										<a href="#">제목</a>
 									</h2>
 									<figure class="profile mb-1">
 										<img class="profile-img" src="/imgs/content/auth-00.png"

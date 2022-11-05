@@ -60,10 +60,14 @@
     object-fit: cover;
 }
 
+.recipe-thumb img {
+	height: 100%;
+}
+
 .chef-pic {
+	height: 70px !important;
+	width: 70px !important;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
 }
 
 .chef-name {

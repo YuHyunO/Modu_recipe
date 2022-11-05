@@ -61,7 +61,7 @@
 		<%@ include file="/WEB-INF/views/common/menu.jsp"%>
 		<div class="head-title py-4 m-0">
 			<div class="container">
-				<p class="page-title m-0 fs-2">free board write</p>
+				<p class="page-title m-0 fs-2">notice update</p>
 			</div>
 			<!-- end container -->
 		</div>

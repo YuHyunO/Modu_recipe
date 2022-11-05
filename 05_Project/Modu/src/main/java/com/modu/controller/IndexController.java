@@ -1,12 +1,9 @@
 package com.modu.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.modu.domain.member.Member;
 import com.modu.domain.recipe.RecipeList;
-import com.modu.domain.recipe.RecipeTag;
 import com.modu.service.MembershipService;
 import com.modu.service.RecipeFindingService;
 
@@ -36,15 +32,14 @@ public class IndexController {
 		endRow = 8;
 		
 		List<Member> rankList = membershipService.selectMemberRankS();
-		List<RecipeList> recipeList = recipeFindingService.selectRecipeListByBestHits(beginRow, endRow);
-		
-		// ·©Å· TOP 6 ¸â¹ö È®ÀÎ
-		for (Member member: rankList) {
-			//log.info("#IndexController: " + member);
-		}
+		List<RecipeList> bestRecipeList = recipeFindingService.getBestRecipeList(beginRow, endRow);
+		List<RecipeList> latestRecipeList = recipeFindingService.getLatestRecipeList(4);
 		
 		ModelAndView mv = new ModelAndView("index", "rankList", rankList);
-		mv.addObject("recipeList", recipeList);
+		mv.addObject("bestRecipeList", bestRecipeList);
+		mv.addObject("latestRecipeList", latestRecipeList);
+		log.info("#IndexController index() bestRecipeList: " + bestRecipeList);
+		log.info("#IndexController index() latestRecipeList: " + latestRecipeList);
 		return mv;
 	}
 	
@@ -52,11 +47,5 @@ public class IndexController {
     public @ResponseBody List<RecipeList> callRecentRecipe(HttpServletRequest request){
         List<RecipeList> data = recipeFindingService.findRecentRecipes(request);
         return data;
-    }
-    
-    @GetMapping("/recent-tag")
-    public @ResponseBody List<RecipeTag> callRecentRecipeTag(){
-        List<RecipeTag> recipeTag = recipeFindingService.findRecentRecipeTags();
-        return recipeTag;
     }
 }

@@ -28,30 +28,15 @@
 	</insert>
 	
 	<!-- 내정보수정 진입시 내정보 불러오기 -->
-	<select id="selectMember" parameterType="String" resultType="Member">
+	<select id="selectMember" parameterType="String"
+		resultType="Member">
 		select * from MEMBER where EMAIL=#{email}
 	</select>
-	
 	<!-- 회원탈퇴 -->
 	<delete id="deleteMember" parameterType="String">
-		delete from MEMBER where M_EMAIL=#{email}
+		delete from MEMBER where EMAIL=#{email}
 	</delete>
-	<delete id="deleteMemberRecipe" parameterType="String">
-		delete from Recipe where M_EMAIL=#{email}
-	</delete>
-	<delete id="deleteMemberRecipeReply" parameterType="String">
-		delete from Recipe_Reply where M_EMAIL=#{email}
-	</delete>
-	<delete id="deleteMemberRecipeNestedReply" parameterType="String">
-		delete from Recipe_Nested_Reply where M_EMAIL=#{email}
-	</delete>
-	<delete id="deleteMemberBoard" parameterType="String">
-		delete from Board where M_EMAIL=#{email}
-	</delete>
-	<delete id="deleteMemberBoardReply" parameterType="String">
-		delete from Board_Reply where M_EMAIL=#{email}
-	</delete>
-	
+
 	<!-- 아직 미사용 중 -->
 	<select id="selectEmailCheck" parameterType="String"
 		resultType="String">

@@ -189,25 +189,26 @@ function dataAgent(data){
 function updateData(recipeList, pageSize){
 	let html = "";
 	for(let item of recipeList){
-		html += '<div id="recipe-item" class="col-6 col-md-3">';
+		console.log(item);
+		html += '<div id="recipe-item" class="col-sm-4 col-md-3">';
 		html += '<div class="recipe-thumb">';
-		html += '<img src="'+item.foodPhoto+'" alt="/imgs/content/thumb-1.png">';
+		html += '<img src="/pics/recipe/' + item.id + '/' + item.foodPhoto + '" alt="FoodPhoto">';
 		html += '</div>';
 		html += '<div class="recipe-desc">';
 		html += '<h2 class="recipe-title">';
 		html += '<a href="javascript:void(0)" onclick="saveCookie('+item.id+')">'+item.title+'</a>';
 		html += '</h2>';
 		html += '<figure class="profile">';
-		html += '<img class="profile-img" src="/imgs/content/auth-00.png" alt="작성자">';
-		html += '<span><em>&nbsp;'+item.mNickname+'</em></span>';
+		html += '<img class="profile-img" src="/pics/profile/' + item.profileImg + '" alt="작성자">';
+		html += '<span><em>&nbsp;' + item.mnickname + '</em></span>';
 		html += '</figure>';
 		html += '<div class="recipe-icons d-flex justify-content-between">';
 		html += '<span class="d-flex align-items-center">';
 		html += '<img class="stars" src="/imgs/stars5.png">';
-		html += '<span class="p-1 mt-1">'+item.star+'('+item.stars+')</span>';
+		html += '<span class="p-1 mt-1">' + item.star + '(' + item.stars + ')</span>';
 		html += '</span>';
 		html += '<span class="d-flex align-items-center">';
-		html += '<span class="p-1 mt-1">조회 '+item.hits+'</span>';
+		html += '<span class="p-1 mt-1">조회 ' + item.hits + '</span>';
 		html += '</span>';
 		html += '</div>';
 		html += '</div>';

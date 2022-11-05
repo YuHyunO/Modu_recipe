@@ -1,12 +1,11 @@
 $(function () {
 	//페이지 뒤로가기 방지
-/*	function prevent(){
-		history.pushState(null, null, location.href);
-		window.onpopstate = function(event) {
-		    history.go(1);
-		}
-	}*/
-	
+//	function prevent(){
+//		history.pushState(null, null, location.href);
+//		window.onpopstate = function(event) {
+//		    history.go(1);
+//		}
+//	}
 //	
 //	$(window).on("mousemove", () => {0
 //		prevent();
@@ -19,8 +18,7 @@ $(function () {
 //	$(window).on("click", () => {
 //		prevent();
 //	});
-//
-	
+//	
 	// 태그 로직
 	let tag = $('#tag');
 	$('#tag').keyup(
@@ -73,7 +71,7 @@ $(function () {
 			
 			// 태그 갯수 체크
 			if($('.tag-ul').find('li').length === 0){
-				tag.parent().find('.warning-text').text("*태그를 1개 이상 등록해주세요.");
+				tag.parent().find('.warning-text').text("*태그를 1개 이상 등록해주세요");
 			} else {
 				tag.parent().find('.warning-text').text(" ");
 			}	
@@ -115,7 +113,7 @@ $(function () {
 		if (!foodRegex.test($("input[name=food]").val())){
 			target.find('.warning-text').text(" ");
 		} else {
-			target.find('.warning-text').text("특수문자를 사용하실 수 없습니다.");
+			target.find('.warning-text').text("특수문자를 사용하실수 없습니다.");
 		}
 	}
 	
@@ -151,7 +149,7 @@ function deleteTag(e) {
 	// 태그 갯수 체크
 	let tag = $('#tag');
 	if($('.tag-ul').find('li').length === 0){
-		tag.parent().find('.warning-text').text("*태그를 1개 이상 등록해주세요.");
+		tag.parent().find('.warning-text').text("*태그를 1개 이상 등록해주세요");
 	} else {
 		tag.parent().find('.warning-text').text(" ");
 	}	
@@ -574,7 +572,7 @@ function update(e) {
 	// 태그
 	let tags = $('.tag-ul').find('input');
 	if (tags.length < 1){
-		alert("태그를 1개 이상 추가해주세요.");
+		alert("태그를 1개 이상 추가해주세요");
 		$('#tag').focus();
 		return false;
 	}
@@ -610,7 +608,7 @@ function update(e) {
 		if (hiddenInput[i].files[0] === undefined) {
 			if (stepPhotos[i].src !== undefined){
 			} else {
-				alert("조리과정에 사진이 빠진 곳이 없는지 확인해주세요!");
+				alert("사진이 빠진 곳이 없는지 확인해주세요!");
 				return false;
 			}
 		}
@@ -644,11 +642,10 @@ function update(e) {
 		contentType: false,
 		data: formData,
 		success: function(response) {
-			alert("레시피가 정상적으로 수정되었습니다.");
-			location.href="/member/mypage";
+			alert("레시피가 업데이트 되었습니다.");
 		},
 		error: function(response) {
-			alert("레시피 수정을 실패했습니다.");
+			alert("레시피 업데이트를 실패 했습니다.");
 		}
 	});
 }
@@ -682,25 +679,11 @@ function checkData(e) {
 	return true;
 }
 function del(e){
-	var result = confirm("정말 레시피를 삭제하시겠습니까?");
-	 if (result == true){
-			let data = $('#recipeUpdateID').val();
-			console.log("#삭제요청한 레시피id : ", data);
-					
-			$.ajax({
-				type : "GET",
-				url : "/recipe/delete",
-				data : { id : data },
-				success : function(result) {
-					alert("레시피가 정상적으로 삭제되었습니다.");
-					location.href="/member/mypage";
-				} // success 종료
-			}); // ajax 종료					
-		} else {
-			//e.preventDefault();
-			alert("레시피 삭제를 취소하셨습니다.");
-			return false;
-		}
+	 if (confirm("정말 삭제하시겠습니까??") == true){
+		 location.href='delete.do?id=${id}'
+	 }else{
+	     return false;
+	 }
 }
 
 

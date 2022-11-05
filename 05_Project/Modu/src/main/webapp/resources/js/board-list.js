@@ -20,15 +20,15 @@ function setPageSize(){
 	let sizeSelector = document.getElementById("size-selector");
 	pageSize = sizeSelector.options[sizeSelector.selectedIndex].value;
 
-	
 	if(sessionStorage.getItem("keyword")!=null){
-		console.log("1: towards setKeywordData(); setPage(e): "+sessionStorage.getItem("keyword"));
+		console.log("1: towards setKeywordData(); setPage(e): " + sessionStorage.getItem("keyword"));
 		setKeywordData(1);
 	}else{
 		console.log("1: towards setData()");
 		setData();
 	}		
 }
+
 function setPage(e){
 	currentPage = $(e).text();
 	let value = $(e).attr("id");
@@ -37,13 +37,14 @@ function setPage(e){
 	}
 
 	if(sessionStorage.getItem("keyword")!=null){
-		//console.log("2: towards setKeywordData(); setPage(e): "+sessionStorage.getItem("keyword"));
+		console.log("2: towards setKeywordData(); setPage(e): "+sessionStorage.getItem("keyword"));
 		setKeywordData(1);
 	}else{
-		//console.log("2: towards setData()");
+		console.log("2: towards setData()");
 		setData();
 	}
 }
+
 function setData(){
 	sessionStorage.clear();
 	let periodSelector = document.getElementById("period-selector");	
@@ -60,8 +61,8 @@ function setData(){
 }
 
 function setKeywordData(status){
-	//console.log("setKeywordData(): "+sessionStorage.getItem("keyword"));
-	//console.log("setKeywordData(): "+sessionStorage.getItem("nameOption"));
+	console.log("setKeywordData(): "+sessionStorage.getItem("keyword"));
+	console.log("setKeywordData(): "+sessionStorage.getItem("nameOption"));
 	
 	let periodSelector = document.getElementById("period-selector");
 	let nameSelector = document.getElementById("name-selector");
@@ -77,7 +78,7 @@ function setKeywordData(status){
 		if(keyword == sessionStorage.getItem("keyword")){
 			keyword = sessionStorage.getItem("keyword");
 			curPage = currentPage;
-		}		
+		}
 	}
 	data = {
 			value: 2,
@@ -92,6 +93,7 @@ function setKeywordData(status){
 	sessionStorage.setItem("keyword", keyword);
 	dataAgent(data);
 }
+
 function dataAgent(data){
 	$.ajax({
 		url: "./list.do",

@@ -10,7 +10,6 @@ import com.modu.domain.recipe.RecipeNestedReply;
 import com.modu.domain.recipe.RecipeReply;
 import com.modu.domain.recipe.RecipeReplyList;
 import com.modu.domain.recipe.RecipeReplyPhoto;
-import com.modu.domain.recipe.RecipeTag;
 
 
 public interface RecipeLegacyMapper {
@@ -42,6 +41,4 @@ public interface RecipeLegacyMapper {
 	Scrap selectScrapByRecipeId(@Param("rId")long rId, @Param("mEmail")String mEmail);
 	long recipeViewCount(long id);
 	long viewReply(long id);
-	
-	List<RecipeTag> selectLatestRecipeTag();
 }

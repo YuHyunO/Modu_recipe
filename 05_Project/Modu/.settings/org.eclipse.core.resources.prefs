@@ -1,6 +1,3 @@
-=\=\=\=\=\=\=
-<<<<<<<=HEAD
->>>>>>>=e0503084d4953f893038f9887ff418128eff6e4b
 eclipse.preferences.version=1
 encoding//src/main/java/com/modu/controller/FreeBoardController.java=MS949
 encoding//src/main/java/com/modu/controller/IndexController.java=MS949
@@ -23,6 +20,6 @@ encoding//src/main/webapp/WEB-INF/views/member/mypage.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/member/register.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/recipe/list.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/recipe/write.jsp=UTF-8
-encoding//src/main/webapp/resources/css/index.css=MS949
-encoding//src/main/webapp/resources/css/mypage.css=MS949
+encoding//src/main/webapp/resources/css/index.css=UTF-8
+encoding//src/main/webapp/resources/css/mypage.css=UTF-8
 encoding/<project>=MS949

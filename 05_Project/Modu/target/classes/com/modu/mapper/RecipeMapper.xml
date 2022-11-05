@@ -126,7 +126,7 @@
 		                      ID,
 		                      FOOD_PHOTO,
 		                      TITLE,
-		                      FOOD,                
+		                      FOOD,
 		                      PROFILE_IMG,
 		                      M_NICKNAME,
 		                      M_EMAIL,
@@ -141,7 +141,7 @@
 		                      ID,
 		                      FOOD_PHOTO,
 		                      TITLE,
-		                      FOOD,                
+		                      FOOD,         
 		                      PROFILE_IMG,
 		                      M_NICKNAME,
 		                      M_EMAIL,
@@ -460,6 +460,13 @@
 	<select id="selectRecipeListByBestHits" parameterType="long" resultType="RecipeList">
 		select * from (select * from RECIPE order by HITS desc)
 		where ROWNUM BETWEEN #{beginRow} AND #{endRow}
+	</select>
+	<!-- 최근 등록된 레시피 -->
+	<select id="selectRecipeListByLatestId" parameterType="long" resultType="RecipeList">
+		<![CDATA[
+		select * from (select * from RECIPE order by ID desc) 
+		where ROWNUM <= #{limitNumber}
+		]]>
 	</select>
 	<!-- 레시피 사진 업데이트 -->
 	<update id="updateRecipePhoto" parameterType="Recipe">

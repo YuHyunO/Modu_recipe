@@ -29,6 +29,7 @@
 				
 				<div class="row">
 					<div id="primary" class="content-area col-md-9">
+					
 						<div id="content" class="site-content">
 							<!--프로필 영역 시작 -->
 							<div class="profile-details rounded-3 text-center">
@@ -45,8 +46,9 @@
 									<!-- 첨부파일이 있을 때 미리보기 사진 보임-->
 									<c:if
 										test="${ member.profileImg!='default_profile_img.png' && member.profileImg!=null}">
-											<img src="/pics/profile/${ member.profileImg }"
-												id="mypage_profileimg" alt="mypage_profileimg"/>
+											<img 
+											src="/pics/profile/${ member.profileImg }"
+											id="mypage_profileimg" alt="mypage_profileimg"/>
 											<%-- 주소 불안정(인식 못할 대 있음 src="<spring:url value='/pics/profile/${ member.profileImg }'/>" --%>
 									</c:if>
 								</div><br/>
@@ -61,6 +63,7 @@
 										나만의 레시피를 작성해보거나,<br/>
 										다양한 쉐프들과 친구를 맺어보세요!
 									</div>
+
 									<!-- 회원정보 수정 버튼-->
 									<div class="py-3">
 										<button
@@ -97,6 +100,7 @@
 									<li class="nav-item"><a class="nav-link tab-menu"
 										id="mypost-tab" data-toggle="tab" href="#mypost" onclick="setUrl(this)" 
 										role="tab" aria-controls="mypost" aria-selected="false">나의 게시글/댓글</a></li>
+										
 									<li class="nav-item"><a class="nav-link tab-menu"
 										id="myfriend-tab" data-toggle="tab" href="#myfriend" onclick="setUrl(this)"
 										role="tab" aria-controls="myfriend" aria-selected="false">친구 관리</a></li>
@@ -109,11 +113,12 @@
 									<div class="tab-pane fade show active" id="ingredient"
 										role="tabpanel" aria-labelledby="ingredient-tab">
 										<div id="tab1-content" class="pb-3"><!-- class명에서 site-content 지움 -->
-											<h4 class="archive-title text-center">냉장고 속 재료를 조합하여 요리해보기</h4>
+											<h4 class="archive-title text-center">냉장고 속 재료를 조합하여
+												요리해보기</h4>
 											<div class="backbox rounded-3 text-center py-3">
 												지금 냉장고 속 재료를 체크해보세요.<br /> 맞춤형 레시피를 볼 수 있어요!
 											</div>
-											<br>
+											<br />
 											<div class="article-list">
 												<div class="row">
 													<!-- 채소류 row -->
@@ -122,10 +127,12 @@
 													</div>
 													<!--체크영역 시작-->
 													<div class="col-md-6">
+														<!-- 영역 크기 조절 -->
 														<div class="vegetableSection row" id="vegetableSection">
 															<!--js 제이쿼리 $(function(){});가 실행되는 부분-재료명 나열 -->
 														</div>
-													</div><!-- col-md-6 종료-->
+													</div>
+													<!-- col-md-6 종료-->
 													<!--야채 사진-->
 													<div class="col-md-4">
 														<figure>
@@ -287,8 +294,9 @@
 													<option value="1">비공개 레시피</option>
 													<option value="2">임시저장 레시피</option>
 												</select>
-											</div><br>
-
+											</div>
+											<br><br>
+										
 											<div id="recipe-list-2" class="row"></div>																	
 											<div id="paging-area-2" class="page common-area"></div>												
 												<!-- end col -->
@@ -303,7 +311,7 @@
 										aria-labelledby="bookmark-tab">
 										<div id="tab3-content" class="site-content">
 											<h3 class="archive-title text-center">북마크 레시피</h3>
-										
+											
 											<div id="recipe-list-3" class="row"></div>					
 											<div id="paging-area-3" class="page common-area"></div>
 											<!-- end paging-area-3 -->
@@ -784,8 +792,11 @@
 												<p class="text-right">팔로잉: 내가 추가한 친구<br>팔로워: 나를 추가한 친구</p>
 												
 												<section id="tab5-section-1" class="tab5-section">
-													<div id="following-list" class="row"></div>
-													<div id="paging-area-5" class="page common-area"></div>	
+													<div id="following-list" class="row">
+													</div>
+		
+													<div id="paging-area-5" class="page common-area">
+													</div>	
 												</section>
 												
 												<section id="tab5-section-2" class="tab5-section" hidden="true">
@@ -852,8 +863,8 @@
 						</div><!-- end id="content", 프로필+ 탭전체영역 종료-->
 					</div><!-- end primary(주요 메인영역) 종료-->
 
-					<!-- 사이드 영역(secondary), 모듈화 -->
-					<%@ include file="/WEB-INF/views/common/secondary.jsp"%>
+			<!-- 사이드 영역(secondary), 모듈화 -->
+			<%@ include file="/WEB-INF/views/common/secondary.jsp"%>
 			
 				</div><!-- end row -->
 			</div><!-- end main-container -->

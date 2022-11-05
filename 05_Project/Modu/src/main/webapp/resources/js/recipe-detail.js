@@ -217,24 +217,24 @@ function addReplyForm(e){
 
 $(function(){
 	$("#insertReply").on("click", function(){
-		let reply =  $("#contentsReply").val();
-		let mainForm = $('#reply-form-0-0');
-		let data = mainForm.serializeArray();
-		//alert("reply"+reply);
+		let reply =  $("#contentsReply").val()
+		let mainForm = $('#reply-form-0-0')
+		let info = mainForm.serializeArray();		
+		alert("reply"+reply);
 		$.ajax({
-			url: "/recipe/insert.do", 
-			type: "POST",
-			data: data,
+			url: "../recipe/insert.do", 
+			type: "POST", 
+			data: info,
 			dataType:"text",
 			success: function(data){
 				if(!data){
-					 //alert("존재하지 않는 name");
+					 alert("존재하지 않는 name");
 					 return false;
 				 }
-				//alert("#성공!"+data);
+				alert("#성공!"+data);
 			},
 			error: function(error){
-				//alert("err"+error);
+				alert("err"+error);
 			}
 		
 		});
