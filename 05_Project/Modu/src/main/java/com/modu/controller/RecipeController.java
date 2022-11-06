@@ -135,8 +135,7 @@ public class RecipeController {
     
     //레시피 삭제
     @PostMapping("/delete")
-    public String deleteRecipe(long id, HttpServletRequest request) {
-        //HttpSession session = request.getSession();
+    public String deleteRecipe(long id, HttpServletRequest request, HttpSession session) {
         String getId = request.getParameter("id");
         id = Integer.parseInt(getId);      
         recipeRegisterService.recipeDelete(id);
@@ -164,13 +163,14 @@ public class RecipeController {
                 scrapState = true;
             }
         }
-        long replyCount = recipeLegacyMapper.selectReplyCount(id);
+        int replyCount = recipeLegacyMapper.selectReplyCount(id);
         ModelAndView mv = new ModelAndView();
         mv.setViewName("recipe/detail");
-        mv.addObject("detail", detail);        
+        mv.addObject("detail", detail);
         mv.addObject("starPoint", starPoint);
         mv.addObject("scrapState", scrapState);
         mv.addObject("replyCount", replyCount);
+        mv.addObject("email", email);
         return mv;
     }
     
@@ -221,7 +221,10 @@ public class RecipeController {
                 RecipeReplyPhoto replyPhoto = recipeRegisterService.registerReplyPhoto(recipeId, recipeReplyPhoto, file);
                 map.put("replyPhoto", replyPhoto); // 이미지 파일 정보 리턴
             }
+            int recipeCount = recipeFindingService.getReplyCount(recipeId);
             map.put("reply", reply);
+            map.put("recipeCount", recipeCount);
+            
         }
         return map;
     }
@@ -235,6 +238,8 @@ public class RecipeController {
         log.info("#replyId"+replyId);
         try {
             recipeRegisterService.deleteReply(replyId);
+            int replyCount = recipeLegacyMapper.selectReplyCount(replyId);
+            map.put("replyCount", replyCount);
             map.put("msg", "성공");
         } catch(Exception e) {
             map.put("msg", "실패");

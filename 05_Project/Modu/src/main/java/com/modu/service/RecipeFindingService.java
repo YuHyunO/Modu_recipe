@@ -24,4 +24,5 @@ public interface RecipeFindingService {
 	List<RecipeReplyList> getReply(HttpServletRequest request);
 	List<RecipeNestedReply> getNestedReply(HttpServletRequest request);
 	List<RecipeList> getLatestRecipeList(long limitNumber);
+	int getReplyCount(long recipeId);
 }

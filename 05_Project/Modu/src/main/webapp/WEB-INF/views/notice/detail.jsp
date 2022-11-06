@@ -73,7 +73,7 @@
 							html +=	"	<div class='reply-author d-flex justify-content-between'>";
 							html +=	"		<div class='author-main d-flex align-items-center px-3 pt-2'>";
 							html +=	"			<figure class='profile m-0'>";
-							html +=	"				<img class='profile-img' src='/imgs/content/auth-01.png'";
+							html +=	"				<img class='profile-img' src='/pics/profile/"+item.profileImg+"'";
 							html +=	"					alt='작성자'>";
 							html +=	"			</figure>";
 							html +=	"			<span class='m-nickname ps-2'>"+item.mnickname+"</b> <span";
@@ -184,9 +184,9 @@
 				<div class="main-size col-md-8 row justify-content-center">
 					<div id="board" class="my-3 row px-0">
 						<div class="container p-0">
-							<div class="board-search text-center m-0 w-100">
-								<div id="board-search"
-									class="mb-3 d-flex justify-content-between align-items-center">
+							<div class="board-search text-center m-0 w-100" style="display:none !important;">
+								<div id="board-search" 
+									 class="mb-3 d-flex justify-content-between align-items-center">
 									<div class="selects">
 										<select class="gold-border p-1 filter-period">
 											<option selected="selected">전체기간</option>
@@ -231,7 +231,7 @@
 									<div class="board-head d-flex justify-content-between">
 										<div class="author d-flex align-items-center px-2 pt-2">
 											<figure class="profile">
-												<img class="profile-img" src="/imgs/content/auth-00.png"
+												<img class="profile-img" src="/pics/profile/${board.board.profileImg}"
 													alt="작성자">
 											</figure>
 											<span class="m-nickname ps-2">${board.board.MNickname}</b> <span
@@ -288,7 +288,7 @@
 														<div class="reply-author d-flex justify-content-between">
 															<div class="author-main d-flex align-items-center px-3 pt-2">
 																<figure class="profile m-0">
-																	<img class="profile-img" src="/imgs/mypage/profile/${i.profileImg}"
+																	<img class="profile-img" src="/pics/profile/${i.profileImg}"
 																		alt="작성자">
 																</figure>
 																<span class="m-nickname ps-2">${i.MNickname}</b> <span

@@ -198,4 +198,10 @@ public class RecipeFindingServiceImpl implements RecipeFindingService {
         List<RecipeList> recipeList = recipeMapper.selectRecipeListByLatestId(limitNumber);
         return recipeList;
     }
+
+    @Override
+    public int getReplyCount(long recipeId) {
+        int count = recipeLegacyMapper.selectReplyCount(recipeId);
+        return count;
+    }
 }

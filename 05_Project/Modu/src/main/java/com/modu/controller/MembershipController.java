@@ -85,7 +85,8 @@ public class MembershipController {
     @GetMapping("/follow")
     public @ResponseBody FollowListVo follow(HttpServletRequest request, HttpSession session) {
             	
-        FollowListVo data = membershipService.getFollowList(request, session);      
+        FollowListVo data = membershipService.getFollowList(request, session);
+        log.info(data);
         return data;
     }
 

@@ -242,8 +242,7 @@ $(function(){
 				if(response.msg === "로그인 안함"){
 					alert("댓글은 로그인 후 등록 가능합니다.");
 				} else {
-					console.log(response.msg);
-					console.log(response.reply);
+					let recipeCount = response.recipeCount; // 댓글 갯수
 					let starHtml = '';
 					let starPoint = 0;
 				    if(starPoint === 0){
@@ -251,12 +250,16 @@ $(function(){
 				        starHtml = '<img class="star-rate-img2" src="/imgs/stars' 
 				        + starPoint + '.png" alt="stars" style="width:80px; height:15px; margin-bottom:5px;">';
 				    }
-					let img = '<img class="rounded-3" src="/pics/recipe/'
-						+ response.reply.rid +'/' 
-						+ response.replyPhoto.rrId + '/' 
-						+ response.replyPhoto.saveFile + '" alt="comment-image">';
+				    let img = "";
+				    
+				    if (response.replyPhoto !== undefined){
+						img += '<figure class="comment-image"><img class="rounded-3" src="/pics/recipe/'
+							+ response.reply.rid +'/' 
+							+ response.replyPhoto.rrId + '/' 
+							+ response.replyPhoto.saveFile + '" alt="comment-image"></figure>';
+				    }
 					let html = 
-					    '<li class="comment" id="comment-'+ response.reply.rid +'-"'+ response.reply.id +'>\
+					    '<li class="comment" id="comment-'+ response.reply.id +'">\
 					        <div class="comment-body">\
 					            <div class="comment-meta d-flex justify-content-between align-items-center">\
 					                <span class="d-flex align-items-center">\
@@ -268,22 +271,24 @@ $(function(){
 					                    <span>' + starHtml + '</span>\
 					                </span>\
 					                <span class="reply-btn px-2">\
-					                    <button class="reply-' + response.reply.id + ' reply-btn" onclick="">삭제</a>\
-					                    <button class="reply-' + response.reply.id + ' reply-btn" onclick="addReplyForm(this)">답글</a>\
+					                    <button class="reply-' + response.reply.id + ' reply-btn" onclick="deleteReply(this)">삭제</a>\
 					                </span>\
 					            </div>\
 					            <div class="comment-content d-flex">\
 					                <p class="p-2 m-0 col-9">\
 					                    '+ response.reply.reply + '</p>\
-					                <figure class="comment-image">\
 					                    '+ img + '\
-					                </figure>\
 					            </div>\
 					        </div>\
 					    </li>\
 					    <ol class="re-comment px-0" id="recomment-' + response.reply.id + '"></ol>';
 					$('.comment-list').prepend(html);
 			        $('#contentsReply').val("");
+			        
+			        if(recipeCount === undefined){
+						recipeCount = 0;
+					}
+			        $('.comments-title').find('span').text('('+recipeCount+')'); // 댓글 갯수 업데이트
 				}
 			},
 			error: function(response){

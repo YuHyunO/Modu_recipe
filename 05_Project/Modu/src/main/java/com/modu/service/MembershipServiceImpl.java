@@ -40,9 +40,10 @@ public class MembershipServiceImpl implements MembershipService {
 	    String email = (String)session.getAttribute("email");	   
 	    int currentPage = 1;
 	    int pageSize = 8;
-	    int totalPost;	
+	    int totalPost;
 	    int totalPage;
 	    int state = 1;
+	    /*
 	    try {
 	        state = Integer.parseInt(request.getParameter("state"));
 	    }catch(NumberFormatException nfe) {}
@@ -97,7 +98,20 @@ public class MembershipServiceImpl implements MembershipService {
         }
         
         session.setAttribute("followCurpage", currentPage);  	    
-	    
+	    */
+	    int endRow = currentPage*pageSize;
+        int beginRow = endRow-pageSize+1;
+        List<FollowList> followList = new ArrayList<FollowList>();
+        if(state == 1) {
+            followList = memberMapper.selectFollowing(email, beginRow, endRow);
+        }else {
+            followList = memberMapper.selectFollower(email, beginRow, endRow);
+        }
+	    totalPost = memberMapper.selectFollowerCount(email);
+	    totalPage = totalPost/pageSize;
+        if(totalPost % pageSize > 0) {
+            totalPage = totalPage + 1;
+        }       
         FollowListVo data = new FollowListVo(followList, currentPage, totalPage);
         
 	    return data;

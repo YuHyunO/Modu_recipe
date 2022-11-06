@@ -773,89 +773,89 @@
 									<!-- id="mypost" 종료, 탭4 전체 종료 -->
 
 								<!-- 탭5 (친구관리) 시작-->
-									<div class="tab-pane fade" id="myfriend" role="tabpane5" aria-labelledby="myfriend-tab">
-										<div id="tab5-content" class="site-content">
-											<h3 class="archive-title text-center">친구 관리</h3>
-											<br/>
-<!-- 											<div class="text-end pb-3">
-												<select class="gold-border p-1 filter-open">
-													<option selected="selected">나를 구독하는 친구</option>
-													<option>내가 구독하는 친구</option>
-												</select>
-											</div> -->
-											
-												<!--팔로잉/팔로워 변경 버튼-->
-												<nav id="tab5-button-nav" style="text-align: center;">
-													<button class="tab5-button" data-tab-section="tab5-section-1" onclick="getState(this);" value="1">팔로잉 목록</button>
-													<button class="tab5-button" data-tab-section="tab5-section-2" onclick="getState(this);" value="2">팔로워 목록</button>
-												</nav>
-												<p class="text-right">팔로잉: 내가 추가한 친구<br>팔로워: 나를 추가한 친구</p>
-												
-												<section id="tab5-section-1" class="tab5-section">
-													<div id="following-list" class="row">
-													</div>
-		
-													<div id="paging-area-5" class="page common-area">
-													</div>	
-												</section>
-												
-												<section id="tab5-section-2" class="tab5-section" hidden="true">
-													<div id="follower-list" class="row">
-													</div>
-													<div id="paging-area-5-null" class="page common-area">
-													</div>
-											 	</section>
-										
-												<!--아래 <script> 부분은 이 위치에서만 작동, 위치를 header로 올리거나 내리면 오류-->
-												<script>
-							                        const $nav5 = document.querySelector('#tab5-button-nav')
-							                        const $sections5 = document.querySelectorAll('.tab5-section');
-							
-							                        $nav5.addEventListener('click', (e) => {
-							                          if (!e.target.classList.contains('tab5-button')) {
-							                            return;
-							                          }
-							                          const focusedTabId = e.target.dataset.tabSection;
-							                          $sections5.forEach(($section) => {
-							                            if ($section.id === focusedTabId) {
-							                              $section.removeAttribute('hidden');
-							                            } else {
-							                              $section.setAttribute('hidden', true);
-							                            }
-							                          });
-							                        });
-							                        
-							                        function removeFollow(e) { //친구 구독끊기 버튼 클릭시
-						                        		let followId = $('#followId').val();
-						                        		console.log("#followId: ", followId);
-							                        	
-						                        		var result = confirm("정말 구독을 끊으시겠습니까?");
-							                        	if (result == true) {
-							                        		
-							                        		$.ajax({
-							                        			type : "POST",
-							                        			url : "/mypage/unfollow",
-							                        			data : {id: followId},
-							                        			success : function(result) {
-							                        				if(result=="success"){
-										                        		console.log("친구 구독끊기 성공");
-								                        				alert("정상적으로 구독 끊기 되었습니다.");
-								                        				//location.reload(); //현재 접속중인 페이지를 새로고침
-							                        					location.href("/member/mypage");
-							                        				}
-							                        			} // success 종료
-							                        		}); // ajax 종료					
-							                        	} else {
-							                        		e.preventDefault();
-							                        		alert("구독 끊기를 취소하셨습니다.");
-							                        		return false;
-							                        	}
-							                        }
-						                      </script>
-										</div>
-										<!-- id="tab5-content" 종료-->
-									</div>
-									<!-- id="myfriend" 탭5 종료 -->
+                           <div class="tab-pane fade" id="myfriend" role="tabpane5" aria-labelledby="myfriend-tab">
+                              <div id="tab5-content" class="site-content">
+                                 <h3 class="archive-title text-center">친구 관리</h3>
+                                 <br/>
+<!--                                  <div class="text-end pb-3">
+                                    <select class="gold-border p-1 filter-open">
+                                       <option selected="selected">나를 구독하는 친구</option>
+                                       <option>내가 구독하는 친구</option>
+                                    </select>
+                                 </div> -->
+                                 
+                                    <!--팔로잉/팔로워 변경 버튼-->
+                                    <nav id="tab5-button-nav" style="text-align: center;">
+                                       <button class="tab5-button" data-tab-section="tab5-section-1" onclick="getState(this);" value="1">팔로잉 목록</button>
+                                       <button class="tab5-button" data-tab-section="tab5-section-2" onclick="getState(this);" value="2">팔로워 목록</button>
+                                    </nav>
+                                    <p class="text-right">팔로잉: 내가 추가한 친구<br>팔로워: 나를 추가한 친구</p>
+                                    
+                                    <section id="tab5-section-1" class="tab5-section">
+                                       <div id="following-list" class="row">
+                                       </div>
+      
+                                       <div id="paging-area-5" class="page common-area">
+                                       </div>   
+                                    </section>
+                                    
+                                    <section id="tab5-section-2" class="tab5-section" hidden="true">
+                                       <div id="follower-list" class="row">
+                                       </div>
+                                       <div id="paging-area-5-null" class="page common-area">
+                                       </div>
+                                     </section>
+                              
+                                    <!--아래 <script> 부분은 이 위치에서만 작동, 위치를 header로 올리거나 내리면 오류-->
+                                    <script>
+                                             const $nav5 = document.querySelector('#tab5-button-nav')
+                                             const $sections5 = document.querySelectorAll('.tab5-section');
+                     
+                                             $nav5.addEventListener('click', (e) => {
+                                               if (!e.target.classList.contains('tab5-button')) {
+                                                 return;
+                                               }
+                                               const focusedTabId = e.target.dataset.tabSection;
+                                               $sections5.forEach(($section) => {
+                                                 if ($section.id === focusedTabId) {
+                                                   $section.removeAttribute('hidden');
+                                                 } else {
+                                                   $section.setAttribute('hidden', true);
+                                                 }
+                                               });
+                                             });
+                                             
+                                             function removeFollow(e) { //친구 구독끊기 버튼 클릭시
+                                                let followId = $('#followId').val();
+                                                console.log("#followId: ", followId);
+                                                
+                                                var result = confirm("정말 구독을 끊으시겠습니까?");
+                                                if (result == true) {
+                                                   
+                                                   $.ajax({
+                                                      type : "POST",
+                                                      url : "/mypage/unfollow",
+                                                      data : {id: followId},
+                                                      success : function(result) {
+                                                         if(result=="success"){
+                                                            console.log("친구 구독끊기 성공");
+                                                            alert("정상적으로 구독 끊기 되었습니다.");
+                                                            //location.reload(); //현재 접속중인 페이지를 새로고침
+                                                            location.href("/member/mypage");
+                                                         }
+                                                      } // success 종료
+                                                   }); // ajax 종료               
+                                                } else {
+                                                   e.preventDefault();
+                                                   alert("구독 끊기를 취소하셨습니다.");
+                                                   return false;
+                                                }
+                                             }
+                                        </script>
+                              </div>
+                              <!-- id="tab5-content" 종료-->
+                           </div>
+                           <!-- id="myfriend" 탭5 종료 -->
 								</div>
 								<!-- end class="tab-content", 탭5개 전체 종료-->
 							</div><!-- end my-content= 탭갈피+탭5개 종료-->

@@ -225,7 +225,7 @@
 		               where rnr.M_EMAIL=#{email} order by rrId desc, rnr.ID desc)
 		where list BETWEEN #{beginRow} AND #{endRow}		
 	</select>
-	<select id="selectReplyCount" parameterType="long" resultType="long">
+	<select id="selectReplyCount" parameterType="long" resultType="int">
 		select SUM(count) from (select NVL(MAX(ROWNUM), 0) count from RECIPE_REPLY where R_ID=#{rId} union all
                         		select NVL(MAX(ROWNUM), 0) count from RECIPE_NESTED_REPLY
                         		where RR_ID in(select DISTINCT(ID) from RECIPE_REPLY

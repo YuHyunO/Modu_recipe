@@ -35,7 +35,7 @@ public interface RecipeLegacyMapper {
 	List<RecipeNestedReply> selectNestedReplyBy(@Param("rrId")long rrId, @Param("beginRow")long beginRow, @Param("endRow")long endRow);
 	List<RecipeNestedReply> selectNestedReplyOfMember(String email);
 	List<RecipeNestedReply> selectNestedReplyOfMemberBy(@Param("email")String email, @Param("beginRow")long beginRow, @Param("endRow")long endRow);
-	long selectReplyCount(long rId);
+	int selectReplyCount(long rId);
 	long selectNestedReplyCount(long rrId);
 	long selectReplyCountByMember(String email);
 	
