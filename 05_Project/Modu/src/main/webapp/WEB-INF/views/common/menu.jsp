@@ -67,7 +67,7 @@
 						        	  <a href="javascript:refreshTimer();">연장하기</a>
 						        	</li> -->
 								</c:if>
-								<!--세션이 없을 때 = 미로그인시 -->
+								<!--세션이 없을 때 = 미로그인 상태 -->
 								<c:if test = "${ sessionScope.email == null }"> 
 								 	<li class="nav-item">
 										<a href="javascript:alert('로그인 후 이용하실 수 있습니다.'); location.href='/member/login';" class="nav-link"					
@@ -75,7 +75,7 @@
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="/member/login">로그인</a>
-									</li> <!--  모달창 사용시 id="loginBtn" or href="/member/login" -->
+									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="/member/register">회원가입</a>
 									</li>
@@ -136,7 +136,7 @@
 			<!--세션이 존재할 때-->
 		<c:if test = "${ sessionScope.email != null }">
 			<li class="nav-item">
-				<a href='/member/mypage' class="nav-link">마이페이지</a>
+				<a href='/mypage/main' class="nav-link">마이페이지</a>
 			</li>
 			<li class="nav-item">
            		<a href='/member/logout' class="nav-link">로그아웃</a>

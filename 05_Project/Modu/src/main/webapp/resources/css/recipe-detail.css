@@ -68,7 +68,6 @@ li,
     text-decoration: none;
 }
 
-
 #recipeTitle {
 	 display: inline-block;
 }
@@ -152,6 +151,10 @@ li,
     border-radius: 0.6rem !important;
 }
 
+.recipestep {
+    border-radius: 0.6rem !important;
+    height: 100%;
+}
 .step-title {
     height: 25px;
 }

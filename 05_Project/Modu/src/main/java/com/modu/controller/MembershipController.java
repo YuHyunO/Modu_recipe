@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.modu.domain.member.FollowListVo;
+import com.modu.domain.member.Member;
 import com.modu.domain.recipe.RecipeList;
 import com.modu.domain.recipe.RecipeListVo;
-import com.modu.service.FileUploadService;
 import com.modu.service.MemberRegisterService;
 import com.modu.service.MembershipService;
 import com.modu.service.RecipeFindingService;
@@ -32,12 +32,22 @@ import lombok.extern.log4j.Log4j;
 public class MembershipController {
 
 	private MembershipService membershipService;
+	private MemberRegisterService memberRegisterService;
+	
 	private RecipeSearchService recipeSearchService;
 	private RecipeFindingService recipeFindingService;
 	
+	//마이페이지 이동
     @GetMapping("/main")
-    public ModelAndView myPage(HttpServletRequest request, HttpSession session) {    
-        ModelAndView mv = new ModelAndView("member/mypage");
+    public ModelAndView goMypage2(HttpSession session) {    
+        //ModelAndView mv = new ModelAndView("member/login");
+        //return mv;
+        
+        String email = (String)session.getAttribute("email");
+        Member member1 = memberRegisterService.readMyInfo(email); 
+        ModelAndView mv = new ModelAndView("member/mypage", "member", member1); 
+        //log.info("######마이페이지 이동get member1: "+member1);
+        //log.info("######마이페이지 이동get mv: "+mv);
         return mv;
     }
     
@@ -85,28 +95,14 @@ public class MembershipController {
         membershipService.removeMyFollow(id);      
         return "success";
     }
-/*
-    //ȸ�� Ż��         
-    @PostMapping("/removemyinfo")
-    public String removeMyinfo(@RequestParam("email") String email, HttpSession session, HttpServletRequest req) { //req �ʿ�
-        Member member = memberRegisterService.readMyInfo(email);    
-        if(member.getEmail().equals((String)session.getAttribute("email"))) {
-            memberRegisterService.removeMyInfo(email);
-            session.invalidate(); //���� �����ϰ� �ִ� ������ ��ȿȭ
-            req.getSession(true); //���ο� ������ ���� �غ� true
-            return "redirect:/";
-        } else {
-            return "redirect:/";
-        }
-    }
-    */
-    
+
     @GetMapping("/recent-recipe")
     public @ResponseBody List<RecipeList> callRecentRecipe(HttpServletRequest request){
         List<RecipeList> data = recipeFindingService.findRecentRecipes(request);
         return data;
     }
-	//마이페이지 페이지 이동
+    
+	//친구 레시피 list(검색 결과) 페이지로 이동
 	/*@GetMapping("gofriendrecipe")
 	public ModelAndView goFriendRecipe(HttpSession session) {
 		

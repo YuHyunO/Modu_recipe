@@ -113,7 +113,7 @@ function displayRecommened(response){
 	for(let item of recipeList){
 		html += '<div id="recipe-item" class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
-		html += '<img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipe_mainImage">';
+		html += '<a href="../recipe/detail?no='+item.id+'"><img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipeImage"></a>';
 		html += '</div>';
 		html += '<div class="recipe-desc">';
 		html += '<h2 class="recipe-title">';
@@ -150,13 +150,13 @@ function displayMyRecipe(response){
 	for(let item of recipeList){
 		html += '<div class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
-		html += '<img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipe_mainImage">';
+		html += '<a href="../recipe/detail?no='+item.id+'"><img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipeImage"></a>';
 		html += '</div>';
 		html += '<div class="recipe-desc">';
 		html += '<h2 id="recipe-title" class="recipe-title">';
-		html += '<a href="../recipe/detail?no='+item.id+'" target="_blank">'+item.title+'&nbsp;</a>';
+		html += '<a href="../recipe/detail?no='+item.id+'">'+item.title+'&nbsp;</a>';
 		html += '</h2>';
-		html += '<a href="/recipe/update?id='+item.id+'"><button id="recipeUpdateBtn" type="button" class="gold-btn">레시피 수정</button></a>';
+		html += '<a href="/recipe/update?id='+item.id+'" target="_blank"><button id="recipeUpdateBtn" type="button" class="gold-btn">레시피 수정</button></a>';
 		html += '<figure class="profile">';
 		html += '<img class="profile-img" src="/pics/profile/'+item.profileImg+'" alt="작성자">';
 		html += '<span><em>&nbsp;'+item.mnickname+'</em></span>';
@@ -169,7 +169,6 @@ function displayMyRecipe(response){
 		html += '<img class="stars" src="/imgs/stars5.png">';
 		html += '<span class="p-1 mt-1">'+item.star+'('+item.stars+')</span>';
 		html += '</span><br>';
-		//html += '<a href="/recipe/update?id='+item.id+'"><button id="recipeUpdateBtn" type="button" class="gold-btn">레시피 수정</button></a>';
 		//html += '<a href="/recipe/delete?id='+item.id+'" onclick="javascript:alert("정말 레시피를 삭제하시겠습니까?");"><button type="button" class="gold-btn">삭제</button></a>';
 		html += '</div>';
 		html += '</div>';
@@ -187,14 +186,15 @@ function displayBookmark(response){
 	let html = "";
 	console.log("##mode: "+mode);
 	console.log(response.recipeList);
+	
 	for(let item of recipeList){
 		html += '<div id="recipe-item" class="col-6 col-md-3">';
 		html += '<div class="recipe-thumb">';
-		html += '<img src="/imgs/content/thumb-1.png" alt="/imgs/content/thumb-1.png">';
+		html += '<a href="../recipe/detail?no='+item.id+'"><img src="/pics/recipe/'+item.id+'/'+item.foodPhoto+'" alt="recipeImage"></a>';
 		html += '</div>';
 		html += '<div class="recipe-desc">';
 		html += '<h2 class="recipe-title">';
-		html += '<a href="'+item.id+'">'+item.title+'</a>';
+		html += '<a href="../recipe/detail?no='+item.id+'">'+item.title+'&nbsp;</a>';
 		html += '</h2>';
 		html += '<figure class="profile">';
 		html += '<img class="profile-img" src="/pics/profile/'+item.profileImg+'" alt="작성자">';

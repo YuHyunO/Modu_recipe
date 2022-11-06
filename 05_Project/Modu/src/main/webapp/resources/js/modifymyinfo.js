@@ -14,7 +14,6 @@ $(document).ready(function () {
 				
 				if(response == 'delete성공'){
 					console.log("if문 진입- delete성공")
-					//$(this).attr('src',"<spring:url value = '/pics/profile/${ member.profileImg }'/>");
 					//location.href="/member/mypage";
 					location.reload(); //현재 접속중인 페이지를 새로고침
 				} else {
@@ -135,7 +134,7 @@ $(document).ready(function () {
 
 		//프로필 사진 변경사진 업로드시 미리보기 및 삭제 이벤트 처리
 	 	function handleFileSelect(event) {
-			console.log("handleFileSelect 진입시작");
+			console.log("handleFileSelect 진입 시작");
 			var input = this;
 			console.log(input.files);
 			
@@ -161,7 +160,6 @@ $(document).ready(function () {
 					$("#preview").empty()
 					$("#file").val("");
 				}); 
-
 	
 $(document).ready(function() { //현재 페이지 들어오면 항상 수행
 		$("#modifyOkBtn").on("click",
@@ -207,8 +205,7 @@ $(document).ready(function() { //현재 페이지 들어오면 항상 수행
 											.focus();
 								} else { //정상일 때 submit
 									console.log('내정보 수정조건 통과!');
-									//$("#modifymyinfo_form").attr("action", "modifymyinfo"); //modifymyinfo_form은 form 태그의 name
-									$("#modifymyinfo_form").submit(); //document.modifymyinfo_form.submit();
+									$("#modifymyinfo_form").submit();
 									alert("회원정보가 정상적으로 변경되었습니다.");
 								}
 							} else { //닉네임 중복시 수정불가
@@ -239,4 +236,5 @@ function removeMember(e) { //탈퇴버튼 클릭시
 		alert("탈퇴를 취소하셨습니다.");
 		return false;
 	}
+	
 }
