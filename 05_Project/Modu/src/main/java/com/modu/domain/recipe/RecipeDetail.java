@@ -16,5 +16,5 @@ public class RecipeDetail {
 	private List<RecipeTag> tag;
 	private List<RecipeReplyList> replyList;
 	private List<RecipeNestedReply> nestedReplyList;
-	
+
 }

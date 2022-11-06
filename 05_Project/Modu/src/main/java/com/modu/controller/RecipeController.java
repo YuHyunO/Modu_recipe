@@ -226,14 +226,22 @@ public class RecipeController {
         return map;
     }
     
-    @GetMapping("/del.do")
-    public String deleteReply(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        String paramId = request.getParameter("id");
-        long id = Long.parseLong(paramId);
-        recipeRegisterService.deleteReply(id);
-        return "redirect:detail";
+    @PostMapping("/del")
+    public @ResponseBody HashMap<String, Object> deleteReply(HttpServletRequest request, HttpSession session){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        //String email = (String) session.getAttribute("email");
+        String id = request.getParameter("id");
+        long replyId = Long.parseLong(id);
+        log.info("#replyId"+replyId);
+        try {
+            recipeRegisterService.deleteReply(replyId);
+            map.put("msg", "성공");
+        } catch(Exception e) {
+            map.put("msg", "실패");
+        }
+        return map;
     }
+    
     @PostMapping("/insertNestedReply.do")
     public @ResponseBody String insertNestedReply (RecipeNestedReply recipeNestedReply) {
         System.out.println("# "+recipeNestedReply);    
