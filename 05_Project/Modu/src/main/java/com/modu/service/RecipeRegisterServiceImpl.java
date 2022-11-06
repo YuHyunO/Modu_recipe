@@ -23,6 +23,7 @@ import com.modu.mapper.RecipeMapper;
 import lombok.extern.log4j.Log4j;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -166,17 +167,16 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
     }
 
     @Override
-    public String registerReply(RecipeReply recipeReply) {
-        String result;
+    public RecipeReply registerReply(RecipeReply recipeReply) {
+        RecipeReply recipeReplyResult = new RecipeReply();
+        
         try {
             recipeLegacyMapper.insertReply(recipeReply);
-            result = "성공";
+            recipeReplyResult = recipeLegacyMapper.selectRecipeReplyByRecipeIdAndEmail(recipeReply);
         } catch (Exception e) {
-            System.out.println("#registerReply: " + e);
-            result = "실패";
+            System.out.println("#registerReply 에러: " + e);
         }
-        System.out.println("#registerReply: " + result);
-        return result;
+        return recipeReplyResult;
     }
 
     @Override
@@ -195,8 +195,17 @@ public class RecipeRegisterServiceImpl implements RecipeRegisterService {
     }
 
     @Override
-    public void registerReplyPhoto(RecipeReplyPhoto recipereplyPhoto) {
-        recipeLegacyMapper.insertReplyPhoto(recipereplyPhoto);
+    public RecipeReplyPhoto registerReplyPhoto(long recipeId, RecipeReplyPhoto recipeReplyPhoto, MultipartFile file) {
+        ArrayList<String> fileInfoList = new ArrayList<String>();
+        String ofname = file.getOriginalFilename();
+        String[] urlAndName = fileUploadService.saveImgFile(file, Path.RECIPE_PATH + "\\" + recipeId + "\\"
+                + recipeReplyPhoto.getRrId() + "\\",
+                fileInfoList);
+        recipeReplyPhoto.setOriginalFile(ofname);
+        recipeReplyPhoto.setSaveFile(urlAndName[1]);
+        log.info("#registerReplyPhoto: " + recipeReplyPhoto);
+        recipeLegacyMapper.insertReplyPhoto(recipeReplyPhoto);
+        return recipeReplyPhoto;
     }
 
     @Override

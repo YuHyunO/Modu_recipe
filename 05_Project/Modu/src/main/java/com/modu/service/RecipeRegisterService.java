@@ -14,6 +14,7 @@ import com.modu.domain.recipe.RecipeDetail;
 import com.modu.domain.recipe.RecipeTag;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.modu.domain.recipe.RecipeNestedReply;
@@ -30,10 +31,10 @@ public interface RecipeRegisterService {
             ArrayList<String> subItems,
             ArrayList<String> directions,
             ArrayList<String> tags);	
-	String registerReply(RecipeReply recipeReply);
+	RecipeReply registerReply(RecipeReply recipeReply);
 	List<RecipeReplyList> findRecipeReply(long id);
 	String registerNestedReply(RecipeNestedReply recipeNestedReply);
-    void registerReplyPhoto(RecipeReplyPhoto recipereplyPhoto);
+	RecipeReplyPhoto registerReplyPhoto(long recipeId, RecipeReplyPhoto recipereplyPhoto, MultipartFile files);
 	void recipeDelete(long id);
     void updateRecipe(HttpServletRequest request, HttpSession session, ArrayList<MultipartFile> files,
             ArrayList<String> mainItems, ArrayList<String> subItems, ArrayList<String> directions,

@@ -1,6 +1,6 @@
 $(document).ready(function(e){
 	let pageType = document.getElementById("page-type").value;
-	console.log("##"+pageType);
+	//console.log("##"+pageType);
 	setSecondaryUrl();	  		 
 })
 
@@ -23,10 +23,10 @@ function setSecondaryUrl(){
 
 function setSecondaryData(url){
 	  let cookie = getCookie("recipe");
-	  console.log("##setdata cookie: ", cookie); // rid가 출력
+	  //console.log("##setdata cookie: ", cookie); // rid가 출력
 	  // let data = { id: cookie }
 	  let data = { id: cookie.split(",") }	  
-	  console.log("##setdata data: ", data);
+	  //console.log("##setdata data: ", data);
 	  cookieAgent(url, data);
 }
 
@@ -49,7 +49,7 @@ function cookieAgent(url, data){
 function displayData(response){
 	let i = 0;
 	let html = "";
-	console.log(response);
+	//console.log(response);
 	
 	for(let item of response){
 		html += '<li>';

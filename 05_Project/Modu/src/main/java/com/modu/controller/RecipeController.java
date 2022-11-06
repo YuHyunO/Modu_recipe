@@ -163,7 +163,6 @@ public class RecipeController {
             }
         }
         long replyCount = recipeLegacyMapper.selectReplyCount(id);
-
         ModelAndView mv = new ModelAndView();
         mv.setViewName("recipe/detail");
         mv.addObject("detail", detail);        
@@ -194,16 +193,38 @@ public class RecipeController {
         return data;
     }
     
-    @PostMapping("/insert.do")
-    public @ResponseBody String insertReply(RecipeReply recipeReply, MultipartFile file, RecipeReplyPhoto replyPhoto){
-        System.out.println("zzzzz");
-        String result = recipeRegisterService.registerReply(recipeReply);
-        recipeRegisterService.registerReplyPhoto(replyPhoto);
-        System.out.println(result);
-        System.out.println(replyPhoto);
-        log.info("#recipeReply" + recipeReply);
-        return result;
+    @PostMapping("/insert-reply")
+    public @ResponseBody HashMap<String, Object> insertReply(RecipeReply recipeReply, MultipartFile file, HttpSession session){
+        HashMap<String, Object> map = new HashMap<String, Object>();
+        String result = null;
+        String userEmail = (String) session.getAttribute("email"); // 현재 로그인 상태 체크
+       
+        if (userEmail == null) {
+            map.put("msg", "로그인 안함");
+        } else { // 로그인 되어 있을 경우
+            String nickName = (String) session.getAttribute("nickname"); 
+            String profileImg = (String) session.getAttribute("profileImg");
+            recipeReply.setMEmail(userEmail);
+            recipeReply.setMNickname(nickName);
+            recipeReply.setProfileImg(profileImg);
+            log.info(recipeReply);
+            log.info(file);
+            RecipeReply reply = recipeRegisterService.registerReply(recipeReply); // 등록된 댓글
+            log.info("#recipeReply: " + reply); //댓글 확인
+            long replyId = reply.getId(); // 댓글 번호
+            long recipeId = reply.getRId(); // 레시피 번호
+            RecipeReplyPhoto recipeReplyPhoto = new RecipeReplyPhoto();
+            recipeReplyPhoto.setRrId(replyId);
+            if (file == null) {} // 이미지 파일이 없을 경우
+            else { // 이미지 파일이 있을 경우
+                RecipeReplyPhoto replyPhoto = recipeRegisterService.registerReplyPhoto(recipeId, recipeReplyPhoto, file);
+                map.put("replyPhoto", replyPhoto); // 이미지 파일 정보 리턴
+            }
+            map.put("reply", reply);
+        }
+        return map;
     }
+    
     @GetMapping("/del.do")
     public String deleteReply(HttpServletRequest request) {
         HttpSession session = request.getSession();

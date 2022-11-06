@@ -23,7 +23,7 @@ function clickStar(e){
                     $(e).addClass('star-clicked');
                     star_point = 1;
                 }
-            }     
+            }
             break;
         case 2:
             $('#star1').addClass('star-clicked');
@@ -67,12 +67,15 @@ function viewLargePic(url){
     
 function addReply(e){
     // 작성자, 작성자 사진은 세션 이용해서 추가
-    event.preventDefault();
-    let commentID = $(e).attr('id').split('-')[2] + "-" + $(e).attr('id').split('-')[3];
-    let targetCommentID = "#comment-" + commentID;
+	event.preventDefault();
+    /*let commentID = $(e).attr('id');
+    if(commentID === "reply-main-form"){
+    	
+    }
 
-    let text = $(e).find('textarea[name=reply]');
-    let lines = text.val().split("\n");
+    let replyContent = $(e).find('textarea[name=reply]');
+    let lines = replyContent.val().split("\n");
+    replyContent.val(''); // 댓글 내용 초기화
     let reviewText = '';
     for (let i = 0; i < lines.length; i++) {
         reviewText += lines[i] + "<br />";
@@ -84,7 +87,7 @@ function addReply(e){
     let minutes = String(time.getMinutes());
     let seconds = String(time.getSeconds());
     
-    text.val('');
+    
 
     if(month.length === 1){
         month = "0" + month;
@@ -177,7 +180,7 @@ function addReply(e){
         $(targetCommentID).append(htmlSub);
         console.log(targetCommentID);
         $(e).parents('.reply-write').html('');
-    }
+    }*/
 }
 
 function addReplyForm(e){    
@@ -217,26 +220,75 @@ function addReplyForm(e){
 
 $(function(){
 	$("#insertReply").on("click", function(){
-		let reply =  $("#contentsReply").val()
-		let mainForm = $('#reply-form-0-0')
-		let info = mainForm.serializeArray();		
-		alert("reply"+reply);
-		$.ajax({
-			url: "../recipe/insert.do", 
-			type: "POST", 
-			data: info,
-			dataType:"text",
-			success: function(data){
-				if(!data){
-					 alert("존재하지 않는 name");
-					 return false;
-				 }
-				alert("#성공!"+data);
-			},
-			error: function(error){
-				alert("err"+error);
-			}
+		event.preventDefault();
+		let formData = new FormData();
+		let hiddenFile = $('#hidden-file');
+		let rId = $('input[name="rId"]').val();
+		let reply= $('#contentsReply').val();
 		
+		formData.append("file", hiddenFile[0].files[0]);
+		formData.append("rId", rId);
+		formData.append("reply", reply);
+		
+		$.ajax({
+			url: "/recipe/insert-reply.json", 
+			type: "POST", 
+			data: formData,
+			enctype: "multipart/form-data",
+			processData: false,
+			contentType: false,
+			dataType:"json",
+			success: function(response){
+				if(response.msg === "로그인 안함"){
+					alert("댓글은 로그인 후 등록 가능합니다.");
+				} else {
+					console.log(response.msg);
+					console.log(response.reply);
+					let starHtml = '';
+					let starPoint = 0;
+				    if(starPoint === 0){
+				    } else {
+				        starHtml = '<img class="star-rate-img2" src="/imgs/stars' 
+				        + starPoint + '.png" alt="stars" style="width:80px; height:15px; margin-bottom:5px;">';
+				    }
+					let img = '<img class="rounded-3" src="/pics/recipe/'
+						+ response.reply.rid +'/' 
+						+ response.replyPhoto.rrId + '/' 
+						+ response.replyPhoto.saveFile + '" alt="comment-image">';
+					let html = 
+					    '<li class="comment" id="comment-'+ response.reply.rid +'-"'+ response.reply.id +'>\
+					        <div class="comment-body">\
+					            <div class="comment-meta d-flex justify-content-between align-items-center">\
+					                <span class="d-flex align-items-center">\
+					                    <figure class="comment-author">\
+					                        <img src="/pics/profile/'+ response.reply.profileImg +'" alt="작성자">\
+					                    </figure><!-- end comment-author vcard -->\
+					                    <b class="fn px-2">'+ response.reply.mnickname +'</b>\
+					                    <span class="px-2">' + response.reply.replyDate + '</span>\
+					                    <span>' + starHtml + '</span>\
+					                </span>\
+					                <span class="reply-btn px-2">\
+					                    <button class="reply-' + response.reply.id + ' reply-btn" onclick="">삭제</a>\
+					                    <button class="reply-' + response.reply.id + ' reply-btn" onclick="addReplyForm(this)">답글</a>\
+					                </span>\
+					            </div>\
+					            <div class="comment-content d-flex">\
+					                <p class="p-2 m-0 col-9">\
+					                    '+ response.reply.reply + '</p>\
+					                <figure class="comment-image">\
+					                    '+ img + '\
+					                </figure>\
+					            </div>\
+					        </div>\
+					    </li>\
+					    <ol class="re-comment px-0" id="recomment-' + response.reply.id + '"></ol>';
+					$('.comment-list').prepend(html);
+			        $('#contentsReply').val("");
+				}
+			},
+			error: function(response){
+				alert("댓글 전송에 실패했습니다.");
+			}
 		});
 	});
 });
@@ -418,5 +470,30 @@ function foldReply(id){
 	$("#nested-add-"+id).attr("value", 1);	
 }
 
+function fileUpButton(e) {
+	let hiddenInput = $(e).parent().find('input');
+	hiddenInput.click();
+}
 
+function imgUpload(e) {
+	let files = $(e)[0].files;
+	let filesArr = Array.prototype.slice.call(files);
+	let regex = /(.*?)\/(jpg|jpeg|png|gif)$/;
+	let formData = new FormData();
+	formData.append("file", files[0]);
+
+	filesArr.forEach(function (f) {
+		if (!f.type.match(regex)) {
+			alert("이미지 파일만 선택 가능합니다.");
+			return;
+		}
+		sel_file = f;
+
+		let reader = new FileReader();
+		reader.onload = function (k) {
+			$('.reply-img').attr("src", k.target.result);
+		}
+		reader.readAsDataURL(f);
+	});
+}
 

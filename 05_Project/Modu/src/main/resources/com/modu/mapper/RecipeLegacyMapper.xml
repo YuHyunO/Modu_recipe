@@ -19,10 +19,13 @@
 								 			   #{reply})
 	</insert>
 	<insert id="insertReplyPhoto" parameterType="RecipeReplyPhoto">
-		insert into RECIPE_REPLY_PICTURE values(R_REPLY_PHOTO_SEQ.nextval,
+		insert into RECIPE_REPLY_PHOTO values(R_REPLY_PHOTO_SEQ.nextval,
 											  #{rrId},
 											  #{originalFile},
 											  #{saveFile})
+		<selectKey keyProperty="rrId" resultType="LONG" order="AFTER">
+	    	select RR_ID from RECIPE_REPLY_PHOTO where RR_ID=#{rrId}
+	  	</selectKey>
 	</insert>
 	<insert id="insertNestedReply" parameterType="RecipeNestedReply">
 		insert into RECIPE_NESTED_REPLY (ID,
@@ -241,13 +244,36 @@
 	<select id="selectScrapByRecipeId" parameterType="Scrap" resultType="Scrap">
 		select * from SCRAP where R_ID=#{rId} and M_EMAIL=#{mEmail}
 	</select>
-	 <!-- 레시피 조회수 증가 -->
-	 <update id="recipeViewCount">
-	 	update 
-	 			RECIPE 
+	<!-- 레시피 조회수 증가 -->
+	<update id="recipeViewCount">
+		update 
+				RECIPE 
 		set 
-				hits = hits + 1
+			hits = hits + 1
 		where 
-				id = #{id}
-	 </update>
+			id = #{id}
+	</update>
+	<!-- 최근 등록된 레시피 태그 조회 -->
+	<select id="selectLatestRecipeTag" resultType="RecipeTag">
+		<![CDATA[
+		select * 
+		from RECIPE_TAG 
+		where ROWNUM >=1 and ROWNUM <=8 
+		ORDER BY id desc
+		]]>
+	</select>
+	<!-- 레시피 댓글 조회 -->
+	<select id="selectRecipeReplyByRecipeIdAndEmail" parameterType="RecipeReply" resultType="RecipeReply">
+		select 
+			* from 
+		(select 
+			* from RECIPE_REPLY
+		where 
+			R_ID=#{rId}
+			and M_EMAIL=#{mEmail} 
+		order by 
+			ID desc) 
+		where 
+			ROWNUM = 1
+	</select>
 </mapper>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -225,11 +226,11 @@
 											<div class="comment-meta d-flex justify-content-between align-items-center">
 												<span class="d-flex align-items-center">
 													<figure class="comment-author">
-														<img src="${li.profileImg}" alt="작성자"> <!-- 담긴 Data(li)에서 profileImg만 뽑아서 보여준다(여기서는 댓글을 등록한 작성자 -->
+														<img src="/pics/profile/${li.profileImg}" alt="작성자"> <!-- 담긴 Data(li)에서 profileImg만 뽑아서 보여준다(여기서는 댓글을 등록한 작성자 -->
 													</figure><b class="fn px-2">${li.nickname}</b> <!-- 옆에 닉네임도 출력 -->
 													<span class="star-rate-block"> 
 														<span class="px-2">${li.replyDate}</span> <!-- li에 담긴 DATA를 뽑아서 보여줄때 작성한 그 날짜 -->
-														<img class="star-rate-img2" src="/imgs/stars4.png" alt="stars" style="width: 80px; height: 15px; margin-bottom: 5px;">
+														<img class="star-rate-img2" src="/imgs/stars${starPoint}.png" alt="stars" style="width: 80px; height: 15px; margin-bottom: 5px;">
 													</span>
 												</span>
 												<div>
@@ -240,7 +241,11 @@
 											<div class="comment-content d-flex">
 												<p class="p-2 m-0 col-9">${li.reply}</p> <!-- ???? -->
 												<figure class="comment-image">
-													<img class="rounded-3" src="/imgs/content/dessert-l.png" alt="comment-image">
+													<c:choose>
+														<c:when test="${fn:length(li.photo)>1}">
+															<img class="rounded-3" src="/pics/recipe/${detail.recipe.id}/${li.id}/${li.photo}" alt="comment-image">
+														</c:when>
+													</c:choose>
 												</figure>
 											</div>
 										</div>
@@ -285,24 +290,19 @@
 							<!-- end star row -->
 							
 							<div class="row w-100 m-0 pb-2">
-								<form class="comment-form" type="POST" id="reply-form-0-0"
-									onSubmit="addReply(this)">
+								<form class="comment-form" type="POST" id="reply-main-form">
 									<div class="row">
-										<div class="col px-0 comment-file"
-											style="min-width: 100px; max-width: 100px;">
-											<input type="file" hidden> <img class="border"
-												src="/imgs/pic_none.gif" alt="파일첨부" width="100" height="100"
-												style="cursor: pointer;">
+										<input type="hidden" name="rId" value="${detail.recipe.id}"/>
+										<div class="col px-0 comment-file" style="min-width: 100px; max-width: 100px;">
+											<input type="file" id="hidden-file" name="file" style="display: none;" onchange="imgUpload(this)"/> 
+											<img class="border reply-img" src="/imgs/pic_none.gif" alt="파일첨부" 
+											width="100" height="100" style="cursor: pointer;" onclick="fileUpButton(this)">
 										</div>
 										<div class="col px-0">
-											<textarea id=contentsReply
-												class="w-100 h-100 border comment-text" name="reply"
-												maxlength="300" placeholder="리뷰를 남겨주세요" required></textarea>
+											<textarea id="contentsReply" class="w-100 h-100 border comment-text" name="reply" maxlength="300" placeholder="리뷰를 남겨주세요" required></textarea>
 										</div>
-										<div class="col px-0 comment-btn"
-											style="min-width: 120px; max-width: 120px;">
-											<button id="insertReply"
-												class="btn w-100 h-100 border comment-submit" type="submit">등록</button>
+										<div class="col px-0 comment-btn" style="min-width: 120px; max-width: 120px;">
+											<button id="insertReply" class="btn w-100 h-100 border comment-submit" type="submit">등록</button>
 										</div>
 									</div>
 								</form>

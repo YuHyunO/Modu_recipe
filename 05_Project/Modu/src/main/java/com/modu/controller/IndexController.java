@@ -38,8 +38,8 @@ public class IndexController {
 		ModelAndView mv = new ModelAndView("index", "rankList", rankList);
 		mv.addObject("bestRecipeList", bestRecipeList);
 		mv.addObject("latestRecipeList", latestRecipeList);
-		log.info("#IndexController index() bestRecipeList: " + bestRecipeList);
-		log.info("#IndexController index() latestRecipeList: " + latestRecipeList);
+		//log.info("#IndexController index() bestRecipeList: " + bestRecipeList);
+		//log.info("#IndexController index() latestRecipeList: " + latestRecipeList);
 		return mv;
 	}
 	

@@ -1,5 +1,6 @@
 package com.modu.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -14,7 +15,7 @@ import com.modu.domain.recipe.RecipeReplyPhoto;
 
 public interface RecipeLegacyMapper {
 	void insertReply(RecipeReply recipeReply);
-	void insertReplyPhoto(RecipeReplyPhoto replyPhoto);
+	long insertReplyPhoto(RecipeReplyPhoto replyPhoto);
 	void insertNestedReply(RecipeNestedReply nestedReply);
 	void insertRating(@Param("email")String email, @Param("rId")long rId, @Param("star")int star);
 	void insertScrap(@Param("email")String email, @Param("rId")long rId);		
@@ -41,4 +42,5 @@ public interface RecipeLegacyMapper {
 	Scrap selectScrapByRecipeId(@Param("rId")long rId, @Param("mEmail")String mEmail);
 	long recipeViewCount(long id);
 	long viewReply(long id);
+	RecipeReply selectRecipeReplyByRecipeIdAndEmail(RecipeReply recipeReply);
 }
